@@ -110,28 +110,31 @@ namespace Xamarin.MMP.Tests
 			RunAndAssert ("/Library/Frameworks/Mono.framework/Commands/" + (useMSBuild ? "msbuild" : "xbuild"), new StringBuilder (csprojTarget + " /t:clean"), "Clean");
 		}
 
-		public static string BuildProject (string csprojTarget, bool isUnified, bool diagnosticMSBuild = false, bool shouldFail = false, bool useMSBuild = false, string configuration = null)
+		public static string BuildProject (string csprojTarget, bool isUnified, bool diagnosticMSBuild = false, bool shouldFail = false, string configuration = null)
 		{
 			string rootDirectory = FindRootDirectory ();
 
-			// TODO - This is not enough for MSBuild to really work. We need stuff to have it not use system targets!
-			// These are required to have xbuild use are local build instead of system install
-			if (!useMSBuild) {
-				Environment.SetEnvironmentVariable ("XBUILD_FRAMEWORK_FOLDERS_PATH", rootDirectory + "/Library/Frameworks/Mono.framework/External/xbuild-frameworks");
-				Environment.SetEnvironmentVariable ("MSBuildExtensionsPath", rootDirectory + "/Library/Frameworks/Mono.framework/External/xbuild");
-				Environment.SetEnvironmentVariable ("XAMMAC_FRAMEWORK_PATH", rootDirectory + "/Library/Frameworks/Xamarin.Mac.framework/Versions/Current");
-			}
+			Environment.SetEnvironmentVariable ("XAMMAC_FRAMEWORK_PATH", rootDirectory + "/Library/Frameworks/Xamarin.Mac.framework/Versions/Current");
+
+			StringBuilder buildArgs = new StringBuilder ();
 
 			// This is to force build to use our mmp and not system mmp
-			StringBuilder buildArgs = new StringBuilder ();
 			if (isUnified) {
+				buildArgs.Append (" /property:MSBuildExtensionsPath=" + rootDirectory + "/Library/Frameworks/Mono.framework/External/xbuild");
+				buildArgs.Append (" /property:TargetFrameworkRootPath=" + rootDirectory + "/Library/Frameworks/Mono.framework/External/xbuild-frameworks");
+
 				buildArgs.Append (diagnosticMSBuild ? " /verbosity:diagnostic " : " /verbosity:normal ");
 				buildArgs.Append (" /property:XamarinMacFrameworkRoot=" + rootDirectory + "/Library/Frameworks/Xamarin.Mac.framework/Versions/Current ");
 
 				if (!string.IsNullOrEmpty (configuration))
 					buildArgs.Append ($" /property:Configuration={configuration} ");
-			} else
+			}
+			else {
+				Environment.SetEnvironmentVariable ("XBUILD_FRAMEWORK_FOLDERS_PATH", rootDirectory + "/Library/Frameworks/Mono.framework/External/xbuild-frameworks");
+				Environment.SetEnvironmentVariable ("MSBuildExtensionsPath", rootDirectory + "/Library/Frameworks/Mono.framework/External/xbuild");
+
 				buildArgs.Append (" build ");
+			}
 
 			buildArgs.Append (StringUtils.Quote (csprojTarget));
 
@@ -143,7 +146,7 @@ namespace Xamarin.MMP.Tests
 			};
 
 			if (isUnified)
-				return RunAndAssert ("/Library/Frameworks/Mono.framework/Commands/" + (useMSBuild ? "msbuild" : "xbuild"), buildArgs, "Compile", shouldFail, getBuildProjectErrorInfo);
+				return RunAndAssert ("/Library/Frameworks/Mono.framework/Commands/xbuild", buildArgs, "Compile", shouldFail, getBuildProjectErrorInfo);
 			else
 				return RunAndAssert ("/Applications/Visual Studio.app/Contents/MacOS/vstool", buildArgs, "Compile", shouldFail, getBuildProjectErrorInfo);
 		}
