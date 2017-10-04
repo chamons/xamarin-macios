@@ -12,7 +12,7 @@ namespace XamCore.Security {
 
 	public static partial class SecSharedCredential {
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static void SecAddSharedWebCredential (IntPtr /* CFStringRef */ fqdn, IntPtr /* CFStringRef */ account, IntPtr /* CFStringRef */ password,
 			IntPtr /* void (^completionHandler)( CFErrorRef error) ) */ completionHandler);
@@ -63,7 +63,7 @@ namespace XamCore.Security {
 			}
 		}
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static void SecRequestSharedWebCredential ( IntPtr /* CFStringRef */ fqdn, IntPtr /* CFStringRef */ account,
 			IntPtr /* void (^completionHandler)( CFArrayRef credentials, CFErrorRef error) */ completionHandler);
@@ -121,7 +121,7 @@ namespace XamCore.Security {
 			}
 		}
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static IntPtr /* CFStringRef */ SecCreateSharedWebCredentialPassword ();
 

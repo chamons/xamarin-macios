@@ -102,7 +102,7 @@ namespace XamCore.CoreLocation {
 
 #if IOS && !COREBUILD && XAMCORE_2_0 // This code comes from Intents.CLPlacemark_INIntentsAdditions Category
 	public partial class CLPlacemark {
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		static public CLPlacemark GetPlacemark (CLLocation location, string name, CNPostalAddress postalAddress)
 		{
 			return (null as CLPlacemark)._GetPlacemark (location, name, postalAddress);

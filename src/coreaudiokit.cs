@@ -26,15 +26,15 @@ using AUViewControllerBase = XamCore.UIKit.UIViewController;
 
 namespace XamCore.CoreAudioKit {
 #if XAMCORE_2_0 || !MONOMAC
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(AUViewControllerBase))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (AUViewControllerBase))]
 	interface AUViewController : NSExtensionRequestHandling {
 		[Export ("initWithNibName:bundle:")]
 		[PostGet ("NibBundle")]
 		IntPtr Constructor ([NullAllowed] string nibName, [NullAllowed] NSBundle bundle);
 	}
 
-	[iOS (11,0)][Mac (10,13, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface AUAudioUnitViewConfiguration : NSSecureCoding {
 		[Export ("initWithWidth:height:hostHasController:")]
@@ -51,7 +51,7 @@ namespace XamCore.CoreAudioKit {
 	}
 
 	[Category]
-	[iOS (11,0)][Mac (10,13, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (AUAudioUnit))]
 	interface AUAudioUnitViewControllerExtensions {
 		[Export ("supportedViewConfigurations:")]
@@ -63,28 +63,28 @@ namespace XamCore.CoreAudioKit {
 #endif
 
 #if !MONOMAC
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	// in iOS 8.3 (Xcode 6.3 SDK) the base type was changed from UIViewController to UITableViewController
-	[BaseType (typeof (UITableViewController), Name="CABTMIDICentralViewController")]
+	[BaseType (typeof (UITableViewController), Name = "CABTMIDICentralViewController")]
 	interface CABTMidiCentralViewController {
 		[Export ("initWithNibName:bundle:")]
 		[PostGet ("NibBundle")]
 		IntPtr Constructor ([NullAllowed] string nibName, [NullAllowed] NSBundle bundle);
 
-		[iOS (8,3)]
+		[Introduced (PlatformName.iOS, 8, 3)]
 		[Export ("initWithStyle:")]
 		IntPtr Constructor (UITableViewStyle withStyle);
 	}
 
-	[iOS (8,0)]
-	[BaseType (typeof (UIViewController), Name="CABTMIDILocalPeripheralViewController")]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[BaseType (typeof (UIViewController), Name = "CABTMIDILocalPeripheralViewController")]
 	interface CABTMidiLocalPeripheralViewController {
 		[Export ("initWithNibName:bundle:")]
 		[PostGet ("NibBundle")]
 		IntPtr Constructor ([NullAllowed] string nibName, [NullAllowed] NSBundle bundle);
 	}
 
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (UIView))]
 	interface CAInterAppAudioSwitcherView {
 		[Export ("initWithFrame:")]
@@ -100,7 +100,7 @@ namespace XamCore.CoreAudioKit {
 		nfloat ContentWidth ();
 	}
 
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (UIView))]
 	interface CAInterAppAudioTransportView {
 		[Export ("initWithFrame:")]

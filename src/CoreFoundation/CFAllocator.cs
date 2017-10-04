@@ -146,7 +146,7 @@ namespace XamCore.CoreFoundation {
 			CFAllocatorDeallocate (handle, ptr);
 		}
 
-		[DllImport (Constants.CoreFoundationLibrary, EntryPoint="CFAllocatorGetTypeID")]
+		[DllImport (Constants.CoreFoundationLibrary, EntryPoint = "CFAllocatorGetTypeID")]
 		public extern static /* CFTypeID */ nint GetTypeID ();
 	}
 

@@ -17,8 +17,8 @@ namespace XamCore.Foundation {
 		static IntPtr selSupportsSecureCodingHandle = Selector.GetHandle (selSupportsSecureCoding);
 #endif
 
-		[iOS (6,0)]
-		[Mac (10,8)]
+		[Introduced (PlatformName.iOS, 6, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		public static bool SupportsSecureCoding (Type type)
 		{
 			if (type == null)
@@ -39,8 +39,8 @@ namespace XamCore.Foundation {
 #endif
 		}
 
-		[iOS (6,0)]
-		[Mac (10,8)]
+		[Introduced (PlatformName.iOS, 6, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		public static bool SupportsSecureCoding (Class klass)
 		{
 			if (klass == null)

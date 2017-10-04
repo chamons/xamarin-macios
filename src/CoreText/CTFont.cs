@@ -156,7 +156,7 @@ namespace XamCore.CoreText {
 		AllTypographicFeatures   = 0,
 		Ligatures                = 1,
 		CursiveConnection        = 2,
-		[Availability (Deprecated = Platform.iOS_6_0 | Platform.Mac_10_7)]
+		[Deprecated (PlatformName.iOS, 6, 0), Deprecated (PlatformName.MacOSX, 10, 7)]
 		LetterCase               = 3,
 		VerticalSubstitution     = 4,
 		LinguisticRearrangement  = 5,
@@ -464,7 +464,7 @@ namespace XamCore.CoreText {
 		}
 	}
 
-	[Availability (Deprecated = Platform.iOS_6_0 | Platform.Mac_10_7)]
+	[Deprecated (PlatformName.iOS, 6, 0), Deprecated (PlatformName.MacOSX, 10, 7)]
 	public class CTFontFeatureLetterCase : CTFontFeatureSelectors
 	{
 		public enum Selector
@@ -1040,9 +1040,9 @@ namespace XamCore.CoreText {
 	{
 		public enum Selector
 		{
-			[Availability (Deprecated = Platform.iOS_5_1 | Platform.Mac_10_8)]
+			[Deprecated (PlatformName.iOS, 5, 1), Deprecated (PlatformName.MacOSX, 10, 8)]
 			NoRubyKana           = 0,
-			[Availability (Deprecated = Platform.iOS_5_1 | Platform.Mac_10_8)]
+			[Deprecated (PlatformName.iOS, 5, 1), Deprecated (PlatformName.MacOSX, 10, 8)]
 			RubyKana             = 1,
 			RubyKanaOn           = 2,
 			RubyKanaOff          = 3
@@ -1132,9 +1132,9 @@ namespace XamCore.CoreText {
 	{
 		public enum Selector
 		{
-			[Availability (Deprecated = Platform.iOS_5_1 | Platform.Mac_10_8)]
+			[Deprecated (PlatformName.iOS, 5, 1), Deprecated (PlatformName.MacOSX, 10, 8)]
 			NoCJKItalicRoman     = 0,
-			[Availability (Deprecated = Platform.iOS_5_1 | Platform.Mac_10_8)]
+			[Deprecated (PlatformName.iOS, 5, 1), Deprecated (PlatformName.MacOSX, 10, 8)]
 			CJKItalicRoman       = 1,
 			CJKItalicRomanOn     = 2,
 			CJKItalicRomanOff    = 3
@@ -1493,11 +1493,11 @@ namespace XamCore.CoreText {
 				throw ConstructorError.Unknown (this);
 		}
 
-		[iOS (7,0)] // documented as 3.2 but it's wrong (see unit tests)
+		[Introduced (PlatformName.iOS, 7, 0)] // documented as 3.2 but it's wrong (see unit tests)
 		[DllImport (Constants.CoreTextLibrary)]
 		static extern IntPtr CTFontCreateWithNameAndOptions (IntPtr name, nfloat size, IntPtr matrix, nuint options);
 
-		[iOS (7,0)] // documented as 3.2 but it's wrong (see unit tests)
+		[Introduced (PlatformName.iOS, 7, 0)] // documented as 3.2 but it's wrong (see unit tests)
 		public CTFont (string name, nfloat size, CTFontOptions options)
 		{
 			if (name == null)
@@ -1508,11 +1508,11 @@ namespace XamCore.CoreText {
 				throw ConstructorError.Unknown (this);
 		}
 
-		[iOS (7,0)] // documented as 3.2 but it's wrong (see unit tests)
+		[Introduced (PlatformName.iOS, 7, 0)] // documented as 3.2 but it's wrong (see unit tests)
 		[DllImport (Constants.CoreTextLibrary)]
 		static extern IntPtr CTFontCreateWithNameAndOptions (IntPtr name, nfloat size, ref CGAffineTransform matrix, nuint options);
 
-		[iOS (7,0)] // documented as 3.2 but it's wrong (see unit tests)
+		[Introduced (PlatformName.iOS, 7, 0)] // documented as 3.2 but it's wrong (see unit tests)
 		public CTFont (string name, nfloat size, ref CGAffineTransform matrix, CTFontOptions options)
 		{
 			if (name == null)
@@ -1523,11 +1523,11 @@ namespace XamCore.CoreText {
 				throw ConstructorError.Unknown (this);
 		}
 
-		[iOS (7,0)] // documented as 3.2 but it's wrong (see unit tests)
+		[Introduced (PlatformName.iOS, 7, 0)] // documented as 3.2 but it's wrong (see unit tests)
 		[DllImport (Constants.CoreTextLibrary)]
 		static extern IntPtr CTFontCreateWithFontDescriptorAndOptions (IntPtr descriptor, nfloat size, IntPtr matrix, nuint options);
 
-		[iOS (7,0)] // documented as 3.2 but it's wrong (see unit tests)
+		[Introduced (PlatformName.iOS, 7, 0)] // documented as 3.2 but it's wrong (see unit tests)
 		public CTFont (CTFontDescriptor descriptor, nfloat size, CTFontOptions options)
 		{
 			if (descriptor == null)
@@ -1538,11 +1538,11 @@ namespace XamCore.CoreText {
 				throw ConstructorError.Unknown (this);
 		}
 
-		[iOS (7,0)] // documented as 3.2 but it's wrong (see unit tests)
+		[Introduced (PlatformName.iOS, 7, 0)] // documented as 3.2 but it's wrong (see unit tests)
 		[DllImport (Constants.CoreTextLibrary)]
 		static extern IntPtr CTFontCreateWithFontDescriptorAndOptions (IntPtr descriptor, nfloat size, ref CGAffineTransform matrix, nuint options);
 
-		[iOS (7,0)] // documented as 3.2 but it's wrong (see unit tests)
+		[Introduced (PlatformName.iOS, 7, 0)] // documented as 3.2 but it's wrong (see unit tests)
 		public CTFont (CTFontDescriptor descriptor, nfloat size, CTFontOptions options, ref CGAffineTransform matrix)
 		{
 			if (descriptor == null)
@@ -1559,7 +1559,7 @@ namespace XamCore.CoreText {
 			/* const CGAffineTransform * __nullable */ ref CGAffineTransform affine,
 			/* CTFontDescriptorRef __nullable */ IntPtr attrs);
 
-		[DllImport (Constants.CoreTextLibrary, EntryPoint="CTFontCreateWithGraphicsFont")]
+		[DllImport (Constants.CoreTextLibrary, EntryPoint = "CTFontCreateWithGraphicsFont")]
 		static extern IntPtr CTFontCreateWithGraphicsFont2 (IntPtr cgfontRef, nfloat size, IntPtr affine, IntPtr attrs);
 		
 		public CTFont (CGFont font, nfloat size, CGAffineTransform transform, CTFontDescriptor descriptor)
@@ -1965,11 +1965,11 @@ namespace XamCore.CoreText {
 			return CTFontGetBoundingRectsForGlyphs (handle, orientation, glyphs, boundingRects, count);
 		}
 
-		[iOS (6,0)][Mac (10,8)]
+		[Introduced (PlatformName.iOS, 6, 0)][Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.CoreTextLibrary)]
 		static extern CGRect CTFontGetOpticalBoundsForGlyphs (IntPtr font, [In] CGGlyph[] glyphs, [Out] CGRect[] boundingRects, nint count, nuint options);
 
-		[iOS (6,0)][Mac (10,8)]
+		[Introduced (PlatformName.iOS, 6, 0)][Introduced (PlatformName.MacOSX, 10, 8)]
 		public CGRect GetOpticalBounds (CGGlyph[] glyphs, CGRect[] boundingRects, nint count, CTFontOptions options = 0)
 		{
 			AssertCount (count);
@@ -2040,7 +2040,7 @@ namespace XamCore.CoreText {
 			[In] CGGlyph [] glyphs, [In] CGPoint [] positions, nint count,
 			/* CGContextRef __nonnull */ IntPtr context);
 
-		[iOS(4,2)]
+		[Introduced (PlatformName.iOS, 4, 2)]
 		public void DrawGlyphs (CGContext context, CGGlyph [] glyphs, CGPoint [] positions)
 		{
 			if (context == null)
@@ -2058,7 +2058,7 @@ namespace XamCore.CoreText {
 		[DllImport (Constants.CoreTextLibrary)]
 		static extern nint CTFontGetLigatureCaretPositions (IntPtr handle, CGGlyph glyph, [Out] nfloat [] positions, nint max);
 
-		[iOS(4,2)]
+		[Introduced (PlatformName.iOS, 4, 2)]
 		public nint GetLigatureCaretPositions (CGGlyph glyph, nfloat [] positions)
 		{
 			if (positions == null)
@@ -2173,12 +2173,12 @@ namespace XamCore.CoreText {
 #endregion
 
 #region
-		[iOS (6,0)][Mac (10, 8)]
+		[Introduced (PlatformName.iOS, 6, 0)][Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.CoreTextLibrary)]
 		extern static /* CFArrayRef __nullable */ IntPtr CTFontCopyDefaultCascadeListForLanguages (
 			/* CTFontRef __nonnull */ IntPtr font, /* CFArrayRef __nullable */ IntPtr languagePrefList);
 
-		[iOS (6,0)][Mac (10, 8)]
+		[Introduced (PlatformName.iOS, 6, 0)][Introduced (PlatformName.MacOSX, 10, 8)]
 		public CTFontDescriptor [] GetDefaultCascadeList (string [] languages)
 		{
 			using (var arr = languages == null ? null : NSArray.FromStrings (languages)) {
@@ -2204,7 +2204,7 @@ namespace XamCore.CoreText {
 			return FullName;
 		}
 
-		[DllImport (Constants.CoreTextLibrary, EntryPoint="CTFontGetTypeID")]
+		[DllImport (Constants.CoreTextLibrary, EntryPoint = "CTFontGetTypeID")]
 		public extern static nint GetTypeID ();
 	}
 }

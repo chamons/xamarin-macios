@@ -1,4 +1,4 @@
-﻿// 
+// 
 // VTDecompressionSession.cs: VideoTools Decompression Session class 
 //
 // Authors:
@@ -17,7 +17,7 @@ using XamCore.CoreMedia;
 using XamCore.CoreVideo;
 
 namespace XamCore.VideoToolbox {
-	[Mac (10,8), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	public class VTDecompressionSession : VTSession {
 
 		GCHandle callbackHandle;
@@ -27,7 +27,7 @@ namespace XamCore.VideoToolbox {
 		{
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal VTDecompressionSession (IntPtr handle, bool owns) : base (handle, owns)
 		{
 		}
@@ -54,7 +54,7 @@ namespace XamCore.VideoToolbox {
 			base.Dispose (disposing);
 		}
 
-		[StructLayout(LayoutKind.Sequential)]
+		[StructLayout (LayoutKind.Sequential)]
 		struct VTDecompressionOutputCallbackRecord
 		{
 			public DecompressionOutputCallback Proc;
@@ -135,7 +135,7 @@ namespace XamCore.VideoToolbox {
 			/* VTDecompressionSessionRef* */ out IntPtr decompressionSessionOut);
 
 #if false // Disabling for now until we have some tests on this
-		[Mac (10,11), iOS (9,0)]
+		[Introduced (PlatformName.MacOSX, 10, 11), Introduced (PlatformName.iOS, 9, 0)]
 		public static VTDecompressionSession Create (CMVideoFormatDescription formatDescription,
 			VTVideoDecoderSpecification decoderSpecification = null, // hardware acceleration is default behavior on iOS. no opt-in required.
 			NSDictionary destinationImageBufferAttributes = null) // Undocumented options, probably always null
@@ -228,7 +228,7 @@ namespace XamCore.VideoToolbox {
 			return VTDecompressionSessionDecodeFrame (Handle, sampleBuffer.Handle, decodeFlags, sourceFrame, out infoFlags);
 		}
 #if false // Disabling for now until we have some tests on this
-		[Mac (10,11), iOS (9,0)]
+		[Introduced (PlatformName.MacOSX, 10, 11), Introduced (PlatformName.iOS, 9, 0)]
 		[DllImport (Constants.VideoToolboxLibrary)]
 		extern static unsafe VTStatus VTDecompressionSessionDecodeFrameWithOutputHandler (
 			/* VTDecompressionSessionRef */ IntPtr session,
@@ -255,7 +255,7 @@ namespace XamCore.VideoToolbox {
 				del (status, infoFlags, new CVImageBuffer (imageBuffer), presentationTimeStamp, presentationDuration);
 		}
 
-		[Mac (10,11), iOS (9,0)]
+		[Introduced (PlatformName.MacOSX, 10, 11), Introduced (PlatformName.iOS, 9, 0)]
 		public VTStatus DecodeFrame (CMSampleBuffer sampleBuffer, VTDecodeFrameFlags decodeFlags,
 			out VTDecodeInfoFlags infoFlags, VTDecompressionOutputHandler outputHandler)
 		{

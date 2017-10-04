@@ -1,4 +1,4 @@
-﻿//
+//
 // SearchKit.cs: simple bindings for Searchkit
 //
 // Copyright 2015 Xamarin Inc
@@ -378,7 +378,7 @@ namespace XamCore.SearchKit
 			return SKIndexAddDocument (handle, document.Handle, ns == null ? IntPtr.Zero : ns.Handle, canReplace);
 		}
 
-		[DllImport (Constants.SearchKitLibrary, EntryPoint="SKLoadDefaultExtractorPlugIns")]
+		[DllImport (Constants.SearchKitLibrary, EntryPoint = "SKLoadDefaultExtractorPlugIns")]
 		public extern static void LoadDefaultExtractorPlugIns ();
 
 		[DllImport (Constants.SearchKitLibrary)]

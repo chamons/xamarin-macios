@@ -5,12 +5,12 @@ namespace XamCore.StoreKit {
 	// typedef NSInteger SKPaymentTransactionState;
 	// StoreKit.framework/Headers/SKPaymentTransaction.h
 	[Native]
-	public enum SKPaymentTransactionState : nint {
+	public enum SKPaymentTransactionState : long {
 		Purchasing,
 		Purchased,
 		Failed,  
 		Restored,
-		[iOS (8,0)]Deferred
+		[Introduced (PlatformName.iOS, 8, 0)]Deferred
 	}
 
 	// untyped enum and not used in API - so it _could_ be an `int`
@@ -18,7 +18,7 @@ namespace XamCore.StoreKit {
 	// StoreKit.framework/Headers/SKError.h
 	[Native]
 	[ErrorDomain ("SKErrorDomain")]
-	public enum SKError : nint {
+	public enum SKError : long {
 		Unknown,
 		ClientInvalid,
 		PaymentCancelled,
@@ -35,33 +35,33 @@ namespace XamCore.StoreKit {
 	// typedef NSInteger SKDownloadState;
 	// StoreKit.framework/Headers/SKDownload.h 
 	[Native]
-	public enum SKDownloadState : nint {
+	public enum SKDownloadState : long {
 		Waiting, Active, Paused, Finished, Failed, Cancelled
 	}
 
 #if !MONOMAC || !XAMCORE_4_0
-	[iOS (9,3)]
+	[Introduced (PlatformName.iOS, 9, 3)]
 	[Native]
-	public enum SKCloudServiceAuthorizationStatus : nint {
+	public enum SKCloudServiceAuthorizationStatus : long {
 		NotDetermined,
 		Denied,
 		Restricted,
 		Authorized
 	}
 
-	[iOS (9,3)]
+	[Introduced (PlatformName.iOS, 9, 3)]
 	[Native]
-	public enum SKCloudServiceCapability : nuint {
+	public enum SKCloudServiceCapability : ulong {
 		None = 0,
 		MusicCatalogPlayback = 1 << 0,
-		[NoTV, iOS (10,1)]
+		[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 1)]
 		MusicCatalogSubscriptionEligible = 1 << 1,
 		AddToCloudMusicLibrary = 1 << 8
 	}
 
-	[iOS (11,0)][TV (11,0)][NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.TvOS, 11, 0)][Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum SKProductStorePromotionVisibility : nint {
+	public enum SKProductStorePromotionVisibility : long {
 		Default,
 		Show,
 		Hide,

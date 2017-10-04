@@ -12,16 +12,16 @@ interface UIView {}
 
 namespace XamCore.HomeKit {
 
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Static]
 	partial interface HMErrors {
 		[Field ("HMErrorDomain")]
 		NSString HMErrorDomain { get; }
 	}
 
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject), Delegates=new string[] {"WeakDelegate"}, Events=new Type[] {typeof(HMHomeManagerDelegate)})]
 	partial interface HMHomeManager {
 
@@ -39,27 +39,27 @@ namespace XamCore.HomeKit {
 		[Export ("homes", ArgumentSemantic.Copy)]
 		HMHome [] Homes { get; }
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("updatePrimaryHome:completionHandler:")]
 		void UpdatePrimaryHome (HMHome home, Action<NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("addHomeWithName:completionHandler:")]
 		void AddHome (string homeName, Action<HMHome, NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("removeHome:completionHandler:")]
 		void RemoveHome (HMHome home, Action<NSError> completion);
 	}
 
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Model, Protocol]
 	[BaseType (typeof (NSObject))]
 	partial interface HMHomeManagerDelegate {
@@ -77,21 +77,21 @@ namespace XamCore.HomeKit {
 		void DidRemoveHome (HMHomeManager manager, HMHome home);
 	}
 
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject), Delegates=new string[] {"WeakDelegate"}, Events=new Type[] {typeof(HMAccessoryDelegate)})]
 	partial interface HMAccessory {
 
 		[Export ("name")]
 		string Name { get; }
 
-		[NoTV]
-		[NoWatch]
-		[Availability (Introduced = Platform.iOS_8_0, Deprecated = Platform.iOS_9_0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 8, 0), Deprecated (PlatformName.iOS, 9, 0)]
 		[Export ("identifier", ArgumentSemantic.Copy)]
 		NSUuid Identifier { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("uniqueIdentifier", ArgumentSemantic.Copy)]
 		NSUuid UniqueIdentifier { get; }
 
@@ -109,13 +109,13 @@ namespace XamCore.HomeKit {
 		[Export ("bridged")]
 		bool Bridged { [Bind ("isBridged")] get; }
 
-		[NoTV]
-		[NoWatch]
-		[Availability (Introduced = Platform.iOS_8_0, Deprecated = Platform.iOS_9_0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 8, 0), Deprecated (PlatformName.iOS, 9, 0)]
 		[Export ("identifiersForBridgedAccessories", ArgumentSemantic.Copy)]
 		NSUuid [] IdentifiersForBridgedAccessories { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[NullAllowed, Export ("uniqueIdentifiersForBridgedAccessories", ArgumentSemantic.Copy)]
 		NSUuid[] UniqueIdentifiersForBridgedAccessories { get; }
 
@@ -125,27 +125,27 @@ namespace XamCore.HomeKit {
 		[Export ("services", ArgumentSemantic.Copy)]
 		HMService [] Services { get; }
 
-		[Watch (4,0), TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("profiles", ArgumentSemantic.Copy)]
 		HMAccessoryProfile[] Profiles { get; }
 
 		[Export ("blocked")]
 		bool Blocked { [Bind ("isBlocked")] get; }
 
-		[Watch (4, 0), TV (11, 0), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("model")]
 		string Model { get; }
 
-		[Watch (4, 0), TV (11, 0), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("manufacturer")]
 		string Manufacturer { get; }
 
-		[Watch (4, 0), TV (11, 0), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("firmwareVersion")]
 		string FirmwareVersion { get; }
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("updateName:completionHandler:")]
 		void UpdateName (string name, Action<NSError> completion);
@@ -154,19 +154,19 @@ namespace XamCore.HomeKit {
 		[Export ("identifyWithCompletionHandler:")]
 		void Identify (Action<NSError> completion);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("category", ArgumentSemantic.Strong)]
 		HMAccessoryCategory Category { get; }
 
 		// HMAccessory(Camera)
 
-		[Watch (3,0), iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.iOS, 10, 0)]
 		[NullAllowed, Export ("cameraProfiles", ArgumentSemantic.Copy)]
 		HMCameraProfile [] CameraProfiles { get; }
 	}
 
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Model, Protocol]
 	[BaseType (typeof (NSObject))]
 	partial interface HMAccessoryDelegate {
@@ -183,11 +183,11 @@ namespace XamCore.HomeKit {
 		[Export ("accessoryDidUpdateServices:")]
 		void DidUpdateServices (HMAccessory accessory);
 
-		[Watch (4,0), TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("accessory:didAddProfile:"), EventArgs ("HMAccessoryProfile")]
 		void DidAddProfile (HMAccessory accessory, HMAccessoryProfile profile);
 
-		[Watch (4,0), TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("accessory:didRemoveProfile:"), EventArgs ("HMAccessoryProfile")]
 		void DidRemoveProfile (HMAccessory accessory, HMAccessoryProfile profile);
 
@@ -197,15 +197,15 @@ namespace XamCore.HomeKit {
 		[Export ("accessory:service:didUpdateValueForCharacteristic:"), EventArgs ("HMAccessoryServiceUpdateCharacteristic")]
 		void DidUpdateValueForCharacteristic (HMAccessory accessory, HMService service, HMCharacteristic characteristic);
 
-		[Watch (4,0), TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("accessory:didUpdateFirmwareVersion:"), EventArgs ("HMAccessoryFirmwareVersion")]
 		void DidUpdateFirmwareVersion (HMAccessory accessory, string firmwareVersion);
 	}
 
 #if !WATCH
 	// __WATCHOS_PROHIBITED
-	[NoTV]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject), Delegates=new string[] {"WeakDelegate"}, Events=new Type[] {typeof(HMAccessoryBrowserDelegate)})]
 	partial interface HMAccessoryBrowser {
 
@@ -227,8 +227,8 @@ namespace XamCore.HomeKit {
 		void StopSearchingForNewAccessories ();
 	}
 
-	[NoTV]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Model, Protocol]
 	[BaseType (typeof (NSObject))]
 	partial interface HMAccessoryBrowserDelegate {
@@ -241,8 +241,8 @@ namespace XamCore.HomeKit {
 	}
 #endif // !WATCH
 
-	[Watch (3,0), TV (10,0), iOS (10,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface HMAccessoryProfile
 	{
@@ -256,18 +256,18 @@ namespace XamCore.HomeKit {
 		HMAccessory Accessory { get; }
 	}
 
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	partial interface HMAction {
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("uniqueIdentifier", ArgumentSemantic.Copy)]
 		NSUuid UniqueIdentifier { get; }
 	}
 
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
 	partial interface HMActionSet {
@@ -281,41 +281,41 @@ namespace XamCore.HomeKit {
 		[Export ("executing")]
 		bool Executing { [Bind ("isExecuting")] get; }
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("updateName:completionHandler:")]
 		void UpdateName (string name, Action<NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("addAction:completionHandler:")]
 		void AddAction (HMAction action, Action<NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("removeAction:completionHandler:")]
 		void RemoveAction (HMAction action, Action<NSError> completion);
 
 		[Internal]
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("actionSetType")]
 		NSString _ActionSetType { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("uniqueIdentifier", ArgumentSemantic.Copy)]
 		NSUuid UniqueIdentifier { get; }
 
-		[Watch (3,0), iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.iOS, 10, 0)]
 		[NullAllowed]
 		[Export ("lastExecutionDate", ArgumentSemantic.Copy)]
 		NSDate LastExecutionDate { get; }
 	}
 
-	[TV (10,0)]
-	[iOS (9,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Static]
 	[Internal]
 	interface HMActionSetTypesInternal {
@@ -334,13 +334,13 @@ namespace XamCore.HomeKit {
 		[Field ("HMActionSetTypeUserDefined")]
 		NSString UserDefined { get; }
 
-		[Watch (3,0), iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.iOS, 10, 0)]
 		[Field ("HMActionSetTypeTriggerOwned")]
 		NSString TriggerOwned { get; }
 	}
 
-	[TV (10,0)]
-	[iOS (8,0)]	
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]	
 	[BaseType (typeof (NSObject))]
 	partial interface HMCharacteristic {
 
@@ -378,31 +378,31 @@ namespace XamCore.HomeKit {
 		[Export ("enableNotification:completionHandler:")]
 		void EnableNotification (bool enable, Action<NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("updateAuthorizationData:completionHandler:")]
 		void UpdateAuthorizationData (NSData data, Action<NSError> completion);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("localizedDescription")]
 		string LocalizedDescription { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("uniqueIdentifier", ArgumentSemantic.Copy)]
 		NSUuid UniqueIdentifier { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("HMCharacteristicKeyPath")]
 		NSString KeyPath { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("HMCharacteristicValueKeyPath")]
 		NSString ValueKeyPath { get; }
 	}
 
-	[TV (10,0)]
-	[iOS(8,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Static]
 	[Internal]
 	interface HMCharacteristicPropertyInternal {
@@ -413,7 +413,7 @@ namespace XamCore.HomeKit {
 		[Field ("HMCharacteristicPropertyWritable")]
 		NSString Writable { get; }
 
-		[iOS (9,3)][Watch (2,2)]
+		[Introduced (PlatformName.iOS, 9, 3)][Introduced (PlatformName.WatchOS, 2, 2)]
 		[Field ("HMCharacteristicPropertyHidden")]
 		NSString Hidden { get; }
 
@@ -422,8 +422,8 @@ namespace XamCore.HomeKit {
 		NSString SupportsEventNotification { get; }		
 	}
 
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Static]
 	[Internal]
 	interface HMCharacteristicMetadataUnitsInternal {
@@ -439,25 +439,25 @@ namespace XamCore.HomeKit {
 		[Field ("HMCharacteristicMetadataUnitsArcDegree")]
 		NSString ArcDegree { get; }
 
-		[iOS (8,3)]
+		[Introduced (PlatformName.iOS, 8, 3)]
 		[Field ("HMCharacteristicMetadataUnitsSeconds")]
 		NSString Seconds { get; }
 
-		[iOS (9,3)][Watch (2,2)]
+		[Introduced (PlatformName.iOS, 9, 3)][Introduced (PlatformName.WatchOS, 2, 2)]
 		[Field ("HMCharacteristicMetadataUnitsLux")]
 		NSString Lux { get; }
 
-		[Watch (3,0), iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.iOS, 10, 0)]
 		[Field ("HMCharacteristicMetadataUnitsPartsPerMillion")]
 		NSString PartsPerMillion { get; }
 
-		[Watch (3,0), iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.iOS, 10, 0)]
 		[Field ("HMCharacteristicMetadataUnitsMicrogramsPerCubicMeter")]
 		NSString MicrogramsPerCubicMeter { get; }
 	}
 
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	partial interface HMCharacteristicMetadata {
 
@@ -484,19 +484,19 @@ namespace XamCore.HomeKit {
 		[Export ("manufacturerDescription")]
 		string ManufacturerDescription { get; }
 
-		[Watch (3,0), iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.iOS, 10, 0)]
 		[NullAllowed, Export ("validValues", ArgumentSemantic.Copy)]
 		NSNumber[] ValidValues { get; }
 	}
 
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (HMAction))]
 	partial interface HMCharacteristicWriteAction {
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[DesignatedInitializer]
 		[Export ("initWithCharacteristic:targetValue:")]
 #if XAMCORE_3_0
@@ -515,8 +515,8 @@ namespace XamCore.HomeKit {
 		NSObject TargetValue { get; }
 #endif
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("updateTargetValue:completionHandler:")]
 #if XAMCORE_3_0
@@ -526,8 +526,8 @@ namespace XamCore.HomeKit {
 #endif
 	}
 
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Delegates=new string[] {"WeakDelegate"}, Events=new Type[] {typeof(HMHomeDelegate)})]
 	partial interface HMHome { 
@@ -546,17 +546,17 @@ namespace XamCore.HomeKit {
 		[Export ("primary")]
 		bool Primary { [Bind ("isPrimary")] get; }
 
-		[Watch (4,0), TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("homeHubState")]
 		HMHomeHubState HomeHubState { get; }
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("updateName:completionHandler:")]
 		void UpdateName (string name, Action<NSError> completion);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("uniqueIdentifier", ArgumentSemantic.Copy)]
 		NSUuid UniqueIdentifier { get; }
 
@@ -565,20 +565,20 @@ namespace XamCore.HomeKit {
 		[Export ("accessories", ArgumentSemantic.Copy)]
 		HMAccessory [] Accessories { get; }
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("addAccessory:completionHandler:")]
 		void AddAccessory (HMAccessory accessory, Action<NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("removeAccessory:completionHandler:")]
 		void RemoveAccessory (HMAccessory accessory, Action<NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("assignAccessory:toRoom:completionHandler:")]
 		void AssignAccessory (HMAccessory accessory, HMRoom room, Action<NSError> completion);
@@ -587,13 +587,13 @@ namespace XamCore.HomeKit {
 		[Export ("servicesWithTypes:")]
 		HMService [] _ServicesWithTypes (NSString [] serviceTypes);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("unblockAccessory:completionHandler:")]
 		void UnblockAccessory (HMAccessory accessory, Action<NSError> completion);
 
-		[NoWatch, NoTV, iOS (10,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 0)]
 		[Async]
 		[Export ("addAndSetupAccessoriesWithCompletionHandler:")]
 		void AddAndSetupAccessories (Action<NSError> completion);
@@ -603,14 +603,14 @@ namespace XamCore.HomeKit {
 		[Export ("rooms", ArgumentSemantic.Copy)]
 		HMRoom [] Rooms { get; }
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("addRoomWithName:completionHandler:")]
 		void AddRoom (string roomName, Action<HMRoom, NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("removeRoom:completionHandler:")]
 		void RemoveRoom (HMRoom room, Action<NSError> completion);
@@ -623,14 +623,14 @@ namespace XamCore.HomeKit {
 		[Export ("zones", ArgumentSemantic.Copy)]
 		HMZone [] Zones { get; }
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("addZoneWithName:completionHandler:")]
 		void AddZone (string zoneName, Action<HMZone, NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("removeZone:completionHandler:")]
 		void RemoveZone (HMZone zone, Action<NSError> completion);
@@ -640,14 +640,14 @@ namespace XamCore.HomeKit {
 		[Export ("serviceGroups", ArgumentSemantic.Copy)]
 		HMServiceGroup [] ServiceGroups { get; }
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("addServiceGroupWithName:completionHandler:")]
 		void AddServiceGroup (string serviceGroupName, Action<HMServiceGroup, NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("removeServiceGroup:completionHandler:")]
 		void RemoveServiceGroup (HMServiceGroup group, Action<NSError> completion);
@@ -657,14 +657,14 @@ namespace XamCore.HomeKit {
 		[Export ("actionSets", ArgumentSemantic.Copy)]
 		HMActionSet [] ActionSets { get; }
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("addActionSetWithName:completionHandler:")]
 		void AddActionSet (string actionSetName, Action<HMActionSet, NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("removeActionSet:completionHandler:")]
 		void RemoveActionSet (HMActionSet actionSet, Action<NSError> completion);
@@ -673,7 +673,7 @@ namespace XamCore.HomeKit {
 		[Export ("executeActionSet:completionHandler:")]
 		void ExecuteActionSet (HMActionSet actionSet, Action<NSError> completion);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("builtinActionSetOfType:")]
 		[return: NullAllowed]
 		HMActionSet GetBuiltinActionSet (string actionSetType);
@@ -683,52 +683,52 @@ namespace XamCore.HomeKit {
 		[Export ("triggers", ArgumentSemantic.Copy)]
 		HMTrigger [] Triggers { get; }
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("addTrigger:completionHandler:")]
 		void AddTrigger (HMTrigger trigger, Action<NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("removeTrigger:completionHandler:")]
 		void RemoveTrigger (HMTrigger trigger, Action<NSError> completion);
 
 		// HMHome(HMUser)
 
-		[NoTV]
-		[NoWatch]
-		[Availability (Introduced = Platform.iOS_8_0, Deprecated = Platform.iOS_9_0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 8, 0), Deprecated (PlatformName.iOS, 9, 0)]
 		[Export ("users")]
 		HMUser [] Users { get; }
 
-		[NoTV]
-		[NoWatch]
-		[Availability (Introduced = Platform.iOS_8_0, Deprecated = Platform.iOS_9_0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 8, 0), Deprecated (PlatformName.iOS, 9, 0)]
 		[Async]
 		[Export ("addUserWithCompletionHandler:")]
 		void AddUser (Action<HMUser,NSError> completion);
 
-		[NoTV]
-		[NoWatch]
-		[Availability (Introduced = Platform.iOS_8_0, Deprecated = Platform.iOS_9_0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 8, 0), Deprecated (PlatformName.iOS, 9, 0)]
 		[Async]
 		[Export ("removeUser:completionHandler:")]
 		void RemoveUser (HMUser user, Action<NSError> completion);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("currentUser", ArgumentSemantic.Strong)]
 		HMUser CurrentUser { get; }
 
-		[NoTV]
-		[NoWatch]
-		[iOS (9,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Async]
 		[Export ("manageUsersWithCompletionHandler:")]
 		void ManageUsers (Action<NSError> completion);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("homeAccessControlForUser:")]
 		HMHomeAccessControl GetHomeAccessControl (HMUser user);
 
@@ -738,8 +738,8 @@ namespace XamCore.HomeKit {
 		NSString UserFailedAccessoriesKey { get; }
 	}
 
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Model, Protocol]
 	[BaseType (typeof (NSObject))]
 	partial interface HMHomeDelegate {
@@ -747,7 +747,7 @@ namespace XamCore.HomeKit {
 		[Export ("homeDidUpdateName:")]
 		void DidUpdateNameForHome (HMHome home);
 
-		[Watch (4,0), TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("homeDidUpdateAccessControlForCurrentUser:")]
 		void DidUpdateAccessControlForCurrentUser (HMHome home);
 
@@ -835,13 +835,13 @@ namespace XamCore.HomeKit {
 		[Export ("home:didEncounterError:forAccessory:"), EventArgs ("HMHomeErrorAccessory")]
 		void DidEncounterError (HMHome home, NSError error, HMAccessory accessory);
 
-		[Watch (4,0), TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("home:didUpdateHomeHubState:"), EventArgs ("HMHomeHubState")]
 		void DidUpdateHomeHubState (HMHome home, HMHomeHubState homeHubState);
 	}
 
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
 	partial interface HMRoom {
@@ -852,19 +852,19 @@ namespace XamCore.HomeKit {
 		[Export ("accessories", ArgumentSemantic.Copy)]
 		HMAccessory [] Accessories { get; }
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("updateName:completionHandler:")]
 		void UpdateName (string name, Action<NSError> completion);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("uniqueIdentifier", ArgumentSemantic.Copy)]
 		NSUuid UniqueIdentifier { get; }
 	}
 
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	partial interface HMService { 
 
@@ -887,42 +887,42 @@ namespace XamCore.HomeKit {
 		[Export ("characteristics", ArgumentSemantic.Copy)]
 		HMCharacteristic [] Characteristics { get; }
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("updateName:completionHandler:")]
 		void UpdateName (string name, Action<NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[EditorBrowsable (EditorBrowsableState.Advanced)]
 		[Async]
 		[Export ("updateAssociatedServiceType:completionHandler:")]
 		void UpdateAssociatedServiceType ([NullAllowed] string serviceType, Action<NSError> completion);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("userInteractive")]
 		bool UserInteractive { [Bind ("isUserInteractive")] get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("localizedDescription")]
 		string LocalizedDescription { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("uniqueIdentifier", ArgumentSemantic.Copy)]
 		NSUuid UniqueIdentifier { get; }
 
-		[Watch (3,0), iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("primaryService")]
 		bool PrimaryService { [Bind ("isPrimaryService")] get; }
 
-		[Watch (3,0), iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.iOS, 10, 0)]
 		[NullAllowed, Export ("linkedServices", ArgumentSemantic.Copy)]
 		HMService[] LinkedServices { get; }
 	}
 
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
 	partial interface HMServiceGroup {
@@ -933,37 +933,37 @@ namespace XamCore.HomeKit {
 		[Export ("services", ArgumentSemantic.Copy)]
 		HMService [] Services { get; }
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("updateName:completionHandler:")]
 		void UpdateName (string name, Action<NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("addService:completionHandler:")]
 		void AddService (HMService service, Action<NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("removeService:completionHandler:")]
 		void RemoveService (HMService service, Action<NSError> completion);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("uniqueIdentifier", ArgumentSemantic.Copy)]
 		NSUuid UniqueIdentifier { get; }
 	}
 
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (HMTrigger))]
 	partial interface HMTimerTrigger { 
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[DesignatedInitializer]
 		[Export ("initWithName:fireDate:timeZone:recurrence:recurrenceCalendar:")]
 		IntPtr Constructor (string name, NSDate fireDate, [NullAllowed] NSTimeZone timeZone, [NullAllowed] NSDateComponents recurrence, [NullAllowed] NSCalendar recurrenceCalendar);
@@ -980,27 +980,27 @@ namespace XamCore.HomeKit {
 		[Export ("recurrenceCalendar", ArgumentSemantic.Copy)]
 		NSCalendar RecurrenceCalendar { get; }
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("updateFireDate:completionHandler:")]
 		void UpdateFireDate (NSDate fireDate, Action<NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("updateTimeZone:completionHandler:")]
 		void UpdateTimeZone ([NullAllowed] NSTimeZone timeZone, Action<NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("updateRecurrence:completionHandler:")]
 		void UpdateRecurrence ([NullAllowed] NSDateComponents recurrence, Action<NSError> completion);
 	}
 
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
 	partial interface HMTrigger { 
@@ -1017,37 +1017,37 @@ namespace XamCore.HomeKit {
 		[Export ("lastFireDate", ArgumentSemantic.Copy)]
 		NSDate LastFireDate { get; }
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("updateName:completionHandler:")]
 		void UpdateName (string name, Action<NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("addActionSet:completionHandler:")]
 		void AddActionSet (HMActionSet actionSet, Action<NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("removeActionSet:completionHandler:")]
 		void RemoveActionSet (HMActionSet actionSet, Action<NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("enable:completionHandler:")]
 		void Enable (bool enable, Action<NSError> completion);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("uniqueIdentifier", ArgumentSemantic.Copy)]
 		NSUuid UniqueIdentifier { get; }
 	}
 
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
 	partial interface HMZone { 
@@ -1058,32 +1058,32 @@ namespace XamCore.HomeKit {
 		[Export ("rooms", ArgumentSemantic.Copy)]
 		HMRoom [] Rooms { get; }
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("updateName:completionHandler:")]
 		void UpdateName (string name, Action<NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("addRoom:completionHandler:")]
 		void AddRoom (HMRoom room, Action<NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("removeRoom:completionHandler:")]
 		void RemoveRoom (HMRoom room, Action<NSError> completion);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("uniqueIdentifier", ArgumentSemantic.Copy)]
 		NSUuid UniqueIdentifier { get; }
 	}
 
 	[Static, Internal]
-	[iOS (8,0)]
-	[TV (10,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
 	interface HMCharacteristicMetadataFormatKeys {
 		[Field ("HMCharacteristicMetadataFormatBool")]
 		NSString _Bool { get; }
@@ -1122,21 +1122,21 @@ namespace XamCore.HomeKit {
 		NSString _Tlv8 { get; }
 	}
 
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface HMUser {
 		[Export ("name")]
 		string Name { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("uniqueIdentifier", ArgumentSemantic.Copy)]
 		NSUuid UniqueIdentifier { get; }
 	}
 
-	[TV (10,0)]
-	[iOS (9,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // NSInternalInconsistencyException Reason: init is unavailable
 	interface HMAccessoryCategory {
@@ -1151,13 +1151,13 @@ namespace XamCore.HomeKit {
 		string LocalizedDescription { get; }
 	}
 
-	[TV (10,0)]
-	[iOS (9,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (HMEvent))]
 	[DisableDefaultCtor]
 	interface HMCharacteristicEvent : NSMutableCopying {
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Export ("initWithCharacteristic:triggerValue:")]
 		IntPtr Constructor (HMCharacteristic characteristic, [NullAllowed] INSCopying triggerValue);
 
@@ -1169,65 +1169,65 @@ namespace XamCore.HomeKit {
 		INSCopying TriggerValue { get; [NotImplemented] set; }
 
 		[Deprecated (PlatformName.iOS, 11, 0)]
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("updateTriggerValue:completionHandler:")]
 		void UpdateTriggerValue ([NullAllowed] INSCopying triggerValue, Action<NSError> completion);
 	}
 
-	[TV (10,0)]
-	[iOS (9,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	interface HMEvent {
 		[Export ("uniqueIdentifier", ArgumentSemantic.Copy)]
 		NSUuid UniqueIdentifier { get; }
 
-		[Watch (4,0), TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Static]
 		[Export ("isSupportedForHome:")]
 		bool IsSupported (HMHome home);
 	}
 
-	[Watch (4,0), TV (11,0), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (HMEvent))]
 	interface HMTimeEvent {}
 
-	[TV (10,0)]
-	[iOS (9,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (HMTrigger))]
 	[DisableDefaultCtor]
 	interface HMEventTrigger {
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Export ("initWithName:events:predicate:")]
 		IntPtr Constructor (string name, HMEvent[] events, [NullAllowed] NSPredicate predicate);
 
-		[NoTV]
-		[NoWatch]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("initWithName:events:endEvents:recurrences:predicate:")]
 		IntPtr Constructor (string name, HMEvent[] events, [NullAllowed] HMEvent[] endEvents, [NullAllowed] NSDateComponents[] recurrences, [NullAllowed] NSPredicate predicate);
 
 		[Export ("events", ArgumentSemantic.Copy)]
 		HMEvent[] Events { get; }
 
-		[Watch (4, 0), TV (11, 0), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("endEvents", ArgumentSemantic.Copy)]
 		HMEvent[] EndEvents { get; }
 
 		[NullAllowed, Export ("predicate", ArgumentSemantic.Copy)]
 		NSPredicate Predicate { get; }
 
-		[Watch (4, 0), TV (11, 0), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("recurrences", ArgumentSemantic.Copy)]
 		NSDateComponents[] Recurrences { get; }
 
-		[Watch (4, 0), TV (11, 0), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("executeOnce")]
 		bool ExecuteOnce { get; }
 
-		[Watch (4, 0), TV (11, 0), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("triggerActivationState", ArgumentSemantic.Assign)]
 		HMEventTriggerActivationState TriggerActivationState { get; }
 
@@ -1235,7 +1235,7 @@ namespace XamCore.HomeKit {
 		[Export ("predicateForEvaluatingTriggerOccurringBeforeSignificantEvent:applyingOffset:")]
 		NSPredicate CreatePredicateForEvaluatingTriggerOccurringBeforeSignificantEvent (NSString significantEvent, [NullAllowed] NSDateComponents offset);
 
-		[Watch (4,0), TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Static]
 		[Export ("predicateForEvaluatingTriggerOccurringBeforeSignificantEvent:")]
 		NSPredicate CreatePredicateForEvaluatingTriggerOccurringBeforeSignificantEvent (HMSignificantTimeEvent significantEvent);
@@ -1244,12 +1244,12 @@ namespace XamCore.HomeKit {
 		[Export ("predicateForEvaluatingTriggerOccurringAfterSignificantEvent:applyingOffset:")]
 		NSPredicate CreatePredicateForEvaluatingTriggerOccurringAfterSignificantEvent (NSString significantEvent, [NullAllowed] NSDateComponents offset);
 
-		[Watch (4,0), TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Static]
 		[Export ("predicateForEvaluatingTriggerOccurringAfterSignificantEvent:")]
 		NSPredicate CreatePredicateForEvaluatingTriggerOccurringAfterSignificantEvent (HMSignificantTimeEvent significantEvent);
 
-		[Watch (4,0), TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Static]
 		[Export ("predicateForEvaluatingTriggerOccurringBetweenSignificantEvent:secondSignificantEvent:")]
 		NSPredicate CreatePredicateForEvaluatingTriggerOccurringBetweenSignificantEvent (HMSignificantTimeEvent firstSignificantEvent, HMSignificantTimeEvent secondSignificantEvent);
@@ -1266,7 +1266,7 @@ namespace XamCore.HomeKit {
 		[Export ("predicateForEvaluatingTriggerOccurringAfterDateWithComponents:")]
 		NSPredicate CreatePredicateForEvaluatingTriggerOccurringAfterDate (NSDateComponents dateComponents);
 
-		[Watch (4,0), TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Static]
 		[Export ("predicateForEvaluatingTriggerOccurringBetweenDateWithComponents:secondDateWithComponents:")]
 		NSPredicate CreatePredicateForEvaluatingTriggerOccurringBetweenDates (NSDateComponents firstDateComponents, NSDateComponents secondDateComponents);
@@ -1275,62 +1275,62 @@ namespace XamCore.HomeKit {
 		[Export ("predicateForEvaluatingTriggerWithCharacteristic:relatedBy:toValue:")]
 		NSPredicate CreatePredicateForEvaluatingTrigger (HMCharacteristic characteristic, NSPredicateOperatorType operatorType, NSObject value);
 
-		[Watch (4,0), TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Static]
 		[Export ("predicateForEvaluatingTriggerWithPresence:")]
 		NSPredicate CreatePredicateForEvaluatingTrigger (HMPresenceEvent presenceEvent);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'UpdateEvents' instead.")]
 		[Async]
 		[Export ("addEvent:completionHandler:")]
 		void AddEvent (HMEvent @event, Action<NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'UpdateEvents' instead.")]
 		[Async]
 		[Export ("removeEvent:completionHandler:")]
 		void RemoveEvent (HMEvent @event, Action<NSError> completion);
 
-		[NoTV]
-		[NoWatch]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Async]
 		[Export ("updateEvents:completionHandler:")]
 		void UpdateEvents (HMEvent[] events, Action<NSError> completion);
 
-		[NoTV]
-		[NoWatch]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Async]
 		[Export ("updateEndEvents:completionHandler:")]
 		void UpdateEndEvents (HMEvent[] endEvents, Action<NSError> completion);
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		[Export ("updatePredicate:completionHandler:")]
 		void UpdatePredicate ([NullAllowed] NSPredicate predicate, Action<NSError> completion);
 
-		[NoTV]
-		[NoWatch]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Async]
 		[Export ("updateRecurrences:completionHandler:")]
 		void UpdateRecurrences ([NullAllowed] NSDateComponents[] recurrences, Action<NSError> completion);
 
-		[NoTV]
-		[NoWatch]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Async]
 		[Export ("updateExecuteOnce:completionHandler:")]
 		void UpdateExecuteOnce (bool executeOnce, Action<NSError> completion);
 	}
 
-	[iOS (9,0)]
-	[TV (10,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface HMHomeAccessControl {
@@ -1338,29 +1338,29 @@ namespace XamCore.HomeKit {
 		bool Administrator { [Bind ("isAdministrator")] get; }
 	}
 
-	[iOS (9,0)]
-	[TV (10,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
 	[BaseType (typeof (HMEvent))]
 	[DisableDefaultCtor]
 	interface HMLocationEvent : NSMutableCopying {
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Export ("initWithRegion:")]
 		IntPtr Constructor (CLRegion region);
 
 		[NullAllowed, Export ("region", ArgumentSemantic.Strong)]
 		CLRegion Region { get; [NotImplemented] set; }
 
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		[Deprecated (PlatformName.iOS, 11, 0)]
 		[Async]
 		[Export ("updateRegion:completionHandler:")]
 		void UpdateRegion (CLRegion region, Action<NSError> completion);
 	}
 
-	[Watch (4,0), TV (11,0), iOS (11,0)]
-	[BaseType (typeof(HMLocationEvent))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (HMLocationEvent))]
 	[DisableDefaultCtor]
 	interface HMMutableLocationEvent {
 
@@ -1372,9 +1372,9 @@ namespace XamCore.HomeKit {
 		CLRegion Region { get; set; }
 	}
 
-	[NoWatch]
-	[TV (10,0), iOS (10,0)]
-	[BaseType (typeof(UIView))]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (UIView))]
 	interface HMCameraView
 	{
 		// inlined ctor
@@ -1385,13 +1385,13 @@ namespace XamCore.HomeKit {
 		HMCameraSource CameraSource { get; set; }
 	}
 
-	[Watch (3,0), TV (10,0), iOS (10,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
 	[Abstract] // documented as such in header file
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface HMCameraSource {}
 
-	[Watch (3,0), TV (10,0), iOS (10,0)]
-	[BaseType (typeof(HMAccessoryProfile))]
+	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (HMAccessoryProfile))]
 	[DisableDefaultCtor]
 	interface HMCameraProfile
 	{
@@ -1411,12 +1411,12 @@ namespace XamCore.HomeKit {
 		HMCameraAudioControl MicrophoneControl { get; }
 	}
 
-	[Watch (3,0), TV (10,0), iOS (10,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (NSObject))]
 	interface HMCameraControl {}
 
-	[Watch (3,0), TV (10,0), iOS (10,0)]
-	[BaseType (typeof(HMCameraControl))]
+	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (HMCameraControl))]
 	interface HMCameraStreamControl
 	{
 		[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
@@ -1437,9 +1437,9 @@ namespace XamCore.HomeKit {
 
 	interface IHMCameraStreamControlDelegate {}
 
-	[Watch (3,0), TV (10,0), iOS (10,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface HMCameraStreamControlDelegate
 	{
 		[Export ("cameraStreamControlDidStartStream:")]
@@ -1450,22 +1450,22 @@ namespace XamCore.HomeKit {
 	}
 
 	// TODO: Type still available for tvOS even if everything in it is __TVOS_PROHIBITED.
-	[Watch (3,0), TV (10,0), iOS (10,0)]
-	[BaseType (typeof(HMCameraSource))]
+	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (HMCameraSource))]
 	interface HMCameraStream
 	{
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("audioStreamSetting", ArgumentSemantic.Assign)]
 		HMCameraAudioStreamSetting AudioStreamSetting { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Async]
 		[Export ("updateAudioStreamSetting:completionHandler:")]
 		void UpdateAudioStreamSetting (HMCameraAudioStreamSetting audioStreamSetting, Action<NSError> completion);
 	}
 
-	[Watch (3,0), TV (10,0), iOS (10,0)]
-	[BaseType (typeof(HMCameraControl))]
+	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (HMCameraControl))]
 	interface HMCameraSnapshotControl
 	{
 		[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
@@ -1480,29 +1480,29 @@ namespace XamCore.HomeKit {
 
 	interface IHMCameraSnapshotControlDelegate {}
 
-	[Watch (3,0), TV (10,0), iOS (10,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface HMCameraSnapshotControlDelegate
 	{
 		[Export ("cameraSnapshotControl:didTakeSnapshot:error:")]
 		void DidTakeSnapshot (HMCameraSnapshotControl cameraSnapshotControl, [NullAllowed] HMCameraSnapshot snapshot, [NullAllowed] NSError error);
 
-		[iOS (10,1)][Watch (3,1)][TV (10,1)]
+		[Introduced (PlatformName.iOS, 10, 1)][Introduced (PlatformName.WatchOS, 3, 1)][Introduced (PlatformName.TvOS, 10, 1)]
 		[Export ("cameraSnapshotControlDidUpdateMostRecentSnapshot:")]
 		void DidUpdateMostRecentSnapshot (HMCameraSnapshotControl cameraSnapshotControl);
 	}
 
-	[Watch (3,0), TV (10,0), iOS (10,0)]
-	[BaseType (typeof(HMCameraSource))]
+	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (HMCameraSource))]
 	interface HMCameraSnapshot
 	{
 		[Export ("captureDate", ArgumentSemantic.Copy)]
 		NSDate CaptureDate { get; }
 	}
 
-	[Watch (3,0), TV (10,0), iOS (10,0)]
-	[BaseType (typeof(HMCameraControl))]
+	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (HMCameraControl))]
 	[DisableDefaultCtor]
 	interface HMCameraSettingsControl
 	{
@@ -1534,8 +1534,8 @@ namespace XamCore.HomeKit {
 		HMCharacteristic ImageMirroring { get; }
 	}
 
-	[Watch (3,0), TV (10,0), iOS (10,0)]
-	[BaseType (typeof(HMCameraControl))]
+	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (HMCameraControl))]
 	[DisableDefaultCtor]
 	interface HMCameraAudioControl
 	{
@@ -1546,8 +1546,8 @@ namespace XamCore.HomeKit {
 		HMCharacteristic Volume { get; }
 	}
 
-	[Watch (4,0), TV (11,0), iOS (11,0)]
-	[BaseType (typeof(HMTimeEvent))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (HMTimeEvent))]
 	[DisableDefaultCtor]
 	interface HMCalendarEvent : NSMutableCopying {
 
@@ -1558,8 +1558,8 @@ namespace XamCore.HomeKit {
 		NSDateComponents FireDateComponents { get; [NotImplemented] set; }
 	}
 
-	[Watch (4,0), TV (11,0), iOS (11,0)]
-	[BaseType (typeof(HMCalendarEvent))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (HMCalendarEvent))]
 	[DisableDefaultCtor]
 	interface HMMutableCalendarEvent {
 
@@ -1571,8 +1571,8 @@ namespace XamCore.HomeKit {
 		NSDateComponents FireDateComponents { get; set; }
 	}
 
-	[Watch (4,0), TV (11,0), iOS (11,0)]
-	[BaseType (typeof(HMCharacteristicEvent))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (HMCharacteristicEvent))]
 	[DisableDefaultCtor]
 	interface HMMutableCharacteristicEvent : NSMutableCopying {
 
@@ -1588,8 +1588,8 @@ namespace XamCore.HomeKit {
 		INSCopying TriggerValue { get; set; }
 	}
 
-	[Watch (4,0), TV (11,0), iOS (11,0)]
-	[BaseType (typeof(HMEvent))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (HMEvent))]
 	[DisableDefaultCtor]
 	interface HMCharacteristicThresholdRangeEvent : NSMutableCopying {
 
@@ -1603,8 +1603,8 @@ namespace XamCore.HomeKit {
 		HMNumberRange ThresholdRange { get; [NotImplemented] set; }
 	}
 
-	[Watch (4,0), TV (11,0), iOS (11,0)]
-	[BaseType (typeof(HMCharacteristicThresholdRangeEvent))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (HMCharacteristicThresholdRangeEvent))]
 	[DisableDefaultCtor]
 	interface HMMutableCharacteristicThresholdRangeEvent {
 
@@ -1620,8 +1620,8 @@ namespace XamCore.HomeKit {
 		HMNumberRange ThresholdRange { get; set; }
 	}
 
-	[Watch (4,0), TV (11,0), iOS (11,0)]
-	[BaseType (typeof(HMTimeEvent))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (HMTimeEvent))]
 	[DisableDefaultCtor]
 	interface HMDurationEvent : NSMutableCopying {
 
@@ -1632,8 +1632,8 @@ namespace XamCore.HomeKit {
 		double Duration { get; [NotImplemented] set; }
 	}
 
-	[Watch (4,0), TV (11,0), iOS (11,0)]
-	[BaseType (typeof(HMDurationEvent))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (HMDurationEvent))]
 	[DisableDefaultCtor]
 	interface HMMutableDurationEvent {
 
@@ -1645,8 +1645,8 @@ namespace XamCore.HomeKit {
 		double Duration { get; set; }
 	}
 
-	[Watch (4,0), TV (11,0), iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface HMNumberRange {
 
@@ -1669,8 +1669,8 @@ namespace XamCore.HomeKit {
 		NSNumber Max { get; }
 	}
 
-	[Watch (4,0), TV (11,0), iOS (11,0)]
-	[BaseType (typeof(HMEvent))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (HMEvent))]
 	[DisableDefaultCtor]
 	interface HMPresenceEvent : NSMutableCopying {
 
@@ -1687,8 +1687,8 @@ namespace XamCore.HomeKit {
 		NSString KeyPath { get; }
 	}
 
-	[Watch (4,0), TV (11,0), iOS (11,0)]
-	[BaseType (typeof(HMPresenceEvent))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (HMPresenceEvent))]
 	[DisableDefaultCtor]
 	interface HMMutablePresenceEvent {
 
@@ -1699,8 +1699,8 @@ namespace XamCore.HomeKit {
 		HMPresenceEventUserType PresenceUserType { get; /* Radar 33883958: https://trello.com/c/TIlzWzrL*/ [NotImplemented] set; }
 	}
 
-	[Watch (4,0), TV (11,0), iOS (11,0)]
-	[BaseType (typeof(HMTimeEvent))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (HMTimeEvent))]
 	[DisableDefaultCtor]
 	interface HMSignificantTimeEvent : NSMutableCopying {
 
@@ -1723,8 +1723,8 @@ namespace XamCore.HomeKit {
 		NSDateComponents Offset { get; [NotImplemented] set; }
 	}
 
-	[Watch (4,0), TV (11,0), iOS (11,0)]
-	[BaseType (typeof(HMSignificantTimeEvent))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (HMSignificantTimeEvent))]
 	interface HMMutableSignificantTimeEvent {
 
 		[EditorBrowsable (EditorBrowsableState.Advanced)]

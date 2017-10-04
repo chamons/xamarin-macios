@@ -50,7 +50,7 @@ namespace XamCore.CoreWlan {
 			return null;
 		}
 
-		[Mac (10,13)]
+		[Introduced (PlatformName.MacOSX, 10, 13)]
 		public CWNetwork [] ScanForNetworksWithSsid (NSData ssid, bool includeHidden, out NSError error)
 		{
 			NSSet networks = _ScanForNetworksWithSsid (ssid, includeHidden, out error);
@@ -59,7 +59,7 @@ namespace XamCore.CoreWlan {
 			return null;
 		}
 
-		[Mac (10,13)]
+		[Introduced (PlatformName.MacOSX, 10, 13)]
 		public CWNetwork [] ScanForNetworksWithName (string networkName, bool includeHidden, out NSError error)
 		{
 			NSSet networks = _ScanForNetworksWithName (networkName, includeHidden, out error);

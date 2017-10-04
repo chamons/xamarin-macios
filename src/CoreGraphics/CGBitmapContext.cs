@@ -39,7 +39,7 @@ namespace XamCore.CoreGraphics {
 		// If allocated, this points to the byte array buffer that is passed.
 		GCHandle buffer;
 		
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal CGBitmapContext (IntPtr handle, bool owns) : base (handle, owns)
 		{
 		}

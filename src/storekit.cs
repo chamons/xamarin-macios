@@ -19,7 +19,7 @@ using System;
 
 namespace XamCore.StoreKit {
 
-	[Since(6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (NSObject))]
 	partial interface SKDownload {
 #if MONOMAC
@@ -67,7 +67,7 @@ namespace XamCore.StoreKit {
 		double TimeRemainingUnknown { get; }
 #endif
 
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("transaction")]
 		SKPaymentTransaction Transaction { get;  }
 	}
@@ -75,12 +75,12 @@ namespace XamCore.StoreKit {
 	[BaseType (typeof (NSObject))]
 	partial interface SKPayment : NSMutableCopying {
 		[Static]
-		[Export("paymentWithProduct:")]
+		[Export ("paymentWithProduct:")]
 		SKPayment CreateFrom (SKProduct product);
 #if !MONOMAC
 		[Static]
 		[Export ("paymentWithProductIdentifier:")]
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_5_0, Message = "Use 'FromProduct (SKProduct)'' after fetching the list of available products from 'SKProductRequest' instead.")]
+		[Introduced (PlatformName.iOS, 3, 0, message: "Use 'FromProduct (SKProduct)'' after fetching the list of available products from 'SKProductRequest' instead."), Deprecated (PlatformName.iOS, 5, 0, message: "Use 'FromProduct (SKProduct)'' after fetching the list of available products from 'SKProductRequest' instead.")]
 		SKPayment CreateFrom (string identifier);
 #endif
 
@@ -93,12 +93,12 @@ namespace XamCore.StoreKit {
 		[Export ("quantity")]
 		nint Quantity { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("applicationUsername", ArgumentSemantic.Copy)]
 		string ApplicationUsername { get; }
 
 #if !MONOMAC
-		[iOS (8,3)]
+		[Introduced (PlatformName.iOS, 8, 3)]
 		[Export ("simulatesAskToBuyInSandbox")]
 		bool SimulatesAskToBuyInSandbox { get; [NotImplemented ("Not available on SKPayment, only available on SKMutablePayment")] set; }
 #endif
@@ -107,12 +107,12 @@ namespace XamCore.StoreKit {
 	[BaseType (typeof (SKPayment))]
 	interface SKMutablePayment {
 		[Static]
-		[Export("paymentWithProduct:")]
+		[Export ("paymentWithProduct:")]
 		SKMutablePayment PaymentWithProduct (SKProduct product);
 
 		[Static]
 		[Export ("paymentWithProductIdentifier:")]
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_5_0, Message = "Use 'PaymentWithProduct (SKProduct)' after fetching the list of available products from 'SKProductRequest' instead.")]
+		[Introduced (PlatformName.iOS, 3, 0, message: "Use 'PaymentWithProduct (SKProduct)' after fetching the list of available products from 'SKProductRequest' instead."), Deprecated (PlatformName.iOS, 5, 0, message: "Use 'PaymentWithProduct (SKProduct)' after fetching the list of available products from 'SKProductRequest' instead.")]
 		SKMutablePayment PaymentWithProduct (string identifier);
 
 		[NullAllowed] // by default this property is null
@@ -127,13 +127,13 @@ namespace XamCore.StoreKit {
 		[Override]
 		NSData RequestData { get; set; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[NullAllowed] // by default this property is null
 		[Export ("applicationUsername", ArgumentSemantic.Copy)][New]
 		string ApplicationUsername { get; set; }
 
 #if !MONOMAC
-		[iOS (8,3)]
+		[Introduced (PlatformName.iOS, 8, 3)]
 		[Export ("simulatesAskToBuyInSandbox")]
 		bool SimulatesAskToBuyInSandbox { get; set; }
 #endif
@@ -153,7 +153,7 @@ namespace XamCore.StoreKit {
 		[Export ("restoreCompletedTransactions")]
 		void RestoreCompletedTransactions ();
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("restoreCompletedTransactionsWithApplicationUsername:")]
 		void RestoreCompletedTransactions ([NullAllowed] string username);
 
@@ -172,19 +172,19 @@ namespace XamCore.StoreKit {
 		//
 		// iOS 6.0
 		//
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("startDownloads:")]
 		void StartDownloads (SKDownload [] downloads);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("pauseDownloads:")]
 		void PauseDownloads (SKDownload [] downloads);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("resumeDownloads:")]
 		void ResumeDownloads (SKDownload [] downloads);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("cancelDownloads:")]
 		void CancelDownloads (SKDownload [] downloads);
 
@@ -208,7 +208,7 @@ namespace XamCore.StoreKit {
 		[Export ("productIdentifier")]
 		string ProductIdentifier { get; }
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("downloadable")]
 		bool Downloadable {
 #if MONOMAC
@@ -219,7 +219,7 @@ namespace XamCore.StoreKit {
 #endif
 		}
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 #if MONOMAC
 		[Export ("contentLengths")]
 #else
@@ -227,7 +227,7 @@ namespace XamCore.StoreKit {
 #endif
 		NSNumber [] DownloadContentLengths { get;  }
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 #if MONOMAC
 		[Export ("contentVersion")]
 #else
@@ -253,11 +253,11 @@ namespace XamCore.StoreKit {
 		[Export ("paymentQueueRestoreCompletedTransactionsFinished:")]
 		void RestoreCompletedTransactionsFinished (SKPaymentQueue queue);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("paymentQueue:updatedDownloads:")]
 		void UpdatedDownloads (SKPaymentQueue queue, SKDownload [] downloads);
 
-		[iOS (11,0)][TV (11,0)][NoMac]
+		[Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.TvOS, 11, 0)][Unavailable (PlatformName.MacOSX)]
 		[Export ("paymentQueue:shouldAddStorePayment:forProduct:")]
 		bool ShouldAddStorePayment (SKPaymentQueue queue, SKPayment payment, SKProduct product);
 	}
@@ -280,7 +280,7 @@ namespace XamCore.StoreKit {
 		string TransactionIdentifier { get; }
 
 #if !MONOMAC
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_7_0, Message = "Use 'NSBundle.AppStoreReceiptUrl' instead.")]
+		[Introduced (PlatformName.iOS, 3, 0, message: "Use 'NSBundle.AppStoreReceiptUrl' instead."), Deprecated (PlatformName.iOS, 7, 0, message: "Use 'NSBundle.AppStoreReceiptUrl' instead.")]
 		[Export ("transactionReceipt")]
 		NSData TransactionReceipt { get; }
 #endif
@@ -288,7 +288,7 @@ namespace XamCore.StoreKit {
 		[Export ("transactionState")]
 		SKPaymentTransactionState TransactionState { get; }
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("downloads")]
 		SKDownload [] Downloads { get;  }
 	}
@@ -320,8 +320,8 @@ namespace XamCore.StoreKit {
 		void RequestFailed (SKRequest request, NSError error);
 	}
 		
-	[Since (7,0)]
-	[Mac (10,9)]
+	[Introduced (PlatformName.iOS, 7, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9)]
 	[BaseType (typeof (SKRequest))]
 	interface SKReceiptRefreshRequest {
 		[Export ("initWithReceiptProperties:")]
@@ -337,8 +337,8 @@ namespace XamCore.StoreKit {
 		SKReceiptProperties ReceiptProperties { get; }
 	}
 
-	[Since (7,0)]
-	[Mac (10,9)]
+	[Introduced (PlatformName.iOS, 7, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9)]
 	[Static, Internal]
 	interface _SKReceiptProperty {
 		[Field ("SKReceiptPropertyIsExpired"), Internal]
@@ -382,8 +382,8 @@ namespace XamCore.StoreKit {
 	}
 
 #if !MONOMAC
-	[NoTV]
-	[Since (6,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (UIViewController),
 		   Delegates=new string [] { "WeakDelegate" },
 		   Events   =new Type   [] { typeof (SKStoreProductViewControllerDelegate) })]
@@ -411,36 +411,36 @@ namespace XamCore.StoreKit {
 		void LoadProduct (StoreProductParameters parameters, [NullAllowed] Action<bool,NSError> callback);
 	}
 
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[Static]
 	interface SKStoreProductParameterKey
 	{
 		[Field ("SKStoreProductParameterITunesItemIdentifier")]
 		NSString ITunesItemIdentifier { get; }
 
-		[iOS (11,0)][TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.TvOS, 11, 0)]
 		[Field ("SKStoreProductParameterProductIdentifier")]
 		NSString ProductIdentifier { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SKStoreProductParameterAffiliateToken")]
 		NSString AffiliateToken { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SKStoreProductParameterCampaignToken")]
 		NSString CampaignToken { get; }
 
-		[iOS (8,3)]
+		[Introduced (PlatformName.iOS, 8, 3)]
 		[Field ("SKStoreProductParameterProviderToken")]
 		NSString ProviderToken { get; }
 
-		[iOS (9,3)]
-		[TV (9,2)]
+		[Introduced (PlatformName.iOS, 9, 3)]
+		[Introduced (PlatformName.TvOS, 9, 2)]
 		[Field ("SKStoreProductParameterAdvertisingPartnerToken")]
 		NSString AdvertisingPartnerToken { get; }
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -449,8 +449,8 @@ namespace XamCore.StoreKit {
 		void Finished (SKStoreProductViewController controller);
 	}
 
-	[iOS (9,3)]
-	[TV (9,2)]
+	[Introduced (PlatformName.iOS, 9, 3)]
+	[Introduced (PlatformName.TvOS, 9, 2)]
 	[BaseType (typeof (NSObject))]
 #if XAMCORE_3_0 // Avoid breaking change in iOS
 	[DisableDefaultCtor]
@@ -469,7 +469,7 @@ namespace XamCore.StoreKit {
 		[Export ("requestStorefrontIdentifierWithCompletionHandler:")]
 		void RequestStorefrontIdentifier (Action<NSString, NSError> completionHandler);
 
-		[iOS (11,0)][TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.TvOS, 11, 0)]
 		[Async]
 		[Export ("requestStorefrontCountryCodeWithCompletionHandler:")]
 		void RequestStorefrontCountryCode (Action<NSString, NSError> completionHandler);
@@ -478,14 +478,14 @@ namespace XamCore.StoreKit {
 		[Export ("requestCapabilitiesWithCompletionHandler:")]
 		void RequestCapabilities (Action<SKCloudServiceCapability, NSError> completionHandler);
 
-		[iOS (10,3), TV (10,2)]
-		[Deprecated (PlatformName.iOS, 11,0, message: "Use 'RequestUserToken' instead.")]
-		[Deprecated (PlatformName.TvOS, 11,0, message: "Use 'RequestUserToken' instead.")]
+		[Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.TvOS, 10, 2)]
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'RequestUserToken' instead.")]
+		[Deprecated (PlatformName.TvOS, 11, 0, message: "Use 'RequestUserToken' instead.")]
 		[Async]
 		[Export ("requestPersonalizationTokenForClientToken:withCompletionHandler:")]
 		void RequestPersonalizationToken (string clientToken, Action<NSString, NSError> completionHandler);
 
-		[iOS (11,0)][TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.TvOS, 11, 0)]
 		[Async]
 		[Export ("requestUserTokenForDeveloperToken:completionHandler:")]
 		void RequestUserToken (string developerToken, Action<NSString, NSError> completionHandler);
@@ -498,15 +498,15 @@ namespace XamCore.StoreKit {
 		[Field ("SKCloudServiceCapabilitiesDidChangeNotification")]
 		NSString CloudServiceCapabilitiesDidChangeNotification { get; }
 
-		[iOS (11,0)][TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.TvOS, 11, 0)]
 		[Notification]
 		[Field ("SKStorefrontCountryCodeDidChangeNotification")]
 		NSString StorefrontCountryCodeDidChangeNotification { get; }
 	}
 
-	[iOS (10,1)]
-	[NoTV] // __TVOS_PROHIBITED
-	[BaseType (typeof(UIViewController))]
+	[Introduced (PlatformName.iOS, 10, 1)]
+	[Unavailable (PlatformName.TvOS)] // __TVOS_PROHIBITED
+	[BaseType (typeof (UIViewController))]
 	interface SKCloudServiceSetupViewController
 	{
 		[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
@@ -523,17 +523,17 @@ namespace XamCore.StoreKit {
 
 	interface ISKCloudServiceSetupViewControllerDelegate {}
 
-	[iOS (10,1)]
-	[NoTV] // __TVOS_PROHIBITED on the only member + SKCloudServiceSetupViewController is not in tvOS
+	[Introduced (PlatformName.iOS, 10, 1)]
+	[Unavailable (PlatformName.TvOS)] // __TVOS_PROHIBITED on the only member + SKCloudServiceSetupViewController is not in tvOS
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface SKCloudServiceSetupViewControllerDelegate
 	{
 		[Export ("cloudServiceSetupViewControllerDidDismiss:")]
 		void DidDismiss (SKCloudServiceSetupViewController cloudServiceSetupViewController);
 	}
 
-	[NoTV, iOS (10,1)]
+	[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 1)]
 	[StrongDictionary ("SKCloudServiceSetupOptionsKeys")]
 	interface SKCloudServiceSetupOptions
 	{
@@ -543,17 +543,17 @@ namespace XamCore.StoreKit {
 		// Headers comment: Identifier of the iTunes Store item the user is trying to access which requires cloud service setup (NSNumber).
 		nint ITunesItemIdentifier { get; set; }
 
-		[iOS (10,3)]
+		[Introduced (PlatformName.iOS, 10, 3)]
 		string AffiliateToken { get; set; }
 
-		[iOS (10,3)]
+		[Introduced (PlatformName.iOS, 10, 3)]
 		string CampaignToken { get; set; }
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		string MessageIdentifier { get; set; }
 	}
 
-	[NoTV, iOS (10,1)]
+	[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 1)]
 	[Internal, Static]
 	interface SKCloudServiceSetupOptionsKeys
 	{
@@ -563,27 +563,27 @@ namespace XamCore.StoreKit {
 		[Field ("SKCloudServiceSetupOptionsITunesItemIdentifierKey")]
 		NSString ITunesItemIdentifierKey { get; }
 
-		[iOS (10,3)]
+		[Introduced (PlatformName.iOS, 10, 3)]
 		[Field ("SKCloudServiceSetupOptionsAffiliateTokenKey")]
 		NSString AffiliateTokenKey { get; }
 
-		[iOS (10,3)]
+		[Introduced (PlatformName.iOS, 10, 3)]
 		[Field ("SKCloudServiceSetupOptionsCampaignTokenKey")]
 		NSString CampaignTokenKey { get; }
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Field ("SKCloudServiceSetupOptionsMessageIdentifierKey")]
 		NSString MessageIdentifierKey { get; }
 	}
 
-	[NoTV, iOS (10,1)]
+	[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 1)]
 	enum SKCloudServiceSetupAction
 	{
 		[Field ("SKCloudServiceSetupActionSubscribe")]
 		Subscribe,
 	}
 
-	[iOS (11,0), TV (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 	enum SKCloudServiceSetupMessageIdentifier {
 		[Field ("SKCloudServiceSetupMessageIdentifierJoin")]
 		Join,
@@ -595,8 +595,8 @@ namespace XamCore.StoreKit {
 		PlayMusic,
 	}
 
-	[iOS (10,3)]
-	[NoTV]
+	[Introduced (PlatformName.iOS, 10, 3)]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // Not specified but very likely
 	interface SKStoreReviewController {
@@ -606,7 +606,7 @@ namespace XamCore.StoreKit {
 		void RequestReview ();
 	}
 
-	[iOS (11,0), TV (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // static Default property is the only documented way to get the controller
 	interface SKProductStorePromotionController {

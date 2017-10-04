@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 //
 // The Open Toolkit Library License
 //
@@ -35,7 +35,7 @@ namespace OpenTK.Compute.CL10
     /// <summary>
     /// Defines the format of an OpenCL image.
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     public struct ImageFormat
     {
         ChannelOrder image_channel_order;

@@ -92,7 +92,7 @@ namespace XamCore.Foundation {
 			}
 		}
 		
-		[Mac(10,11),iOS(9,0)]
+		[Introduced (PlatformName.MacOSX, 10, 11), Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("trueExpression")]
 		public virtual NSExpression TrueExpression {
 			get {
@@ -105,7 +105,7 @@ namespace XamCore.Foundation {
 			}
 		}
 
-		[Mac(10,11),iOS(9,0)]
+		[Introduced (PlatformName.MacOSX, 10, 11), Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("falseExpression")]
 		public virtual NSExpression FalseExpression {
 			get {
@@ -166,7 +166,7 @@ namespace XamCore.Foundation {
 		}
 		
 #if !XAMCORE_4_0 && !WATCH
-		[Obsolete("Use 'EvaluateWith' instead.")]
+		[Obsolete ("Use 'EvaluateWith' instead.")]
 		public virtual NSExpression ExpressionValueWithObject (NSObject obj, NSMutableDictionary context) {
 			var result = EvaluateWith (obj, context);
 			// if it can be casted, do return an NSEXpression else null

@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D2EE02C0-9BFD-477D-AC92-4DE2D8490790}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>src</RootNamespace>
+    <AssemblyName>bgen</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>build\common</OutputPath>
+    <DefineConstants>DEBUG;IKVM;BGENERATOR;NET_4_0;NO_AUTHENTICODE;STATIC;NO_SYMBOL_WRITER</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <StartAction>Project</StartAction>
+    <StartArguments/>
+    <StartWorkingDirectory>/Users/donblas/Programming/macios/master/xamarin-macios/src</StartWorkingDirectory>
+    <EnvironmentVariables>
+      <Variable name="MD_MTOUCH_SDK_ROOT" value="/Users/donblas/Programming/macios/master/xamarin-macios/_ios-build//Library/Frameworks/Xamarin.iOS.framework/Versions/git"/>
+      <Variable name="XamarinMacFrameworkRoot" value="/Users/donblas/Programming/macios/master/xamarin-macios/_mac-build/Library/Frameworks/Xamarin.Mac.framework/Versions/Current"/>
+    </EnvironmentVariables>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'ios-classic' ">
+    <StartAction>Project</StartAction>
+    <StartArguments>-inline-selectors -d:IOS -process-enums -warnaserror: -core -sourceonly=build/ios/compat/generated_sources -compiler=build/ios/pmcs -nostdlib -noconfig -no-mono-path -tmpdir=build/ios/compat -baselib=build/ios/compat/core.dll -r=../external/mono/mcs/class/lib/monotouch/System.dll -ns=MonoTouch.ObjCRuntime -native-exception-marshalling --ns=MonoTouch.ObjCRuntime -p --target-framework=MonoTouch,v1.0 avfoundation.cs corefoundation.cs foundation.cs gamekit.cs scenekit.cs spritekit.cs avkit.cs accelerate.cs accounts.cs adsupport.cs addressbook.cs addressbookui.cs assetslibrary.cs audiotoolbox.cs audiounit.cs callkit.cs cfnetwork.cs cloudkit.cs contacts.cs contactsui.cs coreanimation.cs coreaudiokit.cs corebluetooth.cs coredata.cs coregraphics.cs coreimage.cs corelocation.cs coremidi.cs coremedia.cs coremotion.cs corespotlight.cs coretelephony.cs coretext.cs corevideo.cs eventkit.cs eventkitui.cs externalaccessory.cs glkit.cs gamecontroller.cs gameplaykit.cs healthkit.cs healthkitui.cs homekit.cs imageio.cs intents.cs intentsui.cs javascriptcore.cs localauthentication.cs mapkit.cs mediaaccessibility.cs mediaplayer.cs mediatoolbox.cs messages.cs messageui.cs metal.cs metalkit.cs metalperformanceshaders.cs mobilecoreservices.cs modelio.cs multipeerconnectivity.cs networkextension.cs newsstandkit.cs notificationcenter.cs opengles.cs passkit.cs photos.cs photosui.cs pushkit.cs quicklook.cs replaykit.cs safariservices.cs security.cs social.cs speech.cs storekit.cs systemconfiguration.cs twitter.cs uikit.cs usernotifications.cs usernotificationsui.cs videotoolbox.cs videosubscriberaccount.cs watchconnectivity.cs watchkit.cs wkwebkit.cs iad.cs                  AVFoundation/Enums.cs   Foundation/Enums.cs  GameKit/GameKit.cs  SceneKit/Defs.cs   AVKit/Enums.cs   Accounts/Enums.cs   AddressBook/ABEnums.cs   AssetsLibrary/Enums.cs      CloudKit/Enums.cs  Contacts/CNEnums.cs     CoreBluetooth/Enums.cs  CoreData/Enums.cs        CoreSpotlight/CSEnums.cs   CoreText/CTEnums.cs   EventKit/EKEnums.cs  ExternalAccessory/EAEnums.cs       HomeKit/HMEnums.cs  ImageIO/Enums.cs     Localauthentication/LAEnums.cs  MapKit/MKEnums.cs   MediaPlayer/MediaPlayer.cs    MessageUI/MessageUI.cs  Metal/MTLEnums.cs      MultipeerConnectivity/Enums.cs  NetworkExtension/NEEnums.cs   NotificationCenter/NCEnums.cs   PassKit/PKEnums.cs  Photos/Enums.cs     ReplayKit/RPEnums.cs  SafariServices/SSEnums.cs  Security/Enums.cs    StoreKit/Enums.cs  SystemConfiguration/StatusCode.cs   UIKit/UIEnums.cs       WatchKit/WKDefs.cs  WKWebKit/Defs.cs  iAd/iAd.cs       </StartArguments>
+    <StartWorkingDirectory>/Users/donblas/Programming/macios/master/xamarin-macios/src</StartWorkingDirectory>
+    <EnvironmentVariables>
+      <Variable name="PMCS_PROFILE" value="compat-ios"/>
+      <Variable name="MD_MTOUCH_SDK_ROOT" value="/Users/donblas/Programming/macios/master/xamarin-macios/_ios-build//Library/Frameworks/Xamarin.iOS.framework/Versions/git"/>
+    </EnvironmentVariables>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'ios-unified' ">
+    <StartAction>Project</StartAction>
+    <StartArguments>-inline-selectors -d:IOS -process-enums -warnaserror: -core -sourceonly=build/ios/native/generated_sources -compiler=build/ios/pmcs -nostdlib -noconfig -no-mono-path -tmpdir=build/ios/native -baselib=build/ios/native/core.dll -r=../external/mono/mcs/class/lib/monotouch/System.dll -ns=MonoTouch.ObjCRuntime -native-exception-marshalling --ns=ObjCRuntime --target-framework=Xamarin.iOS,v1.0 avfoundation.cs corefoundation.cs foundation.cs gamekit.cs scenekit.cs spritekit.cs avkit.cs accelerate.cs accounts.cs adsupport.cs addressbook.cs addressbookui.cs assetslibrary.cs audiotoolbox.cs audiounit.cs callkit.cs cfnetwork.cs cloudkit.cs contacts.cs contactsui.cs coreanimation.cs coreaudiokit.cs corebluetooth.cs coredata.cs coregraphics.cs coreimage.cs corelocation.cs coremidi.cs coremedia.cs coremotion.cs corespotlight.cs coretelephony.cs coretext.cs corevideo.cs eventkit.cs eventkitui.cs externalaccessory.cs glkit.cs gamecontroller.cs gameplaykit.cs healthkit.cs healthkitui.cs homekit.cs imageio.cs intents.cs intentsui.cs javascriptcore.cs localauthentication.cs mapkit.cs mediaaccessibility.cs mediaplayer.cs mediatoolbox.cs messages.cs messageui.cs metal.cs metalkit.cs metalperformanceshaders.cs mobilecoreservices.cs modelio.cs multipeerconnectivity.cs networkextension.cs newsstandkit.cs notificationcenter.cs opengles.cs passkit.cs photos.cs photosui.cs pushkit.cs quicklook.cs replaykit.cs safariservices.cs security.cs social.cs speech.cs storekit.cs systemconfiguration.cs twitter.cs uikit.cs usernotifications.cs usernotificationsui.cs videotoolbox.cs videosubscriberaccount.cs watchconnectivity.cs watchkit.cs wkwebkit.cs iad.cs                  AVFoundation/Enums.cs   Foundation/Enums.cs  GameKit/GameKit.cs  SceneKit/Defs.cs   AVKit/Enums.cs   Accounts/Enums.cs   AddressBook/ABEnums.cs   AssetsLibrary/Enums.cs      CloudKit/Enums.cs  Contacts/CNEnums.cs     CoreBluetooth/Enums.cs  CoreData/Enums.cs        CoreSpotlight/CSEnums.cs   CoreText/CTEnums.cs   EventKit/EKEnums.cs  ExternalAccessory/EAEnums.cs       HomeKit/HMEnums.cs  ImageIO/Enums.cs     Localauthentication/LAEnums.cs  MapKit/MKEnums.cs   MediaPlayer/MediaPlayer.cs    MessageUI/MessageUI.cs  Metal/MTLEnums.cs      MultipeerConnectivity/Enums.cs  NetworkExtension/NEEnums.cs   NotificationCenter/NCEnums.cs   PassKit/PKEnums.cs  Photos/Enums.cs     ReplayKit/RPEnums.cs  SafariServices/SSEnums.cs  Security/Enums.cs    StoreKit/Enums.cs  SystemConfiguration/StatusCode.cs   UIKit/UIEnums.cs       WatchKit/WKDefs.cs  WKWebKit/Defs.cs  iAd/iAd.cs       </StartArguments>
+    <StartWorkingDirectory>/Users/donblas/Programming/macios/master/xamarin-macios/src</StartWorkingDirectory>
+    <EnvironmentVariables>
+      <Variable name="PMCS_PROFILE" value="native"/>
+      <Variable name="MD_MTOUCH_SDK_ROOT" value="/Users/donblas/Programming/macios/master/xamarin-macios/_ios-build//Library/Frameworks/Xamarin.iOS.framework/Versions/git"/>
+    </EnvironmentVariables>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'tvos' ">
+    <StartAction>Project</StartAction>
+    <StartArguments>-inline-selectors -process-enums -warnaserror: -core -sourceonly=build/tvos/tvos/generated_sources -compiler=build/tvos/pmcs -nostdlib -noconfig -no-mono-path -tmpdir=build/tvos/tvos -baselib=build/tvos/tvos/core.dll -r=../external/mono/mcs/class/lib/monotouch_tv/System.dll -ns=MonoTouch.ObjCRuntime -native-exception-marshalling -d:TVOS --ns:ObjCRuntime avfoundation.cs corefoundation.cs foundation.cs gamekit.cs scenekit.cs spritekit.cs avkit.cs accelerate.cs adsupport.cs audiotoolbox.cs audiounit.cs cfnetwork.cs cloudkit.cs coreanimation.cs corebluetooth.cs coredata.cs coregraphics.cs coreimage.cs corelocation.cs coremedia.cs corespotlight.cs coretext.cs corevideo.cs externalaccessory.cs glkit.cs gamecontroller.cs gameplaykit.cs homekit.cs imageio.cs javascriptcore.cs mapkit.cs mediaaccessibility.cs mediaplayer.cs mediatoolbox.cs metal.cs metalkit.cs metalperformanceshaders.cs mobilecoreservices.cs modelio.cs multipeerconnectivity.cs opengles.cs photos.cs photosui.cs replaykit.cs security.cs storekit.cs systemconfiguration.cs tvmlkit.cs tvservices.cs uikit.cs usernotifications.cs videosubscriberaccount.cs videotoolbox.cs                 AVFoundation/Enums.cs   Foundation/Enums.cs  GameKit/GameKit.cs  SceneKit/Defs.cs   AVKit/Enums.cs       CloudKit/Enums.cs   CoreBluetooth/Enums.cs  CoreData/Enums.cs      CoreSpotlight/CSEnums.cs  CoreText/CTEnums.cs   ExternalAccessory/EAEnums.cs     HomeKit/HMEnums.cs  ImageIO/Enums.cs   MapKit/MKEnums.cs   MediaPlayer/MediaPlayer.cs   Metal/MTLEnums.cs      MultipeerConnectivity/Enums.cs   Photos/Enums.cs   ReplayKit/RPEnums.cs  Security/Enums.cs  StoreKit/Enums.cs  SystemConfiguration/StatusCode.cs    UIKit/UIEnums.cs          --target-framework=Xamarin.TVOS,v1.0</StartArguments>
+    <StartWorkingDirectory>/Users/donblas/Programming/macios/master/xamarin-macios/src</StartWorkingDirectory>
+    <EnvironmentVariables>
+      <Variable name="PMCS_PROFILE" value="tvos"/>
+      <Variable name="MD_MTOUCH_SDK_ROOT" value="/Users/donblas/Programming/macios/master/xamarin-macios/_ios-build//Library/Frameworks/Xamarin.iOS.framework/Versions/git"/>
+    </EnvironmentVariables>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'watchos' ">
+    <StartAction>Project</StartAction>
+    <StartArguments>-inline-selectors -process-enums -warnaserror: -core -sourceonly=build/watch/watch/generated_sources -compiler=build/watch/pmcs -nostdlib -noconfig -no-mono-path -tmpdir=build/watch/watch -baselib=build/watch/watch/core.dll -r=../external/mono/mcs/class/lib/monotouch_watch/System.dll -ns=MonoTouch.ObjCRuntime -native-exception-marshalling -d:WATCH --ns:ObjCRuntime avfoundation.cs corefoundation.cs foundation.cs gamekit.cs scenekit.cs spritekit.cs clockkit.cs cloudkit.cs contacts.cs coredata.cs coregraphics.cs corelocation.cs coremotion.cs coretext.cs eventkit.cs healthkit.cs homekit.cs imageio.cs intents.cs mapkit.cs mobilecoreservices.cs passkit.cs security.cs uikit.cs usernotifications.cs watchconnectivity.cs watchkit.cs              AVFoundation/Enums.cs   Foundation/Enums.cs  GameKit/GameKit.cs  SceneKit/Defs.cs    CloudKit/Enums.cs  Contacts/CNEnums.cs  CoreData/Enums.cs     CoreText/CTEnums.cs  EventKit/EKEnums.cs  HomeKit/HMEnums.cs  ImageIO/Enums.cs   MapKit/MKEnums.cs   PassKit/PKEnums.cs  Security/Enums.cs  UIKit/UIEnums.cs    WatchKit/WKDefs.cs    --target-framework=Xamarin.WatchOS,v1.0</StartArguments>
+    <StartWorkingDirectory>/Users/donblas/Programming/macios/master/xamarin-macios/src</StartWorkingDirectory>
+    <EnvironmentVariables>
+      <Variable name="PMCS_PROFILE" value="watch"/>
+      <Variable name="MD_MTOUCH_SDK_ROOT" value="/Users/donblas/Programming/macios/master/xamarin-macios/_ios-build//Library/Frameworks/Xamarin.iOS.framework/Versions/git"/>
+    </EnvironmentVariables>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'mac-classic' ">
+    <StartAction>Project</StartAction>
+    <StartArguments>-d:MONOMAC -d:XAMARIN_MAC -compiler:build/mac/compat/pmcs -process-enums -warnaserror: -native-exception-marshalling -core -sourceonly:build/mac/compat/generated-sources -tmpdir:build/mac/compat -baselib:build/mac/compat/core.dll -d:NO_SYSTEM_DRAWING --ns=MonoMac.ObjCRuntime -r:/Library/Frameworks/Mono.framework/Versions/Current/lib/mono/4.5/System.Drawing.dll --target-framework=XamMac,v1.0 avfoundation.cs corefoundation.cs foundation.cs gamekit.cs scenekit.cs spritekit.cs accelerate.cs accounts.cs appkit.cs audiotoolbox.cs audiounit.cs avkit.cs cfnetwork.cs cloudkit.cs contacts.cs contactsui.cs coreanimation.cs coreaudiokit.cs corebluetooth.cs coredata.cs coregraphics.cs coreimage.cs corelocation.cs coremedia.cs coremidi.cs coreservices.cs coretext.cs corevideo.cs corewlan.cs eventkit.cs findersync.cs gamecontroller.cs gameplaykit.cs glkit.cs imageio.cs imagekit.cs intents.cs javascriptcore.cs localauthentication.cs mapkit.cs mediaaccessibility.cs medialibrary.cs mediaplayer.cs mediatoolbox.cs metal.cs metalkit.cs mobilecoreservices.cs modelio.cs multipeerconnectivity.cs networkextension.cs notificationcenter.cs opengl.cs pdfkit.cs photos.cs printcore.cs qtkit.cs quartzcomposer.cs quicklook.cs quicklookui.cs safariservices.cs scriptingbridge.cs searchkit.cs security.cs social.cs storekit.cs systemconfiguration.cs videotoolbox.cs webkit.cs wkwebkit.cs                  AVFoundation/Enums.cs   Foundation/Enums.cs  GameKit/GameKit.cs  SceneKit/Defs.cs    Accounts/Enums.cs     AVKit/Enums.cs   CloudKit/Enums.cs  Contacts/CNEnums.cs     CoreBluetooth/Enums.cs  CoreData/Enums.cs        CoreText/CTEnums.cs    EventKit/EKEnums.cs     ImageIO/Enums.cs     Localauthentication/LAEnums.cs  MapKit/MKEnums.cs   MediaLibrary/Enums.cs  MediaPlayer/MediaPlayer.cs   Metal/MTLEnums.cs     MultipeerConnectivity/Enums.cs  NetworkExtension/NEEnums.cs  NotificationCenter/NCEnums.cs    Photos/Enums.cs       SafariServices/SSEnums.cs    Security/Enums.cs   StoreKit/Enums.cs  SystemConfiguration/StatusCode.cs    WKWebKit/Defs.cs       </StartArguments>
+    <StartWorkingDirectory>/Users/donblas/Programming/macios/master/xamarin-macios/src</StartWorkingDirectory>
+    <EnvironmentVariables>
+      <Variable name="PMCS_PROFILE" value="compat-mac"/>
+      <Variable name="XamarinMacFrameworkRoot" value="/Users/donblas/Programming/macios/master/xamarin-macios/_mac-build/Library/Frameworks/Xamarin.Mac.framework/Versions/Current"/>
+    </EnvironmentVariables>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'mac-mobile' ">
+    <StartAction>Project</StartAction>
+    <StartArguments>-d:MONOMAC -d:XAMARIN_MAC -compiler:build/mac/mobile/pmcs -process-enums -warnaserror: -native-exception-marshalling -core -sourceonly:build/mac/mobile/generated-sources -tmpdir:build/mac/mobile -baselib:build/mac/mobile/core.dll -d:NO_SYSTEM_DRAWING --ns=ObjCRuntime ../external/mono/mcs/build/common/Locale.cs ../external/mono/mcs/class/System.Drawing/System.Drawing/Point.cs ../external/mono/mcs/class/System.Drawing/System.Drawing/PointF.cs ../external/mono/mcs/class/System.Drawing/System.Drawing/Rectangle.cs ../external/mono/mcs/class/System.Drawing/System.Drawing/RectangleF.cs ../external/mono/mcs/class/System.Drawing/System.Drawing/Size.cs ../external/mono/mcs/class/System.Drawing/System.Drawing/SizeF.cs  --target-framework=Xamarin.Mac,Version=v2.0,Profile=Mobile avfoundation.cs corefoundation.cs foundation.cs gamekit.cs scenekit.cs spritekit.cs accelerate.cs accounts.cs appkit.cs audiotoolbox.cs audiounit.cs avkit.cs cfnetwork.cs cloudkit.cs contacts.cs contactsui.cs coreanimation.cs coreaudiokit.cs corebluetooth.cs coredata.cs coregraphics.cs coreimage.cs corelocation.cs coremedia.cs coremidi.cs coreservices.cs coretext.cs corevideo.cs corewlan.cs eventkit.cs findersync.cs gamecontroller.cs gameplaykit.cs glkit.cs imageio.cs imagekit.cs intents.cs javascriptcore.cs localauthentication.cs mapkit.cs mediaaccessibility.cs medialibrary.cs mediaplayer.cs mediatoolbox.cs metal.cs metalkit.cs mobilecoreservices.cs modelio.cs multipeerconnectivity.cs networkextension.cs notificationcenter.cs opengl.cs pdfkit.cs photos.cs printcore.cs qtkit.cs quartzcomposer.cs quicklook.cs quicklookui.cs safariservices.cs scriptingbridge.cs searchkit.cs security.cs social.cs storekit.cs systemconfiguration.cs videotoolbox.cs webkit.cs wkwebkit.cs                  AVFoundation/Enums.cs   Foundation/Enums.cs  GameKit/GameKit.cs  SceneKit/Defs.cs    Accounts/Enums.cs     AVKit/Enums.cs   CloudKit/Enums.cs  Contacts/CNEnums.cs     CoreBluetooth/Enums.cs  CoreData/Enums.cs        CoreText/CTEnums.cs    EventKit/EKEnums.cs     ImageIO/Enums.cs     Localauthentication/LAEnums.cs  MapKit/MKEnums.cs   MediaLibrary/Enums.cs  MediaPlayer/MediaPlayer.cs   Metal/MTLEnums.cs     MultipeerConnectivity/Enums.cs  NetworkExtension/NEEnums.cs  NotificationCenter/NCEnums.cs    Photos/Enums.cs       SafariServices/SSEnums.cs    Security/Enums.cs   StoreKit/Enums.cs  SystemConfiguration/StatusCode.cs    WKWebKit/Defs.cs       </StartArguments>
+    <StartWorkingDirectory>/Users/donblas/Programming/macios/master/xamarin-macios/src</StartWorkingDirectory>
+    <EnvironmentVariables>
+      <Variable name="PMCS_PROFILE" value="mobile"/>
+      <Variable name="XamarinMacFrameworkRoot" value="/Users/donblas/Programming/macios/master/xamarin-macios/_mac-build/Library/Frameworks/Xamarin.Mac.framework/Versions/Current"/>
+    </EnvironmentVariables>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'mac-full' ">
+    <StartAction>Project</StartAction>
+    <StartArguments>-d:MONOMAC -d:XAMARIN_MAC -compiler:build/mac/full/pmcs -process-enums -warnaserror: -native-exception-marshalling -core -sourceonly:build/mac/full/generated-sources -tmpdir:build/mac/full -baselib:build/mac/full/core.dll -d:NO_SYSTEM_DRAWING --ns=ObjCRuntime -d:NO_SYSTEM_DRAWING --target-framework=Xamarin.Mac,Version=v4.5,Profile=Full avfoundation.cs corefoundation.cs foundation.cs gamekit.cs scenekit.cs spritekit.cs accelerate.cs accounts.cs appkit.cs audiotoolbox.cs audiounit.cs avkit.cs cfnetwork.cs cloudkit.cs contacts.cs contactsui.cs coreanimation.cs coreaudiokit.cs corebluetooth.cs coredata.cs coregraphics.cs coreimage.cs corelocation.cs coremedia.cs coremidi.cs coreservices.cs coretext.cs corevideo.cs corewlan.cs eventkit.cs findersync.cs gamecontroller.cs gameplaykit.cs glkit.cs imageio.cs imagekit.cs intents.cs javascriptcore.cs localauthentication.cs mapkit.cs mediaaccessibility.cs medialibrary.cs mediaplayer.cs mediatoolbox.cs metal.cs metalkit.cs mobilecoreservices.cs modelio.cs multipeerconnectivity.cs networkextension.cs notificationcenter.cs opengl.cs pdfkit.cs photos.cs printcore.cs qtkit.cs quartzcomposer.cs quicklook.cs quicklookui.cs safariservices.cs scriptingbridge.cs searchkit.cs security.cs social.cs storekit.cs systemconfiguration.cs videotoolbox.cs webkit.cs wkwebkit.cs                  AVFoundation/Enums.cs   Foundation/Enums.cs  GameKit/GameKit.cs  SceneKit/Defs.cs    Accounts/Enums.cs     AVKit/Enums.cs   CloudKit/Enums.cs  Contacts/CNEnums.cs     CoreBluetooth/Enums.cs  CoreData/Enums.cs        CoreText/CTEnums.cs    EventKit/EKEnums.cs     ImageIO/Enums.cs     Localauthentication/LAEnums.cs  MapKit/MKEnums.cs   MediaLibrary/Enums.cs  MediaPlayer/MediaPlayer.cs   Metal/MTLEnums.cs     MultipeerConnectivity/Enums.cs  NetworkExtension/NEEnums.cs  NotificationCenter/NCEnums.cs    Photos/Enums.cs       SafariServices/SSEnums.cs    Security/Enums.cs   StoreKit/Enums.cs  SystemConfiguration/StatusCode.cs    WKWebKit/Defs.cs       </StartArguments>
+    <StartWorkingDirectory>/Users/donblas/Programming/macios/master/xamarin-macios/src</StartWorkingDirectory>
+    <EnvironmentVariables>
+      <Variable name="PMCS_PROFILE" value="full"/>
+      <Variable name="XamarinMacFrameworkRoot" value="/Users/donblas/Programming/macios/master/xamarin-macios/_mac-build/Library/Frameworks/Xamarin.Mac.framework/Versions/Current"/>
+    </EnvironmentVariables>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System"/>
+    <Reference Include="System.Core"/>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets"/>
+  <ItemGroup>
+    <None Include="..\docs\website\generator-errors.md">
+      <Link>generator-errors.md</Link>
+    </None>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Impl\ITypeOwner.cs">
+      <Link>ikvm\ITypeOwner.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Impl\SymbolSupport.cs">
+      <Link>ikvm\SymbolSupport.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\mcs\class\Mono.Security\Mono.Security.Cryptography\CryptoConvert.cs">
+      <Link>ikvm\CryptoConvert.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\AmbiguousMatchException.cs">
+      <Link>ikvm\AmbiguousMatchException.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Assembly.cs">
+      <Link>ikvm\Assembly.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\AssemblyName.cs">
+      <Link>ikvm\AssemblyName.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\BadImageFormatException.cs">
+      <Link>ikvm\BadImageFormatException.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Binder.cs">
+      <Link>ikvm\Binder.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\ConstructorInfo.cs">
+      <Link>ikvm\ConstructorInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\CustomAttributeData.cs">
+      <Link>ikvm\CustomAttributeData.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\CustomAttributeNamedArgument.cs">
+      <Link>ikvm\CustomAttributeNamedArgument.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\CustomAttributeTypedArgument.cs">
+      <Link>ikvm\CustomAttributeTypedArgument.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\CustomModifiers.cs">
+      <Link>ikvm\CustomModifiers.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Enums.cs">
+      <Link>ikvm\Enums.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\EventInfo.cs">
+      <Link>ikvm\EventInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\ExceptionHandlingClause.cs">
+      <Link>ikvm\ExceptionHandlingClause.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\FieldInfo.cs">
+      <Link>ikvm\FieldInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\FieldSignature.cs">
+      <Link>ikvm\FieldSignature.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Fusion.cs">
+      <Link>ikvm\Fusion.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\GenericWrappers.cs">
+      <Link>ikvm\GenericWrappers.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\InterfaceMapping.cs">
+      <Link>ikvm\InterfaceMapping.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\LocalVariableInfo.cs">
+      <Link>ikvm\LocalVariableInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\ManifestResourceInfo.cs">
+      <Link>ikvm\ManifestResourceInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\MarshalSpec.cs">
+      <Link>ikvm\MarshalSpec.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\MemberInfo.cs">
+      <Link>ikvm\MemberInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\MethodBase.cs">
+      <Link>ikvm\MethodBase.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\MethodBody.cs">
+      <Link>ikvm\MethodBody.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\MethodImplMap.cs">
+      <Link>ikvm\MethodImplMap.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\MethodInfo.cs">
+      <Link>ikvm\MethodInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\MethodSignature.cs">
+      <Link>ikvm\MethodSignature.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Missing.cs">
+      <Link>ikvm\Missing.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Module.cs">
+      <Link>ikvm\Module.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\ParameterInfo.cs">
+      <Link>ikvm\ParameterInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\ParameterModifier.cs">
+      <Link>ikvm\ParameterModifier.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Projection.cs">
+      <Link>ikvm\Projection.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\PropertyInfo.cs">
+      <Link>ikvm\PropertyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\PropertySignature.cs">
+      <Link>ikvm\PropertySignature.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Signature.cs">
+      <Link>ikvm\Signature.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\StandAloneMethodSig.cs">
+      <Link>ikvm\StandAloneMethodSig.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\StrongNameKeyPair.cs">
+      <Link>ikvm\StrongNameKeyPair.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Type.cs">
+      <Link>ikvm\Type.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\TypeInfo.cs">
+      <Link>ikvm\TypeInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\TypeNameParser.cs">
+      <Link>ikvm\TypeNameParser.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Universe.cs">
+      <Link>ikvm\Universe.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Util.cs">
+      <Link>ikvm\Util.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\coreclr.cs">
+      <Link>ikvm\coreclr.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Emit\AssemblyBuilder.cs">
+      <Link>ikvm\AssemblyBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Emit\ConstructorBuilder.cs">
+      <Link>ikvm\ConstructorBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Emit\CustomAttributeBuilder.cs">
+      <Link>ikvm\CustomAttributeBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Emit\CustomModifiersBuilder.cs">
+      <Link>ikvm\CustomModifiersBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Emit\EnumBuilder.cs">
+      <Link>ikvm\EnumBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Emit\Enums.cs">
+      <Link>ikvm\Enums.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Emit\EventBuilder.cs">
+      <Link>ikvm\EventBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Emit\ExceptionHandler.cs">
+      <Link>ikvm\ExceptionHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Emit\FieldBuilder.cs">
+      <Link>ikvm\FieldBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Emit\ILGenerator.cs">
+      <Link>ikvm\ILGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Emit\MethodBuilder.cs">
+      <Link>ikvm\MethodBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Emit\ModuleBuilder.cs">
+      <Link>ikvm\ModuleBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Emit\OpCode.cs">
+      <Link>ikvm\OpCode.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Emit\OpCodes.cs">
+      <Link>ikvm\OpCodes.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Emit\ParameterBuilder.cs">
+      <Link>ikvm\ParameterBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Emit\PropertyBuilder.cs">
+      <Link>ikvm\PropertyBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Emit\SignatureHelper.cs">
+      <Link>ikvm\SignatureHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Emit\Tokens.cs">
+      <Link>ikvm\Tokens.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Emit\TypeBuilder.cs">
+      <Link>ikvm\TypeBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Metadata\CliHeader.cs">
+      <Link>ikvm\CliHeader.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Metadata\MetadataRW.cs">
+      <Link>ikvm\MetadataRW.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Metadata\Tables.cs">
+      <Link>ikvm\Tables.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Reader\AssemblyReader.cs">
+      <Link>ikvm\AssemblyReader.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Reader\Authenticode.cs">
+      <Link>ikvm\Authenticode.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Reader\ByteReader.cs">
+      <Link>ikvm\ByteReader.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Reader\EventInfoImpl.cs">
+      <Link>ikvm\EventInfoImpl.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Reader\Field.cs">
+      <Link>ikvm\Field.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Reader\GenericTypeParameter.cs">
+      <Link>ikvm\GenericTypeParameter.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Reader\MetadataReader.cs">
+      <Link>ikvm\MetadataReader.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Reader\Method.cs">
+      <Link>ikvm\Method.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Reader\ModuleReader.cs">
+      <Link>ikvm\ModuleReader.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Reader\PEReader.cs">
+      <Link>ikvm\PEReader.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Reader\PropertyInfoImpl.cs">
+      <Link>ikvm\PropertyInfoImpl.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Reader\ResourceModule.cs">
+      <Link>ikvm\ResourceModule.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Reader\TypeDefImpl.cs">
+      <Link>ikvm\TypeDefImpl.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Writer\ByteBuffer.cs">
+      <Link>ikvm\ByteBuffer.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Writer\Heaps.cs">
+      <Link>ikvm\Heaps.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Writer\MetadataWriter.cs">
+      <Link>ikvm\MetadataWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Writer\ModuleWriter.cs">
+      <Link>ikvm\ModuleWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Writer\PEWriter.cs">
+      <Link>ikvm\PEWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Writer\ResourceSection.cs">
+      <Link>ikvm\ResourceSection.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Writer\TextSection.cs">
+      <Link>ikvm\TextSection.cs</Link>
+    </Compile>
+    <Compile Include="..\external\mono\external\ikvm\reflect\Writer\VersionInfo.cs">
+      <Link>ikvm\VersionInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\src\btouch.cs"/>
+    <Compile Include="..\src\error.cs"/>
+    <Compile Include="..\src\generator.cs"/>
+    <Compile Include="..\src\generator-attributes.cs"/>
+    <Compile Include="..\src\generator-attribute-manager.cs"/>
+    <Compile Include="..\src\generator-enums.cs"/>
+    <Compile Include="..\src\generator-filters.cs"/>
+    <Compile Include="..\src\generator-typemanager.cs"/>
+    <Compile Include="..\src\ObjCRuntime\Stret.cs"/>
+    <Compile Include="..\tools\common\TargetFramework.cs"/>
+    <Compile Include="..\tools\common\StringUtils.cs"/>
+    <Compile Include="build\generator-frameworks.g.cs"/>
+    <Compile Include="..\external\mono\mcs\class\Mono.Options\Mono.Options\Options.cs"/>
+    <Compile Include="..\src\Foundation\AdviceAttribute.cs"/>
+    <Compile Include="..\src\Foundation\ExportAttribute.cs"/>
+    <Compile Include="..\src\Foundation\FieldAttribute.cs"/>
+    <Compile Include="..\src\Foundation\ModelAttribute.cs"/>
+    <Compile Include="..\src\Foundation\NotImplementedAttribute.cs"/>
+    <Compile Include="..\src\Foundation\PreserveAttribute.cs"/>
+    <Compile Include="..\src\Foundation\ProtocolAttribute.cs"/>
+    <Compile Include="..\src\Foundation\RegisterAttribute.cs"/>
+    <Compile Include="..\src\ObjCRuntime\AlphaAttribute.cs"/>
+    <Compile Include="..\src\ObjCRuntime\ArgumentSemantic.cs"/>
+    <Compile Include="..\src\ObjCRuntime\LinkWithAttribute.cs"/>
+    <Compile Include="..\src\ObjCRuntime\NativeAttribute.cs"/>
+    <Compile Include="..\src\ObjCRuntime\PlatformAvailability2.cs"/>
+    <Compile Include="..\src\ObjCRuntime\Registrar.core.cs"/>
+  </ItemGroup>
+</Project>

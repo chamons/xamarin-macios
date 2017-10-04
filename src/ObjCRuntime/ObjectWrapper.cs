@@ -2,10 +2,10 @@ using System;
 using System.Runtime.InteropServices;
 
 namespace XamCore.ObjCRuntime {
-	[StructLayout(LayoutKind.Explicit)]
+	[StructLayout (LayoutKind.Explicit)]
 	internal struct ObjectWrapper {
-		[FieldOffset(0)] object obj;
-		[FieldOffset(0)] IntPtr handle;
+		[FieldOffset (0)] object obj;
+		[FieldOffset (0)] IntPtr handle;
 
 		internal static IntPtr Convert (object obj) {
 			if (obj == null)

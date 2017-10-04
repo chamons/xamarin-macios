@@ -1,4 +1,4 @@
-﻿//
+//
 // CallKit bindings
 //
 // Authors:
@@ -18,7 +18,7 @@ namespace XamCore.CallKit {
 
 	[Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
-	public enum CXCallDirectoryEnabledStatus : nint {
+	public enum CXCallDirectoryEnabledStatus : long {
 		Unknown = 0,
 		Disabled = 1,
 		Enabled = 2
@@ -27,14 +27,14 @@ namespace XamCore.CallKit {
 	[Introduced (PlatformName.iOS, 10, 0)]
 	[ErrorDomain ("CXErrorDomain")]
 	[Native]
-	public enum CXErrorCode : nint {
+	public enum CXErrorCode : long {
 		Unknown = 0
 	}
 
 	[Introduced (PlatformName.iOS, 10, 0)]
 	[ErrorDomain ("CXErrorDomainIncomingCall")]
 	[Native]
-	public enum CXErrorCodeIncomingCallError : nint {
+	public enum CXErrorCodeIncomingCallError : long {
 		Unknown = 0,
 		Unentitled = 1,
 		CallUuidAlreadyExists = 2,
@@ -45,7 +45,7 @@ namespace XamCore.CallKit {
 	[Introduced (PlatformName.iOS, 10, 0)]
 	[ErrorDomain ("CXErrorDomainRequestTransaction")]
 	[Native]
-	public enum CXErrorCodeRequestTransactionError : nint {
+	public enum CXErrorCodeRequestTransactionError : long {
 		Unknown = 0,
 		Unentitled = 1,
 		UnknownCallProvider = 2,
@@ -59,7 +59,7 @@ namespace XamCore.CallKit {
 	[Introduced (PlatformName.iOS, 10, 0)]
 	[ErrorDomain ("CXErrorDomainCallDirectoryManager")]
 	[Native]
-	public enum CXErrorCodeCallDirectoryManagerError : nint {
+	public enum CXErrorCodeCallDirectoryManagerError : long {
 		Unknown = 0,
 		NoExtensionFound = 1,
 		LoadingInterrupted = 2,
@@ -68,13 +68,13 @@ namespace XamCore.CallKit {
 		MaximumEntriesExceeded = 5,
 		ExtensionDisabled = 6,
 		CurrentlyLoading = 7,
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		UnexpectedIncrementalRemoval = 8,
 	}
 
 	[Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
-	public enum CXPlayDtmfCallActionType : nint {
+	public enum CXPlayDtmfCallActionType : long {
 		SingleTone = 1,
 		SoftPause = 2,
 		HardPause = 3
@@ -82,7 +82,7 @@ namespace XamCore.CallKit {
 
 	[Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
-	public enum CXCallEndedReason : nint {
+	public enum CXCallEndedReason : long {
 		Failed = 1,
 		RemoteEnded = 2,
 		Unanswered = 3,
@@ -92,7 +92,7 @@ namespace XamCore.CallKit {
 
 	[Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
-	public enum CXHandleType : nint {
+	public enum CXHandleType : long {
 		Generic = 1,
 		PhoneNumber = 2,
 		EmailAddress = 3
@@ -202,12 +202,12 @@ namespace XamCore.CallKit {
 		[Export ("requestTransaction:completion:")]
 		void RequestTransaction (CXTransaction transaction, Action<NSError> completion);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Async]
 		[Export ("requestTransactionWithActions:completion:")]
 		void RequestTransaction ([NullAllowed] CXAction[] actions, [NullAllowed] Action<NSError> completion);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Async]
 		[Export ("requestTransactionWithAction:completion:")]
 		void RequestTransaction ([NullAllowed] CXAction action, [NullAllowed] Action<NSError> completion);
@@ -230,23 +230,23 @@ namespace XamCore.CallKit {
 		[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
 		ICXCallDirectoryExtensionContextDelegate Delegate { get; set; }
 
-		[iOS (11, 0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("incremental")]
 		bool Incremental { [Bind ("isIncremental")] get; }
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("removeBlockingEntryWithPhoneNumber:")]
 		void RemoveBlockingEntry (/* CXCallDirectoryPhoneNumber -> int64_t */ long phoneNumber);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("removeAllBlockingEntries")]
 		void RemoveAllBlockingEntries ();
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("removeIdentificationEntryWithPhoneNumber:")]
 		void RemoveIdentificationEntry (/* CXCallDirectoryPhoneNumber -> int64_t */ long phoneNumber);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("removeAllIdentificationEntries")]
 		void RemoveAllIdentificationEntries ();
 	}
@@ -474,7 +474,7 @@ namespace XamCore.CallKit {
 		[Export ("maximumCallsPerCallGroup")]
 		nuint MaximumCallsPerCallGroup { get; set; }
 
-		[iOS (11, 0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("includesCallsInRecents")]
 		bool IncludesCallsInRecents { get; set; }
 

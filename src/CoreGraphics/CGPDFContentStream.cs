@@ -36,7 +36,7 @@ namespace XamCore.CoreGraphics {
 			Handle = handle;
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal CGPDFContentStream (IntPtr handle, bool owns)
 		{
 			if (!owns)

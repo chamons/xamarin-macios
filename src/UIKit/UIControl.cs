@@ -210,7 +210,7 @@ namespace XamCore.UIKit {
 			}
 		}
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		public event EventHandler PrimaryActionTriggered {
 			add {
 				AddTarget (value, UIControlEvent.PrimaryActionTriggered);

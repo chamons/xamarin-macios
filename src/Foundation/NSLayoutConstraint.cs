@@ -64,7 +64,7 @@ namespace XamCore.UIKit
 					else 
 						throw new ArgumentException (String.Format ("Item at {0} is not a string or an NSString", i), "viewsAndMetrics");
 					
-					var value = viewsAndMetrics [i+1];
+					var value = viewsAndMetrics [i + 1];
 					if (value is View){
 						if (views == null)
 							views = new NSMutableDictionary ();

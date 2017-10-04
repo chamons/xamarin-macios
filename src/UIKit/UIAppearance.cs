@@ -164,7 +164,7 @@ namespace XamCore.UIKit {
 			}
 		}
 
-		[DllImport (Messaging.LIBOBJC_DYLIB, EntryPoint="objc_msgSend")]
+		[DllImport (Messaging.LIBOBJC_DYLIB, EntryPoint = "objc_msgSend")]
 		extern static IntPtr IntPtr_objc_msgSend_IntPtr_IntPtr_IntPtr_IntPtr_IntPtr_IntPtr_IntPtr_IntPtr_IntPtr_IntPtr_IntPtr (IntPtr receiver, IntPtr selector, IntPtr arg1, IntPtr arg2, IntPtr arg3, IntPtr arg4, System.IntPtr arg5, System.IntPtr arg6, System.IntPtr arg7, System.IntPtr arg8, System.IntPtr arg9, System.IntPtr arg10, System.IntPtr arg11);
 #endif
 

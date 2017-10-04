@@ -14,7 +14,7 @@ using XamCore.AVFoundation;
 
 namespace XamCore.VideoToolbox {
 
-	[Mac (10,8), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	[Static]
 	interface VTCompressionPropertyKey {
 		// Buffers
@@ -65,7 +65,7 @@ namespace XamCore.VideoToolbox {
 		NSString ProfileLevel { get; }
 
 		[Field ("kVTCompressionPropertyKey_H264EntropyMode")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString H264EntropyMode { get; }
 
 		[Field ("kVTCompressionPropertyKey_Depth")]
@@ -80,7 +80,7 @@ namespace XamCore.VideoToolbox {
 		NSString MaxH264SliceBytes { get; }
 
 		[Field ("kVTCompressionPropertyKey_RealTime")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString RealTime { get; }
 
 		// Hints
@@ -142,11 +142,11 @@ namespace XamCore.VideoToolbox {
 		// Multi-pass
 
 		[Field ("kVTCompressionPropertyKey_MultiPassStorage")]
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		NSString MultiPassStorage { get; }
 	}
 
-	[Mac (10,8), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	[StrongDictionary ("VTCompressionPropertyKey")]
 	interface VTCompressionProperties {
 
@@ -192,7 +192,7 @@ namespace XamCore.VideoToolbox {
 		[Export ("MaxH264SliceBytes")]
 		int MaxH264SliceBytes { get; set; }
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("RealTime")]
 		bool RealTime { get; set; }
 
@@ -230,7 +230,7 @@ namespace XamCore.VideoToolbox {
 		NSDictionary PixelTransferProperties { get; set; }
 	}
 
-	[Mac (10,8), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	[Static]
 	interface VTProfileLevelKeys {
 		// H264
@@ -248,30 +248,30 @@ namespace XamCore.VideoToolbox {
 		NSString H264_Baseline_3_2 { get; }
 
 		[Field ("kVTProfileLevel_H264_Baseline_4_0")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString H264_Baseline_4_0 { get; }
 
 		[Field ("kVTProfileLevel_H264_Baseline_4_1")]
 		NSString H264_Baseline_4_1 { get; }
 
 		[Field ("kVTProfileLevel_H264_Baseline_4_2")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString H264_Baseline_4_2 { get; }
 
 		[Field ("kVTProfileLevel_H264_Baseline_5_0")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString H264_Baseline_5_0 { get; }
 
 		[Field ("kVTProfileLevel_H264_Baseline_5_1")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString H264_Baseline_5_1 { get; }
 
 		[Field ("kVTProfileLevel_H264_Baseline_5_2")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString H264_Baseline_5_2 { get; }
 
 		[Field ("kVTProfileLevel_H264_Baseline_AutoLevel")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString H264_Baseline_AutoLevel { get; }
 
 		[Field ("kVTProfileLevel_H264_Main_3_0")]
@@ -290,68 +290,68 @@ namespace XamCore.VideoToolbox {
 		NSString H264_Main_4_1 { get; }
 
 		[Field ("kVTProfileLevel_H264_Main_4_2")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString H264_Main_4_2 { get; }
 
 		[Field ("kVTProfileLevel_H264_Main_5_0")]
 		NSString H264_Main_5_0 { get; }
 
 		[Field ("kVTProfileLevel_H264_Main_5_1")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString H264_Main_5_1 { get; }
 
 		[Field ("kVTProfileLevel_H264_Main_5_2")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString H264_Main_5_2 { get; }
 
 		[Field ("kVTProfileLevel_H264_Main_AutoLevel")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString H264_Main_AutoLevel { get; }
 
 		[Field ("kVTProfileLevel_H264_Extended_5_0")]
 		NSString H264_Extended_5_0 { get; }
 
 		[Field ("kVTProfileLevel_H264_Extended_AutoLevel")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString H264_Extended_AutoLevel { get; }
 
 		[Field ("kVTProfileLevel_H264_High_3_0")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString H264_High_3_0 { get; }
 
 		[Field ("kVTProfileLevel_H264_High_3_1")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString H264_High_3_1 { get; }
 
 		[Field ("kVTProfileLevel_H264_High_3_2")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString H264_High_3_2 { get; }
 
 		[Field ("kVTProfileLevel_H264_High_4_0")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString H264_High_4_0 { get; }
 
 		[Field ("kVTProfileLevel_H264_High_4_1")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString H264_High_4_1 { get; }
 
 		[Field ("kVTProfileLevel_H264_High_4_2")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString H264_High_4_2 { get; }
 
 		[Field ("kVTProfileLevel_H264_High_5_0")]
 		NSString H264_High_5_0 { get; }
 
 		[Field ("kVTProfileLevel_H264_High_5_1")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString H264_High_5_1 { get; }
 
 		[Field ("kVTProfileLevel_H264_High_5_2")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString H264_High_5_2 { get; }
 
 		[Field ("kVTProfileLevel_H264_High_AutoLevel")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString H264_High_AutoLevel { get; }
 
 		// MP4V
@@ -405,7 +405,7 @@ namespace XamCore.VideoToolbox {
 	}
 
 	[Static]
-	[Mac (10,9), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	interface VTH264EntropyModeKeys {
 		[Field ("kVTH264EntropyMode_CAVLC")]
 		NSString CAVLC { get; } 
@@ -414,15 +414,15 @@ namespace XamCore.VideoToolbox {
 		NSString CABAC { get; } 
 	}
 		
-	[Mac (10,8), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	[StrongDictionary ("VTVideoEncoderSpecificationKeys")]
 	interface VTVideoEncoderSpecification {
 
-		[Mac (10,9), NoiOS, NoTV]
+		[Introduced (PlatformName.MacOSX, 10, 9), Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS)]
 		[Export ("EnableHardwareAcceleratedVideoEncoder")]
 		bool EnableHardwareAcceleratedVideoEncoder { get; set; }
 
-		[Mac (10,9), NoiOS, NoTV]
+		[Introduced (PlatformName.MacOSX, 10, 9), Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS)]
 		[Export ("RequireHardwareAcceleratedVideoEncoder")]
 		bool RequireHardwareAcceleratedVideoEncoder { get; set; }
 
@@ -430,23 +430,23 @@ namespace XamCore.VideoToolbox {
 		string EncoderID { get; set; }
 	}
 
-	[Mac (10,8), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	[Static]
 	interface VTVideoEncoderSpecificationKeys {
 
 		[Field ("kVTVideoEncoderSpecification_EnableHardwareAcceleratedVideoEncoder")]
-		[Mac (10,9), NoiOS, NoTV]
+		[Introduced (PlatformName.MacOSX, 10, 9), Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS)]
 		NSString EnableHardwareAcceleratedVideoEncoder { get; }
 
 		[Field ("kVTVideoEncoderSpecification_RequireHardwareAcceleratedVideoEncoder")]
-		[Mac (10,9), NoiOS, NoTV]
+		[Introduced (PlatformName.MacOSX, 10, 9), Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS)]
 		NSString RequireHardwareAcceleratedVideoEncoder { get; }
 
 		[Field ("kVTVideoEncoderSpecification_EncoderID")]
 		NSString EncoderID { get; }
 	}
 
-	[Mac (10,8), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	[StrongDictionary ("VTEncodeFrameOptionKey")]
 	interface VTEncodeFrameOptions {
 
@@ -454,7 +454,7 @@ namespace XamCore.VideoToolbox {
 		bool ForceKeyFrame { get; set; }
 	}
 
-	[Mac (10,8), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	[Static]
 	interface VTEncodeFrameOptionKey {
 		// Per-frame configuration
@@ -463,7 +463,7 @@ namespace XamCore.VideoToolbox {
 		NSString ForceKeyFrame { get; } 
 	}
 
-	[Mac (10,8), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	[Static]
 	interface VTDecompressionPropertyKey {
 		// Pixel buffer pools
@@ -475,7 +475,7 @@ namespace XamCore.VideoToolbox {
 		NSString PixelBufferPoolIsShared { get; }
 
 		[Field ("kVTDecompressionPropertyKey_OutputPoolRequestedMinimumBufferCount")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString OutputPoolRequestedMinimumBufferCount { get; }
 
 		// Asynchronous state
@@ -498,13 +498,13 @@ namespace XamCore.VideoToolbox {
 		// hardware acceleration is default behavior on iOS.  no opt-in required.
 		 
 		[Field ("kVTDecompressionPropertyKey_UsingHardwareAcceleratedVideoDecoder")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString UsingHardwareAcceleratedVideoDecoder { get; } 
 
 		// Decoder behavior
 
 		[Field ("kVTDecompressionPropertyKey_RealTime")]
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		NSString RealTime { get; }
 
 		[Field ("kVTDecompressionPropertyKey_ThreadCount")]
@@ -579,7 +579,7 @@ namespace XamCore.VideoToolbox {
 		NSString PixelTransferProperties { get; }
 	}
 
-	[Mac (10,8), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	[StrongDictionary ("VTDecompressionPropertyKey")]
 	interface VTDecompressionProperties	{
 		
@@ -605,10 +605,10 @@ namespace XamCore.VideoToolbox {
 		// hardware acceleration is default behavior on iOS.  no opt-in required.
 
 		[Export ("UsingHardwareAcceleratedVideoDecoder")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		bool UsingHardwareAcceleratedVideoDecoder { get; } 
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("RealTime")]
 		bool RealTime { get; set; }
 
@@ -643,12 +643,12 @@ namespace XamCore.VideoToolbox {
 
 		// VTPixelTransferProperties are available in iOS 9 radar://22614931 https://trello.com/c/bTl6hRu9
 		[StrongDictionary]
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("PixelTransferProperties")]
 		VTPixelTransferProperties PixelTransferSettings { get; set; }
 	}
 
-	[Mac (10,9), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	[StrongDictionary ("VTVideoDecoderSpecificationKeys")]
 	interface VTVideoDecoderSpecification {
 		[Export ("EnableHardwareAcceleratedVideoDecoder")]
@@ -658,7 +658,7 @@ namespace XamCore.VideoToolbox {
 		bool RequireHardwareAcceleratedVideoDecoder { get; set; }
 	}
 
-	[Mac (10,9), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	[Static]
 	interface VTVideoDecoderSpecificationKeys {
 		[Field ("kVTVideoDecoderSpecification_EnableHardwareAcceleratedVideoDecoder")]
@@ -668,7 +668,7 @@ namespace XamCore.VideoToolbox {
 		NSString RequireHardwareAcceleratedVideoDecoder { get; }
 	}
 
-	[Mac (10,8), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	[StrongDictionary ("VTDecompressionResolutionKeys")]
 	interface VTDecompressionResolutionOptions {
 		[Export ("Width")]
@@ -678,7 +678,7 @@ namespace XamCore.VideoToolbox {
 		float Height { get; set; }
 	}
 
-	[Mac (10,8), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	[Static]
 	interface VTDecompressionResolutionKeys {
 		[Field ("kVTDecompressionResolutionKey_Width")]
@@ -689,7 +689,7 @@ namespace XamCore.VideoToolbox {
 	}
 
 	// VTSession.h
-	[Mac (10,8), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	[StrongDictionary ("VTPropertyKeys")]
 	interface VTPropertyOptions {
 		[Export ("ShouldBeSerialized")]
@@ -708,7 +708,7 @@ namespace XamCore.VideoToolbox {
 		NSString Documentation { get; set; }
 	}
 
-	[Mac (10,8), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	[Static]
 	interface VTPropertyKeys {
 		[Field ("kVTPropertyTypeKey")]
@@ -733,7 +733,7 @@ namespace XamCore.VideoToolbox {
 		NSString DocumentationKey { get; }
 	}
 
-	[Mac (10,8), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	[Static]
 	interface VTPropertyTypeKeys {
 		[Field ("kVTPropertyType_Boolean")]
@@ -746,7 +746,7 @@ namespace XamCore.VideoToolbox {
 		NSString Number { get; }
 	}
 
-	[Mac (10,8), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	[Static]
 	interface VTPropertyReadWriteStatusKeys {
 		[Field ("kVTPropertyReadWriteStatus_ReadOnly")]
@@ -757,7 +757,7 @@ namespace XamCore.VideoToolbox {
 	}
 
 	// VTVideoEncoderList.h
-	[Mac (10,8), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	[Static]
 	[Internal]
 	interface VTVideoEncoderList {
@@ -778,14 +778,14 @@ namespace XamCore.VideoToolbox {
 	}
 
 	// VTMultiPassStorage.h
-	[Mac (10,10), iOS (8,0), TV (10,2)] // not decorated in the header files - but all other definitions are 10.10 & 8.0
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)] // not decorated in the header files - but all other definitions are 10.10 & 8.0
 	[Static]
 	interface VTMultiPassStorageCreationOptionKeys {
 		[Field ("kVTMultiPassStorageCreationOption_DoNotDelete")]
 		NSString DoNotDelete { get; }
 	}
 
-	[Mac (10,8), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	[StrongDictionary ("VTMultiPassStorageCreationOptionKeys")]
 	interface VTMultiPassStorageCreationOptions {
 		[Export ("DoNotDelete")]
@@ -793,7 +793,7 @@ namespace XamCore.VideoToolbox {
 	}
 
 	// VTPixelTransferProperties are available in iOS 9 radar://22614931 https://trello.com/c/bTl6hRu9
-	[Mac (10,8), iOS (9,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	[StrongDictionary ("VTPixelTransferPropertyKeys")]
 	interface VTPixelTransferProperties {
 		[StrongDictionary]
@@ -804,13 +804,13 @@ namespace XamCore.VideoToolbox {
 		[Export ("DestinationPixelAspectRatio")]
 		AVVideoPixelAspectRatioSettings DestinationPixelAspectRatio { get; set; }
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("DestinationICCProfile")]
 		NSData DestinationICCProfile { get; set; }
 	}
 
 	// VTPixelTransferProperties are available in iOS 9 radar://22614931 https://trello.com/c/bTl6hRu9
-	[Mac (10,8), iOS (9,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	[Static]
 	[AdvancedAttribute]
 	interface VTPixelTransferPropertyKeys {
@@ -855,19 +855,19 @@ namespace XamCore.VideoToolbox {
 
 		// DestinationColorPrimaries
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Field ("kVTPixelTransferPropertyKey_DestinationColorPrimaries")]
 		NSString DestinationColorPrimaries { get; }
 
 		// DestinationColorPrimaries
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Field ("kVTPixelTransferPropertyKey_DestinationTransferFunction")]
 		NSString DestinationTransferFunction { get; }
 
 		// DestinationICCProfile
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Field ("kVTPixelTransferPropertyKey_DestinationICCProfile")]
 		NSString DestinationICCProfile { get; }
 

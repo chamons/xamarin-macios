@@ -65,31 +65,31 @@ namespace OpenTK.Platform.MacOS.Carbon
     {
         const string appServices = "/System/Library/Frameworks/ApplicationServices.framework/Versions/Current/ApplicationServices";
 
-        [DllImport(appServices)]
+        [DllImport (appServices)]
         internal static extern int CFArrayGetCount(IntPtr theArray);
 
-        [DllImport(appServices)]
+        [DllImport (appServices)]
         internal static extern IntPtr CFArrayGetValueAtIndex(IntPtr theArray, int idx);
 
-        [DllImport(appServices)]
+        [DllImport (appServices)]
         internal static extern int CFDictionaryGetCount(IntPtr theDictionary);
 
-        [DllImport(appServices)]
+        [DllImport (appServices)]
         internal static extern IntPtr CFDictionaryGetValue(IntPtr theDictionary, IntPtr theKey);
 
         // this mirrors the definition in CFString.h.
         // I don't know why, but __CFStringMakeConstantString is marked as "private and should not be used directly"
         // even though the CFSTR macro just calls it.
-        [DllImport(appServices)]
+        [DllImport (appServices)]
         static extern IntPtr __CFStringMakeConstantString(string cStr);
         internal static IntPtr CFSTR(string cStr)
         {
             return __CFStringMakeConstantString(cStr);
         }
 
-        [DllImport(appServices)]
+        [DllImport (appServices)]
         internal unsafe static extern bool CFNumberGetValue (IntPtr number, CFNumberType theType, int* valuePtr);
-        [DllImport(appServices)]
+        [DllImport (appServices)]
         internal unsafe static extern bool CFNumberGetValue(IntPtr number, CFNumberType theType, double* valuePtr);
 
         internal enum CFNumberType

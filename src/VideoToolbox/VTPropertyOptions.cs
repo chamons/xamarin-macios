@@ -1,4 +1,4 @@
-﻿// 
+// 
 // VTPropertyOptions.cs: Strongly Typed dictionary for VTPropertyKeys 
 //
 // Authors: Alex Soto (alex.soto@xamarin.com)

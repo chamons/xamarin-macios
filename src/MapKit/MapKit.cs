@@ -51,7 +51,7 @@ namespace XamCore.MapKit {
 
 	// MKGeometry.h
 	[StructLayout (LayoutKind.Sequential)]
-	[Mac (10,9, onlyOn64 : true)]
+	[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)]
 	public struct MKCoordinateRegion {
 		public CLLocationCoordinate2D Center;
 		public MKCoordinateSpan Span;
@@ -64,10 +64,10 @@ namespace XamCore.MapKit {
 		}
 
 		// note: CLLocationDistance is double - see CLLocation.h
-		[DllImport (Constants.MapKitLibrary, EntryPoint="MKCoordinateRegionMakeWithDistance")]
+		[DllImport (Constants.MapKitLibrary, EntryPoint = "MKCoordinateRegionMakeWithDistance")]
 		extern static public MKCoordinateRegion FromDistance (CLLocationCoordinate2D center, /* CLLocationDistance */ double latitudinalMeters, /* CLLocationDistance */ double longitudinalMeters);
 		
-		[DllImport (Constants.MapKitLibrary, EntryPoint="MKCoordinateRegionForMapRect")]
+		[DllImport (Constants.MapKitLibrary, EntryPoint = "MKCoordinateRegionForMapRect")]
 		extern static public MKCoordinateRegion FromMapRect (MKMapRect rect);
 
 		public override string ToString ()
@@ -78,15 +78,15 @@ namespace XamCore.MapKit {
 
 	// MKGeometry.h
 	[StructLayout (LayoutKind.Sequential)]
-	[iOS (4,0)]
-	[Mac (10,9, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 4, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)]
 	public struct MKMapPoint {
 		public double X, Y;
 
-		[DllImport (Constants.MapKitLibrary, EntryPoint="MKMapPointForCoordinate")]
+		[DllImport (Constants.MapKitLibrary, EntryPoint = "MKMapPointForCoordinate")]
 		public extern static MKMapPoint FromCoordinate (CLLocationCoordinate2D coordinate);
 
-		[DllImport (Constants.MapKitLibrary, EntryPoint="MKCoordinateForMapPoint")]
+		[DllImport (Constants.MapKitLibrary, EntryPoint = "MKCoordinateForMapPoint")]
 		public extern static CLLocationCoordinate2D ToCoordinate (MKMapPoint mapPoint);
 		
 		// MKMapPointMake
@@ -131,7 +131,7 @@ namespace XamCore.MapKit {
 
 	// MKGeometry.h
 	[StructLayout (LayoutKind.Sequential)]
-	[iOS (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	public struct MKMapSize {
 		public double Width, Height;
 		
@@ -142,7 +142,7 @@ namespace XamCore.MapKit {
 			Height = height;
 		}
 
-		[TV (9,2)]
+		[Introduced (PlatformName.TvOS, 9, 2)]
 		public static MKMapSize World { get { return new MKMapSize (0x10000000, 0x10000000); }}
 		
 		// MKMapSizeEqualToSize
@@ -180,10 +180,10 @@ namespace XamCore.MapKit {
 
 	// MKGeometry.h
 	[StructLayout (LayoutKind.Sequential)]
-	[iOS (4,0)]
-	[Mac (10,9, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 4, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)]
 	public struct MKMapRect {
-		[TV (9,2)]
+		[Introduced (PlatformName.TvOS, 9, 2)]
 		public static readonly MKMapRect Null = new MKMapRect (double.PositiveInfinity, double.PositiveInfinity, 0, 0);
 
 		public MKMapPoint Origin;
@@ -274,7 +274,7 @@ namespace XamCore.MapKit {
 			}
 		}
 
-		[TV (9,2)]
+		[Introduced (PlatformName.TvOS, 9, 2)]
 		public MKMapRect World {
 			get {
 				return new MKMapRect (0, 0, 0x10000000, 0x10000000);
@@ -313,7 +313,7 @@ namespace XamCore.MapKit {
 			return string.Format ("{{{0}, {1}}}", Origin, Size);
 		}
 		
-		[DllImport (Constants.MapKitLibrary, EntryPoint="MKMapRectContainsPoint")]
+		[DllImport (Constants.MapKitLibrary, EntryPoint = "MKMapRectContainsPoint")]
 		static extern bool MKMapRectContainsPoint (MKMapRect rect, MKMapPoint point);
 		
 		public bool Contains (MKMapPoint point)
@@ -321,7 +321,7 @@ namespace XamCore.MapKit {
 			return MKMapRectContainsPoint (this, point);
 		}
 
-		[DllImport (Constants.MapKitLibrary, EntryPoint="MKMapRectContainsRect")]
+		[DllImport (Constants.MapKitLibrary, EntryPoint = "MKMapRectContainsRect")]
 		static extern bool MKMapRectContainsRect (MKMapRect rect1, MKMapRect rect2);
 		
 		public bool Contains (MKMapRect rect)
@@ -329,16 +329,16 @@ namespace XamCore.MapKit {
 			return MKMapRectContainsRect (this, rect);
 		}
 
-		[DllImport (Constants.MapKitLibrary, EntryPoint="MKMapRectUnion")]
+		[DllImport (Constants.MapKitLibrary, EntryPoint = "MKMapRectUnion")]
 		static public extern MKMapRect Union (MKMapRect rect1, MKMapRect rect2);
 
-		[DllImport (Constants.MapKitLibrary, EntryPoint="MKMapRectIntersection")]
+		[DllImport (Constants.MapKitLibrary, EntryPoint = "MKMapRectIntersection")]
 		static public extern MKMapRect Intersection (MKMapRect rect1, MKMapRect rect2);
 		
-		[DllImport (Constants.MapKitLibrary, EntryPoint="MKMapRectIntersectsRect")]
+		[DllImport (Constants.MapKitLibrary, EntryPoint = "MKMapRectIntersectsRect")]
 		static public extern bool Intersects (MKMapRect rect1, MKMapRect rect2);
 		
-		[DllImport (Constants.MapKitLibrary, EntryPoint="MKMapRectInset")]
+		[DllImport (Constants.MapKitLibrary, EntryPoint = "MKMapRectInset")]
 		static extern MKMapRect MKMapRectInset (MKMapRect rect, double dx, double dy);
 		
 		public MKMapRect Inset (double dx, double dy)
@@ -346,7 +346,7 @@ namespace XamCore.MapKit {
 			return MKMapRectInset (this, dx, dy);
 		}
 
-		[DllImport (Constants.MapKitLibrary, EntryPoint="MKMapRectOffset")]
+		[DllImport (Constants.MapKitLibrary, EntryPoint = "MKMapRectOffset")]
 		static extern MKMapRect MKMapRectOffset (MKMapRect rect, double dx, double dy);
 		
 		public MKMapRect Offset (double dx, double dy)
@@ -354,7 +354,7 @@ namespace XamCore.MapKit {
 			return MKMapRectOffset (this, dx, dy);
 		}
 
-		[DllImport (Constants.MapKitLibrary, EntryPoint="MKMapRectDivide")]
+		[DllImport (Constants.MapKitLibrary, EntryPoint = "MKMapRectDivide")]
 		static extern void MKMapRectDivide (MKMapRect rect, out MKMapRect slice, out MKMapRect remainder, double amount, CGRectEdge edge);
 
 		public MKMapRect Divide (double amount, CGRectEdge edge, out MKMapRect remainder)
@@ -364,14 +364,14 @@ namespace XamCore.MapKit {
 			return slice;
 		}
 		
-		[DllImport (Constants.MapKitLibrary, EntryPoint="MKMapRectSpans180thMeridian")]
+		[DllImport (Constants.MapKitLibrary, EntryPoint = "MKMapRectSpans180thMeridian")]
 		static extern bool MKMapRectSpans180thMeridian (MKMapRect rect);
 		
 		public bool Spans180thMeridian {
 			get { return MKMapRectSpans180thMeridian (this); }
 		}
 
-		[DllImport (Constants.MapKitLibrary, EntryPoint="MKMapRectRemainder")]
+		[DllImport (Constants.MapKitLibrary, EntryPoint = "MKMapRectRemainder")]
 		static extern MKMapRect MKMapRectRemainder (MKMapRect rect);
 		
 		public MKMapRect Remainder ()
@@ -381,16 +381,16 @@ namespace XamCore.MapKit {
 	}
 
 	// MKGeometry.h
-	[Mac (10,9, onlyOn64 : true)]
+	[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)]
 	public static class MKGeometry {
 		
-		[DllImport (Constants.MapKitLibrary, EntryPoint="MKMapPointsPerMeterAtLatitude")]
+		[DllImport (Constants.MapKitLibrary, EntryPoint = "MKMapPointsPerMeterAtLatitude")]
 		static extern public double MapPointsPerMeterAtLatitude (/* CLLocationDegrees */ double latitude);
 
-		[DllImport (Constants.MapKitLibrary, EntryPoint="MKMetersPerMapPointAtLatitude")]
+		[DllImport (Constants.MapKitLibrary, EntryPoint = "MKMetersPerMapPointAtLatitude")]
 		static extern public /* CLLocationDistance */ double MetersPerMapPointAtLatitude (/* CLLocationDegrees */ double latitude);
 		
-		[DllImport (Constants.MapKitLibrary, EntryPoint="MKMetersBetweenMapPoints")]
+		[DllImport (Constants.MapKitLibrary, EntryPoint = "MKMetersBetweenMapPoints")]
 		static extern public /* CLLocationDistance */ double MetersBetweenMapPoints (MKMapPoint a, MKMapPoint b);
 	}
 

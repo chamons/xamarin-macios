@@ -17,18 +17,18 @@ using XamCore.UIKit;
 #if !MONOMAC
 namespace XamCore.Messages {
 
-	[iOS (10,0)]
+	[Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
-	public enum MSMessagesAppPresentationStyle : nuint
+	public enum MSMessagesAppPresentationStyle : ulong
 	{
 		Compact,
 		Expanded,
 		Transcript,
 	}
 
-	[iOS (10,0)]
+	[Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
-	public enum MSStickerSize : nint
+	public enum MSStickerSize : long
 	{
 		Small,
 		Regular,
@@ -37,7 +37,7 @@ namespace XamCore.Messages {
 
 	[Native]
 	[ErrorDomain ("MSMessagesErrorDomain")]
-	public enum MSMessageErrorCode : nint
+	public enum MSMessageErrorCode : long
 	{
 		Unknown = -1,
 		FileNotFound = 1,
@@ -52,18 +52,18 @@ namespace XamCore.Messages {
 		SendWhileNotVisible,
 	}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface MSMessagesAppTranscriptPresentation
 	{
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Abstract]
 		[Export ("contentSizeThatFits:")]
 		CGSize GetContentSizeThatFits (CGSize size);
 	}
 
-	[iOS (10,0)]
-	[BaseType (typeof(UIViewController))]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (UIViewController))]
 	interface MSMessagesAppViewController : MSMessagesAppTranscriptPresentation
 	{
 		// inlined ctor
@@ -116,8 +116,8 @@ namespace XamCore.Messages {
 		void DidTransition (MSMessagesAppPresentationStyle presentationStyle);
 	}
 
-	[iOS (10,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (NSObject))]
 	interface MSConversation
 	{
 		[Export ("localParticipantIdentifier")]
@@ -145,29 +145,29 @@ namespace XamCore.Messages {
 		[Async]
 		void InsertAttachment (NSUrl url, [NullAllowed] string filename, [NullAllowed] Action<NSError> completionHandler);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("sendMessage:completionHandler:")]
 		[Async]
 		void SendMessage (MSMessage message, [NullAllowed] Action<NSError> completionHandler);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("sendSticker:completionHandler:")]
 		[Async]
 		void SendSticker (MSSticker sticker, [NullAllowed] Action<NSError> completionHandler);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("sendText:completionHandler:")]
 		[Async]
 		void SendText (string text, [NullAllowed] Action<NSError> completionHandler);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("sendAttachment:withAlternateFilename:completionHandler:")]
 		[Async]
 		void SendAttachment (NSUrl url, [NullAllowed] string filename, [NullAllowed] Action<NSError> completionHandler);
 	}
 
-	[iOS (10,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (NSObject))]
 	// note: docs says `init` can be used even if `initWithSession:` is the designated initializer
 	interface MSMessage : NSCopying, NSSecureCoding
 	{
@@ -178,7 +178,7 @@ namespace XamCore.Messages {
 		[NullAllowed, Export ("session")]
 		MSSession Session { get; }
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("pending")]
 		bool Pending { [Bind ("isPending")] get; }
 
@@ -204,14 +204,14 @@ namespace XamCore.Messages {
 		NSError Error { get; set; }
 	}
 
-	[iOS (10,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (NSObject))]
 	[Abstract] // as per docs
 	[DisableDefaultCtor]
 	interface MSMessageLayout : NSCopying {}
 
-	[iOS (10,0)]
-	[BaseType (typeof(MSMessageLayout))]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (MSMessageLayout))]
 	interface MSMessageTemplateLayout
 	{
 		[NullAllowed, Export ("caption")]
@@ -239,12 +239,12 @@ namespace XamCore.Messages {
 		string ImageSubtitle { get; set; }
 	}
 
-	[iOS (10,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (NSObject))]
 	interface MSSession : NSSecureCoding {}
 
-	[iOS (10,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface MSSticker
 	{
@@ -259,8 +259,8 @@ namespace XamCore.Messages {
 		string LocalizedDescription { get; }
 	}
 
-	[iOS (10,0)]
-	[BaseType (typeof(UIView))]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (UIView))]
 	interface MSStickerView
 	{
 		// inlined ctor
@@ -288,9 +288,9 @@ namespace XamCore.Messages {
 
 	interface IMSStickerBrowserViewDataSource { }
 
-	[iOS (10,0)]
+	[Introduced (PlatformName.iOS, 10, 0)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface MSStickerBrowserViewDataSource
 	{
 		[Abstract]
@@ -302,8 +302,8 @@ namespace XamCore.Messages {
 		MSSticker GetSticker (MSStickerBrowserView stickerBrowserView, nint index);
 	}
 
-	[iOS (10,0)]
-	[BaseType (typeof(UIView))]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (UIView))]
 	interface MSStickerBrowserView
 	{
 		[Export ("initWithFrame:")]
@@ -333,8 +333,8 @@ namespace XamCore.Messages {
 		void ReloadData ();
 	}
 
-	[iOS (10,0)]
-	[BaseType (typeof(UIViewController))]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (UIViewController))]
 	interface MSStickerBrowserViewController : MSStickerBrowserViewDataSource
 	{
 		[Export ("initWithStickerSize:")]
@@ -348,8 +348,8 @@ namespace XamCore.Messages {
 		MSStickerSize StickerSize { get; }
 	}
 
-	[iOS (11,0)]
-	[BaseType (typeof(MSMessageLayout))]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (MSMessageLayout))]
 	[DisableDefaultCtor]
 	interface MSMessageLiveLayout
 	{

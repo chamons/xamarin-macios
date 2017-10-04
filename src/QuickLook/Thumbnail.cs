@@ -40,7 +40,7 @@ namespace XamCore.QuickLook {
 
 		// QuickLook.framework/Versions/A/Headers/QLThumbnailImage.h
 		// note: documented as Thread-Safe
-		[DllImport(Constants.QuickLookLibrary)]
+		[DllImport (Constants.QuickLookLibrary)]
 		extern static /* CGImageRef */ IntPtr QLThumbnailImageCreate (/* CFAllocatorRef */ IntPtr allocator, /* CFUrlRef */ IntPtr url, CGSize maxThumbnailSize, /* CFDictionaryRef */ IntPtr options);
 
 		public static CGImage Create (NSUrl url, CGSize maxThumbnailSize, float scaleFactor = 1, bool iconMode = false)

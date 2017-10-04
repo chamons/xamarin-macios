@@ -40,7 +40,7 @@ namespace XamCore.AudioUnit {
 			uint frameCount, nint inputBusNumber, AudioBuffers inputData);
 
 	delegate void AUScheduleParameterBlock (AUEventSampleTime eventSampleTime, uint rampDurationSampleFrames, ulong parameterAddress, float value);
-	[iOS (11, 0), Mac (10,13), TV (11,0), NoWatch]
+	[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 	delegate int AUMidiOutputEventBlock (long eventSampleTime, byte cable, nint length, IntPtr midiBytes);
 	delegate void AUImplementorValueObserver (AUParameter param, float value);
 	delegate float AUImplementorValueProvider (AUParameter param);
@@ -65,8 +65,8 @@ namespace XamCore.AudioUnit {
 	delegate void AURenderObserver (AudioUnitRenderActionFlags actionFlags, ref AudioTimeStamp timestamp, uint frameCount, nint outputBusNumber);
 	delegate float AUImplementorValueFromStringCallback (AUParameter param, string str);
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface AUAudioUnit
 	{
@@ -110,7 +110,7 @@ namespace XamCore.AudioUnit {
 		[NullAllowed, Export ("manufacturerName")]
 		string ManufacturerName { get; }
 
-		[iOS (11, 0), Mac (10, 13), TV (11, 0), NoWatch]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		[NullAllowed, Export ("audioUnitShortName")]
 		string ShortName { get; }
 
@@ -147,15 +147,15 @@ namespace XamCore.AudioUnit {
 // 		[NullAllowed, Export ("musicalContextBlock", ArgumentSemantic.Copy)]
 // 		AUHostMusicalContextBlock MusicalContextBlock { get; set; }
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("MIDIOutputNames", ArgumentSemantic.Copy)]
 		string[] MidiOutputNames { get; }
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("providesUserInterface")]
 		bool ProvidesUserInterface { get; }
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("MIDIOutputEventBlock", ArgumentSemantic.Copy)]
 		AUMidiOutputEventBlock MidiOutputEventBlock { get; set; }
 
@@ -221,15 +221,15 @@ namespace XamCore.AudioUnit {
 		[NullAllowed, Export ("contextName")]
 		string ContextName { get; set; }
 
-		[iOS (10,0), Mac (10,12, onlyOn64 : true), TV (10,0), Watch (4, 0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Export ("supportsMPE")]
 		bool SupportsMpe { get; }
 
-		[iOS (10,0), Mac (10,12, onlyOn64 : true), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64), Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("channelMap"), NullAllowed]
 		NSNumber [] ChannelMap { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("requestViewControllerWithCompletionHandler:")]
 		[Async]
 		void RequestViewController (Action<AUViewControllerBase> completionHandler);
@@ -241,15 +241,15 @@ namespace XamCore.AudioUnit {
 		[Export ("shouldChangeToFormat:forBus:")]
 		bool ShouldChangeToFormat (AVAudioFormat format, AUAudioUnitBus bus);
 
-		[Mac (10,11)][iOS (7,0)]
+		[Introduced (PlatformName.MacOSX, 10, 11)][Introduced (PlatformName.iOS, 7, 0)]
 		[Notification, Field ("kAudioComponentRegistrationsChangedNotification")]
 		NSString AudioComponentRegistrationsChangedNotification { get; }
 
-		[Mac (10,11)][iOS (7,0)]
+		[Introduced (PlatformName.MacOSX, 10, 11)][Introduced (PlatformName.iOS, 7, 0)]
 		[Notification, Field ("kAudioComponentInstanceInvalidationNotification")]
 		NSString AudioComponentInstanceInvalidationNotification { get; }
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("MIDIOutputBufferSizeHint")]
 		nint MidiOutputBufferSizeHint { get; set; }
 
@@ -257,16 +257,16 @@ namespace XamCore.AudioUnit {
 
 	// kept separate from AUAudioUnit, quote:
 	// These methods will fail if the audio unit is not an input/output audio unit.
-	[iOS (9,0), Mac(10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Category]
 	[BaseType (typeof (AUAudioUnit))]
 	interface AUAudioUnit_AUAudioInputOutputUnit {
 
-		[Mac (10,12), NoTV, NoiOS, NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 12), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.iOS), Unavailable (PlatformName.WatchOS)]
 		[Export ("deviceID")]
 		uint GetDeviceId ();
 
-		[Mac (10,12), NoTV, NoiOS, NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 12), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.iOS), Unavailable (PlatformName.WatchOS)]
 		[Export ("setDeviceID:error:")]
 		bool SetDeviceId (uint deviceID, out NSError outError);
 
@@ -307,21 +307,21 @@ namespace XamCore.AudioUnit {
 		void SetOutputProvider (AURenderPullInputBlock provider);
 
 		// the following are properties but we cannot have properties in Categories.
-		[Mac (10, 13), NoWatch, NoiOS, NoTV]
+		[Introduced (PlatformName.MacOSX, 10, 13), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS)]
 		[Export ("deviceInputLatency")]
 		double GetDeviceInputLatency ();
 
-		[Mac (10, 13), NoWatch, NoiOS, NoTV]
+		[Introduced (PlatformName.MacOSX, 10, 13), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS)]
 		[Export ("deviceOutputLatency")]
 		double GetDeviceOutputLatency ();
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("running")]
 		bool IsRunning ();
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface AUAudioUnitBus
 	{
 		[Export ("initWithFormat:error:")]
@@ -361,13 +361,13 @@ namespace XamCore.AudioUnit {
 		[Export ("maximumChannelCount")]
 		uint MaximumChannelCount { get; set; }
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("shouldAllocateBuffer")]
 		bool ShouldAllocateBuffer { get; set; }
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface AUAudioUnitBusArray : INSFastEnumeration
 	{
@@ -410,8 +410,8 @@ namespace XamCore.AudioUnit {
 		void ReplaceBusses (AUAudioUnitBus[] busArray);
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface AUAudioUnitPreset : NSSecureCoding
 	{
 		[Export ("number", ArgumentSemantic.Assign)]
@@ -421,8 +421,8 @@ namespace XamCore.AudioUnit {
 		string Name { get; set; }
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(AUParameterNode))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (AUParameterNode))]
 	interface AUParameter : NSSecureCoding
 	{
 		[Export ("minValue")]
@@ -480,22 +480,22 @@ namespace XamCore.AudioUnit {
 		[Export ("valueFromString:")]
 		float GetValue (string str);
 
-		[iOS (10,0), Mac (10,12, onlyOn64 : true)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Internal]
 		[Export ("setValue:originator:atHostTime:eventType:")]
 		void SetValue (float value, IntPtr originator, ulong hostTime, AUParameterAutomationEventType eventType);
 
-		[iOS (10,0), Mac (10,12, onlyOn64 : true), Watch (4, 0), TV (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64), Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Wrap ("SetValue (value, originator.ObserverToken, hostTime, eventType)")]
 		void SetValue (float value, AUParameterObserverToken originator, ulong hostTime, AUParameterAutomationEventType eventType);
 	}
 
-	[iOS (10,0), Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	delegate void AUParameterAutomationObserver (ulong address, float value);
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface AUParameterNode
 	{
 		[Export ("identifier")]
@@ -546,26 +546,26 @@ namespace XamCore.AudioUnit {
 		[Export ("removeParameterObserver:")]
 		void RemoveParameterObserver (/* void * */ IntPtr token);
 
-		[Export ("implementorStringFromValueCallback", ArgumentSemantic.Copy),]
+		[Export ("implementorStringFromValueCallback", ArgumentSemantic.Copy)]
 		AUImplementorStringFromValueCallback ImplementorStringFromValueCallback { get; set; }
 
 		[Export ("implementorDisplayNameWithLengthCallback", ArgumentSemantic.Copy)]
 		AUImplementorDisplayNameWithLengthCallback ImplementorDisplayNameWithLengthCallback { get; set; }
 
-		[iOS (10,0), Mac (10,12, onlyOn64 : true)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Internal]
 		[Export ("tokenByAddingParameterAutomationObserver:")]
 		IntPtr _GetToken (AUParameterAutomationObserver observer);
 
-		[iOS (10,0), Mac (10,12, onlyOn64 : true)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Wrap ("new AUParameterObserverToken (_GetToken (observer))")]
 		AUParameterObserverToken GetToken (AUParameterAutomationObserver observer);
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(AUParameterNode))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (AUParameterNode))]
 	interface AUParameterGroup : NSSecureCoding
 	{
 		[Export ("children")]
@@ -575,8 +575,8 @@ namespace XamCore.AudioUnit {
 		AUParameter[] AllParameters { get; }
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(AUParameterGroup))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (AUParameterGroup))]
 	interface AUParameterTree : NSSecureCoding
 	{
 		[Export ("parameterWithAddress:")]

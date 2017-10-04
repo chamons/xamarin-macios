@@ -87,7 +87,7 @@ namespace XamCore.CoreMedia {
 	}
 
 	// CMSampleBuffer.h
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	public struct CMSampleTimingInfo
 	{
 		public CMTime Duration;
@@ -96,7 +96,7 @@ namespace XamCore.CoreMedia {
 	}
 
 	// CMTimeRange.h
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	public struct CMTimeRange {
 		public CMTime Start;
 		public CMTime Duration;
@@ -109,13 +109,13 @@ namespace XamCore.CoreMedia {
 #endif
 		public static readonly CMTimeRange InvalidRange;
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		public static readonly CMTimeRange InvalidMapping;
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		public static NSString TimeMappingSourceKey { get; private set; }
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		public static NSString TimeMappingTargetKey { get; private set; }
 
 		static CMTimeRange () {
@@ -146,37 +146,37 @@ namespace XamCore.CoreMedia {
 	}
 
 	// CMTimeRange.h
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	public struct CMTimeMapping {
 		public CMTimeRange Source;
 		public CMTimeRange Target;
 
 #if !COREBUILD
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		public static CMTimeMapping Create (CMTimeRange source, CMTimeRange target)
 		{
 			return CMTimeMappingMake (source, target);
 		}
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		public static CMTimeMapping CreateEmpty (CMTimeRange target)
 		{
 			return CMTimeMappingMakeEmpty (target);
 		}
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		public static CMTimeMapping CreateFromDictionary (NSDictionary dict)
 		{
 			return CMTimeMappingMakeFromDictionary (dict.Handle);
 		}
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		public NSDictionary AsDictionary ()
 		{
 			return new NSDictionary (CMTimeMappingCopyAsDictionary (this, IntPtr.Zero), true);
 		}
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		public string Description
 		{
 			get
@@ -185,29 +185,29 @@ namespace XamCore.CoreMedia {
 			}
 		}
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[DllImport (Constants.CoreMediaLibrary)]
 		static extern CMTimeMapping CMTimeMappingMake (CMTimeRange source, CMTimeRange target);
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[DllImport (Constants.CoreMediaLibrary)]
 		static extern CMTimeMapping CMTimeMappingMakeEmpty (CMTimeRange target);
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[DllImport (Constants.CoreMediaLibrary)]
 		static extern IntPtr /* CFDictionaryRef* */ CMTimeMappingCopyAsDictionary (CMTimeMapping mapping, IntPtr allocator);
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[DllImport (Constants.CoreMediaLibrary)]
 		static extern CMTimeMapping CMTimeMappingMakeFromDictionary (/* CFDictionaryRef* */ IntPtr dict);
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[DllImport (Constants.CoreMediaLibrary)]
 		static extern IntPtr /* CFStringRef* */ CMTimeMappingCopyDescription (IntPtr allocator, CMTimeMapping mapping);
 #endif // !COREBUILD
 	}
 
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	public struct CMTimeScale
 	{
 		// CMTime.h

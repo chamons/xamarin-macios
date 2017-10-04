@@ -128,7 +128,7 @@ namespace XamCore.AVFoundation {
 			}
 		}
 
-		[iOS (10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		public static AVAudioRecorder Create (NSUrl url, AVAudioFormat format, out NSError error)
 		{
 			if (format == null)

@@ -20,48 +20,48 @@ using XamCore.AppKit;
 #endif
 
 namespace XamCore.Social {
-	[Since (6,0)]
-	[Mac (10,8, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 6, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8, PlatformArchitecture.Arch64)]
 	[Static]
 	interface SLServiceType {
 		[Deprecated (PlatformName.iOS, 11, 0, message: "Use Facebook SDK instead.")]
 		[Deprecated (PlatformName.MacOSX, 10, 13, message: "Use Facebook SDK instead.")]
 		[Field ("SLServiceTypeFacebook")]
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		NSString Facebook { get; }
 
 		[Deprecated (PlatformName.iOS, 11, 0, message: "Use Twitter SDK instead.")]
 		[Deprecated (PlatformName.MacOSX, 10, 13, message: "Use Twitter SDK instead.")]
 		[Field ("SLServiceTypeTwitter")]
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		NSString Twitter { get; }
 
 		[Deprecated (PlatformName.iOS, 11, 0, message: "Use Sina Weibo SDK instead.")]
 		[Deprecated (PlatformName.MacOSX, 10, 13, message: "Use Sina Weibo SDK instead.")]
 		[Field ("SLServiceTypeSinaWeibo")]
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		NSString SinaWeibo { get; }
 
 		[Deprecated (PlatformName.iOS, 11, 0, message: "Use Tencent Weibo SDK instead.")]
 		[Deprecated (PlatformName.MacOSX, 10, 13, message: "Use Tencent Weibo SDK instead.")]
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("SLServiceTypeTencentWeibo")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString TencentWeibo { get; }
 
 #if MONOMAC
 		[Deprecated (PlatformName.MacOSX, 10, 13, message: "Use LinkedIn SDK instead.")]
 		[Field ("SLServiceTypeLinkedIn")]
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		NSString LinkedIn { get; }
 #endif
 	}
 	
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (NSObject))]
 	// init -> Objective-C exception thrown.  Name: NSInternalInconsistencyException Reason: SLRequestMultiPart must be obtained through!
 	[DisableDefaultCtor]
-	[Mac (10,8, onlyOn64 : true)]
+	[Introduced (PlatformName.MacOSX, 10, 8, PlatformArchitecture.Arch64)]
 	interface SLRequest {
 		[Static]
 		[Export ("requestForServiceType:requestMethod:URL:parameters:")]
@@ -92,7 +92,7 @@ namespace XamCore.Social {
 	}
 
 #if !MONOMAC
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (UIViewController))]
 	[DisableDefaultCtor] // see note on 'composeViewControllerForServiceType:'
 	interface SLComposeViewController {
@@ -131,8 +131,8 @@ namespace XamCore.Social {
 		bool RemoveAllUrls ();
 	}
 
-	[Mac (10,10, onlyOn64 : true)]
-	[iOS (8,0)]
+	[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 #if MONOMAC
 	[BaseType (typeof (NSViewController))]
 #else
@@ -213,7 +213,7 @@ namespace XamCore.Social {
 
 
 #if !MONOMAC
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	interface SLComposeSheetConfigurationItem {
 		[NullAllowed] // by default this property is null

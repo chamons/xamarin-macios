@@ -1,4 +1,4 @@
-﻿//
+//
 // ClockKit bindings
 //
 // Authors:
@@ -70,7 +70,7 @@ namespace XamCore.ClockKit {
 		[Export ("getPlaceholderTemplateForComplication:withHandler:")]
 		void GetPlaceholderTemplate (CLKComplication complication, Action<CLKComplicationTemplate> handler);
 
-		[Watch (3,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
 		[Export ("getLocalizableSampleTemplateForComplication:withHandler:")]
 		void GetLocalizableSampleTemplate (CLKComplication complication, Action<CLKComplicationTemplate> handler);
 	}
@@ -404,7 +404,7 @@ namespace XamCore.ClockKit {
 		CLKTextProvider Line2TextProvider { get; set; }
 	}
 
-	[Watch (3,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[BaseType (typeof (CLKComplicationTemplate))]
 	interface CLKComplicationTemplateExtraLargeSimpleText {
 		
@@ -412,7 +412,7 @@ namespace XamCore.ClockKit {
 		CLKTextProvider TextProvider { get; set; }
 	}
 
-	[Watch (3,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[BaseType (typeof (CLKComplicationTemplate))]
 	interface CLKComplicationTemplateExtraLargeSimpleImage {
 		
@@ -420,7 +420,7 @@ namespace XamCore.ClockKit {
 		CLKImageProvider ImageProvider { get; set; }
 	}
 
-	[Watch (3,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[BaseType (typeof (CLKComplicationTemplate))]
 	interface CLKComplicationTemplateExtraLargeRingText {
 		
@@ -434,7 +434,7 @@ namespace XamCore.ClockKit {
 		CLKComplicationRingStyle RingStyle { get; set; }
 	}
 
-	[Watch (3,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[BaseType (typeof (CLKComplicationTemplate))]
 	interface CLKComplicationTemplateExtraLargeRingImage {
 		
@@ -448,7 +448,7 @@ namespace XamCore.ClockKit {
 		CLKComplicationRingStyle RingStyle { get; set; }
 	}
 
-	[Watch (3,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[BaseType (typeof (CLKComplicationTemplate))]
 	interface CLKComplicationTemplateExtraLargeStackText {
 		
@@ -462,7 +462,7 @@ namespace XamCore.ClockKit {
 		bool HighlightLine2 { get; set; }
 	}
 
-	[Watch (3,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[BaseType (typeof (CLKComplicationTemplate))]
 	interface CLKComplicationTemplateExtraLargeStackImage {
 		
@@ -476,7 +476,7 @@ namespace XamCore.ClockKit {
 		bool HighlightLine2 { get; set; }
 	}
 
-	[Watch (3,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[BaseType (typeof (CLKComplicationTemplate))]
 	interface CLKComplicationTemplateExtraLargeColumnsText {
 		
@@ -563,17 +563,17 @@ namespace XamCore.ClockKit {
 		// but static methods are not great candidates for extensions methods
 		// so they are inlined inside the actual type
 
-		[Watch (3,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
 		[Static]
 		[Export ("localizableTextProviderWithStringsFileTextKey:")]
 		CLKTextProvider CreateLocalizable (string textKey);
 
-		[Watch (3,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
 		[Static]
 		[Export ("localizableTextProviderWithStringsFileTextKey:shortTextKey:")]
 		CLKTextProvider CreateLocalizable (string textKey, [NullAllowed] string shortTextKey);
 
-		[Watch (3,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
 		[Static]
 		[Export ("localizableTextProviderWithStringsFileFormatKey:textProviders:")]
 		CLKTextProvider CreateLocalizable (string formatKey, CLKTextProvider[] textProviders);

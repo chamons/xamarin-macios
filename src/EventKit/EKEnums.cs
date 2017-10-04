@@ -13,28 +13,28 @@ namespace XamCore.EventKit {
 	// untyped enum -> EKTypes.h
 	// iOS 9 promoted this to an NSInteger - which breaks compatibility
 	[Native]
-	public enum EKCalendarType : nint {
+	public enum EKCalendarType : long {
 		Local, CalDav, Exchange, Subscription, Birthday
 	}
 
 	// untyped enum -> EKTypes.h
 	// iOS 9 promoted this to an NSInteger - which breaks compatibility
 	[Native]
-	public enum EKParticipantType : nint {
+	public enum EKParticipantType : long {
 		Unknown, Person, Room, Resource, Group
 	}
 
 	// untyped enum -> EKTypes.h
 	// iOS 9 promoted this to an NSInteger - which breaks compatibility
 	[Native]
-	public enum EKParticipantRole : nint {
+	public enum EKParticipantRole : long {
 		Unknown, Required, Optional, Chair, NonParticipant
 	}
 
 	// untyped enum -> EKTypes.h
 	// iOS 9 promoted this to an NSInteger - which breaks compatibility
 	[Native]
-	public enum EKParticipantStatus : nint {
+	public enum EKParticipantStatus : long {
 		Unknown, Pending, Accepted, Declined,
 		Tentative, Delegated, Completed, InProcess
 	}
@@ -43,7 +43,7 @@ namespace XamCore.EventKit {
 	// iOS 9 promoted this to an NSInteger - which breaks compatibility
 	[Native]
 	[ErrorDomain ("EKErrorDomain")]
-	public enum EKErrorCode : nint {
+	public enum EKErrorCode : long {
 		EventNotMutable,
 		NoCalendar,
 		NoStartDate,
@@ -79,16 +79,16 @@ namespace XamCore.EventKit {
 
 	// untyped enum -> EKTypes.h
 	// Special note: some API (like `dayOfWeek:` and `dayOfWeek:weekNumber:` use an `NSInteger` instead of the enum
-	[Availability (Deprecated = Platform.iOS_9_0 | Platform.Mac_10_11, Message = "Use 'EKWeekday'.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use 'EKWeekday'."), Deprecated (PlatformName.MacOSX, 10, 11, message: "Use 'EKWeekday'.")]
 	public enum EKDay {
 		NotSet = 0,
 		Sunday = 1,
 		Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
 	}
 
-	[iOS (9,0)][Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native] // NSInteger (size change from previously untyped enum)
-	public enum EKWeekday : nint {
+	public enum EKWeekday : long {
 		NotSet = 0,
 		Sunday = 1,
 		Monday,
@@ -102,14 +102,14 @@ namespace XamCore.EventKit {
 	// untyped enum -> EKTypes.h
 	// iOS 9 promoted this to an NSInteger - which breaks compatibility
 	[Native]
-	public enum EKRecurrenceFrequency : nint {
+	public enum EKRecurrenceFrequency : long {
 		Daily, Weekly, Monthly, Yearly
 	}
 
 	// untyped enum -> EKEventStore.h
 	// iOS 9 promoted this to an NSInteger - which breaks compatibility
 	[Native]
-	public enum EKSpan : nint {
+	public enum EKSpan : long {
 		ThisEvent, FutureEvents
 	}
 
@@ -140,7 +140,7 @@ namespace XamCore.EventKit {
 	// untyped enum -> EKEvent.h
 	// iOS 9 promoted this to an NSInteger - which breaks compatibility
 	[Native]
-	public enum EKEventAvailability : nint {
+	public enum EKEventAvailability : long {
 		NotSupported = -1,
 		Busy = 0, Free, Tentative, Unavailable,
 	}
@@ -148,20 +148,20 @@ namespace XamCore.EventKit {
 	// untyped enum -> EKEvent.h
 	// iOS 9 promoted this to an NSInteger - which breaks compatibility
 	[Native]
-	public enum EKEventStatus : nint {
+	public enum EKEventStatus : long {
 		None, Confirmed, Tentative, Cancelled
 	}
 
 	// untyped enum -> EKTypes.h
 	// iOS 9 promoted this to an NSInteger - which breaks compatibility
 	[Native]
-	public enum EKSourceType : nint {
+	public enum EKSourceType : long {
 		Local, Exchange, CalDav, MobileMe, Subscribed, Birthdays
 	}
 
 	// NSInteger -> EKTypes.h
 	[Native]
-	public enum EKAlarmProximity : nint {
+	public enum EKAlarmProximity : long {
 		None, Enter, Leave
 	}
 
@@ -184,13 +184,13 @@ namespace XamCore.EventKit {
 	// untyped enum -> EKTypes.h (but not in the iOS SDK, only OSX)
 	// turned into a typed (NSInteger) enum in El Capitan (and also an NSInteger in watchOS)
 	[Native]
-	public enum EKAlarmType : nint {
+	public enum EKAlarmType : long {
 		Display, Audio, Procedure, Email
 	}
 #endif
 	// NSInteger -> EKEventStore.h
 	[Native]
-	public enum EKAuthorizationStatus : nint {
+	public enum EKAuthorizationStatus : long {
 		NotDetermined = 0,
 		Restricted,
 		Denied,
@@ -198,7 +198,7 @@ namespace XamCore.EventKit {
 	}
 
 	[Native]
-	public enum EKParticipantScheduleStatus : nint
+	public enum EKParticipantScheduleStatus : long
 	{
 		None,
 		Pending,
@@ -212,7 +212,7 @@ namespace XamCore.EventKit {
 	}
 
 	[Native]
-	public enum EKReminderPriority : nuint
+	public enum EKReminderPriority : ulong
 	{
 		None = 0,
 		High = 1,

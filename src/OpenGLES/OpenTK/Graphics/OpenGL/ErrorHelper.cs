@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 //
 // The Open Toolkit Library License
 //
@@ -75,7 +75,7 @@ namespace OpenTK.Graphics.OpenGL
 
         // Retrieve all OpenGL errors to clear the error list.
         // See http://www.opengl.org/documentation/specs/man_pages/hardcopy/GL/html/gl/geterror.html
-        [Conditional("DEBUG")]
+        [Conditional ("DEBUG")]
         internal void ResetErrors()
         {
             if (Context.ErrorChecking)
@@ -86,7 +86,7 @@ namespace OpenTK.Graphics.OpenGL
         }
 
         // Retrieve all OpenGL errors and throw an exception if anything other than NoError is returned.
-        [Conditional("DEBUG")]
+        [Conditional ("DEBUG")]
         internal void CheckErrors()
         {
             if (Context.ErrorChecking)

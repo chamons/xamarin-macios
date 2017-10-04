@@ -85,13 +85,13 @@ namespace XamCore.CoreMotion {
 		MotionActivityNotAuthorized,
 		MotionActivityNotEntitled,
 		InvalidParameter,
-		[iOS (8,2)]
+		[Introduced (PlatformName.iOS, 8, 2)]
 		InvalidAction,
-		[iOS (8,2)]
+		[Introduced (PlatformName.iOS, 8, 2)]
 		NotAvailable,
-		[iOS (8,2)]
+		[Introduced (PlatformName.iOS, 8, 2)]
 		NotEntitled,
-		[iOS (8,2)]
+		[Introduced (PlatformName.iOS, 8, 2)]
 		NotAuthorized,
 	}
 
@@ -113,7 +113,7 @@ namespace XamCore.CoreMotion {
 
 	// NSInteger -> CMMotionActivity.h
 	[Native]
-	public enum CMMotionActivityConfidence : nint {
+	public enum CMMotionActivityConfidence : long {
 		Low = 0,
 		Medium,
 		High

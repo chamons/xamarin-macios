@@ -19,13 +19,13 @@ using XamCore.Foundation;
 using XamCore.ObjCRuntime;
 
 namespace XamCore.Security {
-	[Mac (10,8)] // SSLCreateContext is 10.8, only constructor
+	[Introduced (PlatformName.MacOSX, 10, 8)] // SSLCreateContext is 10.8, only constructor
 	public class SslContext : INativeObject, IDisposable {
 
 		SslConnection connection;
 		SslStatus result;
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static /* SSLContextRef */ IntPtr SSLCreateContext (/* CFAllocatorRef */ IntPtr alloc, SslProtocolSide protocolSide, SslConnectionType connectionType);
 
@@ -81,11 +81,11 @@ namespace XamCore.Security {
 			return result;
 		}
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static /* OSStatus */ SslStatus SSLGetProtocolVersionMax (/* SSLContextRef */ IntPtr context, out SslProtocol maxVersion);
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static /* OSStatus */ SslStatus SSLSetProtocolVersionMax (/* SSLContextRef */ IntPtr context, SslProtocol maxVersion);
 
@@ -100,11 +100,11 @@ namespace XamCore.Security {
 			}
 		}
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static /* OSStatus */ SslStatus SSLGetProtocolVersionMin (/* SSLContextRef */ IntPtr context, out SslProtocol minVersion);
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static /* OSStatus */ SslStatus SSLSetProtocolVersionMin (/* SSLContextRef */ IntPtr context, SslProtocol minVersion);
 
@@ -356,7 +356,7 @@ namespace XamCore.Security {
 			}
 		}
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern unsafe static /* OSStatus */ SslStatus SSLGetDatagramWriteSize (/* SSLContextRef */ IntPtr context, /* size_t* */ out nint bufSize);
 
@@ -368,11 +368,11 @@ namespace XamCore.Security {
 			}
 		}
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern unsafe static /* OSStatus */ SslStatus SSLGetMaxDatagramRecordSize (/* SSLContextRef */ IntPtr context, /* size_t* */ out nint maxSize);
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern unsafe static /* OSStatus */ SslStatus SSLSetMaxDatagramRecordSize (/* SSLContextRef */ IntPtr context, /* size_t */ nint maxSize);
 
@@ -387,7 +387,7 @@ namespace XamCore.Security {
 			}
 		}
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern unsafe static /* OSStatus */ SslStatus SSLSetDatagramHelloCookie (/* SSLContextRef */ IntPtr context, /* const void* */ byte *cookie, nint cookieLength);
 
@@ -504,10 +504,10 @@ namespace XamCore.Security {
 		}
 
 		[DllImport (Constants.SecurityLibrary)]
-		[Availability (Deprecated = Platform.iOS_9_0 | Platform.Mac_10_11)]
+		[Deprecated (PlatformName.iOS, 9, 0), Deprecated (PlatformName.MacOSX, 10, 11)]
 		extern unsafe static /* OSStatus */ SslStatus SSLSetEncryptionCertificate (/* SSLContextRef */ IntPtr context, /* CFArrayRef */ IntPtr certRefs);
 
-		[Availability (Deprecated = Platform.iOS_9_0 | Platform.Mac_10_11, Message = "Export ciphers are not available anymore.")]
+		[Deprecated (PlatformName.iOS, 9, 0, message: "Export ciphers are not available anymore."), Deprecated (PlatformName.MacOSX, 10, 11, message: "Export ciphers are not available anymore.")]
 		public SslStatus SetEncryptionCertificate (SecIdentity identify, IEnumerable<SecCertificate> certificates)
 		{
 			using (var array = Bundle (identify, certificates)) {
@@ -527,22 +527,22 @@ namespace XamCore.Security {
 			}
 		}
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern unsafe static /* CFType */ IntPtr SSLContextGetTypeID ();
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		public static IntPtr GetTypeId ()
 		{
 			return SSLContextGetTypeID ();
 		}
 
 #if !WATCH
-		[iOS(9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		// TODO: Headers say /* Deprecated, does nothing */ but we are not completly sure about it since there is no deprecation macro
 		// Plus they added new members to SslSessionStrengthPolicy enum opened radar://23379052 https://trello.com/c/NbdTLVD3
 		// Xcode 8 beta 1: the P/Invoke was removed completely.
-		[Availability (Deprecated = Platform.iOS_9_2 | Platform.Mac_10_11, Unavailable = Platform.iOS_10_0 | Platform.Mac_10_12, Message = "'SetSessionStrengthPolicy' is not available anymore.")]
+		[Deprecated (PlatformName.iOS, 9, 2, message: "'SetSessionStrengthPolicy' is not available anymore."), Deprecated (PlatformName.MacOSX, 10, 11, message: "'SetSessionStrengthPolicy' is not available anymore."), Obsoleted (PlatformName.iOS, 10, 0, message: "'SetSessionStrengthPolicy' is not available anymore."), Obsoleted (PlatformName.MacOSX, 10, 12, message: "'SetSessionStrengthPolicy' is not available anymore.")]
 		[Obsolete ("'SetSessionStrengthPolicy' is not available anymore.")]
 		public SslStatus SetSessionStrengthPolicy (SslSessionStrengthPolicy policyStrength)
 		{
@@ -551,13 +551,13 @@ namespace XamCore.Security {
 		}
 #endif
 
-		[iOS (10,0)][Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		static extern int SSLSetSessionConfig (IntPtr /* SSLContextRef* */ context, IntPtr /* CFStringRef* */ config);
 
-		[iOS (10,0)][Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[EditorBrowsable (EditorBrowsableState.Advanced)]
 		public int SetSessionConfig (NSString config)
 		{
@@ -567,36 +567,36 @@ namespace XamCore.Security {
 			return SSLSetSessionConfig (Handle, config.Handle);
 		}
 
-		[iOS (10,0)][Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		public int SetSessionConfig (SslSessionConfig config)
 		{
 			return SetSessionConfig (config.GetConstant ());
 		}
 
-		[iOS (10,0)][Mac (10,12)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		static extern int SSLReHandshake (IntPtr /* SSLContextRef* */ context);
 
-		[iOS (10,0)][Mac (10,12)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		public int ReHandshake ()
 		{
 			return SSLReHandshake (Handle);
 		}
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[DllImport (Constants.SecurityLibrary)]
 		static extern /* OSStatus */ SslStatus SSLCopyRequestedPeerName (IntPtr /* SSLContextRef* */ context, byte[] /* char* */ peerName, ref nuint /* size_t */ peerNameLen);
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[DllImport (Constants.SecurityLibrary)]
 		static extern /* OSStatus */ SslStatus SSLCopyRequestedPeerNameLength (IntPtr /* SSLContextRef* */ context, ref nuint /* size_t */ peerNameLen);
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		public string GetRequestedPeerName ()
 		{
 			var result = String.Empty;

@@ -9,22 +9,22 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.ExternalAccessory {
 
-	[NoMac]
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.MacOSX)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
 	[Flags]
-	public enum EAWiFiUnconfiguredAccessoryProperties : nuint {
+	public enum EAWiFiUnconfiguredAccessoryProperties : ulong {
 		SupportsAirPlay  = (1 << 0),
 		SupportsAirPrint = (1 << 1),
 		SupportsHomeKit  = (1 << 2), // iOS 8 beta 5
 	}
 
-	[NoMac]
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.MacOSX)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum EAWiFiUnconfiguredAccessoryBrowserState : nint {
+	public enum EAWiFiUnconfiguredAccessoryBrowserState : long {
 		WiFiUnavailable = 0,
 		Stopped,
 		Searching,
@@ -32,23 +32,23 @@ namespace XamCore.ExternalAccessory {
 	}
 
 	// NSInteger -> EAWiFiUnconfiguredAccessoryBrowser.h
-	[NoMac]
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.MacOSX)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum EAWiFiUnconfiguredAccessoryConfigurationStatus : nint {
+	public enum EAWiFiUnconfiguredAccessoryConfigurationStatus : long {
 		Success,
 		UserCancelledConfiguration,
 		Failed,
 	}
 
 	// NSInteger -> EAAccessoryManager.h
-	[TV (10,0)]
-	[iOS (6,0)]
-	[Mac (10, 13)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13)]
 	[Native]
 	[ErrorDomain ("EABluetoothAccessoryPickerErrorDomain")]
-	public enum EABluetoothAccessoryPickerError : nint {
+	public enum EABluetoothAccessoryPickerError : long {
 		AlreadyConnected,
 		NotFound,
 		Cancelled,

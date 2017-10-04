@@ -800,7 +800,7 @@ namespace XamCore.Security {
 		}
 
 #if !MONOMAC
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		public string SyncViewHint {
 			get {
 				return FetchString (SecAttributeKey.SyncViewHint);
@@ -810,7 +810,7 @@ namespace XamCore.Security {
 			}
 		}
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		public SecTokenID TokenID {
 			get {
 				return SecTokenIDExtensions.GetValue (Fetch<NSString> (SecAttributeKey.TokenID));
@@ -946,7 +946,7 @@ namespace XamCore.Security {
 			}
 		}
 
-		[Availability (Introduced = Platform.iOS_8_0, Deprecated = Platform.iOS_9_0, Message = "Use AuthenticationUI property")]
+		[Introduced (PlatformName.iOS, 8, 0, message: "Use AuthenticationUI property"), Deprecated (PlatformName.iOS, 9, 0, message: "Use AuthenticationUI property")]
 		public bool UseNoAuthenticationUI {
 			get {
 				return Fetch (SecItem.UseNoAuthenticationUI) == CFBoolean.True.Handle;
@@ -956,7 +956,7 @@ namespace XamCore.Security {
 			}
 		}
 #endif
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		public SecAuthenticationUI AuthenticationUI {
 			get {
 				var s = Fetch<NSString> (SecItem.UseAuthenticationUI);
@@ -968,7 +968,7 @@ namespace XamCore.Security {
 		}
 
 #if XAMCORE_2_0 && !WATCH && !TVOS
-		[iOS (9, 0), Mac (10, 11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		public XamCore.LocalAuthentication.LAContext AuthenticationContext {
 			get {
 				return Fetch<XamCore.LocalAuthentication.LAContext> (SecItem.UseAuthenticationContext);

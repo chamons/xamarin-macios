@@ -1,4 +1,4 @@
-﻿//
+//
 // UserNotifications bindings
 //
 // Authors:
@@ -24,7 +24,7 @@ namespace XamCore.UserNotifications {
 	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[ErrorDomain ("UNErrorDomain")]
 	[Native]
-	public enum UNErrorCode : nint {
+	public enum UNErrorCode : long {
 		NotificationsNotAllowed = 1,
 		AttachmentInvalidUrl = 100,
 		AttachmentUnrecognizedType,
@@ -41,7 +41,7 @@ namespace XamCore.UserNotifications {
 	[Unavailable (PlatformName.TvOS)]
 	[Native]
 	[Flags]
-	public enum UNNotificationActionOptions : nuint {
+	public enum UNNotificationActionOptions : ulong {
 		None = 0,
 		AuthenticationRequired = (1 << 0),
 		Destructive = (1 << 1),
@@ -53,7 +53,7 @@ namespace XamCore.UserNotifications {
 	[Unavailable (PlatformName.TvOS)]
 	[Native]
 	[Flags]
-	public enum UNNotificationCategoryOptions : nuint {
+	public enum UNNotificationCategoryOptions : ulong {
 		None = 0,
 		CustomDismissAction = (1 << 0),
 		AllowInCarPlay = (2 << 0),
@@ -65,7 +65,7 @@ namespace XamCore.UserNotifications {
 	[Introduced (PlatformName.TvOS, 10, 0)]
 	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[Native]
-	public enum UNAuthorizationStatus : nint {
+	public enum UNAuthorizationStatus : long {
 		NotDetermined = 0,
 		Denied,
 		Authorized
@@ -75,7 +75,7 @@ namespace XamCore.UserNotifications {
 	[Introduced (PlatformName.TvOS, 10, 0)]
 	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[Native]
-	public enum UNNotificationSetting : nint {
+	public enum UNNotificationSetting : long {
 		NotSupported = 0,
 		Disabled,
 		Enabled
@@ -85,7 +85,7 @@ namespace XamCore.UserNotifications {
 	[Unavailable (PlatformName.TvOS)]
 	[Unavailable (PlatformName.WatchOS)]
 	[Native]
-	public enum UNAlertStyle : nint {
+	public enum UNAlertStyle : long {
 		None = 0,
 		Banner,
 		Alert
@@ -96,7 +96,7 @@ namespace XamCore.UserNotifications {
 	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[Native]
 	[Flags]
-	public enum UNAuthorizationOptions : nuint {
+	public enum UNAuthorizationOptions : ulong {
 		None = 0,
 		Badge = (1 << 0),
 		Sound = (1 << 1),
@@ -109,16 +109,16 @@ namespace XamCore.UserNotifications {
 	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[Native]
 	[Flags]
-	public enum UNNotificationPresentationOptions : nuint {
+	public enum UNNotificationPresentationOptions : ulong {
 		None = 0,
 		Badge = (1 << 0),
 		Sound = (1 << 1),
 		Alert = (1 << 2)
 	}
 
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum UNShowPreviewsSetting : nint
+	public enum UNShowPreviewsSetting : long
 	{
 		Always,
 		WhenAuthenticated,
@@ -268,7 +268,7 @@ namespace XamCore.UserNotifications {
 		[Export ("options")]
 		UNNotificationCategoryOptions Options { get; }
 
-		[NoWatch, iOS (11, 0)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("hiddenPreviewsBodyPlaceholder")]
 		string HiddenPreviewsBodyPlaceholder { get; }
 		
@@ -276,7 +276,7 @@ namespace XamCore.UserNotifications {
 		[Export ("categoryWithIdentifier:actions:intentIdentifiers:options:")]
 		UNNotificationCategory FromIdentifier (string identifier, UNNotificationAction [] actions, string [] intentIdentifiers, UNNotificationCategoryOptions options);
 
-		[NoWatch, iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 11, 0)]
 		[Static]
 		[Export ("categoryWithIdentifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:options:")]
 		UNNotificationCategory FromIdentifier (string identifier, UNNotificationAction[] actions, string[] intentIdentifiers, string hiddenPreviewsBodyPlaceholder, UNNotificationCategoryOptions options);
@@ -500,7 +500,7 @@ namespace XamCore.UserNotifications {
 		[Export ("alertStyle")]
 		UNAlertStyle AlertStyle { get; }
 
-		[NoWatch, NoTV, iOS (11, 0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("showPreviewsSetting")]
 		UNShowPreviewsSetting ShowPreviewsSetting { get; }
 	}

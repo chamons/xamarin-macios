@@ -1,4 +1,4 @@
-﻿//
+//
 // FileProvider C# bindings
 //
 // Authors:
@@ -17,15 +17,15 @@ using XamCore.FileProvider;
 
 namespace XamCore.FileProviderUI {
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[ErrorDomain ("FPUIErrorDomain")]
 	[Native]
-	enum FPUIExtensionErrorCode : nuint {
+	enum FPUIExtensionErrorCode : ulong {
 		UserCancelled,
 		Failed
 	}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSExtensionContext))]
 	interface FPUIActionExtensionContext {
@@ -40,7 +40,7 @@ namespace XamCore.FileProviderUI {
 		void CancelRequest (NSError error);
 	}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (UIViewController))]
 	interface FPUIActionExtensionViewController {
 

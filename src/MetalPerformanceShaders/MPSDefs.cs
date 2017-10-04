@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 
 using XamCore.Foundation;
@@ -8,39 +8,39 @@ using Vector4 = global::OpenTK.Vector4;
 
 namespace XamCore.MetalPerformanceShaders {
 
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Native] // NSUInteger
 	[Flags]	// NS_OPTIONS
-	public enum MPSKernelOptions : nuint {
+	public enum MPSKernelOptions : ulong {
 		None									= 0,
 		SkipApiValidation						= 1 << 0,
 		MPSKernelOptionsAllowReducedPrecision	= 1 << 1,
 	}
 
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Native] // NSUInteger
-	public enum MPSImageEdgeMode : nuint {
+	public enum MPSImageEdgeMode : ulong {
 		Zero,
 		Clamp = 1
 	}
 
-	[iOS (10,0)][TV (10,0)]
+	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)]
 	[Native]
-	public enum MPSAlphaType : nuint {
+	public enum MPSAlphaType : ulong {
 		NonPremultiplied = 0,
 		AlphaIsOne = 1,
 		Premultiplied = 2,
 	}
 	 
-	[iOS (10,0)][TV (10,0)]
+	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)]
 	public enum MPSDataType : uint { // uint32_t
 		FloatBit = 0x10000000,
 		Float32 = FloatBit | 32,
 	}
 
-	[iOS (10,0)][TV (10,0)]
+	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)]
 	[Native]
-	public enum MPSImageFeatureChannelFormat : nuint {
+	public enum MPSImageFeatureChannelFormat : ulong {
 		Invalid = 0,
 		Unorm8 = 1,
 		Unorm16 = 2,

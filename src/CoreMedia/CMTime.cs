@@ -13,7 +13,7 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.CoreMedia {
 
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	public partial struct CMTime {
 		// CMTimeFlags -> uint32_t -> CMTime.h
 		[Flags]
@@ -141,7 +141,7 @@ namespace XamCore.CoreMedia {
 			}
 		}
 		
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static CMTime CMTimeAbsoluteValue (CMTime time);
 		
 		public CMTime AbsoluteValue {
@@ -150,7 +150,7 @@ namespace XamCore.CoreMedia {
 			}
 		}
 		
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* int32_t */ int CMTimeCompare (CMTime time1, CMTime time2);
 
 		public static int Compare (CMTime time1, CMTime time2)
@@ -204,7 +204,7 @@ namespace XamCore.CoreMedia {
 			return Value.GetHashCode () ^ TimeScale.GetHashCode () ^ TimeFlags.GetHashCode () ^ TimeEpoch.GetHashCode ();
 		}
 		
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static CMTime CMTimeAdd (CMTime addend1, CMTime addend2);
 
 		public static CMTime Add (CMTime time1, CMTime time2)
@@ -212,7 +212,7 @@ namespace XamCore.CoreMedia {
 			return CMTimeAdd (time1, time2);
 		}
 		
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static CMTime CMTimeSubtract (CMTime minuend, CMTime subtrahend);
 
 		public static CMTime Subtract (CMTime minuend, CMTime subtraend)
@@ -220,7 +220,7 @@ namespace XamCore.CoreMedia {
 			return CMTimeSubtract (minuend, subtraend);
 		}
 		
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static CMTime CMTimeMultiply (CMTime time, /* int32_t */ int multiplier);
 
 		public static CMTime Multiply (CMTime time, int multiplier)
@@ -228,7 +228,7 @@ namespace XamCore.CoreMedia {
 			return CMTimeMultiply (time, multiplier);
 		}
 		
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static CMTime CMTimeMultiplyByFloat64 (CMTime time, /* Float64 */ double multiplier);
 
 		public static CMTime Multiply (CMTime time, double multiplier)
@@ -236,12 +236,12 @@ namespace XamCore.CoreMedia {
 			return CMTimeMultiplyByFloat64 (time, multiplier);
 		}
 
-		[iOS (7,1)][Mac (10,10)]
-		[DllImport(Constants.CoreMediaLibrary)]
+		[Introduced (PlatformName.iOS, 7, 1)][Introduced (PlatformName.MacOSX, 10, 10)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static CMTime CMTimeMultiplyByRatio (CMTime time, /* int32_t */ int multiplier, /* int32_t */ int divisor);
 
-		[iOS (7,1)]
-		[Availability (Platform.Mac_10_10)]
+		[Introduced (PlatformName.iOS, 7, 1)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		public static CMTime Multiply (CMTime time, int multiplier, int divisor)
 		{
 			return CMTimeMultiplyByRatio (time, multiplier, divisor);
@@ -267,7 +267,7 @@ namespace XamCore.CoreMedia {
 			return Multiply (time, multiplier);
 		}
 		
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static CMTime CMTimeConvertScale (CMTime time, /* int32_t */ int newScale, CMTimeRoundingMethod method);
 
 		public CMTime ConvertScale (int newScale, CMTimeRoundingMethod method)
@@ -275,7 +275,7 @@ namespace XamCore.CoreMedia {
 			return CMTimeConvertScale (this, newScale, method);
 		}
 		
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* Float64 */ double CMTimeGetSeconds (CMTime time);
 
 		public double Seconds {
@@ -284,7 +284,7 @@ namespace XamCore.CoreMedia {
 			}
 		}
 		
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static CMTime CMTimeMakeWithSeconds (/* Float64 */ double seconds, /* int32_t */ int preferredTimeScale);
 
 		public static CMTime FromSeconds (double seconds, int preferredTimeScale)
@@ -292,7 +292,7 @@ namespace XamCore.CoreMedia {
 			return CMTimeMakeWithSeconds (seconds, preferredTimeScale);
 		}
 		
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static CMTime CMTimeMaximum (CMTime time1, CMTime time2);
 
 		public static CMTime GetMaximum (CMTime time1, CMTime time2)
@@ -300,7 +300,7 @@ namespace XamCore.CoreMedia {
 			return CMTimeMaximum (time1, time2);
 		}
 		
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static CMTime CMTimeMinimum (CMTime time1, CMTime time2);
 
 		public static CMTime GetMinimum (CMTime time1, CMTime time2)
@@ -329,7 +329,7 @@ namespace XamCore.CoreMedia {
 			}
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* CFDictionaryRef */ IntPtr CMTimeCopyAsDictionary (CMTime time, /* CFAllocatorRef */ IntPtr allocator);
 
 		public NSDictionary ToDictionary ()
@@ -346,7 +346,7 @@ namespace XamCore.CoreMedia {
 		}
 #endif
 		
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* CFStringRef */ IntPtr CMTimeCopyDescription (/* CFAllocatorRef */ IntPtr allocator, CMTime time);
 
 		public string Description {
@@ -360,7 +360,7 @@ namespace XamCore.CoreMedia {
 			return Description;
 		}
 		
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static CMTime CMTimeMakeFromDictionary (/* CFDictionaryRef */ IntPtr dict);
 
 		public static CMTime FromDictionary (NSDictionary dict)

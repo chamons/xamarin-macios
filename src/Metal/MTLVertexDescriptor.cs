@@ -1,4 +1,4 @@
-﻿#if XAMCORE_2_0 || !MONOMAC
+#if XAMCORE_2_0 || !MONOMAC
 using System;
 using System.Runtime.InteropServices;
 
@@ -10,11 +10,11 @@ using XamCore.Metal;
 namespace XamCore.Metal {
 	public partial class MTLVertexDescriptor {
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[DllImport (Constants.MetalKitLibrary)]
 		static extern  /* MTLVertexDescriptor __nonnull */ IntPtr MTKMetalVertexDescriptorFromModelIO (/* MDLVertexDescriptor __nonnull */ IntPtr modelIODescriptor);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		public static MTLVertexDescriptor FromModelIO (MDLVertexDescriptor descriptor)
 		{
 			if (descriptor == null)
@@ -22,13 +22,13 @@ namespace XamCore.Metal {
 			return Runtime.GetNSObject<MTLVertexDescriptor> (MTKMetalVertexDescriptorFromModelIO (descriptor.Handle));
 		}
 
-		[iOS (10,0)][Mac (10,12, onlyOn64 : true)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[DllImport (Constants.MetalKitLibrary)]
 		static extern /* MTLVertexDescriptor __nonnull */ IntPtr MTKMetalVertexDescriptorFromModelIOWithError (/* MDLVertexDescriptor __nonnull */ IntPtr modelIODescriptor, out IntPtr error);
 
-		[iOS (10,0)][Mac (10,12, onlyOn64 : true)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		public static MTLVertexDescriptor FromModelIO (MDLVertexDescriptor descriptor, out NSError error)
 		{
 			if (descriptor == null)

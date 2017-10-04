@@ -60,7 +60,7 @@ namespace XamCore.CoreGraphics {
 			CGColorRetain (handle);
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal CGColor (IntPtr handle, bool owns)
 		{
 			if (!owns)
@@ -79,7 +79,7 @@ namespace XamCore.CoreGraphics {
 			get { return handle; }
 		}
 
-		[DllImport(Constants.CoreGraphicsLibrary)]
+		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static /* CGColorRef */ IntPtr CGColorCreate (/* CGColorSpaceRef */ IntPtr space, /* CGFloat */ nfloat [] components);
 
 		public CGColor (CGColorSpace colorspace, nfloat [] components)
@@ -95,7 +95,7 @@ namespace XamCore.CoreGraphics {
 		}
 
 #if !XAMCORE_3_0 || MONOMAC
-		[DllImport(Constants.CoreGraphicsLibrary)]
+		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static /* CGColorRef */ IntPtr CGColorCreateGenericGray (/* CGFloat */ nfloat gray, /* CGFloat */ nfloat alpha);
 
 		public CGColor (nfloat gray, nfloat alpha)
@@ -103,7 +103,7 @@ namespace XamCore.CoreGraphics {
 			handle = CGColorCreateGenericGray (gray, alpha);
 		}
 
-		[DllImport(Constants.CoreGraphicsLibrary)]
+		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static /* CGColorRef */ IntPtr CGColorCreateGenericRGB (/* CGFloat */ nfloat red, /* CGFloat */ nfloat green, /* CGFloat */ nfloat blue, /* CGFloat */ nfloat alpha);
 
 		public CGColor (nfloat red, nfloat green, nfloat blue, nfloat alpha)
@@ -116,7 +116,7 @@ namespace XamCore.CoreGraphics {
 			handle = CGColorCreateGenericRGB (red, green, blue, 1.0f);
 		}
 
-		[DllImport(Constants.CoreGraphicsLibrary)]
+		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static /* CGColorRef */ IntPtr CGColorGetConstantColor (/* CFStringRef */ IntPtr colorName);
 
 		public CGColor (string name)
@@ -133,7 +133,7 @@ namespace XamCore.CoreGraphics {
 		}
 #endif
 
-		[DllImport(Constants.CoreGraphicsLibrary)]
+		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static /* CGColorRef */ IntPtr CGColorCreateWithPattern (/* CGColorSpaceRef */ IntPtr space, /* CGPatternRef */ IntPtr pattern, /* const CGFloat[] */ nfloat [] components);
 
 		public CGColor (CGColorSpace colorspace, CGPattern pattern, nfloat [] components)
@@ -152,7 +152,7 @@ namespace XamCore.CoreGraphics {
 				throw new ArgumentException ();
 		}
 
-		[DllImport(Constants.CoreGraphicsLibrary)]
+		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static /* CGColorRef */ IntPtr CGColorCreateCopyWithAlpha (/* CGColorRef */ IntPtr color, nfloat alpha);
 
 		public CGColor (CGColor source, nfloat alpha)
@@ -165,7 +165,7 @@ namespace XamCore.CoreGraphics {
 			handle = CGColorCreateCopyWithAlpha (source.handle, alpha);
 		}
 
-		[DllImport(Constants.CoreGraphicsLibrary)]
+		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static bool CGColorEqualToColor (/* CGColorRef */ IntPtr color1, /* CGColorRef */ IntPtr color2);
 
 		public static bool operator == (CGColor color1, CGColor color2)
@@ -192,7 +192,7 @@ namespace XamCore.CoreGraphics {
 			return CGColorEqualToColor (this.handle, other.handle);
 		}
 
-		[DllImport(Constants.CoreGraphicsLibrary)]
+		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static /* size_t */ nint CGColorGetNumberOfComponents (/* CGColorRef */ IntPtr color);
 
 		public nint NumberOfComponents {
@@ -201,7 +201,7 @@ namespace XamCore.CoreGraphics {
 			}
 		}
 
-		[DllImport(Constants.CoreGraphicsLibrary)]
+		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static unsafe /* CGFloat* */ nfloat *CGColorGetComponents (/* CGColorRef */ IntPtr color);
 
 		public nfloat [] Components {
@@ -219,7 +219,7 @@ namespace XamCore.CoreGraphics {
 			}
 		}
 
-		[DllImport(Constants.CoreGraphicsLibrary)]
+		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static /* CGFloat */ nfloat CGColorGetAlpha (/* CGColorRef */ IntPtr color);
 
 		public nfloat Alpha {
@@ -228,7 +228,7 @@ namespace XamCore.CoreGraphics {
 			}
 		}
 		
-		[DllImport(Constants.CoreGraphicsLibrary)]
+		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static /* CGColorSpaceRef */ IntPtr CGColorGetColorSpace (/* CGColorRef */ IntPtr color);
 
 		public CGColorSpace ColorSpace {
@@ -238,7 +238,7 @@ namespace XamCore.CoreGraphics {
 			}
 		}
 		
-		[DllImport(Constants.CoreGraphicsLibrary)]
+		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static /* CGPatternRef */ IntPtr CGColorGetPattern (/* CGColorRef */ IntPtr color);
 		public CGPattern Pattern {
 			get {
@@ -262,7 +262,7 @@ namespace XamCore.CoreGraphics {
 			}
 		}
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[DllImport (Constants.CoreGraphicsLibrary)]
 		static extern /* CGColorRef __nullable */ IntPtr CGColorCreateCopyByMatchingToColorSpace (
 			/* __nullable CGColorSpaceRef* */ IntPtr space, CGColorRenderingIntent intent,

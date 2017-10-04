@@ -17,7 +17,7 @@ using XamCore.CoreMedia;
 using XamCore.CoreVideo;
 
 namespace XamCore.VideoToolbox {
-	[Mac (10,8), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	public class VTCompressionSession : VTSession {
 		GCHandle callbackHandle;
 
@@ -26,7 +26,7 @@ namespace XamCore.VideoToolbox {
 		{
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal VTCompressionSession (IntPtr handle, bool owns) : base (handle, owns)
 		{
 		}
@@ -132,7 +132,7 @@ namespace XamCore.VideoToolbox {
 			/* VTCompressionSessionRef* */ out IntPtr compressionSessionOut);
 
 #if false // Disabling for now until we have some tests on this
-		[Mac (10,11), iOS (9,0)]
+		[Introduced (PlatformName.MacOSX, 10, 11), Introduced (PlatformName.iOS, 9, 0)]
 		public static VTCompressionSession Create (int width, int height, CMVideoCodecType codecType,
 			VTVideoEncoderSpecification encoderSpecification = null,
 			NSDictionary sourceImageBufferAttributes = null)
@@ -198,11 +198,11 @@ namespace XamCore.VideoToolbox {
 			return null;
 		}
 
-		[Mac (10,9), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0)]
 		[DllImport (Constants.VideoToolboxLibrary)]
 		extern static VTStatus VTCompressionSessionPrepareToEncodeFrames (IntPtr handle);
 
-		[Mac (10,9), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0)]
 		public VTStatus PrepareToEncodeFrames ()
 		{
 			if (Handle == IntPtr.Zero)
@@ -235,7 +235,7 @@ namespace XamCore.VideoToolbox {
 		}		
 
 #if false // Disabling for now until we have some tests on this
-		[Mac (10,11), iOS (9,0)]
+		[Introduced (PlatformName.MacOSX, 10, 11), Introduced (PlatformName.iOS, 9, 0)]
 		[DllImport (Constants.VideoToolboxLibrary)]
 		extern static unsafe VTStatus VTCompressionSessionEncodeFrameWithOutputHandler (
 			/* VTCompressionSessionRef */ IntPtr session,
@@ -262,7 +262,7 @@ namespace XamCore.VideoToolbox {
 				del (status, infoFlags, new CMSampleBuffer (sampleBuffer));
 		}
 
-		[Mac (10,11), iOS (9,0)]
+		[Introduced (PlatformName.MacOSX, 10, 11), Introduced (PlatformName.iOS, 9, 0)]
 		public VTStatus EncodeFrame (CVImageBuffer imageBuffer, CMTime presentationTimestamp, CMTime duration,
 			NSDictionary frameProperties, IntPtr sourceFrame, out VTEncodeInfoFlags infoFlags,
 			VTCompressionOutputHandler outputHandler)
@@ -300,11 +300,11 @@ namespace XamCore.VideoToolbox {
 			return VTCompressionSessionCompleteFrames (Handle, completeUntilPresentationTimeStamp);
 		}
 
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[DllImport (Constants.VideoToolboxLibrary)]
 		extern static VTStatus VTCompressionSessionBeginPass (IntPtr session, VTCompressionSessionOptionFlags flags, IntPtr reserved);
 
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		public VTStatus BeginPass (VTCompressionSessionOptionFlags flags)
 		{
 			if (Handle == IntPtr.Zero)
@@ -312,15 +312,15 @@ namespace XamCore.VideoToolbox {
 			return VTCompressionSessionBeginPass (Handle, flags, IntPtr.Zero);
 		}
 
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[DllImport (Constants.VideoToolboxLibrary)]
 		extern static VTStatus VTCompressionSessionEndPass (IntPtr session, out byte furtherPassesRequestedOut, IntPtr reserved);
 
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[DllImport (Constants.VideoToolboxLibrary)]
 		extern static VTStatus VTCompressionSessionEndPass (IntPtr session, IntPtr ptrByte, IntPtr reserved);
 
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		public VTStatus EndPass (out bool furtherPassesRequested)
 		{
 			if (Handle == IntPtr.Zero)
@@ -341,14 +341,14 @@ namespace XamCore.VideoToolbox {
 			return VTCompressionSessionEndPass (Handle, IntPtr.Zero, IntPtr.Zero);
 		}
 
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[DllImport (Constants.VideoToolboxLibrary)]
 		extern static VTStatus VTCompressionSessionGetTimeRangesForNextPass (
 			/* VTCompressionSessionRef */ IntPtr session, 
 			/* CMItemCount* */ out int itemCount, 
 			/* const CMTimeRange** */ out IntPtr target);
 
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		public VTStatus GetTimeRangesForNextPass (out CMTimeRange [] timeRanges)
 		{
 			if (Handle == IntPtr.Zero)

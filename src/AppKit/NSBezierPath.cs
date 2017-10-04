@@ -119,7 +119,7 @@ namespace XamCore.AppKit {
 		}
 #endif
 
-		[Mac (10,13)]
+		[Introduced (PlatformName.MacOSX, 10, 13)]
 		public unsafe void Append (uint[] glyphs, NSFont font)
 		{
 			if (glyphs == null)

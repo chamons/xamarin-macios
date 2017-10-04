@@ -48,7 +48,7 @@ namespace XamCore.OpenGL {
 		{
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal CGLPixelFormat (IntPtr handle, bool owns)
 		{
 			if (!owns)

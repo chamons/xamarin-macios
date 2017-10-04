@@ -14,7 +14,7 @@ using XamCore.UIKit;
 
 namespace XamCore.ExternalAccessory {
 
-	[Mac (10, 13, onlyOn64: true)][TV (10,0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)][Introduced (PlatformName.TvOS, 10, 0)]
 	[BaseType (typeof (NSObject), Delegates=new string [] { "WeakDelegate" }, Events=new Type [] {typeof(EAAccessoryDelegate)})]
 	// Objective-C exception thrown.  Name: EAAccessoryInitException Reason: -init not supported. EAAccessoryManager is responsible for creating all objects.
 	[DisableDefaultCtor]
@@ -53,12 +53,12 @@ namespace XamCore.ExternalAccessory {
 		[Protocolize]
 		EAAccessoryDelegate Delegate { get; set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("dockType")]
 		string DockType { get; }
 	}
 
-	[Mac (10, 13, onlyOn64: true)][TV (10,0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)][Introduced (PlatformName.TvOS, 10, 0)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -67,17 +67,17 @@ namespace XamCore.ExternalAccessory {
 		void Disconnected (EAAccessory accessory);
 	}
 
-	[Mac (10, 13, onlyOn64: true)][TV (10,0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)][Introduced (PlatformName.TvOS, 10, 0)]
 	interface EAAccessoryEventArgs {
 		[Export ("EAAccessoryKey")]
 		EAAccessory Accessory { get; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("EAAccessorySelectedKey")]
 		EAAccessory Selected { get; }
 	}
 	
-	[Mac (10, 13, onlyOn64: true)][TV (10,0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)][Introduced (PlatformName.TvOS, 10, 0)]
 	[BaseType (typeof (NSObject))]
 	// Objective-C exception thrown.  Name: EAAccessoryManagerInitException Reason: -init is not supported. Use +sharedAccessoryManager.
 	[DisableDefaultCtor]
@@ -104,19 +104,19 @@ namespace XamCore.ExternalAccessory {
 
 #if !XAMCORE_3_0 && !MONOMAC
 		// now exposed with the corresponding EABluetoothAccessoryPickerError enum
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("EABluetoothAccessoryPickerErrorDomain")]
 		NSString BluetoothAccessoryPickerErrorDomain { get; }
 #endif
 
-		[NoMac]
-		[Since (6,0)]
+		[Unavailable (PlatformName.MacOSX)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("showBluetoothAccessoryPickerWithNameFilter:completion:")]
 		[Async]
 		void ShowBluetoothAccessoryPicker ([NullAllowed] NSPredicate predicate, [NullAllowed] Action<NSError> completion);
 	}
 
-	[Mac (10, 13, onlyOn64: true)][TV (10,0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)][Introduced (PlatformName.TvOS, 10, 0)]
 	[BaseType (typeof (NSObject))]
 	// Objective-C exception thrown.  Name: EASessionInitException Reason: -init not supported. use -initWithAccessory:forProtocol.
 	[DisableDefaultCtor]
@@ -137,9 +137,9 @@ namespace XamCore.ExternalAccessory {
 		NSOutputStream OutputStream { get; }
 	}
 
-	[NoMac]
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.MacOSX)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	interface EAWiFiUnconfiguredAccessory {
 		[Export ("name")]
@@ -166,9 +166,9 @@ namespace XamCore.ExternalAccessory {
 	
 	// This class is exposed for tvOS in the headers, but there's no available initializer (so it can't be constructed)
 	// The API is also clearly unusable (you can list the unconfigured accessories, but you can't search for them first...)
-	[NoTV] // [TV (10,0)]
-	[NoMac]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.TvOS)] // [TV (10,0)]
+	[Unavailable (PlatformName.MacOSX)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 #if TVOS
 	[BaseType (typeof (NSObject))]
 #else
@@ -181,16 +181,16 @@ namespace XamCore.ExternalAccessory {
 #endif
 	interface EAWiFiUnconfiguredAccessoryBrowser {
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("initWithDelegate:queue:")]
 		[DesignatedInitializer] // according to header comment (but not in attributes)
 		IntPtr Constructor ([NullAllowed] IEAWiFiUnconfiguredAccessoryBrowserDelegate accessoryBrowserDelegate, [NullAllowed] DispatchQueue queue);
 
-		[NoTV] // no member is available
+		[Unavailable (PlatformName.TvOS)] // no member is available
 		[Export ("delegate", ArgumentSemantic.Weak)][NullAllowed]
 		NSObject WeakDelegate { get; set; }
 
-		[NoTV] // no member is available
+		[Unavailable (PlatformName.TvOS)] // no member is available
 		[Wrap ("WeakDelegate")][NullAllowed]
 		[Protocolize]
 		EAWiFiUnconfiguredAccessoryBrowserDelegate Delegate { get; set; }
@@ -198,25 +198,25 @@ namespace XamCore.ExternalAccessory {
 		[Export ("unconfiguredAccessories", ArgumentSemantic.Copy)]
 		NSSet UnconfiguredAccessories { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("startSearchingForUnconfiguredAccessoriesMatchingPredicate:")]
 		void StartSearchingForUnconfiguredAccessories ([NullAllowed] NSPredicate predicate);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("stopSearchingForUnconfiguredAccessories")]
 		void StopSearchingForUnconfiguredAccessories ();
 
 #if !MONOMAC
-		[NoTV]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("configureAccessory:withConfigurationUIOnViewController:")]
 		void ConfigureAccessory (EAWiFiUnconfiguredAccessory accessory, UIViewController viewController);
 #endif
 	}
 
-	[NoMac]
-	[NoTV] // no member is available
-	[iOS (8,0)]
+	[Unavailable (PlatformName.MacOSX)]
+	[Unavailable (PlatformName.TvOS)] // no member is available
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface EAWiFiUnconfiguredAccessoryBrowserDelegate {

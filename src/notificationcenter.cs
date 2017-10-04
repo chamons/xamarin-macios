@@ -12,7 +12,7 @@ using XamCore.AppKit;
 
 namespace XamCore.NotificationCenter {
 #if XAMCORE_2_0 || !MONOMAC
-	[iOS (8,0)][Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // not meant to be user created
 	interface NCWidgetController {
@@ -25,7 +25,7 @@ namespace XamCore.NotificationCenter {
 		void SetHasContent (bool flag, string bundleID);
 	}
 
-	[iOS (8,0)][Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface NCWidgetProviding {
@@ -35,7 +35,7 @@ namespace XamCore.NotificationCenter {
 
 		[Export ("widgetMarginInsetsForProposedMarginInsets:"), DelegateName ("NCWidgetProvidingMarginInsets"), DefaultValueFromArgument ("defaultMarginInsets")]
 #if !MONOMAC
-		[Deprecated (PlatformName.iOS, 10,0)]
+		[Deprecated (PlatformName.iOS, 10, 0)]
 		UIEdgeInsets GetWidgetMarginInsets (UIEdgeInsets defaultMarginInsets);
 #else
 		NSEdgeInsets GetWidgetMarginInsets (NSEdgeInsets defaultMarginInsets);
@@ -51,14 +51,14 @@ namespace XamCore.NotificationCenter {
 		[Export ("widgetDidEndEditing")]
 		void WidgetDidEndEditing ();
 #else
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("widgetActiveDisplayModeDidChange:withMaximumSize:")]
 		void WidgetActiveDisplayModeDidChange (NCWidgetDisplayMode activeDisplayMode, CGSize maxSize);
 #endif
 	}
 
 #if !MONOMAC
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (UIVibrancyEffect))]
 	[Category (allowStaticMembers: true)] // Classic isn't internal so we need this
 	interface UIVibrancyEffect_NotificationCenter {
@@ -67,7 +67,7 @@ namespace XamCore.NotificationCenter {
 #else
 		[EditorBrowsable (EditorBrowsableState.Advanced)] // this is not the one we want to be seen (compat only)
 #endif
-		[Deprecated (PlatformName.iOS, 10,0)]
+		[Deprecated (PlatformName.iOS, 10, 0)]
 		[Static, Export ("notificationCenterVibrancyEffect")]
 		UIVibrancyEffect NotificationCenterVibrancyEffect ();
 	}
@@ -75,19 +75,19 @@ namespace XamCore.NotificationCenter {
 	[Category]
 	[BaseType (typeof (NSExtensionContext))]
 	interface NSExtensionContext_NCWidgetAdditions {
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("widgetLargestAvailableDisplayMode")]
 		NCWidgetDisplayMode GetWidgetLargestAvailableDisplayMode ();
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("setWidgetLargestAvailableDisplayMode:")]
 		void SetWidgetLargestAvailableDisplayMode (NCWidgetDisplayMode mode);
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("widgetActiveDisplayMode")]
 		NCWidgetDisplayMode GetWidgetActiveDisplayMode ();
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("widgetMaximumSizeForDisplayMode:")]
 		CGSize GetWidgetMaximumSize (NCWidgetDisplayMode displayMode);
 	}
@@ -96,12 +96,12 @@ namespace XamCore.NotificationCenter {
 	[Internal] // only static methods, which are not _nice_ to use as extension methods
 	[BaseType (typeof (UIVibrancyEffect))]
 	interface UIVibrancyEffect_NCWidgetAdditions {
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Static]
 		[Export ("widgetPrimaryVibrancyEffect")]
 		UIVibrancyEffect GetWidgetPrimaryVibrancyEffect ();
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Static]
 		[Export ("widgetSecondaryVibrancyEffect")]
 		UIVibrancyEffect GetWidgetSecondaryVibrancyEffect ();
@@ -109,7 +109,7 @@ namespace XamCore.NotificationCenter {
 #endif
 
 #if MONOMAC
-	[Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof(NSViewController), Delegates=new string [] { "Delegate" }, Events=new Type [] { typeof (NCWidgetListViewDelegate)})]
 	interface NCWidgetListViewController
 	{
@@ -140,9 +140,9 @@ namespace XamCore.NotificationCenter {
 
 	interface INCWidgetListViewDelegate {}
 
-	[Mac (10, 10, onlyOn64 : true)]
+	[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface NCWidgetListViewDelegate
 	{
 		[Abstract]
@@ -165,7 +165,7 @@ namespace XamCore.NotificationCenter {
 		void DidRemoveRow (NCWidgetListViewController list, nuint row);
 	}
 
-	[Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof(NSViewController), Delegates=new string [] { "Delegate" }, Events=new Type [] { typeof (NCWidgetSearchViewDelegate)})]
 	interface NCWidgetSearchViewController
 	{
@@ -187,9 +187,9 @@ namespace XamCore.NotificationCenter {
 
 	interface INCWidgetSearchViewDelegate {}
 
-	[Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface NCWidgetSearchViewDelegate
 	{
 		[Abstract]

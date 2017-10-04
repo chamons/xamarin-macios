@@ -42,31 +42,31 @@ namespace XamCore.ImageIO {
 		public CGColor DestinationBackgroundColor { get; set; }
 
 		// new in iOS 7 and 10.8
-		[iOS (7,0), Mac (10,8)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		public CGImageMetadata Metadata { get; set; }
 
-		[iOS (7,0), Mac (10,8)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		public bool MergeMetadata { get; set; }
 
-		[iOS (7,0), Mac (10,8)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		public bool ShouldExcludeXMP { get; set; }
 
-		[iOS (7,0), Mac (10,8)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		public int? Orientation { get; set; }
 
-		[iOS (7,0), Mac (10,8)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		public DateTime? DateTime { get; set; }
 
-		[Availability (Introduced = Platform.Mac_10_10 | Platform.iOS_8_0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		public int? ImageMaxPixelSize { get; set; }
 
-		[Availability (Introduced = Platform.Mac_10_10 | Platform.iOS_8_0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		public bool EmbedThumbnail { get; set; }
 
-		[Availability (Introduced = Platform.Mac_10_10 | Platform.iOS_8_0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		public bool ShouldExcludeGPS { get; set; }
 
-		[iOS (9,3)][Mac (10,12)]
+		[Introduced (PlatformName.iOS, 9, 3)][Introduced (PlatformName.MacOSX, 10, 12)]
 		public bool OptimizeColorForSharing { get; set; }
 
 		internal NSMutableDictionary ToDictionary ()
@@ -138,22 +138,22 @@ namespace XamCore.ImageIO {
 
 	public partial class CGCopyImageSourceOptions
 	{
-		[iOS (7,0), Mac (10,8)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		public CGImageMetadata Metadata { get; set; }
 
-		[iOS (7,0), Mac (10,8)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		public bool MergeMetadata { get; set; }
 
-		[iOS (7,0), Mac (10,8)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		public bool ShouldExcludeXMP { get; set; }
 
-		[Availability (Introduced = Platform.Mac_10_10 | Platform.iOS_8_0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		public bool ShouldExcludeGPS { get; set; }
 
-		[iOS (7,0), Mac (10,8)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		public DateTime? DateTime { get; set; }
 
-		[iOS (7,0), Mac (10,8)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		public int? Orientation { get; set; }
 
 		internal NSMutableDictionary ToDictionary ()
@@ -209,7 +209,7 @@ namespace XamCore.ImageIO {
 			this.handle = handle;
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal CGImageDestination (IntPtr handle, bool owns)
 		{
 			this.handle = handle;
@@ -240,7 +240,7 @@ namespace XamCore.ImageIO {
 			}
 		}
 				
-		[DllImport (Constants.ImageIOLibrary, EntryPoint="CGImageDestinationGetTypeID")]
+		[DllImport (Constants.ImageIOLibrary, EntryPoint = "CGImageDestinationGetTypeID")]
 		public extern static /* CFTypeID */ nint GetTypeID ();
 		
 		[DllImport (Constants.ImageIOLibrary)]
@@ -412,14 +412,14 @@ namespace XamCore.ImageIO {
 			return success;
 		}
 
-		[iOS (7,0), Mac (10,8)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.ImageIOLibrary)]
 		extern static void CGImageDestinationAddImageAndMetadata (/* CGImageDestinationRef __nonnull */ IntPtr idst,
 			/* CGImageRef __nonnull */ IntPtr image, /* CGImageMetadataRef __nullable */ IntPtr metadata,
 			/* CFDictionaryRef __nullable */ IntPtr options);
 
 		[EditorBrowsable (EditorBrowsableState.Advanced)]
-		[iOS (7,0), Mac (10,8)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		public void AddImageAndMetadata (CGImage image, CGImageMetadata meta, NSDictionary options)
 		{
 			if (image == null)
@@ -429,7 +429,7 @@ namespace XamCore.ImageIO {
 			CGImageDestinationAddImageAndMetadata (handle, image.Handle, m, o);
 		}
 
-		[iOS (7,0), Mac (10,8)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		public void AddImageAndMetadata (CGImage image, CGImageMetadata meta, CGImageDestinationOptions options)
 		{
 			NSDictionary o = null;
@@ -444,7 +444,7 @@ namespace XamCore.ImageIO {
 			}
 		}
 
-		[iOS (7,0), Mac (10,8)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.ImageIOLibrary)]
 		[return: MarshalAs (UnmanagedType.I1)]
 		extern static bool CGImageDestinationCopyImageSource (/* CGImageDestinationRef __nonnull */ IntPtr idst,
@@ -452,7 +452,7 @@ namespace XamCore.ImageIO {
 			/* CFErrorRef* */ out IntPtr err);
 
 		[EditorBrowsable (EditorBrowsableState.Advanced)]
-		[iOS (7,0), Mac (10,8)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		public bool CopyImageSource (CGImageSource image, NSDictionary options, out NSError error)
 		{
 			if (image == null)
@@ -464,7 +464,7 @@ namespace XamCore.ImageIO {
 			return result;
 		}
 
-		[iOS (7,0), Mac (10,8)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 #if XAMCORE_2_0
 		public bool CopyImageSource (CGImageSource image, CGCopyImageSourceOptions options, out NSError error)
 #else
@@ -483,11 +483,11 @@ namespace XamCore.ImageIO {
 			}
 		}
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[DllImport (Constants.ImageIOLibrary)]
 		static extern void CGImageDestinationAddAuxiliaryDataInfo (IntPtr /* CGImageDestinationRef* */ idst, IntPtr /* CFStringRef* */ auxiliaryImageDataType, IntPtr /* CFDictionaryRef* */ auxiliaryDataInfoDictionary);
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		public void AddAuxiliaryDataInfo (CGImageAuxiliaryDataType auxiliaryImageDataType, CGImageAuxiliaryDataInfo auxiliaryDataInfo)
 		{
 			using (var dict = auxiliaryDataInfo?.Dictionary) {

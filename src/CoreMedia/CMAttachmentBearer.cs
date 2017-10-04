@@ -14,7 +14,7 @@ namespace XamCore.CoreMedia {
 
 	public static class CMAttachmentBearer {
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* CFDictionaryRef */ IntPtr CMCopyDictionaryOfAttachments (/* CFAllocatorRef */ IntPtr allocator, /* CMAttachmentBearerRef */ IntPtr target,
 			/* CMAttachmentMode */ CMAttachmentMode attachmentMode);
 
@@ -45,7 +45,7 @@ namespace XamCore.CoreMedia {
 		}
 #endif
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* CFTypeRef */ IntPtr CMGetAttachment (/* CMAttachmentBearerRef */ IntPtr target, /* CFStringRef */ IntPtr key,
 			/* CMAttachmentMode */ out CMAttachmentMode attachmentModeOut);
 		public static T GetAttachment<T> (this ICMAttachmentBearer target, string key, out CMAttachmentMode attachmentModeOut) where T: class, INativeObject
@@ -62,7 +62,7 @@ namespace XamCore.CoreMedia {
 			return default (T);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static void CMPropagateAttachments (/* CMAttachmentBearerRef */ IntPtr source, /* CMAttachmentBearerRef */ IntPtr destination);
 		public static void PropagateAttachments (this ICMAttachmentBearer source, ICMAttachmentBearer destination)
 		{
@@ -73,7 +73,7 @@ namespace XamCore.CoreMedia {
 			CMPropagateAttachments (source.Handle, destination.Handle);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static void CMRemoveAllAttachments (/*CMAttachmentBearerRef*/ IntPtr target );
 		public static void RemoveAllAttachments (this ICMAttachmentBearer target)
 		{
@@ -82,7 +82,7 @@ namespace XamCore.CoreMedia {
 			CMRemoveAllAttachments (target.Handle);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static void CMRemoveAttachment(/* CMAttachmentBearerRef */ IntPtr target, /* CFStringRef */ IntPtr key);
 		public static void RemoveAttachment (this ICMAttachmentBearer target, string key)
 		{
@@ -95,7 +95,7 @@ namespace XamCore.CoreMedia {
 			NSString.ReleaseNative (nsKey);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static void CMSetAttachment (/* CMAttachmentBearerRef */ IntPtr target, /* CFStringRef */ IntPtr key, /* CFTypeRef */ IntPtr value,
 			/* CMAttachmentMode */ CMAttachmentMode attachmentMode);
 		public static void SetAttachment (this ICMAttachmentBearer target, string key, INativeObject value, CMAttachmentMode attachmentMode)
@@ -111,7 +111,7 @@ namespace XamCore.CoreMedia {
 			NSString.ReleaseNative (nsKey);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static void CMSetAttachments (/* CMAttachmentBearerRef */ IntPtr target, /* CFDictionaryRef */ IntPtr theAttachments,
 			/* CMAttachmentMode */ CMAttachmentMode attachmentMode );
 		public static void SetAttachments (this ICMAttachmentBearer target, NSDictionary theAttachments, CMAttachmentMode attachmentMode)

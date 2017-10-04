@@ -114,28 +114,28 @@ namespace XamCore.CoreVideo {
 
 #if !MONOMAC
 		[Field ("kCVImageBufferYCbCrMatrix_DCI_P3")]
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		NSString YCbCrMatrix_DCI_P3 { get; }
 
 		[Field ("kCVImageBufferYCbCrMatrix_P3_D65")]
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		NSString YCbCrMatrix_P3_D65 { get; }
 #endif
 
 		[Field ("kCVImageBufferYCbCrMatrix_ITU_R_2020")]
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		NSString YCbCrMatrix_ITU_R_2020 { get; }
 
 		[Field ("kCVImageBufferColorPrimaries_DCI_P3")]
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		NSString ColorPrimaries_DCI_P3 { get; }
 
 		[Field ("kCVImageBufferColorPrimaries_ITU_R_2020")]
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		NSString ColorPrimaries_ITU_R_2020 { get; }
 
 		[Field ("kCVImageBufferColorPrimaries_P3_D65")]
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		NSString ColorPrimaries_P3_D65 { get; }
 
 		[Field ("kCVImageBufferChromaSubsamplingKey")]
@@ -162,13 +162,13 @@ namespace XamCore.CoreVideo {
 		[Field ("kCVImageBufferTransferFunction_UseGamma")]
 		NSString TransferFunction_UseGamma { get; }
 
-		[iOS (9,0), Mac (10,11)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCVImageBufferTransferFunction_ITU_R_2020")]
 		NSString TransferFunction_ITU_R_2020 { get; }
 
-		[iOS (10,0)][Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCVImageBufferTransferFunction_SMPTE_ST_428_1")]
 		NSString TransferFunction_SMPTE_ST_428_1 { get; }
 
@@ -211,11 +211,11 @@ namespace XamCore.CoreVideo {
 		[Field ("kCVImageBufferColorPrimaries_SMPTE_C")]
 		NSString ColorPrimaries_SMPTE_C { get; }
 
-		[iOS (6,0), Mac (10,8)]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		[Field ("kCVImageBufferColorPrimaries_P22")]
 		NSString ColorPrimaries_P22 { get; }
 
-		[iOS (8,0), Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("kCVImageBufferAlphaChannelIsOpaque")]
 		NSString AlphaChannelIsOpaque { get; }
 		
@@ -267,23 +267,23 @@ namespace XamCore.CoreVideo {
 		NSString PlaneAlignmentKey { get; }
 
 #if !MONOMAC || !XAMCORE_2_0
-		[NoWatch]
-		[iOS (6,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("kCVPixelBufferOpenGLESCompatibilityKey")]
 		NSString OpenGLESCompatibilityKey { get; }
 
-		[NoWatch]
-		[iOS (9,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("kCVPixelBufferOpenGLESTextureCacheCompatibilityKey")]
 		NSString OpenGLESTextureCacheCompatibilityKey { get; }
 #endif
 
-		[iOS (8,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("kCVPixelBufferMetalCompatibilityKey")]
 		NSString MetalCompatibilityKey { get; }
 
 #if MONOMAC
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("kCVPixelBufferOpenGLTextureCacheCompatibilityKey")]
 		NSString OpenGLTextureCacheCompatibilityKey { get; }
 #endif
@@ -303,7 +303,7 @@ namespace XamCore.CoreVideo {
 	}
 
 #if !MONOMAC
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Partial]
 	interface CVMetalTextureCache {
 		[Internal]

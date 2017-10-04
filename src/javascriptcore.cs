@@ -15,7 +15,7 @@ namespace XamCore.JavaScriptCore {
 
 	delegate void JSContextExceptionHandler (JSContext context, JSValue exception);
 
-	[Mac (10,9, onlyOn64: true), iOS (7,0)]
+	[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	partial interface JSContext {
@@ -26,12 +26,12 @@ namespace XamCore.JavaScriptCore {
 		[Export ("initWithVirtualMachine:")]
 		IntPtr Constructor (JSVirtualMachine virtualMachine);
 
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("name")]
 		string Name { get; set; }
 
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("evaluateScript:withSourceURL:")]
 		JSValue EvaluateScript (string script, NSUrl sourceUrl);
 
@@ -50,7 +50,7 @@ namespace XamCore.JavaScriptCore {
 		[Static, Export ("currentArguments")]
 		JSValue [] CurrentArguments { get; }
 
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Static, Export ("currentCallee")]
 		JSValue CurrentCallee { get; }
 
@@ -77,16 +77,16 @@ namespace XamCore.JavaScriptCore {
 		#endregion
 
 		/* C API Bridging functions */
-		[Mac (10,9), iOS (7,0)]
+		[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 7, 0)]
 		[Static, Export ("contextWithJSGlobalContextRef:")]
 		JSContext FromJSGlobalContextRef (IntPtr nativeJsGlobalContextRef);
 
-		[Mac (10,9), iOS (7,0)]
+		[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("JSGlobalContextRef")]
 		IntPtr JSGlobalContextRefPtr { get; }
 	}
 
-	[Mac (10,9, onlyOn64: true), iOS (7,0)]
+	[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // invalid (null) Handle is returned
 	partial interface JSValue {
@@ -195,11 +195,11 @@ namespace XamCore.JavaScriptCore {
 		[Export ("isObject")]
 		bool IsObject { get; }
 
-		[iOS(9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("isArray")]
 		bool IsArray { get; }
 
-		[iOS(9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("isDate")]
 		bool IsDate { get; }
 
@@ -272,7 +272,7 @@ namespace XamCore.JavaScriptCore {
 
 		#endregion
 
-		[Mac (10,9), iOS (7,0)]
+		[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 7, 0)]
 		[Static, Export ("valueWithJSValueRef:inContext:")]
 		JSValue FromJSJSValueRef (IntPtr nativeJsValueRefvalue, JSContext context);
 
@@ -280,7 +280,7 @@ namespace XamCore.JavaScriptCore {
 		IntPtr JSValueRefPtr { get; }
 	}
 
-	[Mac (10,9, onlyOn64: true), iOS (7,0)]
+	[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 #if XAMCORE_3_0
 	[DisableDefaultCtor]
@@ -289,7 +289,7 @@ namespace XamCore.JavaScriptCore {
 		[Static, Export ("managedValueWithValue:")]
 		JSManagedValue Get (JSValue value);
 
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Static, Export ("managedValueWithValue:andOwner:")]
 		JSManagedValue Get (JSValue value, NSObject owner);
 
@@ -300,7 +300,7 @@ namespace XamCore.JavaScriptCore {
 		JSValue Value { get; }
 	}
 
-	[Mac (10,9, onlyOn64: true), iOS (7,0)]
+	[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	partial interface JSVirtualMachine {
@@ -315,7 +315,7 @@ namespace XamCore.JavaScriptCore {
 		void RemoveManagedReference (NSObject obj, NSObject owner);
 	}
 
-	[Mac (10,9, onlyOn64: true), iOS (7,0)]
+	[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 7, 0)]
 	[Static]
 	interface JSPropertyDescriptorKeys {
 
@@ -338,7 +338,7 @@ namespace XamCore.JavaScriptCore {
 		NSString Set { get; }
 	}
 
-	[Mac (10,9, onlyOn64: true), iOS (7,0)]
+	[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 7, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface JSExport {

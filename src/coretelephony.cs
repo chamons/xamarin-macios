@@ -3,20 +3,20 @@ using XamCore.ObjCRuntime;
 using System;
 
 namespace XamCore.CoreTelephony {
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (NSObject))]
 	interface CTCall {
-		[Availability (Deprecated = Platform.iOS_10_0, Message = "Use 'CallKit' instead.")]
+		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'CallKit' instead.")]
 		[Export ("callID")]
 		string CallID { get;  }
 
-		[Availability (Deprecated = Platform.iOS_10_0, Message = "Use 'CallKit' instead.")]
+		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'CallKit' instead.")]
 		[Export ("callState")]
 		string CallState { get; }
 
 	}
 
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	interface CTCellularData {
 		[NullAllowed, Export ("cellularDataRestrictionDidUpdateNotifier", ArgumentSemantic.Copy)]
@@ -32,7 +32,7 @@ namespace XamCore.CoreTelephony {
 #endif
 
 	[Static]
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	interface CTRadioAccessTechnology {
 		[Field ("CTRadioAccessTechnologyGPRS")]
 		NSString GPRS { get; }
@@ -69,7 +69,7 @@ namespace XamCore.CoreTelephony {
 	}
 
 	[BaseType (typeof (NSObject))]
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	interface CTTelephonyNetworkInfo {
 		[Export ("subscriberCellularProvider", ArgumentSemantic.Retain)]
 		CTCarrier SubscriberCellularProvider { get; }
@@ -82,7 +82,7 @@ namespace XamCore.CoreTelephony {
 		CTCarrierEventHandler CellularProviderUpdatedEventHandler { get; set; }
 #endif
 
-		[Since (7,0), Export ("currentRadioAccessTechnology")]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("currentRadioAccessTechnology")]
 		NSString CurrentRadioAccessTechnology { get; }
 	}
 
@@ -92,9 +92,9 @@ namespace XamCore.CoreTelephony {
 
 	[Deprecated (PlatformName.iOS, 10, 0, message: "Replaced by 'CXCallObserver' from 'CallKit'.")]
 	[BaseType (typeof (NSObject))]
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	interface CTCallCenter {
-		[Availability (Deprecated = Platform.iOS_10_0, Message = "Use 'CallKit' instead.")]
+		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'CallKit' instead.")]
 		[NullAllowed] // by default this property is null
 		[Export ("callEventHandler")]
 #if XAMCORE_2_0
@@ -103,14 +103,14 @@ namespace XamCore.CoreTelephony {
 		CTCallEventHandler CallEventHandler { get; set; }
 #endif
 
-		[Availability (Deprecated = Platform.iOS_10_0, Message = "Use 'CallKit' instead.")]
+		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'CallKit' instead.")]
 		[Export ("currentCalls")]
 		NSSet CurrentCalls { get; }
 
 	}
 
 	[BaseType (typeof (NSObject))]
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	interface CTCarrier {
 		[Export ("mobileCountryCode")]
 		string MobileCountryCode { get;  }
@@ -129,9 +129,9 @@ namespace XamCore.CoreTelephony {
 	}
 
 	[BaseType (typeof (NSObject))]
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	partial interface CTSubscriber {
-		[Since (7,0), Export ("carrierToken")]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("carrierToken")]
 		NSData CarrierToken { get; }
 	}
 
@@ -139,7 +139,7 @@ namespace XamCore.CoreTelephony {
 	delegate void SimAuthenticationCallback (NSDictionary dictionary);
 #endif
 
-	[Since (6,0), BaseType (typeof (NSObject))]
+	[Introduced (PlatformName.iOS, 6, 0), BaseType (typeof (NSObject))]
 	partial interface CTSubscriberInfo {
 		[Static]
 		[Export ("subscriber")]

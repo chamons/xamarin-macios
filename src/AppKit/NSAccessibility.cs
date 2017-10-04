@@ -17,27 +17,27 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.AppKit
 {
-	[Mac (10,10)]
+	[Introduced (PlatformName.MacOSX, 10, 10)]
 	[Native]
-	public enum NSAccessibilityOrientation : nint
+	public enum NSAccessibilityOrientation : long
 	{
 		Unknown = 0,
 		Vertical = 1,
 		Horizontal = 2
 	}
 
-	[Mac (10,10)]
+	[Introduced (PlatformName.MacOSX, 10, 10)]
 	[Native]
-	public enum NSAccessibilitySortDirection : nint
+	public enum NSAccessibilitySortDirection : long
 	{
 		Unknown = 0,
 		Ascending = 1,
 		Descending = 2
 	}
 
-	[Mac (10,10)]
+	[Introduced (PlatformName.MacOSX, 10, 10)]
 	[Native]
-	public enum NSAccessibilityRulerMarkerType : nint
+	public enum NSAccessibilityRulerMarkerType : long
 	{
 		Unknown = 0,
 		TabStopLeft = 1,
@@ -49,9 +49,9 @@ namespace XamCore.AppKit
 		IndentFirstLine = 7
 	}
 
-	[Mac (10,10)]
+	[Introduced (PlatformName.MacOSX, 10, 10)]
 	[Native]
-	public enum NSAccessibilityUnits : nint
+	public enum NSAccessibilityUnits : long
 	{
 		Unknown = 0,
 		Inches = 1,
@@ -60,9 +60,9 @@ namespace XamCore.AppKit
 		Picas = 4
 	}
 
-	[Mac (10,9)]
+	[Introduced (PlatformName.MacOSX, 10, 9)]
 	[Native]
-	public enum NSAccessibilityPriorityLevel : nint
+	public enum NSAccessibilityPriorityLevel : long
 	{
 		Low = 10,
 		Medium = 50,
@@ -72,7 +72,7 @@ namespace XamCore.AppKit
 #if !COREBUILD
 	public partial class NSAccessibility
 	{
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[DllImport (Constants.AppKitLibrary)]
 		static extern CGRect NSAccessibilityFrameInView (NSView parentView, CGRect frame);
 
@@ -81,7 +81,7 @@ namespace XamCore.AppKit
 			return NSAccessibilityFrameInView (parentView, frame);
 		}
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[DllImport (Constants.AppKitLibrary)]
 		static extern CGPoint NSAccessibilityPointInView (NSView parentView, CGPoint point);
 
@@ -90,7 +90,7 @@ namespace XamCore.AppKit
 			return NSAccessibilityPointInView (parentView, point);
 		}
 
-		[Mac (10,7)]
+		[Introduced (PlatformName.MacOSX, 10, 7)]
 		[DllImport (Constants.AppKitLibrary)]
 		static extern void NSAccessibilityPostNotificationWithUserInfo (IntPtr element, IntPtr notification, IntPtr userInfo);
 

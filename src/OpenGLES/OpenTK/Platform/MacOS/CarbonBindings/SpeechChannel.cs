@@ -14,11 +14,11 @@ namespace OpenTK.Platform.MacOS.Carbon
 
         protected const string appServicesPath = "/System/Library/Frameworks/ApplicationServices.framework/Versions/Current/ApplicationServices";
 
-        [DllImport(appServicesPath)]
+        [DllImport (appServicesPath)]
         private static extern short NewSpeechChannel(IntPtr voice, ref IntPtr result);
 
 
-        [DllImport(appServicesPath)]
+        [DllImport (appServicesPath)]
         private static extern short SpeakText(IntPtr channel, String text, long length);
 
         public SpeechChannel()

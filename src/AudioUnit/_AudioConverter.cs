@@ -69,7 +69,7 @@ namespace XamCore.AudioUnitWrapper
         #endregion
 
         #region Private methods
-        [MonoPInvokeCallback(typeof(AudioConverterComplexInputDataProc))]
+        [MonoPInvokeCallback (typeof (AudioConverterComplexInputDataProc))]
         static int complexInputDataProc(
             IntPtr inAudioConverrter,
             ref uint ioNumberDataPackets,
@@ -148,7 +148,7 @@ namespace XamCore.AudioUnitWrapper
             IntPtr inUserData
             );
 
-        [DllImport(Constants.AudioToolboxLibrary, EntryPoint = "AudioConverterNew")]
+        [DllImport (Constants.AudioToolboxLibrary, EntryPoint = "AudioConverterNew")]
         static extern int AudioConverterFillComplexBuffer(
             IntPtr 		inAudioConverter,
             AudioConverterComplexInputDataProc	inInputDataProc,
@@ -157,21 +157,21 @@ namespace XamCore.AudioUnitWrapper
             AudioBufferList outOutputData,
             AudioStreamPacketDescription[] outPacketDescription);
 
-        [DllImport(Constants.AudioToolboxLibrary, EntryPoint = "AudioConverterNew")]
+        [DllImport (Constants.AudioToolboxLibrary, EntryPoint = "AudioConverterNew")]
         static extern int AudioConverterNew(
             ref AudioStreamBasicDescription inSourceFormat,
             ref AudioStreamBasicDescription inDestinationFormat,
             IntPtr outAudioConverter);
 
-        [DllImport(Constants.AudioToolboxLibrary, EntryPoint = "AudioConverterSetProperty")]
+        [DllImport (Constants.AudioToolboxLibrary, EntryPoint = "AudioConverterSetProperty")]
         static extern int AudioConverterSetProperty(IntPtr inAudioConverter,
-            [MarshalAs(UnmanagedType.U4)] AudioConverterPropertyIDType inID,
+            [MarshalAs (UnmanagedType.U4)] AudioConverterPropertyIDType inID,
             uint inDataSize,
             IntPtr inPrppertyData            
             );
-        [DllImport(Constants.AudioToolboxLibrary, EntryPoint = "AudioConverterSetProperty")]
+        [DllImport (Constants.AudioToolboxLibrary, EntryPoint = "AudioConverterSetProperty")]
         static extern int AudioConverterSetProperty(IntPtr inAudioConverter,
-            [MarshalAs(UnmanagedType.U4)] AudioConverterPropertyIDType inID,
+            [MarshalAs (UnmanagedType.U4)] AudioConverterPropertyIDType inID,
             uint inDataSize,
             byte[] inPrppertyData            
             );

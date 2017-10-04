@@ -7,7 +7,7 @@ using System;
 
 namespace XamCore.CoreWlan {
 	[Native]
-	public enum CWStatus : nint {
+	public enum CWStatus : long {
 		Ok = 0,
 		EAPOL = 1,
 		InvalidParameter = -3900,
@@ -118,7 +118,7 @@ namespace XamCore.CoreWlan {
 	}
 
 	[Native]
-	public enum CWEventType : nint {
+	public enum CWEventType : long {
 		None = 0,
 		PowerDidChange = 1,
 		SsidDidChange = 2,

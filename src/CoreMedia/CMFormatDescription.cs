@@ -36,7 +36,7 @@ namespace XamCore.CoreMedia {
 		ValueNotAvailable   = -12718,
 	}
 
-	[iOS (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	public class CMFormatDescription : INativeObject, IDisposable {
 		internal IntPtr handle;
 
@@ -45,7 +45,7 @@ namespace XamCore.CoreMedia {
 		{
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal CMFormatDescription (IntPtr handle, bool owns)
 		{
 			if (!owns)
@@ -77,7 +77,7 @@ namespace XamCore.CoreMedia {
 			}
 		}
 		
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* CFDictionaryRef */ IntPtr CMFormatDescriptionGetExtensions (/* CMFormatDescriptionRef */ IntPtr desc);
 
 #if !COREBUILD
@@ -90,7 +90,7 @@ namespace XamCore.CoreMedia {
 			return Runtime.GetNSObject<NSDictionary> (cfDictRef);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* CFPropertyListRef */ IntPtr CMFormatDescriptionGetExtension (/* CMFormatDescriptionRef */ IntPtr desc, /* CFStringRef */ IntPtr extensionkey);
 
 		public NSObject GetExtension (string extensionKey)
@@ -105,7 +105,7 @@ namespace XamCore.CoreMedia {
 
 #endif
 		
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* FourCharCode */ uint CMFormatDescriptionGetMediaSubType (/* CMFormatDescriptionRef */ IntPtr desc);
 
 		public uint MediaSubType
@@ -158,7 +158,7 @@ namespace XamCore.CoreMedia {
 			}
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static CMMediaType CMFormatDescriptionGetMediaType (/* CMFormatDescriptionRef */ IntPtr desc);
 		
 		public CMMediaType MediaType
@@ -169,7 +169,7 @@ namespace XamCore.CoreMedia {
 			}
 		}
 		
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* CFTypeID */ nint CMFormatDescriptionGetTypeID ();
 		
 		public static nint GetTypeID ()
@@ -361,7 +361,7 @@ namespace XamCore.CoreMedia {
 #endif
 	}
 
-	[iOS (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	public class CMAudioFormatDescription : CMFormatDescription {
 		
 		internal CMAudioFormatDescription (IntPtr handle)
@@ -377,7 +377,7 @@ namespace XamCore.CoreMedia {
 		// TODO: Move more audio specific methods here
 	}
 
-	[iOS (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	public partial class CMVideoFormatDescription : CMFormatDescription {
 		
 		internal CMVideoFormatDescription (IntPtr handle)
@@ -439,7 +439,7 @@ namespace XamCore.CoreMedia {
 			return new CMVideoFormatDescription (desc, true);
 		}
 
-		[iOS (7,0), Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[DllImport (Constants.CoreMediaLibrary)]
 		static extern /* OSStatus */ CMFormatDescriptionError CMVideoFormatDescriptionCreateFromH264ParameterSets (
 			/* CFAllocatorRef */ IntPtr allocator, 
@@ -449,7 +449,7 @@ namespace XamCore.CoreMedia {
 			/* int */ int NALUnitHeaderLength,
 			/* CMFormatDescriptionRef* */ out IntPtr formatDescriptionOut);
 
-		[iOS (7,0), Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		public static CMVideoFormatDescription FromH264ParameterSets (List<byte[]> parameterSets, int nalUnitHeaderLength, out CMFormatDescriptionError error)
 		{
 			if (parameterSets == null)
@@ -486,7 +486,7 @@ namespace XamCore.CoreMedia {
 			}
 		}
 
-		[iOS (7,0), Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[DllImport (Constants.CoreMediaLibrary)]
 		static extern /* OSStatus */ CMFormatDescriptionError CMVideoFormatDescriptionGetH264ParameterSetAtIndex (
 			/* CMFormatDescriptionRef */ IntPtr videoDesc, 
@@ -496,7 +496,7 @@ namespace XamCore.CoreMedia {
 			/* size_t* */ out nuint parameterSetCountOut,
 			/* int* */ out int nalUnitHeaderLengthOut);
 
-		[iOS (7,0), Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		public byte[] GetH264ParameterSet (nuint index, out nuint parameterSetCount, out int nalUnitHeaderLength, out CMFormatDescriptionError error)
 		{
 			if (Handle == IntPtr.Zero)

@@ -49,7 +49,7 @@ namespace XamCore.CoreGraphics {
 			CGShadingRetain (handle);
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal CGShading (IntPtr handle, bool owns)
 		{
 			this.handle = handle;
@@ -58,7 +58,7 @@ namespace XamCore.CoreGraphics {
 		}
 		
 
-		[DllImport(Constants.CoreGraphicsLibrary)]
+		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static /* CGShadingRef */ IntPtr CGShadingCreateAxial (/* CGColorSpaceRef */ IntPtr space, 
 			CGPoint start, CGPoint end, /* CGFunctionRef */ IntPtr functionHandle, bool extendStart, bool extendEnd);
 
@@ -76,7 +76,7 @@ namespace XamCore.CoreGraphics {
 			return new CGShading (CGShadingCreateAxial (colorspace.Handle, start, end, function.Handle, extendStart, extendEnd), true);
 		}
 		
-		[DllImport(Constants.CoreGraphicsLibrary)]
+		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static /* CGShadingRef */ IntPtr CGShadingCreateRadial (/* CGColorSpaceRef */ IntPtr space, 
 			CGPoint start, /* CGFloat */ nfloat startRadius, CGPoint end, /* CGFloat */ nfloat endRadius,
 			/* CGFunctionRef */ IntPtr function, bool extendStart, bool extendEnd);

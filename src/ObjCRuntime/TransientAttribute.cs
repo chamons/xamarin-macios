@@ -10,7 +10,7 @@
 using System;
 
 namespace XamCore.ObjCRuntime {
-	[AttributeUsage (AttributeTargets.Parameter, AllowMultiple=false)]
+	[AttributeUsage (AttributeTargets.Parameter, AllowMultiple = false)]
 #if XAMCORE_2_0
 	sealed
 #endif

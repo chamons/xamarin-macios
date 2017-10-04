@@ -17,9 +17,9 @@ using XamCore.AppKit;
 
 namespace XamCore.Photos
 {
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface PHAdjustmentData : NSCoding, NSSecureCoding {
 
@@ -36,9 +36,9 @@ namespace XamCore.Photos
 		NSData Data { get; }
 	}
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,13, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 #if MONOMAC
 	[DisableDefaultCtor] // Crashes mac introspection test
 #endif
@@ -72,7 +72,7 @@ namespace XamCore.Photos
 		[Export ("hidden")]
 		bool Hidden { [Bind ("isHidden")] get; }
 
-		[NoTV][NoiOS]
+		[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.iOS)]
 		[Export ("syncFailureHidden")]
 		bool SyncFailureHidden { [Bind ("isSyncFailureHidden")] get; }
 
@@ -115,29 +115,29 @@ namespace XamCore.Photos
 		[Export ("fetchAssetsWithOptions:")]
 		PHFetchResult FetchAssets ([NullAllowed] PHFetchOptions options);
 
-		[Deprecated (PlatformName.TvOS, 11,0)]
-		[Deprecated (PlatformName.iOS, 11,0)]
-		[NoMac]
+		[Deprecated (PlatformName.TvOS, 11, 0)]
+		[Deprecated (PlatformName.iOS, 11, 0)]
+		[Unavailable (PlatformName.MacOSX)]
 		[Static]
 		[Export ("fetchAssetsWithALAssetURLs:options:")]
 		PHFetchResult FetchAssets (NSUrl[] assetUrls, [NullAllowed] PHFetchOptions options);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("sourceType", ArgumentSemantic.Assign)]
 		PHAssetSourceType SourceType { get; }
 
-		[TV (11,0), iOS (11,0), NoMac]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.MacOSX)]
 		[Export ("playbackStyle", ArgumentSemantic.Assign)]
 		PHAssetPlaybackStyle PlaybackStyle { get; }
 
-		[NoTV][NoiOS]
+		[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.iOS)]
 		[Field ("PHLocalIdentifierNotFound")]
 		NSString LocalIdentifierNotFound { get; }
 	}
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[NoMac]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Unavailable (PlatformName.MacOSX)]
 	[DisableDefaultCtor] // Objective-C exception thrown.  Name: NSInvalidArgumentException Reason: -[PHAssetChangeRequest init]: unrecognized selector sent to instance 0x8165d150
 	[BaseType (typeof (NSObject))]
 	interface PHAssetChangeRequest {
@@ -188,10 +188,10 @@ namespace XamCore.Photos
 
 	}
 
-	[iOS (9,0)]
-	[TV (10,0)]
-	[NoMac]
-	[BaseType (typeof(PHAssetChangeRequest))]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Unavailable (PlatformName.MacOSX)]
+	[BaseType (typeof (PHAssetChangeRequest))]
 	[DisableDefaultCtor]
 	interface PHAssetCreationRequest
 	{
@@ -211,13 +211,13 @@ namespace XamCore.Photos
 		void AddResource (PHAssetResourceType type, NSData data, [NullAllowed] PHAssetResourceCreationOptions options);
 	}
 
-	[NoMac]
+	[Unavailable (PlatformName.MacOSX)]
 	delegate void PHProgressHandler (double progress, ref bool stop);
 
-	[iOS (9,0)]
-	[TV (10,0)]
-	[NoMac]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Unavailable (PlatformName.MacOSX)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // crashes: -[PHAssetResource init]: unrecognized selector sent to instance 0x7f9e15884e90
 	interface PHAssetResource
 	{
@@ -237,16 +237,16 @@ namespace XamCore.Photos
 		[Export ("assetResourcesForAsset:")]
 		PHAssetResource[] GetAssetResources (PHAsset forAsset);
 
-		[iOS (9,1)]
+		[Introduced (PlatformName.iOS, 9, 1)]
 		[Static]
 		[Export ("assetResourcesForLivePhoto:")]
 		PHAssetResource[] GetAssetResources (PHLivePhoto livePhoto);
 	}
 
-	[iOS (9,0)]
-	[TV (10,0)]
-	[NoMac]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Unavailable (PlatformName.MacOSX)]
+	[BaseType (typeof (NSObject))]
 	interface PHAssetResourceCreationOptions : NSCopying
 	{
 		[NullAllowed, Export ("originalFilename")]
@@ -259,9 +259,9 @@ namespace XamCore.Photos
 		bool ShouldMoveFile { get; set; }
 	}
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[NoMac]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Unavailable (PlatformName.MacOSX)]
 	[BaseType (typeof (NSObject))]
 	interface PHContentEditingInputRequestOptions {
 
@@ -286,9 +286,9 @@ namespace XamCore.Photos
 
 	delegate void PHContentEditingHandler (PHContentEditingInput contentEditingInput, NSDictionary requestStatusInfo);
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[NoMac]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Unavailable (PlatformName.MacOSX)]
 	[Category]
 	[BaseType (typeof (PHAsset))]
 	interface PHAssetContentEditingInputExtensions {
@@ -300,9 +300,9 @@ namespace XamCore.Photos
 		void CancelContentEditingInputRequest (nuint requestID);
 	}
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[NoMac]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Unavailable (PlatformName.MacOSX)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // fails when calling ToString (see below) and there are (static) API to create them
 	// NSInternalInconsistencyException Reason: This method can only be called from inside of -[PHPhotoLibrary performChanges:] or -[PHPhotoLibrary performChangeAndWait:]
@@ -349,10 +349,10 @@ namespace XamCore.Photos
 		void MoveAssets (NSIndexSet fromIndexes, nuint toIndex);
 	}
 
-	[iOS (9,0)]
-	[TV (10,0)]
-	[NoMac]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Unavailable (PlatformName.MacOSX)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface PHAssetResourceManager
 	{
@@ -371,10 +371,10 @@ namespace XamCore.Photos
 		void CancelDataRequest (int requestID);
 	}
 
-	[iOS (9,0)]
-	[TV (10,0)]
-	[NoMac]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Unavailable (PlatformName.MacOSX)]
+	[BaseType (typeof (NSObject))]
 	interface PHAssetResourceRequestOptions : NSCopying
 	{
 		[Export ("networkAccessAllowed")]
@@ -384,9 +384,9 @@ namespace XamCore.Photos
 		Action<double> ProgressHandler { get; set; }
 	}
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,13, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface PHChange {
 
@@ -397,9 +397,9 @@ namespace XamCore.Photos
 		PHFetchResultChangeDetails GetFetchResultChangeDetails (PHFetchResult obj);
 	}
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,13, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface PHObjectChangeDetails {
 
@@ -416,12 +416,12 @@ namespace XamCore.Photos
 		bool ObjectWasDeleted { get; }
 	}
 
-	[Mac (10,13, onlyOn64 : true)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	delegate void PHChangeDetailEnumerator (nuint fromIndex, nuint toIndex);
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,13, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface PHFetchResultChangeDetails {
 
@@ -463,9 +463,9 @@ namespace XamCore.Photos
 		PHFetchResultChangeDetails ChangeDetails (PHFetchResult fromResult, PHFetchResult toResult, PHObject[] changedObjects);
 	}
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,13, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (PHObject))]
 	[DisableDefaultCtor] // not user createable (calling description fails, see below) must be fetched by API
 	// NSInternalInconsistencyException Reason: PHCollection has no identifier
@@ -495,9 +495,9 @@ namespace XamCore.Photos
 		PHFetchResult FetchTopLevelUserCollections ([NullAllowed] PHFetchOptions options);
 	}
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,13, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (PHCollection))]
 	interface PHAssetCollection {
 
@@ -555,9 +555,9 @@ namespace XamCore.Photos
 		PHAssetCollection GetTransientAssetCollection (PHFetchResult fetchResult, string title);
 	}
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,13, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (PHCollection))]
 	interface PHCollectionList {
 
@@ -605,9 +605,9 @@ namespace XamCore.Photos
 		PHCollectionList CreateTransientCollectionList (PHFetchResult fetchResult, string title);
 	}
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[NoMac]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Unavailable (PlatformName.MacOSX)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // sometimes crash when calling 'description'
 	// This method can only be called from inside of -[PHPhotoLibrary performChanges:] or -[PHPhotoLibrary performChangeAndWait:]
@@ -655,9 +655,9 @@ namespace XamCore.Photos
 		void MoveChildCollections (NSIndexSet indexes, nuint toIndex);
 	}
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface PHContentEditingInput {
 
@@ -694,33 +694,33 @@ namespace XamCore.Photos
 		XamCore.CoreImage.CIImageOrientation FullSizeImageOrientation { get; }
 
 		[Export ("avAsset", ArgumentSemantic.Strong)]
-		[Availability (Deprecated = Platform.iOS_9_0, Message="Use 'AudiovisualAsset' property instead.")]
+		[Deprecated (PlatformName.iOS, 9, 0, message: "Use 'AudiovisualAsset' property instead.")]
 		AVAsset AvAsset { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[NullAllowed, Export ("audiovisualAsset", ArgumentSemantic.Strong)]
 		AVAsset AudiovisualAsset { get; }
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[NullAllowed, Export ("livePhoto", ArgumentSemantic.Strong)]
 		PHLivePhoto LivePhoto { get; }
 
-		[TV (11,0), iOS (11,0)]
-		[Mac (10,13, onlyOn64 : true)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 		[Export ("playbackStyle", ArgumentSemantic.Assign)]
 		PHAssetPlaybackStyle PlaybackStyle { get; }
 	}
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface PHContentEditingOutput : NSCoding, NSSecureCoding {
 
 		[Export ("initWithContentEditingInput:")]
 		IntPtr Constructor (PHContentEditingInput contentEditingInput);
 
-		[NoMac]
+		[Unavailable (PlatformName.MacOSX)]
 		[Export ("initWithPlaceholderForCreatedAsset:")]
 		IntPtr Constructor (PHObjectPlaceholder placeholderForCreatedAsset);
 
@@ -732,9 +732,9 @@ namespace XamCore.Photos
 		NSUrl RenderedContentUrl { get; }
 	}
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,13, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface PHFetchOptions : NSCopying {
 
@@ -755,21 +755,21 @@ namespace XamCore.Photos
 		[Export ("wantsIncrementalChangeDetails", ArgumentSemantic.Assign)]
 		bool WantsIncrementalChangeDetails { get; set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("includeAssetSourceTypes", ArgumentSemantic.Assign)]
 		PHAssetSourceType IncludeAssetSourceTypes { get; set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("fetchLimit", ArgumentSemantic.Assign)]
 		nuint FetchLimit { get; set; }
 	}
 
-	[Mac (10,13, onlyOn64 : true)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	delegate void PHFetchResultEnumerator (NSObject element, nuint elementIndex, out bool stop);
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,13, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // crash when calling 'description' and seems to be only returned from iOS (not user created)
 	interface PHFetchResult : NSCopying {
@@ -814,12 +814,12 @@ namespace XamCore.Photos
 		nuint CountOfAssetsWithMediaType (PHAssetMediaType mediaType);
 	}
 
-	[NoMac]
+	[Unavailable (PlatformName.MacOSX)]
 	delegate void PHAssetImageProgressHandler (double progress, NSError error, out bool stop, NSDictionary info);
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,13, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface PHImageRequestOptions : NSCopying {
 
@@ -845,12 +845,12 @@ namespace XamCore.Photos
 		PHAssetImageProgressHandler ProgressHandler { get; set; }
 	}
 
-	[NoMac]
+	[Unavailable (PlatformName.MacOSX)]
 	delegate void PHAssetVideoProgressHandler (double progress, NSError error, out bool stop, NSDictionary info);
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[NoMac]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Unavailable (PlatformName.MacOSX)]
 	[BaseType (typeof (NSObject))]
 	interface PHVideoRequestOptions {
 
@@ -868,9 +868,9 @@ namespace XamCore.Photos
 		PHAssetVideoProgressHandler ProgressHandler { get; set; }
 	}
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,13, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[Static]
 	interface PHImageKeys {
 
@@ -905,9 +905,9 @@ namespace XamCore.Photos
 #endif
 	delegate void PHImageManagerRequestLivePhoto (PHLivePhoto livePhoto, NSDictionary info);
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,13, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface PHImageManager {
 
@@ -924,15 +924,15 @@ namespace XamCore.Photos
 		[Export ("requestImageDataForAsset:options:resultHandler:")]
 		int /* PHImageRequestID = int32_t */ RequestImageData (PHAsset asset, [NullAllowed] PHImageRequestOptions options, PHImageDataHandler handler);
 
-		[NoMac]
+		[Unavailable (PlatformName.MacOSX)]
 		[Export ("requestPlayerItemForVideo:options:resultHandler:")]
 		int /* PHImageRequestID = int32_t */ RequestPlayerItem (PHAsset asset, [NullAllowed] PHVideoRequestOptions options, PHImageManagerRequestPlayerHandler resultHandler);
 
-		[NoMac]
+		[Unavailable (PlatformName.MacOSX)]
 		[Export ("requestExportSessionForVideo:options:exportPreset:resultHandler:")]
 		int /* PHImageRequestID = int32_t */ RequestExportSession (PHAsset asset, [NullAllowed] PHVideoRequestOptions options, string exportPreset, PHImageManagerRequestExportHandler resultHandler);
 
-		[NoMac]
+		[Unavailable (PlatformName.MacOSX)]
 		[Export ("requestAVAssetForVideo:options:resultHandler:")]
 #if XAMCORE_4_0
 		int /* PHImageRequestID = int32_t */ RequestAVAsset (PHAsset asset, [NullAllowed] PHVideoRequestOptions options, PHImageManagerRequestAVAssetHandler resultHandler);
@@ -943,8 +943,8 @@ namespace XamCore.Photos
 		[Field ("PHImageManagerMaximumSize")]
 		CGSize MaximumSize { get; }
 
-		[iOS (9,1)]
-		[NoMac]
+		[Introduced (PlatformName.iOS, 9, 1)]
+		[Unavailable (PlatformName.MacOSX)]
 		[Export ("requestLivePhotoForAsset:targetSize:contentMode:options:resultHandler:")]
 		int /* PHImageRequestID = int32_t */ RequestLivePhoto (PHAsset asset, CGSize targetSize, PHImageContentMode contentMode, [NullAllowed] PHLivePhotoRequestOptions options, PHImageManagerRequestLivePhoto resultHandler);
 	}
@@ -955,9 +955,9 @@ namespace XamCore.Photos
 	delegate void PHImageDataHandler (NSData data, NSString dataUti, UIImageOrientation orientation, NSDictionary info);
 #endif
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[NoMac]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Unavailable (PlatformName.MacOSX)]
 	[BaseType (typeof (PHImageManager))]
 	interface PHCachingImageManager {
 
@@ -974,9 +974,9 @@ namespace XamCore.Photos
 		void StopCaching ();
 	}
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,13, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // doc -> "abstract base class"
 	// throws "NSInternalInconsistencyException Reason: PHObject has no identifier"
@@ -989,17 +989,17 @@ namespace XamCore.Photos
 		string LocalIdentifier { get; }
 	}
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[NoMac]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Unavailable (PlatformName.MacOSX)]
 	[BaseType (typeof (PHObject))]
 	interface PHObjectPlaceholder {
 
 	}
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,13, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[Protocol]
 	[Model]
 	[BaseType (typeof (NSObject))]
@@ -1014,9 +1014,9 @@ namespace XamCore.Photos
 
 	delegate void PHPhotoLibraryCancellableChangeHandler (out bool cancel);
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,13, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // NSInternalInconsistencyException Reason: -[PHPhotoLibrary init] unsupported
 	interface PHPhotoLibrary {
@@ -1046,8 +1046,8 @@ namespace XamCore.Photos
 		void UnregisterChangeObserver ([Protocolize] PHPhotoLibraryChangeObserver observer);
 	}
 
-	[Mac (10,13, onlyOn64 : true)]
-	[NoTV][NoiOS]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.iOS)]
 	[Category]
 	[BaseType (typeof (PHPhotoLibrary))]
 	interface PHPhotoLibrary_CloudIdentifiers {
@@ -1059,13 +1059,13 @@ namespace XamCore.Photos
 		PHCloudIdentifier[] GetCloudIdentifiers (string[] localIdentifiers);
 	}
 
-	[iOS (9,1)]
-	[TV (10,0)]
+	[Introduced (PlatformName.iOS, 9, 1)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
 #if MONOMAC
 	[DisableDefaultCtor] // NS_UNAVAILABLE
 #endif
-	[Mac (10,12, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface PHLivePhoto
 #if !MONOMAC
 	: NSSecureCoding, NSCopying
@@ -1085,9 +1085,9 @@ namespace XamCore.Photos
 #endif
 	}
 
-	[iOS (9,1)]
-	[TV (10,0)]
-	[NoMac]
+	[Introduced (PlatformName.iOS, 9, 1)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Unavailable (PlatformName.MacOSX)]
 	[BaseType (typeof (NSObject))]
 	interface PHLivePhotoRequestOptions : NSCopying	{
 		[Export ("deliveryMode", ArgumentSemantic.Assign)]
@@ -1099,14 +1099,14 @@ namespace XamCore.Photos
 		[NullAllowed, Export ("progressHandler", ArgumentSemantic.Copy)]
 		PHAssetImageProgressHandler ProgressHandler { get; set; }
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("version", ArgumentSemantic.Assign)]
 		PHImageRequestOptionsVersion Version { get; set; }
 	}
 
-	[iOS (9,1)]
-	[TV (10,0)]
-	[NoMac]
+	[Introduced (PlatformName.iOS, 9, 1)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Unavailable (PlatformName.MacOSX)]
 	[Static]
 	interface PHLivePhotoInfo {
 		[Field ("PHLivePhotoInfoErrorKey")]
@@ -1121,9 +1121,9 @@ namespace XamCore.Photos
 
 	delegate CIImage PHLivePhotoFrameProcessingBlock (IPHLivePhotoFrame frame, NSError error);
 
-	[iOS (10,0)]
-	[TV (10,0)]
-	[Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // NS_UNAVAILABLE
 	interface PHLivePhotoEditingContext {
@@ -1163,7 +1163,7 @@ namespace XamCore.Photos
 
 #if XAMCORE_2_0
 		// the API existed earlier but the key needed to create the strong dictionary did not work
-		[iOS (11,0)][TV (11,0)][Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.TvOS, 11, 0)][Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Async]
 		[Wrap ("_PrepareLivePhotoForPlayback (targetSize, options?.Dictionary, handler)")]
 		void PrepareLivePhotoForPlayback (CGSize targetSize, [NullAllowed] PHLivePhotoEditingOption options, Action<PHLivePhoto, NSError> handler);
@@ -1183,7 +1183,7 @@ namespace XamCore.Photos
 
 #if XAMCORE_2_0
 		// the API existed earlier but the key needed to create the strong dictionary did not work
-		[iOS (11,0)][TV (11,0)][Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.TvOS, 11, 0)][Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Async]
 		[Wrap ("_SaveLivePhoto (output, options?.Dictionary, handler)")]
 		void SaveLivePhoto (PHContentEditingOutput output, [NullAllowed] PHLivePhotoEditingOption options, Action<bool, NSError> handler);
@@ -1195,9 +1195,9 @@ namespace XamCore.Photos
 
 	interface IPHLivePhotoFrame {}
 
-	[iOS (10,0)]
-	[TV (10,0)]
-	[Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Protocol]
 	interface PHLivePhotoFrame {
 		[Abstract]
@@ -1218,26 +1218,26 @@ namespace XamCore.Photos
 	}
 
 #if XAMCORE_2_0 // fails to build with mac/classic
-	[iOS (11,0)]
-	[TV (11,0)]
-	[Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Introduced (PlatformName.TvOS, 11, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Static][Internal]
 	interface PHLivePhotoEditingOptionKeys {
 		[Field ("PHLivePhotoShouldRenderAtPlaybackTime")]
 		NSString ShouldRenderAtPlaybackTimeKey { get; }
 	}
 
-	[iOS (11,0)]
-	[TV (11,0)]
-	[Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Introduced (PlatformName.TvOS, 11, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[StrongDictionary ("PHLivePhotoEditingOptionKeys")]
 	interface PHLivePhotoEditingOption {
 		bool ShouldRenderAtPlaybackTime { get; }
 	}
 #endif
 
-	[Mac (10,13, onlyOn64 : true)]
-	[NoiOS][NoTV]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
+	[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (PHAssetCollection))]
 	interface PHProject {
 
@@ -1245,8 +1245,8 @@ namespace XamCore.Photos
 		NSData ProjectExtensionData { get; }
 	}
 
-	[Mac (10,13, onlyOn64 : true)]
-	[NoiOS][NoTV]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
+	[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
 	interface PHProjectChangeRequest {
 
@@ -1263,8 +1263,8 @@ namespace XamCore.Photos
 		void SetKeyAsset ([NullAllowed] PHAsset keyAsset);
 	}
 
-	[Mac (10,13, onlyOn64 : true)]
-	[NoiOS][NoTV]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
+	[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface PHCloudIdentifier : NSSecureCoding {

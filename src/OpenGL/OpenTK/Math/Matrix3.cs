@@ -30,7 +30,7 @@ namespace OpenTK
     // Todo: Remove this warning when the code goes public.
     #pragma warning disable 3019
     [Serializable]
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     public struct Matrix3 : IEquatable<Matrix3>
     {
         #region Fields & Access
@@ -191,7 +191,7 @@ namespace OpenTK
         /// <summary>Converts the matrix into left float*.</summary>
         /// <param name="matrix">The matrix to convert.</param>
         /// <returns>A float* for the matrix.</returns>
-        [CLSCompliant(false)]
+        [CLSCompliant (false)]
         unsafe public static explicit operator float*(Matrix3 matrix)
         {
             return &matrix.R0C0;
@@ -322,7 +322,7 @@ namespace OpenTK
         /// <summary>Indicates whether the current matrix is equal to another matrix.</summary>
         /// <param name="matrix">The OpenTK.Matrix3 structure to compare with.</param>
         /// <returns>true if the current matrix is equal to the matrix parameter; otherwise, false.</returns>
-        [CLSCompliant(false)]
+        [CLSCompliant (false)]
         public bool Equals(Matrix3 matrix)
         {
             return

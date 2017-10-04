@@ -1,4 +1,4 @@
-﻿// 
+// 
 // ScheduledAudioFileRegion.cs: A wrapper class around ScheduledAudioFileRegionProxy struct
 //
 // Authors:

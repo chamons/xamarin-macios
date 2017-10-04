@@ -8,7 +8,7 @@ namespace XamCore.MediaAccessibility {
 #if XAMCORE_4_0
 	[Static]
 	interface MACaptionAppearance {
-		[iOS (7,0)][Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 		[Notification]
 		[Field ("kMACaptionAppearanceSettingsChangedNotification")]
 		NSString SettingsChangedNotification { get; }
@@ -17,7 +17,7 @@ namespace XamCore.MediaAccessibility {
 
 	[Static]
 	interface MAAudibleMedia {
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Notification]
 		[Field ("kMAAudibleMediaSettingsChangedNotification")]
 		NSString SettingsChangedNotification { get; }
@@ -25,15 +25,15 @@ namespace XamCore.MediaAccessibility {
 
 	[Static]
 	interface MAMediaCharacteristic {
-		[iOS (7,0)][Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("MAMediaCharacteristicDescribesMusicAndSoundForAccessibility")]
 		NSString DescribesMusicAndSoundForAccessibility { get; }
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("MAMediaCharacteristicDescribesVideoForAccessibility")]
 		NSString DescribesVideoForAccessibility { get; }
 
-		[iOS (7,0)][Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("MAMediaCharacteristicTranscribesSpokenDialogForAccessibility")]
 		NSString TranscribesSpokenDialogForAccessibility { get; }
 	}

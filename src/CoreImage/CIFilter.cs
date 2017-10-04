@@ -97,7 +97,7 @@ using XamCore.UIKit;
 
 namespace XamCore.CoreImage {
 	public partial class CIFilter {
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		protected CIFilter () : base ()
 		{
 		}

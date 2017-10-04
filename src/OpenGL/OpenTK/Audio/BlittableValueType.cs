@@ -210,7 +210,7 @@ namespace OpenTK.Audio
         /// </summary>
         /// <param name="type">An instance of the type to check.</param>
         /// <returns>True if T is blittable; false otherwise.</returns>
-        [CLSCompliant(false)]
+        [CLSCompliant (false)]
         public static bool Check<T>(T[][] type)
         {
             return BlittableValueType<T>.Check();

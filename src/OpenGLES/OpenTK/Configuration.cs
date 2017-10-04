@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 //
 // The Open Toolkit Library License
 //
@@ -131,25 +131,25 @@ namespace OpenTK
 
         #region private static string DetectUnixKernel()
 
-        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+        [StructLayout (LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         struct utsname
         {
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
+            [MarshalAs (UnmanagedType.ByValTStr, SizeConst = 256)]
             public string sysname;
 
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
+            [MarshalAs (UnmanagedType.ByValTStr, SizeConst = 256)]
             public string nodename;
 
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
+            [MarshalAs (UnmanagedType.ByValTStr, SizeConst = 256)]
             public string release;
 
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
+            [MarshalAs (UnmanagedType.ByValTStr, SizeConst = 256)]
             public string version;
 
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
+            [MarshalAs (UnmanagedType.ByValTStr, SizeConst = 256)]
             public string machine;
 
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 1024)]
+            [MarshalAs (UnmanagedType.ByValTStr, SizeConst = 1024)]
             public string extraJustInCase;
 
         }
@@ -177,7 +177,7 @@ namespace OpenTK
             return uts.sysname.ToString();
         }
 
-        [DllImport("libc")]
+        [DllImport ("libc")]
         private static extern void uname(out utsname uname_struct);
 
         #endregion

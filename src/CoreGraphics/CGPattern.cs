@@ -67,7 +67,7 @@ namespace XamCore.CoreGraphics {
 			CGPatternRetain (this.handle);
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal CGPattern (IntPtr handle, bool owns)
 		{
 			this.handle = handle;
@@ -78,7 +78,7 @@ namespace XamCore.CoreGraphics {
 		// This is what we expose on the API
 		public delegate void DrawPattern (CGContext ctx);
 
-		[DllImport(Constants.CoreGraphicsLibrary)]
+		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static IntPtr CGPatternCreate (/* void* */ IntPtr info, CGRect bounds, CGAffineTransform matrix,
 			/* CGFloat */ nfloat xStep, /* CGFloat */ nfloat yStep, CGPatternTiling tiling, bool isColored,
 			/* const CGPatternCallbacks* */ ref CGPatternCallbacks callbacks);

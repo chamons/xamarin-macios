@@ -15,13 +15,13 @@ namespace XamCore.Foundation {
 	public unsafe partial class NSFileManager {
 #if IOS
 		// FIXME keep [get|set|remove]xattr code base for iOS 5.0.1 compatibility - remove when support is removed from iOS
-		[DllImport ("/usr/lib/system/libsystem_kernel.dylib", SetLastError=true)]
+		[DllImport ("/usr/lib/system/libsystem_kernel.dylib", SetLastError = true)]
 		extern static int setxattr (string path, string name, IntPtr value, nint size /* size_t */, int position /* uint32_t */, int options /* int */); // returns: int
 
-		[DllImport ("/usr/lib/system/libsystem_kernel.dylib", SetLastError=true)]
+		[DllImport ("/usr/lib/system/libsystem_kernel.dylib", SetLastError = true)]
 		extern static int getxattr (string path, string name, IntPtr value, nint size /* size_t */, int position /* uint32_t */, int options /* int */); // returns: int
                 
-		[DllImport ("/usr/lib/system/libsystem_kernel.dylib", SetLastError=true)]
+		[DllImport ("/usr/lib/system/libsystem_kernel.dylib", SetLastError = true)]
 		extern static int removexattr (string path, string name, int options /* int */); // returns: int
 
 		const string key = "com.apple.MobileBackup";

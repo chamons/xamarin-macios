@@ -191,7 +191,7 @@ namespace XamCore.AudioToolbox {
 				del ();
 		}
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		public void PlayAlertSound (Action onCompletion)
 		{
 			if (onCompletion == null)
@@ -213,7 +213,7 @@ namespace XamCore.AudioToolbox {
 
 		}
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		public Task PlayAlertSoundAsync ()
 		{
                         var tcs = new TaskCompletionSource<bool> ();
@@ -223,7 +223,7 @@ namespace XamCore.AudioToolbox {
                         return tcs.Task;
 		}
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		public void PlaySystemSound (Action onCompletion)
 		{
 			if (onCompletion == null)
@@ -243,7 +243,7 @@ namespace XamCore.AudioToolbox {
 			}
 		}
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		public Task PlaySystemSoundAsync ()
 		{
                         var tcs = new TaskCompletionSource<bool> ();
@@ -253,11 +253,11 @@ namespace XamCore.AudioToolbox {
                         return tcs.Task;
 		}
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[DllImport (Constants.AudioToolboxLibrary)]
 		static unsafe extern void AudioServicesPlayAlertSoundWithCompletion (uint inSystemSoundID, BlockLiteral * inCompletionBlock);
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[DllImport (Constants.AudioToolboxLibrary)]
 		static unsafe extern void AudioServicesPlaySystemSoundWithCompletion (uint inSystemSoundID, BlockLiteral * inCompletionBlock);
 

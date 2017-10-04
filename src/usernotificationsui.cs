@@ -1,4 +1,4 @@
-﻿//
+//
 // UserNotificationsUI bindings
 //
 // Authors:
@@ -21,7 +21,7 @@ namespace XamCore.UserNotificationsUI {
 	[Unavailable (PlatformName.WatchOS)]
 	[Unavailable (PlatformName.TvOS)]
 	[Native]
-	public enum UNNotificationContentExtensionMediaPlayPauseButtonType : nuint {
+	public enum UNNotificationContentExtensionMediaPlayPauseButtonType : ulong {
 		None,
 		Default,
 		Overlay
@@ -32,7 +32,7 @@ namespace XamCore.UserNotificationsUI {
 	[Unavailable (PlatformName.WatchOS)]
 	[Unavailable (PlatformName.TvOS)]
 	[Native]
-	public enum UNNotificationContentExtensionResponseOption : nuint {
+	public enum UNNotificationContentExtensionResponseOption : ulong {
 		DoNotDismiss,
 		Dismiss,
 		DismissAndForwardAction

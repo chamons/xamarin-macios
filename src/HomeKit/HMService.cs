@@ -5,8 +5,8 @@ using XamCore.Foundation;
 
 namespace XamCore.HomeKit {
 
-	[TV (10,0)]
-	[iOS (8,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	public partial class HMService {
 
 #if !WATCH && !TVOS

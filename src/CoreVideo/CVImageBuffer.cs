@@ -35,8 +35,8 @@ using XamCore.CoreGraphics;
 namespace XamCore.CoreVideo {
 
 	// CVImageBuffer.h
-	[iOS (4,0)]
-	[Watch (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
+	[Introduced (PlatformName.WatchOS, 4, 0)]
 	public partial class CVImageBuffer : CVBuffer {
 #if !COREBUILD
 #if !XAMCORE_2_0
@@ -149,7 +149,7 @@ namespace XamCore.CoreVideo {
 
 		internal CVImageBuffer () {}
 		
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal CVImageBuffer (IntPtr handle, bool owns) : base (handle, owns)
 		{
 		}
@@ -195,7 +195,7 @@ namespace XamCore.CoreVideo {
 		[DllImport (Constants.CoreVideoLibrary)]
 		extern static /* CGColorSpaceRef */ IntPtr CVImageBufferGetColorSpace (/* CVImageBufferRef */ IntPtr imageBuffer);
 		
-		[Availability (Deprecated = Platform.Mac_10_4, Unavailable = Platform.iOS_Version)]
+		[Deprecated (PlatformName.MacOSX, 10, 4), Obsoleted (PlatformName.iOS)]
 		public CGColorSpace ColorSpace {
 			get {
 				var h = CVImageBufferGetColorSpace (handle);
@@ -203,7 +203,7 @@ namespace XamCore.CoreVideo {
 			}
 		}
 #elif !XAMCORE_3_0
-		[Availability (Deprecated = Platform.Mac_10_4, Unavailable = Platform.iOS_Version)]
+		[Deprecated (PlatformName.MacOSX, 10, 4), Obsoleted (PlatformName.iOS)]
 		public CGColorSpace ColorSpace {
 			get {
 				return null;
@@ -212,7 +212,7 @@ namespace XamCore.CoreVideo {
 #endif
 
 #if MONOMAC 
-		[MountainLion]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.CoreVideoLibrary)]
 		extern static /* CGColorSpaceRef */ IntPtr CVImageBufferCreateColorSpaceFromAttachments (/* CFDictionaryRef */ IntPtr attachments);
 

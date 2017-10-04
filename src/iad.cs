@@ -18,18 +18,18 @@ using XamCore.AVKit;
 
 namespace XamCore.iAd {
 
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Deprecated (PlatformName.iOS, 10, 0)]
 	[BaseType (typeof (UIView), Delegates=new string [] {"WeakDelegate"}, Events=new Type [] {typeof (ADBannerViewDelegate)})]
 	interface ADBannerView {
 		[Export ("initWithFrame:")]
 		IntPtr Constructor (CGRect frame);
 		
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("adType")]
 		ADAdType AdType { get;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("initWithAdType:")]
 		IntPtr Constructor (ADAdType type);
 
@@ -50,7 +50,7 @@ namespace XamCore.iAd {
 		[Export ("bannerViewActionInProgress")]
 		bool BannerViewActionInProgress { [Bind ("isBannerViewActionInProgress")] get;  }
 
-		[Availability (Introduced = Platform.iOS_4_0, Deprecated = Platform.iOS_6_0)]
+		[Introduced (PlatformName.iOS, 4, 0), Deprecated (PlatformName.iOS, 6, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("requiredContentSizeIdentifiers", ArgumentSemantic.Copy)]
 		NSSet RequiredContentSizeIdentifiers { get; set;  }
@@ -58,35 +58,35 @@ namespace XamCore.iAd {
 		[Export ("cancelBannerViewAction")]
 		void CancelBannerViewAction ();
 
-		[Availability (Introduced = Platform.iOS_4_0, Deprecated = Platform.iOS_6_0)]
+		[Introduced (PlatformName.iOS, 4, 0), Deprecated (PlatformName.iOS, 6, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("currentContentSizeIdentifier", ArgumentSemantic.Copy)]
 		string CurrentContentSizeIdentifier { get; set; }
 
-		[Availability (Introduced = Platform.iOS_4_0, Deprecated = Platform.iOS_6_0)]
+		[Introduced (PlatformName.iOS, 4, 0), Deprecated (PlatformName.iOS, 6, 0)]
 		[Static, Export ("sizeFromBannerContentSizeIdentifier:")]
 		CGSize SizeFromContentSizeIdentifier (string sizeIdentifier);
 
 #if !XAMCORE_3_0
-		[Availability (Introduced = Platform.iOS_4_0, Deprecated = Platform.iOS_4_2)]
+		[Introduced (PlatformName.iOS, 4, 0), Deprecated (PlatformName.iOS, 4, 2)]
 		[Field ("ADBannerContentSizeIdentifier320x50")]
 		NSString SizeIdentifier320x50 { get; }
 
-		[Availability (Introduced = Platform.iOS_4_0, Deprecated = Platform.iOS_4_2)]
+		[Introduced (PlatformName.iOS, 4, 0), Deprecated (PlatformName.iOS, 4, 2)]
 		[Field ("ADBannerContentSizeIdentifier480x32")]
 		NSString SizeIdentifier480x32 { get; }
 #endif
 
-		[Availability (Introduced = Platform.iOS_4_2, Deprecated = Platform.iOS_6_0)]
+		[Introduced (PlatformName.iOS, 4, 2), Deprecated (PlatformName.iOS, 6, 0)]
 		[Field ("ADBannerContentSizeIdentifierLandscape")]
 		NSString SizeIdentifierLandscape { get; }
 
-		[Availability (Introduced = Platform.iOS_4_2, Deprecated = Platform.iOS_6_0)]
+		[Introduced (PlatformName.iOS, 4, 2), Deprecated (PlatformName.iOS, 6, 0)]
 		[Field ("ADBannerContentSizeIdentifierPortrait")]
 		NSString SizeIdentifierPortrait { get; }
 	}
 
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Deprecated (PlatformName.iOS, 10, 0)]
 	[BaseType (typeof (NSObject))]
 	[Model]
@@ -104,7 +104,7 @@ namespace XamCore.iAd {
 		[Export ("bannerViewActionDidFinish:")]
 		void ActionFinished (ADBannerView banner);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("bannerViewWillLoadAd:"), EventArgs ("EventArgs", true, true)]
 		void WillLoad (ADBannerView bannerView);
 	}
@@ -132,7 +132,7 @@ namespace XamCore.iAd {
 		bool PresentInView (UIView containerView);
 
 		[Export ("presentFromViewController:")]
-		[Availability (Introduced = Platform.iOS_4_3, Deprecated = Platform.iOS_7_0, Message = "Use extension method 'UIViewController.RequestInterstitialAdPresentation' instead.")]
+		[Introduced (PlatformName.iOS, 4, 3, message: "Use extension method 'UIViewController.RequestInterstitialAdPresentation' instead."), Deprecated (PlatformName.iOS, 7, 0, message: "Use extension method 'UIViewController.RequestInterstitialAdPresentation' instead.")]
 		void PresentFromViewController (UIViewController viewController);
 	}
 
@@ -167,7 +167,7 @@ namespace XamCore.iAd {
 		[Export ("interstitialAdActionDidFinish:")]
 		void ActionFinished (ADInterstitialAd interstitialAd);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("interstitialAdWillLoad:"), EventArgs ("EventArgs", true, true)]
 		void WillLoad (ADInterstitialAd interstitialAd);
 	}
@@ -181,17 +181,17 @@ namespace XamCore.iAd {
 #else
 		[EditorBrowsable (EditorBrowsableState.Advanced)] // this is not the one we want to be seen (compat only)
 #endif
-		[Since (7,0), Static, Export ("preparePrerollAds")]
+		[Introduced (PlatformName.iOS, 7, 0), Static, Export ("preparePrerollAds")]
 		void PreparePrerollAds ();
 
-		[Since (7,0), Export ("playPrerollAdWithCompletionHandler:")]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("playPrerollAdWithCompletionHandler:")]
 #if XAMCORE_2_0
 		void PlayPrerollAd (Action<NSError> completionHandler);
 #else
 		void PlayPrerollAd (PlayPrerollAdCompletionHandler completionHandler);
 #endif
 
-		[iOS (8,0), Export ("cancelPreroll")]
+		[Introduced (PlatformName.iOS, 8, 0), Export ("cancelPreroll")]
 		void CancelPreroll ();
 	}
 
@@ -209,41 +209,41 @@ namespace XamCore.iAd {
 #else
 		[EditorBrowsable (EditorBrowsableState.Advanced)] // this is not the one we want to be seen (compat only)
 #endif
-		[Since (7,0), Static, Export ("prepareInterstitialAds")]
+		[Introduced (PlatformName.iOS, 7, 0), Static, Export ("prepareInterstitialAds")]
 		void PrepareInterstitialAds ();
 
-		[Since (7,0), Export ("interstitialPresentationPolicy")]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("interstitialPresentationPolicy")]
 		ADInterstitialPresentationPolicy GetInterstitialPresentationPolicy ();
 		
-		[Since (7,0), Export ("setInterstitialPresentationPolicy:")]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("setInterstitialPresentationPolicy:")]
 		void SetInterstitialPresentationPolicy (ADInterstitialPresentationPolicy policy);
 
-		[Since (7,0), Export ("canDisplayBannerAds")]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("canDisplayBannerAds")]
 		bool GetCanDisplayBannerAds ();
 
-		[Since (7,0), Export ("setCanDisplayBannerAds:")]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("setCanDisplayBannerAds:")]
 		void SetCanDisplayBannerAds (bool value);
 
-		[Since (7,0), Export ("originalContentView")]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("originalContentView")]
 		[NullAllowed]
 		UIView GetOriginalContentView ();
 
-		[Since (7,0), Export ("isPresentingFullScreenAd")]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("isPresentingFullScreenAd")]
 		bool PresentingFullScreenAd ();
 
-		[Since (7,0), Export ("isDisplayingBannerAd")]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("isDisplayingBannerAd")]
 		bool DisplayingBannerAd ();
 
-		[Since (7,0), Export ("requestInterstitialAdPresentation")]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("requestInterstitialAdPresentation")]
 		bool RequestInterstitialAdPresentation ();
 
-		[Since (7,0), Export ("shouldPresentInterstitialAd")]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("shouldPresentInterstitialAd")]
 		bool ShouldPresentInterstitialAd ();
 	}
 
 	delegate void ADConversionDetails (NSDate appPurchaseDate, NSDate iAdImpressionDate);
 	
-	[Since (7,1)]
+	[Introduced (PlatformName.iOS, 7, 1)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface ADClient {
@@ -251,26 +251,26 @@ namespace XamCore.iAd {
 		[Export ("sharedClient")]
 		ADClient SharedClient { get; }
 
-		[Availability (Introduced = Platform.iOS_7_1, Deprecated = Platform.iOS_9_0, Message = "Replaced by 'RequestAttributionDetails'.")]
+		[Introduced (PlatformName.iOS, 7, 1, message: "Replaced by 'RequestAttributionDetails'."), Deprecated (PlatformName.iOS, 9, 0, message: "Replaced by 'RequestAttributionDetails'.")]
 		[Export ("determineAppInstallationAttributionWithCompletionHandler:")]
 		void DetermineAppInstallationAttribution (AttributedToiAdCompletionHandler completionHandler);
 
-		[Availability (Introduced = Platform.iOS_8_0, Deprecated = Platform.iOS_9_0, Message = "Replaced by 'RequestAttributionDetails'.")]
+		[Introduced (PlatformName.iOS, 8, 0, message: "Replaced by 'RequestAttributionDetails'."), Deprecated (PlatformName.iOS, 9, 0, message: "Replaced by 'RequestAttributionDetails'.")]
 		[Export ("lookupAdConversionDetails:")]
-		[Async (ResultTypeName="ADClientConversionDetailsResult")]
+		[Async (ResultTypeName = "ADClientConversionDetailsResult")]
 		void LookupAdConversionDetails (ADConversionDetails onCompleted);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("addClientToSegments:replaceExisting:")]
 		void AddClientToSegments ([NullAllowed] string [] segmentIdentifiers, bool replaceExisting);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("requestAttributionDetailsWithBlock:")]
 		[Async]
 		void RequestAttributionDetails (Action<NSDictionary, NSError> completionHandler);
 
 #if !XAMCORE_4_0
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("ADClientErrorDomain")]
 		NSString ErrorDomain { get; }
 #endif
@@ -281,7 +281,7 @@ namespace XamCore.iAd {
 	[Category (allowStaticMembers: true)] // Classic isn't internal so we need this
 	[BaseType (typeof (AVPlayerViewController))]
 	interface iAdPreroll_AVPlayerViewController {
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Static, Export ("preparePrerollAds")]
 #if XAMCORE_2_0
 		[Internal]
@@ -290,12 +290,12 @@ namespace XamCore.iAd {
 #endif
 		void PreparePrerollAds ();
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("playPrerollAdWithCompletionHandler:")]
 		// [Async] - bug in generator
 		void PlayPrerollAd (Action<NSError> completionHandler);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("cancelPreroll")]
 		void CancelPreroll ();
 	}

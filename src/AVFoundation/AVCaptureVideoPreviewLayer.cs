@@ -12,7 +12,7 @@ namespace XamCore.AVFoundation {
 
 		public enum InitMode {
 			WithConnection,
-			[iOS (8,0), Mac (10,2)]
+			[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 2)]
 			WithNoConnection,
 		}
 

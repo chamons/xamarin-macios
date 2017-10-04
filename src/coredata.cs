@@ -51,9 +51,9 @@ namespace XamCore.CoreData
 		NSString AffectedStoresForErrorKey { get; }
 	}
 
-	[NoWatch][NoTV]
+	[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 	[Native] // NUInteger -> NSPersistentStoreCoordinator.h
-	[Availability (Introduced = Platform.iOS_7_0 | Platform.Mac_10_9 , Deprecated = Platform.iOS_10_0 | Platform.Mac_10_12, Message = "Please see the release notes and Core Data documentation.")]
+	[Introduced (PlatformName.iOS, 7, 0, message: "Please see the release notes and Core Data documentation."), Introduced (PlatformName.MacOSX, 10, 9, message: "Please see the release notes and Core Data documentation."), Deprecated (PlatformName.iOS, 10, 0, message: "Please see the release notes and Core Data documentation."), Deprecated (PlatformName.MacOSX, 10, 12, message: "Please see the release notes and Core Data documentation.")]
 	public enum NSPersistentStoreUbiquitousTransitionType : nuint_compat_int {
 		AccountAdded = 1,
 		AccountRemoved,
@@ -127,8 +127,8 @@ namespace XamCore.CoreData
 		NSAtomicStore ReferenceObjectForObjectID (NSManagedObjectID objectID);
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	interface NSFetchIndexElementDescription : NSCoding
 	{
 		[Export ("initWithProperty:collationType:")]
@@ -150,8 +150,8 @@ namespace XamCore.CoreData
 		NSFetchIndexDescription IndexDescription { get; }
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	interface NSFetchIndexDescription : NSCoding
 	{
 		[Export ("initWithName:elements:")]
@@ -218,7 +218,7 @@ namespace XamCore.CoreData
 		[Export ("valueTransformerName")]
 		string ValueTransformerName { get; set; }
 
-		[Since(5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("allowsExternalBinaryDataStorage")]
 		bool AllowsExternalBinaryDataStorage { get; set; }
 	}
@@ -251,7 +251,7 @@ namespace XamCore.CoreData
 		string Name { get; set; }
 
 		[Export ("abstract")]
-		bool Abstract { [Bind("isAbstract")] get; set; }
+		bool Abstract { [Bind ("isAbstract")] get; set; }
 
 		[Export ("subentitiesByName")]
 #if XAMCORE_4_0
@@ -306,23 +306,23 @@ namespace XamCore.CoreData
 		[Export ("versionHashModifier")]
 		string VersionHashModifier { get; set; }
 
-		[Since(5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("compoundIndexes", ArgumentSemantic.Retain)]
-		[Availability (Introduced = Platform.iOS_5_0 | Platform.Mac_10_7, Deprecated = Platform.iOS_11_0 | Platform.Mac_10_13, Message = "Use 'NSEntityDescription.Indexes' instead.")]
+		[Introduced (PlatformName.iOS, 5, 0, message: "Use 'NSEntityDescription.Indexes' instead."), Introduced (PlatformName.MacOSX, 10, 7, message: "Use 'NSEntityDescription.Indexes' instead."), Deprecated (PlatformName.iOS, 11, 0, message: "Use 'NSEntityDescription.Indexes' instead."), Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'NSEntityDescription.Indexes' instead.")]
 		NSPropertyDescription [] CompoundIndexes { get; set; }
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("indexes", ArgumentSemantic.Copy)]
 		NSFetchIndexDescription[] Indexes { get; set; }
 
 		// @property (strong) NSArray<NSArray<id __nonnull> * __nonnull> * __nonnull uniquenessConstraints __attribute__((availability(ios, introduced=9.0)));
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Internal, Export ("uniquenessConstraints", ArgumentSemantic.Strong)]
 		NSArray _UniquenessConstraints { get; set; }
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("coreSpotlightDisplayNameExpression", ArgumentSemantic.Retain)]
 		NSExpression CoreSpotlightDisplayNameExpression { get; set; }
 	}
@@ -438,7 +438,7 @@ namespace XamCore.CoreData
 
 	interface INSFetchRequestResult {}
 
-	[Watch (3,0), TV (10,0), iOS (10,0), Mac (10,12)]
+	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 	[Protocol]
 	interface NSFetchRequestResult {}
 
@@ -493,39 +493,39 @@ namespace XamCore.CoreData
 		[NullAllowed]
 		NSPropertyDescription [] PropertiesToFetch { get; set; }
 
-		[Since(5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Static]
 		[Export ("fetchRequestWithEntityName:")]
 		// note: Xcode 6.3 changed the return value type from `NSFetchRequest*` to `instancetype`
 		NSFetchRequest FromEntityName (string entityName);
 
-		[Since(5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("initWithEntityName:")]
 		IntPtr Constructor (string entityName);
 
-		[Since(5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[NullAllowed, Export ("entityName", ArgumentSemantic.Strong)]
 		string EntityName { get; }
 
-		[Since(5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("fetchBatchSize")]
 		nint FetchBatchSize { get; set; }
 
-		[Since(5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("shouldRefreshRefetchedObjects")]
 		bool ShouldRefreshRefetchedObjects { get; set; }
 
-		[Since(5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("havingPredicate", ArgumentSemantic.Retain)]
 		[NullAllowed]
 		NSPredicate HavingPredicate { get; set; }
 
-		[Since(5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("propertiesToGroupBy", ArgumentSemantic.Copy)]
 		[NullAllowed]
 		NSPropertyDescription [] PropertiesToGroupBy { get; set; }
 
-		[Watch (3,0), TV (10,0), iOS (10,0), Mac (10,12)]
+		[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("execute:")]
 		[return: NullAllowed]
 		INSFetchRequestResult[] Execute (out NSError error);
@@ -641,7 +641,7 @@ namespace XamCore.CoreData
 
 	interface INSFetchedResultsSectionInfo {}
 #endif
-	[Since(5,0)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	// 	NSInvalidArgumentException *** -loadMetadata: cannot be sent to an abstract object of class NSIncrementalStore: Create a concrete instance!
 	//	Apple doc quote: "NSIncrementalStore is an abstract superclass..."
 #if XAMCORE_4_0 // bad API -> should be an abstract type (breaking change)
@@ -696,7 +696,7 @@ namespace XamCore.CoreData
 
 	}
 
-	[Since(5,0)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[BaseType (typeof (NSObject))]
 	interface NSIncrementalStoreNode {
 		[Export ("initWithObjectID:withValues:version:")]
@@ -733,16 +733,16 @@ namespace XamCore.CoreData
 		[Export ("initWithEntity:insertIntoManagedObjectContext:")]
 		IntPtr Constructor (NSEntityDescription entity, [NullAllowed] NSManagedObjectContext context);
 
-		[Watch (3,0), TV (10,0), iOS (10,0), Mac (10,12)]
+		[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("initWithContext:")]
 		IntPtr Constructor (NSManagedObjectContext moc);
 
-		[Watch (3, 0), TV (10, 0), iOS (10, 0), Mac (10,12)]
+		[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Static]
 		[Export ("entity")]
 		NSEntityDescription GetEntityDescription ();
 
-		[Watch (3, 0), TV (10, 0), iOS (10, 0), Mac (10,12)]
+		[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Static]
 		[Export ("fetchRequest")]
 		NSFetchRequest CreateFetchRequest ();
@@ -756,7 +756,7 @@ namespace XamCore.CoreData
 		[Export ("objectID", ArgumentSemantic.Strong)]
 		NSManagedObjectID ObjectID { get; }
 		
-		[iOS (3, 0), Mac (10,6)]
+		[Introduced (PlatformName.iOS, 3, 0), Introduced (PlatformName.MacOSX, 10, 6)]
 		[Static, Export ("contextShouldIgnoreUnmodeledPropertyChanges")]
 		bool ContextShouldIgnoreUnModeledPropertyChanges { get; }
 
@@ -796,7 +796,7 @@ namespace XamCore.CoreData
 		[Export ("didChangeValueForKey:withSetMutation:usingObjects:")]
 		void DidChangeValueForKey (string inKey, NSKeyValueSetMutationKind inMutationKind, NSSet inObjects);
 
-		[NoWatch][NoTV]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 		[Export ("observationInfo")]
 		IntPtr ObservationInfo { get; set; }
 
@@ -877,7 +877,7 @@ namespace XamCore.CoreData
 		[Export ("validateForUpdate:")]
 		bool ValidateForUpdate (out NSError error);
 
-		[Since(5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("hasChanges")]
 		bool HasChanges { get; }
 
@@ -889,17 +889,17 @@ namespace XamCore.CoreData
 
 		// headers say this is introduced in 7.0,10.9 but Xcode 7 API diff
 		// indicates it's new in 9.0,10.11... going by the header value...
-		[iOS (7,0), Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("hasPersistentChangedValues")]
 		bool HasPersistentChangedValues { get; }
 
-		[iOS (8,3), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 8, 3), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("objectIDsForRelationshipNamed:")]
 		NSManagedObjectID [] GetObjectIDs (string relationshipName);
 	}
 
-	[Watch (3,0), TV (10,0), iOS (10,0), Mac (10,12)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
+	[BaseType (typeof (NSObject))]
 	interface NSQueryGenerationToken : NSSecureCoding, NSCopying
 	{
 		[Static, Export ("currentQueryGenerationToken", ArgumentSemantic.Strong)]
@@ -1010,16 +1010,16 @@ namespace XamCore.CoreData
 		bool Save (out NSError error);
 
 #if !WATCH && !TVOS
-		[Availability (Introduced = Platform.iOS_3_0 | Platform.Mac_10_4, Deprecated = Platform.iOS_8_0 | Platform.Mac_10_10, Message = "Use a queue style context and 'PerformAndWait' instead.")]
+		[Introduced (PlatformName.iOS, 3, 0, message: "Use a queue style context and 'PerformAndWait' instead."), Introduced (PlatformName.MacOSX, 10, 4, message: "Use a queue style context and 'PerformAndWait' instead."), Deprecated (PlatformName.iOS, 8, 0, message: "Use a queue style context and 'PerformAndWait' instead."), Deprecated (PlatformName.MacOSX, 10, 10, message: "Use a queue style context and 'PerformAndWait' instead.")]
 		[Export ("lock")]
 		new void Lock ();
 
-		[Availability (Introduced = Platform.iOS_3_0 | Platform.Mac_10_4, Deprecated = Platform.iOS_8_0 | Platform.Mac_10_10, Message = "Use a queue style context and 'PerformAndWait' instead.")]
+		[Introduced (PlatformName.iOS, 3, 0, message: "Use a queue style context and 'PerformAndWait' instead."), Introduced (PlatformName.MacOSX, 10, 4, message: "Use a queue style context and 'PerformAndWait' instead."), Deprecated (PlatformName.iOS, 8, 0, message: "Use a queue style context and 'PerformAndWait' instead."), Deprecated (PlatformName.MacOSX, 10, 10, message: "Use a queue style context and 'PerformAndWait' instead.")]
 		[Export ("unlock")]
 		new void Unlock ();
 
-		[NoTV]
-		[Availability (Introduced = Platform.iOS_3_0 | Platform.Mac_10_4, Deprecated = Platform.iOS_8_0 | Platform.Mac_10_10, Message = "Use a queue style context and 'Perform' instead.")]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 3, 0, message: "Use a queue style context and 'Perform' instead."), Introduced (PlatformName.MacOSX, 10, 4, message: "Use a queue style context and 'Perform' instead."), Deprecated (PlatformName.iOS, 8, 0, message: "Use a queue style context and 'Perform' instead."), Deprecated (PlatformName.MacOSX, 10, 10, message: "Use a queue style context and 'Perform' instead.")]
 		[Export ("tryLock")]
 		bool TryLock { get; }
 #endif // !WATCH && !TVOS
@@ -1043,28 +1043,28 @@ namespace XamCore.CoreData
 		void MergeChangesFromContextDidSaveNotification (NSNotification notification);
 
 		[DesignatedInitializer]
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("initWithConcurrencyType:")]
 		IntPtr Constructor (NSManagedObjectContextConcurrencyType ct);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("performBlock:")]
 		void Perform (/* non null */ NSAction action);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("performBlockAndWait:")]
 		void PerformAndWait (/* non null */ NSAction action);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("userInfo", ArgumentSemantic.Strong)]
 		NSMutableDictionary UserInfo { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("concurrencyType")]
 		NSManagedObjectContextConcurrencyType ConcurrencyType { get; }
 
 		//Detected properties
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		// default is null, but setting it to null again would crash the app
 		[NullAllowed, Export ("parentContext", ArgumentSemantic.Retain)]
 		NSManagedObjectContext ParentContext { get; set; }
@@ -1081,48 +1081,48 @@ namespace XamCore.CoreData
 		[Notification ()]
 		NSString WillSaveNotification { get; }
 
-		[iOS (8,0), Mac(10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[NullAllowed] // by default this property is null
 		[Export ("name")]
 		string Name { get; set; }
 
-		[iOS (8,0), Mac(10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("executeRequest:error:")]
 		NSPersistentStoreResult ExecuteRequest (NSPersistentStoreRequest request, out NSError error);
 
 		[Export ("existingObjectWithID:error:")]
 		NSManagedObject GetExistingObject (NSManagedObjectID objectID, out NSError error);
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("shouldDeleteInaccessibleFaults")]
 		bool ShouldDeleteInaccessibleFaults { get; set; }
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("shouldHandleInaccessibleFault:forObjectID:triggeredByProperty:")]
 		bool ShouldHandleInaccessibleFault (NSManagedObject fault, NSManagedObjectID oid, [NullAllowed] NSPropertyDescription property);
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Static]
 		[Export ("mergeChangesFromRemoteContextSave:intoContexts:")]
 		void MergeChangesFromRemoteContextSave (NSDictionary changeNotificationData, NSManagedObjectContext[] contexts);
 
-		[Watch (3, 0), TV (10, 0), iOS (10, 0), Mac (10,12)]
+		[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[NullAllowed, Export ("queryGenerationToken", ArgumentSemantic.Strong)]
 		NSQueryGenerationToken QueryGenerationToken { get; }
 
-		[Watch (3,0), TV (10,0), iOS (10,0), Mac (10,12)]
+		[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("setQueryGenerationFromToken:error:")]
 		bool SetQueryGenerationFromToken ([NullAllowed] NSQueryGenerationToken generation, out NSError error);
 
-		[Watch (3, 0), TV (10, 0), iOS (10, 0), Mac (10,12)]
+		[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("automaticallyMergesChangesFromParent")]
 		bool AutomaticallyMergesChangesFromParent { get; set; }
 
-		[iOS (8,3), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 8, 3), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("refreshAllObjects")]
 		void RefreshAllObjects ();
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("transactionAuthor")]
 		string TransactionAuthor { get; set; }
 	}
@@ -1299,7 +1299,7 @@ namespace XamCore.CoreData
 
 	}
 
-	[Since(5,0)][Lion]
+	[Introduced (PlatformName.iOS, 5, 0)][Introduced (PlatformName.MacOSX, 10, 7)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface NSMergeConflict {
@@ -1342,7 +1342,7 @@ namespace XamCore.CoreData
 #endif
 	}
 
-	[Since(5,0)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface NSMergePolicy {
@@ -1360,31 +1360,31 @@ namespace XamCore.CoreData
 		bool ResolveConflictserror (NSMergeConflict [] list, out NSError error);
 #endif
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("resolveOptimisticLockingVersionConflicts:error:")]
 		bool ResolveOptimisticLockingVersionConflicts (NSMergeConflict[] list, out NSError error);
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("resolveConstraintConflicts:error:")]
 		bool ResolveConstraintConflicts (NSConstraintConflict[] list, out NSError error);
 
-		[Watch (3, 0), TV (10, 0), iOS (10, 0), Mac (10,12)]
+		[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Static, Export ("errorMergePolicy", ArgumentSemantic.Strong)]
 		NSMergePolicy ErrorPolicy { get; }
 
-		[Watch (3, 0), TV (10, 0), iOS (10, 0), Mac (10,12)]
+		[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Static, Export ("rollbackMergePolicy", ArgumentSemantic.Strong)]
 		NSMergePolicy RollbackPolicy { get; }
 
-		[Watch (3, 0), TV (10, 0), iOS (10, 0), Mac (10,12)]
+		[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Static, Export ("overwriteMergePolicy", ArgumentSemantic.Strong)]
 		NSMergePolicy OverwritePolicy { get; }
 
-		[Watch (3, 0), TV (10, 0), iOS (10, 0), Mac (10,12)]
+		[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Static, Export ("mergeByPropertyObjectTrumpMergePolicy", ArgumentSemantic.Strong)]
 		NSMergePolicy MergeByPropertyObjectTrumpPolicy { get; }
 
-		[Watch (3, 0), TV (10, 0), iOS (10, 0), Mac (10,12)]
+		[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Static, Export ("mergeByPropertyStoreTrumpMergePolicy", ArgumentSemantic.Strong)]
 		NSMergePolicy MergeByPropertyStoreTrumpPolicy { get; }
 	}
@@ -1447,14 +1447,14 @@ namespace XamCore.CoreData
 		void CancelMigrationWithError (NSError error);
 
 		// 5.0
-		[Since(5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("usesStoreSpecificMigrationManager")]
 		bool UsesStoreSpecificMigrationManager { get; set; }
 	}
 
 	[Abstract]
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	interface NSPersistentHistoryChange : NSCopying
 	{
 		[Export ("changeID")]
@@ -1476,14 +1476,14 @@ namespace XamCore.CoreData
 		NSSet<NSPropertyDescription> UpdatedProperties { get; }
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	interface NSPersistentHistoryToken : NSCopying //, NSSecureCoding TODO: The class does state that it supports the NSSecureCoding YET SupportsSecureCoding returns false, radar 32761925
 	{
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
-	[BaseType (typeof(NSPersistentStoreRequest))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSPersistentStoreRequest))]
 	[DisableDefaultCtor]
 	interface NSPersistentHistoryChangeRequest
 	{
@@ -1518,8 +1518,8 @@ namespace XamCore.CoreData
 		NSPersistentHistoryToken Token { get; }
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
-	[BaseType (typeof(NSPersistentStoreResult))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSPersistentStoreResult))]
 	interface NSPersistentHistoryResult
 	{
 		[NullAllowed]
@@ -1531,8 +1531,8 @@ namespace XamCore.CoreData
 	}
 
 	[Abstract]
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	interface NSPersistentHistoryTransaction : NSCopying
 	{
 		[Export ("timestamp", ArgumentSemantic.Copy)]
@@ -1567,8 +1567,8 @@ namespace XamCore.CoreData
 	}
 
 #if !WATCH && !MONOMAC
-	[NoWatch, NoTV, Mac (10,13), iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	interface NSCoreDataCoreSpotlightDelegate
 	{
 		[Export ("domainIdentifier")]
@@ -1662,20 +1662,20 @@ namespace XamCore.CoreData
 		[Export ("willRemoveFromPersistentStoreCoordinator:")]
 		void WillRemoveFromPersistentStoreCoordinator ([NullAllowed] NSPersistentStoreCoordinator coordinator);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("NSPersistentStoreSaveConflictsErrorKey")]
 		NSString SaveConflictsErrorKey { get; }
 
 #if !WATCH && !MONOMAC
-		[NoWatch, NoTV, Mac (10, 13), iOS (11, 0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("coreSpotlightExporter")]
 		NSCoreDataCoreSpotlightDelegate CoreSpotlightExporter { get; }
 #endif
 
 	}
 	
-	[Watch (3,0), TV (10,0), iOS (10,0), Mac (10,12)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface NSPersistentStoreDescription : NSCopying
 	{
@@ -1724,8 +1724,8 @@ namespace XamCore.CoreData
 		IntPtr Constructor (NSUrl url);
 	}
 	
-	[Watch (3,0), TV (10,0), iOS (10,0), Mac (10,12)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface NSPersistentContainer
 	{
@@ -1792,21 +1792,21 @@ namespace XamCore.CoreData
 		[Static, Export ("registerStoreClass:forStoreType:")]
 		void RegisterStoreClass (Class storeClass, NSString storeType);
 
-		[Availability (Introduced = Platform.iOS_3_0 | Platform.Mac_10_5 , Deprecated = Platform.iOS_9_0 | Platform.Mac_10_11, Message = "Use the method that takes an out NSError parameter.")]
+		[Introduced (PlatformName.iOS, 3, 0, message: "Use the method that takes an out NSError parameter."), Introduced (PlatformName.MacOSX, 10, 5, message: "Use the method that takes an out NSError parameter."), Deprecated (PlatformName.iOS, 9, 0, message: "Use the method that takes an out NSError parameter."), Deprecated (PlatformName.MacOSX, 10, 11, message: "Use the method that takes an out NSError parameter.")]
 		[Static, Export ("metadataForPersistentStoreOfType:URL:error:")]
 		[return: NullAllowed]
 		NSDictionary MetadataForPersistentStoreOfType (NSString storeType, NSUrl url, out NSError error);
 		
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Static, Export ("metadataForPersistentStoreOfType:URL:options:error:")]
 		[return: NullAllowed]
 		NSDictionary<NSString, NSObject> GetMetadata (string storeType, NSUrl url, [NullAllowed] NSDictionary options, out NSError error);
 
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_9_0, Message = "Use the method that takes an out NSError parameter.")]
+		[Introduced (PlatformName.iOS, 3, 0, message: "Use the method that takes an out NSError parameter."), Deprecated (PlatformName.iOS, 9, 0, message: "Use the method that takes an out NSError parameter.")]
 		[Static, Export ("setMetadata:forPersistentStoreOfType:URL:error:")]
 		bool SetMetadata (NSDictionary metadata, NSString storeType, NSUrl url, out NSError error);
 		
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Static, Export ("setMetadata:forPersistentStoreOfType:URL:options:error:")]
 		bool SetMetadata ([NullAllowed] NSDictionary<NSString, NSObject> metadata, string storeType, NSUrl url, [NullAllowed] NSDictionary options, out NSError error);
 
@@ -1850,7 +1850,7 @@ namespace XamCore.CoreData
 		NSPersistentStore AddPersistentStoreWithType (NSString storeType, [NullAllowed] string configuration, [NullAllowed] NSUrl storeUrl, [NullAllowed] NSDictionary options, out NSError error);
 #endif
 		
-		[Watch (3,0), TV (10,0), iOS (10,0), Mac (10,12)]
+		[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("addPersistentStoreWithDescription:completionHandler:")]
 		[Async]
 		void AddPersistentStore (NSPersistentStoreDescription storeDescription, Action<NSPersistentStoreDescription, NSError> block);
@@ -1867,22 +1867,22 @@ namespace XamCore.CoreData
 		NSManagedObjectID ManagedObjectIDForURIRepresentation (NSUrl url);
 
 #if !WATCH && !TVOS
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_8_0, Message="Use 'PerformAndWait' instead.")]
+		[Introduced (PlatformName.iOS, 3, 0, message: "Use 'PerformAndWait' instead."), Deprecated (PlatformName.iOS, 8, 0, message: "Use 'PerformAndWait' instead.")]
 		[Export ("lock")]
 		new void Lock ();
 
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_8_0, Message="Use 'PerformAndWait' instead.")]
+		[Introduced (PlatformName.iOS, 3, 0, message: "Use 'PerformAndWait' instead."), Deprecated (PlatformName.iOS, 8, 0, message: "Use 'PerformAndWait' instead.")]
 		[Export ("unlock")]
 		new void Unlock ();
 
-		[NoTV]
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_8_0, Message="Use 'Perform' instead.")]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 3, 0, message: "Use 'Perform' instead."), Deprecated (PlatformName.iOS, 8, 0, message: "Use 'Perform' instead.")]
 		[Export ("tryLock")]
 		bool TryLock { get; }
 #endif // !WATCH && !TVOS
 
 #if MONOMAC
-		[Availability (Introduced = Platform.Mac_10_4, Deprecated = Platform.Mac_10_5)]
+		[Introduced (PlatformName.MacOSX, 10, 4), Deprecated (PlatformName.MacOSX, 10, 5)]
 		[Static, Export ("metadataForPersistentStoreWithURL:error:")]
 		NSDictionary MetadataForPersistentStoreWithUrl (NSUrl url, out NSError error);
 #endif
@@ -1895,11 +1895,11 @@ namespace XamCore.CoreData
 		[Field ("NSBinaryStoreType")]
 		NSString BinaryStoreType { get; }
 
-		[Watch (4,0)][TV (11,0)][Mac (10,13)][iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0)][Introduced (PlatformName.TvOS, 11, 0)][Introduced (PlatformName.MacOSX, 10, 13)][Introduced (PlatformName.iOS, 11, 0)]
 		[Field ("NSBinaryStoreSecureDecodingClasses")]
 		NSString BinaryStoreSecureDecodingClasses { get; }
 
-		[Watch (4,0)][TV (11,0)][Mac (10,13)][iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0)][Introduced (PlatformName.TvOS, 11, 0)][Introduced (PlatformName.MacOSX, 10, 13)][Introduced (PlatformName.iOS, 11, 0)]
 		[Field ("NSBinaryStoreInsecureDecodingCompatibilityOption")]
 		NSString BinaryStoreInsecureDecodingCompatibilityOption { get; }
 
@@ -1966,7 +1966,7 @@ namespace XamCore.CoreData
 		NSString WillRemoveStoreNotification { get; }
 		
 		// 5.0
-		[Since(5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("executeRequest:withContext:error:")]
 		[return: NullAllowed]
 #if XAMCORE_4_0
@@ -1975,19 +1975,19 @@ namespace XamCore.CoreData
 		NSObject ExecuteRequestwithContexterror (NSPersistentStoreRequest request, NSManagedObjectContext context, out NSError error);
 #endif
 
-		[NoWatch][NoTV]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 		[Notification]
-		[Availability (Introduced = Platform.iOS_5_0, Deprecated = Platform.iOS_10_0, Message = "Please see the release notes and Core Data documentation.")]
+		[Introduced (PlatformName.iOS, 5, 0, message: "Please see the release notes and Core Data documentation."), Deprecated (PlatformName.iOS, 10, 0, message: "Please see the release notes and Core Data documentation.")]
 		[Field ("NSPersistentStoreDidImportUbiquitousContentChangesNotification")]
 		NSString DidImportUbiquitousContentChangesNotification { get; }
 
-		[NoWatch][NoTV]
-		[Availability (Introduced = Platform.iOS_5_0, Deprecated = Platform.iOS_10_0, Message = "Please see the release notes and Core Data documentation.")]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0, message: "Please see the release notes and Core Data documentation."), Deprecated (PlatformName.iOS, 10, 0, message: "Please see the release notes and Core Data documentation.")]
 		[Field ("NSPersistentStoreUbiquitousContentNameKey")]
 		NSString PersistentStoreUbiquitousContentNameKey { get; }
 
-		[NoWatch][NoTV]
-		[Availability (Introduced = Platform.iOS_5_0, Deprecated = Platform.iOS_10_0, Message = "Please see the release notes and Core Data documentation.")]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0, message: "Please see the release notes and Core Data documentation."), Deprecated (PlatformName.iOS, 10, 0, message: "Please see the release notes and Core Data documentation.")]
 		[Field ("NSPersistentStoreUbiquitousContentURLKey")]
 #if XAMCORE_4_0
 		NSString PersistentStoreUbiquitousContentUrlKey { get; }
@@ -1996,86 +1996,86 @@ namespace XamCore.CoreData
 #endif
 
 #if !MONOMAC
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("NSPersistentStoreFileProtectionKey")]
 		NSString PersistentStoreFileProtectionKey { get; }
 #endif
 
 		// 7.0
 
-		[NoWatch][NoTV]
-		[Since (7,0), Mavericks]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("NSPersistentStoreUbiquitousPeerTokenOption")]
 		NSString PersistentStoreUbiquitousPeerTokenOption { get; }
 
-		[NoWatch][NoTV]
-		[Since (7,0), Mavericks]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Static]
-		[Availability (Introduced = Platform.iOS_5_0, Deprecated = Platform.iOS_10_0, Message = "Please see the release notes and Core Data documentation.")]
+		[Introduced (PlatformName.iOS, 5, 0, message: "Please see the release notes and Core Data documentation."), Deprecated (PlatformName.iOS, 10, 0, message: "Please see the release notes and Core Data documentation.")]
 		[Export ("removeUbiquitousContentAndPersistentStoreAtURL:options:error:")]
 		bool RemoveUbiquitousContentAndPersistentStore (NSUrl storeUrl, NSDictionary options, out NSError error);
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Notification (typeof (NSPersistentStoreCoordinatorStoreChangeEventArgs))]
 		[Field ("NSPersistentStoreCoordinatorStoresWillChangeNotification")]
 		NSString StoresWillChangeNotification { get; }
 
-		[NoWatch][NoTV]
-		[Since (7,0), Mavericks]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("NSPersistentStoreRebuildFromUbiquitousContentOption")]
 		NSString RebuildFromUbiquitousContentOption { get; }
 
-		[NoWatch][NoTV]
-		[Since (7,0), Mavericks]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("NSPersistentStoreRemoveUbiquitousMetadataOption")]
 		NSString RemoveUbiquitousMetadataOption { get; }
 
-		[NoWatch][NoTV]
-		[Since (7,0), Mavericks]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("NSPersistentStoreUbiquitousContainerIdentifierKey")]
 		[Obsolete ("Use 'UbiquitousContainerIdentifierKey' instead.")]
 		NSString eUbiquitousContainerIdentifierKey { get; }
 
-		[NoWatch][NoTV]
-		[Since (7,0), Mavericks]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("NSPersistentStoreUbiquitousContainerIdentifierKey")]
 		NSString UbiquitousContainerIdentifierKey { get; }
 
 		// 11.0
 
-		[NoWatch, NoTV, Mac (10, 13), iOS (11, 0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Field ("NSCoreDataCoreSpotlightExporter")]
 		NSString CoreSpotlightExporter { get; }
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Field ("NSPersistentHistoryTrackingKey")]
 		NSString HistoryTrackingKey { get; }
 
-		[iOS (8,0), Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[NullAllowed, Export ("name")]
 		string Name { get; set; }
 
-		[iOS (8,0), Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("performBlock:")]
 		void Perform (Action code);
 
-		[iOS (8,0), Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("performBlockAndWait:")]
 		void PerformAndWait (Action code);
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("destroyPersistentStoreAtURL:withType:options:error:")]
 		bool DestroyPersistentStore (NSUrl url, string storeType, [NullAllowed] NSDictionary options, out NSError error);
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("replacePersistentStoreAtURL:destinationOptions:withPersistentStoreFromURL:sourceOptions:storeType:error:")]
 		bool ReplacePersistentStore (NSUrl destinationUrl, [NullAllowed] NSDictionary destinationOptions, NSUrl sourceUrl, [NullAllowed] NSDictionary sourceOptions, string storeType, out NSError error);
 	}
 
 	interface NSPersistentStoreCoordinatorStoreChangeEventArgs {
-		[NoWatch][NoTV]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 		[Export ("NSPersistentStoreUbiquitousTransitionTypeKey")]
-		[Availability (Introduced = Platform.iOS_7_0, Deprecated = Platform.iOS_10_0, Message = "Please see the release notes and Core Data documentation.")]
+		[Introduced (PlatformName.iOS, 7, 0, message: "Please see the release notes and Core Data documentation."), Deprecated (PlatformName.iOS, 10, 0, message: "Please see the release notes and Core Data documentation.")]
 		NSPersistentStoreUbiquitousTransitionType EventType { get; }
 	}
 
@@ -2090,7 +2090,7 @@ namespace XamCore.CoreData
 		NSPersistentStore [] AffectedStores { get; set; }
 	}
 
-	[iOS (8,0), Mac (10,10)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (NSPersistentStoreAsynchronousResult))]
 	interface NSAsynchronousFetchResult {
 		[Export ("fetchRequest", ArgumentSemantic.Retain)]
@@ -2104,13 +2104,13 @@ namespace XamCore.CoreData
 #endif
 	}
 
-	[iOS (8,0), Mac (10,10)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (NSObject))]
 	interface NSPersistentStoreResult {
 
 	}
 
-	[iOS (8,0), Mac (10,10)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (NSPersistentStoreResult))]
 	interface NSBatchUpdateResult {
 		[Export ("result", ArgumentSemantic.Retain)]
@@ -2120,7 +2120,7 @@ namespace XamCore.CoreData
 		NSBatchUpdateRequestResultType ResultType { get; }
 	}
 	
-	[iOS (8,0), Mac (10,10)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (NSPersistentStoreResult))]
 	interface NSPersistentStoreAsynchronousResult {
 		[Export ("managedObjectContext", ArgumentSemantic.Retain)]
@@ -2136,7 +2136,7 @@ namespace XamCore.CoreData
 		void Cancel ();
 	}
 	
-	[iOS (8,0), Mac (10,10)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (NSPersistentStoreRequest))]
 	interface NSAsynchronousFetchRequest {
 		[Export ("initWithFetchRequest:completionBlock:")]
@@ -2178,7 +2178,7 @@ namespace XamCore.CoreData
 		NSDictionary UserInfo { get; set; }
 
 		[Export ("indexed")]
-		[Availability (Introduced = Platform.iOS_3_0 | Platform.Mac_10_5 , Deprecated = Platform.iOS_11_0 | Platform.Mac_10_13, Message = "Use 'NSEntityDescription.Indexes' instead.")]
+		[Introduced (PlatformName.iOS, 3, 0, message: "Use 'NSEntityDescription.Indexes' instead."), Introduced (PlatformName.MacOSX, 10, 5, message: "Use 'NSEntityDescription.Indexes' instead."), Deprecated (PlatformName.iOS, 11, 0, message: "Use 'NSEntityDescription.Indexes' instead."), Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'NSEntityDescription.Indexes' instead.")]
 		bool Indexed { [Bind ("isIndexed")] get; set; }
 
 		[Export ("versionHash")]
@@ -2192,13 +2192,13 @@ namespace XamCore.CoreData
 		string RenamingIdentifier { get; set; }
 
 		// 5.0
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("indexedBySpotlight")]
 		bool IndexedBySpotlight { [Bind ("isIndexedBySpotlight")]get; set; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("storedInExternalRecord")]
-		[Availability (Introduced = Platform.iOS_3_0 | Platform.Mac_10_5 , Deprecated = Platform.iOS_11_0 | Platform.Mac_10_13, Message = "Use 'CoreSpotlight' integration instead.")]
+		[Introduced (PlatformName.iOS, 3, 0, message: "Use 'CoreSpotlight' integration instead."), Introduced (PlatformName.MacOSX, 10, 5, message: "Use 'CoreSpotlight' integration instead."), Deprecated (PlatformName.iOS, 11, 0, message: "Use 'CoreSpotlight' integration instead."), Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'CoreSpotlight' integration instead.")]
 		bool StoredInExternalRecord { [Bind ("isStoredInExternalRecord")]get; set; }
 	}
 
@@ -2245,7 +2245,7 @@ namespace XamCore.CoreData
 		NSData VersionHash { get; }
 
 		// 5.0
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("ordered")]
 		bool Ordered { [Bind ("isOrdered")]get; set; }
 	}
@@ -2288,7 +2288,7 @@ namespace XamCore.CoreData
 #endif
 	}
 
-	[iOS (8,0), Mac (10,10)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (NSPersistentStoreRequest))]
 	interface NSBatchUpdateRequest {
 		[Export ("initWithEntityName:")]
@@ -2323,8 +2323,8 @@ namespace XamCore.CoreData
 		NSBatchUpdateRequest BatchUpdateRequestWithEntityName (string entityName);
 	}
 
-	[iOS (9,0), Mac (10,11)]
-	[BaseType (typeof(NSPersistentStoreRequest))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
+	[BaseType (typeof (NSPersistentStoreRequest))]
 	[DisableDefaultCtor]
 	interface NSBatchDeleteRequest
 	{
@@ -2342,8 +2342,8 @@ namespace XamCore.CoreData
 		NSFetchRequest FetchRequest { get; }
 	}
 
-	[iOS (9,0), Mac (10,11)]
-	[BaseType (typeof(NSPersistentStoreResult))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
+	[BaseType (typeof (NSPersistentStoreResult))]
 	interface NSBatchDeleteResult
 	{
 		[NullAllowed, Export ("result", ArgumentSemantic.Strong)]
@@ -2353,8 +2353,8 @@ namespace XamCore.CoreData
 		NSBatchDeleteRequestResultType ResultType { get; }
 	}
 
-	[iOS (9,0), Mac (10,11)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
+	[BaseType (typeof (NSObject))]
 	interface NSConstraintConflict
 	{
 		[Export ("initWithConstraint:databaseObject:databaseSnapshot:conflictingObjects:conflictingSnapshots:")]

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using XamCore.Foundation;
 
 namespace XamCore.QTKit

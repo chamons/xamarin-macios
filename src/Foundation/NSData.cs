@@ -113,7 +113,7 @@ namespace XamCore.Foundation {
 			}
 
 			NSMutableData ret = NSMutableData.FromCapacity ((int)len);
-			byte [] buffer = new byte [32*1024];
+			byte [] buffer = new byte [32 * 1024];
 			int n;
 			try {
 				unsafe {

@@ -108,9 +108,9 @@ namespace XamCore.AVFoundation {
 	delegate void AVRequestAccessStatus (bool accessGranted);
 	delegate AVAudioBuffer AVAudioConverterInputHandler (uint inNumberOfPackets, out AVAudioConverterInputStatus outStatus);
 
-	[NoWatch]
-	[Since (7,0)]
-	[Mavericks]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9)]
 	[BaseType (typeof (NSObject))]
 	interface AVAsynchronousVideoCompositionRequest : NSCopying {
 		[Export ("renderContext", ArgumentSemantic.Copy)]
@@ -140,7 +140,7 @@ namespace XamCore.AVFoundation {
 	}
 
 	// values are manually given since not some are platform specific
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	enum AVMediaTypes {
 		[Field ("AVMediaTypeVideo")]
 		Video = 0,
@@ -160,31 +160,31 @@ namespace XamCore.AVFoundation {
 		[Field ("AVMediaTypeTimecode")]
 		Timecode = 5,
 
-		[NoTV]
-		[Availability (Obsoleted = Platform.iOS_6_0 | Platform.Mac_10_8)]
+		[Unavailable (PlatformName.TvOS)]
+		[Obsoleted (PlatformName.iOS, 6, 0), Obsoleted (PlatformName.MacOSX, 10, 8)]
 		[Field ("AVMediaTypeTimedMetadata")] // last header where I can find this: iOS 5.1 SDK, 10.7 only on Mac
 		TimedMetadata = 6,
 
 		[Field ("AVMediaTypeMuxed")]
 		Muxed = 7,
 
-		[iOS (9,0)][NoMac]
+		[Introduced (PlatformName.iOS, 9, 0)][Unavailable (PlatformName.MacOSX)]
 		[Field ("AVMediaTypeMetadataObject")]
 		MetadataObject = 8,
 
-		[Since (6,0)][Mac (10,8)]
+		[Introduced (PlatformName.iOS, 6, 0)][Introduced (PlatformName.MacOSX, 10, 8)]
 		[Field ("AVMediaTypeMetadata")]
 		Metadata = 9,
 
-		[iOS (11, 0), Mac (10, 13)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13)]
 		[Field ("AVMediaTypeDepthData")]
 		DepthData = 10,
 	}
 
 #if !XAMCORE_4_0
 	[Obsolete ("Use AVMediaTypes enum values")]
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (NSObject))][Static]
 	interface AVMediaType {
 		[Field ("AVMediaTypeVideo")]
@@ -205,27 +205,27 @@ namespace XamCore.AVFoundation {
 		[Field ("AVMediaTypeTimecode")]
 		NSString Timecode { get; }
 
-		[NoTV][NoWatch]
+		[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 		[Field ("AVMediaTypeTimedMetadata")] // last header where I can find this: iOS 5.1 SDK, 10.7 only on Mac
-		[Availability (Obsoleted = Platform.iOS_6_0 | Platform.Mac_10_8)]
+		[Obsoleted (PlatformName.iOS, 6, 0), Obsoleted (PlatformName.MacOSX, 10, 8)]
 		NSString TimedMetadata { get; }
 
 		[Field ("AVMediaTypeMuxed")]
 		NSString Muxed { get; }
 
-		[iOS (9,0)][NoMac]
+		[Introduced (PlatformName.iOS, 9, 0)][Unavailable (PlatformName.MacOSX)]
 		[Field ("AVMediaTypeMetadataObject")]
 		NSString MetadataObject { get; }
 
-		[Since (6,0)][Mac (10,8)]
+		[Introduced (PlatformName.iOS, 6, 0)][Introduced (PlatformName.MacOSX, 10, 8)]
 		[Field ("AVMediaTypeMetadata")]
 		NSString Metadata { get; }
 	}
 #endif
 
-	[NoWatch]
-	[iOS (9,0), Mac(10,11)]
-	[BaseType (typeof(AVMetadataGroup))]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
+	[BaseType (typeof (AVMetadataGroup))]
 	interface AVDateRangeMetadataGroup : NSCopying, NSMutableCopying
 	{
 		[Export ("initWithItems:startDate:endDate:")]
@@ -241,9 +241,9 @@ namespace XamCore.AVFoundation {
 		AVMetadataItem[] Items { get; [NotImplemented] set; }
 	}
 
-	[NoWatch]
-	[iOS (9,0), Mac (10,11)]
-	[BaseType (typeof(AVDateRangeMetadataGroup))]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
+	[BaseType (typeof (AVDateRangeMetadataGroup))]
 	interface AVMutableDateRangeMetadataGroup
 	{
 		[Export ("startDate", ArgumentSemantic.Copy)]
@@ -259,8 +259,8 @@ namespace XamCore.AVFoundation {
 		AVMetadataItem[] Items { get; set; }
 	}
 	
-	[TV (11,0), NoWatch, iOS (11,0), Mac (10, 13)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface AVDepthData {
 		[Static]
@@ -303,7 +303,7 @@ namespace XamCore.AVFoundation {
 	}
 
 	// values are manually given since not some are platform specific
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	enum AVMediaCharacteristics {
 		[Field ("AVMediaCharacteristicVisual")]
 		Visual = 0,
@@ -317,47 +317,47 @@ namespace XamCore.AVFoundation {
 		[Field ("AVMediaCharacteristicFrameBased")]
 		FrameBased = 3,
 		
-		[iOS (10, 0), TV (10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Field ("AVMediaCharacteristicUsesWideGamutColorSpace")]
 		UsesWideGamutColorSpace = 4,
 
-		[Mac (10, 8), iOS (5,0)]
+		[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVMediaCharacteristicIsMainProgramContent")]
 		IsMainProgramContent = 5,
 
-		[MountainLion][Since (5,0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)][Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVMediaCharacteristicIsAuxiliaryContent")]
 		IsAuxiliaryContent = 6,
 
-		[MountainLion][Since (5,0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)][Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVMediaCharacteristicContainsOnlyForcedSubtitles")]
 		ContainsOnlyForcedSubtitles = 7,
 
-		[MountainLion][Since (5,0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)][Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVMediaCharacteristicTranscribesSpokenDialogForAccessibility")]
 		TranscribesSpokenDialogForAccessibility = 8,
 
-		[MountainLion][Since (5,0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)][Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVMediaCharacteristicDescribesMusicAndSoundForAccessibility")]
 		DescribesMusicAndSoundForAccessibility = 9,
 
-		[MountainLion][Since (5,0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)][Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVMediaCharacteristicDescribesVideoForAccessibility")]
 		DescribesVideoForAccessibility = 10,
 
-		[NoMac][Since (6,0)]
+		[Unavailable (PlatformName.MacOSX)][Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("AVMediaCharacteristicEasyToRead")]
 		EasyToRead = 11,
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVMediaCharacteristicLanguageTranslation")]
 		LanguageTranslation = 12,
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVMediaCharacteristicDubbedTranslation")]
 		DubbedTranslation = 13,
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVMediaCharacteristicVoiceOverTranslation")]
 		VoiceOverTranslation = 14,
 
@@ -365,8 +365,8 @@ namespace XamCore.AVFoundation {
 
 #if !XAMCORE_4_0
 	[Obsolete ("Use AVMediaCharacteristics enum values")]
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (NSObject))][Static]
 	interface AVMediaCharacteristic {
 		[Field ("AVMediaCharacteristicVisual")]
@@ -381,56 +381,56 @@ namespace XamCore.AVFoundation {
 		[Field ("AVMediaCharacteristicFrameBased")]
 		NSString FrameBased { get; }
 		
-		[iOS (10, 0), TV (10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Field ("AVMediaCharacteristicUsesWideGamutColorSpace")]
 		NSString UsesWideGamutColorSpace { get; }
 
-		[MountainLion][Since (5,0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)][Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVMediaCharacteristicIsMainProgramContent")]
 		NSString IsMainProgramContent { get; }
 
-		[MountainLion][Since (5,0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)][Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVMediaCharacteristicIsAuxiliaryContent")]
 		NSString IsAuxiliaryContent { get; }
 
-		[MountainLion][Since (5,0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)][Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVMediaCharacteristicContainsOnlyForcedSubtitles")]
 		NSString ContainsOnlyForcedSubtitles { get; }
 
-		[MountainLion][Since (5,0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)][Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVMediaCharacteristicTranscribesSpokenDialogForAccessibility")]
 		NSString TranscribesSpokenDialogForAccessibility { get; }
 
-		[MountainLion][Since (5,0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)][Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVMediaCharacteristicDescribesMusicAndSoundForAccessibility")]
 		NSString DescribesMusicAndSoundForAccessibility { get; }
 
-		[MountainLion][Since (5,0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)][Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVMediaCharacteristicDescribesVideoForAccessibility")]
 		NSString DescribesVideoForAccessibility { get;  }
 #if !MONOMAC
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("AVMediaCharacteristicEasyToRead")]
 		NSString EasyToRead { get; }
 #endif
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVMediaCharacteristicLanguageTranslation")]
 		NSString LanguageTranslation { get; }
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVMediaCharacteristicDubbedTranslation")]
 		NSString DubbedTranslation { get; }
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVMediaCharacteristicVoiceOverTranslation")]
 		NSString VoiceOverTranslation { get; }
 	}
 #endif
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	enum AVMetadataFormat {
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVMetadataFormatHLSMetadata")]
 		FormatHlsMetadata = 0,
 
@@ -440,19 +440,19 @@ namespace XamCore.AVFoundation {
 		[Field ("AVMetadataFormatID3Metadata")]
 		FormatID3Metadata = 2,
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVMetadataFormatISOUserData")]
 		FormatISOUserData = 3,
 
 		[Field ("AVMetadataFormatQuickTimeUserData")]
 		FormatQuickTimeUserData = 4,
 
-		[iOS (11,0), Mac (10,13), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0)]
 		[Field ("AVMetadataFormatUnknown")]
 		Unknown = 5,
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	enum AVFileTypes {
 		[Field ("AVFileTypeQuickTimeMovie")]
 		QuickTimeMovie = 0,
@@ -463,7 +463,7 @@ namespace XamCore.AVFoundation {
 		[Field ("AVFileTypeAppleM4V")]
 		AppleM4V = 2,
 
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVFileType3GPP")]
 	 	ThreeGpp = 3,
 		
@@ -485,54 +485,54 @@ namespace XamCore.AVFoundation {
 		[Field ("AVFileTypeAMR")]
 		Amr = 9,
 
-		[iOS (7,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVFileType3GPP2")]
 		ThreeGpp2 = 10,
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVFileTypeMPEGLayer3")]
 		MpegLayer3 = 11,
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVFileTypeSunAU")]
 		SunAU = 12,
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVFileTypeAC3")]
 		AC3 = 13,
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVFileTypeEnhancedAC3")]
 		EnhancedAC3 = 14,
 
-		[iOS (11, 0), Mac (10, 13)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13)]
 		[Field ("AVFileTypeJPEG")]
 		Jpeg = 15,
 
-		[iOS (11, 0), Mac (10, 13)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13)]
 		[Field ("AVFileTypeDNG")]
 		Dng = 16,
 
-		[iOS (11, 0), Mac (10, 13)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13)]
 		[Field ("AVFileTypeHEIC")]
 		Heic = 17,
 
-		[iOS (11, 0), Mac (10, 13)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13)]
 		[Field ("AVFileTypeAVCI")]
 		Avci = 18,
 
-		[iOS (11, 0), Mac (10, 13)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13)]
 		[Field ("AVFileTypeHEIF")]
 		Heif = 19,
 
-		[iOS (11, 0), Mac (10, 13)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13)]
 		[Field ("AVFileTypeTIFF")]
 		Tiff = 20,
 	}
 
 #if !XAMCORE_4_0
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (NSObject))][Static]
 	[Obsolete ("Use AVFileTypes enum values")]
 	interface AVFileType {
@@ -544,7 +544,7 @@ namespace XamCore.AVFoundation {
 		
 		[Field ("AVFileTypeAppleM4V")]
 		NSString AppleM4V { get; }
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVFileType3GPP")]
 		NSString ThreeGpp { get; }
 		
@@ -566,30 +566,30 @@ namespace XamCore.AVFoundation {
 		[Field ("AVFileTypeAMR")]
 		NSString Amr { get; }
 
-		[iOS (7,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVFileType3GPP2")]
 		NSString ThreeGpp2 { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVFileTypeMPEGLayer3")]
 		NSString MpegLayer3 { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVFileTypeSunAU")]
 		NSString SunAU { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVFileTypeAC3")]
 		NSString AC3 { get; }
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVFileTypeEnhancedAC3")]
 		NSString EnhancedAC3 { get; }
 	}
 #endif
 
-	[NoWatch]
-	[iOS (9,0), Mac (10,11)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	[Static]
 	interface AVStreamingKeyDelivery {
 
@@ -600,9 +600,9 @@ namespace XamCore.AVFoundation {
 		NSString PersistentContentKeyType { get; }
 	}
 
-	[NoWatch]
-	[NoTV]
-	[Since (7,0)] // And OSX 10.7
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 7, 0)] // And OSX 10.7
 	[DisableDefaultCtor] // crash -> immutable and you can get them but not set them (i.e. no point in creating them)
 	[BaseType (typeof (NSObject))]
 	interface AVFrameRateRange {
@@ -620,67 +620,67 @@ namespace XamCore.AVFoundation {
 		CMTime MinFrameDuration { get; }
 	}
 
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (NSObject))][Static]
 	interface AVVideo {
 		[Field ("AVVideoCodecKey")]
 		NSString CodecKey { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVVideoMaxKeyFrameIntervalDurationKey")]
 		NSString MaxKeyFrameIntervalDurationKey { get; }
 
-		[Since (7,0)]
-		[Mac (10,10)]
+		[Introduced (PlatformName.iOS, 7, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVVideoAllowFrameReorderingKey")]
 		NSString AllowFrameReorderingKey { get; }
 
-		[Since (7,0)]
-		[Mac (10,10)]
+		[Introduced (PlatformName.iOS, 7, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVVideoAverageNonDroppableFrameRateKey")]
 		NSString AverageNonDroppableFrameRateKey { get; }
 
-		[NoiOS, NoTV]
-		[Mac (10,10)]
+		[Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVVideoEncoderSpecificationKey")]
 		NSString EncoderSpecificationKey { get; }
 
-		[Since (7,0)]
-		[Mac (10,10)]
+		[Introduced (PlatformName.iOS, 7, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVVideoExpectedSourceFrameRateKey")]
 		NSString ExpectedSourceFrameRateKey { get; }
 
-		[Since (7,0)]
-		[Mac (10,10)]
+		[Introduced (PlatformName.iOS, 7, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVVideoH264EntropyModeCABAC")]
 		NSString H264EntropyModeCABAC { get; }
 
-		[Since (7, 0)]
-		[Mac (10,10)]
+		[Introduced (PlatformName.iOS, 7, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVVideoH264EntropyModeCAVLC")]
 		NSString H264EntropyModeCAVLC { get; }
 
-		[Since (7,0)]
-		[Mac (10,10)]
+		[Introduced (PlatformName.iOS, 7, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVVideoH264EntropyModeKey")]
 		NSString H264EntropyModeKey { get; }
 
-		[Availability (Introduced = Platform.iOS_4_0 | Platform.Mac_10_7 | Platform.TV_9_0, Deprecated = Platform.iOS_11_0 | Platform.Mac_10_13 | Platform.TV_11_0, Message = "Use 'AVVideoCodecType' enum instead.")]
+		[Introduced (PlatformName.iOS, 4, 0, message: "Use 'AVVideoCodecType' enum instead."), Introduced (PlatformName.MacOSX, 10, 7, message: "Use 'AVVideoCodecType' enum instead."), Deprecated (PlatformName.iOS, 11, 0, message: "Use 'AVVideoCodecType' enum instead."), Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'AVVideoCodecType' enum instead.")]
 		[Field ("AVVideoCodecH264")]
 		NSString CodecH264 { get; }
 		
-		[Availability (Introduced = Platform.iOS_4_0 | Platform.Mac_10_7 | Platform.TV_9_0, Deprecated = Platform.iOS_11_0 | Platform.Mac_10_13 | Platform.TV_11_0, Message = "Use 'AVVideoCodecType' enum instead.")]
+		[Introduced (PlatformName.iOS, 4, 0, message: "Use 'AVVideoCodecType' enum instead."), Introduced (PlatformName.MacOSX, 10, 7, message: "Use 'AVVideoCodecType' enum instead."), Deprecated (PlatformName.iOS, 11, 0, message: "Use 'AVVideoCodecType' enum instead."), Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'AVVideoCodecType' enum instead.")]
 		[Field ("AVVideoCodecJPEG")]
 		NSString CodecJPEG { get; }
 		
-		[Availability (Introduced = Platform.iOS_4_0 | Platform.Mac_10_7 | Platform.TV_9_0, Deprecated = Platform.iOS_11_0 | Platform.Mac_10_13 | Platform.TV_11_0, Message = "Use 'AVVideoCodecType' enum instead.")]
-		[NoiOS, NoTV, Mac (10,7)]
+		[Introduced (PlatformName.iOS, 4, 0, message: "Use 'AVVideoCodecType' enum instead."), Introduced (PlatformName.MacOSX, 10, 7, message: "Use 'AVVideoCodecType' enum instead."), Deprecated (PlatformName.iOS, 11, 0, message: "Use 'AVVideoCodecType' enum instead."), Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'AVVideoCodecType' enum instead.")]
+		[Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 7)]
 		[Field ("AVVideoCodecAppleProRes4444")]
 		NSString AppleProRes4444 { get; }
 
-		[Availability (Introduced = Platform.Mac_10_7, Deprecated = Platform.Mac_10_13, Message = "Use 'AVVideoCodecType' enum instead.")]
-		[NoiOS, NoTV, Mac (10,7)]
+		[Introduced (PlatformName.MacOSX, 10, 7, message: "Use 'AVVideoCodecType' enum instead."), Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'AVVideoCodecType' enum instead.")]
+		[Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 7)]
 		[Field ("AVVideoCodecAppleProRes422")]
 		NSString AppleProRes422 { get; }
 		
@@ -690,7 +690,7 @@ namespace XamCore.AVFoundation {
 		[Field ("AVVideoHeightKey")]
 		NSString HeightKey { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVVideoScalingModeKey")]
 		NSString ScalingModeKey { get; }
 		
@@ -706,7 +706,7 @@ namespace XamCore.AVFoundation {
 		[Field ("AVVideoProfileLevelKey")]
 		NSString ProfileLevelKey { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVVideoQualityKey")]
 		NSString QualityKey { get; }
 		
@@ -722,35 +722,35 @@ namespace XamCore.AVFoundation {
 		[Field ("AVVideoProfileLevelH264Main31")]
 		NSString ProfileLevelH264Main31 { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVVideoProfileLevelH264Baseline41")]
 		NSString ProfileLevelH264Baseline41 { get; }
 
-		[Since (5,0)][MountainLion]
+		[Introduced (PlatformName.iOS, 5, 0)][Introduced (PlatformName.MacOSX, 10, 8)]
 		[Field ("AVVideoProfileLevelH264Main32")]
 		NSString ProfileLevelH264Main32 { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVVideoProfileLevelH264Main41")]
 		NSString ProfileLevelH264Main41 { get; }
 
-		[Since (6,0), Mavericks]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVVideoProfileLevelH264High40")]
 		NSString ProfileLevelH264High40 { get; }
 
-		[Since (6,0), Mavericks]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVVideoProfileLevelH264High41")]
 		NSString ProfileLevelH264High41 { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVVideoProfileLevelH264BaselineAutoLevel")]
 		NSString ProfileLevelH264BaselineAutoLevel { get; }
 		
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVVideoProfileLevelH264MainAutoLevel")]
 		NSString ProfileLevelH264MainAutoLevel { get; }
 		
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVVideoProfileLevelH264HighAutoLevel")]
 		NSString ProfileLevelH264HighAutoLevel { get; }
 
@@ -780,8 +780,8 @@ namespace XamCore.AVFoundation {
 
 	}
 
-	[NoWatch]
-	[Since (5,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[Static]
 	interface AVVideoScalingModeKey
 	{
@@ -798,8 +798,8 @@ namespace XamCore.AVFoundation {
 		NSString ResizeAspectFill { get; }
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0)][Mac (10,10)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // `init` crash in tests - it may be a bug or this is an abstract class (doc not helpful)
 	interface AVAudioBuffer : NSCopying, NSMutableCopying {
@@ -813,8 +813,8 @@ namespace XamCore.AVFoundation {
 		IntPtr mutableAudioBufferList { get; }
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0)][Mac (10,10)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // fails (nil handle on iOS 10)
 	interface AVAudioChannelLayout : NSSecureCoding {
@@ -838,9 +838,9 @@ namespace XamCore.AVFoundation {
 		bool IsEqual (NSObject other);
 	}
 
-	[Watch (3,0)]
-	[iOS (9,0), Mac(10,11)]
-	[BaseType (typeof(AVAudioBuffer))]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
+	[BaseType (typeof (AVAudioBuffer))]
 	[DisableDefaultCtor] // just like base class (AVAudioBuffer) can't, avoid crash when ToString call `description`
 	interface AVAudioCompressedBuffer
 	{
@@ -866,9 +866,9 @@ namespace XamCore.AVFoundation {
 		AudioStreamPacketDescription PacketDescriptions { get; }
 	}
 
-	[Watch (3,0)]
-	[iOS (9,0), Mac(10,11)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // fails (nil handle on iOS 10)
 	interface AVAudioConnectionPoint
 	{
@@ -884,12 +884,12 @@ namespace XamCore.AVFoundation {
 	}
 
 #if XAMCORE_2_0
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	delegate AVAudioEngineManualRenderingStatus AVAudioEngineManualRenderingBlock (/* AVAudioFrameCount = uint */ uint numberOfFrames, AudioBuffers outBuffer, [NullAllowed] /* OSStatus */ ref int outError);
 #endif
 
-	[Watch (3,0)]
-	[iOS (8,0)][Mac (10,10)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (NSObject))]
 	interface AVAudioEngine {
 
@@ -901,8 +901,8 @@ namespace XamCore.AVFoundation {
 		[Export ("outputNode")]
 		AVAudioOutputNode OutputNode { get; }
 
-		[TV (11,0)]
-		[Watch (4,0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0)]
 		[Export ("inputNode"), NullAllowed]
 		AVAudioInputNode InputNode { get; }
 
@@ -924,7 +924,7 @@ namespace XamCore.AVFoundation {
 		[Export ("connect:to:format:")]
 		void Connect (AVAudioNode sourceNode, AVAudioNode targetNode, [NullAllowed] AVAudioFormat format);
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("connect:toConnectionPoints:fromBus:format:")]
 		void Connect (AVAudioNode sourceNode, AVAudioConnectionPoint [] destNodes, nuint sourceBus, [NullAllowed] AVAudioFormat format);
 
@@ -955,12 +955,12 @@ namespace XamCore.AVFoundation {
 		[Export ("stop")]
 		void Stop ();
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[return: NullAllowed]
 		[Export ("inputConnectionPointForNode:inputBus:")]
 		AVAudioConnectionPoint InputConnectionPoint (AVAudioNode node, nuint bus);
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[return: NullAllowed]
 		[Export ("outputConnectionPointsForNode:outputBus:")]
 		AVAudioConnectionPoint [] OutputConnectionPoints (AVAudioNode node, nuint bus);
@@ -969,47 +969,47 @@ namespace XamCore.AVFoundation {
 		[Field ("AVAudioEngineConfigurationChangeNotification")]
 		NSString ConfigurationChangeNotification { get; }
 
-		[TV (11, 0), NoWatch, Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("autoShutdownEnabled")]
 		bool AutoShutdownEnabled { [Bind ("isAutoShutdownEnabled")] get; set; }
 
-		[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("enableManualRenderingMode:format:maximumFrameCount:error:")]
 		bool EnableManualRenderingMode (AVAudioEngineManualRenderingMode mode, AVAudioFormat pcmFormat, uint maximumFrameCount, out NSError outError);
 
-		[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("renderOffline:toBuffer:error:")]
 		AVAudioEngineManualRenderingStatus RenderOffline (uint numberOfFrames, AVAudioPcmBuffer buffer, [NullAllowed] out NSError outError);
 
 #if XAMCORE_2_0
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("manualRenderingBlock")]
 		AVAudioEngineManualRenderingBlock ManualRenderingBlock { get; }
 #endif
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("isInManualRenderingMode")]
 		bool InManualRenderingMode { get; }
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("manualRenderingMode")]
 		AVAudioEngineManualRenderingMode ManualRenderingMode { get; }
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("manualRenderingFormat")]
 		AVAudioFormat ManualRenderingFormat { get; }
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("manualRenderingMaximumFrameCount")]
 		uint ManualRenderingMaximumFrameCount { get; }
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("manualRenderingSampleTime")]
 		long ManualRenderingSampleTime { get; }
 	}
 
-	[NoWatch]
-	[iOS (8,0)][Mac (10,10)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (AVAudioNode))]
 	interface AVAudioEnvironmentNode : AVAudioMixing {
 		[Export ("nextAvailableInputBus")]
@@ -1041,8 +1041,8 @@ namespace XamCore.AVFoundation {
 		float OutputVolume { get; set; } /* float, not CGFloat */
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0)][Mac (10,10)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // returns a nil handle
 	interface AVAudioEnvironmentDistanceAttenuationParameters {
@@ -1059,8 +1059,8 @@ namespace XamCore.AVFoundation {
 		float RolloffFactor { get; set; } /* float, not CGFloat */
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0)][Mac (10,10)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // returns a nil handle
 	interface AVAudioEnvironmentReverbParameters {
@@ -1077,8 +1077,8 @@ namespace XamCore.AVFoundation {
 		void LoadFactoryReverbPreset (AVAudioUnitReverbPreset preset);
 	}
 	
-	[Watch (3,0)]
-	[iOS (8,0)][Mac (10,10)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (NSObject))]
 	interface AVAudioFile {
 		[Export ("initForReading:error:")]
@@ -1124,8 +1124,8 @@ namespace XamCore.AVFoundation {
 		bool WriteFromBuffer (AVAudioPcmBuffer buffer, out NSError outError);
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0)][Mac (10,10)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (NSObject))]
 	interface AVAudioFormat : NSSecureCoding {
 		[Export ("initWithStreamDescription:")]
@@ -1152,8 +1152,8 @@ namespace XamCore.AVFoundation {
 		[Wrap ("this (settings.Dictionary)")]
 		IntPtr Constructor (AudioSettings settings);
 
-		[NoWatch]
-		[iOS (9,0)][Mac (10,11)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("initWithCMAudioFormatDescription:")]
 		IntPtr Constructor (CMAudioFormatDescription formatDescription);
 
@@ -1184,20 +1184,20 @@ namespace XamCore.AVFoundation {
 		[Wrap ("WeakSettings")]
 		AudioSettings Settings { get; }
 
-		[NoWatch]
-		[iOS (9,0)][Mac (10,11)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("formatDescription")]
 		CMAudioFormatDescription FormatDescription { get; }
 
 		[Export ("isEqual:"), Internal]
 		bool IsEqual (NSObject obj);
 		
-		[iOS (10,0), TV (10,0), Watch (3,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[NullAllowed, Export ("magicCookie", ArgumentSemantic.Retain)]
 		NSData MagicCookie { get; set; }
 	}
 
-	[NoWatch] // all members are unavailable
+	[Unavailable (PlatformName.WatchOS)] // all members are unavailable
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface AVAudio3DMixing {
@@ -1226,8 +1226,8 @@ namespace XamCore.AVFoundation {
 		Vector3 Position { get; set; }
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0)][Mac (10,10)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 	[Protocol]
 	interface AVAudioMixing : AVAudioStereoMixing
 #if !WATCH
@@ -1235,7 +1235,7 @@ namespace XamCore.AVFoundation {
 #endif
 	{
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 #if XAMCORE_4_0
 		// Apple added a new required member in iOS 9, but that breaks our binary compat, so we can't do that in our existing code.
 		[Abstract]
@@ -1249,9 +1249,9 @@ namespace XamCore.AVFoundation {
 		float Volume { get; set; } /* float, not CGFloat */
 	}
 
-	[Watch (3,0)]
-	[iOS (9,0), Mac (10,11)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // Default constructor not allowed : Objective-C exception thrown
 	interface AVAudioMixingDestination : AVAudioMixing {
 
@@ -1259,8 +1259,8 @@ namespace XamCore.AVFoundation {
 		AVAudioConnectionPoint ConnectionPoint { get; }
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0)][Mac (10,10)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface AVAudioStereoMixing {
@@ -1271,8 +1271,8 @@ namespace XamCore.AVFoundation {
 	
 	delegate void AVAudioNodeTapBlock (AVAudioPcmBuffer buffer, AVAudioTime when);
 
-	[Watch (3,0)]
-	[iOS (8,0)][Mac (10,10)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // documented as an abstract class, returned Handle is nil
 	interface AVAudioNode {
@@ -1310,35 +1310,35 @@ namespace XamCore.AVFoundation {
 		void RemoveTapOnBus (nuint bus);
 
 #if XAMCORE_2_0
-		[NoWatch, TV (11, 0), Mac (10, 13, onlyOn64 : true), iOS (11, 0)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("AUAudioUnit")]
 		AUAudioUnit AUAudioUnit { get; }
 #endif
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("latency")]
 		double Latency { get; }
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("outputPresentationLatency")]
 		double OutputPresentationLatency { get; }
 	}
 	
-	[Watch (3,0)]
-	[iOS (8,0)][Mac (10,10)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (AVAudioNode))]
 	[DisableDefaultCtor] // documented as a base class - returned Handle is nil
 	interface AVAudioIONode {
 		[Export ("presentationLatency")]
 		double PresentationLatency { get; }
 
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Export ("audioUnit"), NullAllowed]
 		global::XamCore.AudioUnit.AudioUnit AudioUnit { get; }
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0)][Mac (10,10)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (AVAudioNode))]
 	interface AVAudioMixerNode : AVAudioMixing {
 		[Export ("outputVolume")]
@@ -1348,8 +1348,8 @@ namespace XamCore.AVFoundation {
 		nuint NextAvailableInputBus { get; }
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0)][Mac (10,10)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 	[DisableDefaultCtor] // returned Handle is nil
 	// note: sample source (header) suggest it comes from AVAudioEngine properties
 	[BaseType (typeof (AVAudioIONode))]
@@ -1358,27 +1358,27 @@ namespace XamCore.AVFoundation {
 	}	
 
 #if XAMCORE_2_0
-	[Watch (4,0), TV (11,0), Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	delegate AudioBuffers AVAudioIONodeInputBlock (uint frameCount);
 #endif
 
- 	[Watch (4,0)]
- 	[iOS (8,0)][Mac (10,10)][TV (11,0)]
+ 	[Introduced (PlatformName.WatchOS, 4, 0)]
+ 	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)][Introduced (PlatformName.TvOS, 11, 0)]
  	[BaseType (typeof (AVAudioIONode))]
 	[DisableDefaultCtor] // returned Handle is nil
 	// note: sample source (header) suggest it comes from AVAudioEngine properties
 	interface AVAudioInputNode : AVAudioMixing {
 
 #if XAMCORE_2_0
-		[Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("setManualRenderingInputPCMFormat:inputBlock:")]
 		bool SetManualRenderingInputPcmFormat (AVAudioFormat format, AVAudioIONodeInputBlock block);
 #endif
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0)][Mac (10,10)]
-	[BaseType (typeof (AVAudioBuffer), Name="AVAudioPCMBuffer")]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
+	[BaseType (typeof (AVAudioBuffer), Name = "AVAudioPCMBuffer")]
 	[DisableDefaultCtor] // crash in tests
 	interface AVAudioPcmBuffer {
 
@@ -1405,7 +1405,7 @@ namespace XamCore.AVFoundation {
 		IntPtr Int32ChannelData { get; }
 	}
 
-	[Watch (3,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface AVAudioPlayer {
@@ -1452,7 +1452,7 @@ namespace XamCore.AVFoundation {
 		[Export ("volume")]
 		float Volume { get; set;  } // defined as 'float'
 
-		[iOS (10,0), TV (10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("setVolume:fadeDuration:")]
 		void SetVolume (float volume, double duration);
 	
@@ -1474,50 +1474,50 @@ namespace XamCore.AVFoundation {
 		[Export ("averagePowerForChannel:")]
 		float AveragePower (nuint channelNumber); // defined as 'float'
 
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("deviceCurrentTime")]
 		double DeviceCurrentTime { get;  }
 
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("pan")]
 		float Pan { get; set; } // defined as 'float'
 
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("playAtTime:")]
 		bool PlayAtTime (double time);
 
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("settings")][Protected]
 		NSDictionary WeakSettings { get;  }
 
 		[Wrap ("WeakSettings")]
 		AudioSettings SoundSetting { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("enableRate")]
 		bool EnableRate { get; set; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("rate")]
 		float Rate { get; set; } // defined as 'float'		
 #if !MONOMAC
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("channelAssignments", ArgumentSemantic.Copy), NullAllowed]
 		AVAudioSessionChannelDescription [] ChannelAssignments { get; set; }
 #endif
-		[Since (7,0), Mac (10,9), Export ("initWithData:fileTypeHint:error:")]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9), Export ("initWithData:fileTypeHint:error:")]
 		IntPtr Constructor (NSData data, [NullAllowed] string fileTypeHint, out NSError outError);
 
-		[Since (7,0), Mac (10,9), Export ("initWithContentsOfURL:fileTypeHint:error:")]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9), Export ("initWithContentsOfURL:fileTypeHint:error:")]
 		IntPtr Constructor (NSUrl url, [NullAllowed] string fileTypeHint, out NSError outError);
 
-		[iOS (10, 0), TV (10,0), Mac (10,12)]
-		[Watch (4,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.WatchOS, 4, 0)]
 		[Export ("format")]
 		AVAudioFormat Format { get; }
 	}
 	
-	[Watch (3,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -1529,17 +1529,17 @@ namespace XamCore.AVFoundation {
 		void DecoderError (AVAudioPlayer player, [NullAllowed] NSError error);
 
 #if !MONOMAC
-		[Availability (Deprecated = Platform.iOS_8_0)]
+		[Deprecated (PlatformName.iOS, 8, 0)]
 		[Export ("audioPlayerBeginInterruption:")]
 		void BeginInterruption (AVAudioPlayer  player);
 	
 		[Export ("audioPlayerEndInterruption:")]
-		[Availability (Introduced = Platform.iOS_2_2, Deprecated = Platform.iOS_6_0)]
+		[Introduced (PlatformName.iOS, 2, 2), Deprecated (PlatformName.iOS, 6, 0)]
 		void EndInterruption (AVAudioPlayer player);
 
 		// Deprecated in iOS 6.0 but we have same C# signature
-		[NoTV]
-		[Since (4,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("audioPlayerEndInterruption:withFlags:")]
 		void EndInterruption (AVAudioPlayer player, AVAudioSessionInterruptionFlags flags);
 
@@ -1550,8 +1550,8 @@ namespace XamCore.AVFoundation {
 #endif
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0)][Mac (10,10)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (AVAudioNode))]
 	interface AVAudioPlayerNode : AVAudioMixing {
 
@@ -1567,12 +1567,12 @@ namespace XamCore.AVFoundation {
 		void ScheduleBuffer (AVAudioPcmBuffer buffer, [NullAllowed] AVAudioTime when, AVAudioPlayerNodeBufferOptions options, [NullAllowed] Action completionHandler);
 
 		[Async]
-		[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("scheduleBuffer:completionCallbackType:completionHandler:")]
 		void ScheduleBuffer (AVAudioPcmBuffer buffer, AVAudioPlayerNodeCompletionCallbackType callbackType, [NullAllowed] Action<AVAudioPlayerNodeCompletionCallbackType> completionHandler);
 
 		[Async]
-		[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("scheduleBuffer:atTime:options:completionCallbackType:completionHandler:")]
 		void ScheduleBuffer (AVAudioPcmBuffer buffer, [NullAllowed] AVAudioTime when, AVAudioPlayerNodeBufferOptions options, AVAudioPlayerNodeCompletionCallbackType callbackType, [NullAllowed] Action<AVAudioPlayerNodeCompletionCallbackType> completionHandler);
 
@@ -1581,7 +1581,7 @@ namespace XamCore.AVFoundation {
 		void ScheduleFile (AVAudioFile file, [NullAllowed] AVAudioTime when, [NullAllowed] Action completionHandler);
 
 		[Async]
-		[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("scheduleFile:atTime:completionCallbackType:completionHandler:")]
 		void ScheduleFile (AVAudioFile file, [NullAllowed] AVAudioTime when, AVAudioPlayerNodeCompletionCallbackType callbackType, [NullAllowed] Action<AVAudioPlayerNodeCompletionCallbackType> completionHandler);
 
@@ -1590,7 +1590,7 @@ namespace XamCore.AVFoundation {
 		void ScheduleSegment (AVAudioFile file, long startFrame, uint /* AVAudioFrameCount = uint32_t */ numberFrames, [NullAllowed] AVAudioTime when, [NullAllowed] Action completionHandler);
 
 		[Async]
-		[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("scheduleSegment:startingFrame:frameCount:atTime:completionCallbackType:completionHandler:")]
 		void ScheduleSegment (AVAudioFile file, long startFrame, uint numberFrames, [NullAllowed] AVAudioTime when, AVAudioPlayerNodeCompletionCallbackType callbackType, [NullAllowed] Action<AVAudioPlayerNodeCompletionCallbackType> completionHandler);
 
@@ -1619,14 +1619,14 @@ namespace XamCore.AVFoundation {
 	}
 
 	[BaseType (typeof (NSObject))]
-	[NoTV]
-	[Watch (4,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.WatchOS, 4, 0)]
 	interface AVAudioRecorder {
 		[Export ("initWithURL:settings:error:")][Internal]
 		IntPtr InitWithUrl (NSUrl url, NSDictionary settings, out NSError error);
 		
 		[Internal]
-		[iOS (10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("initWithURL:format:error:")]
 		IntPtr InitWithUrl (NSUrl url, AVAudioFormat format, out NSError outError);
 	
@@ -1691,23 +1691,23 @@ namespace XamCore.AVFoundation {
 		[Export ("averagePowerForChannel:")]
 		float AveragePower (nuint channelNumber); // defined as 'float'
 #if !MONOMAC
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("channelAssignments", ArgumentSemantic.Copy), NullAllowed]
 		AVAudioSessionChannelDescription [] ChannelAssignments { get; set; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("recordAtTime:")]
 		bool RecordAt (double time);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("recordAtTime:forDuration:")]
 		bool RecordAt (double time, double duration);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("deviceCurrentTime")]
 		double DeviceCurrentTime { get; }
 #endif
-		[iOS (10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("format")]
 		AVAudioFormat Format { get; }
 	}
@@ -1715,8 +1715,8 @@ namespace XamCore.AVFoundation {
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
-	[NoTV]
-	[Watch (4,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.WatchOS, 4, 0)]
 	interface AVAudioRecorderDelegate {
 		[Export ("audioRecorderDidFinishRecording:successfully:"), CheckDisposed]
 		void FinishedRecording (AVAudioRecorder recorder, bool flag);
@@ -1725,17 +1725,17 @@ namespace XamCore.AVFoundation {
 		void EncoderError (AVAudioRecorder recorder, [NullAllowed] NSError error);
 
 #if !MONOMAC
-		[Availability (Deprecated = Platform.iOS_8_0)]
+		[Deprecated (PlatformName.iOS, 8, 0)]
 		[Export ("audioRecorderBeginInterruption:")]
 		void BeginInterruption (AVAudioRecorder  recorder);
 
-		[Availability (Deprecated = Platform.iOS_6_0)]
+		[Deprecated (PlatformName.iOS, 6, 0)]
 		[Export ("audioRecorderEndInterruption:")]
 		void EndInterruption (AVAudioRecorder  recorder);
 
 		// Deprecated in iOS 6.0 but we have same C# signature as a method that was deprecated in iOS 8.0
-		[Availability (Deprecated = Platform.iOS_8_0)]
-		[Since (4,0)]
+		[Deprecated (PlatformName.iOS, 8, 0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("audioRecorderEndInterruption:withFlags:")]
 		void EndInterruption (AVAudioRecorder recorder, AVAudioSessionInterruptionFlags flags);
 
@@ -1758,7 +1758,7 @@ namespace XamCore.AVFoundation {
 
 	delegate void AVPermissionGranted (bool granted);
 
-	[Watch (3,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // for binary compatibility this is added in AVAudioSession.cs w/[Obsolete]
 	interface AVAudioSession {
@@ -1766,76 +1766,76 @@ namespace XamCore.AVFoundation {
 		[Export ("sharedInstance"), Static]
 		AVAudioSession SharedInstance ();
 	
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Export ("delegate", ArgumentSemantic.Assign)][NullAllowed]
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		NSObject WeakDelegate { get; set;  }
 
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Wrap ("WeakDelegate")]
 		[Protocolize]
-		[Availability (Introduced = Platform.iOS_4_0, Deprecated = Platform.iOS_6_0, Message = "Use 'AVAudioSession.Notification.Observe*' methods instead.")]
-		[NoTV]
+		[Introduced (PlatformName.iOS, 4, 0, message: "Use 'AVAudioSession.Notification.Observe*' methods instead."), Deprecated (PlatformName.iOS, 6, 0, message: "Use 'AVAudioSession.Notification.Observe*' methods instead.")]
+		[Unavailable (PlatformName.TvOS)]
 		AVAudioSessionDelegate Delegate { get; set;  }
 	
 		[Export ("setActive:error:")]
 		bool SetActive (bool beActive, out NSError outError);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("setActive:withFlags:error:")]
-		[Availability (Introduced = Platform.iOS_4_0, Deprecated = Platform.iOS_6_0, Message = "Use 'SetActive (bool, AVAudioSessionSetActiveOptions, out NSError)' instead.")]
+		[Introduced (PlatformName.iOS, 4, 0, message: "Use 'SetActive (bool, AVAudioSessionSetActiveOptions, out NSError)' instead."), Deprecated (PlatformName.iOS, 6, 0, message: "Use 'SetActive (bool, AVAudioSessionSetActiveOptions, out NSError)' instead.")]
 		bool SetActive (bool beActive, AVAudioSessionFlags flags, out NSError outError);
 
 		[Export ("setCategory:error:")]
 		bool SetCategory (NSString theCategory, out NSError outError);
 	
-		[NoTV]
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_6_0, Message = "Use 'SetPreferredSampleRate' instead.")]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 3, 0, message: "Use 'SetPreferredSampleRate' instead."), Deprecated (PlatformName.iOS, 6, 0, message: "Use 'SetPreferredSampleRate' instead.")]
 		[Export ("setPreferredHardwareSampleRate:error:")]
 		bool SetPreferredHardwareSampleRate (double sampleRate, out NSError outError);
 	
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Export ("setPreferredIOBufferDuration:error:")]
 		bool SetPreferredIOBufferDuration (double duration, out NSError outError);
 	
 		[Export ("category")]
 		NSString Category { get;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("mode")]
 		NSString Mode { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setMode:error:")]
 		bool SetMode (NSString mode, out NSError error);
 	
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("preferredHardwareSampleRate")]
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_6_0, Message = "Use 'PreferredSampleRate' instead.")]
+		[Introduced (PlatformName.iOS, 3, 0, message: "Use 'PreferredSampleRate' instead."), Deprecated (PlatformName.iOS, 6, 0, message: "Use 'PreferredSampleRate' instead.")]
 		double PreferredHardwareSampleRate { get;  }
 	
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Export ("preferredIOBufferDuration")]
 		double PreferredIOBufferDuration { get;  }
 	
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("inputIsAvailable")]
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_6_0)]
+		[Introduced (PlatformName.iOS, 3, 0), Deprecated (PlatformName.iOS, 6, 0)]
 		bool InputIsAvailable { get;  }
 	
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("currentHardwareSampleRate")]
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_6_0, Message = "Use 'SampleRate' instead.")]
+		[Introduced (PlatformName.iOS, 3, 0, message: "Use 'SampleRate' instead."), Deprecated (PlatformName.iOS, 6, 0, message: "Use 'SampleRate' instead.")]
 		double CurrentHardwareSampleRate { get;  }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("currentHardwareInputNumberOfChannels")]
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_6_0, Message = "Use 'InputNumberOfChannels' instead.")]
+		[Introduced (PlatformName.iOS, 3, 0, message: "Use 'InputNumberOfChannels' instead."), Deprecated (PlatformName.iOS, 6, 0, message: "Use 'InputNumberOfChannels' instead.")]
 		nint CurrentHardwareInputNumberOfChannels { get;  }
 	
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("currentHardwareOutputNumberOfChannels")]
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_6_0, Message = "Use 'OutputNumberOfChannels' instead.")]
+		[Introduced (PlatformName.iOS, 3, 0, message: "Use 'OutputNumberOfChannels' instead."), Deprecated (PlatformName.iOS, 6, 0, message: "Use 'OutputNumberOfChannels' instead.")]
 		nint CurrentHardwareOutputNumberOfChannels { get;  }
 
 		[Field ("AVAudioSessionCategoryAmbient")]
@@ -1853,359 +1853,359 @@ namespace XamCore.AVFoundation {
 		[Field ("AVAudioSessionCategoryPlayAndRecord")]
 		NSString CategoryPlayAndRecord { get; }
 
-		[NoTV][NoWatch]
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_10_0)] // FIXME: Find the new value to use
+		[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 3, 0), Deprecated (PlatformName.iOS, 10, 0)] // FIXME: Find the new value to use
 		[Field ("AVAudioSessionCategoryAudioProcessing")]
 		NSString CategoryAudioProcessing { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVAudioSessionModeDefault")]
 		NSString ModeDefault { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVAudioSessionModeVoiceChat")]
 		NSString ModeVoiceChat { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVAudioSessionModeVideoRecording")]
 		NSString ModeVideoRecording { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVAudioSessionModeMeasurement")]
 		NSString ModeMeasurement { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVAudioSessionModeGameChat")]
 		NSString ModeGameChat { get; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("setActive:withOptions:error:")]
 		bool SetActive (bool active, AVAudioSessionSetActiveOptions options, out NSError outError);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("availableCategories")]
 		string [] AvailableCategories { get; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("setCategory:withOptions:error:")]
 		bool SetCategory (string category, AVAudioSessionCategoryOptions options, out NSError outError);
 		
-		[iOS (10,0), TV (10,0), Watch (3,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
 		[Export ("setCategory:mode:options:error:")]
 		bool SetCategory (string category, string mode, AVAudioSessionCategoryOptions options, out NSError outError);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("categoryOptions")]
 		AVAudioSessionCategoryOptions CategoryOptions { get;  }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("availableModes")]
 		string [] AvailableModes { get; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("overrideOutputAudioPort:error:")]
 		bool OverrideOutputAudioPort (AVAudioSessionPortOverride portOverride, out NSError outError);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("otherAudioPlaying")]
 		bool OtherAudioPlaying { [Bind ("isOtherAudioPlaying")] get;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("currentRoute")]
 		AVAudioSessionRouteDescription CurrentRoute { get;  }
 
-		[NoWatch, Since (6,0)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("setPreferredSampleRate:error:")]
 		bool SetPreferredSampleRate (double sampleRate, out NSError error);
 		
-		[NoWatch, Since (6,0)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("preferredSampleRate")]
 		double PreferredSampleRate { get;  }
 
-		[NoWatch]
-		[Since (6,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("inputGain")]
 		float InputGain { get;  } // defined as 'float'
 
-		[NoWatch]
-		[Since (6,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("inputGainSettable")]
 		bool InputGainSettable { [Bind ("isInputGainSettable")] get;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("inputAvailable")]
 		bool InputAvailable { [Bind ("isInputAvailable")] get;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("sampleRate")]
 		double SampleRate { get;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("inputNumberOfChannels")]
 		nint InputNumberOfChannels { get;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("outputNumberOfChannels")]
 		nint OutputNumberOfChannels { get;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("outputVolume")]
 		float OutputVolume { get;  } // defined as 'float'
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("inputLatency")]
 		double InputLatency { get;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("outputLatency")]
 		double OutputLatency { get;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("IOBufferDuration")]
 		double IOBufferDuration { get;  }
 
-		[NoWatch]
-		[Since (6,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("setInputGain:error:")]
 		bool SetInputGain (float /* defined as 'float' */ gain, out NSError outError);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("AVAudioSessionInterruptionNotification")]
 		[Notification (typeof (AVAudioSessionInterruptionEventArgs))]
 		NSString InterruptionNotification { get; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("AVAudioSessionRouteChangeNotification")]
 		[Notification (typeof (AVAudioSessionRouteChangeEventArgs))]
 		NSString RouteChangeNotification { get; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("AVAudioSessionMediaServicesWereResetNotification")]
 		[Notification]
 		NSString MediaServicesWereResetNotification { get; }
 
-		[Since (7,0), Notification, Field ("AVAudioSessionMediaServicesWereLostNotification")]
+		[Introduced (PlatformName.iOS, 7, 0), Notification, Field ("AVAudioSessionMediaServicesWereLostNotification")]
 		NSString MediaServicesWereLostNotification { get; }
 		
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("AVAudioSessionCategoryMultiRoute")]
 		NSString CategoryMultiRoute { get; }
 		
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("AVAudioSessionModeMoviePlayback")]
 		NSString ModeMoviePlayback { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("AVAudioSessionModeVideoChat")]
 		NSString ModeVideoChat { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("AVAudioSessionModeSpokenAudio")]
 		NSString ModeSpokenAudio { get; }
 		
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("AVAudioSessionPortLineIn")]
 		NSString PortLineIn { get; }
 		
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("AVAudioSessionPortBuiltInMic")]
 		NSString PortBuiltInMic { get; }
 		
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("AVAudioSessionPortHeadsetMic")]
 		NSString PortHeadsetMic { get; }
 		
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("AVAudioSessionPortLineOut")]
 		NSString PortLineOut { get; }
 		
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("AVAudioSessionPortHeadphones")]
 		NSString PortHeadphones { get; }
 		
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("AVAudioSessionPortBluetoothA2DP")]
 		NSString PortBluetoothA2DP { get; }
 		
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("AVAudioSessionPortBuiltInReceiver")]
 		NSString PortBuiltInReceiver { get; }
 		
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("AVAudioSessionPortBuiltInSpeaker")]
 		NSString PortBuiltInSpeaker { get; }
 		
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("AVAudioSessionPortHDMI")]
 		NSString PortHdmi { get; }
 		
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("AVAudioSessionPortAirPlay")]
 		NSString PortAirPlay { get; }
 		
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("AVAudioSessionPortBluetoothHFP")]
 		NSString PortBluetoothHfp { get; }
 		
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("AVAudioSessionPortUSBAudio")]
 		NSString PortUsbAudio { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("AVAudioSessionPortBluetoothLE")]
 		NSString PortBluetoothLE { get; }
 
-		[Since (7,1)]
+		[Introduced (PlatformName.iOS, 7, 1)]
 		[Field ("AVAudioSessionPortCarAudio")]
 		NSString PortCarAudio { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[UnifiedInternal, Field ("AVAudioSessionLocationUpper")]
 		NSString LocationUpper { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[UnifiedInternal, Field ("AVAudioSessionLocationLower")]
 		NSString LocationLower { get; }
 		
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("inputDataSources"), NullAllowed]
 		AVAudioSessionDataSourceDescription [] InputDataSources { get;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("inputDataSource")]
 		AVAudioSessionDataSourceDescription InputDataSource { get;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("outputDataSources"), NullAllowed]
 		AVAudioSessionDataSourceDescription [] OutputDataSources { get;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("outputDataSource")]
 		AVAudioSessionDataSourceDescription OutputDataSource { get;  }
 		
-		[NoWatch]
-		[Since (6,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("setInputDataSource:error:")]
 		[PostGet ("InputDataSource")]
 		bool SetInputDataSource ([NullAllowed] AVAudioSessionDataSourceDescription dataSource, out NSError outError);
 
-		[NoWatch]
-		[Since (6,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("setOutputDataSource:error:")]
 		[PostGet ("OutputDataSource")]
 		bool SetOutputDataSource ([NullAllowed] AVAudioSessionDataSourceDescription dataSource, out NSError outError);
 
-		[NoTV]
-		[Watch (4,0)]
-		[Since (7,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.WatchOS, 4, 0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("requestRecordPermission:")]
 		void RequestRecordPermission (AVPermissionGranted responseCallback);
 
-		[NoWatch, Since (7,0)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("setPreferredInput:error:")]
 		bool SetPreferredInput ([NullAllowed] AVAudioSessionPortDescription inPort, out NSError outError);
 
-		[NoWatch, Since (7,0)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("preferredInput", ArgumentSemantic.Copy), NullAllowed]
 		AVAudioSessionPortDescription PreferredInput { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("availableInputs")]
 		AVAudioSessionPortDescription [] AvailableInputs { get; }
 
-		[NoWatch]
-		[Since (7,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("setPreferredInputNumberOfChannels:error:")]
 		bool SetPreferredInputNumberOfChannels (nint count, out NSError outError);
 	
-		[NoWatch]
-		[Since (7,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("preferredInputNumberOfChannels")]
 		nint GetPreferredInputNumberOfChannels ();
 	
-		[NoWatch]
-		[Since (7,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("setPreferredOutputNumberOfChannels:error:")]
 		bool SetPreferredOutputNumberOfChannels (nint count, out NSError outError);
 	
-		[NoWatch]
-		[Since (7,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("preferredOutputNumberOfChannels")]
 		nint GetPreferredOutputNumberOfChannels ();
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("maximumInputNumberOfChannels")]
 		nint MaximumInputNumberOfChannels { get; }
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("maximumOutputNumberOfChannels")]
 		nint MaximumOutputNumberOfChannels { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[UnifiedInternal, Field ("AVAudioSessionOrientationTop")]
 		NSString OrientationTop { get; }
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[UnifiedInternal, Field ("AVAudioSessionOrientationBottom")]
 		NSString OrientationBottom { get; }
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[UnifiedInternal, Field ("AVAudioSessionOrientationFront")]
 		NSString OrientationFront { get; }
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[UnifiedInternal, Field ("AVAudioSessionOrientationBack")]
 		NSString OrientationBack { get; }
 
-		[Since (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("AVAudioSessionOrientationLeft")]
 		NSString OrientationLeft { get; }
 
-		[Since (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("AVAudioSessionOrientationRight")]
 		NSString OrientationRight { get; }
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[UnifiedInternal, Field ("AVAudioSessionPolarPatternOmnidirectional")]
 		NSString PolarPatternOmnidirectional { get; }
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[UnifiedInternal, Field ("AVAudioSessionPolarPatternCardioid")]
 		NSString PolarPatternCardioid { get; }
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[UnifiedInternal, Field ("AVAudioSessionPolarPatternSubcardioid")]
 		NSString PolarPatternSubcardioid { get; }
 
 		// 8.0
-		[NoTV, NoWatch]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("recordPermission")]
 		AVAudioSessionRecordPermission RecordPermission { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("secondaryAudioShouldBeSilencedHint")]
 		bool SecondaryAudioShouldBeSilencedHint { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("AVAudioSessionSilenceSecondaryAudioHintNotification")]
 		[Notification (typeof (AVAudioSessionSecondaryAudioHintEventArgs))]
 		NSString SilenceSecondaryAudioHintNotification { get; }
 		
-		[NoWatch, NoTV, iOS(10,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("setAggregatedIOPreference:error:")]
 		bool SetAggregatedIOPreference (AVAudioSessionIOType ioType, out NSError error);
 
-		[TV (11,0), NoWatch, iOS (11,0), NoMac]
+		[Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.MacOSX)]
 		[Export ("setCategory:mode:routeSharingPolicy:options:error:")]
 		bool SetCategory (string category, string mode, AVAudioSessionRouteSharingPolicy policy, AVAudioSessionCategoryOptions options, [NullAllowed] out NSError outError);
 
-		[TV (11, 0), NoWatch, iOS (11, 0), NoMac]
+		[Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.MacOSX)]
 		[Export ("routeSharingPolicy")]
 		AVAudioSessionRouteSharingPolicy RouteSharingPolicy { get; }
 	}
 	
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (NSObject))]
 	interface AVAudioSessionDataSourceDescription {
 		[Export ("dataSourceID")]
@@ -2215,42 +2215,42 @@ namespace XamCore.AVFoundation {
 		string DataSourceName { get;  }
 
 #if XAMCORE_2_0
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("location", ArgumentSemantic.Copy)]
 		[Internal]
 		NSString Location_ { get; }
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("orientation", ArgumentSemantic.Copy)]
 		[Internal]
 		NSString Orientation_ { get; }
 #else
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("location", ArgumentSemantic.Copy), NullAllowed]
 		string Location { get; }
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("orientation", ArgumentSemantic.Copy), NullAllowed]
 		string Orientation { get; }
 #endif
 
-		[NoWatch]
-		[Since (7,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[UnifiedInternal, Export ("supportedPolarPatterns")]
 		NSString [] SupportedPolarPatterns { get; }
 	
-		[NoWatch]
-		[Since (7,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[UnifiedInternal, Export ("selectedPolarPattern", ArgumentSemantic.Copy)]
 		NSString SelectedPolarPattern { get; }
 	
-		[NoWatch]
-		[Since (7,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[UnifiedInternal, Export ("preferredPolarPattern", ArgumentSemantic.Copy)]
 		NSString PreferredPolarPattern { get; }
 	
-		[NoWatch]
-		[Since (7,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[UnifiedInternal, Export ("setPreferredPolarPattern:error:")]
 		bool SetPreferredPolarPattern ([NullAllowed] NSString pattern, out NSError outError);
 		
@@ -2263,7 +2263,7 @@ namespace XamCore.AVFoundation {
 		[Export ("AVAudioSessionInterruptionOptionKey")]
 		AVAudioSessionInterruptionOptions Option { get; }
 
-		[iOS (10, 3), NoMac, TV (10, 2), Watch (3,2)]
+		[Introduced (PlatformName.iOS, 10, 3), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.WatchOS, 3, 2)]
 		[NullAllowed]
 		[Export ("AVAudioSessionInterruptionWasSuspendedKey")]
 		bool WasSuspended { get; }
@@ -2280,7 +2280,7 @@ namespace XamCore.AVFoundation {
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
-	[NoTV][NoWatch]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 	interface AVAudioSessionDelegate {
 		[Export ("beginInterruption")]
 		void BeginInterruption ();
@@ -2291,13 +2291,13 @@ namespace XamCore.AVFoundation {
 		[Export ("inputIsAvailableChanged:")]
 		void InputIsAvailableChanged (bool isInputAvailable);
 	
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("endInterruptionWithFlags:")]
 		void EndInterruption (AVAudioSessionInterruptionFlags flags);
 	}
 
-	[Watch (3,0)]
-	[Since (6,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (NSObject))]
 	interface AVAudioSessionChannelDescription {
 		[Export ("channelName")]
@@ -2309,13 +2309,13 @@ namespace XamCore.AVFoundation {
 		[Export ("channelNumber")]
 		nint ChannelNumber { get;  }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("channelLabel")]
 		int /* AudioChannelLabel = UInt32 */ ChannelLabel { get; }
 	}
 
-	[Watch (3,0)]
-	[Since (6,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (NSObject))]
 	interface AVAudioSessionPortDescription {
 		[Export ("portType")]
@@ -2327,14 +2327,14 @@ namespace XamCore.AVFoundation {
 		[Export ("UID")]
 		string UID { get;  }
 
-		[iOS (10, 0), TV (10,0), Watch (3,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
 		[Export ("hasHardwareVoiceCallProcessing")]
 		bool HasHardwareVoiceCallProcessing { get; }
 
 		[Export ("channels"), NullAllowed]
 		AVAudioSessionChannelDescription [] Channels { get;  }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("dataSources"), NullAllowed]
 #if XAMCORE_4_0
 		AVAudioSessionDataSourceDescription [] DataSources { get; }
@@ -2342,25 +2342,25 @@ namespace XamCore.AVFoundation {
 		AVAudioSessionDataSourceDescription [] DataSourceDescriptions { get; }
 #endif
 
-		[NoWatch]
-		[Since (7,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("selectedDataSource", ArgumentSemantic.Copy), NullAllowed]
 		AVAudioSessionDataSourceDescription SelectedDataSource { get; }
 
-		[NoWatch]
-		[Since (7,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("preferredDataSource", ArgumentSemantic.Copy), NullAllowed]
 		AVAudioSessionDataSourceDescription PreferredDataSource { get; }
 
-		[NoWatch]
-		[Since (7,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("setPreferredDataSource:error:")]
 		bool SetPreferredDataSource ([NullAllowed] AVAudioSessionDataSourceDescription dataSource, out NSError outError);
 		
 	}
 
-	[Watch (3,0)]
-	[Since (6,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (NSObject))]
 	interface AVAudioSessionRouteDescription {
 		[Export ("inputs")]
@@ -2372,7 +2372,7 @@ namespace XamCore.AVFoundation {
 	}
 #endif
 
-	[NoWatch, iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (AVAudioNode))]
 	[DisableDefaultCtor] // returns a nil handle
 	interface AVAudioUnit {
@@ -2399,19 +2399,19 @@ namespace XamCore.AVFoundation {
 		bool LoadAudioUnitPreset (NSUrl url, out NSError error);
 
 #if XAMCORE_2_0
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Static]
 		[Export ("instantiateWithComponentDescription:options:completionHandler:")]
 		[Async]
 		void FromComponentDescription (AudioComponentDescription audioComponentDescription, AudioComponentInstantiationOptions options, Action<AVAudioUnit, NSError> completionHandler);
 
-		[NoWatch, iOS (9,0), Mac (10,11, onlyOn64 : true)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Export ("AUAudioUnit")]
 		AUAudioUnit AUAudioUnit { get; }
 #endif
 	}
 
-	[NoWatch, iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (AVAudioUnitEffect))]
 	interface AVAudioUnitDelay {
 		[Export ("delayTime")]
@@ -2427,8 +2427,8 @@ namespace XamCore.AVFoundation {
 		float WetDryMix { get; set; } /* float, not CGFloat */
 	}
 
-	[NoWatch]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (AVAudioUnitEffect))]
 	interface AVAudioUnitDistortion {
 		[Export ("preGain")]
@@ -2441,7 +2441,7 @@ namespace XamCore.AVFoundation {
 		void LoadFactoryPreset (AVAudioUnitDistortionPreset preset);
 	}
 
-	[NoWatch, iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (AVAudioUnit))]
 	[DisableDefaultCtor] // returns a nil handle
 	interface AVAudioUnitEffect {
@@ -2457,8 +2457,8 @@ namespace XamCore.AVFoundation {
 		bool Bypass { get; set; }
 	}
 
-	[NoWatch]
-	[iOS (8,0)][Mac (10,10)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (AVAudioUnitEffect))]
 	interface AVAudioUnitEQ {
 		[Export ("initWithNumberOfBands:")]
@@ -2471,8 +2471,8 @@ namespace XamCore.AVFoundation {
 		float GlobalGain { get; set; } /* float, not CGFloat */
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0)][Mac (10,10)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // returns a nil handle
 	interface AVAudioUnitEQFilterParameters {
@@ -2492,7 +2492,7 @@ namespace XamCore.AVFoundation {
 		bool Bypass { get; set; }
 	}
 
-	[NoWatch, iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (AVAudioUnit))]
 	[DisableDefaultCtor] // returns a nil handle
 	interface AVAudioUnitGenerator : AVAudioMixing {
@@ -2508,8 +2508,8 @@ namespace XamCore.AVFoundation {
 		bool Bypass { get; set; }
 	}
 
-	[NoWatch, iOS (8,0)]
-	[BaseType (typeof (AVAudioUnit), Name="AVAudioUnitMIDIInstrument")]
+	[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 8, 0)]
+	[BaseType (typeof (AVAudioUnit), Name = "AVAudioUnitMIDIInstrument")]
 	[DisableDefaultCtor] // returns a nil handle
 	interface AVAudioUnitMidiInstrument : AVAudioMixing { 
 		[Export ("initWithAudioComponentDescription:")]
@@ -2554,7 +2554,7 @@ namespace XamCore.AVFoundation {
 		void SendMidiSysExEvent (NSData midiData);
 	}
 
-	[NoWatch, iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (AVAudioUnitMidiInstrument))]
 	interface AVAudioUnitSampler {
 		[Export ("stereoPan")]
@@ -2576,7 +2576,7 @@ namespace XamCore.AVFoundation {
 		bool LoadAudioFiles (NSUrl [] audioFiles, out NSError outError);
 	}
 
-	[NoWatch, iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (AVAudioUnitEffect))]
 	interface AVAudioUnitReverb {
 
@@ -2588,7 +2588,7 @@ namespace XamCore.AVFoundation {
 	}
 	
 
-	[NoWatch, iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (AVAudioUnit))]
 	[DisableDefaultCtor] // returns a nil handle
 	interface AVAudioUnitTimeEffect {
@@ -2604,7 +2604,7 @@ namespace XamCore.AVFoundation {
 		bool Bypass { get; set; }
 	}
 	
-	[NoWatch, iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (AVAudioUnitTimeEffect))]
 	interface AVAudioUnitTimePitch {
 		[Export ("initWithAudioComponentDescription:")]
@@ -2626,7 +2626,7 @@ namespace XamCore.AVFoundation {
 		float Overlap { get; set; } /* float, not CGFloat */
 	}
 
-	[NoWatch, iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (AVAudioUnitTimeEffect))]
 	interface AVAudioUnitVarispeed {
 		[Export ("initWithAudioComponentDescription:")]
@@ -2641,8 +2641,8 @@ namespace XamCore.AVFoundation {
 		float Rate { get; set; } /* float, not CGFloat */
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0)][Mac (10,10)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (NSObject))]
 	interface AVAudioTime {
 		[Export ("initWithAudioTimeStamp:sampleRate:")]
@@ -2697,8 +2697,8 @@ namespace XamCore.AVFoundation {
 		AVAudioTime ExtrapolateTimeFromAnchor (AVAudioTime anchorTime);
 	}
 
-	[Watch (3,0)]
-	[iOS (9,0), Mac(10,11)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // Docs/headers do not state that init is disallowed but if 
 	// you get an instance that way and try to use it, it will inmediatelly crash also tested in ObjC app same result
@@ -2774,8 +2774,8 @@ namespace XamCore.AVFoundation {
 		NSNumber[] AvailableEncodeChannelLayoutTags { get; }
 	}
 
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (NSObject))]
 	// Objective-C exception thrown.  Name: NSInvalidArgumentException Reason: *** initialization method -init cannot be sent to an abstract object of class AVAsset: Create a concrete instance!
 	[DisableDefaultCtor]
@@ -2793,7 +2793,7 @@ namespace XamCore.AVFoundation {
 		CGAffineTransform PreferredTransform { get;  }
 
 		[Export ("naturalSize")]
-		[Availability (Introduced = Platform.iOS_4_0 | Platform.Mac_10_7, Deprecated = Platform.iOS_5_0 | Platform.Mac_10_8, Message = "Use 'NaturalSize/PreferredTransform' as appropriate on the video track instead.")]
+		[Introduced (PlatformName.iOS, 4, 0, message: "Use 'NaturalSize/PreferredTransform' as appropriate on the video track instead."), Introduced (PlatformName.MacOSX, 10, 7, message: "Use 'NaturalSize/PreferredTransform' as appropriate on the video track instead."), Deprecated (PlatformName.iOS, 5, 0, message: "Use 'NaturalSize/PreferredTransform' as appropriate on the video track instead."), Deprecated (PlatformName.MacOSX, 10, 8, message: "Use 'NaturalSize/PreferredTransform' as appropriate on the video track instead.")]
 		CGSize NaturalSize { get;  }
 
 		[Export ("providesPreciseDurationAndTiming")]
@@ -2841,61 +2841,61 @@ namespace XamCore.AVFoundation {
 		[Wrap ("GetMetadataForFormat (new NSString (format.GetConstant ()))")]
 		AVMetadataItem [] GetMetadataForFormat (AVMetadataFormat format);
 
-		[Since (4,2)]
+		[Introduced (PlatformName.iOS, 4, 2)]
 		[Export ("hasProtectedContent")]
 		bool ProtectedContent { get; }
 
-		[Since (4,3)]
+		[Introduced (PlatformName.iOS, 4, 3)]
 		[Export ("availableChapterLocales")]
 		NSLocale [] AvailableChapterLocales { get; }
 
-		[Since (4,3)]
+		[Introduced (PlatformName.iOS, 4, 3)]
 		[Export ("chapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:")]
 		AVTimedMetadataGroup [] GetChapterMetadataGroups (NSLocale forLocale, [NullAllowed] AVMetadataItem [] commonKeys);
 
-		[Since (4,3)]
+		[Introduced (PlatformName.iOS, 4, 3)]
 		[Export ("isPlayable")]
 		bool Playable { get; }
 
-		[Since (4,3)]
+		[Introduced (PlatformName.iOS, 4, 3)]
 		[Export ("isExportable")]
 		bool Exportable { get; }
 
-		[Since (4,3)]
+		[Introduced (PlatformName.iOS, 4, 3)]
 		[Export ("isReadable")]
 		bool Readable { get; }
 
-		[Since (4,3)]
+		[Introduced (PlatformName.iOS, 4, 3)]
 		[Export ("isComposable")]
 		bool Composable { get; }
 
 		// 5.0 APIs:
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Static, Export ("assetWithURL:")]
 		AVAsset FromUrl (NSUrl url);
 
-		[Since (5, 0)]
-		[Mac (10,8)]
+		[Introduced (PlatformName.iOS, 5, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[Export ("availableMediaCharacteristicsWithMediaSelectionOptions")]
 		string [] AvailableMediaCharacteristicsWithMediaSelectionOptions { get; }
 
 #if !MONOMAC
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("compatibleWithSavedPhotosAlbum")]
 		bool CompatibleWithSavedPhotosAlbum  { [Bind ("isCompatibleWithSavedPhotosAlbum")] get; }
 #endif
 
-		[Since (5, 0)]
-		[Mac (10,8)]
+		[Introduced (PlatformName.iOS, 5, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[Export ("creationDate"), NullAllowed]
 		AVMetadataItem CreationDate { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("referenceRestrictions")]
 		AVAssetReferenceRestrictions ReferenceRestrictions { get; }
 
-		[Since (5,0)]
-		[Mac (10,8)]
+		[Introduced (PlatformName.iOS, 5, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[return: NullAllowed]
 		[Export ("mediaSelectionGroupForMediaCharacteristic:")]
 		AVMediaSelectionGroup MediaSelectionGroupForMediaCharacteristic (string avMediaCharacteristic);
@@ -2910,87 +2910,87 @@ namespace XamCore.AVFoundation {
 		[Async ("LoadValuesTaskAsync")]
 		void LoadValuesAsynchronously (string [] keys, NSAction handler);
 
-		[Since (6, 0)]
-		[Mac (10,8)]
+		[Introduced (PlatformName.iOS, 6, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[Export ("chapterMetadataGroupsBestMatchingPreferredLanguages:")]
 		AVTimedMetadataGroup [] GetChapterMetadataGroupsBestMatchingPreferredLanguages (string [] languages);
 
-		[Since (7,0)]
-		[Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("trackGroups", ArgumentSemantic.Copy)]
 		AVAssetTrackGroup [] TrackGroups { get; }
 
-		[iOS (8,0), Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("metadata")]
 		AVMetadataItem [] Metadata { get; }
 
 		[Export ("unusedTrackID")]
 		int /* CMPersistentTrackID -> int32_t */ UnusedTrackId { get; }  // TODO: wrong name, should have benn UnusedTrackID
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("preferredMediaSelection")]
 		AVMediaSelection PreferredMediaSelection { get; }
 
 		// AVAsset (AVAssetFragments) Category
 		// This is being inlined because there are no property extensions
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("canContainFragments")]
 		bool CanContainFragments { get; }
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("containsFragments")]
 		bool ContainsFragments { get; }
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("compatibleWithAirPlayVideo")]
 		bool CompatibleWithAirPlayVideo { [Bind ("isCompatibleWithAirPlayVideo")] get; }
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVAssetDurationDidChangeNotification")]
 		[Notification]
 		NSString DurationDidChangeNotification { get; }
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVAssetChapterMetadataGroupsDidChangeNotification")]
 		[Notification]
 		NSString ChapterMetadataGroupsDidChangeNotification { get; }
 
-		[iOS(9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Notification, Field ("AVAssetMediaSelectionGroupsDidChangeNotification")]
 		NSString MediaSelectionGroupsDidChangeNotification { get; }
 
 #if MONOMAC
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVAssetContainsFragmentsDidChangeNotification")]
 		[Notification]
 		NSString ContainsFragmentsDidChangeNotification { get; }
 
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVAssetWasDefragmentedNotification")]
 		[Notification]
 		NSString WasDefragmentedNotification { get; }
 #endif
 
-		[iOS (10, 2), Mac (10,12,2), TV (10, 2)]
+		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 2), Introduced (PlatformName.TvOS, 10, 2)]
 		[Export ("overallDurationHint")]
 		CMTime OverallDurationHint { get; }
 
-		[iOS (11, 0), TV (11, 0), Mac (10, 13), NoWatch]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Unavailable (PlatformName.WatchOS)]
 		[Export ("allMediaSelections")]
 		AVMediaSelection[] AllMediaSelections { get; }
 	}
 
 #if MONOMAC
 	[Protocol]
-	[Mac (10,11)]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
 	interface AVFragmentMinding {
 
 		[Export ("isAssociatedWithFragmentMinder")]
 		bool IsAssociatedWithFragmentMinder ();
 	}
 
-	[Mac (10,11)]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (AVUrlAsset))]
 	interface AVFragmentedAsset : AVFragmentMinding {
@@ -3006,9 +3006,9 @@ namespace XamCore.AVFoundation {
 		AVFragmentedAssetTrack [] Tracks { get; }
 	}
 
-	[Mac (10,11)]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
 	[Category]
-	[BaseType (typeof(AVFragmentedAsset))]
+	[BaseType (typeof (AVFragmentedAsset))]
 	interface AVFragmentedAsset_AVFragmentedAssetTrackInspection {
 
 		[Export ("trackWithTrackID:")]
@@ -3029,8 +3029,8 @@ namespace XamCore.AVFoundation {
 
 	}
 
-	[Mac (10,11)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
+	[BaseType (typeof (NSObject))]
 	interface AVFragmentedAssetMinder {
 
 		[Static]
@@ -3050,7 +3050,7 @@ namespace XamCore.AVFoundation {
 		void RemoveFragmentedAsset (AVAsset asset);
 	}
 
-	[Mac (10,11)]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (AVAssetTrack))]
 	interface AVFragmentedAssetTrack {
@@ -3071,8 +3071,8 @@ namespace XamCore.AVFoundation {
 
 #endif // MONOMAC
 
-	[NoWatch, NoTV, iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface AVCaptureSynchronizedData
 	{
@@ -3080,8 +3080,8 @@ namespace XamCore.AVFoundation {
 		CMTime Timestamp { get; }
 	}
 
-	[NoWatch, NoTV, iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface AVCaptureSynchronizedDataCollection : INSFastEnumeration
 	{
@@ -3099,9 +3099,9 @@ namespace XamCore.AVFoundation {
 
 	interface IAVCaptureDataOutputSynchronizerDelegate {}
 	
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface AVCaptureDataOutputSynchronizerDelegate
 	{
 		[Abstract]
@@ -3109,8 +3109,8 @@ namespace XamCore.AVFoundation {
 		void DidOutputSynchronizedDataCollection (AVCaptureDataOutputSynchronizer synchronizer, AVCaptureSynchronizedDataCollection synchronizedDataCollection);
 	}
 
-	[NoWatch, NoTV, iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface AVCaptureDataOutputSynchronizer
 	{
@@ -3134,8 +3134,8 @@ namespace XamCore.AVFoundation {
 		DispatchQueue DelegateCallbackQueue { get; }
 	}
 
-	[NoMac, NoWatch, NoTV, iOS (11,0)]
-	[BaseType (typeof(AVCaptureSynchronizedData))]
+	[Unavailable (PlatformName.MacOSX), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (AVCaptureSynchronizedData))]
 	interface AVCaptureSynchronizedSampleBufferData
 	{
 		[Export ("sampleBuffer")]
@@ -3148,16 +3148,16 @@ namespace XamCore.AVFoundation {
 		AVCaptureOutputDataDroppedReason DroppedReason { get; }
 	}
 
-	[NoMac, NoWatch, NoTV, iOS (11,0)]
-	[BaseType (typeof(AVCaptureSynchronizedData))]
+	[Unavailable (PlatformName.MacOSX), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (AVCaptureSynchronizedData))]
 	interface AVCaptureSynchronizedMetadataObjectData
 	{
 		[Export ("metadataObjects")]
 		AVMetadataObject[] MetadataObjects { get; }
 	}
 
-	[NoMac, NoWatch, NoTV, iOS (11,0)]
-	[BaseType (typeof(AVCaptureSynchronizedData))]
+	[Unavailable (PlatformName.MacOSX), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (AVCaptureSynchronizedData))]
 	interface AVCaptureSynchronizedDepthData
 	{
 		[Export ("depthData")]
@@ -3171,7 +3171,7 @@ namespace XamCore.AVFoundation {
 	}
 
 #if MONOMAC
-	[Mac (10,10)]
+	[Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface AVSampleBufferGenerator {
@@ -3190,7 +3190,7 @@ namespace XamCore.AVFoundation {
 		void NotifyOfDataReady (CMSampleBuffer sbuf, Action<bool, NSError> completionHandler);
 	}
 
-	[Mac (10,10)]
+	[Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface AVSampleBufferRequest {
@@ -3223,7 +3223,7 @@ namespace XamCore.AVFoundation {
 
 #endif
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (NSObject))]
 	// <quote>You create an asset generator using initWithAsset: or assetImageGeneratorWithAsset:</quote> http://developer.apple.com/library/ios/#documentation/AVFoundation/Reference/AVAssetImageGenerator_Class/Reference/Reference.html
 	// calling 'init' returns a NIL handle
@@ -3269,28 +3269,28 @@ namespace XamCore.AVFoundation {
 		NSString ApertureModeEncodedPixels { get; }
 
 		// 5.0 APIs
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("requestedTimeToleranceBefore", ArgumentSemantic.Assign)]
 		CMTime RequestedTimeToleranceBefore { get; set;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("requestedTimeToleranceAfter", ArgumentSemantic.Assign)]
 		CMTime RequestedTimeToleranceAfter { get; set;  }
 
-		[Since (6,0)]
-		[Mac (10,9)]
+		[Introduced (PlatformName.iOS, 6, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("asset")]
 		AVAsset Asset { get; }
 
-		[Since (7,0)]
-		[Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("customVideoCompositor", ArgumentSemantic.Copy), NullAllowed]
 		[Protocolize]
 		AVVideoCompositing CustomVideoCompositor { get; }
 	}
 
-	[NoWatch]
-	[Since (4,1)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 1)]
 	[BaseType (typeof (NSObject))]
 	// Objective-C exception thrown.  Name: NSInvalidArgumentException Reason: *** -[AVAssetReader initWithAsset:error:] invalid parameter not satisfying: asset != ((void*)0)
 	[DisableDefaultCtor]
@@ -3331,8 +3331,8 @@ namespace XamCore.AVFoundation {
 		void CancelReading ();
 	}
 
-	[NoWatch]
-	[Since (4,1)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 1)]
 	[BaseType (typeof (NSObject))]
 	// Objective-C exception thrown.  Name: NSInvalidArgumentException Reason: *** initialization method -init cannot be sent to an abstract object of class AVAssetReaderOutput: Create a concrete instance!
 	[DisableDefaultCtor]
@@ -3344,25 +3344,25 @@ namespace XamCore.AVFoundation {
 		[Export ("copyNextSampleBuffer")]
 		CMSampleBuffer CopyNextSampleBuffer ();
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("alwaysCopiesSampleData")]
 		bool AlwaysCopiesSampleData { get; set; }
 
-		[iOS (8,0), Mac (10, 10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("supportsRandomAccess")]
 		bool SupportsRandomAccess { get; set; }
 
-		[iOS (8,0), Mac (10, 10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("resetForReadingTimeRanges:")]
 		void ResetForReadingTimeRanges (NSValue [] timeRanges);
 
-		[iOS (8,0), Mac (10, 10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("markConfigurationAsFinal")]
 		void MarkConfigurationAsFinal ();
 	}
 
-	[NoWatch]
-	[iOS (8,0), Mac (10, 10)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // NSInvalidArgumentException Reason: *** -[AVAssetReaderOutputMetadataAdaptor initWithAssetReaderTrackOutput:] invalid parameter not satisfying: trackOutput != ((void*)0)
 	interface AVAssetReaderOutputMetadataAdaptor {
@@ -3382,8 +3382,8 @@ namespace XamCore.AVFoundation {
 		AVTimedMetadataGroup NextTimedMetadataGroup ();
 	}
 
-	[NoWatch]
-	[iOS (8,0), Mac (10, 10)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (AVAssetReaderOutput))]
 	[DisableDefaultCtor] // NSInvalidArgumentException Reason: *** -[AVAssetReaderSampleReferenceOutput initWithTrack:] invalid parameter not satisfying: track != ((void*)0)
 	interface AVAssetReaderSampleReferenceOutput {
@@ -3399,8 +3399,8 @@ namespace XamCore.AVFoundation {
 		AVAssetReaderSampleReferenceOutput Create (AVAssetTrack track);
 	}
 
-	[NoWatch]
-	[Since (4,1)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 1)]
 	[BaseType (typeof (AVAssetReaderOutput))]
 	// Objective-C exception thrown.  Name: NSInvalidArgumentException Reason: *** -[AVAssetReaderTrackOutput initWithTrack:outputSettings:] invalid parameter not satisfying: track != ((void*)0)
 	[DisableDefaultCtor]
@@ -3434,15 +3434,15 @@ namespace XamCore.AVFoundation {
 		[Export ("outputSettings"), NullAllowed]
 		NSDictionary OutputSettings { get; }
 
-		[Since (7,0)]
-		[Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("audioTimePitchAlgorithm", ArgumentSemantic.Copy)]
 		// DOC: this is a AVAudioTimePitch value
 		NSString AudioTimePitchAlgorithm { get; set; }
 	}
 
-	[NoWatch]
-	[Since (4,1)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 1)]
 	[BaseType (typeof (AVAssetReaderOutput))]
 	// Objective-C exception thrown.  Name: NSInvalidArgumentException Reason: *** -[AVAssetReaderAudioMixOutput initWithAudioTracks:audioSettings:] invalid parameter not satisfying: audioTracks != ((void*)0)
 	[DisableDefaultCtor]
@@ -3480,15 +3480,15 @@ namespace XamCore.AVFoundation {
 		[Wrap ("AudioSettings"), NullAllowed]
 		AudioSettings Settings { get; }
 
-		[Since (7,0)]
-		[Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("audioTimePitchAlgorithm", ArgumentSemantic.Copy)]
 		// This is an AVAudioTimePitch constant
 		NSString AudioTimePitchAlgorithm { get; set; }
 	}
 
-	[NoWatch]
-	[Since (4,1)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 1)]
 	[BaseType (typeof (AVAssetReaderOutput))]
 	// crash application if 'init' is called
 	[DisableDefaultCtor]
@@ -3524,14 +3524,14 @@ namespace XamCore.AVFoundation {
 		[Wrap ("WeakVideoSettings"), NullAllowed]
 		CVPixelBufferAttributes UncompressedVideoSettings { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("customVideoCompositor", ArgumentSemantic.Copy), NullAllowed]
 		[Protocolize]
 		AVVideoCompositing CustomVideoCompositor { get; }
 	}
 
-	[NoWatch]
-	[Since (6,0), Mavericks]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 	[BaseType (typeof (NSObject))]
 #if XAMCORE_2_0
 	[DisableDefaultCtor] // no valid handle, docs now says "You do not create resource loader objects yourself."
@@ -3548,13 +3548,13 @@ namespace XamCore.AVFoundation {
 		void SetDelegate ([Protocolize][NullAllowed] AVAssetResourceLoaderDelegate resourceLoaderDelegate, [NullAllowed] DispatchQueue delegateQueue);
 
 		// AVAssetResourceLoader (AVAssetResourceLoaderContentKeySupport) Category
-		[iOS (9,0), Mac (10, 11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("preloadsEligibleContentKeys")]
 		bool PreloadsEligibleContentKeys { get; set; }
 	}
 
-	[NoWatch]
-	[Since (6,0), Mavericks]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -3565,25 +3565,25 @@ namespace XamCore.AVFoundation {
 		[Export ("resourceLoader:shouldWaitForLoadingOfRequestedResource:")]
 		bool ShouldWaitForLoadingOfRequestedResource (AVAssetResourceLoader resourceLoader, AVAssetResourceLoadingRequest loadingRequest);
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("resourceLoader:didCancelLoadingRequest:")]
 		void DidCancelLoadingRequest (AVAssetResourceLoader resourceLoader, AVAssetResourceLoadingRequest loadingRequest);
 
-		[iOS (8,0), Mac (10, 10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("resourceLoader:shouldWaitForResponseToAuthenticationChallenge:")]
 		bool ShouldWaitForResponseToAuthenticationChallenge (AVAssetResourceLoader resourceLoader, NSUrlAuthenticationChallenge authenticationChallenge);
 
-		[iOS (8,0), Mac (10, 10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("resourceLoader:didCancelAuthenticationChallenge:")]
 		void DidCancelAuthenticationChallenge (AVAssetResourceLoader resourceLoader, NSUrlAuthenticationChallenge authenticationChallenge);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("resourceLoader:shouldWaitForRenewalOfRequestedResource:")]
 		bool ShouldWaitForRenewalOfRequestedResource (AVAssetResourceLoader resourceLoader, AVAssetResourceRenewalRequest renewalRequest);		
 	}
 
-	[NoWatch]
-	[Since (7,0), Mavericks]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // crash at 'description' - not meant to be used callable (it's used from a property getter)
 	interface AVAssetResourceLoadingDataRequest {
@@ -3599,13 +3599,13 @@ namespace XamCore.AVFoundation {
 		[Export ("respondWithData:")]
 		void Respond (NSData responseData);
 
-		[iOS (9,0), Mac (10, 11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("requestsAllDataToEndOfResource")]
 		bool RequestsAllDataToEndOfResource { get; }
 	}
 	
-	[NoWatch]
-	[Since (6,0), Mavericks]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 	[BaseType (typeof (NSObject))]
 #if XAMCORE_2_0
 	[DisableDefaultCtor] // not meant be be user created (resource loader job, see documentation)
@@ -3620,7 +3620,7 @@ namespace XamCore.AVFoundation {
 		bool Finished { /* [Bind ("isFinished")] */ get;  }
 
 		[Export ("finishLoadingWithResponse:data:redirect:")]
-		[Availability (Introduced = Platform.iOS_6_0, Deprecated = Platform.iOS_7_0, Message = "Use the 'Response', 'Redirect' properties and the 'AVAssetResourceLoadingDataRequest.Responds' and 'AVAssetResourceLoadingRequest.FinishLoading' methods instead.")]
+		[Introduced (PlatformName.iOS, 6, 0, message: "Use the 'Response', 'Redirect' properties and the 'AVAssetResourceLoadingDataRequest.Responds' and 'AVAssetResourceLoadingRequest.FinishLoading' methods instead."), Deprecated (PlatformName.iOS, 7, 0, message: "Use the 'Response', 'Redirect' properties and the 'AVAssetResourceLoadingDataRequest.Responds' and 'AVAssetResourceLoadingRequest.FinishLoading' methods instead.")]
 		void FinishLoading ([NullAllowed] NSUrlResponse usingResponse, [NullAllowed] NSData data, [NullAllowed] NSUrlRequest redirect);
 
 		[Export ("finishLoadingWithError:")]
@@ -3631,50 +3631,50 @@ namespace XamCore.AVFoundation {
 		NSData GetStreamingContentKey (NSData appIdentifier, NSData contentIdentifier, [NullAllowed] NSDictionary options, out NSError error);
 
 #if !MONOMAC
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("persistentContentKeyFromKeyVendorResponse:options:error:")]
 		NSData GetPersistentContentKey (NSData keyVendorResponse, [NullAllowed] NSDictionary<NSString,NSObject> options, out NSError error);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("AVAssetResourceLoadingRequestStreamingContentKeyRequestRequiresPersistentKey")]
 		NSString StreamingContentKeyRequestRequiresPersistentKey { get; }
 #endif
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("isCancelled")]
 		bool IsCancelled { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("contentInformationRequest"), NullAllowed]
 		AVAssetResourceLoadingContentInformationRequest ContentInformationRequest { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("dataRequest"), NullAllowed]
 		AVAssetResourceLoadingDataRequest DataRequest { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("response", ArgumentSemantic.Copy), NullAllowed]
 		NSUrlResponse Response { get; set; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("redirect", ArgumentSemantic.Copy), NullAllowed]
 		NSUrlRequest Redirect { get; set; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("finishLoading")]
 		void FinishLoading ();
 	}
 
-	[NoWatch]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[DisableDefaultCtor] // not meant be be user created (resource loader job, see documentation) fix crash
 	[BaseType (typeof (AVAssetResourceLoadingRequest))]
 	interface AVAssetResourceRenewalRequest {
 	}
 	
 
-	[NoWatch]
-	[Since (7,0), Mavericks]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 	[BaseType (typeof (NSObject))]
 #if XAMCORE_2_0
 	[DisableDefaultCtor] // no valid handle, the instance is received (not created) -> see doc
@@ -3689,13 +3689,13 @@ namespace XamCore.AVFoundation {
 		[Export ("byteRangeAccessSupported")]
 		bool ByteRangeAccessSupported { [Bind ("isByteRangeAccessSupported")] get; set; }
 
-		[iOS (8,0), Mac (10, 10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("renewalDate", ArgumentSemantic.Copy), NullAllowed]
 		NSDate RenewalDate { get; set; }
 	}
 
-	[NoWatch]
-	[Since (4,1)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 1)]
 	[BaseType (typeof (NSObject))]
 	// Objective-C exception thrown.  Name: NSInvalidArgumentException Reason: *** -[AVAssetWriter initWithURL:fileType:error:] invalid parameter not satisfying: outputURL != ((void*)0)
 	[DisableDefaultCtor]
@@ -3715,7 +3715,7 @@ namespace XamCore.AVFoundation {
 		[Export ("movieFragmentInterval", ArgumentSemantic.Assign)] 
 		CMTime MovieFragmentInterval { get; set;  }
 
-		[iOS (9,0), Mac (10,11)] // There is no availability attribute on headers but was introduced on iOS9 and Mac 10.11
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)] // There is no availability attribute on headers but was introduced on iOS9 and Mac 10.11
 		[Export ("overallDurationHint", ArgumentSemantic.Assign)]
 		CMTime OverallDurationHint { get; set; }
 
@@ -3767,11 +3767,11 @@ namespace XamCore.AVFoundation {
 		void CancelWriting ();
 
 		[Export ("finishWriting")]
-		[Availability (Introduced = Platform.iOS_4_1, Deprecated = Platform.iOS_6_0, Message = "Use the asynchronous 'FinishWriting (NSAction completionHandler)' instead.")]
+		[Introduced (PlatformName.iOS, 4, 1, message: "Use the asynchronous 'FinishWriting (NSAction completionHandler)' instead."), Deprecated (PlatformName.iOS, 6, 0, message: "Use the asynchronous 'FinishWriting (NSAction completionHandler)' instead.")]
 		bool FinishWriting ();
 
-		[Mac (10,9)]
-		[Since (6,0)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("finishWritingWithCompletionHandler:")]
 		[Async]
 		void FinishWriting (NSAction completionHandler);
@@ -3779,56 +3779,56 @@ namespace XamCore.AVFoundation {
 		[Export ("movieTimeScale")]
 		int /* CMTimeScale = int32_t */ MovieTimeScale { get; set; }
 
-		[Mac (10,9)]
-		[Since (7,0)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("canAddInputGroup:")]
 		bool CanAddInputGroup (AVAssetWriterInputGroup inputGroup);
 
-		[Since (7,0)]
-		[Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("addInputGroup:")]
 		void AddInputGroup (AVAssetWriterInputGroup inputGroup);
 
-		[iOS (7,0), Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("inputGroups")]
 		AVAssetWriterInputGroup [] InputGroups { get; }
 
-		[iOS (8,0), Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("directoryForTemporaryFiles", ArgumentSemantic.Copy), NullAllowed]
 		NSUrl DirectoryForTemporaryFiles { get; set; }
 	}
 
-	[NoWatch]
-	[Since (4,1), Lion]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 1), Introduced (PlatformName.MacOSX, 10, 7)]
 	[BaseType (typeof (NSObject))]
 	// Objective-C exception thrown.  Name: NSInvalidArgumentException Reason: *** -[AVAssetWriterInput initWithMediaType:outputSettings:] invalid parameter not satisfying: mediaType != ((void*)0)
 	[DisableDefaultCtor]
 	interface AVAssetWriterInput {
-		[Since (6,0), MountainLion]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		[DesignatedInitializer]
 		[Protected]
 		[Export ("initWithMediaType:outputSettings:sourceFormatHint:")]
 		IntPtr Constructor (string mediaType, [NullAllowed] NSDictionary outputSettings, [NullAllowed] CMFormatDescription sourceFormatHint);
 
-		[Since (6,0), MountainLion]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		[Wrap ("this (mediaType, outputSettings == null ? null : outputSettings.Dictionary, sourceFormatHint)")]
 		IntPtr Constructor (string mediaType, [NullAllowed] AudioSettings outputSettings, [NullAllowed] CMFormatDescription sourceFormatHint);
 
-		[Since (6,0), MountainLion]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		[Wrap ("this (mediaType, outputSettings == null ? null : outputSettings.Dictionary, sourceFormatHint)")]
 		IntPtr Constructor (string mediaType, [NullAllowed] AVVideoSettingsCompressed outputSettings, [NullAllowed] CMFormatDescription sourceFormatHint);
 
-		[Since (6,0), MountainLion]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		[Static, Internal]
 		[Export ("assetWriterInputWithMediaType:outputSettings:sourceFormatHint:")]
 		AVAssetWriterInput Create (string mediaType, [NullAllowed] NSDictionary outputSettings, [NullAllowed] CMFormatDescription sourceFormatHint);
 
-		[Since (6,0), MountainLion]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		[Static]
 		[Wrap ("Create(mediaType, outputSettings == null ? null : outputSettings.Dictionary, sourceFormatHint)")]
 		AVAssetWriterInput Create (string mediaType, [NullAllowed] AudioSettings outputSettings, [NullAllowed] CMFormatDescription sourceFormatHint);
 
-		[Since (6,0), MountainLion]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		[Static]
 		[Wrap ("Create(mediaType, outputSettings == null ? null : outputSettings.Dictionary, sourceFormatHint)")]
 		AVAssetWriterInput Create (string mediaType, [NullAllowed] AVVideoSettingsCompressed outputSettings, [NullAllowed] CMFormatDescription sourceFormatHint);
@@ -3889,83 +3889,83 @@ namespace XamCore.AVFoundation {
 		[Export ("mediaTimeScale")]
 		int /* CMTimeScale = int32_t */ MediaTimeScale { get; set; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("languageCode", ArgumentSemantic.Copy), NullAllowed]
 		string LanguageCode { get; set; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("extendedLanguageTag", ArgumentSemantic.Copy), NullAllowed]
 		string ExtendedLanguageTag { get; set; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("naturalSize")]
 		CGSize NaturalSize { get; set; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("preferredVolume")]
 		float PreferredVolume { get; set; } // defined as 'float'
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("marksOutputTrackAsEnabled")]
 		bool MarksOutputTrackAsEnabled { get; set; }
 		
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("canAddTrackAssociationWithTrackOfInput:type:")]
 		bool CanAddTrackAssociationWithTrackOfInput (AVAssetWriterInput input, NSString trackAssociationType);
 		
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("addTrackAssociationWithTrackOfInput:type:")]
 		void AddTrackAssociationWithTrackOfInput (AVAssetWriterInput input, NSString trackAssociationType);
 		
-		[Since (6,0), MountainLion]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		[Export ("sourceFormatHint"), NullAllowed]
 		CMFormatDescription SourceFormatHint { get; }
 
 		//
 		// AVAssetWriterInputMultiPass Category
 		//
-		[iOS (8,0), Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("performsMultiPassEncodingIfSupported")]
 		bool PerformsMultiPassEncodingIfSupported { get; set; }
 
-		[iOS (8,0), Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("canPerformMultiplePasses")]
 		bool CanPerformMultiplePasses { get; }
 
-		[iOS (8,0), Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("currentPassDescription"), NullAllowed]
 		AVAssetWriterInputPassDescription CurrentPassDescription { get; }
 
-		[iOS (8,0), Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("respondToEachPassDescriptionOnQueue:usingBlock:")]
 		void SetPassHandler (DispatchQueue queue, Action passHandler);
 
-		[iOS (8,0), Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("markCurrentPassAsFinished")]
 		void MarkCurrentPassAsFinished ();
 
-		[iOS (8,0), Mac (10, 10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("preferredMediaChunkAlignment")]
 		nint PreferredMediaChunkAlignment { get; set; }
 
-		[iOS (8,0), Mac (10, 10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("preferredMediaChunkDuration")]
 		CMTime PreferredMediaChunkDuration { get; set; }
 
-		[iOS (8,0), Mac (10, 10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("sampleReferenceBaseURL", ArgumentSemantic.Copy), NullAllowed]
 		NSUrl SampleReferenceBaseUrl { get; set; }
 
 		// AVAssetWriterInput_AVAssetWriterInputFileTypeSpecificProperties
 
-		[iOS (11, 0), Mac (10, 13), TV (11, 0), NoWatch]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		[Export ("mediaDataLocation")]
 		string MediaDataLocation { get; set; }
 
 	}
 
-	[NoWatch]
-	[iOS (8,0)][Mac (10,10)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (NSObject))]
 	interface AVAssetWriterInputPassDescription {
 
@@ -3973,8 +3973,8 @@ namespace XamCore.AVFoundation {
 		NSValue [] SourceTimeRanges { get; }
 	}
 
-	[NoWatch]
-	[iOS (8,0), Mac (10,10)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // NSInvalidArgumentException Reason: *** -[AVAssetWriterInputMetadataAdaptor initWithAssetWriterInput:] invalid parameter not satisfying: input != ((void*)0)
 	interface AVAssetWriterInputMetadataAdaptor {
@@ -3993,9 +3993,9 @@ namespace XamCore.AVFoundation {
 		bool AppendTimedMetadataGroup (AVTimedMetadataGroup timedMetadataGroup);
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[DisableDefaultCtor] // Objective-C exception thrown.  Name: NSInvalidArgumentException Reason: *** -[AVAssetWriterInputGroup initWithInputs:defaultInput:] invalid parameter not satisfying: inputs != ((void*)0)
-	[Since (7,0), Mavericks, BaseType (typeof (AVMediaSelectionGroup))]
+	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9), BaseType (typeof (AVMediaSelectionGroup))]
 	interface AVAssetWriterInputGroup {
 	
 		[Static, Export ("assetWriterInputGroupWithInputs:defaultInput:")]
@@ -4012,8 +4012,8 @@ namespace XamCore.AVFoundation {
 		AVAssetWriterInput DefaultInput { get; }
 	}
 
-	[NoWatch]
-	[Since (4,1)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 1)]
 	[BaseType (typeof (NSObject))]
 	// Objective-C exception thrown.  Name: NSInvalidArgumentException Reason: *** -[AVAssetWriterInputPixelBufferAdaptor initWithAssetWriterInput:sourcePixelBufferAttributes:] invalid parameter not satisfying: input != ((void*)0)
 	[DisableDefaultCtor]
@@ -4050,8 +4050,8 @@ namespace XamCore.AVFoundation {
 		bool AppendPixelBufferWithPresentationTime (CVPixelBuffer pixelBuffer, CMTime presentationTime);
 	}
 
-	[NoWatch, iOS (10,0), TV (10,0), Mac (10,12)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface AVAssetCache
 	{
@@ -4062,14 +4062,14 @@ namespace XamCore.AVFoundation {
 		AVMediaSelectionOption[] GetMediaSelectionOptions (AVMediaSelectionGroup mediaSelectionGroup);
 	}
 
-	[NoWatch]
-	[Since (4,0)]
-	[BaseType (typeof (AVAsset), Name="AVURLAsset")]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
+	[BaseType (typeof (AVAsset), Name = "AVURLAsset")]
 	// 'init' returns NIL
 	[DisableDefaultCtor]
 	interface AVUrlAsset {
 
-		[TV (10, 2), Mac (10, 12, 4), iOS (10, 3)]
+		[Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 4), Introduced (PlatformName.iOS, 10, 3)]
 		[Export ("mayRequireContentKeysForMediaDataProcessing")]
 		bool MayRequireContentKeysForMediaDataProcessing { get; }
 
@@ -4108,42 +4108,42 @@ namespace XamCore.AVFoundation {
 		[Field ("AVURLAssetPreferPreciseDurationAndTimingKey")]
 		NSString PreferPreciseDurationAndTimingKey { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVURLAssetReferenceRestrictionsKey")]
 		NSString ReferenceRestrictionsKey { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Static, Export ("audiovisualMIMETypes")]
 		string [] AudiovisualMimeTypes { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Static, Export ("audiovisualTypes")]
 		string [] AudiovisualTypes { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Static, Export ("isPlayableExtendedMIMEType:")]
 		bool IsPlayable (string extendedMimeType);
 
-		[Since (6,0), Mavericks]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("resourceLoader")]
 		AVAssetResourceLoader ResourceLoader { get;  }
 
 #if !MONOMAC
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("AVURLAssetHTTPCookiesKey")]
 		NSString HttpCookiesKey { get; }
 #endif
 
-		[iOS (10,0), TV (10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[NullAllowed, Export ("assetCache")]
 		AVAssetCache Cache { get; }
 
-		[iOS (10, 0), TV (10, 0), NoWatch, NoMac]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		[Field ("AVURLAssetAllowsCellularAccessKey")]
 		NSString AllowsCellularAccessKey { get; }	
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (NSObject))]
 	// 'init' returns NIL
 	[DisableDefaultCtor]
@@ -4157,7 +4157,7 @@ namespace XamCore.AVFoundation {
 		[Export ("mediaType")]
 		string MediaType { get;  }
 
-		[iOS (11, 0), Mac (10, 13), TV (11, 0), NoWatch]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		[Export ("decodable")]
 		bool Decodable { [Bind ("isDecodable")] get; }
 
@@ -4226,67 +4226,67 @@ namespace XamCore.AVFoundation {
 		[Export ("metadataForFormat:")]
 		AVMetadataItem [] MetadataForFormat (string format);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("isPlayable")]
 		bool Playable { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("availableTrackAssociationTypes")]
 		NSString [] AvailableTrackAssociationTypes { get; }
 
-		[Since (7,0)]
-		[Mac (10,10)]
+		[Introduced (PlatformName.iOS, 7, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("minFrameDuration")]
 		CMTime MinFrameDuration { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("associatedTracksOfType:")]
 		AVAssetTrack [] GetAssociatedTracks (NSString avAssetTrackTrackAssociationType);
 
-		[iOS (8,0), Mac (10, 10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("metadata")]
 		AVMetadataItem [] Metadata { get; }
 
-		[iOS (8,0), Mac (10, 10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("requiresFrameReordering")]
 		bool RequiresFrameReordering { get; }
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVAssetTrackTimeRangeDidChangeNotification")]
 		[Notification]
 		NSString TimeRangeDidChangeNotification { get; }
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVAssetTrackSegmentsDidChangeNotification")]
 		[Notification]
 		NSString SegmentsDidChangeNotification { get; }
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVAssetTrackTrackAssociationsDidChangeNotification")]
 		[Notification]
 		NSString TrackAssociationsDidChangeNotification { get; }
 
-		[Mac (10,10), NoiOS, NoTV, NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 10), Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
 		[Export ("canProvideSampleCursors")]
 		bool CanProvideSampleCursors { get; }
 
-		[Mac (10,10), NoiOS, NoTV, NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 10), Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
 		[return: NullAllowed]
 		[Export ("makeSampleCursorWithPresentationTimeStamp:")]
 		AVSampleCursor MakeSampleCursor (CMTime presentationTimeStamp);
 
-		[Mac (10,10), NoiOS, NoTV, NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 10), Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
 		[return: NullAllowed]
 		[Export ("makeSampleCursorAtFirstSampleInDecodeOrder")]
 		AVSampleCursor MakeSampleCursorAtFirstSampleInDecodeOrder ();
 
-		[Mac (10,10), NoiOS, NoTV, NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 10), Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
 		[return: NullAllowed]
 		[Export ("makeSampleCursorAtLastSampleInDecodeOrder")]
 		AVSampleCursor MakeSampleCursorAtLastSampleInDecodeOrder ();
 	}
 
-	[Mac (10,10), NoiOS, NoTV, NoWatch]
+	[Introduced (PlatformName.MacOSX, 10, 10), Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
 	interface AVSampleCursor : NSCopying {
@@ -4331,7 +4331,7 @@ namespace XamCore.AVFoundation {
 		[Export ("currentSampleDependencyInfo")]
 		AVSampleCursorSyncInfo CurrentSampleDependencyInfo { get; }
 
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("samplesRequiredForDecoderRefresh")]
 		nint SamplesRequiredForDecoderRefresh { get; }
 
@@ -4352,8 +4352,8 @@ namespace XamCore.AVFoundation {
 		AVSampleCursorStorageRange CurrentSampleStorageRange { get; }
 	}
 
-	[NoWatch]
-	[Since (7,0), Mavericks]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 	[Category, BaseType (typeof (AVAssetTrack))]
 	interface AVAssetTrackTrackAssociation {
 		[Field ("AVTrackAssociationTypeAudioFallback")]
@@ -4371,34 +4371,34 @@ namespace XamCore.AVFoundation {
 		[Field ("AVTrackAssociationTypeTimecode")]
 		NSString Timecode { get; }
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVTrackAssociationTypeMetadataReferent")]
 		NSString MetadataReferent { get; }		
 	}
 
-	[NoWatch]
-	[Since (7,0), Mavericks]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 	[BaseType (typeof (NSObject))]
 	interface AVAssetTrackGroup : NSCopying {
 		[Export ("trackIDs", ArgumentSemantic.Copy)]
 		NSNumber [] TrackIDs { get; }
 	}
 
-	[NoWatch]
-	[Since (5,0), MountainLion]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 5, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 	[BaseType (typeof (NSObject))]
 	interface AVMediaSelectionGroup : NSCopying {
 		[Export ("options")]
-		[MountainLion]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		AVMediaSelectionOption [] Options { get;  }
 		
 		[Export ("allowsEmptySelection")]
-		[MountainLion]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		bool AllowsEmptySelection { get;  }
 
 		[return: NullAllowed]
 		[Export ("mediaSelectionOptionWithPropertyList:")]
-		[MountainLion]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		AVMediaSelectionOption GetMediaSelectionOptionForPropertyList (NSObject propertyList);
 
 		[Static]
@@ -4417,18 +4417,18 @@ namespace XamCore.AVFoundation {
 		[Export ("mediaSelectionOptionsFromArray:withoutMediaCharacteristics:")]
 		AVMediaSelectionOption [] MediaSelectionOptionsExcludingCharacteristics (AVMediaSelectionOption [] source, NSString [] avmediaCharacteristics);
 
-		[iOS (6,0), Mac (10,8)]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		[Static]
 		[Export ("mediaSelectionOptionsFromArray:filteredAndSortedAccordingToPreferredLanguages:")]
 		AVMediaSelectionOption[] MediaSelectionOptionsFilteredAndSorted (AVMediaSelectionOption[] mediaSelectionOptions, string[] preferredLanguages);
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("defaultOption"), NullAllowed]
 		AVMediaSelectionOption DefaultOption { get; }
 	}
 
-	[NoWatch]
-	[Since (5,0), MountainLion]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 5, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 	[BaseType (typeof (NSObject))]
 	interface AVMediaSelectionOption : NSCopying {
 		[Export ("mediaType")]
@@ -4462,20 +4462,20 @@ namespace XamCore.AVFoundation {
 		[Export ("propertyList")]
 		NSObject PropertyList { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("displayName")]
 		string DisplayName { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("displayNameWithLocale:")]
 		string GetDisplayName (NSLocale locale);
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("extendedLanguageTag"), NullAllowed]
 		string ExtendedLanguageTag { get; }
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Static]
 	interface AVMetadata {
 		[Field ("AVMetadataKeySpaceCommon")]
@@ -4670,7 +4670,7 @@ namespace XamCore.AVFoundation {
 		[Field ("AVMetadataQuickTimeUserDataKeyPhonogramRights")]
 		NSString QuickTimeUserDataKeyPhonogramRights { get; }
 
-		[MountainLion][Since (5,0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)][Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVMetadataQuickTimeUserDataKeyTaggedCharacteristic")]
 		NSString QuickTimeUserDataKeyTaggedCharacteristic { get; }
 		
@@ -4701,42 +4701,42 @@ namespace XamCore.AVFoundation {
 		[Field ("AVMetadata3GPUserDataKeyDescription")]
 		NSString K3GPUserDataKeyDescription { get; }
 		
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVMetadata3GPUserDataKeyCollection")]
 		NSString K3GPUserDataKeyCollection { get; }
 		
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVMetadata3GPUserDataKeyUserRating")]
 		NSString K3GPUserDataKeyUserRating { get; }
 		
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVMetadata3GPUserDataKeyThumbnail")]
 		NSString K3GPUserDataKeyThumbnail { get; }
 		
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVMetadata3GPUserDataKeyAlbumAndTrack")]
 		NSString K3GPUserDataKeyAlbumAndTrack { get; }
 		
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVMetadata3GPUserDataKeyKeywordList")]
 		NSString K3GPUserDataKeyKeywordList { get; }
 		
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVMetadata3GPUserDataKeyMediaClassification")]
 		NSString K3GPUserDataKeyMediaClassification { get; }
 		
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVMetadata3GPUserDataKeyMediaRating")]
 		NSString K3GPUserDataKeyMediaRating { get; }
 
 #if !XAMCORE_4_0
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVMetadataFormatISOUserData")]
 		[Obsolete ("Use 'AVMetadataFormat' enum values")]
 		NSString KFormatISOUserData { get; }
 #endif
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVMetadataKeySpaceISOUserData")]
 		NSString KKeySpaceISOUserData { get; }
 		
@@ -4866,7 +4866,7 @@ namespace XamCore.AVFoundation {
 		[Field ("AVMetadataQuickTimeMetadataKeyDirectionMotion")]
 		NSString QuickTimeMetadataKeyDirectionMotion { get; }
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVMetadataQuickTimeMetadataKeyContentIdentifier")]
 		NSString QuickTimeMetadataKeyContentIdentifier { get; }
 		
@@ -5046,11 +5046,11 @@ namespace XamCore.AVFoundation {
 		[Field ("AVMetadataID3MetadataKeyComments")]
 		NSString ID3MetadataKeyComments { get; }
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVMetadataID3MetadataKeyCommercial")]
 		NSString ID3MetadataKeyCommercial { get; }
 
-		[Availability (Introduced = Platform.iOS_4_0 | Platform.Mac_10_7, Deprecated = Platform.iOS_9_0 | Platform.Mac_10_11)]
+		[Introduced (PlatformName.iOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 7), Deprecated (PlatformName.iOS, 9, 0), Deprecated (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVMetadataID3MetadataKeyCommerical")]
 		NSString ID3MetadataKeyCommerical { get; }
 		
@@ -5315,63 +5315,63 @@ namespace XamCore.AVFoundation {
 		[Field ("AVMetadataID3MetadataKeyUserURL")]
 		NSString ID3MetadataKeyUserURL { get; }
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVMetadataISOUserDataKeyTaggedCharacteristic")]
 		NSString IsoUserDataKeyTaggedCharacteristic { get; }
 		
-		[iOS (10, 0), TV (10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Field ("AVMetadataISOUserDataKeyDate")]
 		NSString IsoUserDataKeyDate { get; }
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVMetadataKeySpaceIcy")]
 		NSString KeySpaceIcy { get; }
 		
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVMetadataIcyMetadataKeyStreamTitle")]
 		NSString IcyMetadataKeyStreamTitle { get; }
 		
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVMetadataIcyMetadataKeyStreamURL")]
 		NSString IcyMetadataKeyStreamUrl { get; }
 		
 #if !XAMCORE_4_0
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVMetadataFormatHLSMetadata")]
 		[Obsolete ("Use 'AVMetadataFormat' enum values")]
 		NSString FormatHlsMetadata { get; }
 #endif
 
-		[iOS (9,3)][Mac (10, 11, 3)]
-		[TV (9,2)]
+		[Introduced (PlatformName.iOS, 9, 3)][Introduced (PlatformName.MacOSX, 10, 11, 3)]
+		[Introduced (PlatformName.TvOS, 9, 2)]
 		[Field ("AVMetadataKeySpaceHLSDateRange")]
 		NSString KeySpaceHlsDateRange { get; }
 
-		[iOS (11, 0), Mac (10, 13)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13)]
 		[Field ("AVMetadataKeySpaceAudioFile")]
 		NSString KeySpaceAudioFile { get; }
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Static]
 	interface AVMetadataExtraAttribute {
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVMetadataExtraAttributeValueURIKey")]
 		NSString ValueUriKey { get; }
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVMetadataExtraAttributeBaseURIKey")]
 		NSString BaseUriKey { get; }
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVMetadataExtraAttributeInfoKey")]
 		NSString InfoKey { get; }
 	}
 
 	class AVMetadataIdentifiers {
-		[NoWatch]
-		[iOS (8,0)][Mac (10,10)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Static]
 		interface CommonIdentifier {
 			[Field ("AVMetadataCommonIdentifierTitle")]
@@ -5444,8 +5444,8 @@ namespace XamCore.AVFoundation {
 			NSString Software { get; }
 		}
 
-		[NoWatch]
-		[iOS (8,0)][Mac (10,10)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Static]
 		interface QuickTime {
 			[Field ("AVMetadataIdentifierQuickTimeUserDataAlbum")]
@@ -5563,12 +5563,12 @@ namespace XamCore.AVFoundation {
 			NSString UserDataTaggedCharacteristic { get; }
 		}
 
-		[NoWatch]
-		[iOS (8,0)][Mac (10,10)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Static]
 		interface Iso {
 			
-			[iOS (10, 0), TV (10,0), Mac (10,12)]
+			[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 			[Field ("AVMetadataIdentifierISOUserDataDate")]
 			NSString UserDataDate { get; }
 
@@ -5579,8 +5579,8 @@ namespace XamCore.AVFoundation {
 			NSString UserDataTaggedCharacteristic { get; }
 		}
 
-		[NoWatch]
-		[iOS (8,0)][Mac (10,10)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Static]
 		interface ThreeGP {
 			[Field ("AVMetadataIdentifier3GPUserDataCopyright")]
@@ -5629,8 +5629,8 @@ namespace XamCore.AVFoundation {
 			NSString UserDataMediaRating { get; }
 		}
 
-		[NoWatch]
-		[iOS (8,0)][Mac (10,10)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Static]
 		interface QuickTimeMetadata {
 			[Field ("AVMetadataIdentifierQuickTimeMetadataAuthor")]
@@ -5756,21 +5756,21 @@ namespace XamCore.AVFoundation {
 			[Field ("AVMetadataIdentifierQuickTimeMetadataPreferredAffineTransform")]
 			NSString PreferredAffineTransform { get; }
 
-			[iOS (9,0), Mac (10,11)]
+			[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 			[Field ("AVMetadataIdentifierQuickTimeMetadataDetectedFace")]
 			NSString DetectedFace { get; }
 
-			[iOS (9,0), Mac (10,11)]
+			[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 			[Field ("AVMetadataIdentifierQuickTimeMetadataVideoOrientation")]
 			NSString VideoOrientation { get; }
 
-			[iOS (9,0), Mac (10,11)]
+			[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 			[Field ("AVMetadataIdentifierQuickTimeMetadataContentIdentifier")]
 			NSString ContentIdentifier { get; }
 		}
 
-		[NoWatch]
-		[iOS (8,0)][Mac (10,10)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Static]
 		interface iTunesMetadata {
 			[Field ("AVMetadataIdentifieriTunesMetadataAlbum")]
@@ -5918,8 +5918,8 @@ namespace XamCore.AVFoundation {
 			NSString ExecProducer { get; }
 		}
 
-		[NoWatch]
-		[iOS (8,0)][Mac (10,10)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Static]
 		interface ID3Metadata {
 			[Field ("AVMetadataIdentifierID3MetadataAudioEncryption")]
@@ -5934,11 +5934,11 @@ namespace XamCore.AVFoundation {
 			[Field ("AVMetadataIdentifierID3MetadataComments")]
 			NSString Comments { get; }
 
-			[iOS (9,0), Mac (10,11)]
+			[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 			[Field ("AVMetadataIdentifierID3MetadataCommercial")]
 			NSString Commercial { get; }
 
-			[Availability (Introduced = Platform.iOS_8_0 | Platform.Mac_10_10, Deprecated = Platform.iOS_9_0 | Platform.Mac_10_11)]
+			[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10), Deprecated (PlatformName.iOS, 9, 0), Deprecated (PlatformName.MacOSX, 10, 11)]
 			[Field ("AVMetadataIdentifierID3MetadataCommerical")]
 			NSString Commerical { get; }
 			
@@ -6204,8 +6204,8 @@ namespace XamCore.AVFoundation {
 			NSString UserUrl { get; }
 		}
 
-		[NoWatch]
-		[iOS (8,0)][Mac (10,10)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Static]
 		interface IcyMetadata {
 			[Field ("AVMetadataIdentifierIcyMetadataStreamTitle")]
@@ -6216,8 +6216,8 @@ namespace XamCore.AVFoundation {
 		}
 	}
 
-	[NoWatch]
-	[Since (4,0)][Mac (10,7)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)][Introduced (PlatformName.MacOSX, 10, 7)]
 	[BaseType (typeof (NSObject))]
 	interface AVMetadataItem : NSMutableCopying {
 		[Export ("commonKey", ArgumentSemantic.Copy), NullAllowed]
@@ -6262,12 +6262,12 @@ namespace XamCore.AVFoundation {
 		AVMetadataItem [] FilterWithKey (AVMetadataItem [] metadataItems, NSObject key, string keySpace);
 
 #if !MONOMAC
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Static, Export ("metadataItemsFromArray:filteredByMetadataItemFilter:")]
 		AVMetadataItem [] FilterWithItemFilter (AVMetadataItem [] metadataItems, AVMetadataItemFilter metadataItemFilter);
 #endif
 
-		[Since (4,2)]
+		[Introduced (PlatformName.iOS, 4, 2)]
 		[Export ("duration")]
 		CMTime Duration { get; [NotImplemented] set; }
 
@@ -6278,53 +6278,53 @@ namespace XamCore.AVFoundation {
 		[Async ("LoadValuesTaskAsync")]
 		void LoadValuesAsynchronously (string [] keys, [NullAllowed] NSAction handler);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Static, Export ("metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:")]
 		AVMetadataItem [] FilterFromPreferredLanguages (AVMetadataItem [] metadataItems, string [] preferredLanguages);
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("identifier"), NullAllowed]
 		NSString MetadataIdentifier { get; [NotImplemented] set; }
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("extendedLanguageTag"), NullAllowed]
 		string ExtendedLanguageTag { get; [NotImplemented] set; }
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("dataType"), NullAllowed]
 		NSString DataType { get; [NotImplemented] set; }
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[return: NullAllowed]
 		[Static, Export ("identifierForKey:keySpace:")]
 		NSString GetMetadataIdentifier (NSObject key, NSString keySpace);
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[return: NullAllowed]
 		[Static, Export ("keySpaceForIdentifier:")]
 		NSString GetKeySpaceForIdentifier (NSString identifier);
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[return: NullAllowed]
 		[Static, Export ("keyForIdentifier:")]
 		NSObject GetKeyForIdentifier (NSString identifier);
 
-		[iOS(8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Static, Export ("metadataItemsFromArray:filteredByIdentifier:")]
 		AVMetadataItem [] FilterWithIdentifier (AVMetadataItem [] metadataItems, NSString metadataIdentifer);
 
-		[iOS(9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("startDate"), NullAllowed]
 		NSDate StartDate { get; [NotImplemented] set; }
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Static]
 		[Export ("metadataItemWithPropertiesOfMetadataItem:valueLoadingHandler:")]
 		AVMetadataItem GetMetadataItem (AVMetadataItem metadataItem, Action<AVMetadataItemValueRequest> handler);
 	}
 
-	[NoWatch]
-	[iOS (9,0), Mac (10,11)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	[BaseType (typeof (NSObject))]
 	interface AVMetadataItemValueRequest {
 		
@@ -6338,8 +6338,8 @@ namespace XamCore.AVFoundation {
 		void Respond (NSError error);
 	}
 
-	[NoWatch]
-	[Since (7,0), Mavericks]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // for binary compatibility this is added in AVMetadataItemFilter.cs w/[Obsolete]
 	interface AVMetadataItemFilter {
@@ -6347,9 +6347,9 @@ namespace XamCore.AVFoundation {
 		AVMetadataItemFilter ForSharing { get; }
 	}
 
-	[NoWatch]
-	[NoTV]
-	[Since (6,0)][Mac (10,10, onlyOn64:true)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 6, 0)][Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	// Objective-C exception thrown.  Name: NSGenericException Reason: Cannot instantiate AVMetadataObject because it is an abstract superclass.
 	[DisableDefaultCtor]
@@ -6370,65 +6370,65 @@ namespace XamCore.AVFoundation {
 		[Export ("time")]
 		CMTime Time{ get;}
 
-		[Field ("AVMetadataObjectTypeFace"), Mac (10,10)]
+		[Field ("AVMetadataObjectTypeFace"), Introduced (PlatformName.MacOSX, 10, 10)]
 		NSString TypeFace { get; }
 
-		[NoTV, Since(7,0), NoMac]
+		[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 7, 0), Unavailable (PlatformName.MacOSX)]
 		[Field ("AVMetadataObjectTypeAztecCode")]
 		NSString TypeAztecCode { get; }
 		
-		[NoTV, Since(7,0), NoMac]
+		[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 7, 0), Unavailable (PlatformName.MacOSX)]
 		[Field ("AVMetadataObjectTypeCode128Code")]
 		NSString TypeCode128Code { get; }
 		
-		[NoTV, Since(7,0), NoMac]
+		[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 7, 0), Unavailable (PlatformName.MacOSX)]
 		[Field ("AVMetadataObjectTypeCode39Code")]
 		NSString TypeCode39Code { get; }
 		
-		[NoTV, Since(7,0), NoMac]
+		[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 7, 0), Unavailable (PlatformName.MacOSX)]
 		[Field ("AVMetadataObjectTypeCode39Mod43Code")]
 		NSString TypeCode39Mod43Code { get; }
 		
-		[NoTV, Since(7,0), NoMac]
+		[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 7, 0), Unavailable (PlatformName.MacOSX)]
 		[Field ("AVMetadataObjectTypeCode93Code")]
 		NSString TypeCode93Code { get; }
 		
-		[NoTV, Since(7,0), NoMac]
+		[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 7, 0), Unavailable (PlatformName.MacOSX)]
 		[Field ("AVMetadataObjectTypeEAN13Code")]
 		NSString TypeEAN13Code { get; }
 		
-		[NoTV, Since(7,0), NoMac]
+		[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 7, 0), Unavailable (PlatformName.MacOSX)]
 		[Field ("AVMetadataObjectTypeEAN8Code")]
 		NSString TypeEAN8Code { get; }
 		
 		[Field ("AVMetadataObjectTypePDF417Code")]
-		[NoTV, Since(7,0), NoMac]
+		[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 7, 0), Unavailable (PlatformName.MacOSX)]
 		NSString TypePDF417Code { get; }
 		
-		[NoTV, Since(7,0), NoMac]
+		[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 7, 0), Unavailable (PlatformName.MacOSX)]
 		[Field ("AVMetadataObjectTypeQRCode")]
 		NSString TypeQRCode { get; }
 		
-		[NoTV, Since(7,0), NoMac]
+		[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 7, 0), Unavailable (PlatformName.MacOSX)]
 		[Field ("AVMetadataObjectTypeUPCECode")]
 		NSString TypeUPCECode { get; }
 
-		[NoTV, Since (8,0), NoMac]
+		[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 8, 0), Unavailable (PlatformName.MacOSX)]
 		[Field ("AVMetadataObjectTypeInterleaved2of5Code")]
 		NSString TypeInterleaved2of5Code { get; }
 		
-		[NoTV, Since (8,0), NoMac]
+		[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 8, 0), Unavailable (PlatformName.MacOSX)]
 		[Field ("AVMetadataObjectTypeITF14Code")]
 		NSString TypeITF14Code { get; }
 		
-		[NoTV, Since (8,0), NoMac]
+		[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 8, 0), Unavailable (PlatformName.MacOSX)]
 		[Field ("AVMetadataObjectTypeDataMatrixCode")]
 		NSString TypeDataMatrixCode { get; }
 	}
 
-	[NoWatch]
-	[NoTV]
-	[Since (6,0)][Mac (10,10, onlyOn64:true)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 6, 0)][Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (AVMetadataObject))]
 	interface AVMetadataFaceObject : NSCopying {
 		[Export ("hasRollAngle")]
@@ -6447,10 +6447,10 @@ namespace XamCore.AVFoundation {
 		nint FaceID { get; }
 	}
 
-	[NoWatch]
-	[NoTV]
-	[NoMac]
-	[Since (7,0), BaseType (typeof (AVMetadataObject))]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Unavailable (PlatformName.MacOSX)]
+	[Introduced (PlatformName.iOS, 7, 0), BaseType (typeof (AVMetadataObject))]
 	interface AVMetadataMachineReadableCodeObject {
 		[NullAllowed]
 		[Export ("corners", ArgumentSemantic.Copy)]
@@ -6464,9 +6464,9 @@ namespace XamCore.AVFoundation {
 		string StringValue { get; }
 	}
 
-	[NoWatch]
-	[iOS (8,0)][Mac (10,10)]
-	[BaseType (typeof (NSObject), Name="AVMIDIPlayer")]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
+	[BaseType (typeof (NSObject), Name = "AVMIDIPlayer")]
 	interface AVMidiPlayer {
 
 		[Export ("initWithContentsOfURL:soundBankURL:error:")]
@@ -6499,9 +6499,9 @@ namespace XamCore.AVFoundation {
 	}
 
 #if MONOMAC
-	[Mac (10,10)]
+	[Introduced (PlatformName.MacOSX, 10, 10)]
 	[DisableDefaultCtor]
-	[BaseType (typeof(AVAsset))]
+	[BaseType (typeof (AVAsset))]
 	interface AVMovie : NSCopying, NSMutableCopying
 	{
 		[Field ("AVMovieReferenceRestrictionsKey")]
@@ -6519,12 +6519,12 @@ namespace XamCore.AVFoundation {
 		[DesignatedInitializer]
 		IntPtr Constructor (NSUrl URL, [NullAllowed] NSDictionary<NSString, NSObject> options);
 
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Static]
 		[Export ("movieWithData:options:")]
 		AVMovie FromData (NSData data, [NullAllowed] NSDictionary<NSString, NSObject> options);
 
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("initWithData:options:")]
 		[DesignatedInitializer]
 		IntPtr Constructor (NSData data, [NullAllowed] NSDictionary<NSString, NSObject> options);
@@ -6532,11 +6532,11 @@ namespace XamCore.AVFoundation {
 		[NullAllowed, Export ("URL")]
 		NSUrl URL { get; }
 
-		[Mac (10, 11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[NullAllowed, Export ("data")]
 		NSData Data { get; }
 
-		[Mac (10, 11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[NullAllowed, Export ("defaultMediaDataStorage")]
 		AVMediaDataStorage DefaultMediaDataStorage { get; }
 
@@ -6546,31 +6546,31 @@ namespace XamCore.AVFoundation {
 		[Export ("canContainMovieFragments")]
 		bool CanContainMovieFragments { get; }
 
-		[Mac (10, 11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("containsMovieFragments")]
 		bool ContainsMovieFragments { get; }
 	}
 
 	[Category]
-	[BaseType (typeof(AVMovie))]
+	[BaseType (typeof (AVMovie))]
 	interface AVMovie_AVMovieMovieHeaderSupport
 	{
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("movieHeaderWithFileType:error:")]
 		[return: NullAllowed]
 		NSData GetMovieHeader (string fileType, [NullAllowed] out NSError outError);
 
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("writeMovieHeaderToURL:fileType:options:error:")]
 		bool WriteMovieHeader (NSUrl URL, string fileType, AVMovieWritingOptions options, [NullAllowed] out NSError outError);
 
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("isCompatibleWithFileType:")]
 		bool IsCompatibleWithFileType (string fileType);
 	}
 
 	[Category]
-	[BaseType (typeof(AVMovie))]
+	[BaseType (typeof (AVMovie))]
 	interface AVMovie_AVMovieTrackInspection
 	{
 		[Export ("trackWithTrackID:")]
@@ -6591,8 +6591,8 @@ namespace XamCore.AVFoundation {
 
 	}
 
-	[Mac (10,11)]
-	[BaseType (typeof(AVMovie))]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
+	[BaseType (typeof (AVMovie))]
 	interface AVMutableMovie
 	{
 		[Static]
@@ -6652,9 +6652,9 @@ namespace XamCore.AVFoundation {
 		CMTime InterleavingPeriod { get; set; }
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Category]
-	[BaseType (typeof(AVMutableMovie))]
+	[BaseType (typeof (AVMutableMovie))]
 	interface AVMutableMovie_AVMutableMovieMovieLevelEditing
 	{
 		[Export ("insertTimeRange:ofAsset:atTime:copySampleData:error:")]
@@ -6670,9 +6670,9 @@ namespace XamCore.AVFoundation {
 		void ScaleTimeRange (CMTimeRange timeRange, CMTime duration);
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Category]
-	[BaseType (typeof(AVMutableMovie))]
+	[BaseType (typeof (AVMutableMovie))]
 	interface AVMutableMovie_AVMutableMovieTrackLevelEditing
 	{
 		[Export ("mutableTrackCompatibleWithTrack:")]
@@ -6690,7 +6690,7 @@ namespace XamCore.AVFoundation {
 	}
 
 	[Category]
-	[BaseType (typeof(AVMutableMovie))]
+	[BaseType (typeof (AVMutableMovie))]
 	interface AVMutableMovie_AVMutableMovieTrackInspection
 	{
 		[Export ("trackWithTrackID:")]
@@ -6710,8 +6710,8 @@ namespace XamCore.AVFoundation {
 		AVMutableMovieTrack[] GetTracks (AVMediaCharacteristics mediaCharacteristic);
 	}
 
-	[Mac (10,11)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface AVMediaDataStorage
 	{
@@ -6723,16 +6723,16 @@ namespace XamCore.AVFoundation {
 		NSUrl URL { get; }
 	}
 
-	[Mac (10,10)]
+	[Introduced (PlatformName.MacOSX, 10, 10)]
 	[DisableDefaultCtor]
-	[BaseType (typeof(AVMovie))]
+	[BaseType (typeof (AVMovie))]
 	interface AVFragmentedMovie : AVFragmentMinding
 	{
 		[Export ("initWithURL:options:")]
 		[DesignatedInitializer]
 		IntPtr Constructor (NSUrl URL, [NullAllowed] NSDictionary<NSString, NSObject> options);
 
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("initWithData:options:")]
 		[DesignatedInitializer]
 		IntPtr Constructor (NSData data, [NullAllowed] NSDictionary<NSString, NSObject> options);
@@ -6754,7 +6754,7 @@ namespace XamCore.AVFoundation {
 	}
 
 	[Category]
-	[BaseType (typeof(AVFragmentedMovie))]
+	[BaseType (typeof (AVFragmentedMovie))]
 	interface AVFragmentedMovie_AVFragmentedMovieTrackInspection
 	{
 		[Export ("trackWithTrackID:")]
@@ -6774,8 +6774,8 @@ namespace XamCore.AVFoundation {
 		AVFragmentedMovieTrack[] GetTracks (AVMediaCharacteristics mediaCharacteristic);
 	}
 
-	[Mac (10,10)]
-	[BaseType (typeof(AVFragmentedAssetMinder))]
+	[Introduced (PlatformName.MacOSX, 10, 10)]
+	[BaseType (typeof (AVFragmentedAssetMinder))]
 	interface AVFragmentedMovieMinder
 	{
 		[Static]
@@ -6799,32 +6799,32 @@ namespace XamCore.AVFoundation {
 		void Remove (AVFragmentedMovie movie);
 	}
 
-	[NoWatch]
-	[Mac (10,10)]
-	[BaseType (typeof(AVAssetTrack))]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.MacOSX, 10, 10)]
+	[BaseType (typeof (AVAssetTrack))]
 	[DisableDefaultCtor]
 	interface AVMovieTrack
 	{
-		[Mac (10, 11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("mediaPresentationTimeRange")]
 		CMTimeRange MediaPresentationTimeRange { get; }
 
-		[Mac (10, 11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("mediaDecodeTimeRange")]
 		CMTimeRange MediaDecodeTimeRange { get; }
 
-		[Mac (10, 11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("alternateGroupID")]
 		nint AlternateGroupID { get; }
 
 		// AVMovieTrack_AVMovieTrackMediaDataStorage
-		[Mac (10, 11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[NullAllowed, Export ("mediaDataStorage", ArgumentSemantic.Copy)]
 		AVMediaDataStorage MediaDataStorage { get; }
 	}
 
-	[Mac (10,11)]
-	[BaseType (typeof(AVMovieTrack))]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
+	[BaseType (typeof (AVMovieTrack))]
 	[DisableDefaultCtor]
 	interface AVMutableMovieTrack
 	{
@@ -6893,18 +6893,18 @@ namespace XamCore.AVFoundation {
 		[Export ("metadata", ArgumentSemantic.Copy)]
 		AVMetadataItem[] Metadata { get; set; }
 
-		[Mac (10,12)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("appendSampleBuffer:decodeTime:presentationTime:error:")]
 		bool AppendSampleBuffer (CMSampleBuffer sampleBuffer, out CMTime outDecodeTime, out CMTime presentationTime, out NSError error);
 
-		[Mac (10,12)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("insertMediaTimeRange:intoTimeRange:")]
 		bool InsertMediaTimeRange (CMTimeRange mediaTimeRange, CMTimeRange trackTimeRange);
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Category]
-	[BaseType (typeof(AVMutableMovieTrack))]
+	[BaseType (typeof (AVMutableMovieTrack))]
 	interface AVMutableMovieTrack_AVMutableMovieTrack_TrackLevelEditing
 	{
 		[Export ("insertTimeRange:ofTrack:atTime:copySampleData:error:")]
@@ -6921,7 +6921,7 @@ namespace XamCore.AVFoundation {
 	}
 
 	[Category]
-	[BaseType (typeof(AVMutableMovieTrack))]
+	[BaseType (typeof (AVMutableMovieTrack))]
 	interface AVMutableMovieTrack_AVMutableMovieTrackTrackAssociations
 	{
 		[Export ("addTrackAssociationToTrack:type:")]
@@ -6931,23 +6931,23 @@ namespace XamCore.AVFoundation {
 		void RemoveTrackAssociation (AVMovieTrack movieTrack, string trackAssociationType);
 	}
 
-	[Mac (10,10)]
-	[BaseType (typeof(AVMovieTrack))]
+	[Introduced (PlatformName.MacOSX, 10, 10)]
+	[BaseType (typeof (AVMovieTrack))]
 	[DisableDefaultCtor]
 	interface AVFragmentedMovieTrack
 	{
 #if !XAMCORE_4_0
-		[Mac (10, 10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVFragmentedMovieTrackTimeRangeDidChangeNotification")]
 		NSString ATimeRangeDidChangeNotification { get; }
 #endif
 
-		[Mac (10, 10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVFragmentedMovieTrackTimeRangeDidChangeNotification")]
 		[Notification]
 		NSString TimeRangeDidChangeNotification { get; }
 
-		[Mac (10, 10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Notification]
 		[Field ("AVFragmentedMovieTrackSegmentsDidChangeNotification")]
 		NSString SegmentsDidChangeNotification { get; }
@@ -6959,8 +6959,8 @@ namespace XamCore.AVFoundation {
 	}
 #endif
 
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (AVMetadataItem))]
 	interface AVMutableMetadataItem {
 		[NullAllowed] // by default this property is null
@@ -6971,12 +6971,12 @@ namespace XamCore.AVFoundation {
 		[Export ("metadataItem"), Static]
 		AVMutableMetadataItem Create ();
 
-		[Since (4,2)]
+		[Introduced (PlatformName.iOS, 4, 2)]
 		[Export ("duration")]
 		[Override]
 		CMTime Duration { get; set; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("identifier", ArgumentSemantic.Copy)]
 		[Override]
@@ -7005,26 +7005,26 @@ namespace XamCore.AVFoundation {
 		[Export ("key", ArgumentSemantic.Copy)]
 		NSObject Key { get; set; }
 		
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("dataType", ArgumentSemantic.Copy)]
 		[Override]
 		NSString DataType { get; set; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("extendedLanguageTag")]
 		[Override]
 		string ExtendedLanguageTag { get; set; }
 
-		[iOS(9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("startDate"), NullAllowed]
 		[Override]
 		NSDate StartDate { get; set; }
 	}
 
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (AVAssetTrack))]
 	// 'init' returns NIL
 	[DisableDefaultCtor]
@@ -7033,8 +7033,8 @@ namespace XamCore.AVFoundation {
 		AVCompositionTrackSegment [] Segments { get; }
 	}
 
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (AVCompositionTrack))]
 	// 'init' returns NIL
 	[DisableDefaultCtor]
@@ -7079,12 +7079,12 @@ namespace XamCore.AVFoundation {
 		float PreferredVolume { get; set; } // defined as 'float'
 
 		// 5.0
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("insertTimeRanges:ofTracks:atTime:error:")]
 		bool InsertTimeRanges (NSValue[] cmTimeRanges, AVAssetTrack [] tracks, CMTime startTime, out NSError error);
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Static]
 	interface AVErrorKeys {
 		[Field ("AVFoundationErrorDomain")]
@@ -7111,30 +7111,30 @@ namespace XamCore.AVFoundation {
 		[Field ("AVErrorMediaSubTypeKey")]
 		NSString MediaSubType { get; }
 
-		[iOS (8,0)]
-		[Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVErrorPresentationTimeStampKey")]
 		NSString PresentationTimeStamp { get; }
 		
-		[iOS (8,0)]
-		[Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVErrorPersistentTrackIDKey")]
 		NSString PersistentTrackID { get; }
 		
-		[iOS (8,0)]
-		[Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVErrorFileTypeKey")]
 		NSString FileType { get; }
 
-		[NoiOS, NoWatch]
-		[NoTV]
-		[Mac (10,7)]
+		[Unavailable (PlatformName.iOS), Unavailable (PlatformName.WatchOS)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.MacOSX, 10, 7)]
 		[Field ("AVErrorDiscontinuityFlagsKey")]
 		NSString DiscontinuityFlags { get; }
 	}
 	
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (NSObject))]
 	interface AVAssetTrackSegment {
 		[Export ("empty")]
@@ -7145,8 +7145,8 @@ namespace XamCore.AVFoundation {
 
 	}
 
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (AVAsset))]
 	interface AVComposition : NSMutableCopying {
 		[Export ("tracks")]
@@ -7157,13 +7157,13 @@ namespace XamCore.AVFoundation {
 		[New]
 		CGSize NaturalSize { get; [NotImplemented] set; }
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("URLAssetInitializationOptions", ArgumentSemantic.Copy)]
 		NSDictionary<NSString,NSObject> UrlAssetInitializationOptions { get; }
 	}
 
-	[NoWatch]
-	[iOS (9,0), Mac (10,11)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	[Category]
 	[BaseType (typeof (AVComposition))]
 	interface AVComposition_AVCompositionTrackInspection {
@@ -7185,15 +7185,15 @@ namespace XamCore.AVFoundation {
 		AVCompositionTrack[] GetTracks (AVMediaCharacteristics mediaCharacteristic);
 	}
 
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (AVComposition))]
 	interface AVMutableComposition {
 		
 		[Export ("composition"), Static]
 		AVMutableComposition Create ();
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Static]
 		[Export ("compositionWithURLAssetInitializationOptions:")]
 		AVMutableComposition FromOptions ([NullAllowed] NSDictionary<NSString,NSObject> urlAssetInitializationOptions);
@@ -7224,8 +7224,8 @@ namespace XamCore.AVFoundation {
 		CGSize NaturalSize { get; set; }
 	}
 
-	[NoWatch]
-	[iOS (9,0), Mac (10,11)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	[Category]
 	[BaseType (typeof (AVMutableComposition))]
 	interface AVMutableComposition_AVMutableCompositionTrackInspection {
@@ -7247,8 +7247,8 @@ namespace XamCore.AVFoundation {
 		AVMutableCompositionTrack[] GetTracks (AVMediaCharacteristics mediaCharacteristic);
 	}
 
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (AVAssetTrackSegment))]
 	interface AVCompositionTrackSegment {
 		[Export ("sourceURL"), NullAllowed]
@@ -7277,8 +7277,8 @@ namespace XamCore.AVFoundation {
 		bool Empty { [Bind ("isEmpty")] get;  }
 	}
 
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (NSObject))]
 	// 'init' returns NIL
 	[DisableDefaultCtor]
@@ -7360,23 +7360,23 @@ namespace XamCore.AVFoundation {
 		[Export ("error"), NullAllowed]
 		NSError Error { get; }
 
-		[Mac(10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVAssetExportPresetLowQuality")]
 		NSString PresetLowQuality { get; }
 
-		[Mac(10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVAssetExportPresetMediumQuality")]
 		NSString PresetMediumQuality { get; }
 
-		[Mac(10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVAssetExportPresetHighestQuality")]
 		NSString PresetHighestQuality { get; }
 
-		[iOS (11, 0), Mac (10,13)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13)]
 		[Field ("AVAssetExportPresetHEVCHighestQuality")]
 		NSString PresetHevcHighestQuality { get; }
 
-		[iOS (11, 0), Mac (10,13)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13)]
 		[Field ("AVAssetExportPresetHEVC3840x2160")]
 		NSString PresetHevc3840x2160 { get; }
 
@@ -7392,12 +7392,12 @@ namespace XamCore.AVFoundation {
 		[Field ("AVAssetExportPreset1920x1080")]
 		NSString Preset1920x1080 { get; }
 
-		[iOS (9,0)]
-		[Mac (10,10)]
+		[Introduced (PlatformName.iOS, 9, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVAssetExportPreset3840x2160")]
 		NSString Preset3840x2160 { get; }
 
-		[iOS (11, 0), Mac (10,13)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13)]
 		[Field ("AVAssetExportPresetHEVC1920x1080")]
 		NSString PresetHevc1920x1080 { get; }
 
@@ -7408,16 +7408,16 @@ namespace XamCore.AVFoundation {
 		NSString PresetPassthrough { get; }
 
 		// 5.0 APIs
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("asset", ArgumentSemantic.Retain)]
 		AVAsset Asset { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("estimatedOutputFileLength")]
 		long EstimatedOutputFileLength { get; }
 
-		[Since (6,0)]
-		[Mavericks]
+		[Introduced (PlatformName.iOS, 6, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Static, Export ("determineCompatibilityOfExportPreset:withAsset:outputFileType:completionHandler:")]
 		[Async]
 		void DetermineCompatibilityOfExportPreset (string presetName, AVAsset asset, [NullAllowed] string outputFileType, Action<bool> isCompatibleResult);
@@ -7426,69 +7426,69 @@ namespace XamCore.AVFoundation {
 		[Wrap ("DetermineCompatibilityOfExportPreset (presetName, asset, outputFileType.GetConstant (), isCompatibleResult)")]
 		void DetermineCompatibilityOfExportPreset (string presetName, AVAsset asset, [NullAllowed] AVFileTypes outputFileType, Action<bool> isCompatibleResult);
 
-		[Since (6,0)]
-		[Mavericks]
+		[Introduced (PlatformName.iOS, 6, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("determineCompatibleFileTypesWithCompletionHandler:")]
 		[Async]
 		void DetermineCompatibleFileTypes (Action<string []> compatibleFileTypesHandler);
 
-		[iOS (7,0), Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("metadataItemFilter", ArgumentSemantic.Retain), NullAllowed]
 		AVMetadataItemFilter MetadataItemFilter { get; set; }
 
-		[Mac (10,9)]
-		[Since (7,0)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("customVideoCompositor", ArgumentSemantic.Copy)]
 		[Protocolize]
 		AVVideoCompositing CustomVideoCompositor { get; }
 
 		// DOC: Use the values from AVAudioTimePitchAlgorithm class.
-		[Mac (10,9)]
-		[Since (7, 0), Export ("audioTimePitchAlgorithm", ArgumentSemantic.Copy)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("audioTimePitchAlgorithm", ArgumentSemantic.Copy)]
 		NSString AudioTimePitchAlgorithm { get; set; }
 
-		[iOS (8,0), Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("canPerformMultiplePassesOverSourceMediaData")]
 		[Advice ("This property cannot be set after the export has started.")]
 		bool CanPerformMultiplePassesOverSourceMediaData { get; set; }
 
-		[iOS (8,0), Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("directoryForTemporaryFiles", ArgumentSemantic.Copy), NullAllowed]
 		[Advice ("This property cannot be set after the export has started.")]
 		NSUrl DirectoryForTemporaryFiles { get; set; }
 	}
 
-	[NoWatch]
-	[Since (7,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[Static]
 	interface AVAudioTimePitchAlgorithm {
-		[NoMac]
+		[Unavailable (PlatformName.MacOSX)]
 		[Field ("AVAudioTimePitchAlgorithmLowQualityZeroLatency")]
 		NSString LowQualityZeroLatency { get; }
 		
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVAudioTimePitchAlgorithmTimeDomain")]
 		NSString TimeDomain { get; }
 		
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVAudioTimePitchAlgorithmSpectral")]
 		NSString Spectral { get; }
 		
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVAudioTimePitchAlgorithmVarispeed")]
 		NSString Varispeed { get; }
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (NSObject))]
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	interface AVAudioMix : NSMutableCopying {
 		[Export ("inputParameters", ArgumentSemantic.Copy)]
 		AVAudioMixInputParameters [] InputParameters { get;  }
 	}
 
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (AVAudioMix))]
 	interface AVMutableAudioMix {
 		[NullAllowed] // by default this property is null
@@ -7499,8 +7499,8 @@ namespace XamCore.AVFoundation {
 		AVMutableAudioMix Create ();
 	}
 
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (NSObject))]
 	interface AVAudioMixInputParameters : NSMutableCopying {
 		[Export ("trackID")]
@@ -7509,17 +7509,17 @@ namespace XamCore.AVFoundation {
 		[Export ("getVolumeRampForTime:startVolume:endVolume:timeRange:")]
 		bool GetVolumeRamp (CMTime forTime, ref float /* defined as 'float*' */ startVolume, ref float /* defined as 'float*' */ endVolume, ref CMTimeRange timeRange);
 
-		[iOS (6,0), Mac (10,9)]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("audioTapProcessor", ArgumentSemantic.Retain)]
 		MTAudioProcessingTap AudioTapProcessor { get; [NotImplemented] set;}
 
-		[iOS (7,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[NullAllowed] // by default this property is null
 		[Export ("audioTimePitchAlgorithm", ArgumentSemantic.Copy)]
 		NSString AudioTimePitchAlgorithm { get; [NotImplemented] set; }
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (AVAudioMixInputParameters))]
 	interface AVMutableAudioMixInputParameters {
 		[Export ("trackID")]
@@ -7540,21 +7540,21 @@ namespace XamCore.AVFoundation {
 		[Export ("setVolume:atTime:")]
 		void SetVolume (float /* defined as 'float' */ volume, CMTime atTime);
 
-		[iOS (6,0), Mac (10,9)]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[NullAllowed] // by default this property is null
 		[Export ("audioTapProcessor", ArgumentSemantic.Retain)]
 		[Override]
 		MTAudioProcessingTap AudioTapProcessor { get; set; }
 
-		[iOS (7,0), Mac (10,10)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[NullAllowed] // by default this property is null
 		[Export ("audioTimePitchAlgorithm", ArgumentSemantic.Copy)]
 		[Override]
 		NSString AudioTimePitchAlgorithm { get; set; }
 	}
 
-	[NoWatch]
-	[Since (7,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[Model, BaseType (typeof (NSObject))]
 	[Protocol]
 	interface AVVideoCompositing {
@@ -7578,13 +7578,13 @@ namespace XamCore.AVFoundation {
 		[Export ("cancelAllPendingVideoCompositionRequests")]
 		void CancelAllPendingVideoCompositionRequests ();
 		
-		[iOS (10, 0), TV (10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("supportsWideColorSourceFrames")]
 		bool SupportsWideColorSourceFrames { get; }
 	}
 	
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (NSObject))]
 	interface AVVideoComposition : NSMutableCopying {
 		[Export ("frameDuration")]
@@ -7602,38 +7602,38 @@ namespace XamCore.AVFoundation {
 		[Export ("renderScale")]
 		float RenderScale { get; [NotImplemented] set; } // defined as 'float'
 #endif
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("isValidForAsset:timeRange:validationDelegate:")]
 		bool IsValidForAsset ([NullAllowed] AVAsset asset, CMTimeRange timeRange, [Protocolize] [NullAllowed] AVVideoCompositionValidationHandling validationDelegate);
 
-		[Since (6,0), Mavericks]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Static, Export ("videoCompositionWithPropertiesOfAsset:")]
 		AVVideoComposition FromAssetProperties (AVAsset asset);
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("customVideoCompositorClass", ArgumentSemantic.Copy), NullAllowed]
 		Class CustomVideoCompositorClass { get; [NotImplemented] set; }
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Static]
 		[Export ("videoCompositionWithAsset:applyingCIFiltersWithHandler:")]
 		AVVideoComposition CreateVideoComposition (AVAsset asset, Action<AVAsynchronousCIImageFilteringRequest> applier);
 		
-		[iOS (10, 0), TV (10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[NullAllowed, Export ("colorPrimaries")]
 		string ColorPrimaries { get; }
 
-		[iOS (10, 0), TV (10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[NullAllowed, Export ("colorYCbCrMatrix")]
 		string ColorYCbCrMatrix { get; }
 
-		[iOS (10, 0), TV (10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[NullAllowed, Export ("colorTransferFunction")]
 		string ColorTransferFunction { get; }
 	}
 
-	[NoWatch]
-	[Since (7,0), Mavericks]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 	[BaseType (typeof (NSObject))]
 	interface AVVideoCompositionRenderContext {
 		[Export ("size", ArgumentSemantic.Copy)]
@@ -7662,8 +7662,8 @@ namespace XamCore.AVFoundation {
 		CVPixelBuffer CreatePixelBuffer ();
 	}
 	
-	[NoWatch]
-	[Since (5,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -7682,8 +7682,8 @@ namespace XamCore.AVFoundation {
 		bool ShouldContinueValidatingAfterFindingInvalidTrackIDInInstruction (AVVideoComposition videoComposition, AVVideoCompositionInstruction videoCompositionInstruction, AVVideoCompositionLayerInstruction layerInstruction, AVAsset asset);
 	}
 
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (AVVideoComposition))]
 	interface AVMutableVideoComposition {
 		[Export ("frameDuration", ArgumentSemantic.Assign)]
@@ -7707,36 +7707,36 @@ namespace XamCore.AVFoundation {
 		AVMutableVideoComposition Create ();
 
 		// in 7.0 they declared this was available in 6.0
-		[Since (6,0), Mavericks]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Static, Export ("videoCompositionWithPropertiesOfAsset:")]
 		AVMutableVideoComposition Create (AVAsset asset);
 
 		[NullAllowed]
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("customVideoCompositorClass", ArgumentSemantic.Retain)]
 		[Override]
 		Class CustomVideoCompositorClass { get; set; }
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Static]
 		[Export ("videoCompositionWithAsset:applyingCIFiltersWithHandler:")]
 		AVMutableVideoComposition GetVideoComposition (AVAsset asset, Action<AVAsynchronousCIImageFilteringRequest> applier);
 		
-		[iOS (10, 0), TV (10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[NullAllowed, Export ("colorPrimaries")]
 		string ColorPrimaries { get; set; }
 
-		[iOS (10, 0), TV (10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[NullAllowed, Export ("colorYCbCrMatrix")]
 		string ColorYCbCrMatrix { get; set; }
 
-		[iOS (10, 0), TV (10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[NullAllowed, Export ("colorTransferFunction")]
 		string ColorTransferFunction { get; set; }
 	}
 
-	[NoWatch]
-	[Since (4,0), Lion]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 7)]
 	[BaseType (typeof (NSObject))]
 	interface AVVideoCompositionInstruction : NSSecureCoding, NSMutableCopying {
 		[Export ("timeRange")]
@@ -7756,21 +7756,21 @@ namespace XamCore.AVFoundation {
 
 		// These are there because it adopts the protocol *of the same name*
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("containsTweening")]
 		bool ContainsTweening { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("requiredSourceTrackIDs")]
 		NSNumber[] RequiredSourceTrackIDs { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("passthroughTrackID")]
 		int PassthroughTrackID { get; } /* CMPersistentTrackID = int32_t */
 	}
 
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (AVVideoCompositionInstruction))]
 	interface AVMutableVideoCompositionInstruction {
 		[Export ("timeRange", ArgumentSemantic.Assign)]
@@ -7795,8 +7795,8 @@ namespace XamCore.AVFoundation {
 		AVVideoCompositionInstruction Create (); 		
 	}
 
-	[NoWatch]
-	[Since (4,0), Lion]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 7)]
 	[BaseType (typeof (NSObject))]
 	interface AVVideoCompositionLayerInstruction : NSSecureCoding, NSMutableCopying {
 		[Export ("trackID", ArgumentSemantic.Assign)]
@@ -7808,12 +7808,12 @@ namespace XamCore.AVFoundation {
 		[Export ("getOpacityRampForTime:startOpacity:endOpacity:timeRange:")]
 		bool GetOpacityRamp (CMTime time, ref float /* defined as 'float*' */ startOpacity, ref float /* defined as 'float*' */ endOpacity, ref CMTimeRange timeRange);
 
-		[Since (7,0), Mavericks, Export ("getCropRectangleRampForTime:startCropRectangle:endCropRectangle:timeRange:")]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9), Export ("getCropRectangleRampForTime:startCropRectangle:endCropRectangle:timeRange:")]
 		bool GetCrop (CMTime time, ref CGRect startCropRectangle, ref CGRect endCropRectangle, ref CMTimeRange timeRange);
 	}
 
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (AVVideoCompositionLayerInstruction))]
 	interface AVMutableVideoCompositionLayerInstruction {
 		[Export ("trackID", ArgumentSemantic.Assign)]
@@ -7839,17 +7839,17 @@ namespace XamCore.AVFoundation {
 		[Export ("setOpacity:atTime:")]
 		void SetOpacity (float /* defined as 'float' */ opacity, CMTime time);
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("setCropRectangleRampFromStartCropRectangle:toEndCropRectangle:timeRange:")]
 		void SetCrop (CGRect startCropRectangle, CGRect endCropRectangle, CMTimeRange timeRange);
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("setCropRectangle:atTime:")]
 		void SetCrop (CGRect cropRectangle, CMTime time);
 	}
 
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (NSObject))]
 	interface AVVideoCompositionCoreAnimationTool {
 		[Static]
@@ -7860,13 +7860,13 @@ namespace XamCore.AVFoundation {
 		[Export ("videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer:inLayer:")]
 		AVVideoCompositionCoreAnimationTool FromLayer (CALayer videoLayer, CALayer animationLayer);
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Static, Export ("videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayers:inLayer:")]
 		AVVideoCompositionCoreAnimationTool FromComposedVideoFrames (CALayer [] videoLayers, CALayer inAnimationlayer);
 	}
 
-	[TV (11,0), NoWatch, iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface AVCameraCalibrationData
 	{
@@ -7892,15 +7892,15 @@ namespace XamCore.AVFoundation {
 		CGPoint LensDistortionCenter { get; }
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	interface AVCaptureSessionRuntimeErrorEventArgs {
 		[Export ("AVCaptureSessionErrorKey")]
 		NSError Error { get; }
 	}
 
-	[NoWatch]
-	[NoTV]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (NSObject))]
 	interface AVCaptureSession {
 
@@ -7967,43 +7967,43 @@ namespace XamCore.AVFoundation {
 		[Field ("AVCaptureSessionPreset640x480")]
 		NSString Preset640x480 { get; }
 		
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Field ("AVCaptureSessionPreset1280x720")]
 		NSString Preset1280x720 { get; }
 #if !MONOMAC
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVCaptureSessionPreset1920x1080")]
 		NSString Preset1920x1080 { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("AVCaptureSessionPreset3840x2160")]
 		NSString Preset3840x2160 { get; }
 #endif
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVCaptureSessionPresetiFrame960x540")]
 		NSString PresetiFrame960x540 { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVCaptureSessionPresetiFrame1280x720")]
 		NSString PresetiFrame1280x720 { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVCaptureSessionPreset352x288")]
 		NSString Preset352x288 { get; }
 
 #if !MONOMAC
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("AVCaptureSessionPresetInputPriority")]
 		NSString PresetInputPriority { get; }
 #endif
-		[NoiOS]
-		[Mac (10,7)]
+		[Unavailable (PlatformName.iOS)]
+		[Introduced (PlatformName.MacOSX, 10, 7)]
 		[Field ("AVCaptureSessionPreset320x240")]
 		NSString Preset320x240 { get; }
 
-		[NoiOS]
-		[Mac (10, 7)]
+		[Unavailable (PlatformName.iOS)]
+		[Introduced (PlatformName.MacOSX, 10, 7)]
 		[Field ("AVCaptureSessionPreset960x540")]
 		NSString Preset960x540 { get; }
 
@@ -8030,72 +8030,72 @@ namespace XamCore.AVFoundation {
 		[Notification]
 		NSString InterruptionEndedNotification { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("AVCaptureSessionInterruptionReasonKey")]
 		NSString InterruptionReasonKey { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("usesApplicationAudioSession")]
 		bool UsesApplicationAudioSession { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("automaticallyConfiguresApplicationAudioSession")]
 		bool AutomaticallyConfiguresApplicationAudioSession { get; set; }
 		
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("automaticallyConfiguresCaptureDeviceForWideColor")]
 		bool AutomaticallyConfiguresCaptureDeviceForWideColor { get; set; }
 #endif
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("masterClock")]
 		CMClock MasterClock { get; }
 
 		//
 		// iOS 8
 		//
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("addInputWithNoConnections:")]
 		void AddInputWithNoConnections (AVCaptureInput input);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("addOutputWithNoConnections:")]
 		void AddOutputWithNoConnections (AVCaptureOutput output);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("canAddConnection:")]
 		bool CanAddConnection (AVCaptureConnection connection);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("addConnection:")]
 		void AddConnection (AVCaptureConnection connection);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("removeConnection:")]
 		void RemoveConnection (AVCaptureConnection connection);
 	}
 
-	[NoWatch]
-	[NoTV]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	interface AVCaptureConnection {
 		
-		[iOS (8,0), Mac (10,7)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 7)]
 		[Static]
 		[Export ("connectionWithInputPorts:output:")]
 		AVCaptureConnection FromInputPorts (AVCaptureInputPort [] ports, AVCaptureOutput output);
 		
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Static]
 		[Export ("connectionWithInputPort:videoPreviewLayer:")]
 		AVCaptureConnection FromInputPort (AVCaptureInputPort port, AVCaptureVideoPreviewLayer layer);
 		
-		[iOS (8,0), Mac (10,7)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 7)]
 		[Export ("initWithInputPorts:output:")]
 		IntPtr Constructor (AVCaptureInputPort [] inputPorts, AVCaptureOutput output);
 
-		[iOS (8,0), Mac (10,7)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 7)]
 		[Export ("initWithInputPort:videoPreviewLayer:")]
 		IntPtr Constructor (AVCaptureInputPort inputPort, AVCaptureVideoPreviewLayer layer);
 
@@ -8126,63 +8126,63 @@ namespace XamCore.AVFoundation {
 		[Export ("isVideoOrientationSupported")]
 		bool SupportsVideoOrientation { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("supportsVideoMinFrameDuration"), Internal]
 		bool _SupportsVideoMinFrameDuration { [Bind ("isVideoMinFrameDurationSupported")] get;  }
 
-		[Since (5,0)]
-		[Availability (Introduced = Platform.iOS_5_0 | Platform.Mac_10_7, Deprecated = Platform.iOS_7_0 /* Only deprecated on iOS */)]
+		[Introduced (PlatformName.iOS, 5, 0)]
+		[Introduced (PlatformName.iOS, 5, 0), Introduced (PlatformName.MacOSX, 10, 7), Deprecated (PlatformName.iOS, 7, 0)]
 		[Export ("videoMinFrameDuration")]
 		CMTime VideoMinFrameDuration { get; set;  }
 #if !MONOMAC
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("supportsVideoMaxFrameDuration"), Internal]
 		bool _SupportsVideoMaxFrameDuration { [Bind ("isVideoMaxFrameDurationSupported")] get;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("videoMaxFrameDuration")]
-		[Availability (Introduced = Platform.iOS_5_0 | Platform.Mac_10_7, Deprecated = Platform.iOS_7_0 /* Only deprecated on iOS */)]
+		[Introduced (PlatformName.iOS, 5, 0), Introduced (PlatformName.MacOSX, 10, 7), Deprecated (PlatformName.iOS, 7, 0)]
 		CMTime VideoMaxFrameDuration { get; set;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("videoMaxScaleAndCropFactor")]
 		nfloat VideoMaxScaleAndCropFactor { get;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("videoScaleAndCropFactor")]
 		nfloat VideoScaleAndCropFactor { get; set;  }
 #endif
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("videoPreviewLayer")]
 		AVCaptureVideoPreviewLayer VideoPreviewLayer { get;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("automaticallyAdjustsVideoMirroring")]
 		bool AutomaticallyAdjustsVideoMirroring { get; set;  }
 #if !MONOMAC
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("supportsVideoStabilization")]
 		bool SupportsVideoStabilization { [Bind ("isVideoStabilizationSupported")] get;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("videoStabilizationEnabled")]
-		[Availability (Deprecated = Platform.iOS_8_0, Message="Use 'ActiveVideoStabilizationMode' instead.")]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use 'ActiveVideoStabilizationMode' instead.")]
 		bool VideoStabilizationEnabled { [Bind ("isVideoStabilizationEnabled")] get;  }
 
-		[Since (6,0)]
-		[Availability (Deprecated = Platform.iOS_8_0, Message="Use 'PreferredVideoStabilizationMode' instead.")]
+		[Introduced (PlatformName.iOS, 6, 0)]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use 'PreferredVideoStabilizationMode' instead.")]
 		[Export ("enablesVideoStabilizationWhenAvailable")]
 		bool EnablesVideoStabilizationWhenAvailable { get; set;  }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("preferredVideoStabilizationMode")]
 		AVCaptureVideoStabilizationMode PreferredVideoStabilizationMode { get; set; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("activeVideoStabilizationMode")]
 		AVCaptureVideoStabilizationMode ActiveVideoStabilizationMode { get; }
 #endif
-		[NoiOS]
+		[Unavailable (PlatformName.iOS)]
 		[Export ("supportsVideoFieldMode")]
 		bool SupportsVideoFieldMode { [Bind ("isVideoFieldModeSupported")] get; }
 
@@ -8191,20 +8191,20 @@ namespace XamCore.AVFoundation {
 		AVVideoFieldMode VideoFieldMode { get; set; }
 #endif
 
-		[iOS (11, 0), NoMac, TV (11, 0), NoWatch]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		[Export ("cameraIntrinsicMatrixDeliverySupported")]
 		bool CameraIntrinsicMatrixDeliverySupported { [Bind ("isCameraIntrinsicMatrixDeliverySupported")] get; }
 
-		[iOS (11, 0), NoMac, TV (11, 0), NoWatch]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		[Export ("cameraIntrinsicMatrixDeliveryEnabled")]
 		bool CameraIntrinsicMatrixDeliveryEnabled { [Bind ("isCameraIntrinsicMatrixDeliveryEnabled")] get; set; }
 
 	}
 
-	[NoWatch]
-	[NoTV]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	interface AVCaptureAudioChannel {
 		[Export ("peakHoldLevel")]
 		float PeakHoldLevel { get;  } // defined as 'float'
@@ -8212,19 +8212,19 @@ namespace XamCore.AVFoundation {
 		[Export ("averagePowerLevel")]
 		float AveragePowerLevel { get; } // defined as 'float'
 
-		[NoiOS]
+		[Unavailable (PlatformName.iOS)]
 		[Export ("enabled")]
 		bool Enabled { [Bind ("isEnabled")] get; set; }
 
-		[NoiOS]
+		[Unavailable (PlatformName.iOS)]
 		[Export ("volume")]
 		float Volume { get; set; } /* float intended here */
 	}
 
-	[NoWatch]
-	[NoTV]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	// Objective-C exception thrown.  Name: NSGenericException Reason: Cannot instantiate AVCaptureInput because it is an abstract superclass.
 	[DisableDefaultCtor]
 	interface AVCaptureInput {
@@ -8236,9 +8236,9 @@ namespace XamCore.AVFoundation {
 		NSString PortFormatDescriptionDidChangeNotification { get; }
 	}
 
-	[NoWatch]
-	[NoTV]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface AVCaptureInputPort {
@@ -8254,15 +8254,15 @@ namespace XamCore.AVFoundation {
 		[Export ("input")]
 		AVCaptureInput Input  { get; }
 
-		[Since (7,0), Mavericks, Export ("clock", ArgumentSemantic.Copy)]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9), Export ("clock", ArgumentSemantic.Copy)]
 		CMClock Clock { get; }
 	}
 
 	interface IAVCaptureDepthDataOutputDelegate {}
 	
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface AVCaptureDepthDataOutputDelegate
 	{
 		[Export ("depthDataOutput:didOutputDepthData:timestamp:connection:")]
@@ -8272,8 +8272,8 @@ namespace XamCore.AVFoundation {
 		void DidDropDepthData (AVCaptureDepthDataOutput output, AVDepthData depthData, CMTime timestamp, AVCaptureConnection connection, AVCaptureOutputDataDroppedReason reason);
 	}
 
-	[NoWatch, NoTV, iOS (11,0)]
-	[BaseType (typeof(AVCaptureOutput))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (AVCaptureOutput))]
 	[DisableDefaultCtor]
 	interface AVCaptureDepthDataOutput
 	{
@@ -8296,9 +8296,9 @@ namespace XamCore.AVFoundation {
 		bool FilteringEnabled { [Bind ("isFilteringEnabled")] get; set; }
 	}
 
-	[NoWatch]
-	[NoTV]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (AVCaptureInput))]
 	// crash application if 'init' is called
 	[DisableDefaultCtor]
@@ -8315,9 +8315,9 @@ namespace XamCore.AVFoundation {
 	}
 
 #if MONOMAC
-	[NoWatch]
-	[NoTV]
-	[Mac (10,7)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.MacOSX, 10, 7)]
 	[BaseType (typeof (NSObject))]
 	interface AVCaptureDeviceInputSource {
 		[Export ("inputSourceID")]
@@ -8327,10 +8327,10 @@ namespace XamCore.AVFoundation {
 		string LocalizedName { get; }
 	}
 
-	[NoWatch]
-	[Mac (10,7)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.MacOSX, 10, 7)]
 	[BaseType (typeof (AVCaptureFileOutput))]
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	interface AVCaptureAudioFileOutput {
 		[Export ("metadata", ArgumentSemantic.Copy)]
 		AVMetadataItem [] Metadata { get; set; }
@@ -8348,9 +8348,9 @@ namespace XamCore.AVFoundation {
 		void StartRecording (NSUrl outputFileUrl, string fileType, [Protocolize] AVCaptureFileOutputRecordingDelegate recordingDelegate);
 	}
 
-	[NoWatch]
-	[NoTV]
-	[Mac (10,7)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.MacOSX, 10, 7)]
 	[BaseType (typeof (AVCaptureOutput))]
 	interface AVCaptureAudioPreviewOutput {
 		[Export ("outputDeviceUniqueID", ArgumentSemantic.Copy), NullAllowed]
@@ -8390,9 +8390,9 @@ namespace XamCore.AVFoundation {
 
 #endif
 
-	[NoWatch]
-	[NoTV]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (NSObject))]
 #if XAMCORE_4_0
 	[Abstract] // as per docs
@@ -8403,29 +8403,29 @@ namespace XamCore.AVFoundation {
 		[Export ("connections")]
 		AVCaptureConnection [] Connections { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("connectionWithMediaType:")]
 		AVCaptureConnection ConnectionFromMediaType (NSString avMediaType);
 
 #if !MONOMAC
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("metadataOutputRectOfInterestForRect:")]
 		CGRect GetMetadataOutputRectOfInterestForRect (CGRect rectInOutputCoordinates);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("rectForMetadataOutputRectOfInterest:")]
 		CGRect GetRectForMetadataOutputRectOfInterest (CGRect rectInMetadataOutputCoordinates);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("transformedMetadataObjectForMetadataObject:connection:")]
 		AVMetadataObject GetTransformedMetadataObject (AVMetadataObject metadataObject, AVCaptureConnection connection);
 #endif
 	}
 
 #if MONOMAC
-	[NoWatch]
-	[NoTV]
-	[Mac (10,7)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.MacOSX, 10, 7)]
 	[BaseType (typeof (AVCaptureInput))]
 	interface AVCaptureScreenInput {
 		[Export ("initWithDisplayID:")]
@@ -8443,27 +8443,27 @@ namespace XamCore.AVFoundation {
 		[Export ("capturesMouseClicks")]
 		bool CapturesMouseClicks { get; set; }
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[Export ("capturesCursor")]
 		bool CapturesCursor { get; set; }
 
-		[Mac (10,8)]
-		[Availability (Deprecated=Platform.Mac_10_10, Message="Ignored since 10.10, if you want to get this behavior, use AVCaptureVideoDataOutput and compare the frame contents on your own code.")]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
+		[Deprecated (PlatformName.MacOSX, 10, 10, message: "Ignored since 10.10, if you want to get this behavior, use AVCaptureVideoDataOutput and compare the frame contents on your own code.")]
 		[Export ("removesDuplicateFrames")]
 		bool RemovesDuplicateFrames { get; set; }
 	}
 #endif
 
-	[NoWatch]
-	[NoTV]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (CALayer))]
 	interface AVCaptureVideoPreviewLayer {
 		[NullAllowed] // by default this property is null
 		[Export ("session", ArgumentSemantic.Retain)]
 		AVCaptureSession Session { get; set;  }
 
-		[Mac (10,7), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 7), Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("setSessionWithNoConnection:")]
 		void SetSessionWithNoConnection (AVCaptureSession session);
 
@@ -8478,23 +8478,23 @@ namespace XamCore.AVFoundation {
 
 #if !MONOMAC
 		[Export ("orientation")]
-		[Availability (Introduced = Platform.iOS_4_0, Deprecated = Platform.iOS_6_0, Message = "Use 'AVCaptureConnection.VideoOrientation' instead.")]
+		[Introduced (PlatformName.iOS, 4, 0, message: "Use 'AVCaptureConnection.VideoOrientation' instead."), Deprecated (PlatformName.iOS, 6, 0, message: "Use 'AVCaptureConnection.VideoOrientation' instead.")]
 		AVCaptureVideoOrientation Orientation { get; set;  }
 
 		[Export ("automaticallyAdjustsMirroring")]
-		[Availability (Introduced = Platform.iOS_4_0, Deprecated = Platform.iOS_6_0, Message = "Use 'AVCaptureConnection.AutomaticallyAdjustsVideoMirroring' instead.")]
+		[Introduced (PlatformName.iOS, 4, 0, message: "Use 'AVCaptureConnection.AutomaticallyAdjustsVideoMirroring' instead."), Deprecated (PlatformName.iOS, 6, 0, message: "Use 'AVCaptureConnection.AutomaticallyAdjustsVideoMirroring' instead.")]
 		bool AutomaticallyAdjustsMirroring { get; set;  }
 
 		[Export ("mirrored")]
-		[Availability (Introduced = Platform.iOS_4_0, Deprecated = Platform.iOS_6_0, Message = "Use 'AVCaptureConnection.VideoMirrored' instead.")]
+		[Introduced (PlatformName.iOS, 4, 0, message: "Use 'AVCaptureConnection.VideoMirrored' instead."), Deprecated (PlatformName.iOS, 6, 0, message: "Use 'AVCaptureConnection.VideoMirrored' instead.")]
 		bool Mirrored { [Bind ("isMirrored")] get; set;  }
 
 		[Export ("isMirroringSupported")]
-		[Availability (Introduced = Platform.iOS_4_0, Deprecated = Platform.iOS_6_0, Message = "Use 'AVCaptureConnection.IsVideoMirroringSupported' instead.")]
+		[Introduced (PlatformName.iOS, 4, 0, message: "Use 'AVCaptureConnection.IsVideoMirroringSupported' instead."), Deprecated (PlatformName.iOS, 6, 0, message: "Use 'AVCaptureConnection.IsVideoMirroringSupported' instead.")]
 		bool MirroringSupported { get; }
 
 		[Export ("isOrientationSupported")]
-		[Availability (Introduced = Platform.iOS_4_0, Deprecated = Platform.iOS_6_0, Message = "Use 'AVCaptureConnection.IsVideoOrientationSupported' instead.")]
+		[Introduced (PlatformName.iOS, 4, 0, message: "Use 'AVCaptureConnection.IsVideoOrientationSupported' instead."), Deprecated (PlatformName.iOS, 6, 0, message: "Use 'AVCaptureConnection.IsVideoOrientationSupported' instead.")]
 		bool OrientationSupported { get; }
 
 #endif
@@ -8506,43 +8506,43 @@ namespace XamCore.AVFoundation {
 		[Internal]
 		IntPtr InitWithConnection (AVCaptureSession session);
 
-		[iOS (8,0), Mac (10,2)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 2)]
 		[Internal]
 		[Export ("initWithSessionWithNoConnection:")]
 		IntPtr InitWithNoConnection (AVCaptureSession session);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("connection")]
 		AVCaptureConnection Connection { get; }
 #if !MONOMAC
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("captureDevicePointOfInterestForPoint:")]
 		CGPoint CaptureDevicePointOfInterestForPoint (CGPoint pointInLayer);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("pointForCaptureDevicePointOfInterest:")]
 		CGPoint PointForCaptureDevicePointOfInterest (CGPoint captureDevicePointOfInterest);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("transformedMetadataObjectForMetadataObject:")]
 		AVMetadataObject GetTransformedMetadataObject (AVMetadataObject metadataObject);
 
-		[Since (7,0), Export ("metadataOutputRectOfInterestForRect:")]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("metadataOutputRectOfInterestForRect:")]
 		CGRect MapToMetadataOutputCoordinates (CGRect rectInLayerCoordinates);
 		
-		[Since (7,0), Export ("rectForMetadataOutputRectOfInterest:")]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("rectForMetadataOutputRectOfInterest:")]
 		CGRect MapToLayerCoordinates (CGRect rectInMetadataOutputCoordinates);
 #endif
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Static]
 		[Export ("layerWithSessionWithNoConnection:")]
 		AVCaptureVideoPreviewLayer CreateWithNoConnection (AVCaptureSession session);
 	}
 
-	[NoTV]
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (AVCaptureOutput))]
 	interface AVCaptureVideoDataOutput {
 		[Export ("sampleBufferDelegate")]
@@ -8562,7 +8562,7 @@ namespace XamCore.AVFoundation {
 		AVVideoSettingsCompressed CompressedVideoSetting { get; set; }
 
 		[Export ("minFrameDuration")]
-		[Availability (Introduced = Platform.iOS_4_0, Deprecated = Platform.iOS_5_0, Message = "Use 'AVCaptureConnection.MinVideoFrameDuration' instead.")]
+		[Introduced (PlatformName.iOS, 4, 0, message: "Use 'AVCaptureConnection.MinVideoFrameDuration' instead."), Deprecated (PlatformName.iOS, 5, 0, message: "Use 'AVCaptureConnection.MinVideoFrameDuration' instead.")]
 		CMTime MinFrameDuration { get; set;  }
 
 		[Export ("alwaysDiscardsLateVideoFrames")]
@@ -8593,30 +8593,30 @@ namespace XamCore.AVFoundation {
 		NSString [] AvailableVideoCodecTypes { get;  }
 
 #if !MONOMAC
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("recommendedVideoSettingsForAssetWriterWithOutputFileType:")]
 		NSDictionary GetRecommendedVideoSettingsForAssetWriter (string outputFileType);
 #endif
 
-		[iOS (11,0), NoMac]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.MacOSX)]
 		[Export ("availableVideoCodecTypesForAssetWriterWithOutputFileType:")]
 		string[] GetAvailableVideoCodecTypes (string outputFileType);
 
 		[Internal]
-		[iOS (11,0), NoMac]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.MacOSX)]
 		[Export ("recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:")]
 		[return: NullAllowed]
 		NSDictionary GetWeakRecommendedVideoSettings (string videoCodecType, string outputFileType);
 
-		[iOS (11,0), NoMac]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.MacOSX)]
 		[Wrap ("new AVPlayerItemVideoOutputSettings (GetWeakRecommendedVideoSettings (videoCodecType, outputFileType))")]
 		AVPlayerItemVideoOutputSettings GetRecommendedVideoSettings (string videoCodecType, string outputFileType);
 	}
 
-	[NoWatch]
-	[NoTV]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Model]
 	[Protocol]
 	interface AVCaptureVideoDataOutputSampleBufferDelegate {
@@ -8624,16 +8624,16 @@ namespace XamCore.AVFoundation {
 		// CMSampleBufferRef		
 		void DidOutputSampleBuffer (AVCaptureOutput captureOutput, CMSampleBuffer sampleBuffer, AVCaptureConnection connection);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("captureOutput:didDropSampleBuffer:fromConnection:")]
 		void DidDropSampleBuffer (AVCaptureOutput captureOutput, CMSampleBuffer sampleBuffer, AVCaptureConnection connection);
 	}
 
 	interface IAVCaptureVideoDataOutputSampleBufferDelegate {}
 
-	[NoWatch]
-	[NoTV]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (AVCaptureOutput))]
 	interface AVCaptureAudioDataOutput {
 		[Export ("sampleBufferDelegate")]
@@ -8661,23 +8661,23 @@ namespace XamCore.AVFoundation {
 #endif
 
 #if !MONOMAC
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("recommendedAudioSettingsForAssetWriterWithOutputFileType:")]
 		NSDictionary GetRecommendedAudioSettingsForAssetWriter (string outputFileType);
 #endif
 
-		[NoiOS]
+		[Unavailable (PlatformName.iOS)]
 		[Export ("audioSettings", ArgumentSemantic.Copy)]
 		NSDictionary WeakAudioSettings { get; set; }
 
-		[NoiOS]
+		[Unavailable (PlatformName.iOS)]
 		[Wrap ("WeakAudioSettings")]
 		AudioSettings AudioSettings { get; set; }
 	}
 
-	[NoWatch]
-	[NoTV]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -8687,9 +8687,9 @@ namespace XamCore.AVFoundation {
 	}
 
 #if !MONOMAC
-	[NoWatch]
-	[NoTV]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 #if XAMCORE_2_0
@@ -8699,9 +8699,9 @@ namespace XamCore.AVFoundation {
 		// Abstract class in obJC
 	}
 
-	[NoWatch]
-	[NoTV]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (AVCaptureBracketedStillImageSettings))]
 	interface AVCaptureManualExposureBracketedStillImageSettings {
 		[Export ("exposureDuration")]
@@ -8714,9 +8714,9 @@ namespace XamCore.AVFoundation {
 		AVCaptureManualExposureBracketedStillImageSettings Create (CMTime duration, float /* float, not CGFloat */ ISO);
 	}
 
-	[NoWatch]
-	[NoTV]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (AVCaptureBracketedStillImageSettings))]
 	interface AVCaptureAutoExposureBracketedStillImageSettings {
 		[Export ("exposureTargetBias")]
@@ -8731,12 +8731,12 @@ namespace XamCore.AVFoundation {
 
 	interface IAVCaptureFileOutputRecordingDelegate {}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (AVCaptureOutput))]
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	// Objective-C exception thrown.  Name: NSGenericException Reason: Cannot instantiate AVCaptureFileOutput because it is an abstract superclass.
 	[DisableDefaultCtor]
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	interface AVCaptureFileOutput {
 		[Export ("recordedDuration")]
 		CMTime RecordedDuration { get; }
@@ -8766,11 +8766,11 @@ namespace XamCore.AVFoundation {
 		void StopRecording ();
 
 #if MONOMAC
-		[Mac (10,7)]
+		[Introduced (PlatformName.MacOSX, 10, 7)]
 		[Export ("delegate", ArgumentSemantic.Assign), NullAllowed]
 		IAVCaptureFileOutputDelegate Delegate { get; set; }
 
-		[Mac (10,7)]
+		[Introduced (PlatformName.MacOSX, 10, 7)]
 		[Export ("recordingPaused")]
 		bool RecordingPaused { [Bind ("isRecordingPaused")] get; }
 #endif
@@ -8778,10 +8778,10 @@ namespace XamCore.AVFoundation {
 
 	[BaseType (typeof (NSObject))]
 	[Model]
-	[Since (4, 0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Protocol]
-	[NoTV]
-	[NoWatch]
+	[Unavailable (PlatformName.TvOS)]
+	[Unavailable (PlatformName.WatchOS)]
 	interface AVCaptureFileOutputRecordingDelegate {
 		[Export ("captureOutput:didStartRecordingToOutputFileAtURL:fromConnections:")]
 		void DidStartRecording (AVCaptureFileOutput captureOutput, NSUrl outputFileUrl, NSObject [] connections);
@@ -8805,9 +8805,9 @@ namespace XamCore.AVFoundation {
 	}
 
 #if !MONOMAC
-	[NoWatch]
-	[NoTV]
-	[Since (6,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (AVCaptureOutput))]
 	interface AVCaptureMetadataOutput {
 		[Export ("metadataObjectsDelegate")]
@@ -8835,15 +8835,15 @@ namespace XamCore.AVFoundation {
 		[Export ("setMetadataObjectsDelegate:queue:")]
 		void SetDelegate ([NullAllowed][Protocolize] AVCaptureMetadataOutputObjectsDelegate objectsDelegate, [NullAllowed] DispatchQueue objectsCallbackQueue);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("rectOfInterest", ArgumentSemantic.Copy)]
 		CGRect RectOfInterest { get; set; }
 		
 	}
 
-	[NoWatch]
-	[NoTV]
-	[Since (6,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -8853,9 +8853,9 @@ namespace XamCore.AVFoundation {
 	}
 #endif
 
-	[NoWatch]
-	[NoTV, NoMac, iOS (10,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface AVCapturePhotoSettings : NSCopying
 	{
@@ -8909,15 +8909,15 @@ namespace XamCore.AVFoundation {
 		[NullAllowed, Export ("previewPhotoFormat", ArgumentSemantic.Copy)]
 		NSDictionary<NSString, NSObject> PreviewPhotoFormat { get; set; }
 
-		[iOS (10, 2)]
+		[Introduced (PlatformName.iOS, 10, 2)]
 		[Export ("autoDualCameraFusionEnabled")]
 		bool AutoDualCameraFusionEnabled { [Bind ("isAutoDualCameraFusionEnabled")] get; set; }
 	}
 	
 #if !MONOMAC
-	[NoWatch]
-	[NoTV, NoMac, iOS (10,0)]
-	[BaseType (typeof(AVCapturePhotoSettings))]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (AVCapturePhotoSettings))]
 	[DisableDefaultCtor]
 	interface AVCapturePhotoBracketSettings
 	{
@@ -8933,9 +8933,9 @@ namespace XamCore.AVFoundation {
 	}
 #endif
 
-	[NoWatch]
-	[NoTV, NoMac, iOS (10,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface AVCaptureResolvedPhotoSettings
 	{
@@ -8960,7 +8960,7 @@ namespace XamCore.AVFoundation {
 		[Export ("stillImageStabilizationEnabled")]
 		bool IsStillImageStabilizationEnabled { [Bind ("isStillImageStabilizationEnabled")] get; }
 
-		[iOS (10, 2)]
+		[Introduced (PlatformName.iOS, 10, 2)]
 		[Export ("dualCameraFusionEnabled")]
 		bool DualCameraFusionEnabled { [Bind ("isDualCameraFusionEnabled")] get; }
 	}
@@ -8969,10 +8969,10 @@ namespace XamCore.AVFoundation {
 
 	interface IAVCapturePhotoCaptureDelegate {}
 
-	[NoWatch]
-	[NoTV, NoMac, iOS (10,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 10, 0)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface AVCapturePhotoCaptureDelegate
 	{
 		[Export ("captureOutput:willBeginCaptureForResolvedSettings:")]
@@ -8984,15 +8984,15 @@ namespace XamCore.AVFoundation {
 		[Export ("captureOutput:didCapturePhotoForResolvedSettings:")]
 		void DidCapturePhoto (AVCapturePhotoOutput captureOutput, AVCaptureResolvedPhotoSettings resolvedSettings);
 
-		[Deprecated (PlatformName.iOS, 11,0, message: "Use the 'DidFinishProcessingPhoto' overload accepting a 'AVCapturePhoto' instead.")]
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use the 'DidFinishProcessingPhoto' overload accepting a 'AVCapturePhoto' instead.")]
 		[Export ("captureOutput:didFinishProcessingPhotoSampleBuffer:previewPhotoSampleBuffer:resolvedSettings:bracketSettings:error:")]
 		void DidFinishProcessingPhoto (AVCapturePhotoOutput captureOutput, [NullAllowed] CMSampleBuffer photoSampleBuffer, [NullAllowed] CMSampleBuffer previewPhotoSampleBuffer, AVCaptureResolvedPhotoSettings resolvedSettings, [NullAllowed] AVCaptureBracketedStillImageSettings bracketSettings, [NullAllowed] NSError error);
 
-		[Deprecated (PlatformName.iOS, 11,0, message: "Use the 'DidFinishProcessingPhoto' overload accepting a 'AVCapturePhoto' instead.")]
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use the 'DidFinishProcessingPhoto' overload accepting a 'AVCapturePhoto' instead.")]
 		[Export ("captureOutput:didFinishProcessingRawPhotoSampleBuffer:previewPhotoSampleBuffer:resolvedSettings:bracketSettings:error:")]
 		void DidFinishProcessingRawPhoto (AVCapturePhotoOutput captureOutput, [NullAllowed] CMSampleBuffer rawSampleBuffer, [NullAllowed] CMSampleBuffer previewPhotoSampleBuffer, AVCaptureResolvedPhotoSettings resolvedSettings, [NullAllowed] AVCaptureBracketedStillImageSettings bracketSettings, [NullAllowed] NSError error);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("captureOutput:didFinishProcessingPhoto:error:")]
 		void DidFinishProcessingPhoto (AVCapturePhotoOutput output, AVCapturePhoto photo, [NullAllowed] NSError error);
 
@@ -9006,9 +9006,9 @@ namespace XamCore.AVFoundation {
 		void DidFinishCapture (AVCapturePhotoOutput captureOutput, AVCaptureResolvedPhotoSettings resolvedSettings, [NullAllowed] NSError error);
 	}
 
-	[NoWatch]
-	[NoTV, NoMac, iOS (10,0)]
-	[BaseType (typeof(AVCaptureOutput))]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (AVCaptureOutput))]
 	interface AVCapturePhotoOutput
 	{
 		[Export ("capturePhotoWithSettings:delegate:")]
@@ -9079,17 +9079,17 @@ namespace XamCore.AVFoundation {
 		[Async]
 		void SetPreparedPhotoSettings (AVCapturePhotoSettings[] preparedPhotoSettingsArray, [NullAllowed] Action<bool, NSError> completionHandler);
 
-		[iOS (10, 2)]
+		[Introduced (PlatformName.iOS, 10, 2)]
 		[Export ("dualCameraFusionSupported")]
 		bool DualCameraFusionSupported { [Bind ("isDualCameraFusionSupported")] get; }
 
 	}
 #endif
 	
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (AVCaptureFileOutput))]
-	[NoTV]
-	[NoWatch]
+	[Unavailable (PlatformName.TvOS)]
+	[Unavailable (PlatformName.WatchOS)]
 	interface AVCaptureMovieFileOutput {
 		[NullAllowed] // by default this property is null
 		[Export ("metadata", ArgumentSemantic.Copy)]
@@ -9099,32 +9099,32 @@ namespace XamCore.AVFoundation {
 		CMTime MovieFragmentInterval { get; set; }
 
 #if !MONOMAC
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("recordsVideoOrientationAndMirroringChangesAsMetadataTrackForConnection:")]
 		bool RecordsVideoOrientationAndMirroringChangesAsMetadataTrack (AVCaptureConnection connection);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("setRecordsVideoOrientationAndMirroringChanges:asMetadataTrackForConnection:")]
 		void SetRecordsVideoOrientationAndMirroringChanges (bool doRecordChanges, AVCaptureConnection connection);
 
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("availableVideoCodecTypes")]
 		NSString [] AvailableVideoCodecTypes { get; }
 #endif
 
-		[iOS (10,0), Mac (10,7)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 7)]
 		[Export ("outputSettingsForConnection:")]
 		NSDictionary GetOutputSettings (AVCaptureConnection connection);
 
-		[iOS (10,0), Mac (10,7)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 7)]
 		[Export ("setOutputSettings:forConnection:")]
 		void SetOutputSettings (NSDictionary outputSettings, AVCaptureConnection connection);
 	}
 
-	[NoTV]
-	[NoWatch]
-	[Since (4,0)]
-	[Availability (Introduced = Platform.iOS_4_0, Deprecated = Platform.iOS_10_0, Message = "Use 'AVCapturePhotoOutput' instead.")]
+	[Unavailable (PlatformName.TvOS)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
+	[Introduced (PlatformName.iOS, 4, 0, message: "Use 'AVCapturePhotoOutput' instead."), Deprecated (PlatformName.iOS, 10, 0, message: "Use 'AVCapturePhotoOutput' instead.")]
 	[BaseType (typeof (AVCaptureOutput))]
 	interface AVCaptureStillImageOutput {
 		[Export ("availableImageDataCVPixelFormatTypes")]
@@ -9154,45 +9154,45 @@ namespace XamCore.AVFoundation {
 		bool CapturingStillImage { [Bind ("isCapturingStillImage")] get;  }
 
 #if !MONOMAC
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("automaticallyEnablesStillImageStabilizationWhenAvailable")]
 		bool AutomaticallyEnablesStillImageStabilizationWhenAvailable { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("stillImageStabilizationActive")]
 		bool IsStillImageStabilizationActive { [Bind ("isStillImageStabilizationActive")] get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("stillImageStabilizationSupported")]
 		bool IsStillImageStabilizationSupported { [Bind ("isStillImageStabilizationSupported")] get; }
 
-		[Since (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("captureStillImageBracketAsynchronouslyFromConnection:withSettingsArray:completionHandler:")]
 		void CaptureStillImageBracket (AVCaptureConnection connection, AVCaptureBracketedStillImageSettings [] settings, Action<CMSampleBuffer, AVCaptureBracketedStillImageSettings, NSError> imageHandler);
 
-		[Since (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("maxBracketedCaptureStillImageCount")]
 		nuint MaxBracketedCaptureStillImageCount { get; }
 
-		[Since (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("prepareToCaptureStillImageBracketFromConnection:withSettingsArray:completionHandler:")]
 		void PrepareToCaptureStillImageBracket (AVCaptureConnection connection, AVCaptureBracketedStillImageSettings [] settings, Action<bool,NSError> handler);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("highResolutionStillImageOutputEnabled")]
 		bool HighResolutionStillImageOutputEnabled { [Bind ("isHighResolutionStillImageOutputEnabled")] get; set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("lensStabilizationDuringBracketedCaptureSupported")]
 		bool LensStabilizationDuringBracketedCaptureSupported { [Bind ("isLensStabilizationDuringBracketedCaptureSupported")] get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("lensStabilizationDuringBracketedCaptureEnabled")]
 		bool LensStabilizationDuringBracketedCaptureEnabled { [Bind ("isLensStabilizationDuringBracketedCaptureEnabled")] get; set; }
 #endif
 	}
 
-	[NoTV, iOS (10,0), NoMac, NoWatch]
+	[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 0), Unavailable (PlatformName.MacOSX), Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // init NS_UNAVAILABLE
 	interface AVCaptureDeviceDiscoverySession {
@@ -9206,7 +9206,7 @@ namespace XamCore.AVFoundation {
 		AVCaptureDevice [] Devices { get; }
 	}
 
-	[NoTV, iOS (10,0), NoMac, NoWatch]
+	[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 0), Unavailable (PlatformName.MacOSX), Unavailable (PlatformName.WatchOS)]
 	enum AVCaptureDeviceType {
 
 		[Field ("AVCaptureDeviceTypeBuiltInMicrophone")]
@@ -9223,15 +9223,15 @@ namespace XamCore.AVFoundation {
 		[Field ("AVCaptureDeviceTypeBuiltInDuoCamera")]
 		BuiltInDuoCamera,
 
-		[iOS (10, 2)]
+		[Introduced (PlatformName.iOS, 10, 2)]
 		[Field ("AVCaptureDeviceTypeBuiltInDualCamera")]
 		BuiltInDualCamera,
 	}
 
-	[NoWatch]
-	[NoTV]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	// Objective-C exception thrown.  Name: NSInvalidArgumentException Reason: Cannot instantiate a AVCaptureDevice directly.
 	[DisableDefaultCtor]
 	interface AVCaptureDevice {
@@ -9290,11 +9290,11 @@ namespace XamCore.AVFoundation {
 		[Export ("supportsAVCaptureSessionPreset:")]
 		bool SupportsAVCaptureSessionPreset (string preset);
 
-		[Availability (Introduced = Platform.iOS_4_0, Deprecated = Platform.iOS_10_0, Message="Use 'AVCapturePhotoSettings.FlashMode' instead.")]
+		[Introduced (PlatformName.iOS, 4, 0, message: "Use 'AVCapturePhotoSettings.FlashMode' instead."), Deprecated (PlatformName.iOS, 10, 0, message: "Use 'AVCapturePhotoSettings.FlashMode' instead.")]
 		[Export ("flashMode")]
 		AVCaptureFlashMode FlashMode { get; set;  }
 
-		[Availability (Introduced = Platform.iOS_5_0, Deprecated = Platform.iOS_10_0, Message="Use 'AVCapturePhotoOutput.SupportedFlashModes' instead.")]
+		[Introduced (PlatformName.iOS, 5, 0, message: "Use 'AVCapturePhotoOutput.SupportedFlashModes' instead."), Deprecated (PlatformName.iOS, 10, 0, message: "Use 'AVCapturePhotoOutput.SupportedFlashModes' instead.")]
 		[Export ("isFlashModeSupported:")]
 		bool IsFlashModeSupported (AVCaptureFlashMode flashMode);
 
@@ -9354,8 +9354,8 @@ namespace XamCore.AVFoundation {
 		[Notification]
 		NSString WasDisconnectedNotification { get; }
 
-		[Since (6, 0)]
-		[NoMac]
+		[Introduced (PlatformName.iOS, 6, 0)]
+		[Unavailable (PlatformName.MacOSX)]
 		[Field ("AVCaptureMaxAvailableTorchLevel")]
 		float MaxAvailableTorchLevel { get; } // defined as 'float'
 
@@ -9367,183 +9367,183 @@ namespace XamCore.AVFoundation {
 		[Export ("subjectAreaChangeMonitoringEnabled")]
 		bool SubjectAreaChangeMonitoringEnabled { [Bind ("isSubjectAreaChangeMonitoringEnabled")] get; set; }
 		
-		[Since(5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("isFlashAvailable")]
 		bool FlashAvailable { get;  }
 
-		[Availability (Introduced = Platform.iOS_5_0, Deprecated = Platform.iOS_10_0, Message="Use 'AVCapturePhotoOutput.IsFlashScene' instead.")]
-		[Since(5,0)]
+		[Introduced (PlatformName.iOS, 5, 0, message: "Use 'AVCapturePhotoOutput.IsFlashScene' instead."), Deprecated (PlatformName.iOS, 10, 0, message: "Use 'AVCapturePhotoOutput.IsFlashScene' instead.")]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("isFlashActive")]
 		bool FlashActive { get; }
 
-		[Since(5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("isTorchAvailable")]
 		bool TorchAvailable { get; }
 
-		[Since(5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("torchLevel")]
 		float TorchLevel { get; } // defined as 'float'
 
 		// 6.0
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("torchActive")]
 		bool TorchActive { [Bind ("isTorchActive")] get;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("setTorchModeOnWithLevel:error:")]
 		bool SetTorchModeLevel (float /* defined as 'float' */ torchLevel, out NSError outError);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("lowLightBoostSupported")]
 		bool LowLightBoostSupported { [Bind ("isLowLightBoostSupported")] get; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("lowLightBoostEnabled")]
 		bool LowLightBoostEnabled { [Bind ("isLowLightBoostEnabled")] get; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("automaticallyEnablesLowLightBoostWhenAvailable")]
 		bool AutomaticallyEnablesLowLightBoostWhenAvailable { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("videoZoomFactor")]
 		nfloat VideoZoomFactor { get; set; }
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("rampToVideoZoomFactor:withRate:")]
 		void RampToVideoZoom (nfloat factor, float /* float, not CGFloat */ rate);
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("rampingVideoZoom")]
 		bool RampingVideoZoom { [Bind ("isRampingVideoZoom")] get; }
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("cancelVideoZoomRamp")]
 		void CancelVideoZoomRamp ();
 			
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("autoFocusRangeRestrictionSupported")]
 		bool AutoFocusRangeRestrictionSupported { [Bind ("isAutoFocusRangeRestrictionSupported")] get; }
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("autoFocusRangeRestriction")]
 		AVCaptureAutoFocusRangeRestriction AutoFocusRangeRestriction { get; set; }
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("smoothAutoFocusSupported")]
 		bool SmoothAutoFocusSupported { [Bind ("isSmoothAutoFocusSupported")] get; }
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("smoothAutoFocusEnabled")]
 		bool SmoothAutoFocusEnabled { [Bind ("isSmoothAutoFocusEnabled")] get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Static, Export ("authorizationStatusForMediaType:")]
 		AVAuthorizationStatus GetAuthorizationStatus (NSString avMediaTypeToken);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Static, Export ("requestAccessForMediaType:completionHandler:")]
 		[Async]
 		void RequestAccessForMediaType (NSString avMediaTypeToken, AVRequestAccessStatus completion);
 #endif
 
-		[Since (7,0)][Mac (10,7)]
+		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 7)]
 		[Export ("activeFormat", ArgumentSemantic.Retain)]
 		AVCaptureDeviceFormat ActiveFormat { get; set; }
 
-		[Since (7,0)][Mac (10,7)]
+		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 7)]
 		[Export ("formats")]
 		AVCaptureDeviceFormat [] Formats { get; }
 
-		[Mac (10,7)] // Also iOS 4.0+ but we do not need this metadata
+		[Introduced (PlatformName.MacOSX, 10, 7)] // Also iOS 4.0+ but we do not need this metadata
 		[Export ("hasFlash")]
 		bool HasFlash { get; }
 
-		[Mac (10,7)] // Also iOS 4.0+ but we do not need this metadata
+		[Introduced (PlatformName.MacOSX, 10, 7)] // Also iOS 4.0+ but we do not need this metadata
 		[Export ("hasTorch")]
 		bool HasTorch { get; }
 
-		[Mac (10,7), NoiOS]
+		[Introduced (PlatformName.MacOSX, 10, 7), Unavailable (PlatformName.iOS)]
 		[Export ("inUseByAnotherApplication")]
 		bool InUseByAnotherApplication { [Bind ("isInUseByAnotherApplication")] get; }
 
-		[Mac (10,7), NoiOS]
+		[Introduced (PlatformName.MacOSX, 10, 7), Unavailable (PlatformName.iOS)]
 		[Export ("suspended")]
 		bool Suspended { [Bind ("isSuspended")] get; }
 
-		[Mac (10,7), NoiOS]
+		[Introduced (PlatformName.MacOSX, 10, 7), Unavailable (PlatformName.iOS)]
 		[Export ("linkedDevices")]
 		AVCaptureDevice [] LinkedDevices { get; }
 
-		[Mac (10,9), NoiOS]
+		[Introduced (PlatformName.MacOSX, 10, 9), Unavailable (PlatformName.iOS)]
 		[Export ("manufacturer")]
 		string Manufacturer { get; }
 
-		[Mac (10,7), NoiOS]
+		[Introduced (PlatformName.MacOSX, 10, 7), Unavailable (PlatformName.iOS)]
 		[Export ("transportControlsSpeed")]
 		float TransportControlsSpeed { get; } // float intended
 
-		[Mac (10,7), NoiOS]
+		[Introduced (PlatformName.MacOSX, 10, 7), Unavailable (PlatformName.iOS)]
 		[Export ("transportControlsSupported")]
 		bool TransportControlsSupported { get; }
 
-		[Mac (10,7), NoiOS] // TODO: We can provide a better binding once IOKit is bound kIOAudioDeviceTransportType*
+		[Introduced (PlatformName.MacOSX, 10, 7), Unavailable (PlatformName.iOS)] // TODO: We can provide a better binding once IOKit is bound kIOAudioDeviceTransportType*
 		[Export ("transportType")]
 		int WeakTransportType { get; } // int intended
 
 #if MONOMAC // Can't use [NoiOS] since types are also inside a block
-		[Mac (10,7)]
+		[Introduced (PlatformName.MacOSX, 10, 7)]
 		[Export ("activeInputSource", ArgumentSemantic.Retain)]
 		AVCaptureDeviceInputSource ActiveInputSource { get; set; }
 
-		[Mac (10,7)]
+		[Introduced (PlatformName.MacOSX, 10, 7)]
 		[Export ("inputSources")]
 		AVCaptureDeviceInputSource [] InputSources { get; }
 
-		[Mac (10,7)]
+		[Introduced (PlatformName.MacOSX, 10, 7)]
 		[Export ("setTransportControlsPlaybackMode:speed:")]
 		void SetTransportControlsPlaybackMode (AVCaptureDeviceTransportControlsPlaybackMode mode, float speed); // Float intended
 
-		[Mac (10,7)]
+		[Introduced (PlatformName.MacOSX, 10, 7)]
 		[Export ("transportControlsPlaybackMode")]
 		AVCaptureDeviceTransportControlsPlaybackMode TransportControlsPlaybackMode { get; }
 #endif
 
-		[Since (7,0)]
-		[Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("activeVideoMinFrameDuration", ArgumentSemantic.Copy)]
 		CMTime ActiveVideoMinFrameDuration { get; set; }
 
-		[Since (7,0)]
-		[Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("activeVideoMaxFrameDuration", ArgumentSemantic.Copy)]
 		CMTime ActiveVideoMaxFrameDuration { get; set; }
 
-		[iOS (10,0), NoMac]
+		[Introduced (PlatformName.iOS, 10, 0), Unavailable (PlatformName.MacOSX)]
 		[Export ("lockingFocusWithCustomLensPositionSupported")]
 		bool LockingFocusWithCustomLensPositionSupported { [Bind ("isLockingFocusWithCustomLensPositionSupported")] get; }
 
-		[iOS (10,0), NoMac]
+		[Introduced (PlatformName.iOS, 10, 0), Unavailable (PlatformName.MacOSX)]
 		[Export ("lockingWhiteBalanceWithCustomDeviceGainsSupported")]
 		bool LockingWhiteBalanceWithCustomDeviceGainsSupported { [Bind ("isLockingWhiteBalanceWithCustomDeviceGainsSupported")] get; }
 
 		// From AVCaptureDevice (AVCaptureDeviceType) Category
 		[Internal]
-		[iOS (10,0), NoMac]
+		[Introduced (PlatformName.iOS, 10, 0), Unavailable (PlatformName.MacOSX)]
 		[Export ("deviceType")]
 		NSString _DeviceType { get; }
 
-		[iOS (10, 0), NoMac]
+		[Introduced (PlatformName.iOS, 10, 0), Unavailable (PlatformName.MacOSX)]
 		[Wrap ("AVCaptureDeviceTypeExtensions.GetValue (_DeviceType)")]
 		AVCaptureDeviceType DeviceType { get; }
 
 		[Internal]
-		[iOS (10,0), NoMac]
+		[Introduced (PlatformName.iOS, 10, 0), Unavailable (PlatformName.MacOSX)]
 		[Static]
 		[Export ("defaultDeviceWithDeviceType:mediaType:position:")]
 		AVCaptureDevice _DefaultDeviceWithDeviceType (NSString deviceType, string mediaType, AVCaptureDevicePosition position);
 
-		[iOS (10,0), NoMac]
+		[Introduced (PlatformName.iOS, 10, 0), Unavailable (PlatformName.MacOSX)]
 		[Static]
 		[Wrap ("AVCaptureDevice._DefaultDeviceWithDeviceType (deviceType.GetConstant (), mediaType, position)")]
 		AVCaptureDevice GetDefaultDevice (AVCaptureDeviceType deviceType, string mediaType, AVCaptureDevicePosition position);
@@ -9552,129 +9552,129 @@ namespace XamCore.AVFoundation {
 		//
 		// iOS 8
 		//
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("AVCaptureLensPositionCurrent")]
 		float FocusModeLensPositionCurrent { get; } /* float, not CGFloat */
 		
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("lensAperture")]
 		float LensAperture { get; } /* float, not CGFloat */
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("exposureDuration")]
 		CMTime ExposureDuration { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("ISO")]
 		float ISO { get; } /* float, not CGFloat */
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("exposureTargetOffset")]
 		float ExposureTargetOffset { get; } /* float, not CGFloat */
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("exposureTargetBias")]
 		float ExposureTargetBias { get; } /* float, not CGFloat */
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("minExposureTargetBias")]
 		float MinExposureTargetBias { get; } /* float, not CGFloat */
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("maxExposureTargetBias")]
 		float MaxExposureTargetBias { get; } /* float, not CGFloat */
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("setExposureModeCustomWithDuration:ISO:completionHandler:")]
 		[Async]
 		void LockExposure (CMTime duration, float /* float, not CGFloat */ ISO, [NullAllowed] Action<CMTime> completionHandler);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("setExposureTargetBias:completionHandler:")]
 		[Async]
 		void SetExposureTargetBias (float /* float, not CGFloat */ bias, [NullAllowed] Action<CMTime> completionHandler);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("lensPosition")]
 		float LensPosition { get; } /* float, not CGFloat */
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("setFocusModeLockedWithLensPosition:completionHandler:")]
 		[Async]
 		void SetFocusModeLocked (float /* float, not CGFloat */ lensPosition, [NullAllowed] Action<CMTime> completionHandler);		
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("deviceWhiteBalanceGains")]
 		AVCaptureWhiteBalanceGains DeviceWhiteBalanceGains { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("grayWorldDeviceWhiteBalanceGains")]
 		AVCaptureWhiteBalanceGains GrayWorldDeviceWhiteBalanceGains { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("maxWhiteBalanceGain")]
 		float MaxWhiteBalanceGain { get; } /* float, not CGFloat */
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler:")]
 		[Async]
 		void SetWhiteBalanceModeLockedWithDeviceWhiteBalanceGains (AVCaptureWhiteBalanceGains whiteBalanceGains, [NullAllowed] Action<CMTime> completionHandler);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("chromaticityValuesForDeviceWhiteBalanceGains:")]
 		AVCaptureWhiteBalanceChromaticityValues GetChromaticityValues (AVCaptureWhiteBalanceGains whiteBalanceGains);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("deviceWhiteBalanceGainsForChromaticityValues:")]
 		AVCaptureWhiteBalanceGains GetDeviceWhiteBalanceGains (AVCaptureWhiteBalanceChromaticityValues chromaticityValues);
 
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("temperatureAndTintValuesForDeviceWhiteBalanceGains:")]
 		AVCaptureWhiteBalanceTemperatureAndTintValues GetTemperatureAndTintValues (AVCaptureWhiteBalanceGains whiteBalanceGains);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("deviceWhiteBalanceGainsForTemperatureAndTintValues:")]
 		AVCaptureWhiteBalanceGains GetDeviceWhiteBalanceGains (AVCaptureWhiteBalanceTemperatureAndTintValues tempAndTintValues);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("AVCaptureExposureDurationCurrent")]
 		CMTime ExposureDurationCurrent { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("AVCaptureExposureTargetBiasCurrent")]
 		float ExposureTargetBiasCurrent { get; } /* float, not CGFloat */
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("AVCaptureISOCurrent")]
 		float ISOCurrent { get; } /* float, not CGFloat */
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("AVCaptureLensPositionCurrent")]
 		float LensPositionCurrent { get; } /* float, not CGFloat */
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("AVCaptureWhiteBalanceGainsCurrent")]
 		AVCaptureWhiteBalanceGains WhiteBalanceGainsCurrent { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("automaticallyAdjustsVideoHDREnabled")]
 		bool AutomaticallyAdjustsVideoHdrEnabled { get; set; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("videoHDREnabled")]
 		bool VideoHdrEnabled { [Bind ("isVideoHDREnabled")] get; set; }
 
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("activeColorSpace", ArgumentSemantic.Assign)]
 		AVCaptureColorSpace ActiveColorSpace { get; set; }
 
 #endif
 	}
 
-	[NoWatch]
-	[NoTV]
-	[Since (7,0), Mac(10,7)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 7)]
 	[DisableDefaultCtor] // crash -> immutable, it can be set but it should be selected from tha available formats (not a custom one)
 	[BaseType (typeof (NSObject))]
 	interface AVCaptureDeviceFormat {
@@ -9695,7 +9695,7 @@ namespace XamCore.AVFoundation {
 		bool VideoBinned { [Bind ("isVideoBinned")] get; }
 	
 		[Export ("videoStabilizationSupported")]
-		[Availability (Deprecated = Platform.iOS_8_0, Message="Use 'IsVideoStabilizationModeSupported (AVCaptureVideoStabilizationMode)' instead.")]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use 'IsVideoStabilizationModeSupported (AVCaptureVideoStabilizationMode)' instead.")]
 		bool VideoStabilizationSupported { [Bind ("isVideoStabilizationSupported")] get; }
 	
 		[Export ("videoMaxZoomFactor")]
@@ -9704,39 +9704,39 @@ namespace XamCore.AVFoundation {
 		[Export ("videoZoomFactorUpscaleThreshold")]
 		nfloat VideoZoomFactorUpscaleThreshold { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("minExposureDuration")]
 		CMTime MinExposureDuration { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("maxExposureDuration")]
 		CMTime MaxExposureDuration { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("minISO")]
 		float MinISO { get; } /* float, not CGFloat */
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("maxISO")]
 		float MaxISO { get; } /* float, not CGFloat */
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("isVideoStabilizationModeSupported:")]
 		bool IsVideoStabilizationModeSupported (AVCaptureVideoStabilizationMode mode);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("videoHDRSupported")]
 		bool videoHDRSupportedVideoHDREnabled { [Bind ("isVideoHDRSupported")] get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("highResolutionStillImageDimensions")]
 		CMVideoDimensions HighResolutionStillImageDimensions { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("autoFocusSystem")]
 		AVCaptureAutoFocusSystem AutoFocusSystem { get; }
 
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("supportedColorSpaces")]
 		NSNumber[] SupportedColorSpaces { get; }
 #endif
@@ -9747,8 +9747,8 @@ namespace XamCore.AVFoundation {
 #endif
 	delegate void AVCaptureCompletionHandler (CMSampleBuffer imageDataSampleBuffer, NSError error);
 
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (NSObject))]
 	interface AVPlayer {
 		[Export ("currentItem"), NullAllowed]
@@ -9786,15 +9786,15 @@ namespace XamCore.AVFoundation {
 		[Export ("pause")]
 		void Pause ();
 		
-		[iOS (10,0), TV(10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("timeControlStatus")]
 		AVPlayerTimeControlStatus TimeControlStatus { get; }
 
-		[iOS (10,0), TV(10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[NullAllowed, Export ("reasonForWaitingToPlay")]
 		string ReasonForWaitingToPlay { get; }
 
-		[iOS (10,0), TV(10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("playImmediatelyAtRate:")]
 		void PlayImmediatelyAtRate (float rate);
 
@@ -9828,125 +9828,125 @@ namespace XamCore.AVFoundation {
 
 #if !MONOMAC
 		// 5.0
-		[Availability (Introduced = Platform.iOS_5_0, Deprecated = Platform.iOS_6_0, Message = "Use 'AllowsExternalPlayback' instead.")]
+		[Introduced (PlatformName.iOS, 5, 0, message: "Use 'AllowsExternalPlayback' instead."), Deprecated (PlatformName.iOS, 6, 0, message: "Use 'AllowsExternalPlayback' instead.")]
 		[Export ("allowsAirPlayVideo")]
 		bool AllowsAirPlayVideo { get; set;  }
 
-		[Availability (Introduced = Platform.iOS_5_0, Deprecated = Platform.iOS_6_0, Message = "Use 'ExternalPlaybackActive' instead.")]
+		[Introduced (PlatformName.iOS, 5, 0, message: "Use 'ExternalPlaybackActive' instead."), Deprecated (PlatformName.iOS, 6, 0, message: "Use 'ExternalPlaybackActive' instead.")]
 		[Export ("airPlayVideoActive")]
 		bool AirPlayVideoActive { [Bind ("isAirPlayVideoActive")] get;  }
 
-		[Availability (Introduced = Platform.iOS_5_0, Deprecated = Platform.iOS_6_0, Message = "Use 'UsesExternalPlaybackWhileExternalScreenIsActive' instead.")]
+		[Introduced (PlatformName.iOS, 5, 0, message: "Use 'UsesExternalPlaybackWhileExternalScreenIsActive' instead."), Deprecated (PlatformName.iOS, 6, 0, message: "Use 'UsesExternalPlaybackWhileExternalScreenIsActive' instead.")]
 		[Export ("usesAirPlayVideoWhileAirPlayScreenIsActive")]
 		bool UsesAirPlayVideoWhileAirPlayScreenIsActive { get; set;  }
 #endif
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("seekToTime:completionHandler:")]
 		[Async]
 		void Seek (CMTime time, AVCompletion completion);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("seekToTime:toleranceBefore:toleranceAfter:completionHandler:")]
 		[Async]
 		void Seek (CMTime time, CMTime toleranceBefore, CMTime toleranceAfter, AVCompletion completion);
 
-		[Since (6,0), Mac (10,9)]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("seekToDate:")]
 		void Seek (NSDate date);
 
-		[Since (6,0), Mac (10,7)]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 7)]
 		[Export ("seekToDate:completionHandler:")]
 		[Async]
 		void Seek (NSDate date, AVCompletion onComplete);
 
-		[iOS (10, 0), TV (10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("automaticallyWaitsToMinimizeStalling")]
 		bool AutomaticallyWaitsToMinimizeStalling { get; set; }
 		
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("setRate:time:atHostTime:")]
 		void SetRate (float /* defined as 'float' */ rate, CMTime itemTime, CMTime hostClockTime);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("prerollAtRate:completionHandler:")]
 		[Async]
 		void Preroll (float /* defined as 'float' */ rate, AVCompletion onComplete);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("cancelPendingPrerolls")]
 		void CancelPendingPrerolls ();
 
-		[Since (6,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("outputObscuredDueToInsufficientExternalProtection")]
 		bool OutputObscuredDueToInsufficientExternalProtection { get; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("masterClock"), NullAllowed]
 		CMClock MasterClock { get; set; }
 
-		[iOS (6,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("allowsExternalPlayback")]
 		bool AllowsExternalPlayback { get; set;  }
 
-		[iOS (6,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("externalPlaybackActive")]
 		bool ExternalPlaybackActive { [Bind ("isExternalPlaybackActive")] get; }
 
 #if !MONOMAC
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("usesExternalPlaybackWhileExternalScreenIsActive")]
 		bool UsesExternalPlaybackWhileExternalScreenIsActive { get; set;  }
 #endif
 
-		[Mac (10, 9)]
-		[Since (6,0)][Protected]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
+		[Introduced (PlatformName.iOS, 6, 0)][Protected]
 		[NullAllowed] // by default this property is null
 		[Export ("externalPlaybackVideoGravity", ArgumentSemantic.Copy)]
 		NSString WeakExternalPlaybackVideoGravity { get; set; }
 
-		[Since (7,0)][Lion]
+		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 7)]
 		[Export ("volume")]
 		float Volume { get; set; } // defined as 'float'
 
-		[Since (7,0)][Lion]
+		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 7)]
 		[Export ("muted")]
 		bool Muted { [Bind ("isMuted")] get; set; }
 
-		[Since (7,0)][Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("appliesMediaSelectionCriteriaAutomatically")]
 		bool AppliesMediaSelectionCriteriaAutomatically { get; set; }
 
-		[Since (7,0)][Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 		[return: NullAllowed]
 		[Export ("mediaSelectionCriteriaForMediaCharacteristic:")]
 		AVPlayerMediaSelectionCriteria MediaSelectionCriteriaForMediaCharacteristic (NSString avMediaCharacteristic);
 
-		[Since (7, 0)][Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("setMediaSelectionCriteria:forMediaCharacteristic:")]
 		void SetMediaSelectionCriteria ([NullAllowed] AVPlayerMediaSelectionCriteria criteria, NSString avMediaCharacteristic);
 
 #if MONOMAC
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("audioOutputDeviceUniqueID"), NullAllowed]
 		string AudioOutputDeviceUniqueID { get; set; }
 #endif
 
-		[iOS (10, 0), TV (10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Field ("AVPlayerWaitingToMinimizeStallsReason")]
 		NSString WaitingToMinimizeStallsReason { get; }
 
-		[iOS (10, 0), TV (10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Field ("AVPlayerWaitingWhileEvaluatingBufferingRateReason")]
 		NSString WaitingWhileEvaluatingBufferingRateReason { get; }
 
-		[iOS (10, 0), TV (10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Field ("AVPlayerWaitingWithNoItemToPlayReason")]
 		NSString WaitingWithNoItemToPlayReason { get; }
 	}
 
-	[NoWatch]
-	[Since (7,0), Mavericks]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 	[BaseType (typeof (NSObject))]
 	interface AVPlayerMediaSelectionCriteria {
 		[Export ("preferredLanguages"), NullAllowed]
@@ -9959,8 +9959,8 @@ namespace XamCore.AVFoundation {
 		IntPtr Constructor ([NullAllowed] string [] preferredLanguages, [NullAllowed] NSString [] preferredMediaCharacteristics);
 	}
 
-	[NoWatch]
-	[Since (6,0), Mavericks]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // NSGenericException *** -[AVTextStyleRule init] Not available.  Use initWithTextMarkupAttributes:textSelector: instead
 	interface AVTextStyleRule : NSCopying {
@@ -10018,28 +10018,28 @@ namespace XamCore.AVFoundation {
 		IntPtr Constructor (CMTextMarkupAttributes attributes, string textSelector);
 	}
 
-	[NoWatch]
-	[iOS (9,0)][Mac (10,11)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[BaseType (typeof (NSObject))]
 	interface AVMetadataGroup {
 		
 		[Export ("items", ArgumentSemantic.Copy)]
 		AVMetadataItem[] Items { get; }
 
-		[iOS (9,3)][NoMac]
-		[TV (9,2)]
+		[Introduced (PlatformName.iOS, 9, 3)][Unavailable (PlatformName.MacOSX)]
+		[Introduced (PlatformName.TvOS, 9, 2)]
 		[NullAllowed, Export ("classifyingLabel")]
 		string ClassifyingLabel { get; }
 
-		[iOS (9,3)][NoMac]
-		[TV (9,2)]
+		[Introduced (PlatformName.iOS, 9, 3)][Unavailable (PlatformName.MacOSX)]
+		[Introduced (PlatformName.TvOS, 9, 2)]
 		[NullAllowed, Export ("uniqueID")]
 		string UniqueID { get; }		
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (AVMetadataGroup))]
-	[Since (4,3)]
+	[Introduced (PlatformName.iOS, 4, 3)]
 	interface AVTimedMetadataGroup : NSMutableCopying {
 		[Export ("timeRange")]
 		CMTimeRange TimeRange { get; [NotImplemented] set; }
@@ -10051,16 +10051,16 @@ namespace XamCore.AVFoundation {
 		IntPtr Constructor (AVMetadataItem [] items, CMTimeRange timeRange);
 
 		[return: NullAllowed]
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("copyFormatDescription")]
 		CMFormatDescription CopyFormatDescription ();
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("initWithSampleBuffer:")]
 		IntPtr Constructor (CMSampleBuffer sampleBuffer);
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (AVTimedMetadataGroup))]
 	interface AVMutableTimedMetadataGroup {
 		[NullAllowed] // by default this property is null
@@ -10082,8 +10082,8 @@ namespace XamCore.AVFoundation {
 		NSError Error { get; }
 	}
 		
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (NSObject))]
 	// 'init' returns NIL
 	[DisableDefaultCtor]
@@ -10124,11 +10124,11 @@ namespace XamCore.AVFoundation {
 		[Export ("playbackBufferEmpty")]
 		bool PlaybackBufferEmpty { [Bind ("isPlaybackBufferEmpty")] get;  }
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("canUseNetworkResourcesForLiveStreamingWhilePaused", ArgumentSemantic.Assign)]
 		bool CanUseNetworkResourcesForLiveStreamingWhilePaused { get; set; }
 		
-		[iOS (10, 0), TV (10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("preferredForwardBufferDuration")]
 		double PreferredForwardBufferDuration { get; set; }
 
@@ -10173,209 +10173,209 @@ namespace XamCore.AVFoundation {
 		[Notification]
 		NSString DidPlayToEndTimeNotification { get; }
 
-		[Since (4,3)]
+		[Introduced (PlatformName.iOS, 4, 3)]
 		[Field ("AVPlayerItemFailedToPlayToEndTimeNotification")]
 		[Notification (typeof (AVPlayerItemErrorEventArgs))]
 		NSString ItemFailedToPlayToEndTimeNotification { get; }
 
-		[Since (4,3)]
+		[Introduced (PlatformName.iOS, 4, 3)]
 		[Field ("AVPlayerItemFailedToPlayToEndTimeErrorKey")]
 		NSString ItemFailedToPlayToEndTimeErrorKey { get; }
 
-		[Since (4,3)]
+		[Introduced (PlatformName.iOS, 4, 3)]
 		[Export ("accessLog"), NullAllowed]
 		AVPlayerItemAccessLog AccessLog { get; }
 
-		[Since (4,3)]
+		[Introduced (PlatformName.iOS, 4, 3)]
 		[Export ("errorLog"), NullAllowed]
 		AVPlayerItemErrorLog ErrorLog { get; }
 
-		[Since (4,3)]
+		[Introduced (PlatformName.iOS, 4, 3)]
 		[Export ("currentDate"), NullAllowed]
 		NSDate CurrentDate { get; }
 
-		[Since (4,3)]
+		[Introduced (PlatformName.iOS, 4, 3)]
 		[Export ("duration")]
 		CMTime Duration { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("canPlayFastReverse")]
 		bool CanPlayFastReverse { get;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("canPlayFastForward")]
 		bool CanPlayFastForward { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVPlayerItemTimeJumpedNotification")]
 		[Notification]
 		NSString TimeJumpedNotification { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("seekToTime:completionHandler:")]
 		[Async]
 		void Seek (CMTime time, AVCompletion completion);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("cancelPendingSeeks")]
 		void CancelPendingSeeks ();
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("seekToTime:toleranceBefore:toleranceAfter:completionHandler:")]
 		[Async]
 		void Seek (CMTime time, CMTime toleranceBefore, CMTime toleranceAfter, AVCompletion completion);
 
-		[Since (5,0), MountainLion]
+		[Introduced (PlatformName.iOS, 5, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		[Export ("selectMediaOption:inMediaSelectionGroup:")]
 		void SelectMediaOption ([NullAllowed] AVMediaSelectionOption mediaSelectionOption, AVMediaSelectionGroup mediaSelectionGroup);
 
 		[return: NullAllowed]
-		[Since (5,0), MountainLion]
+		[Introduced (PlatformName.iOS, 5, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		[Export ("selectedMediaOptionInMediaSelectionGroup:")]
 		AVMediaSelectionOption SelectedMediaOption (AVMediaSelectionGroup inMediaSelectionGroup);
 
-		[iOS (9,0), MacAttribute (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("currentMediaSelection")]
 		AVMediaSelection CurrentMediaSelection { get; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("canPlaySlowForward")]
 		bool CanPlaySlowForward { get;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("canPlayReverse")]
 		bool CanPlayReverse { get;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("canPlaySlowReverse")]
 		bool CanPlaySlowReverse { get;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("canStepForward")]
 		bool CanStepForward { get;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("canStepBackward")]
 		bool CanStepBackward { get;  }
 		
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("outputs")]
 		AVPlayerItemOutput [] Outputs { get;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("addOutput:")]
 		[PostGet ("Outputs")]
 		void AddOutput (AVPlayerItemOutput output);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("removeOutput:")]
 		[PostGet ("Outputs")]
 		void RemoveOutput (AVPlayerItemOutput output);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("timebase"), NullAllowed]
 		CMTimebase Timebase { get;  }
 
-		[Since (6,0), Mavericks]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("seekToDate:completionHandler:")]
 		[Async]
 		bool Seek (NSDate date, AVCompletion completion);
 
-		[Since (6,0), Mavericks]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("seekingWaitsForVideoCompositionRendering")]
 		bool SeekingWaitsForVideoCompositionRendering { get; set;  }
 
-		[Since (6,0), Mavericks]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("textStyleRules", ArgumentSemantic.Copy), NullAllowed]
 		AVTextStyleRule [] TextStyleRules { get; set;  }
 
-		[Since (6,0), Mavericks]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVPlayerItemPlaybackStalledNotification")]
 		[Notification]
 		NSString PlaybackStalledNotification { get; }
 		
-		[Since (6,0), Mavericks]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVPlayerItemNewAccessLogEntryNotification")]
 		[Notification]
 		NSString NewAccessLogEntryNotification { get; }
 		
-		[Since (6,0), Mavericks]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVPlayerItemNewErrorLogEntryNotification")]
 		[Notification]
 		NSString NewErrorLogEntryNotification { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Static, Export ("playerItemWithAsset:automaticallyLoadedAssetKeys:")]
 		AVPlayerItem FromAsset ([NullAllowed] AVAsset asset, [NullAllowed] NSString [] automaticallyLoadedAssetKeys);
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[DesignatedInitializer]
 		[Export ("initWithAsset:automaticallyLoadedAssetKeys:")]
 		IntPtr Constructor (AVAsset asset, [NullAllowed] params NSString [] automaticallyLoadedAssetKeys);
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("automaticallyLoadedAssetKeys", ArgumentSemantic.Copy)]
 		NSString [] AutomaticallyLoadedAssetKeys { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("customVideoCompositor", ArgumentSemantic.Copy), NullAllowed]
 		[Protocolize]
 		AVVideoCompositing CustomVideoCompositor { get; }
 		
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("audioTimePitchAlgorithm", ArgumentSemantic.Copy)]
 		// DOC: Mention this is an AVAudioTimePitch constant
 		NSString AudioTimePitchAlgorithm { get; set; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("selectMediaOptionAutomaticallyInMediaSelectionGroup:")]
 		void SelectMediaOptionAutomaticallyInMediaSelectionGroup (AVMediaSelectionGroup mediaSelectionGroup);
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("preferredPeakBitRate")]
 		double PreferredPeakBitRate { get; set; }
 
 #region AVPlayerViewControllerAdditions
-		[NoiOS][NoMac]
-		[TV (9,0)]
+		[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.MacOSX)]
+		[Introduced (PlatformName.TvOS, 9, 0)]
 		[Export ("navigationMarkerGroups", ArgumentSemantic.Copy)]
 		AVNavigationMarkersGroup[] NavigationMarkerGroups { get; set; }
 
-		[NoiOS][NoMac]
-		[TV (9,0)]
+		[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.MacOSX)]
+		[Introduced (PlatformName.TvOS, 9, 0)]
 		[Export ("externalMetadata", ArgumentSemantic.Copy)]
 		AVMetadataItem[] ExternalMetadata { get; set; }
 
-		[NoiOS][NoMac]
-		[TV (9,0)]
+		[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.MacOSX)]
+		[Introduced (PlatformName.TvOS, 9, 0)]
 		[Export ("interstitialTimeRanges", ArgumentSemantic.Copy)]
 		AVInterstitialTimeRange[] InterstitialTimeRanges { get; set; }
 #endregion
 
-		[iOS (9,3)][NoMac]
-		[TV (9,2)]
+		[Introduced (PlatformName.iOS, 9, 3)][Unavailable (PlatformName.MacOSX)]
+		[Introduced (PlatformName.TvOS, 9, 2)]
 		[Export ("addMediaDataCollector:")]
 		void AddMediaDataCollector (AVPlayerItemMediaDataCollector collector);
 		
-		[iOS (9,3)][NoMac]
-		[TV (9,2)]
+		[Introduced (PlatformName.iOS, 9, 3)][Unavailable (PlatformName.MacOSX)]
+		[Introduced (PlatformName.TvOS, 9, 2)]
 		[Export ("removeMediaDataCollector:")]
 		void RemoveMediaDataCollector (AVPlayerItemMediaDataCollector collector);
 		
-		[iOS (9,3)][NoMac]
-		[TV (9,2)]
+		[Introduced (PlatformName.iOS, 9, 3)][Unavailable (PlatformName.MacOSX)]
+		[Introduced (PlatformName.TvOS, 9, 2)]
 		[Export ("mediaDataCollectors")]
 		AVPlayerItemMediaDataCollector[] MediaDataCollectors { get; }
 #if !MONOMAC
-		[NoiOS, TV (10, 0), NoWatch, NoMac]
+		[Unavailable (PlatformName.iOS), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		[NullAllowed, Export ("nextContentProposal", ArgumentSemantic.Assign)]
 		AVContentProposal NextContentProposal { get; set; }
 #endif
 	}
 
-	[NoWatch]
-	[Since (6,0)]
-	[BaseType (typeof (NSObject)), MountainLion]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 6, 0)]
+	[BaseType (typeof (NSObject)), Introduced (PlatformName.MacOSX, 10, 8)]
 	// Objective-C exception thrown.  Name: NSInvalidArgumentException Reason: *** initialization method -init cannot be sent to an abstract object of class AVPlayerItemOutput: Create a concrete instance!
 	[DisableDefaultCtor]
 	interface AVPlayerItemOutput {
@@ -10389,18 +10389,18 @@ namespace XamCore.AVFoundation {
 		bool SuppressesPlayerRendering { get; set; }
 	}
 
-	[NoWatch]
-	[iOS (9,3)]
-	[TV (9,2)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 3)]
+	[Introduced (PlatformName.TvOS, 9, 2)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // initialization method -init cannot be sent to an abstract object of class AVPlayerItemMediaDataCollector: Create a concrete instance!
 	[Abstract]
 	interface AVPlayerItemMediaDataCollector
 	{
 	}
 
-	[NoWatch]
-	[iOS (8,0)][Mac (10,10)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (AVPlayerItemOutput))]
 	interface AVPlayerItemMetadataOutput {
 
@@ -10425,27 +10425,27 @@ namespace XamCore.AVFoundation {
 		void SetDelegate ([Protocolize] AVPlayerItemMetadataOutputPushDelegate pushDelegate, DispatchQueue delegateQueue);
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (NSObject))]
-	[iOS (8,0)][Mac (10,10)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 	[Protocol, Model]
 	interface AVPlayerItemMetadataOutputPushDelegate : AVPlayerItemOutputPushDelegate {
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("metadataOutput:didOutputTimedMetadataGroups:fromPlayerItemTrack:")]
 		void DidOutputTimedMetadataGroups (AVPlayerItemMetadataOutput output, AVTimedMetadataGroup [] groups, AVPlayerItemTrack track);
 	}
 
-	[iOS (10,0)]
-	[Mac (10,12)]
-	[TV (10,0)]
-	[NoWatch]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 12)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Unavailable (PlatformName.WatchOS)]
 	[Static]
 	interface AVVideoColorPrimaries {
 		[Field ("AVVideoColorPrimaries_ITU_R_709_2")]
 		NSString Itu_R_709_2 { get; }
 
-		[NoiOS, NoTV]
+		[Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS)]
 		[Field ("AVVideoColorPrimaries_EBU_3213")]
 		NSString Ebu_3213 { get; }
 
@@ -10455,46 +10455,46 @@ namespace XamCore.AVFoundation {
 		[Field ("AVVideoColorPrimaries_P3_D65")]
 		NSString P3_D65 { get; }
 
-		[iOS (11,0), Mac (10,13), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0)]
 		[Field ("AVVideoColorPrimaries_ITU_R_2020")]
 		NSString Itu_R_2020 { get; }
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Static]
 	interface AVVideoTransferFunction {
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Field ("AVVideoTransferFunction_ITU_R_709_2")]
 		NSString AVVideoTransferFunction_Itu_R_709_2 { get; }
 
-		[NoiOS, NoTV, Mac (10,12)]
+		[Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Field ("AVVideoTransferFunction_SMPTE_240M_1995")]
 		NSString AVVideoTransferFunction_Smpte_240M_1995 { get; }
 	}
 	
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Static]
 	interface AVVideoYCbCrMatrix {
 		
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Field ("AVVideoYCbCrMatrix_ITU_R_709_2")]
 		NSString Itu_R_709_2 { get; }
 
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Field ("AVVideoYCbCrMatrix_ITU_R_601_4")]
 		NSString Itu_R_601_4 { get; }
 
-		[NoiOS, NoTV, Mac (10,12)]
+		[Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Field ("AVVideoYCbCrMatrix_SMPTE_240M_1995")]
 		NSString Smpte_240M_1995 { get; }
 
-		[iOS (11, 0), TV (11, 0), Mac (10,13)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13)]
 		[Field ("AVVideoYCbCrMatrix_ITU_R_2020")]
 		NSString Itu_R_2020 { get; }
 
 	}
 	
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[StrongDictionary ("AVColorPropertiesKeys")]
 	interface AVColorProperties {
 		NSString AVVideoColorPrimaries { get; set; }
@@ -10502,24 +10502,24 @@ namespace XamCore.AVFoundation {
 		NSString AVVideoYCbCrMatrix { get; }
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Static]
 	[Internal]
 	interface AVColorPropertiesKeys {
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Field ("AVVideoColorPrimariesKey")]
 		NSString AVVideoColorPrimariesKey { get; }
 
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Field ("AVVideoTransferFunctionKey")]
 		NSString AVVideoTransferFunctionKey { get; }
 
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Field ("AVVideoYCbCrMatrixKey")]
 		NSString AVVideoYCbCrMatrixKey { get; }
 	}
 	
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[StrongDictionary ("AVCleanAperturePropertiesKeys")]
 	interface AVCleanApertureProperties {
 		NSNumber Width { get; set; }
@@ -10528,7 +10528,7 @@ namespace XamCore.AVFoundation {
 		NSNumber VerticalOffset { get; set; }
 	}
 		
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Static]
 	[Internal]
 	interface AVCleanAperturePropertiesKeys {
@@ -10545,14 +10545,14 @@ namespace XamCore.AVFoundation {
 		NSString VerticalOffsetKey { get; }
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[StrongDictionary ("AVPixelAspectRatioPropertiesKeys")]
 	interface AVPixelAspectRatioProperties {
 		NSNumber PixelAspectRatioHorizontalSpacing { get; set; }
 		NSNumber PixelAspectRatioVerticalSpacing { get; set; }
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Internal]
 	[Static]
 	interface AVPixelAspectRatioPropertiesKeys {
@@ -10563,14 +10563,14 @@ namespace XamCore.AVFoundation {
 		NSString PixelAspectRatioVerticalSpacingKey { get; }
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[StrongDictionary ("AVCompressionPropertiesKeys")]
 	interface AVCompressionProperties {
 		AVCleanApertureProperties CleanAperture { get; set; }
 		AVPixelAspectRatioProperties PixelAspectRatio { get; set; }
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Static]
 	[Internal]
 	interface AVCompressionPropertiesKeys {
@@ -10581,18 +10581,18 @@ namespace XamCore.AVFoundation {
 		NSString PixelAspectRatioKey { get; }
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[StrongDictionary ("AVPlayerItemVideoOutputSettingsKeys")]
 	interface AVPlayerItemVideoOutputSettings {
 
-		[iOS (10,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		AVColorProperties ColorProperties { get; set; }
 
 		AVCompressionProperties CompressionProperties { get; set; }
 
-		[iOS (10,0)]
-		[TV (10,0)][Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 		bool AllowWideColor { get; set; }
 
 		NSString Codec { get; set; }
@@ -10601,27 +10601,27 @@ namespace XamCore.AVFoundation {
 		NSNumber Height { get; set; }
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Static]
 	[Internal]
 	interface AVPlayerItemVideoOutputSettingsKeys {
-		[iOS (10,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("AVVideoColorPropertiesKey")]
 		NSString ColorPropertiesKey { get; }
 		
 		[Field ("AVVideoCompressionPropertiesKey")]
 		NSString CompressionPropertiesKey { get; }
 		
-		[iOS (10,0), Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("AVVideoAllowWideColorKey")]
 		NSString AllowWideColorKey { get; }
 		
 		[Field ("AVVideoCodecKey")]
 		NSString CodecKey { get; }
 		
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("AVVideoScalingModeKey")]
 		NSString ScalingModeKey { get; }
 		
@@ -10632,8 +10632,8 @@ namespace XamCore.AVFoundation {
 		NSString HeightKey { get; }
 	}
 
-	[NoWatch]
-	[Since (6,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (AVPlayerItemOutput))]
 	interface AVPlayerItemVideoOutput {
 		[Export ("delegate", ArgumentSemantic.Weak), NullAllowed]
@@ -10659,7 +10659,7 @@ namespace XamCore.AVFoundation {
 		IntPtr Constructor (CVPixelBufferAttributes attributes);
 		
 		[DesignatedInitializer]
-		[iOS (10,0), TV (10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Wrap ("this (settings == null ? null : settings.Dictionary, AVPlayerItemVideoOutput.InitMode.OutputSettings)")]
 		IntPtr Constructor (AVPlayerItemVideoOutputSettings settings);
 
@@ -10677,8 +10677,8 @@ namespace XamCore.AVFoundation {
 		void RequestNotificationOfMediaDataChange (double advanceInterval);
 	}
 
-	[NoWatch]
-	[Since (6,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -10690,8 +10690,8 @@ namespace XamCore.AVFoundation {
 		void OutputSequenceWasFlushed (AVPlayerItemOutput output);
 	}
 
-	[NoWatch]
-	[Since (7,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -10700,8 +10700,8 @@ namespace XamCore.AVFoundation {
 		void OutputSequenceWasFlushed (AVPlayerItemOutput output);
 	}
 
-	[NoWatch]
-	[Since (7,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (AVPlayerItemOutputPushDelegate))]
 	[Model]
 	[Protocol]
@@ -10710,8 +10710,8 @@ namespace XamCore.AVFoundation {
 		void DidOutputAttributedStrings (AVPlayerItemLegibleOutput output, NSAttributedString [] strings, CMSampleBuffer [] nativeSamples, CMTime itemTime);		
 	}
 
-	[NoWatch]
-	[Since (7,0), Mavericks]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 	[BaseType (typeof (AVPlayerItemOutput))]
 	interface AVPlayerItemLegibleOutput {
 		[Export ("initWithMediaSubtypesForNativeRepresentation:")]
@@ -10743,9 +10743,9 @@ namespace XamCore.AVFoundation {
 		
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (NSObject))]
-	[Since (4,3)]
+	[Introduced (PlatformName.iOS, 4, 3)]
 	interface AVPlayerItemAccessLog : NSCopying {
 		
 		[Export ("events")]
@@ -10758,9 +10758,9 @@ namespace XamCore.AVFoundation {
 		NSData ExtendedLogData { get; }
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (NSObject))]
-	[Since (4,3)]
+	[Introduced (PlatformName.iOS, 4, 3)]
 	interface AVPlayerItemErrorLog : NSCopying {
 		[Export ("events")]
 		AVPlayerItemErrorLogEvent [] Events { get; }
@@ -10772,11 +10772,11 @@ namespace XamCore.AVFoundation {
 		NSData ExtendedLogData { get; }
 	}
 	
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (NSObject))]
-	[Since (4,3)]
+	[Introduced (PlatformName.iOS, 4, 3)]
 	interface AVPlayerItemAccessLogEvent : NSCopying {
-		[Availability (Introduced = Platform.iOS_4_3 | Platform.Mac_10_7, Deprecated = Platform.iOS_7_0 | Platform.Mac_10_9, Message = "Use 'NumberOfMediaRequests' instead.")]
+		[Introduced (PlatformName.iOS, 4, 3, message: "Use 'NumberOfMediaRequests' instead."), Introduced (PlatformName.MacOSX, 10, 7, message: "Use 'NumberOfMediaRequests' instead."), Deprecated (PlatformName.iOS, 7, 0, message: "Use 'NumberOfMediaRequests' instead."), Deprecated (PlatformName.MacOSX, 10, 9, message: "Use 'NumberOfMediaRequests' instead.")]
 		[Export ("numberOfSegmentsDownloaded")]
 		nint SegmentedDownloadedCount { get; }
 
@@ -10813,70 +10813,70 @@ namespace XamCore.AVFoundation {
 		[Export ("observedBitrate")]
 		double ObservedBitrate { get; }
 
-		[iOS (8,0), TV (9,0), NoWatch, Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 9, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("indicatedBitrate")]
 		double IndicatedBitrate { get; }
 
-		[iOS (10, 0), TV (10,0), NoWatch, Mac (10, 12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("indicatedAverageBitrate")]
 		double IndicatedAverageBitrate { get; }
 
-		[iOS (10, 0), TV (10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("averageVideoBitrate")]
 		double AverageVideoBitrate { get; }
 
-		[iOS (10, 0), TV (10,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("averageAudioBitrate")]
 		double AverageAudioBitrate { get; }
 
 		[Export ("numberOfDroppedVideoFrames")]
 		nint DroppedVideoFrameCount { get; }
 
-		[Since (6,0), Mavericks]
+		[Introduced (PlatformName.iOS, 6, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("numberOfMediaRequests")]
 		nint NumberOfMediaRequests { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("startupTime")]
 		double StartupTime { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("downloadOverdue")]
 		nint DownloadOverdue { get; }
 		
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("observedMaxBitrate")]
 		double ObservedMaxBitrate { get; }
 		
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("observedMinBitrate")]
 		double ObservedMinBitrate { get; }
 		
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("observedBitrateStandardDeviation")]
 		double ObservedBitrateStandardDeviation { get; }
 		
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("playbackType", ArgumentSemantic.Copy), NullAllowed]
 		string PlaybackType { get; }
 		
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("mediaRequestsWWAN")]
 		nint MediaRequestsWWAN { get; }
 		
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("switchBitrate")]
 		double SwitchBitrate { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("transferDuration")]
 		double TransferDuration { get; }
 
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (NSObject))]
-	[Since (4,3)]
+	[Introduced (PlatformName.iOS, 4, 3)]
 	interface AVPlayerItemErrorLogEvent : NSCopying {
 		[Export ("date"), NullAllowed]
 		NSDate Date { get; }
@@ -10902,9 +10902,9 @@ namespace XamCore.AVFoundation {
 
 	interface IAVPlayerItemMetadataCollectorPushDelegate {}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface AVPlayerItemMetadataCollectorPushDelegate
 	{
 		[Abstract]
@@ -10912,10 +10912,10 @@ namespace XamCore.AVFoundation {
 		void DidCollectDateRange (AVPlayerItemMetadataCollector metadataCollector, AVDateRangeMetadataGroup[] metadataGroups, NSIndexSet indexesOfNewGroups, NSIndexSet indexesOfModifiedGroups);
 	}
 
-	[NoWatch]
-	[iOS (9,3), Mac (10,11,3)]
-	[TV (9,2)]
-	[BaseType (typeof(AVPlayerItemMediaDataCollector))]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 3), Introduced (PlatformName.MacOSX, 10, 11, 3)]
+	[Introduced (PlatformName.TvOS, 9, 2)]
+	[BaseType (typeof (AVPlayerItemMediaDataCollector))]
 #if MONOMAC || XAMCORE_3_0 // Avoid breaking change in iOS
 	[DisableDefaultCtor]
 #endif
@@ -10938,8 +10938,8 @@ namespace XamCore.AVFoundation {
 		DispatchQueue DelegateQueue { get; }
 	}
 
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (CALayer))]
 	interface AVPlayerLayer {
 		[NullAllowed] // by default this property is null
@@ -10970,18 +10970,18 @@ namespace XamCore.AVFoundation {
 		[Export ("isReadyForDisplay")]
 		bool ReadyForDisplay { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("videoRect")]
 		CGRect VideoRect { get;  }
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("pixelBufferAttributes", ArgumentSemantic.Copy), NullAllowed]
 		NSDictionary WeakPixelBufferAttributes { get; set; }
 	}
 
-	[NoWatch]
-	[iOS (10,0), TV (10,0), Mac (10,12)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface AVPlayerLooper
 	{
@@ -11016,8 +11016,8 @@ namespace XamCore.AVFoundation {
 		NSError Error { get; }
 	}
 
-	[NoWatch]
-	[Since (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (NSObject))]
 	interface AVPlayerItemTrack {
 		[Export ("enabled", ArgumentSemantic.Assign)]
@@ -11026,25 +11026,25 @@ namespace XamCore.AVFoundation {
 		[Export ("assetTrack")]
 		AVAssetTrack AssetTrack { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("currentVideoFrameRate")]
 		float CurrentVideoFrameRate { get;  } // defined as 'float'
 
 #if MONOMAC
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVPlayerItemTrackVideoFieldModeDeinterlaceFields")]
 		NSString VideoFieldModeDeinterlaceFields { get; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("videoFieldMode"), NullAllowed]
 		string VideoFieldMode { get; set; }
 #endif
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (NSObject))]
 	[Model]
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Protocol]
 	interface AVAsynchronousKeyValueLoading {
 		[Abstract]
@@ -11059,8 +11059,8 @@ namespace XamCore.AVFoundation {
 		void LoadValuesAsynchronously (string [] keys, [NullAllowed] NSAction handler);
 	}
 
-	[NoWatch]
-	[Since (4,1)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 1)]
 	[BaseType (typeof (AVPlayer))]
 	interface AVQueuePlayer {
 		
@@ -11089,7 +11089,7 @@ namespace XamCore.AVFoundation {
 		void RemoveAllItems ();
 	}
 
-	[Watch (3,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[Static]
 	interface AVAudioSettings {
 		[Field ("AVFormatIDKey")]
@@ -11113,7 +11113,7 @@ namespace XamCore.AVFoundation {
 		[Field ("AVLinearPCMIsNonInterleaved")]
 		NSString AVLinearPCMIsNonInterleaved { get; }
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Field ("AVAudioFileTypeKey")]
 		NSString FileTypeKey { get; }
 		
@@ -11126,7 +11126,7 @@ namespace XamCore.AVFoundation {
 		[Field ("AVEncoderBitRatePerChannelKey")]
 		NSString AVEncoderBitRatePerChannelKey { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVEncoderBitRateStrategyKey"), Internal]
 		NSString AVEncoderBitRateStrategyKey { get; }
 
@@ -11142,41 +11142,41 @@ namespace XamCore.AVFoundation {
 		[Field ("AVChannelLayoutKey")]
 		NSString AVChannelLayoutKey { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVAudioBitRateStrategy_Constant"), Internal]
 		NSString _Constant { get; }
 		
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVAudioBitRateStrategy_LongTermAverage"), Internal]
 		NSString _LongTermAverage { get; }
 		
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVAudioBitRateStrategy_VariableConstrained"), Internal]
 		NSString _VariableConstrained { get; }
 		
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVAudioBitRateStrategy_Variable"), Internal]
 		NSString _Variable { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVSampleRateConverterAlgorithm_Normal"), Internal]
 		NSString AVSampleRateConverterAlgorithm_Normal { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVSampleRateConverterAlgorithm_Mastering"), Internal]
 		NSString AVSampleRateConverterAlgorithm_Mastering { get; }
 		
-		[iOS (10, 0), TV (10,0), Watch (3,0), Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		[Field ("AVSampleRateConverterAlgorithm_MinimumPhase")]
 		NSString AVSampleRateConverterAlgorithm_MinimumPhase { get; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("AVEncoderAudioQualityForVBRKey"), Internal]
 		NSString AVEncoderAudioQualityForVBRKey { get; }
 	}
 
-	[NoWatch]
-	[TV (10,2), iOS (8,0), Mac (10,10)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (CALayer))]
 	interface AVSampleBufferDisplayLayer {
 
@@ -11211,19 +11211,19 @@ namespace XamCore.AVFoundation {
 		[Export ("stopRequestingMediaData")]
 		void StopRequestingMediaData ();
 		
-		[iOS (8, 0), Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVSampleBufferDisplayLayerFailedToDecodeNotification")]
 		[Notification]
 		NSString FailedToDecodeNotification { get; }
 
-		[iOS (8, 0), Mac (10,0)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 0)]
 		[Field ("AVSampleBufferDisplayLayerFailedToDecodeNotificationErrorKey")]
 		NSString FailedToDecodeNotificationErrorKey { get; }
 
 	}
 
-	[NoWatch]
-	[Since (4,0), BaseType (typeof (CALayer))]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0), BaseType (typeof (CALayer))]
 	interface AVSynchronizedLayer {
 		[Static, Export ("synchronizedLayerWithPlayerItem:")]
 		AVSynchronizedLayer FromPlayerItem (AVPlayerItem playerItem);
@@ -11234,8 +11234,8 @@ namespace XamCore.AVFoundation {
 	}
 
 #if !MONOMAC
-	[Watch (3,0)]
-	[Since (7,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	interface AVSpeechSynthesisVoice : NSSecureCoding {
 
@@ -11249,7 +11249,7 @@ namespace XamCore.AVFoundation {
 		[Static, Export ("voiceWithLanguage:")]
 		AVSpeechSynthesisVoice FromLanguage ([NullAllowed] string language);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[return: NullAllowed]
 		[Static, Export ("voiceWithIdentifier:")]
 		AVSpeechSynthesisVoice FromIdentifier ([NullAllowed] string identifier);
@@ -11257,37 +11257,37 @@ namespace XamCore.AVFoundation {
 		[Export ("language", ArgumentSemantic.Copy)]
 		string Language { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("identifier")]
 		string Identifier { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("name")]
 		string Name { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("quality")]
 		AVSpeechSynthesisVoiceQuality Quality { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("AVSpeechSynthesisVoiceIdentifierAlex")]
 		NSString IdentifierAlex { get; }
 
-		[iOS (10, 0), TV (10,0), Watch (3,0), NoMac]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Unavailable (PlatformName.MacOSX)]
 		[Field ("AVSpeechSynthesisIPANotationAttribute")]
 		NSString IpaNotationAttribute { get; }
 	}
 
-	[Watch (3,0)]
-	[Since (7,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	interface AVSpeechUtterance : NSCopying, NSSecureCoding {
 
 		[Static, Export ("speechUtteranceWithString:")]
 		AVSpeechUtterance FromString (string speechString);
 		
-		[iOS (10,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Static]
 		[Export ("speechUtteranceWithAttributedString:")]
 		AVSpeechUtterance FromString (NSAttributedString speechString);
@@ -11295,8 +11295,8 @@ namespace XamCore.AVFoundation {
 		[Export ("initWithString:")]
 		IntPtr Constructor (string speechString);
 		
-		[iOS (10,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("initWithAttributedString:")]
 		IntPtr Constructor (NSAttributedString speechString);
 
@@ -11307,8 +11307,8 @@ namespace XamCore.AVFoundation {
 		[Export ("speechString", ArgumentSemantic.Copy)]
 		string SpeechString { get; }
 		
-		[iOS (10, 0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("attributedSpeechString")]
 		NSAttributedString AttributedSpeechString { get; }
 
@@ -11337,8 +11337,8 @@ namespace XamCore.AVFoundation {
 		float DefaultSpeechRate { get; } // defined as 'float'
 	}
 
-	[Watch (3,0)]
-	[Since (7,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject), Delegates=new string [] {"WeakDelegate"}, Events=new Type [] { typeof (AVSpeechSynthesizerDelegate)})]
 	interface AVSpeechSynthesizer {
 
@@ -11367,13 +11367,13 @@ namespace XamCore.AVFoundation {
 		[Export ("continueSpeaking")]
 		bool ContinueSpeaking ();
 		
-		[iOS (10, 0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[NullAllowed, Export ("outputChannels", ArgumentSemantic.Retain)]
 		AVAudioSessionChannelDescription[] OutputChannels { get; set; }
 	}
 
-	[Watch (3,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[Model]
 	[BaseType (typeof (NSObject))]
 	[Protocol]
@@ -11397,8 +11397,8 @@ namespace XamCore.AVFoundation {
 		void WillSpeakRangeOfSpeechString (AVSpeechSynthesizer synthesizer, NSRange characterRange, AVSpeechUtterance utterance);
 	}
 
-	[NoWatch, NoTV, NoMac, iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface AVAssetDownloadStorageManager
 	{
@@ -11414,8 +11414,8 @@ namespace XamCore.AVFoundation {
 		AVAssetDownloadStorageManagementPolicy GetStorageManagementPolicy (NSUrl downloadStorageUrl);
 	}
 
-	[NoWatch, NoTV, NoMac, iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface AVAssetDownloadStorageManagementPolicy : NSCopying, NSMutableCopying
 	{
@@ -11427,8 +11427,8 @@ namespace XamCore.AVFoundation {
 		NSDate ExpirationDate { get; [NotImplemented] set; }
 	}
 
-	[NoWatch, NoTV, NoMac, iOS (11,0)]
-	[BaseType (typeof(AVAssetDownloadStorageManagementPolicy))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (AVAssetDownloadStorageManagementPolicy))]
 	[DisableDefaultCtor]
 	interface AVMutableAssetDownloadStorageManagementPolicy
 	{
@@ -11440,10 +11440,10 @@ namespace XamCore.AVFoundation {
 		NSDate ExpirationDate { get; set; }
 	}
 
-	[NoWatch]
-	[NoTV]
-	[iOS (9,0)]
-	[NoMac]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[Unavailable (PlatformName.MacOSX)]
 	[BaseType (typeof (NSUrlSessionTask))]
 	[DisableDefaultCtor] // not meant to be user createable
 	interface AVAssetDownloadTask {
@@ -11451,7 +11451,7 @@ namespace XamCore.AVFoundation {
 		[Export ("URLAsset")]
 		AVUrlAsset UrlAsset { get; }
 
-		[Availability (Introduced = Platform.iOS_9_0, Deprecated = Platform.iOS_10_0)]
+		[Introduced (PlatformName.iOS, 9, 0), Deprecated (PlatformName.iOS, 10, 0)]
 		[Export ("destinationURL")]
 		NSUrl DestinationUrl { get; }
 
@@ -11463,8 +11463,8 @@ namespace XamCore.AVFoundation {
 
 	}
 
-	[NoWatch, NoTV, iOS (11,0)]
-	[BaseType (typeof(NSUrlSessionTask))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSUrlSessionTask))]
 	[DisableDefaultCtor]
 	interface AVAggregateAssetDownloadTask
 	{
@@ -11472,28 +11472,28 @@ namespace XamCore.AVFoundation {
 		AVUrlAsset UrlAsset { get; }
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Static, Internal]
 	interface AVAssetDownloadTaskKeys {
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("AVAssetDownloadTaskMinimumRequiredMediaBitrateKey")]
 		NSString MinimumRequiredMediaBitrateKey { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("AVAssetDownloadTaskMediaSelectionKey")]
 		NSString MediaSelectionKey { get; }
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[StrongDictionary ("AVAssetDownloadTaskKeys")]
 	interface AVAssetDownloadOptions {
 		NSNumber MinimumRequiredMediaBitrate { get; set; }
 		AVMediaSelection MediaSelection { get; set; }
 	}
 
-	[NoTV]
-	[NoWatch]
-	[iOS (9,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSUrlSession), Name = "AVAssetDownloadURLSession")]
 	interface AVAssetDownloadUrlSession {
@@ -11502,7 +11502,7 @@ namespace XamCore.AVFoundation {
 		[Export ("sessionWithConfiguration:assetDownloadDelegate:delegateQueue:")]
 		AVAssetDownloadUrlSession CreateSession (NSUrlSessionConfiguration configuration, [NullAllowed] IAVAssetDownloadDelegate @delegate, [NullAllowed] NSOperationQueue delegateQueue);
 
-		[Availability (Introduced = Platform.iOS_9_0, Deprecated = Platform.iOS_10_0, Message="Please use 'GetAssetDownloadTask (AVUrlAsset, string, NSData, NSDictionary<NSString, NSObject>)'.")]
+		[Introduced (PlatformName.iOS, 9, 0, message: "Please use 'GetAssetDownloadTask (AVUrlAsset, string, NSData, NSDictionary<NSString, NSObject>)'."), Deprecated (PlatformName.iOS, 10, 0, message: "Please use 'GetAssetDownloadTask (AVUrlAsset, string, NSData, NSDictionary<NSString, NSObject>)'.")]
 		[Export ("assetDownloadTaskWithURLAsset:destinationURL:options:")]
 		[return: NullAllowed]
 		AVAssetDownloadTask GetAssetDownloadTask (AVUrlAsset urlAsset, NSUrl destinationUrl, [NullAllowed] NSDictionary options);
@@ -11510,16 +11510,16 @@ namespace XamCore.AVFoundation {
 		[Wrap ("GetAssetDownloadTask (urlAsset, destinationUrl, options != null ? options.Dictionary : null)")]
 		AVAssetDownloadTask GetAssetDownloadTask (AVUrlAsset urlAsset, NSUrl destinationUrl, AVAssetDownloadOptions options);
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("assetDownloadTaskWithURLAsset:assetTitle:assetArtworkData:options:")]
 		[return: NullAllowed]
 		AVAssetDownloadTask GetAssetDownloadTask (AVUrlAsset urlAsset, string title, [NullAllowed] NSData artworkData, [NullAllowed] NSDictionary options);
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Wrap ("GetAssetDownloadTask (urlAsset, title, artworkData, options != null ? options.Dictionary : null)")]
 		AVAssetDownloadTask GetAssetDownloadTask (AVUrlAsset urlAsset, string title, [NullAllowed] NSData artworkData, AVAssetDownloadOptions options);
 
-		[NoMac, NoTV, NoWatch, iOS (11,0)]
+		[Unavailable (PlatformName.MacOSX), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("aggregateAssetDownloadTaskWithURLAsset:mediaSelections:assetTitle:assetArtworkData:options:")]
 		[return: NullAllowed]
 		AVAggregateAssetDownloadTask GetAssetDownloadTask (AVUrlAsset URLAsset, AVMediaSelection[] mediaSelections, string title, [NullAllowed] NSData artworkData, [NullAllowed] NSDictionary<NSString, NSObject> options);
@@ -11528,10 +11528,10 @@ namespace XamCore.AVFoundation {
 
 	interface IAVAssetDownloadDelegate {}
 
-	[NoTV]
-	[NoMac]
-	[NoWatch]
-	[iOS (9,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Unavailable (PlatformName.MacOSX)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface AVAssetDownloadDelegate : NSUrlSessionTaskDelegate {
@@ -11541,27 +11541,27 @@ namespace XamCore.AVFoundation {
 		[Export ("URLSession:assetDownloadTask:didResolveMediaSelection:")]
 		void DidResolveMediaSelection (NSUrlSession session, AVAssetDownloadTask assetDownloadTask, AVMediaSelection resolvedMediaSelection);
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("URLSession:assetDownloadTask:didFinishDownloadingToURL:")]
 		void DidFinishDownloadingToUrl (NSUrlSession session, AVAssetDownloadTask assetDownloadTask, NSUrl location);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("URLSession:aggregateAssetDownloadTask:willDownloadToURL:")]
 		void WillDownloadToUrl (NSUrlSession session, AVAggregateAssetDownloadTask aggregateAssetDownloadTask, NSUrl location);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("URLSession:aggregateAssetDownloadTask:didCompleteForMediaSelection:")]
 		void DidCompleteForMediaSelection (NSUrlSession session, AVAggregateAssetDownloadTask aggregateAssetDownloadTask, AVMediaSelection mediaSelection);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("URLSession:aggregateAssetDownloadTask:didLoadTimeRange:totalTimeRangesLoaded:timeRangeExpectedToLoad:forMediaSelection:")]
 		void DidLoadTimeRange (NSUrlSession session, AVAggregateAssetDownloadTask aggregateAssetDownloadTask, CMTimeRange timeRange, NSValue[] loadedTimeRanges, CMTimeRange timeRangeExpectedToLoad, AVMediaSelection mediaSelection);
 	}
 
 #endif
 
-	[NoWatch]
-	[Since (7,0)][Mac (10,9)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface AVOutputSettingsAssistant {
@@ -11616,21 +11616,21 @@ namespace XamCore.AVFoundation {
 		[Internal, Field ("AVOutputSettingsPreset1920x1080")]
 		NSString _Preset1920x1080 { get; }
 
-		[iOS (9,0), Mac (10,10)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Internal, Field ("AVOutputSettingsPreset3840x2160")]
 		NSString _Preset3840x2160 { get; }
 
-		[iOS (11, 0), Mac (10, 13)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13)]
 		[Internal, Field ("AVOutputSettingsPresetHEVC1920x1080")]
 		NSString _PresetHevc1920x1080 { get; }
 
-		[iOS (11, 0), Mac (10, 13)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13)]
 		[Internal, Field ("AVOutputSettingsPresetHEVC3840x2160")]
 		NSString _PresetHevc3840x2160 { get; }
 	}
 
-	[NoWatch]
-	[iOS (9,0)][Mac (10,11)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[BaseType (typeof (NSObject))]
 	interface AVMediaSelection : NSCopying, NSMutableCopying {
 		
@@ -11645,8 +11645,8 @@ namespace XamCore.AVFoundation {
 		bool CriteriaCanBeAppliedAutomaticallyToMediaSelectionGroup (AVMediaSelectionGroup mediaSelectionGroup);
 	}
 
-	[NoWatch]
-	[iOS (9,0), Mac (10,11)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	[BaseType (typeof (AVMediaSelection))]
 	interface AVMutableMediaSelection {
 
@@ -11654,7 +11654,7 @@ namespace XamCore.AVFoundation {
 		void SelectMediaOption ([NullAllowed] AVMediaSelectionOption mediaSelectionOption, AVMediaSelectionGroup mediaSelectionGroup);
 	}
 
-	[NoWatch, iOS (9,0)][Mac (10,11)]
+	[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[BaseType (typeof (NSObject))]
 	interface AVAudioSequencer {
 
@@ -11719,7 +11719,7 @@ namespace XamCore.AVFoundation {
 		void Stop ();
 	}
 
-	[NoWatch, iOS (9,0)][Mac (10,11)]
+	[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // Docs/headers do not state that init is disallowed but if 
 	// you get an instance that way and try to use it, it will inmediatelly crash also tested in ObjC app same result
@@ -11728,7 +11728,7 @@ namespace XamCore.AVFoundation {
 		[NullAllowed, Export ("destinationAudioUnit", ArgumentSemantic.Retain)]
 		AVAudioUnit DestinationAudioUnit { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("destinationMIDIEndpoint")]
 		uint DestinationMidiEndpoint { get; set; }
 
@@ -11760,8 +11760,8 @@ namespace XamCore.AVFoundation {
 		nuint TimeResolution { get; }
 	}
 
-	[Watch (3,0)]
-	[iOS (9,0)][Mac (10,11)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[Static]
 	interface AVAudioUnitType {
 
@@ -11796,8 +11796,8 @@ namespace XamCore.AVFoundation {
 		NSString MidiProcessor { get; }
 	}
 
-	[NoWatch, iOS (9,0)][Mac (10,10)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
+	[BaseType (typeof (NSObject))]
 	interface AVAudioUnitComponent {
 
 		[Export ("name")]
@@ -11840,7 +11840,7 @@ namespace XamCore.AVFoundation {
 		[NullAllowed, Export ("iconURL")]
 		NSUrl IconUrl { get; }
 
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[NullAllowed, Export ("icon")]
 		global::XamCore.AppKit.NSImage Icon { get; }
 
@@ -11864,7 +11864,7 @@ namespace XamCore.AVFoundation {
 		[Export ("audioComponentDescription")]
 		AudioComponentDescription AudioComponentDescription { get; }
 #endif
-		[iOS (9,0), Mac (10,10)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVAudioUnitComponentTagsDidChangeNotification")]
 		[Notification]
 		NSString TagsDidChangeNotification { get; }
@@ -11872,7 +11872,7 @@ namespace XamCore.AVFoundation {
 
 	delegate bool AVAudioUnitComponentFilter (AVAudioUnitComponent comp, ref bool stop);
 
-	[NoWatch, iOS (9,0), Mac (10,10)]
+	[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 	[BaseType (typeof (NSObject))]
 	interface AVAudioUnitComponentManager {
 		
@@ -11898,20 +11898,20 @@ namespace XamCore.AVFoundation {
 #endif
 	}
 
-	[Watch (3,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[Static]
 	interface AVAudioUnitManufacturerName {
 		
 		[Field ("AVAudioUnitManufacturerNameApple")]
-		[Mac (10,10), iOS (9,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 9, 0)]
 		NSString Apple { get; }
 	}
 
 #if !MONOMAC && XAMCORE_2_0 // FIXME: Unsure about if CMMetadataFormatDescription will be an INativeObject and will need manual binding for Classic
-	[NoWatch]
-	[NoTV]
-	[iOS (9,0)]
-	[BaseType (typeof(AVCaptureInput))]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[BaseType (typeof (AVCaptureInput))]
 	[DisableDefaultCtor] // Objective-C exception thrown.  Name: NSInvalidArgumentException Reason: Format description is required.
 	interface AVCaptureMetadataInput {
 		
@@ -11929,9 +11929,9 @@ namespace XamCore.AVFoundation {
 	}
 #endif
 
-	[NoWatch]
-	[iOS (9,0), Mac (10,11)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
+	[BaseType (typeof (NSObject))]
 	interface AVAsynchronousCIImageFilteringRequest : NSCopying {
 
 		[Export ("renderSize")]
@@ -11951,8 +11951,8 @@ namespace XamCore.AVFoundation {
 	}
 	
 #if !MONOMAC
-	[NoiOS, TV (10,0), NoWatch, NoMac]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.iOS), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface AVContentProposal : NSCopying
 	{
@@ -11982,7 +11982,7 @@ namespace XamCore.AVFoundation {
 
 	partial interface IAVContentKeySessionDelegate {}
 
-	[TV (10,2), Mac (10,12,4), iOS (10,3), NoWatch]
+	[Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 4), Introduced (PlatformName.iOS, 10, 3), Unavailable (PlatformName.WatchOS)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface AVContentKeySessionDelegate
@@ -12006,14 +12006,14 @@ namespace XamCore.AVFoundation {
 		[Export ("contentKeySessionContentProtectionSessionIdentifierDidChange:")]
 		void DidChange (AVContentKeySession session);
 
-		[NoWatch, NoTV, NoMac, iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("contentKeySession:didUpdatePersistableContentKey:forContentKeyIdentifier:")]
 		void DidUpdate (AVContentKeySession session, NSData persistableContentKey, NSObject keyIdentifier);
 	}
 
 	partial interface IAVContentKeyRecipient {}
 
-	[TV (10,2), Mac (10,12,4), iOS (10,3), NoWatch]
+	[Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 4), Introduced (PlatformName.iOS, 10, 3), Unavailable (PlatformName.WatchOS)]
 	[Protocol]
 	interface AVContentKeyRecipient {
 		[Abstract]
@@ -12021,12 +12021,12 @@ namespace XamCore.AVFoundation {
 		bool MayRequireContentKeysForMediaDataProcessing { get; }
 	}
 
-	[TV (10,2), Mac (10,12,4), iOS (10,3), NoWatch]
+	[Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 4), Introduced (PlatformName.iOS, 10, 3), Unavailable (PlatformName.WatchOS)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
 	interface AVContentKeySession {
 
-		[TV (11,0), NoWatch, Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Static]
 		[Export ("contentKeySessionWithKeySystem:")]
 		AVContentKeySession Create (string keySystem);
@@ -12072,7 +12072,7 @@ namespace XamCore.AVFoundation {
 		void RenewExpiringResponseData (AVContentKeyRequest contentKeyRequest);
 
 		[Async]
-		[NoWatch, NoTV, NoMac, iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("makeSecureTokenForExpirationDateOfPersistableContentKey:completionHandler:")]
 		void MakeSecureToken (NSData persistableContentKeyData, Action<NSData, NSError> handler);
 
@@ -12090,9 +12090,9 @@ namespace XamCore.AVFoundation {
 		#endregion
 	}
 
-	[TV (10,2), Mac (10,12,4), iOS (10,3), NoWatch]
+	[Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 4), Introduced (PlatformName.iOS, 10, 3), Unavailable (PlatformName.WatchOS)]
 	[Category]
-	[BaseType (typeof(AVContentKeySession))]
+	[BaseType (typeof (AVContentKeySession))]
 	interface AVContentKeySession_AVContentKeyRecipients
 	{
 		[Export ("addContentKeyRecipient:")]
@@ -12105,7 +12105,7 @@ namespace XamCore.AVFoundation {
 		IAVContentKeyRecipient[] GetContentKeyRecipients ();
 	}
 
-	[TV (10,2), Mac (10,12,4), iOS (10,3), NoWatch]
+	[Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 4), Introduced (PlatformName.iOS, 10, 3), Unavailable (PlatformName.WatchOS)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
 	interface AVContentKeyRequest {
@@ -12142,15 +12142,15 @@ namespace XamCore.AVFoundation {
 	}
 
 	[Category]
-	[Mac (10, 12, 4), iOS (10,3), TV (10, 2), NoWatch]
-	[BaseType (typeof(AVContentKeyRequest))]
+	[Introduced (PlatformName.MacOSX, 10, 12, 4), Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.TvOS, 10, 2), Unavailable (PlatformName.WatchOS)]
+	[BaseType (typeof (AVContentKeyRequest))]
 	interface AVContentKeyRequest_AVContentKeyRequestRenewal
 	{
 		[Export ("renewsExpiringResponseData")]
 		bool GetRenewsExpiringResponseData ();
 	}
 
-	[TV (10,2), Mac (10,12,4), iOS (10,3), NoWatch]
+	[Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 4), Introduced (PlatformName.iOS, 10, 3), Unavailable (PlatformName.WatchOS)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (AVContentKeyRequest))]
 	interface AVPersistableContentKeyRequest {
@@ -12159,7 +12159,7 @@ namespace XamCore.AVFoundation {
 
 	}
 
-	[TV (10,2), Mac (10,12,4), iOS (10,3), NoWatch]
+	[Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 4), Introduced (PlatformName.iOS, 10, 3), Unavailable (PlatformName.WatchOS)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
 	interface AVContentKeyResponse {
@@ -12167,18 +12167,18 @@ namespace XamCore.AVFoundation {
 		[Export ("contentKeyResponseWithFairPlayStreamingKeyResponseData:")]
 		AVContentKeyResponse Create (NSData fairPlayStreamingKeyResponseData);
 
-		[TV (11,0), NoWatch, Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Static]
 		[Export ("contentKeyResponseWithClearKeyData:initializationVector:")]
 		AVContentKeyResponse Create (NSData keyData, [NullAllowed] NSData initializationVector);
 	}
 
-	[TV (11,0), NoWatch, NoMac, iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface AVRouteDetector {
 		[Notification]
-		[TV (11, 0), NoWatch, NoMac, iOS (11, 0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 		[Field ("AVRouteDetectorMultipleRoutesDetectedDidChangeNotification")]
 		NSString MultipleRoutesDetectedDidChange { get; }
 
@@ -12189,8 +12189,8 @@ namespace XamCore.AVFoundation {
 		bool MultipleRoutesDetected { get; }
 	}
 
-	[NoTV, iOS (11,0), NoWatch, NoMac]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface AVCapturePhoto
 	{

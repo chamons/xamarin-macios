@@ -32,7 +32,7 @@ using System.Runtime.InteropServices;
 
 namespace XamCore.ObjCRuntime {
 
-	[AttributeUsage(AttributeTargets.Class, AllowMultiple=true)]
+	[AttributeUsage (AttributeTargets.Class, AllowMultiple = true)]
 #if XAMCORE_2_0
 	sealed
 #endif

@@ -22,7 +22,7 @@ using System.Collections.Generic;
 namespace XamCore.CoreFoundation {
 
 	[Native] // CFIndex
-	public enum CFNotificationSuspensionBehavior : nint {
+	public enum CFNotificationSuspensionBehavior : long {
 		Drop = 1,
 		Coalesce = 2,
 		Hold = 3,
@@ -190,7 +190,7 @@ namespace XamCore.CoreFoundation {
 
 		delegate void CFNotificationCallback (CFNotificationCenterRef center, IntPtr observer, IntPtr name, IntPtr obj, IntPtr userInfo);
 
-		[MonoPInvokeCallback (typeof(CFNotificationCallback))]
+		[MonoPInvokeCallback (typeof (CFNotificationCallback))]
 		static void NotificationCallback (CFNotificationCenterRef centerPtr, IntPtr observer, IntPtr name, IntPtr obj, IntPtr userInfo)
 		{
 			CFNotificationCenter center;

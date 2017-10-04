@@ -231,7 +231,7 @@ namespace XamCore.VideoToolbox {
 		}
 	}
 
-	[Mac (10,8), iOS (9,0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 9, 0)]
 	public enum VTScalingMode {
 		Unset,
 		Normal,
@@ -240,7 +240,7 @@ namespace XamCore.VideoToolbox {
 		Trim
 	}
 
-	[Mac (10,8), iOS (9,0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 9, 0)]
 	public enum VTDownsamplingMode {
 		Unset,
 		Decimate,

@@ -50,7 +50,7 @@ namespace XamCore.CoreGraphics {
 #if !COREBUILD
 		internal IntPtr handle;
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal CGGradient (IntPtr handle, bool owns)
 		{
 			if (!owns)
@@ -88,7 +88,7 @@ namespace XamCore.CoreGraphics {
 			}
 		}
 
-		[DllImport(Constants.CoreGraphicsLibrary)]
+		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static /* CGGradientRef __nullable */ IntPtr CGGradientCreateWithColorComponents (
 			/* CGColorSpaceRef __nullable */ IntPtr colorspace, /* const CGFloat* __nullable */ nfloat [] components, 
 			/* const CGFloat* __nullable */ nfloat [] locations, /* size_t */ nint count);
@@ -117,7 +117,7 @@ namespace XamCore.CoreGraphics {
 			handle = CGGradientCreateWithColorComponents (colorspace.handle, components, null, components.Length / (colorspace.Components+1));
 		}
 
-		[DllImport(Constants.CoreGraphicsLibrary)]
+		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static /* CGGradientRef __nullable */ IntPtr CGGradientCreateWithColors (
 			/* CGColorSpaceRef __nullable */ IntPtr space, /* CFArrayRef __nullable */ IntPtr colors, 
 			/* const CGFloat* __nullable */ nfloat [] locations);

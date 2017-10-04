@@ -18,8 +18,8 @@ using XamCore.UIKit;
 
 namespace XamCore.GameController {
 
-	[Since (7,0)]
-	[Mac (10,9, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 7, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // The GCControllerElement class is never instantiated directly.
 	partial interface GCControllerElement {
@@ -35,8 +35,8 @@ namespace XamCore.GameController {
 
 	delegate void GCControllerAxisValueChangedHandler (GCControllerAxisInput axis, float /* float, not CGFloat */ value);
 
-	[Since (7,0)]
-	[Mac (10,9, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 7, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (GCControllerElement))]
 	[DisableDefaultCtor] // return nil handle -> only exposed as getter
 	partial interface GCControllerAxisInput {
@@ -50,7 +50,7 @@ namespace XamCore.GameController {
 
 	delegate void GCControllerButtonValueChanged (GCControllerButtonInput button, float /* float, not CGFloat */ buttonValue, bool pressed);
 
-	[Since (7,0), Mac (10,9, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (GCControllerElement))]
 	[DisableDefaultCtor] // return nil handle -> only exposed as getter
 	partial interface GCControllerButtonInput {
@@ -72,13 +72,13 @@ namespace XamCore.GameController {
 		bool IsPressed { [Bind ("isPressed")] get; }
 
 #if !XAMCORE_4_0
-		[iOS (8,0), Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Obsolete ("Use the 'PressedChangedHandler' property.")]
 		[Wrap ("PressedChangedHandler = handler;", IsVirtual = true)]
 		void SetPressedChangedHandler (GCControllerButtonValueChanged handler);
 #endif
 
-		[iOS (8,0), Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[NullAllowed]
 		[Export ("pressedChangedHandler", ArgumentSemantic.Copy)]
 		GCControllerButtonValueChanged PressedChangedHandler { get; set; }
@@ -86,8 +86,8 @@ namespace XamCore.GameController {
 
 	delegate void GCControllerDirectionPadValueChangedHandler (GCControllerDirectionPad dpad, float /* float, not CGFloat */ xValue, float /* float, not CGFloat */ yValue);
 
-	[Since (7,0)]
-	[Mac (10,9, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 7, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (GCControllerElement))]
 	[DisableDefaultCtor] // return nil handle -> only exposed as getter
 	partial interface GCControllerDirectionPad {
@@ -116,8 +116,8 @@ namespace XamCore.GameController {
 
 	delegate void GCGamepadValueChangedHandler (GCGamepad gamepad, GCControllerElement element);
 
-	[Since (7,0)]
-	[Mac (10,9, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 7, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // return nil handle -> only exposed as getter
 	partial interface GCGamepad {
@@ -153,8 +153,8 @@ namespace XamCore.GameController {
 		GCControllerButtonInput RightShoulder { get; }
 	}
 
-	[Since (7,0)]
-	[Mac (10,9, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 7, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (GCGamepad))]
 	[DisableDefaultCtor]
 	partial interface GCGamepadSnapshot {
@@ -171,8 +171,8 @@ namespace XamCore.GameController {
 
 	delegate void GCExtendedGamepadValueChangedHandler (GCExtendedGamepad gamepad, GCControllerElement element);
 
-	[Since (7,0)]
-	[Mac (10,9, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 7, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // return nil handle -> only exposed as getter
 	partial interface GCExtendedGamepad {
@@ -220,8 +220,8 @@ namespace XamCore.GameController {
 		GCControllerButtonInput RightTrigger { get; }
 	}
 
-	[Since (7,0)]
-	[Mac (10,9, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 7, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (GCExtendedGamepad))]
 	[DisableDefaultCtor]
 	partial interface GCExtendedGamepadSnapshot {
@@ -240,7 +240,7 @@ namespace XamCore.GameController {
 	delegate void GCControllerPausedHandler (GCController controller);
 #endif
 
-	[Since (7,0), Mac (10,9, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	partial interface GCController {
 
@@ -271,8 +271,8 @@ namespace XamCore.GameController {
 		[Export ("extendedGamepad", ArgumentSemantic.Retain)]
 		GCExtendedGamepad ExtendedGamepad { get; }
 
-		[NoMac]
-		[iOS (10,0)]
+		[Unavailable (PlatformName.MacOSX)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[NullAllowed, Export ("microGamepad", ArgumentSemantic.Retain)]
 		GCMicroGamepad MicroGamepad { get; }
 
@@ -292,16 +292,16 @@ namespace XamCore.GameController {
 		[Notification, Field ("GCControllerDidDisconnectNotification")]
 		NSString DidDisconnectNotification { get; }
 
-		[iOS (8,0), Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("motion", ArgumentSemantic.Retain)]
 		GCMotion Motion { get; }
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("handlerQueue", ArgumentSemantic.Retain)]
 		DispatchQueue HandlerQueue { get; set; }
 	}
 
-	[iOS (8,0), Mac (10,10, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // access thru GCController.Motion - returns a nil Handle
 	partial interface GCMotion {
@@ -325,29 +325,29 @@ namespace XamCore.GameController {
 		[Export ("userAcceleration", ArgumentSemantic.Assign)]
 		Vector3d UserAcceleration { get; }
 
-		[TV (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("attitude", ArgumentSemantic.Assign)]
 		Quaterniond Attitude { get; }
 
-		[TV (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("rotationRate", ArgumentSemantic.Assign)]
 		Vector3d RotationRate { get; }
 
-		[TV (11,0)]
-		[iOS (11,0)]
-		[Mac (10,13, onlyOn64: true)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 		[Export ("hasAttitudeAndRotationRate")]
 		bool HasAttitudeAndRotationRate { get; }
 	}
 
-	[NoMac]
-	[iOS (10,0)]
-	[TV (9,0)]
+	[Unavailable (PlatformName.MacOSX)]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	delegate void GCMicroGamepadValueChangedHandler (GCMicroGamepad gamepad, GCControllerElement element);
 
-	[NoMac]
-	[iOS (10,0)]
-	[TV (9,0)]
+	[Unavailable (PlatformName.MacOSX)]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface GCMicroGamepad {
@@ -376,9 +376,9 @@ namespace XamCore.GameController {
 		bool AllowsRotation { get; set; }
 	}
 
-	[NoMac]
-	[iOS (10,0)]
-	[TV (9,0)]
+	[Unavailable (PlatformName.MacOSX)]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[BaseType (typeof (GCMicroGamepad))]
 	interface GCMicroGamepadSnapshot {
 		[Export ("snapshotData", ArgumentSemantic.Copy)]
@@ -392,9 +392,9 @@ namespace XamCore.GameController {
 	}
 
 #if !MONOMAC
-	[NoMac]
-	[iOS (10,0)]
-	[TV (9,0)]
+	[Unavailable (PlatformName.MacOSX)]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[BaseType (typeof (UIViewController))]
 	interface GCEventViewController {
 

@@ -16,7 +16,7 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.ImageIO {
 
-	[iOS (7,0), Mac (10,8)]
+	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 	public class CGMutableImageMetadata : CGImageMetadata {
 
 		[DllImport (Constants.ImageIOLibrary)]

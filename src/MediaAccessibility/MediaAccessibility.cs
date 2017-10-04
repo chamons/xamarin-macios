@@ -18,30 +18,30 @@ using XamCore.Foundation;
 namespace XamCore.MediaAccessibility {
 
 	[Native]
-	[iOS (7,0)][Mac (10,9)]
-	public enum MACaptionAppearanceDomain : nint {
+	[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
+	public enum MACaptionAppearanceDomain : long {
 		Default = 0,
 		User = 1
 	}
 
 	[Native]
-	[iOS (7,0)][Mac (10,9)]
-	public enum MACaptionAppearanceDisplayType : nint {
+	[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
+	public enum MACaptionAppearanceDisplayType : long {
 		ForcedOnly = 0,
 		Automatic = 1,
 		AlwaysOn = 2
 	}
 
 	[Native]
-	[iOS (7,0)][Mac (10,9)]
-	public enum MACaptionAppearanceBehavior : nint {
+	[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
+	public enum MACaptionAppearanceBehavior : long {
 		UseValue = 0,
 		UseContentIfAvailable = 1
 	}
 
 	[Native]
-	[iOS (7,0)][Mac (10,9)]
-	public enum MACaptionAppearanceFontStyle : nint {
+	[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
+	public enum MACaptionAppearanceFontStyle : long {
 		Default = 0,
 		MonospacedWithSerif = 1,
 		ProportionalWithSerif = 2,
@@ -53,8 +53,8 @@ namespace XamCore.MediaAccessibility {
 	}
 
 	[Native]
-	[iOS (7,0)][Mac (10,9)]
-	public enum MACaptionAppearanceTextEdgeStyle : nint {
+	[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
+	public enum MACaptionAppearanceTextEdgeStyle : long {
 		Undefined = 0,
 		None = 1,
 		Raised = 2,
@@ -63,7 +63,7 @@ namespace XamCore.MediaAccessibility {
 		DropShadow = 5
 	}
 
-	[iOS (7,0)][Mac (10,9)]
+	[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 	public static partial class MACaptionAppearance {
 
 #if !XAMCORE_4_0
@@ -273,7 +273,7 @@ namespace XamCore.MediaAccessibility {
 	}
 
 	static partial class MAAudibleMedia {
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[DllImport (Constants.MediaAccessibilityLibrary)]
 		static extern unsafe IntPtr /* CFArrayRef __nonnull */ MAAudibleMediaCopyPreferredCharacteristics ();
 

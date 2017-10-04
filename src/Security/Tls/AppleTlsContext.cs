@@ -378,11 +378,11 @@ namespace XamCore.Security.Tls
 
 		#region General P/Invokes
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static /* OSStatus */ SslStatus SSLGetProtocolVersionMax (/* SSLContextRef */ IntPtr context, out SslProtocol maxVersion);
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static /* OSStatus */ SslStatus SSLSetProtocolVersionMax (/* SSLContextRef */ IntPtr context, SslProtocol maxVersion);
 
@@ -399,11 +399,11 @@ namespace XamCore.Security.Tls
 			}
 		}
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static /* OSStatus */ SslStatus SSLGetProtocolVersionMin (/* SSLContextRef */ IntPtr context, out SslProtocol minVersion);
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static /* OSStatus */ SslStatus SSLSetProtocolVersionMin (/* SSLContextRef */ IntPtr context, SslProtocol minVersion);
 
@@ -607,7 +607,7 @@ namespace XamCore.Security.Tls
 				CheckStatusAndThrow (result);
 				if (result != SslStatus.Success)
 					return string.Empty;
-				if (length > 0 && bytes [length-1] == 0)
+				if (length > 0 && bytes [length - 1] == 0)
 					length--;
 				return Encoding.UTF8.GetString (bytes, 0, (int)length);
 			}
@@ -674,11 +674,11 @@ namespace XamCore.Security.Tls
 			return (value == IntPtr.Zero) ? null : new SecTrust (value, true);
 		}
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern unsafe static /* CFType */ IntPtr SSLContextGetTypeID ();
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		public static IntPtr GetTypeId ()
 		{
 			return SSLContextGetTypeID ();
@@ -688,7 +688,7 @@ namespace XamCore.Security.Tls
 
 		#region IO Functions
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static /* SSLContextRef */ IntPtr SSLCreateContext (/* CFAllocatorRef */ IntPtr alloc, SslProtocolSide protocolSide, SslConnectionType connectionType);
 

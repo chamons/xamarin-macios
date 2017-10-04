@@ -17,30 +17,30 @@ using Vector4 = global::OpenTK.Vector4;
 
 namespace XamCore.SceneKit {
 
-	[Watch (3,0)]
-	[Availability (Platform.Mac_10_8 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[Native] // untyped enum (SceneKitTypes.h) but described as the value of `code` for `NSError` which is an NSInteger
 	[ErrorDomain ("SCNErrorDomain")]
-	public enum SCNErrorCode : nint {
+	public enum SCNErrorCode : long {
 		ProgramCompilationError = 1,
 	}
 
-	[Watch (3,0)]
-	[Availability (Platform.Mac_10_8 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum SCNGeometryPrimitiveType : nint {
+	public enum SCNGeometryPrimitiveType : long {
 		Triangles,
 		TriangleStrip,
 		Line,
 		Point,
-		[TV (10,0), Mac (10,12), iOS (10,0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		Polygon
 	}
 
-	[Watch (3,0)]
-	[Availability (Platform.Mac_10_8 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum SCNTransparencyMode : nint {
+	public enum SCNTransparencyMode : long {
 		AOne,
 		RgbZero,
 		SingleLayer = 2,
@@ -48,26 +48,26 @@ namespace XamCore.SceneKit {
 		Default = AOne,
 	}
 
-	[Watch (3,0)]
-	[Availability (Platform.Mac_10_8 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum SCNCullMode : nint {
+	public enum SCNCullMode : long {
 		Back, Front
 	}
 
-	[Watch (3,0)]
-	[Availability (Platform.Mac_10_8 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum SCNFilterMode : nint {
+	public enum SCNFilterMode : long {
 		None,
 		Nearest,
 		Linear
 	}
 
-	[Watch (3,0)]
-	[Availability (Platform.Mac_10_8 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum SCNWrapMode : nint {
+	public enum SCNWrapMode : long {
 		Clamp = 1,
 		Repeat,
 		// added in iOS 8, removed in 8.3 (mistake?) but added back in 9.0 betas
@@ -75,10 +75,10 @@ namespace XamCore.SceneKit {
 		Mirror
 	}
 
-	[Watch (3,0)]
-	[Availability (Platform.Mac_10_8 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum SCNSceneSourceStatus : nint {
+	public enum SCNSceneSourceStatus : long {
 		Error = -1,
 		Parsing = 4,
 		Validating = 8,
@@ -86,63 +86,63 @@ namespace XamCore.SceneKit {
 		Complete = 16
 	}
 
-	[Watch (3,0)]
-	[Availability (Platform.Mac_10_9 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum SCNChamferMode : nint {
+	public enum SCNChamferMode : long {
 		Both,
 		Front,
 		Back
 	}
 
-	[Watch (3,0)]
-	[Availability (Platform.Mac_10_9 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum SCNMorpherCalculationMode : nint {
+	public enum SCNMorpherCalculationMode : long {
 		Normalized,
 		Additive
 	}
 
-	[Watch (3,0)]
-	[Availability (Platform.Mac_10_10 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum SCNActionTimingMode : nint {
+	public enum SCNActionTimingMode : long {
 		Linear,
 		EaseIn,
 		EaseOut,
 		EaseInEaseOut
 	}
 
-	[Watch (3,0)]
-	[Availability (Platform.Mac_10_10 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum SCNShadowMode : nint {
+	public enum SCNShadowMode : long {
 		Forward,
 		Deferred,
 		Modulated
 	}
 
-	[Watch (3,0)]
-	[Availability (Platform.Mac_10_10 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum SCNPhysicsBodyType : nint {
+	public enum SCNPhysicsBodyType : long {
 		Static,
 		Dynamic,
 		Kinematic
 	}
 
-	[Watch (3,0)]
-	[Availability (Platform.Mac_10_10 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum SCNPhysicsFieldScope : nint {
+	public enum SCNPhysicsFieldScope : long {
 		InsideExtent,
 		OutsideExtent
 	}
 
-	[Watch (3,0)]
-	[Availability (Platform.Mac_10_10 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum SCNParticleSortingMode : nint {
+	public enum SCNParticleSortingMode : long {
 		None,
 		ProjectedDepth,
 		Distance,
@@ -150,10 +150,10 @@ namespace XamCore.SceneKit {
 		YoungestFirst
 	}
 
-	[Watch (3,0)]
-	[Availability (Platform.Mac_10_10 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum SCNParticleBlendMode : nint {
+	public enum SCNParticleBlendMode : long {
 		Additive,
 		Subtract,
 		Multiply,
@@ -162,66 +162,66 @@ namespace XamCore.SceneKit {
 		Replace
 	}
 
-	[Watch (3,0)]
-	[Availability (Platform.Mac_10_10 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum SCNParticleOrientationMode : nint {
+	public enum SCNParticleOrientationMode : long {
 		BillboardScreenAligned,
 		BillboardViewAligned,
 		Free,
 		BillboardYAligned
 	}
 
-	[Watch (3,0)]
-	[Availability (Platform.Mac_10_10 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum SCNParticleBirthLocation : nint {
+	public enum SCNParticleBirthLocation : long {
 		Surface,
 		Volume,
 		Vertex
 	}
 
-	[Watch (3,0)]
-	[Availability (Platform.Mac_10_10 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum SCNParticleBirthDirection : nint {
+	public enum SCNParticleBirthDirection : long {
 		Constant,
 		SurfaceNormal,
 		Random
 	}
 
-	[Watch (3,0)]
-	[Availability (Platform.Mac_10_10 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum SCNParticleImageSequenceAnimationMode : nint {
+	public enum SCNParticleImageSequenceAnimationMode : long {
 		Repeat,
 		Clamp,
 		AutoReverse
 	}
 
-	[Watch (3,0)]
-	[Availability (Platform.Mac_10_10 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum SCNParticleInputMode : nint {
+	public enum SCNParticleInputMode : long {
 		OverLife,
 		OverDistance,
 		OverOtherProperty
 	}
 
-	[Watch (3,0)]
-	[Availability (Platform.Mac_10_10 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum SCNParticleModifierStage : nint {
+	public enum SCNParticleModifierStage : long {
 		PreDynamics,
 		PostDynamics,
 		PreCollision,
 		PostCollision
 	}
 
-	[Watch (3,0)]
-	[Availability (Platform.Mac_10_10 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum SCNParticleEvent : nint {
+	public enum SCNParticleEvent : long {
 		Birth,
 		Death,
 		Collision
@@ -256,9 +256,9 @@ namespace XamCore.SceneKit {
 		Any, Closest, All, 
 	}
 
-	[Watch (3,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[Native]
-	public enum SCNAntialiasingMode : nuint {
+	public enum SCNAntialiasingMode : ulong {
 		None,
 		Multisampling2X,
 		Multisampling4X,
@@ -268,9 +268,9 @@ namespace XamCore.SceneKit {
 #endif
 	}
 
-	[Watch (3,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[Native]
-	public enum SCNPhysicsCollisionCategory : nuint {
+	public enum SCNPhysicsCollisionCategory : ulong {
 		None	= 0,
 		Default	= 1 << 0,
 		Static	= 1 << 1,
@@ -281,28 +281,28 @@ namespace XamCore.SceneKit {
 #endif
 	}
 
-	[Watch (3,0)]
-	[iOS (9,0)][Mac (10,11)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
-	public enum SCNBillboardAxis : nuint {
+	public enum SCNBillboardAxis : ulong {
 		X = 1 << 0,
 		Y = 1 << 1,
 		Z = 1 << 2,
 		All = (X | Y | Z)
 	}
 
-	[Watch (3,0)]
-	[iOS (9,0)][Mac (10,11)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
-	public enum SCNReferenceLoadingPolicy : nint {
+	public enum SCNReferenceLoadingPolicy : long {
 		Immediate = 0,
 		OnDemand = 1
 	}
 
-	[Watch (3,0)]
-	[iOS (9,0)][Mac (10,11)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
-	public enum SCNBlendMode : nint
+	public enum SCNBlendMode : long
 	{
 		Alpha = 0,
 		Add = 1,
@@ -313,11 +313,11 @@ namespace XamCore.SceneKit {
 		Max = 6,
 	}
 
-	[Watch (3,0)]
-	[iOS (9,0)][Mac (10,11)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	[Flags]
-	public enum SCNDebugOptions : nuint
+	public enum SCNDebugOptions : ulong
 	{
 		None = 0,
 		ShowPhysicsShapes = 1 << 0,
@@ -333,10 +333,10 @@ namespace XamCore.SceneKit {
 		ShowCameras = 1 << 10,
 	}
 
-	[Watch (3,0)]
-	[iOS (9,0)][Mac (10,11)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
-	public enum SCNRenderingApi : nuint
+	public enum SCNRenderingApi : ulong
 	{
 		Metal,
 #if !MONOMAC
@@ -348,27 +348,27 @@ namespace XamCore.SceneKit {
 #endif
 	}
 
-	[Watch (3,0)]
-	[iOS (9,0)][Mac (10,11)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
-	public enum SCNBufferFrequency : nint
+	public enum SCNBufferFrequency : long
 	{
 		Frame = 0,
 		Node = 1,
 		Shadable = 2,
 	}
 
-	[Watch (3,0)]
-	[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
-	public enum SCNMovabilityHint : nint {
+	public enum SCNMovabilityHint : long {
 		Fixed,
 		Movable
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum SCNColorMask : nint
+	public enum SCNColorMask : long
 	{
 		None = 0,
 		Red = 1 << 3,
@@ -378,9 +378,9 @@ namespace XamCore.SceneKit {
 		All = 15,
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum SCNInteractionMode : nint
+	public enum SCNInteractionMode : long
 	{
 		Fly,
 		OrbitTurntable,
@@ -391,42 +391,42 @@ namespace XamCore.SceneKit {
 		Truck,
 	}
 		
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum SCNFillMode : nuint
+	public enum SCNFillMode : ulong
 	{
 		Fill = 0,
 		Lines = 1,
 	}
 
-	[NoWatch, NoTV, Mac (10,13), iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum SCNTessellationSmoothingMode : nint
+	public enum SCNTessellationSmoothingMode : long
 	{
 		None = 0,
 		PNTriangles,
 		Phong,
 	}
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum SCNHitTestSearchMode : nint
+	public enum SCNHitTestSearchMode : long
 	{
 		Closest = 0,
 		All = 1,
 		Any = 2,
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum SCNCameraProjectionDirection : nint
+	public enum SCNCameraProjectionDirection : long
 	{
 		Vertical = 0,
 		Horizontal = 1,
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum SCNNodeFocusBehavior : nint
+	public enum SCNNodeFocusBehavior : long
 	{
 		None = 0,
 		Occluding,

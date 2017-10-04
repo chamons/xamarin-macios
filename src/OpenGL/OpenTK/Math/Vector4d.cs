@@ -30,7 +30,7 @@ namespace OpenTK
 {
     /// <summary>Represents a 4D vector using four double-precision floating-point numbers.</summary>
     [Serializable]
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     public struct Vector4d : IEquatable<Vector4d>
     {
         #region Fields
@@ -182,7 +182,7 @@ namespace OpenTK
 
         /// <summary>Add the Vector passed as parameter to this instance.</summary>
         /// <param name="right">Right operand. This parameter is only read from.</param>
-        [Obsolete("Use static Add() method instead.")]
+        [Obsolete ("Use static Add() method instead.")]
         public void Add(Vector4d right)
         {
             this.X += right.X;
@@ -193,8 +193,8 @@ namespace OpenTK
 
         /// <summary>Add the Vector passed as parameter to this instance.</summary>
         /// <param name="right">Right operand. This parameter is only read from.</param>
-        [CLSCompliant(false)]
-        [Obsolete("Use static Add() method instead.")]
+        [CLSCompliant (false)]
+        [Obsolete ("Use static Add() method instead.")]
         public void Add(ref Vector4d right)
         {
             this.X += right.X;
@@ -209,7 +209,7 @@ namespace OpenTK
 
         /// <summary>Subtract the Vector passed as parameter from this instance.</summary>
         /// <param name="right">Right operand. This parameter is only read from.</param>
-        [Obsolete("Use static Subtract() method instead.")]
+        [Obsolete ("Use static Subtract() method instead.")]
         public void Sub(Vector4d right)
         {
             this.X -= right.X;
@@ -220,8 +220,8 @@ namespace OpenTK
 
         /// <summary>Subtract the Vector passed as parameter from this instance.</summary>
         /// <param name="right">Right operand. This parameter is only read from.</param>
-        [CLSCompliant(false)]
-        [Obsolete("Use static Subtract() method instead.")]
+        [CLSCompliant (false)]
+        [Obsolete ("Use static Subtract() method instead.")]
         public void Sub(ref Vector4d right)
         {
             this.X -= right.X;
@@ -236,7 +236,7 @@ namespace OpenTK
 
         /// <summary>Multiply this instance by a scalar.</summary>
         /// <param name="f">Scalar operand.</param>
-        [Obsolete("Use static Multiply() method instead.")]
+        [Obsolete ("Use static Multiply() method instead.")]
         public void Mult(double f)
         {
             this.X *= f;
@@ -251,7 +251,7 @@ namespace OpenTK
 
         /// <summary>Divide this instance by a scalar.</summary>
         /// <param name="f">Scalar operand.</param>
-        [Obsolete("Use static Divide() method instead.")]
+        [Obsolete ("Use static Divide() method instead.")]
         public void Div(double f)
         {
             double mult = 1.0 / f;
@@ -362,7 +362,7 @@ namespace OpenTK
         /// <param name="sy">The scale of the Y component.</param>
         /// <param name="sz">The scale of the Z component.</param>
         /// <param name="sw">The scale of the Z component.</param>
-        [Obsolete("Use static Multiply() method instead.")]
+        [Obsolete ("Use static Multiply() method instead.")]
         public void Scale(double sx, double sy, double sz, double sw)
         {
             this.X = X * sx;
@@ -373,7 +373,7 @@ namespace OpenTK
 
         /// <summary>Scales this instance by the given parameter.</summary>
         /// <param name="scale">The scaling of the individual components.</param>
-        [Obsolete("Use static Multiply() method instead.")]
+        [Obsolete ("Use static Multiply() method instead.")]
         public void Scale(Vector4d scale)
         {
             this.X *= scale.X;
@@ -384,8 +384,8 @@ namespace OpenTK
 
         /// <summary>Scales this instance by the given parameter.</summary>
         /// <param name="scale">The scaling of the individual components.</param>
-        [CLSCompliant(false)]
-        [Obsolete("Use static Multiply() method instead.")]
+        [CLSCompliant (false)]
+        [Obsolete ("Use static Multiply() method instead.")]
         public void Scale(ref Vector4d scale)
         {
             this.X *= scale.X;
@@ -410,7 +410,7 @@ namespace OpenTK
         /// <param name="a">First operand</param>
         /// <param name="b">Second operand</param>
         /// <returns>Result of subtraction</returns>
-        [Obsolete("Use static Subtract() method instead.")]
+        [Obsolete ("Use static Subtract() method instead.")]
         public static Vector4d Sub(Vector4d a, Vector4d b)
         {
             a.X -= b.X;
@@ -426,7 +426,7 @@ namespace OpenTK
         /// <param name="a">First operand</param>
         /// <param name="b">Second operand</param>
         /// <param name="result">Result of subtraction</param>
-        [Obsolete("Use static Subtract() method instead.")]
+        [Obsolete ("Use static Subtract() method instead.")]
         public static void Sub(ref Vector4d a, ref Vector4d b, out Vector4d result)
         {
             result.X = a.X - b.X;
@@ -445,7 +445,7 @@ namespace OpenTK
         /// <param name="a">Vector operand</param>
         /// <param name="f">Scalar operand</param>
         /// <returns>Result of the multiplication</returns>
-        [Obsolete("Use static Multiply() method instead.")]
+        [Obsolete ("Use static Multiply() method instead.")]
         public static Vector4d Mult(Vector4d a, double f)
         {
             a.X *= f;
@@ -461,7 +461,7 @@ namespace OpenTK
         /// <param name="a">Vector operand</param>
         /// <param name="f">Scalar operand</param>
         /// <param name="result">Result of the multiplication</param>
-        [Obsolete("Use static Multiply() method instead.")]
+        [Obsolete ("Use static Multiply() method instead.")]
         public static void Mult(ref Vector4d a, double f, out Vector4d result)
         {
             result.X = a.X * f;
@@ -480,7 +480,7 @@ namespace OpenTK
         /// <param name="a">Vector operand</param>
         /// <param name="f">Scalar operand</param>
         /// <returns>Result of the division</returns>
-        [Obsolete("Use static Divide() method instead.")]
+        [Obsolete ("Use static Divide() method instead.")]
         public static Vector4d Div(Vector4d a, double f)
         {
             double mult = 1.0 / f;
@@ -497,7 +497,7 @@ namespace OpenTK
         /// <param name="a">Vector operand</param>
         /// <param name="f">Scalar operand</param>
         /// <param name="result">Result of the division</param>
-        [Obsolete("Use static Divide() method instead.")]
+        [Obsolete ("Use static Divide() method instead.")]
         public static void Div(ref Vector4d a, double f, out Vector4d result)
         {
             double mult = 1.0 / f;
@@ -1127,7 +1127,7 @@ namespace OpenTK
         /// </summary>
         /// <param name="v">The instance.</param>
         /// <returns>A pointer to the first element of v.</returns>
-        [CLSCompliant(false)]
+        [CLSCompliant (false)]
         unsafe public static explicit operator double*(Vector4d v)
         {
             return &v.X;

@@ -20,29 +20,29 @@ using XamCore.AppKit;
 namespace XamCore.SafariServices {
 	delegate void SFExtensionValidationHandler (bool shouldHide, NSString text);
 
-	[Mac (10,12, onlyOn64: true)][iOS (10,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)][Introduced (PlatformName.iOS, 10, 0)]
+	[BaseType (typeof (NSObject))]
 	interface SFContentBlockerState
 	{
 		[Export ("enabled")]
 		bool Enabled { [Bind ("isEnabled")] get; }
 	}
 
-	[iOS (9,0)][Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface SFContentBlockerManager {
 		[Async]
 		[Static, Export ("reloadContentBlockerWithIdentifier:completionHandler:")]
 		void ReloadContentBlocker (string identifier, [NullAllowed] Action<NSError> completionHandler);
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Static][Async]
 		[Export ("getStateOfContentBlockerWithIdentifier:completionHandler:")]
 		void GetStateOfContentBlocker (string identifier, Action<SFContentBlockerState, NSError> completionHandler);
 	}
 
 #if !MONOMAC
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // NSGenericException Misuse of SSReadingList interface. Use class method defaultReadingList.
 	partial interface SSReadingList {
@@ -65,7 +65,7 @@ namespace XamCore.SafariServices {
 #endif
 	}
 
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (UIViewController))]
 	[DisableDefaultCtor] // NSGenericException Reason: Misuse of SFSafariViewController interface. Use initWithURL:entersReaderIfAvailable:
 	interface SFSafariViewController {
@@ -73,12 +73,12 @@ namespace XamCore.SafariServices {
 		[PostGet ("NibBundle")]
 		IntPtr Constructor ([NullAllowed] string nibName, [NullAllowed] NSBundle bundle);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("initWithURL:configuration:")]
 		[DesignatedInitializer]
 		IntPtr Constructor (NSUrl url, SFSafariViewControllerConfiguration configuration);
 
-		[Deprecated (PlatformName.iOS, 11,0, message: "Use '.ctor (NSUrl, SFSafariViewControllerConfiguration)' instead.")]
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use '.ctor (NSUrl, SFSafariViewControllerConfiguration)' instead.")]
 		[DesignatedInitializer]
 		[Export ("initWithURL:entersReaderIfAvailable:")]
 		IntPtr Constructor (NSUrl url, bool entersReaderIfAvailable);
@@ -94,26 +94,26 @@ namespace XamCore.SafariServices {
 		[Protocolize]
 		SFSafariViewControllerDelegate Delegate { get; set; }
 
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[NullAllowed]
 		[Export ("preferredBarTintColor", ArgumentSemantic.Assign)]
 		UIColor PreferredBarTintColor { get; set; }
 
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[NullAllowed]
 		[Export ("preferredControlTintColor", ArgumentSemantic.Assign)]
 		UIColor PreferredControlTintColor { get; set; }
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("configuration", ArgumentSemantic.Copy)]
 		SFSafariViewControllerConfiguration Configuration { get; }
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("dismissButtonStyle", ArgumentSemantic.Assign)]
 		SFSafariViewControllerDismissButtonStyle DismissButtonStyle { get; set; }
 	}
 
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Model]
 	[BaseType (typeof (NSObject))]
 	[Protocol]
@@ -127,16 +127,16 @@ namespace XamCore.SafariServices {
 		[Export ("safariViewController:didCompleteInitialLoad:")]
 		void DidCompleteInitialLoad (SFSafariViewController controller, bool didLoadSuccessfully);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("safariViewController:excludedActivityTypesForURL:title:")]
 		string[] GetExcludedActivityTypes (SFSafariViewController controller, NSUrl url, [NullAllowed] string title);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("safariViewController:initialLoadDidRedirectToURL:")]
 		void InitialLoadDidRedirectToUrl (SFSafariViewController controller, NSUrl url);
 	}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	interface SFSafariViewControllerConfiguration : NSCopying {
 		[Export ("entersReaderIfAvailable")]
@@ -146,10 +146,10 @@ namespace XamCore.SafariServices {
 		bool BarCollapsingEnabled { get; set; }
 	}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	delegate void SFAuthenticationCompletionHandler ([NullAllowed] NSUrl callbackUrl, [NullAllowed] NSError error);
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface SFAuthenticationSession {
@@ -163,8 +163,8 @@ namespace XamCore.SafariServices {
 		void Cancel ();
 	}
 #else
-	[Mac (10,12, onlyOn64: true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface SFSafariApplication
 	{
@@ -184,21 +184,21 @@ namespace XamCore.SafariServices {
 		[Export ("showPreferencesForExtensionWithIdentifier:completionHandler:")]
 		void ShowPreferencesForExtension (string identifier, [NullAllowed] Action<NSError> completionHandler);
 
-		[Mac (10,12,4, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 12, 4, PlatformArchitecture.Arch64)]
 		[Advice ("Unavailable to extensions.")]
 		[Static][Async]
 		[Export ("dispatchMessageWithName:toExtensionWithIdentifier:userInfo:completionHandler:")]
 		void DispatchMessage (string messageName, string identifier, [NullAllowed] NSDictionary<NSString, NSObject> userInfo, [NullAllowed] Action<NSError> completionHandler);
 
-		[Mac (10,13, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 		[Static]
 		[Async]
 		[Export ("getHostApplicationWithCompletionHandler:")]
 		void GetHostApplication (Action<NSRunningApplication> completionHandler);
 	}
 
-	[Mac (10,12, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface SFSafariPage
 	{
@@ -213,7 +213,7 @@ namespace XamCore.SafariServices {
 		void GetPageProperties (Action<SFSafariPageProperties> completionHandler);
 	}
 
-	[Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Protocol]
 	interface SFSafariExtensionHandling
 	{
@@ -223,7 +223,7 @@ namespace XamCore.SafariServices {
 		[Export ("toolbarItemClickedInWindow:")]
 		void ToolbarItemClicked (SFSafariWindow window);
 
-		[Async (ResultTypeName="SFValidationResult")]
+		[Async (ResultTypeName = "SFValidationResult")]
 		[Export ("validateToolbarItemInWindow:validationHandler:")]
 		void ValidateToolbarItem (SFSafariWindow window, Action<bool, NSString> validationHandler);
 
@@ -239,17 +239,17 @@ namespace XamCore.SafariServices {
 		[Export ("popoverViewController")]
 		SFSafariExtensionViewController PopoverViewController { get; }
 
-		[Mac (10, 12, 4)]
-		[Async (ResultTypeName="SFExtensionValidationResult")][Export ("validateContextMenuItemWithCommand:inPage:userInfo:validationHandler:")]
+		[Introduced (PlatformName.MacOSX, 10, 12, 4)]
+		[Async (ResultTypeName = "SFExtensionValidationResult")][Export ("validateContextMenuItemWithCommand:inPage:userInfo:validationHandler:")]
 		void ValidateContextMenuItem (string command, SFSafariPage page, [NullAllowed] NSDictionary<NSString, NSObject> userInfo, SFExtensionValidationHandler validationHandler);
 
-		[Mac (10, 12, 4)]
+		[Introduced (PlatformName.MacOSX, 10, 12, 4)]
 		[Export ("messageReceivedFromContainingAppWithName:userInfo:")]
 		void MessageReceivedFromContainingApp (string messageName, [NullAllowed] NSDictionary<NSString, NSObject> userInfo);
 	}
 
-	[Mac (10,12, onlyOn64: true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface SFSafariPageProperties
 	{
 		[Export ("url")]
@@ -265,8 +265,8 @@ namespace XamCore.SafariServices {
 		bool Active { [Bind ("isActive")] get; }
 	}
 
-	[Mac (10,12, onlyOn64: true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface SFSafariTab
 	{
@@ -283,34 +283,34 @@ namespace XamCore.SafariServices {
 		void Activate ([NullAllowed] Action completionHandler);
 	}
 
-	[Mac (10,12, onlyOn64: true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface SFSafariToolbarItem
 	{
-		[Deprecated (PlatformName.MacOSX, 10,13, message: "Use 'SetEnabled (bool)' or 'SetBadgeText' instead.")]
+		[Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'SetEnabled (bool)' or 'SetBadgeText' instead.")]
 		[Export ("setEnabled:withBadgeText:")]
 		void SetEnabled (bool enabled, [NullAllowed] string badgeText);
 
-		[Mac (10,12,4, onlyOn64: true)]
+		[Introduced (PlatformName.MacOSX, 10, 12, 4, PlatformArchitecture.Arch64)]
 		[Export ("setEnabled:")]
 		void SetEnabled (bool enabled);
 
-		[Mac (10,12,4, onlyOn64: true)]
+		[Introduced (PlatformName.MacOSX, 10, 12, 4, PlatformArchitecture.Arch64)]
 		[Export ("setBadgeText:")]
 		void SetBadgeText ([NullAllowed] string badgeText);
 
-		[Mac (10,12,4, onlyOn64: true)]
+		[Introduced (PlatformName.MacOSX, 10, 12, 4, PlatformArchitecture.Arch64)]
 		[Export ("setImage:")]
 		void SetImage ([NullAllowed] NSImage image);
 
-		[Mac (10,13, onlyOn64: true)]
+		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 		[Export ("setLabel:")]
 		void SetLabel ([NullAllowed] string label);
 	}
 
-	[Mac (10,12, onlyOn64: true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface SFSafariWindow
 	{
@@ -327,14 +327,14 @@ namespace XamCore.SafariServices {
 		void GetToolbarItem (Action<SFSafariToolbarItem> completionHandler);
 	}
 
-	[Mac (10,12, onlyOn64: true)]
-	[BaseType (typeof(NSViewController))]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSViewController))]
 	interface SFSafariExtensionViewController
 	{
 	}
 
-	[Mac (10,12, onlyOn64: true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface SFSafariExtensionHandler : NSExtensionRequestHandling, SFSafariExtensionHandling
 	{
 	}

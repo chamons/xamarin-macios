@@ -34,7 +34,7 @@ using XamCore.ObjCRuntime;
 namespace XamCore.CoreMidi {
 	
 #if !MONOMAC
-	[BaseType (typeof (NSObject), Name="MIDINetworkHost")]
+	[BaseType (typeof (NSObject), Name = "MIDINetworkHost")]
 	interface MidiNetworkHost {
 		[Export ("name", ArgumentSemantic.Retain)]
 		string Name { get;  }
@@ -81,7 +81,7 @@ namespace XamCore.CoreMidi {
 		NSString NetworkBonjourServiceType { get; }
 	}
 
-	[BaseType (typeof (NSObject), Name="MIDINetworkConnection")]
+	[BaseType (typeof (NSObject), Name = "MIDINetworkConnection")]
 	interface MidiNetworkConnection {
 		[Export ("host", ArgumentSemantic.Retain)]
 		MidiNetworkHost Host { get;  }
@@ -90,7 +90,7 @@ namespace XamCore.CoreMidi {
 		MidiNetworkConnection FromHost (MidiNetworkHost host);
 	}
 
-	[BaseType (typeof (NSObject), Name="MIDINetworkSession")]
+	[BaseType (typeof (NSObject), Name = "MIDINetworkSession")]
 	// default 'init' crash the application
 	[DisableDefaultCtor]
 	interface MidiNetworkSession {

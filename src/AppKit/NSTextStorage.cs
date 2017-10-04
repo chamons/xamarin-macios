@@ -1,4 +1,4 @@
-﻿using XamCore.CoreText;
+using XamCore.CoreText;
 using XamCore.Foundation;
 
 namespace XamCore.AppKit {

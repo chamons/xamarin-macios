@@ -1,4 +1,4 @@
-﻿#region --- License ---
+#region --- License ---
 /*
  * Copyright 2014 Xamarin Inc
  *
@@ -48,7 +48,7 @@ namespace XamCore.SceneKit
     /// The Vector3 structure is suitable for interoperation with unmanaged code requiring three consecutive floats.
     /// </remarks>
     [Serializable]
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     public struct SCNVector3 : IEquatable<SCNVector3>
     {
         #region Fields
@@ -125,7 +125,7 @@ namespace XamCore.SceneKit
 
         /// <summary>Add the Vector passed as parameter to this instance.</summary>
         /// <param name="right">Right operand. This parameter is only read from.</param>
-        [Obsolete("Use static Add() method instead.")]
+        [Obsolete ("Use static Add() method instead.")]
         public void Add(SCNVector3 right)
         {
             this.X += right.X;
@@ -135,8 +135,8 @@ namespace XamCore.SceneKit
 
         /// <summary>Add the Vector passed as parameter to this instance.</summary>
         /// <param name="right">Right operand. This parameter is only read from.</param>
-        [CLSCompliant(false)]
-        [Obsolete("Use static Add() method instead.")]
+        [CLSCompliant (false)]
+        [Obsolete ("Use static Add() method instead.")]
         public void Add(ref SCNVector3 right)
         {
             this.X += right.X;
@@ -150,7 +150,7 @@ namespace XamCore.SceneKit
 
         /// <summary>Subtract the Vector passed as parameter from this instance.</summary>
         /// <param name="right">Right operand. This parameter is only read from.</param>
-        [Obsolete("Use static Subtract() method instead.")]
+        [Obsolete ("Use static Subtract() method instead.")]
         public void Sub(SCNVector3 right)
         {
             this.X -= right.X;
@@ -160,8 +160,8 @@ namespace XamCore.SceneKit
 
         /// <summary>Subtract the Vector passed as parameter from this instance.</summary>
         /// <param name="right">Right operand. This parameter is only read from.</param>
-        [CLSCompliant(false)]
-        [Obsolete("Use static Subtract() method instead.")]
+        [CLSCompliant (false)]
+        [Obsolete ("Use static Subtract() method instead.")]
         public void Sub(ref SCNVector3 right)
         {
             this.X -= right.X;
@@ -175,7 +175,7 @@ namespace XamCore.SceneKit
 
         /// <summary>Multiply this instance by a scalar.</summary>
         /// <param name="f">Scalar operand.</param>
-        [Obsolete("Use static Multiply() method instead.")]
+        [Obsolete ("Use static Multiply() method instead.")]
         public void Mult(pfloat f)
         {
             this.X *= f;
@@ -189,7 +189,7 @@ namespace XamCore.SceneKit
 
         /// <summary>Divide this instance by a scalar.</summary>
         /// <param name="f">Scalar operand.</param>
-        [Obsolete("Use static Divide() method instead.")]
+        [Obsolete ("Use static Divide() method instead.")]
         public void Div(pfloat f)
         {
             pfloat mult = 1.0f / f;
@@ -299,7 +299,7 @@ namespace XamCore.SceneKit
         /// <param name="sx">The scale of the X component.</param>
         /// <param name="sy">The scale of the Y component.</param>
         /// <param name="sz">The scale of the Z component.</param>
-        [Obsolete("Use static Multiply() method instead.")]
+        [Obsolete ("Use static Multiply() method instead.")]
         public void Scale(pfloat sx, pfloat sy, pfloat sz)
         {
             this.X = X * sx;
@@ -309,7 +309,7 @@ namespace XamCore.SceneKit
 
         /// <summary>Scales this instance by the given parameter.</summary>
         /// <param name="scale">The scaling of the individual components.</param>
-        [Obsolete("Use static Multiply() method instead.")]
+        [Obsolete ("Use static Multiply() method instead.")]
         public void Scale(SCNVector3 scale)
         {
             this.X *= scale.X;
@@ -319,8 +319,8 @@ namespace XamCore.SceneKit
 
         /// <summary>Scales this instance by the given parameter.</summary>
         /// <param name="scale">The scaling of the individual components.</param>
-        [CLSCompliant(false)]
-        [Obsolete("Use static Multiply() method instead.")]
+        [CLSCompliant (false)]
+        [Obsolete ("Use static Multiply() method instead.")]
         public void Scale(ref SCNVector3 scale)
         {
             this.X *= scale.X;
@@ -380,7 +380,7 @@ namespace XamCore.SceneKit
         /// <param name="a">First operand</param>
         /// <param name="b">Second operand</param>
         /// <returns>Result of subtraction</returns>
-        [Obsolete("Use static Subtract() method instead.")]
+        [Obsolete ("Use static Subtract() method instead.")]
         public static SCNVector3 Sub(SCNVector3 a, SCNVector3 b)
         {
             a.X -= b.X;
@@ -395,7 +395,7 @@ namespace XamCore.SceneKit
         /// <param name="a">First operand</param>
         /// <param name="b">Second operand</param>
         /// <param name="result">Result of subtraction</param>
-        [Obsolete("Use static Subtract() method instead.")]
+        [Obsolete ("Use static Subtract() method instead.")]
         public static void Sub(ref SCNVector3 a, ref SCNVector3 b, out SCNVector3 result)
         {
             result.X = a.X - b.X;
@@ -413,7 +413,7 @@ namespace XamCore.SceneKit
         /// <param name="a">Vector operand</param>
         /// <param name="f">Scalar operand</param>
         /// <returns>Result of the multiplication</returns>
-        [Obsolete("Use static Multiply() method instead.")]
+        [Obsolete ("Use static Multiply() method instead.")]
         public static SCNVector3 Mult(SCNVector3 a, pfloat f)
         {
             a.X *= f;
@@ -428,7 +428,7 @@ namespace XamCore.SceneKit
         /// <param name="a">Vector operand</param>
         /// <param name="f">Scalar operand</param>
         /// <param name="result">Result of the multiplication</param>
-        [Obsolete("Use static Multiply() method instead.")]
+        [Obsolete ("Use static Multiply() method instead.")]
         public static void Mult(ref SCNVector3 a, pfloat f, out SCNVector3 result)
         {
             result.X = a.X * f;
@@ -446,7 +446,7 @@ namespace XamCore.SceneKit
         /// <param name="a">Vector operand</param>
         /// <param name="f">Scalar operand</param>
         /// <returns>Result of the division</returns>
-        [Obsolete("Use static Divide() method instead.")]
+        [Obsolete ("Use static Divide() method instead.")]
         public static SCNVector3 Div(SCNVector3 a, pfloat f)
         {
             pfloat mult = 1.0f / f;
@@ -462,7 +462,7 @@ namespace XamCore.SceneKit
         /// <param name="a">Vector operand</param>
         /// <param name="f">Scalar operand</param>
         /// <param name="result">Result of the division</param>
-        [Obsolete("Use static Divide() method instead.")]
+        [Obsolete ("Use static Divide() method instead.")]
         public static void Div(ref SCNVector3 a, pfloat f, out SCNVector3 result)
         {
             pfloat mult = 1.0f / f;

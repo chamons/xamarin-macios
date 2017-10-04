@@ -15,7 +15,7 @@ using XamCore.UIKit;
 using System;
 
 namespace XamCore.CoreMotion {
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (CMLogItem))]
 	[DisableDefaultCtor] // will crash, see Extra.cs for compatibility stubs
 	interface CMAccelerometerData : NSSecureCoding {
@@ -23,7 +23,7 @@ namespace XamCore.CoreMotion {
 		CMAcceleration Acceleration { get; }
 	}
 
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (CMAccelerometerData))]
 	[DisableDefaultCtor]
 	interface CMRecordedAccelerometerData {
@@ -34,7 +34,7 @@ namespace XamCore.CoreMotion {
 		NSDate StartDate { get; }
 	}
 
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // will crash, see Extra.cs for compatibility stubs
 	interface CMLogItem : NSSecureCoding, NSCopying {
@@ -47,7 +47,7 @@ namespace XamCore.CoreMotion {
 	delegate void CMDeviceMotionHandler (CMDeviceMotion motion, NSError error);
 
 	[BaseType (typeof (NSObject))]
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	interface CMMotionManager {
 		[Export ("accelerometerAvailable")]
 		bool AccelerometerAvailable { [Bind ("isAccelerometerAvailable")] get;  }
@@ -112,57 +112,57 @@ namespace XamCore.CoreMotion {
 		[Export ("stopDeviceMotionUpdates")]
 		void StopDeviceMotionUpdates ();
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("magnetometerUpdateInterval")]
 		double MagnetometerUpdateInterval { get; set; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("magnetometerAvailable")]
 		bool MagnetometerAvailable { [Bind ("isMagnetometerAvailable")] get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("magnetometerActive")]
 		bool MagnetometerActive { [Bind ("isMagnetometerActive")] get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("magnetometerData")]
 		CMMagnetometerData MagnetometerData { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("startMagnetometerUpdates")]
 		void StartMagnetometerUpdates ();
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("startMagnetometerUpdatesToQueue:withHandler:")]
 		void StartMagnetometerUpdates (NSOperationQueue queue, CMMagnetometerHandler handler);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("stopMagnetometerUpdates")]
 		void StopMagnetometerUpdates ();
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("availableAttitudeReferenceFrames"), Static]
 		CMAttitudeReferenceFrame AvailableAttitudeReferenceFrames { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("attitudeReferenceFrame")]
 		CMAttitudeReferenceFrame AttitudeReferenceFrame { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("startDeviceMotionUpdatesUsingReferenceFrame:")]
 		void StartDeviceMotionUpdates (CMAttitudeReferenceFrame referenceFrame);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("startDeviceMotionUpdatesUsingReferenceFrame:toQueue:withHandler:")]
 		void StartDeviceMotionUpdates (CMAttitudeReferenceFrame referenceFrame, NSOperationQueue queue, CMDeviceMotionHandler handler);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("showsDeviceMovementDisplay")]
 		bool ShowsDeviceMovementDisplay { get; set; }
 	}
 
 	[BaseType (typeof (NSObject))]
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	//<quote>You access CMAttitude objects through the attitude property of each CMDeviceMotion objects passed to an application.</quote>
 	[DisableDefaultCtor] // will crash, see Extra.cs for compatibility stubs
 	interface CMAttitude : NSSecureCoding, NSCopying {
@@ -186,7 +186,7 @@ namespace XamCore.CoreMotion {
 	}
 
 	[BaseType (typeof (CMLogItem))]
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[DisableDefaultCtor] // will crash, see Extra.cs for compatibility stubs
 	interface CMDeviceMotion : NSSecureCoding {
 		[Export ("rotationRate")]
@@ -201,17 +201,17 @@ namespace XamCore.CoreMotion {
 		[Export ("attitude")]
 		CMAttitude Attitude { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("magneticField")]
 		CMCalibratedMagneticField MagneticField { get; }
 
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("heading")]
 		double Heading { get; }
 	}
 
 	[BaseType (typeof (CMLogItem))]
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[DisableDefaultCtor] // will crash, see Extra.cs for compatibility stubs
 	interface CMGyroData : NSSecureCoding {
 		[Export ("rotationRate")]
@@ -219,28 +219,28 @@ namespace XamCore.CoreMotion {
 	}
 
 	[BaseType (typeof (CMLogItem))]
-	[Since (5,0)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[DisableDefaultCtor] // will crash, see Extra.cs for compatibility stubs
 	interface CMMagnetometerData : NSSecureCoding {
 		[Export ("magneticField")]
 		CMMagneticField MagneticField { get; }
 	}
 
-	[Since (5,0)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	delegate void CMMagnetometerHandler (CMMagnetometerData magnetometerData, NSError error);
 
-	[NoWatch]
-	[Since (7,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	delegate void CMStepQueryHandler (nint numberOfSteps, NSError error);
 
-	[NoWatch]
-	[Since (7,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	delegate void CMStepUpdateHandler (nint numberOfSteps, NSDate timestamp, NSError error);
 
-	[NoWatch]
-	[Since (7,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
-	[Availability (Deprecated = Platform.iOS_8_0, Message = "Use 'CMPedometer' instead.")]
+	[Deprecated (PlatformName.iOS, 8, 0, message: "Use 'CMPedometer' instead.")]
 	interface CMStepCounter {
 
 		[Static]
@@ -258,7 +258,7 @@ namespace XamCore.CoreMotion {
 		void StopStepCountingUpdates ();
 	}
 
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	interface CMPedometerData : NSSecureCoding, NSCopying {
 
@@ -280,21 +280,21 @@ namespace XamCore.CoreMotion {
 		[Export ("floorsDescended")]
 		NSNumber FloorsDescended { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[NullAllowed, Export ("currentPace")]
 		NSNumber CurrentPace { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[NullAllowed]
 		[Export ("currentCadence")]
 		NSNumber CurrentCadence { get; }
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[NullAllowed, Export ("averageActivePace")]
 		NSNumber AverageActivePace { get; }
 	}
 
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	interface CMPedometer {
 
@@ -321,43 +321,43 @@ namespace XamCore.CoreMotion {
 		[Export ("stopPedometerUpdates")]
 		void StopPedometerUpdates ();
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Static]
 		[Export ("isPaceAvailable")]
 		bool IsPaceAvailable { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Static]
 		[Export ("isCadenceAvailable")]
 		bool IsCadenceAvailable { get; }
 
-		[Watch (3,0)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.iOS, 10, 0)]
 		[Static]
 		[Export ("isPedometerEventTrackingAvailable")]
 		bool IsPedometerEventTrackingAvailable { get; }
 
-		[Watch (3,0)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.iOS, 10, 0)]
 		[Async]
 		[Export ("startPedometerEventUpdatesWithHandler:")]
 		void StartPedometerEventUpdates (Action<CMPedometerEvent,NSError> handler);
 
-		[Watch (3,0)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("stopPedometerEventUpdates")]
 		void StopPedometerEventUpdates ();
 
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Static]
 		[Export ("authorizationStatus")]
 		CMAuthorizationStatus AuthorizationStatus { get; }
 	}
 
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	delegate void CMMotionActivityHandler (CMMotionActivity activity);
 
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	delegate void CMMotionActivityQueryHandler (CMMotionActivity[] activities, NSError error);
 
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	interface CMMotionActivityManager {
 
@@ -375,13 +375,13 @@ namespace XamCore.CoreMotion {
 		[Export ("stopActivityUpdates")]
 		void StopActivityUpdates ();
 
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Static]
 		[Export ("authorizationStatus")]
 		CMAuthorizationStatus AuthorizationStatus { get; }
 	}
 
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (CMLogItem))]
 	[DisableDefaultCtor] // <quote>You do not create instances of this class yourself.</quote>
 	interface CMMotionActivity : NSCopying, NSSecureCoding {
@@ -406,12 +406,12 @@ namespace XamCore.CoreMotion {
 		[Export ("automotive")]
 		bool Automotive { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("cycling")]
 		bool Cycling { get; }
 	}
 
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (CMLogItem))]
 	[DisableDefaultCtor] // this does not look to be meant to be user created (and crash when description is called)
 	interface CMAltitudeData {
@@ -422,7 +422,7 @@ namespace XamCore.CoreMotion {
 		NSNumber Pressure { get; }
 	}
 
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	interface CMAltimeter {
 		[Static]
@@ -436,33 +436,33 @@ namespace XamCore.CoreMotion {
 		[Export ("stopRelativeAltitudeUpdates")]
 		void StopRelativeAltitudeUpdates ();
 
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Static]
 		[Export ("authorizationStatus")]
 		CMAuthorizationStatus AuthorizationStatus { get; }
 	}
 
-	[Watch (4,0), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum CMAuthorizationStatus : nint {
+	public enum CMAuthorizationStatus : long {
 		NotDetermined = 0,
 		Restricted,
 		Denied,
 		Authorized,
 	}
 
-	[iOS (9,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[BaseType (typeof (NSObject))]
 	interface CMSensorDataList /* NSFastEnumeration */
 	{
 	}
 		
-	[iOS (9,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[BaseType (typeof (NSObject))]
 	interface CMSensorRecorder
 	{
 		[Static]
-		[iOS (9,3)] // Apple changed the selector in 9.3 and removed the old one
+		[Introduced (PlatformName.iOS, 9, 3)] // Apple changed the selector in 9.3 and removed the old one
 		[Export ("isAccelerometerRecordingAvailable")]
 		bool IsAccelerometerRecordingAvailable { get; }
 
@@ -472,29 +472,29 @@ namespace XamCore.CoreMotion {
 		[Export ("isAuthorizedForRecording")]
 		bool IsAuthorizedForRecording { get; }
 
-		[iOS (9,3)] // Apple changed the selector in 9.3 and removed the old one
+		[Introduced (PlatformName.iOS, 9, 3)] // Apple changed the selector in 9.3 and removed the old one
 		[Export ("accelerometerDataFromDate:toDate:")]
 		[return: NullAllowed]
 		CMSensorDataList GetAccelerometerData (NSDate fromDate, NSDate toDate);
 
-		[iOS (9,3)] // Apple changed the selector in 9.3 and removed the old one
+		[Introduced (PlatformName.iOS, 9, 3)] // Apple changed the selector in 9.3 and removed the old one
 		[Export ("recordAccelerometerForDuration:")]
 		void RecordAccelerometer (double duration);
 
-		[Watch (4, 0), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Static]
 		[Export ("authorizationStatus")]
 		CMAuthorizationStatus AuthorizationStatus { get; }
 	}
 
-	[Watch (3,0)][NoTV][iOS (10,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)][Unavailable (PlatformName.TvOS)][Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
-	public enum CMPedometerEventType : nint {
+	public enum CMPedometerEventType : long {
 		Pause,
 		Resume
 	}
 
-	[Watch (3,0)][NoTV][iOS (10,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)][Unavailable (PlatformName.TvOS)][Introduced (PlatformName.iOS, 10, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // instances exposed from delegate
 	interface CMPedometerEvent : NSSecureCoding, NSCopying {

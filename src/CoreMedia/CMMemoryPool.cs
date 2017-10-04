@@ -15,12 +15,12 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.CoreMedia {
 
-	[iOS (6,0)][Mac (10,8)]
+	[Introduced (PlatformName.iOS, 6, 0)][Introduced (PlatformName.MacOSX, 10, 8)]
 	public partial class CMMemoryPool : IDisposable, INativeObject
 	{
 		IntPtr handle;
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* CMMemoryPoolRef */ IntPtr CMMemoryPoolCreate (/* CFDictionaryRef */ IntPtr options);
 
 		public CMMemoryPool ()
@@ -63,7 +63,7 @@ namespace XamCore.CoreMedia {
 			}
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* CFAllocatorRef */ IntPtr CMMemoryPoolGetAllocator (/* CMMemoryPoolRef */ IntPtr pool);
 
 		public CFAllocator GetAllocator ()
@@ -71,7 +71,7 @@ namespace XamCore.CoreMedia {
 			return new CFAllocator (CMMemoryPoolGetAllocator (Handle), false);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static void CMMemoryPoolFlush (/* CMMemoryPoolRef */ IntPtr pool);
 
 		public void Flush ()
@@ -79,7 +79,7 @@ namespace XamCore.CoreMedia {
 			CMMemoryPoolFlush (Handle);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static void CMMemoryPoolInvalidate (/* CMMemoryPoolRef */ IntPtr pool);
 
 		public void Invalidate ()

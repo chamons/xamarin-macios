@@ -1,4 +1,4 @@
-﻿#region --- License ---
+#region --- License ---
 /*
 Copyright (c) 2006 - 2008 The Open Toolkit library.
 
@@ -34,7 +34,7 @@ namespace OpenTK
     /// The Vector3i structure is suitable for interoperation with unmanaged code requiring three consecutive ints.
     /// </remarks>
     [Serializable]
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     public struct Vector3i : IEquatable<Vector3i>
     {
         #region Fields

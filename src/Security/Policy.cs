@@ -42,7 +42,7 @@ namespace XamCore.Security {
 		{
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal SecPolicy (IntPtr handle, bool owns)
 		{
 			if (handle == IntPtr.Zero)
@@ -97,7 +97,7 @@ namespace XamCore.Security {
 			}
 		}
 
-		[DllImport (Constants.SecurityLibrary, EntryPoint="SecPolicyGetTypeID")]
+		[DllImport (Constants.SecurityLibrary, EntryPoint = "SecPolicyGetTypeID")]
 		public extern static nint GetTypeID ();
 
 		public static bool operator == (SecPolicy a, SecPolicy b)

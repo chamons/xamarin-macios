@@ -20,7 +20,7 @@ namespace XamCore.Twitter {
 	delegate void TWTweetComposeHandler (TWTweetComposeViewControllerResult result);
 #endif
 	
-	[Availability (Introduced = Platform.iOS_5_0, Deprecated = Platform.iOS_6_0, Message = "Use the 'Social' framework.")]
+	[Introduced (PlatformName.iOS, 5, 0, message: "Use the 'Social' framework."), Deprecated (PlatformName.iOS, 6, 0, message: "Use the 'Social' framework.")]
 	[BaseType (typeof (NSObject))]
 	interface TWRequest {
 		[NullAllowed] // by default this property is null
@@ -50,7 +50,7 @@ namespace XamCore.Twitter {
 		void PerformRequest (TWRequestHandler handler);
 	}
 
-	[Availability (Introduced = Platform.iOS_5_0, Deprecated = Platform.iOS_6_0, Message = "Use the 'Social' framework.")]
+	[Introduced (PlatformName.iOS, 5, 0, message: "Use the 'Social' framework."), Deprecated (PlatformName.iOS, 6, 0, message: "Use the 'Social' framework.")]
 	[BaseType (typeof (UIViewController))]
 	interface TWTweetComposeViewController {
 		[Export ("initWithNibName:bundle:")]

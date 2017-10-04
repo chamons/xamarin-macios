@@ -14,15 +14,15 @@ using XamCore.Foundation;
 
 namespace XamCore.CoreSpotlight {
 #if !MONOMAC
-	[NoTV] // CS_TVOS_UNAVAILABLE
-	[iOS (9,0)]
+	[Unavailable (PlatformName.TvOS)] // CS_TVOS_UNAVAILABLE
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	interface CSIndexExtensionRequestHandler : NSExtensionRequestHandling, CSSearchableIndexDelegate {
 
 	}
 
-	[NoTV] // CS_TVOS_UNAVAILABLE
-	[iOS (9,0)]
+	[Unavailable (PlatformName.TvOS)] // CS_TVOS_UNAVAILABLE
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	interface CSPerson : NSSecureCoding, NSCopying {
 
@@ -44,8 +44,8 @@ namespace XamCore.CoreSpotlight {
 		string ContactIdentifier { get; set; }
 	}
 
-	[NoTV] // CS_TVOS_UNAVAILABLE
-	[iOS (9,0)]
+	[Unavailable (PlatformName.TvOS)] // CS_TVOS_UNAVAILABLE
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	interface CSSearchableIndex {
 
@@ -87,8 +87,8 @@ namespace XamCore.CoreSpotlight {
 
 	delegate void CSSearchableIndexFetchHandler (NSData clientState, NSError error);
 
-	[NoTV] // CS_TVOS_UNAVAILABLE
-	[iOS (9,0)]
+	[Unavailable (PlatformName.TvOS)] // CS_TVOS_UNAVAILABLE
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Category]
 	[BaseType (typeof (CSSearchableIndex))]
 	interface CSSearchableIndex_CSOptionalBatchingExtension {
@@ -105,8 +105,8 @@ namespace XamCore.CoreSpotlight {
 
 	interface ICSSearchableIndexDelegate {}
 
-	[NoTV] // CS_TVOS_UNAVAILABLE
-	[iOS (9,0)]
+	[Unavailable (PlatformName.TvOS)] // CS_TVOS_UNAVAILABLE
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface CSSearchableIndexDelegate {
@@ -125,19 +125,19 @@ namespace XamCore.CoreSpotlight {
 		[Export ("searchableIndexDidFinishThrottle:")]
 		void DidFinishThrottle (CSSearchableIndex searchableIndex);
 
-		[iOS (11,0), NoTV, Mac (10,13)]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13)]
 		[Export ("dataForSearchableIndex:itemIdentifier:typeIdentifier:error:")]
 		[return: NullAllowed]
 		NSData GetData (CSSearchableIndex searchableIndex, string itemIdentifier, string typeIdentifier, out NSError outError);
 
-		[iOS (11,0), NoTV, Mac (10,13)]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13)]
 		[Export ("fileURLForSearchableIndex:itemIdentifier:typeIdentifier:inPlace:error:")]
 		[return: NullAllowed]
 		NSUrl GetFileUrl (CSSearchableIndex searchableIndex, string itemIdentifier, string typeIdentifier, bool inPlace, out NSError outError);
 	}
 
-	[NoTV] // CS_TVOS_UNAVAILABLE
-	[iOS (9,0)]
+	[Unavailable (PlatformName.TvOS)] // CS_TVOS_UNAVAILABLE
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	interface CSSearchableItem : NSSecureCoding, NSCopying {
 
@@ -147,11 +147,11 @@ namespace XamCore.CoreSpotlight {
 		[Field ("CSSearchableItemActivityIdentifier")]
 		NSString ActivityIdentifier { get; }
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Field ("CSQueryContinuationActionType")]
 		NSString ContinuationActionType { get; }
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Field ("CSSearchQueryString")]
 		NSString QueryString { get; }
 
@@ -173,8 +173,8 @@ namespace XamCore.CoreSpotlight {
 		CSSearchableItemAttributeSet AttributeSet { get; set; }
 	}
 
-	[NoTV] // CS_TVOS_UNAVAILABLE
-	[iOS (9,0)]
+	[Unavailable (PlatformName.TvOS)] // CS_TVOS_UNAVAILABLE
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (NSString))]
 	// hack: it seems that generator.cs can't track NSCoding correctly ? maybe because the type is named NSString2 at that time
 	interface CSLocalizedString : NSCoding {
@@ -186,8 +186,8 @@ namespace XamCore.CoreSpotlight {
 		string GetLocalizedString ();
 	}
 
-	[NoTV] // CS_TVOS_UNAVAILABLE
-	[iOS (9,0)]
+	[Unavailable (PlatformName.TvOS)] // CS_TVOS_UNAVAILABLE
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // NSInvalidArgumentException Reason: You must call -[CSCustomAttributeKey initWithKeyName...]
 	interface CSCustomAttributeKey : NSCopying, NSSecureCoding {
@@ -215,7 +215,7 @@ namespace XamCore.CoreSpotlight {
 		bool MultiValued { [Bind ("isMultiValued")] get; }
 	}
 
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[EditorBrowsable (EditorBrowsableState.Advanced)]
 	[Static]
 	interface CSMailboxKey {
@@ -239,8 +239,8 @@ namespace XamCore.CoreSpotlight {
 		NSString Archive { get; }
 	}
 
-	[NoTV]
-	[iOS (9,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	interface CSSearchableItemAttributeSet : NSCopying, NSSecureCoding {
 
@@ -390,11 +390,11 @@ namespace XamCore.CoreSpotlight {
 		[Export ("version")]
 		string Version { get; set; }
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[NullAllowed, Export ("weakRelatedUniqueIdentifier", ArgumentSemantic.Copy)]
 		string WeakRelatedUniqueIdentifier { get; set; }
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[NullAllowed, Export ("domainIdentifier")]
 		string DomainIdentifier { get; set; }
 
@@ -941,19 +941,19 @@ namespace XamCore.CoreSpotlight {
 		[Export ("GPSDifferental", ArgumentSemantic.Strong)]
 		NSNumber GpsDifferental { get; set; }
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[NullAllowed, Export ("fullyFormattedAddress")]
 		string FullyFormattedAddress { get; set; }
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[NullAllowed, Export ("postalCode")]
 		string PostalCode { get; set; }
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[NullAllowed, Export ("subThoroughfare")]
 		string SubThoroughfare { get; set; }
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[NullAllowed, Export ("thoroughfare")]
 		string Thoroughfare { get; set; }
 
@@ -992,41 +992,41 @@ namespace XamCore.CoreSpotlight {
 
 		// CSSearchableItemAttributeSet_CSGeneral
 
-		[iOS (11,0), NoTV, Mac (10, 11)]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 11)]
 		[NullAllowed, Export ("userCreated", ArgumentSemantic.Strong)]
 		[Internal] // We would like to use [BindAs (typeof (bool?))]
 		NSNumber _IsUserCreated { [Bind ("isUserCreated")] get; set; }
 
-		[iOS (11, 0), NoTV, Mac (10, 11)]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 11)]
 		[NullAllowed, Export ("userOwned", ArgumentSemantic.Strong)]
 		[Internal] // We would like to use[BindAs (typeof (bool?))]
 		NSNumber _IsUserOwned { [Bind ("isUserOwned")] get; set; }
 
-		[iOS (11, 0), NoTV, Mac (10, 11)]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 11)]
 		[NullAllowed, Export ("userCurated", ArgumentSemantic.Strong)]
 		[Internal] // We would like to use [BindAs (typeof (bool?))]
 		NSNumber _IsUserCurated { [Bind ("isUserCurated")] get; set; }
 
-		[iOS (11, 0), NoTV, Mac (10, 11)]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 11)]
 		[NullAllowed, Export ("rankingHint", ArgumentSemantic.Strong)]
 		NSNumber RankingHint { get; set; }
 
 		// CSSearchableItemAttributeSet_CSItemProvider
 
-		[iOS (11, 0), NoTV, Mac (10, 11)]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 11)]
 		[NullAllowed, Export ("providerDataTypeIdentifiers", ArgumentSemantic.Copy)]
 		string[] ProviderDataTypeIdentifiers { get; set; }
 
-		[iOS (11, 0), NoTV, Mac (10, 11)]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 11)]
 		[NullAllowed, Export ("providerFileTypeIdentifiers", ArgumentSemantic.Copy)]
 		string[] ProviderFileTypeIdentifiers { get; set; }
 
-		[iOS (11, 0), NoTV, Mac (10, 11)]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 11)]
 		[NullAllowed, Export ("providerInPlaceFileTypeIdentifiers", ArgumentSemantic.Copy)]
 		string[] ProviderInPlaceFileTypeIdentifiers { get; set; }
 	}
 
-	[NoTV][iOS (10,0)]
+	[Unavailable (PlatformName.TvOS)][Introduced (PlatformName.iOS, 10, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface CSSearchQuery {

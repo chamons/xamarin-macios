@@ -38,11 +38,11 @@ using System.ComponentModel;
 
 namespace XamCore.UIKit {
 
-	[NoWatch]
-	[iOS (9,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Native]
 	[Flags]
-	public enum UIFocusHeading : nuint {
+	public enum UIFocusHeading : ulong {
 		None = 0,
 		Up = 1 << 0,
 		Down = 1 << 1,
@@ -53,22 +53,22 @@ namespace XamCore.UIKit {
 	}
 
 	[Native] // NSInteger -> UIApplication.h
-	[NoWatch]
-	[TV (11,0)]
-	public enum UIBackgroundRefreshStatus : nint {
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.TvOS, 11, 0)]
+	public enum UIBackgroundRefreshStatus : long {
 		Restricted, Denied, Available
 	}
 
-	[TV (10,0)][NoWatch]
+	[Introduced (PlatformName.TvOS, 10, 0)][Unavailable (PlatformName.WatchOS)]
 	[Native] // NSUInteger -> UIApplication.h
 	public enum UIBackgroundFetchResult : nuint_compat_int {
 		NewData, NoData, Failed
 	}
 
-	[NoTV][NoWatch]
-	[iOS (9,0)]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Native]
-	public enum UIApplicationShortcutIconType : nint {
+	public enum UIApplicationShortcutIconType : long {
 		Compose,
 		Play,
 		Pause,
@@ -101,17 +101,17 @@ namespace XamCore.UIKit {
 		Update
 	}
 
-	[NoWatch, NoTV, iOS (10,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
-	public enum UIImpactFeedbackStyle : nint {
+	public enum UIImpactFeedbackStyle : long {
 		Light,
 		Medium,
 		Heavy
 	}
 
-	[NoWatch, NoTV, iOS (10,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
-	public enum UINotificationFeedbackType : nint {
+	public enum UINotificationFeedbackType : long {
 		Success,
 		Warning,
 		Error
@@ -140,7 +140,7 @@ namespace XamCore.UIKit {
 	delegate void UIApplicationRestorationHandler (NSObject [] uidocumentOrResponderObjects);
 
 #if !XAMCORE_3_0
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Category (allowStaticMembers: true)] // Classic isn't internal so we need this
 	[BaseType (typeof (NSAttributedString))]
 	interface NSAttributedStringAttachmentConveniences {
@@ -154,7 +154,7 @@ namespace XamCore.UIKit {
 	}
 #endif
 
-	[NoWatch, NoTV, iOS (10,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 0)]
 	[DisableDefaultCtor]
 	[Abstract] // abstract class that should not be used directly
 	[BaseType (typeof (NSObject))]
@@ -164,7 +164,7 @@ namespace XamCore.UIKit {
 		void Prepare ();
 	}
 
-	[NoWatch, NoTV, iOS (10,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (UIFeedbackGenerator))]
 	interface UIImpactFeedbackGenerator {
@@ -176,7 +176,7 @@ namespace XamCore.UIKit {
 		void ImpactOccurred ();
 	}
 
-	[NoWatch, NoTV, iOS (10,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 0)]
 	[BaseType (typeof (UIFeedbackGenerator))]
 	interface UINotificationFeedbackGenerator {
 
@@ -184,7 +184,7 @@ namespace XamCore.UIKit {
 		void NotificationOccurred (UINotificationFeedbackType notificationType);
 	}
 
-	[NoWatch, NoTV, iOS (10,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 0)]
 	[BaseType (typeof (UIFeedbackGenerator))]
 	interface UISelectionFeedbackGenerator {
 
@@ -194,7 +194,7 @@ namespace XamCore.UIKit {
 
 	interface IUICloudSharingControllerDelegate { }
 
-	[iOS (10,0), NoTV, NoWatch]
+	[Introduced (PlatformName.iOS, 10, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface UICloudSharingControllerDelegate {
@@ -222,13 +222,13 @@ namespace XamCore.UIKit {
 		void DidStopSharing (UICloudSharingController csc);
 	}
 
-	[iOS (10,0), NoTV, NoWatch]
+	[Introduced (PlatformName.iOS, 10, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
 	delegate void UICloudSharingControllerPreparationHandler (UICloudSharingController controller, [BlockCallback] UICloudSharingControllerPreparationCompletionHandler completion);
 
-	[iOS (10,0), NoTV, NoWatch]
+	[Introduced (PlatformName.iOS, 10, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
 	delegate void UICloudSharingControllerPreparationCompletionHandler ([NullAllowed] CKShare share, [NullAllowed] CKContainer container, [NullAllowed] NSError error);
 
-	[iOS (10,0), NoTV, NoWatch]
+	[Introduced (PlatformName.iOS, 10, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (UIViewController))]
 	interface UICloudSharingController {
 
@@ -255,18 +255,18 @@ namespace XamCore.UIKit {
 		IUIActivityItemSource ActivityItemSource { get; }
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Category]
 	[BaseType (typeof (NSAttributedString))]
 	interface NSAttributedString_NSAttributedStringKitAdditions {
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("containsAttachmentsInRange:")]
 		bool ContainsAttachments (NSRange range);
 	}
 
-	[NoWatch]
-	[iOS (9,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // NSInvalidArgumentException Reason: -[NSDataAsset init]: unrecognized selector sent to instance 0x7f6c8cc0
 	interface NSDataAsset : NSCopying
 	{
@@ -289,9 +289,9 @@ namespace XamCore.UIKit {
 
 	delegate void NSFileProviderExtensionFetchThumbnailsHandler (NSString identifier, [NullAllowed] NSData imageData, [NullAllowed] NSError error);
 
-	[NoWatch]
-	[NoTV]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[ThreadSafe]
 	[BaseType (typeof (NSObject))]
 	partial interface NSFileProviderExtension {
@@ -333,85 +333,85 @@ namespace XamCore.UIKit {
 
 #if XAMCORE_2_0 && IOS
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("itemForIdentifier:error:")]
 		[return: NullAllowed]
 		INSFileProviderItem GetItem (NSString identifier, out NSError error);
 
 		// Inlining NSFileProviderExtension (NSFileProviderActions) so we get asyncs
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Async]
 		[Export ("importDocumentAtURL:toParentItemIdentifier:completionHandler:")]
 		void ImportDocument (NSUrl fileUrl, string parentItemIdentifier, Action<INSFileProviderItem, NSError> completionHandler);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Async]
 		[Export ("createDirectoryWithName:inParentItemIdentifier:completionHandler:")]
 		void CreateDirectory (string directoryName, string parentItemIdentifier, Action<INSFileProviderItem, NSError> completionHandler);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Async]
 		[Export ("renameItemWithIdentifier:toName:completionHandler:")]
 		void RenameItem (string itemIdentifier, string itemName, Action<INSFileProviderItem, NSError> completionHandler);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Async]
 		[Export ("reparentItemWithIdentifier:toParentItemWithIdentifier:newName:completionHandler:")]
 		void ReparentItem (string itemIdentifier, string parentItemIdentifier, [NullAllowed] string newName, Action<INSFileProviderItem, NSError> completionHandler);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Async]
 		[Export ("trashItemWithIdentifier:completionHandler:")]
 		void TrashItem (string itemIdentifier, Action<INSFileProviderItem, NSError> completionHandler);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Async]
 		[Export ("untrashItemWithIdentifier:toParentItemIdentifier:completionHandler:")]
 		void UntrashItem (string itemIdentifier, [NullAllowed] string parentItemIdentifier, Action<INSFileProviderItem, NSError> completionHandler);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Async]
 		[Export ("deleteItemWithIdentifier:completionHandler:")]
 		void DeleteItem (string itemIdentifier, Action<NSError> completionHandler);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Async]
 		[Export ("setLastUsedDate:forItemIdentifier:completionHandler:")]
 		void SetLastUsedDate ([NullAllowed] NSDate lastUsedDate, string itemIdentifier, Action<INSFileProviderItem, NSError> completionHandler);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Async]
 		[Export ("setTagData:forItemIdentifier:completionHandler:")]
 		void SetTagData ([NullAllowed] NSData tagData, string itemIdentifier, Action<INSFileProviderItem, NSError> completionHandler);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Async]
 		[Export ("setFavoriteRank:forItemIdentifier:completionHandler:")]
 		void SetFavoriteRank ([NullAllowed] NSNumber favoriteRank, string itemIdentifier, Action<INSFileProviderItem, NSError> completionHandler);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("enumeratorForContainerItemIdentifier:error:")]
 		[return: NullAllowed]
 		XamCore.FileProvider.INSFileProviderEnumerator GetEnumerator (string containerItemIdentifier, out NSError error);
 
 		// From NSFileProviderExtension (NSFileProviderThumbnailing)
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("fetchThumbnailsForItemIdentifiers:requestedSize:perThumbnailCompletionHandler:completionHandler:")]
 		[Async]
 		NSProgress FetchThumbnails (NSString [] itemIdentifiers, CGSize size, NSFileProviderExtensionFetchThumbnailsHandler perThumbnailCompletionHandler, Action<NSError> completionHandler);
 
 		// From NSFileProviderExtension (NSFileProviderService)
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("supportedServiceSourcesForItemIdentifier:error:")]
 		[return: NullAllowed]
 		INSFileProviderServiceSource [] GetSupportedServiceSources (string itemIdentifier, out NSError error);
 
 		// From NSFileProviderExtension (NSFileProviderDomain)
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("domain")]
 		NSFileProviderDomain Domain { get; }
 #endif
@@ -420,16 +420,16 @@ namespace XamCore.UIKit {
 
 	[Category, BaseType (typeof (NSMutableAttributedString))]
 	interface NSMutableAttributedStringKitAdditions {
-		[Since (7,0)] 
+		[Introduced (PlatformName.iOS, 7, 0)] 
 		[Export ("fixAttributesInRange:")]
 		void FixAttributesInRange (NSRange range);
 	}
 
 #if !WATCH
 #if XAMCORE_2_0 // NSLayoutAnchor is a generic type, which we only support in Unified (for now)
-	[NoWatch]
-	[iOS (9,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // Handle is nil
 	interface NSLayoutAnchor<AnchorType>
 	{
@@ -452,56 +452,56 @@ namespace XamCore.UIKit {
 		NSLayoutConstraint ConstraintLessThanOrEqualTo (NSLayoutAnchor<AnchorType> anchor, nfloat constant);
 	}
 
-	[NoWatch]
-	[iOS (9,0)]
-	[TV (10,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
 	[BaseType (typeof(NSLayoutAnchor<NSLayoutXAxisAnchor>))]
 	[DisableDefaultCtor] // Handle is nil
 	interface NSLayoutXAxisAnchor
 	{
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("anchorWithOffsetToAnchor:")]
 		NSLayoutDimension CreateAnchorWithOffset (NSLayoutXAxisAnchor otherAnchor);
 
-		[TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("constraintEqualToSystemSpacingAfterAnchor:multiplier:")]
 		NSLayoutConstraint ConstraintEqualToSystemSpacingAfterAnchor (NSLayoutXAxisAnchor anchor, nfloat multiplier);
 
-		[TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("constraintGreaterThanOrEqualToSystemSpacingAfterAnchor:multiplier:")]
 		NSLayoutConstraint ConstraintGreaterThanOrEqualToSystemSpacingAfterAnchor (NSLayoutXAxisAnchor anchor, nfloat multiplier);
 
-		[TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("constraintLessThanOrEqualToSystemSpacingAfterAnchor:multiplier:")]
 		NSLayoutConstraint ConstraintLessThanOrEqualToSystemSpacingAfterAnchor (NSLayoutXAxisAnchor anchor, nfloat multiplier);
 	}
 
-	[NoWatch]
-	[iOS (9,0)]
-	[TV (10,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
 	[BaseType (typeof(NSLayoutAnchor<NSLayoutYAxisAnchor>))]
 	[DisableDefaultCtor] // Handle is nil
 	interface NSLayoutYAxisAnchor
 	{
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("anchorWithOffsetToAnchor:")]
 		NSLayoutDimension CreateAnchorWithOffset (NSLayoutYAxisAnchor otherAnchor);
 
-		[TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("constraintEqualToSystemSpacingBelowAnchor:multiplier:")]
 		NSLayoutConstraint ConstraintEqualToSystemSpacingBelowAnchor (NSLayoutYAxisAnchor anchor, nfloat multiplier);
 
-		[TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("constraintGreaterThanOrEqualToSystemSpacingBelowAnchor:multiplier:")]
 		NSLayoutConstraint ConstraintGreaterThanOrEqualToSystemSpacingBelowAnchor (NSLayoutYAxisAnchor anchor, nfloat multiplier);
 
-		[TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("constraintLessThanOrEqualToSystemSpacingBelowAnchor:multiplier:")]
 		NSLayoutConstraint ConstraintLessThanOrEqualToSystemSpacingBelowAnchor (NSLayoutYAxisAnchor anchor, nfloat multiplier);
 	}
 
-	[NoWatch]
-	[iOS (9,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof(NSLayoutAnchor<NSLayoutDimension>))]
 	[DisableDefaultCtor] // Handle is nil
 	interface NSLayoutDimension
@@ -535,8 +535,8 @@ namespace XamCore.UIKit {
 	}
 #endif // XAMCORE_2_0
 
-	[NoWatch]
-	[Since (6,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (NSObject))]
 	interface NSLayoutConstraint {
 		[Static]
@@ -574,34 +574,34 @@ namespace XamCore.UIKit {
 		[Export ("constant")]
 		nfloat Constant { get; set;  }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("active")]
 		bool Active { [Bind ("isActive")] get; set; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Static, Export ("activateConstraints:")]
 		void ActivateConstraints (NSLayoutConstraint [] constraints);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Static, Export ("deactivateConstraints:")]
 		void DeactivateConstraints (NSLayoutConstraint [] constraints);
 
 #if XAMCORE_2_0
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("firstAnchor", ArgumentSemantic.Copy)]
 		[Internal]
 		IntPtr _FirstAnchor<AnchorType> ();
 	
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[NullAllowed, Export ("secondAnchor", ArgumentSemantic.Copy)]
 		[Internal]
 		IntPtr _SecondAnchor<AnchorType> ();
 #endif
 	}
 
-	[NoWatch]
-	[iOS (7,0)] // Yup, it is declared as appearing in 7.0, even if it shipped with 8.0
-	[Category, BaseType(typeof(NSLayoutConstraint))]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0)] // Yup, it is declared as appearing in 7.0, even if it shipped with 8.0
+	[Category, BaseType (typeof (NSLayoutConstraint))]
 	interface NSIdentifier {
 		[Export ("identifier")]
 		string GetIdentifier ();
@@ -611,7 +611,7 @@ namespace XamCore.UIKit {
 	}
 #endif // !WATCH
 
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[ThreadSafe]
 	[BaseType (typeof (NSObject))]
 	interface NSParagraphStyle : NSSecureCoding, NSMutableCopying {
@@ -662,20 +662,20 @@ namespace XamCore.UIKit {
 		[Export ("defaultParagraphStyle")]
 		NSParagraphStyle Default { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("defaultTabInterval")]
 		nfloat DefaultTabInterval { get; [NotImplemented] set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("tabStops", ArgumentSemantic.Copy)]
 		NSTextTab[] TabStops { get; [NotImplemented] set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("allowsDefaultTighteningForTruncation")]
 		bool AllowsDefaultTighteningForTruncation { get; [NotImplemented] set; }
 	}
 
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[ThreadSafe]
 	[BaseType (typeof (NSParagraphStyle))]
 	interface NSMutableParagraphStyle {
@@ -731,35 +731,35 @@ namespace XamCore.UIKit {
 		[Override]
 		float HyphenationFactor { get; set; } // Returns a float, not nfloat.
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("defaultTabInterval")]
 		[Override]
 		nfloat DefaultTabInterval { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("tabStops", ArgumentSemantic.Copy)]
 		[Override]
 		NSTextTab[] TabStops { get; set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Override]
 		[Export ("allowsDefaultTighteningForTruncation")]
 		bool AllowsDefaultTighteningForTruncation { get; set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("addTabStop:")]
 		void AddTabStop (NSTextTab textTab);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("removeTabStop:")]
 		void RemoveTabStop (NSTextTab textTab);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("setParagraphStyle:")]
 		void SetParagraphStyle (NSParagraphStyle paragraphStyle);
 	}
 
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	interface NSTextTab : NSCoding, NSCopying, NSSecureCoding {
 
@@ -787,7 +787,7 @@ namespace XamCore.UIKit {
 
 #if !WATCH
 	[BaseType (typeof (NSObject))]
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	interface NSShadow : NSCoding, NSCopying {
 		[Export ("shadowOffset", ArgumentSemantic.Assign)]
 		CGSize ShadowOffset { get; set; }
@@ -816,7 +816,7 @@ namespace XamCore.UIKit {
 		CGRect GetAttachmentBounds (NSTextContainer textContainer, CGRect proposedLineFragment, CGPoint glyphPosition, nuint characterIndex);
 	}
 
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	partial interface NSTextAttachment : NSTextAttachmentContainer, NSCoding
 #if !WATCH
@@ -863,7 +863,7 @@ namespace XamCore.UIKit {
 		}
 	}
 
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	partial interface NSTextContainer : NSTextLayoutOrientationProvider, NSCoding {
 
@@ -900,17 +900,17 @@ namespace XamCore.UIKit {
 		[Export ("heightTracksTextView")]
 		bool HeightTracksTextView { get; set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("replaceLayoutManager:")]
 		void ReplaceLayoutManager (NSLayoutManager newLayoutManager);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("simpleRectangularTextContainer")]
 		bool IsSimpleRectangularTextContainer { [Bind ("isSimpleRectangularTextContainer")] get; }
 		
 	}
 
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSMutableAttributedString), Delegates=new string [] { "Delegate" }, Events=new Type [] { typeof (NSTextStorageDelegate)})]
 	partial interface NSTextStorage {
 		[Export ("layoutManagers")]
@@ -963,11 +963,11 @@ namespace XamCore.UIKit {
 		[Export ("ensureAttributesAreFixedInRange:")]
 		void EnsureAttributesAreFixed (NSRange range);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Notification, Internal, Field ("NSTextStorageWillProcessEditingNotification")]
 		NSString WillProcessEditingNotification { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Notification, Internal, Field ("NSTextStorageDidProcessEditingNotification")]
 		NSString DidProcessEditingNotification { get; }
 	}
@@ -984,7 +984,7 @@ namespace XamCore.UIKit {
 
 	}
 
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	interface NSLayoutManager : NSCoding {
 		[NullAllowed] // by default this property is null
@@ -1074,11 +1074,11 @@ namespace XamCore.UIKit {
 		[Export ("numberOfGlyphs")]
 		nuint NumberOfGlyphs { get; }
 
-		[Availability (Deprecated = Platform.iOS_9_0, Message = "Use 'GetGlyph' instead.")]
+		[Deprecated (PlatformName.iOS, 9, 0, message: "Use 'GetGlyph' instead.")]
 		[Export ("glyphAtIndex:isValidIndex:")]
 		ushort GlyphAtIndex (nuint glyphIndex, ref bool isValidIndex);
 
-		[Availability (Deprecated = Platform.iOS_9_0, Message = "Use 'GetGlyph' instead.")]
+		[Deprecated (PlatformName.iOS, 9, 0, message: "Use 'GetGlyph' instead.")]
 		[Export ("glyphAtIndex:")]
 		ushort GlyphAtIndex (nuint glyphIndex);
 
@@ -1242,24 +1242,24 @@ namespace XamCore.UIKit {
 		[Export ("strikethroughGlyphRange:strikethroughType:lineFragmentRect:lineFragmentGlyphRange:containerOrigin:")]
 		void Strikethrough (NSRange glyphRange, NSUnderlineStyle strikethroughVal, CGRect lineRect, NSRange lineGlyphRange, CGPoint containerOrigin);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("textContainerForGlyphAtIndex:effectiveRange:withoutAdditionalLayout:")]
 		[return: NullAllowed]
 		NSTextContainer GetTextContainer (nuint glyphIndex, out NSRange effectiveGlyphRange, bool withoutAdditionalLayout);
 		
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("lineFragmentRectForGlyphAtIndex:effectiveRange:withoutAdditionalLayout:")]
 		CGRect GetLineFragmentRect (nuint glyphIndex, out NSRange effectiveGlyphRange, bool withoutAdditionalLayout);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("lineFragmentUsedRectForGlyphAtIndex:effectiveRange:withoutAdditionalLayout:")]
 		CGRect GetLineFragmentUsedRect (nuint glyphIndex, out NSRange effectiveGlyphRange, bool withoutAdditionalLayout);
 
-		[iOS (9,0)] // documented as 7.0 but missing in 8.x
+		[Introduced (PlatformName.iOS, 9, 0)] // documented as 7.0 but missing in 8.x
 		[Export ("CGGlyphAtIndex:isValidIndex:")]
 		unsafe ushort GetGlyph (nuint glyphIndex, ref bool isValidIndex);
 	
-		[iOS (9,0)] // documented as 7.0 but missing in 8.x
+		[Introduced (PlatformName.iOS, 9, 0)] // documented as 7.0 but missing in 8.x
 		[Export ("CGGlyphAtIndex:")]
 		ushort GetGlyph (nuint glyphIndex);
 		
@@ -1267,7 +1267,7 @@ namespace XamCore.UIKit {
 	
 	[Model, BaseType (typeof (NSObject))]
 	[Protocol]
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	partial interface NSLayoutManagerDelegate {
 		[Export ("layoutManager:shouldGenerateGlyphs:properties:characterIndexes:font:forGlyphRange:")]
 		nuint ShouldGenerateGlyphs (NSLayoutManager layoutManager, IntPtr glyphBuffer, IntPtr props, IntPtr charIndexes, UIFont aFont, NSRange glyphRange);
@@ -1302,7 +1302,7 @@ namespace XamCore.UIKit {
 		[Export ("layoutManager:textContainer:didChangeGeometryFromSize:")]
 		void DidChangeGeometry (NSLayoutManager layoutManager, NSTextContainer textContainer, CGSize oldSize);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("layoutManager:shouldSetLineFragmentRect:lineFragmentUsedRect:baselineOffset:inTextContainer:forGlyphRange:")]
 		bool ShouldSetLineFragmentRect (NSLayoutManager layoutManager, ref CGRect lineFragmentRect, ref CGRect lineFragmentUsedRect, ref nfloat baselineOffset, NSTextContainer textContainer, NSRange glyphRange);
 	}
@@ -1314,7 +1314,7 @@ namespace XamCore.UIKit {
 		[Export ("encodeCGPoint:forKey:")]
 		void Encode (CGPoint point, string forKey);
 		
-		[iOS(8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("encodeCGVector:forKey:")]
 		void Encode (CGVector vector, string forKey);
 		
@@ -1330,7 +1330,7 @@ namespace XamCore.UIKit {
 		[Export ("encodeUIEdgeInsets:forKey:")]
 		void Encode (UIEdgeInsets edgeInsets, string forKey);
 
-		[Watch (4,0), TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("encodeDirectionalEdgeInsets:forKey:")]
 		void Encode (NSDirectionalEdgeInsets directionalEdgeInsets, string forKey);
 		
@@ -1340,7 +1340,7 @@ namespace XamCore.UIKit {
 		[Export ("decodeCGPointForKey:")]
 		CGPoint DecodeCGPoint (string key);
 
-		[iOS(8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("decodeCGVectorForKey:")]
 		CGVector DecodeCGVector (string key);
 		
@@ -1356,7 +1356,7 @@ namespace XamCore.UIKit {
 		[Export ("decodeUIEdgeInsetsForKey:")]
 		UIEdgeInsets DecodeUIEdgeInsets (string key);
 
-		[Watch (4,0), TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("decodeDirectionalEdgeInsetsForKey:")]
 		NSDirectionalEdgeInsets DecodeDirectionalEdgeInsets (string key);
 		
@@ -1365,9 +1365,9 @@ namespace XamCore.UIKit {
 	}
 
 #if !WATCH
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
-	[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_5_0, Message = "Use 'CoreMotion' instead.")]
+	[Introduced (PlatformName.iOS, 2, 0, message: "Use 'CoreMotion' instead."), Deprecated (PlatformName.iOS, 5, 0, message: "Use 'CoreMotion' instead.")]
 	interface UIAcceleration {
 		[Export ("timestamp")]
 		double Time { get; }
@@ -1382,9 +1382,9 @@ namespace XamCore.UIKit {
 		double Z { get; }
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject), Delegates=new string [] { "WeakDelegate" }, Events=new Type [] {typeof(UIAccelerometerDelegate)})]
-	[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_5_0, Message = "Use 'CoreMotion' instead.")]
+	[Introduced (PlatformName.iOS, 2, 0, message: "Use 'CoreMotion' instead."), Deprecated (PlatformName.iOS, 5, 0, message: "Use 'CoreMotion' instead.")]
 	interface UIAccelerometer {
 		[Static] [Export ("sharedAccelerometer")]
 		UIAccelerometer SharedAccelerometer { get; }
@@ -1400,7 +1400,7 @@ namespace XamCore.UIKit {
 		NSObject WeakDelegate { get; set; }
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -1420,8 +1420,8 @@ namespace XamCore.UIKit {
 		[Export ("accessibilityLabel", ArgumentSemantic.Copy)]
 		string AccessibilityLabel { get; set; }
 
-		[NoWatch]
-		[TV (11,0), iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("accessibilityAttributedLabel", ArgumentSemantic.Copy)]
 		NSAttributedString AccessibilityAttributedLabel { get; set; }
 
@@ -1429,8 +1429,8 @@ namespace XamCore.UIKit {
 		[Export ("accessibilityHint", ArgumentSemantic.Copy)]
 		string AccessibilityHint { get; set; }
 
-		[NoWatch]
-		[TV (11,0), iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("accessibilityAttributedHint", ArgumentSemantic.Copy)]
 		NSAttributedString AccessibilityAttributedHint { get; set; }
 
@@ -1438,8 +1438,8 @@ namespace XamCore.UIKit {
 		[Export ("accessibilityValue", ArgumentSemantic.Copy)]
 		string AccessibilityValue { get; set; }
 
-		[NoWatch]
-		[TV (11,0), iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("accessibilityAttributedValue", ArgumentSemantic.Copy)]
 		NSAttributedString AccessibilityAttributedValue { get; set; }
 
@@ -1449,7 +1449,7 @@ namespace XamCore.UIKit {
 		[Export ("accessibilityFrame")]
 		CGRect AccessibilityFrame { get; set; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("accessibilityActivationPoint")]
 		CGPoint AccessibilityActivationPoint { get; set; }
 
@@ -1457,19 +1457,19 @@ namespace XamCore.UIKit {
 		[Export ("accessibilityLanguage", ArgumentSemantic.Retain)]
 		string AccessibilityLanguage { get; set; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("accessibilityElementsHidden")]
 		bool AccessibilityElementsHidden { get; set; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("accessibilityViewIsModal")]
 		bool AccessibilityViewIsModal { get; set; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("shouldGroupAccessibilityChildren")]
 		bool ShouldGroupAccessibilityChildren { get; set; }
 
-		[Since (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("accessibilityNavigationStyle")]
 		UIAccessibilityNavigationStyle AccessibilityNavigationStyle { get; set; }
 
@@ -1482,7 +1482,7 @@ namespace XamCore.UIKit {
 		[Field ("UIAccessibilityTraitLink")]
 		long TraitLink { get; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("UIAccessibilityTraitHeader")]
 		long TraitHeader { get; }
 
@@ -1519,56 +1519,56 @@ namespace XamCore.UIKit {
 		[Field ("UIAccessibilityTraitAdjustable")]
 		long TraitAdjustable { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("UIAccessibilityTraitAllowsDirectInteraction")]
 		long TraitAllowsDirectInteraction { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("UIAccessibilityTraitCausesPageTurn")]
 		long TraitCausesPageTurn { get; }
 
 
-		[iOS (10,0), TV (10,0), Watch (3,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
 		[Field ("UIAccessibilityTraitTabBar")]
 		long TraitTabBar { get; }
 	
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("UIAccessibilityAnnouncementDidFinishNotification")]
 		[Notification (typeof (UIAccessibilityAnnouncementFinishedEventArgs))]
 		NSString AnnouncementDidFinishNotification { get; }
 
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'VoiceOverStatusDidChangeNotification' instead.")]
 		[Deprecated (PlatformName.TvOS, 11, 0, message: "Use 'VoiceOverStatusDidChangeNotification' instead.")]
 		[Field ("UIAccessibilityVoiceOverStatusChanged")]
 		NSString VoiceOverStatusChanged { get; }
 
-		[NoWatch]
-		[TV (11,0), iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Field ("UIAccessibilityVoiceOverStatusDidChangeNotification")]
 		[Notification]
 		NSString VoiceOverStatusDidChangeNotification { get; }
 
-		[NoWatch]
-		[Since (5,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("UIAccessibilityMonoAudioStatusDidChangeNotification")]
 		[Notification]
 		NSString MonoAudioStatusDidChangeNotification { get; }
 
-		[NoWatch]
-		[Since (5,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("UIAccessibilityClosedCaptioningStatusDidChangeNotification")]
 		[Notification]
 		NSString ClosedCaptioningStatusDidChangeNotification { get; }
 
-		[NoWatch]
-		[Since (6,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("UIAccessibilityInvertColorsStatusDidChangeNotification")]
 		[Notification]
 		NSString InvertColorsStatusDidChangeNotification { get; }
 
-		[NoWatch]
-		[Since (6,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("UIAccessibilityGuidedAccessStatusDidChangeNotification")]
 		[Notification]
 		NSString GuidedAccessStatusDidChangeNotification { get; }
@@ -1582,160 +1582,160 @@ namespace XamCore.UIKit {
 		[Field ("UIAccessibilityAnnouncementNotification")]
 		int AnnouncementNotification { get; } // This is int, not nint
 
-		[Since (4,2)]
+		[Introduced (PlatformName.iOS, 4, 2)]
 		[Field ("UIAccessibilityPageScrolledNotification")]
 		int PageScrolledNotification { get; } // This is int, not nint
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("accessibilityPath", ArgumentSemantic.Copy)]
 		UIBezierPath AccessibilityPath { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("accessibilityActivate")]
 		bool AccessibilityActivate ();
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("UIAccessibilitySpeechAttributePunctuation")]
 		NSString SpeechAttributePunctuation { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("UIAccessibilitySpeechAttributeLanguage")]
 		NSString SpeechAttributeLanguage { get; }
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("UIAccessibilitySpeechAttributePitch")]
 		NSString SpeechAttributePitch { get; }
 
-		[NoWatch]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Notification]
 		[Field ("UIAccessibilityBoldTextStatusDidChangeNotification")]
 		NSString BoldTextStatusDidChangeNotification { get; }
 
-		[NoWatch]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Notification]
 		[Field ("UIAccessibilityDarkerSystemColorsStatusDidChangeNotification")]
 		NSString DarkerSystemColorsStatusDidChangeNotification { get; }
 
-		[NoWatch]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Notification]
 		[Field ("UIAccessibilityGrayscaleStatusDidChangeNotification")]
 		NSString GrayscaleStatusDidChangeNotification { get; }
 
-		[NoWatch]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Notification]
 		[Field ("UIAccessibilityReduceMotionStatusDidChangeNotification")]
 		NSString ReduceMotionStatusDidChangeNotification { get; }
 
-		[NoWatch]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Notification]
 		[Field ("UIAccessibilityReduceTransparencyStatusDidChangeNotification")]
 		NSString ReduceTransparencyStatusDidChangeNotification { get; }
 
-		[NoWatch]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Notification]
 		[Field ("UIAccessibilitySwitchControlStatusDidChangeNotification")]
 		NSString SwitchControlStatusDidChangeNotification { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("UIAccessibilityNotificationSwitchControlIdentifier")]
 		NSString NotificationSwitchControlIdentifier { get; }
 
 
 		// Chose int because this should be UIAccessibilityNotifications type
 		// just like UIAccessibilityAnnouncementNotification field
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		//[Notification] // int ScreenChangedNotification doesn't use this attr either
 		[Field ("UIAccessibilityPauseAssistiveTechnologyNotification")]
 		int PauseAssistiveTechnologyNotification { get; } // UIAccessibilityNotifications => uint32_t
 
 		// Chose int because this should be UIAccessibilityNotifications type
 		// just like UIAccessibilityAnnouncementNotification field
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		//[Notification] // int ScreenChangedNotification doesn't use this attr either
 		[Field ("UIAccessibilityResumeAssistiveTechnologyNotification")]
 		int ResumeAssistiveTechnologyNotification { get; } // UIAccessibilityNotifications => uint32_t
 
-		[NoWatch]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Notification]
 		[Field ("UIAccessibilitySpeakScreenStatusDidChangeNotification")]
 		NSString SpeakScreenStatusDidChangeNotification { get; }
 
-		[NoWatch]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Notification]
 		[Field ("UIAccessibilitySpeakSelectionStatusDidChangeNotification")]
 		NSString SpeakSelectionStatusDidChangeNotification { get; }
 
-		[NoWatch]
-		[iOS (9,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Notification]
 		[Field ("UIAccessibilityShakeToUndoDidChangeNotification")]
 		NSString ShakeToUndoDidChangeNotification { get; }
 
 		// FIXME: we only used this on a few types before, none of them available on tvOS
 		// but a new member was added to the platform... 
-		[TV (9,0), NoWatch, NoiOS]
+		[Introduced (PlatformName.TvOS, 9, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.iOS)]
 		[NullAllowed, Export ("accessibilityHeaderElements", ArgumentSemantic.Copy)]
 		NSObject[] AccessibilityHeaderElements { get; set; }
 
-		[iOS (9, 0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Notification]
 		[Field ("UIAccessibilityElementFocusedNotification")]
 		NSString ElementFocusedNotification { get; }
 
-		[iOS (9, 0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Notification]
 		[Field ("UIAccessibilityFocusedElementKey")]
 		NSString FocusedElementKey { get; }
 
-		[iOS (9, 0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Notification]
 		[Field ("UIAccessibilityUnfocusedElementKey")]
 		NSString UnfocusedElementKey { get; }
 
-		[iOS (9, 0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Notification]
 		[Field ("UIAccessibilityAssistiveTechnologyKey")]
 		NSString AssistiveTechnologyKey { get; }
 
-		[iOS (9, 0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("UIAccessibilityNotificationVoiceOverIdentifier")]
 		NSString NotificationVoiceOverIdentifier { get; }
 
-		[NoWatch]
-		[NoTV]
-		[iOS (10,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Notification]
 		[Field ("UIAccessibilityHearingDevicePairedEarDidChangeNotification")]
 		NSString HearingDevicePairedEarDidChangeNotification { get; }
 
-		[NoWatch]
-		[iOS (10,0), TV (10,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Notification]
 		[Field ("UIAccessibilityAssistiveTouchStatusDidChangeNotification")]
 		NSString AssistiveTouchStatusDidChangeNotification { get; }
 
-		[iOS (11,0), TV (11,0), Watch (4,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Field ("UIAccessibilitySpeechAttributeQueueAnnouncement")]
 		NSString SpeechAttributeQueueAnnouncement { get; }
 
-		[iOS (11,0), TV (11,0), Watch (4,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Field ("UIAccessibilitySpeechAttributeIPANotation")]
 		NSString SpeechAttributeIpaNotation { get; }
 
-		[iOS (11,0), TV (11,0), Watch (4,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Field ("UIAccessibilityTextAttributeHeadingLevel")]
 		NSString TextAttributeHeadingLevel { get; }
 
-		[iOS (11,0), TV (11,0), Watch (4,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Field ("UIAccessibilityTextAttributeCustom")]
 		NSString TextAttributeCustom { get; }
 	}
@@ -1761,21 +1761,21 @@ namespace XamCore.UIKit {
 		nint GetIndexOfAccessibilityElement (NSObject element);
 
 		[Export ("accessibilityElements")]
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		NSObject GetAccessibilityElements ();
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("setAccessibilityElements:")]
 		void SetAccessibilityElements ([NullAllowed] NSObject elements);
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("accessibilityContainerType", ArgumentSemantic.Assign)]
 		UIAccessibilityContainerType AccessibilityContainerType { get; set; }
 	}
 
 	interface IUIAccessibilityContainerDataTableCell {}
 
-	[iOS (11,0), TV (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 	[Protocol]
 	interface UIAccessibilityContainerDataTableCell {
 		[Abstract]
@@ -1787,9 +1787,9 @@ namespace XamCore.UIKit {
 		NSRange GetAccessibilityColumnRange ();
 	}
 
-	[iOS (11,0), TV (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface UIAccessibilityContainerDataTable {
 		[Abstract]
 		[Export ("accessibilityDataTableCellElementForRow:column:")]
@@ -1813,14 +1813,14 @@ namespace XamCore.UIKit {
 		IUIAccessibilityContainerDataTableCell[] GetAccessibilityHeaderElementsForColumn (nuint column);
 	}
 
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // NSInvalidArgumentException Please use the designated initializer
 	partial interface UIAccessibilityCustomAction {
 	    [Export ("initWithName:target:selector:")]
 	    IntPtr Constructor (string name, NSObject target, Selector selector);
 	
-		[TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("initWithAttributedName:target:selector:")]
 		IntPtr Constructor (NSAttributedString attributedName, [NullAllowed] NSObject target, Selector selector);
 
@@ -1828,7 +1828,7 @@ namespace XamCore.UIKit {
 	    [Export ("name")]
 	    string Name { get; set; }
 	
-		[TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("attributedName", ArgumentSemantic.Copy)]
 		NSAttributedString AttributedName { get; set; }
 
@@ -1843,37 +1843,37 @@ namespace XamCore.UIKit {
 
 	delegate UIAccessibilityCustomRotorItemResult UIAccessibilityCustomRotorSearch (UIAccessibilityCustomRotorSearchPredicate predicate);
 	
-	[iOS (10,0), TV (10,0)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 	[BaseType (typeof (NSObject))]
 	interface UIAccessibilityCustomRotor {
 
 		[Export ("initWithName:itemSearchBlock:")]
 		IntPtr Constructor (string name, UIAccessibilityCustomRotorSearch itemSearchHandler);
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("initWithAttributedName:itemSearchBlock:")]
 		IntPtr Constructor (NSAttributedString attributedName, UIAccessibilityCustomRotorSearch itemSearchBlock);
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("initWithSystemType:itemSearchBlock:")]
 		IntPtr Constructor (UIAccessibilityCustomSystemRotorType type, UIAccessibilityCustomRotorSearch itemSearchBlock);
 
 		[Export ("name")]
 		string Name { get; set; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("attributedName", ArgumentSemantic.Copy)]
 		NSAttributedString AttributedName { get; set; }
 
 		[Export ("itemSearchBlock", ArgumentSemantic.Copy)]
 		UIAccessibilityCustomRotorSearch ItemSearchHandler { get; set; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("systemRotorType")]
 		UIAccessibilityCustomSystemRotorType SystemRotorType { get; }
 	}
 
-	[iOS (10,0), TV (10,0)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 	[Category]
 	[BaseType (typeof (NSObject))]
 	interface NSObject_UIAccessibilityCustomRotor {
@@ -1886,8 +1886,8 @@ namespace XamCore.UIKit {
 		void SetAccessibilityCustomRotors ([NullAllowed] UIAccessibilityCustomRotor [] customRotors);
 	}
 	
-	[iOS (10,0), TV (10,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
+	[BaseType (typeof (NSObject))]
 	interface UIAccessibilityCustomRotorItemResult {
 
 		[Export ("initWithTargetElement:targetRange:")]
@@ -1900,8 +1900,8 @@ namespace XamCore.UIKit {
 		UITextRange TargetRange { get; set; }
 	}
 	
-	[iOS (10,0), TV (10,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
+	[BaseType (typeof (NSObject))]
 	interface UIAccessibilityCustomRotorSearchPredicate {
 
 		[Export ("currentItem", ArgumentSemantic.Retain)]
@@ -1945,7 +1945,7 @@ namespace XamCore.UIKit {
 		[Export ("accessibilityTraits", ArgumentSemantic.UnsafeUnretained)]
 		ulong AccessibilityTraits { get; set; }
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("accessibilityFrameInContainerSpace", ArgumentSemantic.Assign)]
 		CGRect AccessibilityFrameInContainerSpace { get; set; }
 	}
@@ -1960,7 +1960,7 @@ namespace XamCore.UIKit {
 		[Export ("accessibilityElementIsFocused")]
 		bool AccessibilityElementIsFocused ();
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("accessibilityAssistiveTechnologyFocusedIdentifiers")]
 		NSSet<NSString> AccessibilityAssistiveTechnologyFocusedIdentifiers { get; }
 	}
@@ -1981,25 +1981,25 @@ namespace XamCore.UIKit {
 #if !XAMCORE_2_0
 		[New] // To avoid the warning that we are overwriting the method in NSObject
 #endif
-		[Since (4,2)]
+		[Introduced (PlatformName.iOS, 4, 2)]
 		[Export ("accessibilityScroll:")]
 		bool AccessibilityScroll (UIAccessibilityScrollDirection direction);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("accessibilityPerformEscape")]
 		bool AccessibilityPerformEscape ();
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("accessibilityPerformMagicTap")]
 		bool AccessibilityPerformMagicTap ();
 
-		[Since (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("accessibilityCustomActions"), NullAllowed]
 		UIAccessibilityCustomAction [] AccessibilityCustomActions { get; set; }
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	// NSObject category inlined in UIResponder
 	interface UIAccessibilityDragging {
 		[NullAllowed, Export ("accessibilityDragSourceDescriptors", ArgumentSemantic.Copy)]
@@ -2009,9 +2009,9 @@ namespace XamCore.UIKit {
 		UIAccessibilityLocationDescriptor[] AccessibilityDropPointDescriptors { get; set; }
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface UIAccessibilityLocationDescriptor {
 		[Export ("initWithName:view:")]
@@ -2037,8 +2037,8 @@ namespace XamCore.UIKit {
 		NSAttributedString AttributedName { get; }
 	}
 
-	[NoWatch]
-	[TV (11,0), iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UIAccessibilityContentSizeCategoryImageAdjusting {
 		[Abstract]
@@ -2046,13 +2046,13 @@ namespace XamCore.UIKit {
 		bool AdjustsImageSizeForAccessibilityContentSizeCategory { get; set; }
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (UIView), KeepRefUntil="Dismissed", Delegates=new string [] { "WeakDelegate" }, Events=new Type [] {typeof(UIActionSheetDelegate)})]
 	interface UIActionSheet {
 		[Export ("initWithFrame:")]
 		IntPtr Constructor (CGRect frame);
 
-		[Availability (Deprecated=Platform.iOS_8_0, Message="Use 'UIAlertController' instead.")]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use 'UIAlertController' instead.")]
 		[Export ("initWithTitle:delegate:cancelButtonTitle:destructiveButtonTitle:otherButtonTitles:")][Internal][PostGet ("WeakDelegate")]
 		IntPtr Constructor ([NullAllowed] string title, [NullAllowed] IUIActionSheetDelegate Delegate, [NullAllowed] string cancelTitle, [NullAllowed] string destroy, [NullAllowed] string other);
 
@@ -2103,18 +2103,18 @@ namespace XamCore.UIKit {
 		[Export ("dismissWithClickedButtonIndex:animated:")]
 		void DismissWithClickedButtonIndex (nint buttonIndex, bool animated);
 
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("showFromBarButtonItem:animated:")]
 		void ShowFrom (UIBarButtonItem item, bool animated);
 
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("showFromRect:inView:animated:")]
 		void ShowFrom (CGRect rect, UIView inView, bool animated);
 	}
 
 	interface IUIActionSheetDelegate {}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -2139,8 +2139,8 @@ namespace XamCore.UIKit {
 		void Dismissed (UIActionSheet actionSheet, nint buttonIndex);
 	}
 
-	[NoTV]
-	[Since (6,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (NSObject))]
 	interface UIActivity {
 		[Export ("activityType")]
@@ -2167,13 +2167,13 @@ namespace XamCore.UIKit {
 		[Export ("activityDidFinish:")]
 		void Finished (bool completed);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("activityCategory"), Static]
 		UIActivityCategory Category  { get; }
 	}
 
-	[NoTV]
-	[Since (6,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[Static]
 	interface UIActivityType
 	{
@@ -2204,31 +2204,31 @@ namespace XamCore.UIKit {
 		[Field ("UIActivityTypeSaveToCameraRoll")]
 		NSString SaveToCameraRoll { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("UIActivityTypeAddToReadingList")]
 		NSString AddToReadingList { get; }
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("UIActivityTypePostToFlickr")]
 		NSString PostToFlickr { get; }
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("UIActivityTypePostToVimeo")]
 		NSString PostToVimeo { get; }
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("UIActivityTypePostToTencentWeibo")]
 		NSString PostToTencentWeibo { get; }
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("UIActivityTypeAirDrop")]
 		NSString AirDrop { get; }
 
-		[Since (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("UIActivityTypeOpenInIBooks")]
 		NSString OpenInIBooks { get; }
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Field ("UIActivityTypeMarkupAsPDF")]
 		NSString MarkupAsPdf { get; }
 	}
@@ -2244,8 +2244,8 @@ namespace XamCore.UIKit {
 		bool EnableInputClicksWhenVisible { get; }
 	}
 
-	[NoTV]
-	[Since (6,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (NSOperation))]
 	[ThreadSafe]
 	[DisableDefaultCtor] // NSInternalInconsistencyException Reason: Use initWithPlaceholderItem: to instantiate an instance of UIActivityItemProvider
@@ -2268,8 +2268,8 @@ namespace XamCore.UIKit {
 
 	interface IUIActivityItemSource { }
 
-	[NoTV]
-	[Since (6,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -2282,21 +2282,21 @@ namespace XamCore.UIKit {
 		[Export ("activityViewController:itemForActivityType:")]
 		NSObject GetItemForActivity (UIActivityViewController activityViewController, [NullAllowed] NSString activityType);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("activityViewController:dataTypeIdentifierForActivityType:")]
 		string GetDataTypeIdentifierForActivity (UIActivityViewController activityViewController, [NullAllowed] NSString activityType);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("activityViewController:subjectForActivityType:")]
 		string GetSubjectForActivity (UIActivityViewController activityViewController, [NullAllowed] NSString activityType);
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("activityViewController:thumbnailImageForActivityType:suggestedSize:")]
 		UIImage GetThumbnailImageForActivity (UIActivityViewController activityViewController, [NullAllowed] NSString activityType, CGSize suggestedSize);
 	}
 
-	[NoTV]
-	[Since (6,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (UIViewController))]
 	[DisableDefaultCtor] // NSInternalInconsistencyException Reason: Use initWithActivityItems:applicationActivities: to instantiate an instance of UIActivityViewController
 	interface UIActivityViewController {
@@ -2306,19 +2306,19 @@ namespace XamCore.UIKit {
 		
 		[NullAllowed] // by default this property is null
 		[Export ("completionHandler", ArgumentSemantic.Copy)]
-		[Availability (Deprecated = Platform.iOS_8_0, Message="Use the 'CompletionWithItemsHandler' property instead.")]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use the 'CompletionWithItemsHandler' property instead.")]
 		Action<NSString,bool> CompletionHandler { get; set;  }
 
 		[Export ("excludedActivityTypes", ArgumentSemantic.Copy)]
 		[NullAllowed]
 		NSString [] ExcludedActivityTypes { get; set;  }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[NullAllowed, Export ("completionWithItemsHandler", ArgumentSemantic.Copy)]
 		UIActivityViewControllerCompletion CompletionWithItemsHandler { get; set; }
 	}
 
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	partial interface UIAlertAction : NSCopying {
 		[Export ("title")]
@@ -2334,7 +2334,7 @@ namespace XamCore.UIKit {
 		UIAlertAction Create (string title, UIAlertActionStyle style, [NullAllowed] Action<UIAlertAction> handler);
 	}
 	
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (UIViewController))]
 	partial interface UIAlertController
 #if IOS
@@ -2369,7 +2369,7 @@ namespace XamCore.UIKit {
 		[Export ("addTextFieldWithConfigurationHandler:")]
 		void AddTextField (Action<UITextField> configurationHandler);
 
-		[iOS(9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("preferredAction")]
 		[NullAllowed]
 		UIAlertAction PreferredAction { get; set; }
@@ -2377,9 +2377,9 @@ namespace XamCore.UIKit {
 
 	interface IUIAlertViewDelegate {}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (UIView), KeepRefUntil="Dismissed", Delegates=new string [] { "WeakDelegate" }, Events=new Type [] {typeof(UIAlertViewDelegate)})]
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use 'UIAlertController' with a 'UIAlertControllerStyle.Alert' type instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use 'UIAlertController' with a 'UIAlertControllerStyle.Alert' type instead.")]
 	interface UIAlertView : NSCoding {
 		[DesignatedInitializer]
 		[Export ("initWithFrame:")]
@@ -2394,7 +2394,7 @@ namespace XamCore.UIKit {
 		// 9 arguments, where the 9th is nil (this is the 'mustAlsoBeNull' argument). Remember that Objective-C always has two hidden
 		// arguments (id, SEL), which means we only need 7 more. And 'mustAlsoBeNull' is that 7th argument.
 		// So on ARM64 the 8th argument ('mustBeNull') is ignored, and iOS sees the 9th argument ('mustAlsoBeNull') as the 8th argument.
-		[Availability (Deprecated=Platform.iOS_8_0, Message="Use 'UIAlertController' instead.")]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use 'UIAlertController' instead.")]
 		IntPtr Constructor ([NullAllowed] string title, [NullAllowed] string message, [NullAllowed] IUIAlertViewDelegate viewDelegate, [NullAllowed] string cancelButtonTitle, IntPtr otherButtonTitles, IntPtr mustBeNull, IntPtr mustAlsoBeNull);
 
 		[Wrap ("WeakDelegate")]
@@ -2436,16 +2436,16 @@ namespace XamCore.UIKit {
 		[Export ("dismissWithClickedButtonIndex:animated:")]
 		void DismissWithClickedButtonIndex (nint index, bool animated);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("alertViewStyle", ArgumentSemantic.Assign)]
 		UIAlertViewStyle AlertViewStyle { get; set;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("textFieldAtIndex:")]
 		UITextField GetTextField (nint textFieldIndex);
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -2468,7 +2468,7 @@ namespace XamCore.UIKit {
 		[Export ("alertView:didDismissWithButtonIndex:"), EventArgs ("UIButton")]
 		void Dismissed (UIAlertView alertView, nint buttonIndex);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("alertViewShouldEnableFirstOtherButton:"), DelegateName ("UIAlertViewPredicate"), DefaultValue (true)]
 		bool ShouldEnableFirstOtherButton (UIAlertView alertView);
 	}
@@ -2488,7 +2488,7 @@ namespace XamCore.UIKit {
 	interface UIAppearance {
 	}
 
-	[Since (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (UIView))]
 	interface UIStackView {
 		[Export ("initWithFrame:")]
@@ -2528,24 +2528,24 @@ namespace XamCore.UIKit {
 		[Export ("insertArrangedSubview:atIndex:")]
 		void InsertArrangedSubview (UIView view, nuint stackIndex);
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("setCustomSpacing:afterView:")]
 		void SetCustomSpacing (nfloat spacing, UIView arrangedSubview);
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("customSpacingAfterView:")]
 		nfloat GetCustomSpacing (UIView arrangedSubview);
 	}
 		
 	[Static]
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	interface UIStateRestoration {
 		[Field ("UIStateRestorationViewControllerStoryboardKey")]
 		NSString ViewControllerStoryboardKey { get; }
 
 	}
 
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -2571,7 +2571,7 @@ namespace XamCore.UIKit {
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	interface UIObjectRestoration {
 #if false
 		// a bit hard to support *static* as part of an interface / extension methods
@@ -2582,7 +2582,7 @@ namespace XamCore.UIKit {
 
 	interface IUIViewAnimating {}
 
-	[iOS(10,0)]
+	[Introduced (PlatformName.iOS, 10, 0)]
 	[Protocol]
 	interface UIViewAnimating
 	{
@@ -2624,7 +2624,7 @@ namespace XamCore.UIKit {
 	}
 
 	interface IUIViewImplicitlyAnimating {}
-	[iOS(10,0)]
+	[Introduced (PlatformName.iOS, 10, 0)]
 	[Protocol]
 	interface UIViewImplicitlyAnimating : UIViewAnimating
 	{
@@ -2641,8 +2641,8 @@ namespace XamCore.UIKit {
 		void ContinueAnimation ([NullAllowed] IUITimingCurveProvider parameters, nfloat durationFactor);
 	}
 		
-	[iOS (10,0), TV (10,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
+	[BaseType (typeof (NSObject))]
 	interface UIViewPropertyAnimator : UIViewImplicitlyAnimating, NSCopying
 	{
 		[NullAllowed, Export ("timingParameters", ArgumentSemantic.Copy)]
@@ -2663,11 +2663,11 @@ namespace XamCore.UIKit {
 		[Export ("interruptible")]
 		bool Interruptible { [Bind ("isInterruptible")] get; set; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("scrubsLinearly")]
 		bool ScrubsLinearly { get; set; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("pausesOnCompletion")]
 		bool PausesOnCompletion { get; set; }
 	
@@ -2691,7 +2691,7 @@ namespace XamCore.UIKit {
 	
 	interface IUIViewControllerPreviewing {}
 	[Protocol]
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	interface UIViewControllerPreviewing {
 		[Abstract]
 		[Export ("previewingGestureRecognizerForFailureRelationship")]
@@ -2722,7 +2722,7 @@ namespace XamCore.UIKit {
 	
 	[Protocol]
 	[Model]
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	interface UIViewControllerPreviewingDelegate {
 		[Abstract]
@@ -2735,7 +2735,7 @@ namespace XamCore.UIKit {
 	}
 	
 	[Protocol]
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	interface UIViewControllerRestoration {
 #if false
 		/* we don't generate anything for static members in protocols now, so just keep this out */
@@ -2751,7 +2751,7 @@ namespace XamCore.UIKit {
 	}
 
 	interface UIStatusBarOrientationChangeEventArgs {
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("UIApplicationStatusBarOrientationUserInfoKey")]
 		UIInterfaceOrientation StatusBarOrientation { get; }
 	}
@@ -2765,7 +2765,7 @@ namespace XamCore.UIKit {
 		[Export ("UIApplicationLaunchOptionsSourceApplicationKey")]
 		string SourceApplication { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[NullAllowed]
 		[Export ("UIApplicationLaunchOptionsRemoteNotificationKey")]
 		NSDictionary RemoteNotifications { get; }
@@ -2781,11 +2781,11 @@ namespace XamCore.UIKit {
 		string SourceApplication { get; set; }
 		bool OpenInPlace { get; set; }
 
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		bool UniversalLinksOnly { get; set; }
 	}
 
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Static]
 	[Internal] // we'll make it public if there's a need for them (beside the strong dictionary we provide)
 	interface UIApplicationOpenUrlOptionKeys {
@@ -2798,13 +2798,13 @@ namespace XamCore.UIKit {
 		[Field ("UIApplicationOpenURLOptionsOpenInPlaceKey")]
 		NSString OpenInPlaceKey { get; }
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("UIApplicationOpenURLOptionUniversalLinksOnly")]
 		NSString UniversalLinksOnlyKey { get; }
 	}
 
-	[NoWatch]
-	[iOS (2,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 2, 0)]
 	[BaseType (typeof (UIResponder))]
 	interface UIApplication {
 		[Static, ThreadSafe]
@@ -2834,11 +2834,11 @@ namespace XamCore.UIKit {
 		[Export ("openURL:")]
 		bool OpenUrl (NSUrl url);
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("openURL:options:completionHandler:")]
 		void OpenUrl (NSUrl url, NSDictionary options, [NullAllowed] Action<bool> completion);
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Wrap ("OpenUrl (url, options?.Dictionary, completion)")]
 		[Async]
 		void OpenUrl (NSUrl url, UIApplicationOpenUrlOptions options, [NullAllowed] Action<bool> completion);
@@ -2860,59 +2860,59 @@ namespace XamCore.UIKit {
 		[Export ("sendAction:to:from:forEvent:")]
 		bool SendAction (Selector action, [NullAllowed] NSObject target, [NullAllowed] NSObject sender, [NullAllowed] UIEvent forEvent);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("networkActivityIndicatorVisible"), ThreadSafe]
 		bool NetworkActivityIndicatorVisible { [Bind ("isNetworkActivityIndicatorVisible")] get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("statusBarStyle")]
 		UIStatusBarStyle StatusBarStyle { get; set; }
 		
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("setStatusBarStyle:animated:")]
 		void SetStatusBarStyle (UIStatusBarStyle statusBarStyle, bool animated);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("statusBarHidden")]
 		bool StatusBarHidden { [Bind ("isStatusBarHidden")] get; set; }
 
-		[NoTV]
-		[Since (3,2)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("setStatusBarHidden:withAnimation:")]
 		void SetStatusBarHidden (bool state, UIStatusBarAnimation animation);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("setStatusBarHidden:animated:")]
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_3_2, Message = "Use 'SetStatusBarHidden (bool, UIStatusBarAnimation)' instead.")]
+		[Introduced (PlatformName.iOS, 2, 0, message: "Use 'SetStatusBarHidden (bool, UIStatusBarAnimation)' instead."), Deprecated (PlatformName.iOS, 3, 2, message: "Use 'SetStatusBarHidden (bool, UIStatusBarAnimation)' instead.")]
 		void SetStatusBarHidden (bool hidden, bool animated);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("statusBarOrientation")]
 		UIInterfaceOrientation StatusBarOrientation { get; set; }
 		
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("setStatusBarOrientation:animated:")]
 		void SetStatusBarOrientation (UIInterfaceOrientation orientation, bool animated);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("statusBarOrientationAnimationDuration")]
 		double StatusBarOrientationAnimationDuration { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("statusBarFrame")]
 		CGRect StatusBarFrame { get; }
 		
-		[TV (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("applicationIconBadgeNumber")]
 		nint ApplicationIconBadgeNumber { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("applicationSupportsShakeToEdit")]
 		bool ApplicationSupportsShakeToEdit { get; set; }
 
 		// From @interface UIApplication (UIRemoteNotifications)
-		[NoTV]
-		[Availability (Deprecated = Platform.iOS_8_0, Message = "Use 'RegisterUserNotifications', 'RegisterForNotifications'  or 'UNUserNotificationCenter.RequestAuthorization' instead.")]
+		[Unavailable (PlatformName.TvOS)]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use 'RegisterUserNotifications', 'RegisterForNotifications'  or 'UNUserNotificationCenter.RequestAuthorization' instead.")]
 		[Export ("registerForRemoteNotificationTypes:")]
 		void RegisterForRemoteNotificationTypes (UIRemoteNotificationType types);
 
@@ -2921,8 +2921,8 @@ namespace XamCore.UIKit {
 		void UnregisterForRemoteNotifications ();
 
 		// From @interface UIApplication (UIRemoteNotifications)
-		[NoTV]
-		[Availability (Deprecated = Platform.iOS_8_0, Message = "Use 'CurrentUserNotificationSettings' or 'UNUserNotificationCenter.GetNotificationSettings' instead.")]
+		[Unavailable (PlatformName.TvOS)]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use 'CurrentUserNotificationSettings' or 'UNUserNotificationCenter.GetNotificationSettings' instead.")]
 		[Export ("enabledRemoteNotificationTypes")]
 		UIRemoteNotificationType EnabledRemoteNotificationTypes { get; }
 
@@ -2950,31 +2950,31 @@ namespace XamCore.UIKit {
 		[Notification]
 		NSString SignificantTimeChangeNotification { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Field ("UIApplicationWillChangeStatusBarOrientationNotification")]
 		[Notification (typeof (UIStatusBarOrientationChangeEventArgs))]
 		NSString WillChangeStatusBarOrientationNotification { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Field ("UIApplicationDidChangeStatusBarOrientationNotification")]
 		[Notification (typeof (UIStatusBarOrientationChangeEventArgs))]
 		NSString DidChangeStatusBarOrientationNotification { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Field ("UIApplicationStatusBarOrientationUserInfoKey")]
 		NSString StatusBarOrientationUserInfoKey { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Field ("UIApplicationWillChangeStatusBarFrameNotification")]
 		[Notification (typeof (UIStatusBarFrameChangeEventArgs))]
 		NSString WillChangeStatusBarFrameNotification { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Field ("UIApplicationDidChangeStatusBarFrameNotification")]
 		[Notification (typeof (UIStatusBarFrameChangeEventArgs))]
 		NSString DidChangeStatusBarFrameNotification { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Field ("UIApplicationStatusBarFrameUserInfoKey")]
 		NSString StatusBarFrameUserInfoKey { get; }
 		
@@ -2984,48 +2984,48 @@ namespace XamCore.UIKit {
 		[Field ("UIApplicationLaunchOptionsSourceApplicationKey")]
 		NSString LaunchOptionsSourceApplicationKey { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Field ("UIApplicationLaunchOptionsRemoteNotificationKey")]
 		NSString LaunchOptionsRemoteNotificationKey { get; }
 
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Field ("UIApplicationLaunchOptionsAnnotationKey")]
 		NSString LaunchOptionsAnnotationKey { get; }
 		
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("applicationState")]
 		UIApplicationState ApplicationState { get; }
 
-		[Since (4,0), ThreadSafe]
+		[Introduced (PlatformName.iOS, 4, 0), ThreadSafe]
 		[Export ("backgroundTimeRemaining")]
 		double BackgroundTimeRemaining { get; }
 
-		[Since (4,0), ThreadSafe]
+		[Introduced (PlatformName.iOS, 4, 0), ThreadSafe]
 		[Export ("beginBackgroundTaskWithExpirationHandler:")]
 		nint BeginBackgroundTask ([NullAllowed] NSAction backgroundTimeExpired);
 
-		[Since (4,0), ThreadSafe]
+		[Introduced (PlatformName.iOS, 4, 0), ThreadSafe]
 		[Export ("endBackgroundTask:")]
 		void EndBackgroundTask (nint taskId);
 
-		[NoTV]
-		[Since (4,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Deprecated (PlatformName.iOS, 9, 0, message: "Use 'PushKit' instead.")]
 		[Export ("setKeepAliveTimeout:handler:")]
 		bool SetKeepAliveTimeout (double timeout, [NullAllowed] NSAction handler);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Deprecated (PlatformName.iOS, 9, 0, message: "Use 'PushKit' instead.")]
 		[Export ("clearKeepAliveTimeout")]
 		void ClearKeepAliveTimeout ();
 		
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("protectedDataAvailable")]
 		bool ProtectedDataAvailable { [Bind ("isProtectedDataAvailable")] get; }
 
 		// from @interface UIApplication (UILocalNotifications)
-		[NoTV]
-		[Since (4,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UNUserNotificationCenter.AddNotificationRequest' instead.")]
 		[Export ("presentLocalNotificationNow:")]
 #if XAMCORE_2_0
@@ -3035,107 +3035,107 @@ namespace XamCore.UIKit {
 #endif
 
 		// from @interface UIApplication (UILocalNotifications)
-		[NoTV]
-		[Since (4,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UNUserNotificationCenter.AddNotificationRequest' instead.")]
 		[Export ("scheduleLocalNotification:")]
 		void ScheduleLocalNotification (UILocalNotification notification);
 
 		// from @interface UIApplication (UILocalNotifications)
-		[NoTV]
-		[Since (4,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UNUserNotificationCenter.RemovePendingNotificationRequests' instead.")]
 		[Export ("cancelLocalNotification:")]
 		void CancelLocalNotification (UILocalNotification notification);
 
 		// from @interface UIApplication (UILocalNotifications)
-		[NoTV]
-		[Since (4,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UNUserNotificationCenter.RemoveAllPendingNotificationRequests' instead.")]
 		[Export ("cancelAllLocalNotifications")]
 		void CancelAllLocalNotifications ();
 
 		// from @interface UIApplication (UILocalNotifications)
-		[NoTV]
-		[Since (4,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UNUserNotificationCenter.GetPendingNotificationRequests' instead.")]
 		[Export ("scheduledLocalNotifications", ArgumentSemantic.Copy)]
 		UILocalNotification [] ScheduledLocalNotifications { get; set; }
 
 		// from @interface UIApplication (UIRemoteControlEvents)
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("beginReceivingRemoteControlEvents")]
 		void BeginReceivingRemoteControlEvents ();
 
 		// from @interface UIApplication (UIRemoteControlEvents)
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("endReceivingRemoteControlEvents")]
 		void EndReceivingRemoteControlEvents ();
 
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Field ("UIBackgroundTaskInvalid")]
 		nint BackgroundTaskInvalid { get; }
 
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Field ("UIMinimumKeepAliveTimeout")]
 		double /* NSTimeInternal */ MinimumKeepAliveTimeout { get; }
 
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Field ("UIApplicationProtectedDataWillBecomeUnavailable")]
 		[Notification]
 		NSString ProtectedDataWillBecomeUnavailable { get; }
 		
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Field ("UIApplicationProtectedDataDidBecomeAvailable")]
 		[Notification]
 		NSString ProtectedDataDidBecomeAvailable { get; }
 		
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Field ("UIApplicationLaunchOptionsLocationKey")]
 		NSString LaunchOptionsLocationKey { get; }
 		
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Field ("UIApplicationDidEnterBackgroundNotification")]
 		[Notification]
 		NSString DidEnterBackgroundNotification { get; }
 		
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Field ("UIApplicationWillEnterForegroundNotification")]
 		[Notification]
 		NSString WillEnterForegroundNotification { get; }
 		
-		[NoTV]
-		[Since (4,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UNUserNotificationCenterDelegate.DidReceiveNotificationResponse' instead.")]
 		[Field ("UIApplicationLaunchOptionsLocalNotificationKey")]
 		NSString LaunchOptionsLocalNotificationKey { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("userInterfaceLayoutDirection")]
 		UIUserInterfaceLayoutDirection UserInterfaceLayoutDirection { get; }
 
 		// from @interface UIApplication (UINewsstand)
-		[NoTV]
-		[Since (5,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Deprecated (PlatformName.iOS, 9, 0)]
 		[Export ("setNewsstandIconImage:")]
 		void SetNewsstandIconImage ([NullAllowed] UIImage image);
 
-		[NoTV]
-		[Since (5,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("UIApplicationLaunchOptionsNewsstandDownloadsKey")]
 		NSString LaunchOptionsNewsstandDownloadsKey { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("UIApplicationLaunchOptionsBluetoothCentralsKey")]
 		NSString LaunchOptionsBluetoothCentralsKey { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("UIApplicationLaunchOptionsBluetoothPeripheralsKey")]
 		NSString LaunchOptionsBluetoothPeripheralsKey { get; }
 
-		[NoTV]
-		[Since (9,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("UIApplicationLaunchOptionsShortcutItemKey")]
 		NSString LaunchOptionsShortcutItemKey { get; }
 
@@ -3143,95 +3143,95 @@ namespace XamCore.UIKit {
 		// 6.0
 		//
 		// from @interface UIApplication (UIStateRestoration)
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("extendStateRestoration")]
 		void ExtendStateRestoration ();
 
 		// from @interface UIApplication (UIStateRestoration)
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("completeStateRestoration")]
 		void CompleteStateRestoration ();
 
-		[NoTV]
-		[Since(6,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("supportedInterfaceOrientationsForWindow:")]
 		UIInterfaceOrientationMask SupportedInterfaceOrientationsForWindow ([Transient] UIWindow window);
 
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Field ("UITrackingRunLoopMode")]
 		NSString UITrackingRunLoopMode { get; }
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("UIApplicationStateRestorationBundleVersionKey")]
 		NSString StateRestorationBundleVersionKey { get; }
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("UIApplicationStateRestorationUserInterfaceIdiomKey")]
 		NSString StateRestorationUserInterfaceIdiomKey { get; }
 
 		//
 		// 7.0
 		//
-		[Since(7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("UIContentSizeCategoryDidChangeNotification")]
 		[Notification (typeof (UIContentSizeCategoryChangedEventArgs))]
 		NSString ContentSizeCategoryChangedNotification { get; }
 		
 		[ThreadSafe]
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("beginBackgroundTaskWithName:expirationHandler:")]
 		nint BeginBackgroundTask (string taskName, NSAction expirationHandler);
 
-		[TV (11,0)]
-		[Since (7,0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("UIApplicationBackgroundFetchIntervalMinimum")]
 		double BackgroundFetchIntervalMinimum { get; }
 
-		[TV (11,0)]
-		[Since (7,0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("UIApplicationBackgroundFetchIntervalNever")]
 		double BackgroundFetchIntervalNever { get; }
 
-		[TV (11,0)]
-		[Since (7,0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("setMinimumBackgroundFetchInterval:")]
 		void SetMinimumBackgroundFetchInterval (double minimumBackgroundFetchInterval);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("preferredContentSizeCategory")]
 		NSString PreferredContentSizeCategory { get; }
 
 		// from @interface UIApplication (UIStateRestoration)
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("ignoreSnapshotOnNextApplicationLaunch")]
 		void IgnoreSnapshotOnNextApplicationLaunch ();
 
 		// from @interface UIApplication (UIStateRestoration)
 		[Export ("registerObjectForStateRestoration:restorationIdentifier:")]
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Static]
 		void RegisterObjectForStateRestoration (IUIStateRestoring uistateRestoringObject, string restorationIdentifier);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("UIApplicationStateRestorationTimestampKey")]
 		NSString StateRestorationTimestampKey { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("UIApplicationStateRestorationSystemVersionKey")]
 		NSString StateRestorationSystemVersionKey { get; }
 
-		[TV (11,0)]
-		[Since (7,0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("backgroundRefreshStatus")]
 		UIBackgroundRefreshStatus BackgroundRefreshStatus { get; }
 
-		[TV (11,0)]
-		[Since (7,0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Notification]
 		[Field ("UIApplicationBackgroundRefreshStatusDidChangeNotification")]
 		NSString BackgroundRefreshStatusDidChangeNotification { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Notification]
 		[Field ("UIApplicationUserDidTakeScreenshotNotification")]
 		NSString UserDidTakeScreenshotNotification { get; }
@@ -3239,48 +3239,48 @@ namespace XamCore.UIKit {
 		// 
 		// 8.0
 		//
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("UIApplicationOpenSettingsURLString")]
 		NSString OpenSettingsUrlString { get; }
 
 		// from @interface UIApplication (UIUserNotificationSettings)
-		[NoTV]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UNUserNotificationCenter.GetNotificationSettings' and 'UNUserNotificationCenter.GetNotificationCategories' instead.")]
 		[Export ("currentUserNotificationSettings")]
 		UIUserNotificationSettings CurrentUserNotificationSettings { get; }
 
 		// from @interface UIApplication (UIRemoteNotifications)
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("isRegisteredForRemoteNotifications")]
 		bool IsRegisteredForRemoteNotifications { get; }
 
 		// from @interface UIApplication (UIRemoteNotifications)
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("registerForRemoteNotifications")]
 		void RegisterForRemoteNotifications ();
 
 		// from @interface UIApplication (UIUserNotificationSettings)
-		[NoTV]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UNUserNotificationCenter.RequestAuthorization' and 'UNUserNotificationCenter.SetNotificationCategories' instead.")]
 		[Export ("registerUserNotificationSettings:")]
 		void RegisterUserNotificationSettings (UIUserNotificationSettings notificationSettings);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("UIApplicationLaunchOptionsUserActivityDictionaryKey")]
 		NSString LaunchOptionsUserActivityDictionaryKey { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("UIApplicationLaunchOptionsUserActivityTypeKey")]
 		NSString LaunchOptionsUserActivityTypeKey { get; }
 
-		[iOS (10,0), NoTV, NoWatch]
+		[Introduced (PlatformName.iOS, 10, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
 		[Field ("UIApplicationLaunchOptionsCloudKitShareMetadataKey")]
 		NSString LaunchOptionsCloudKitShareMetadataKey { get; }
 
-		[NoTV]
-		[iOS (9,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[NullAllowed, Export ("shortcutItems", ArgumentSemantic.Copy)]
 		UIApplicationShortcutItem[] ShortcutItems { get; set; }
 
@@ -3289,23 +3289,23 @@ namespace XamCore.UIKit {
 		//
 		// from @interface UIApplication (UIAlternateApplicationIcons)
 
-		[iOS (10,3)][TV (10,2)]
+		[Introduced (PlatformName.iOS, 10, 3)][Introduced (PlatformName.TvOS, 10, 2)]
 		[Export ("supportsAlternateIcons")]
 		bool SupportsAlternateIcons { get; }
 
-		[iOS (10,3)][TV (10,2)]
+		[Introduced (PlatformName.iOS, 10, 3)][Introduced (PlatformName.TvOS, 10, 2)]
 		[Async]
 		[Export ("setAlternateIconName:completionHandler:")]
 		void SetAlternateIconName ([NullAllowed] string alternateIconName, [NullAllowed] Action<NSError> completionHandler);
 
-		[iOS (10,3)][TV (10,2)]
+		[Introduced (PlatformName.iOS, 10, 3)][Introduced (PlatformName.TvOS, 10, 2)]
 		[Export ("alternateIconName"), NullAllowed]
 		string AlternateIconName { get; }
 	}
 
-	[NoTV]
-	[iOS (9,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[BaseType (typeof (NSObject))]
 	interface UIApplicationShortcutIcon : NSCopying
 	{
 		[Static]
@@ -3324,9 +3324,9 @@ namespace XamCore.UIKit {
 #endif
 	}
 
-	[NoTV]
-	[iOS (9,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface UIApplicationShortcutItem : NSMutableCopying
 	{
@@ -3353,8 +3353,8 @@ namespace XamCore.UIKit {
 		NSDictionary<NSString,NSObject> UserInfo { get; [NotImplemented] set; }
 	}
 
-	[NoTV]
-	[iOS (9,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (UIApplicationShortcutItem))]
 	[DisableDefaultCtor] // NSInvalidArgumentException Reason: Don't call -[UIApplicationShortcutItem init].
 	interface UIMutableApplicationShortcutItem
@@ -3388,7 +3388,7 @@ namespace XamCore.UIKit {
 		NSDictionary<NSString,NSObject> UserInfo { get; set; }
 	}
 
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (UIDynamicBehavior))]
 	[DisableDefaultCtor] // Objective-C exception thrown.  Name: NSInvalidArgumentException Reason: init is undefined for objects of type UIAttachmentBehavior
 	interface UIAttachmentBehavior {
@@ -3425,45 +3425,45 @@ namespace XamCore.UIKit {
 		IntPtr Constructor (IUIDynamicItem item, UIOffset offsetFromCenter, IUIDynamicItem attachedToItem, UIOffset attachOffsetFromCenter);
 
 		[Static]
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("slidingAttachmentWithItem:attachedToItem:attachmentAnchor:axisOfTranslation:")]
 		UIAttachmentBehavior CreateSlidingAttachment (IUIDynamicItem item1, IUIDynamicItem item2, CGPoint attachmentAnchor, CGVector translationAxis);
 
 		[Static]
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("slidingAttachmentWithItem:attachmentAnchor:axisOfTranslation:")]
 		UIAttachmentBehavior CreateSlidingAttachment (IUIDynamicItem item, CGPoint attachmentAnchor, CGVector translationAxis);
 
 // +(instancetype __nonnull)limitAttachmentWithItem:(id<UIDynamicItem> __nonnull)item1 offsetFromCenter:(UIOffset)offset1 attachedToItem:(id<UIDynamicItem> __nonnull)item2 offsetFromCenter:(UIOffset)offset2;
 		[Static]
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("limitAttachmentWithItem:offsetFromCenter:attachedToItem:offsetFromCenter:")]
 		UIAttachmentBehavior CreateLimitAttachment (IUIDynamicItem item1, UIOffset offsetFromCenter, IUIDynamicItem item2, UIOffset offsetFromCenter2);
 
 		[Static]
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("fixedAttachmentWithItem:attachedToItem:attachmentAnchor:")]
 		UIAttachmentBehavior CreateFixedAttachment (IUIDynamicItem item1, IUIDynamicItem item2, CGPoint attachmentAnchor);
 
 		[Static]
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("pinAttachmentWithItem:attachedToItem:attachmentAnchor:")]
 		UIAttachmentBehavior CreatePinAttachment (IUIDynamicItem item1, IUIDynamicItem item2, CGPoint attachmentAnchor);
 
 		[Export ("attachmentRange")]
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		UIFloatRange AttachmentRange { get; set; }
 
 		[Export ("frictionTorque")]
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		nfloat FrictionTorque { get; set; }
 	}
 
-	[iOS (10,0), TV (10,0)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 	[Protocol]
 	interface UIContentSizeCategoryAdjusting {
 		[Abstract]
-		[iOS (10,0), TV (10,0)] // Repeated because of generator bug
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)] // Repeated because of generator bug
 		[Export ("adjustsFontForContentSizeCategory")]
 		bool AdjustsFontForContentSizeCategory { get; set; }
 	}
@@ -3473,11 +3473,11 @@ namespace XamCore.UIKit {
 		NSString WeakNewValue { get; }
 	}
 
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[Static]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIContentSizeCategory {
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("UIContentSizeCategoryUnspecified")]
 		Unspecified,
 
@@ -3524,7 +3524,7 @@ namespace XamCore.UIKit {
 	[Model]
 	[BaseType (typeof (NSObject))]
 	[Abstract]
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	interface UICoordinateSpace {
 		[Abstract]
 		[Export ("bounds")]
@@ -3564,8 +3564,8 @@ namespace XamCore.UIKit {
 		[Export ("applicationWillResignActive:")]
 		void OnResignActivation (UIApplication application);
 
-		[NoTV]
-		[Availability (Obsoleted = Platform.iOS_9_0, Message="Override 'OpenUrl (UIApplication, NSUrl, NSDictionary)'. The later will be called if both are implemented.")]
+		[Unavailable (PlatformName.TvOS)]
+		[Obsoleted (PlatformName.iOS, 9, 0, message: "Override 'OpenUrl (UIApplication, NSUrl, NSDictionary)'. The later will be called if both are implemented.")]
 		[Export ("application:handleOpenURL:")]
 		bool HandleOpenURL (UIApplication application, NSUrl url);
 		
@@ -3578,19 +3578,19 @@ namespace XamCore.UIKit {
 		[Export ("applicationSignificantTimeChange:")]
 		void ApplicationSignificantTimeChange (UIApplication application);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("application:willChangeStatusBarOrientation:duration:")]
 		void WillChangeStatusBarOrientation (UIApplication application, UIInterfaceOrientation newStatusBarOrientation, double duration);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("application:didChangeStatusBarOrientation:")]
 		void DidChangeStatusBarOrientation (UIApplication application, UIInterfaceOrientation oldStatusBarOrientation);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("application:willChangeStatusBarFrame:")]
 		void WillChangeStatusBarFrame (UIApplication application, CGRect newStatusBarFrame);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("application:didChangeStatusBarFrame:")]
 		void ChangedStatusBarFrame (UIApplication application, CGRect oldStatusBarFrame);
 
@@ -3604,74 +3604,74 @@ namespace XamCore.UIKit {
 		[Export ("application:didReceiveRemoteNotification:")]
 		void ReceivedRemoteNotification (UIApplication application, NSDictionary userInfo);
 
-		[NoTV]
-		[Since (4,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UNUserNotificationCenterDelegate.WillPresentNotification/DidReceiveNotificationResponse' instead.")]
 		[Export ("application:didReceiveLocalNotification:")]
 		void ReceivedLocalNotification (UIApplication application, UILocalNotification notification);
 
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("applicationDidEnterBackground:")]
 		void DidEnterBackground (UIApplication application);
 		
 		[Export ("applicationWillEnterForeground:")]
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		void WillEnterForeground (UIApplication application);
 		
 		[Export ("applicationProtectedDataWillBecomeUnavailable:")]
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		void ProtectedDataWillBecomeUnavailable (UIApplication application);
 		
 		[Export ("applicationProtectedDataDidBecomeAvailable:")]
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		void ProtectedDataDidBecomeAvailable (UIApplication application);
 
-		[NoTV]
-		[Availability (Obsoleted = Platform.iOS_9_0, Message="Override 'OpenUrl (UIApplication, NSUrl, NSDictionary)'. The later will be called if both are implemented.")]
+		[Unavailable (PlatformName.TvOS)]
+		[Obsoleted (PlatformName.iOS, 9, 0, message: "Override 'OpenUrl (UIApplication, NSUrl, NSDictionary)'. The later will be called if both are implemented.")]
 		[Export ("application:openURL:sourceApplication:annotation:")]
 		bool OpenUrl (UIApplication application, NSUrl url, string sourceApplication, NSObject annotation);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("application:openURL:options:")]
 		bool OpenUrl (UIApplication app, NSUrl url, NSDictionary options);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Wrap ("OpenUrl(app, url, options.Dictionary)")]
 		bool OpenUrl (UIApplication app, NSUrl url, UIApplicationOpenUrlOptions options);
 		
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("window", ArgumentSemantic.Retain), NullAllowed]
 		UIWindow Window { get; set; }
 
 		//
 		// 6.0
 		//
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("application:willFinishLaunchingWithOptions:")]
 		bool WillFinishLaunching (UIApplication application, NSDictionary launchOptions);
 
-		[NoTV]
-		[Since(6,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("application:supportedInterfaceOrientationsForWindow:")]
 		UIInterfaceOrientationMask GetSupportedInterfaceOrientations (UIApplication application, [Transient] UIWindow forWindow);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("application:viewControllerWithRestorationIdentifierPath:coder:")]
 		UIViewController GetViewController (UIApplication application, string [] restorationIdentifierComponents, NSCoder coder);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("application:shouldSaveApplicationState:")]
 		bool ShouldSaveApplicationState (UIApplication application, NSCoder coder);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("application:shouldRestoreApplicationState:")]
 		bool ShouldRestoreApplicationState (UIApplication application, NSCoder coder);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("application:willEncodeRestorableStateWithCoder:")]
 		void WillEncodeRestorableState (UIApplication application, NSCoder coder);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("application:didDecodeRestorableStateWithCoder:")]
 		void DidDecodeRestorableState (UIApplication application, NSCoder coder);		
 
@@ -3679,33 +3679,33 @@ namespace XamCore.UIKit {
 		// "If you’d like the Magic Tap gesture to perform the same action from anywhere within your app, it is more 
 		// appropriate to implement the accessibilityPerformMagicTap method in your app delegate."
 		// ref: http://developer.apple.com/library/ios/#featuredarticles/ViewControllerPGforiPhoneOS/Accessibility/AccessibilityfromtheViewControllersPerspective.html
-		[NoTV]
-		[Since (6,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("accessibilityPerformMagicTap")]
 		bool AccessibilityPerformMagicTap ();
 
-		[TV (10, 0)]
-		[Since (7,0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("application:didReceiveRemoteNotification:fetchCompletionHandler:")]
 		void DidReceiveRemoteNotification (UIApplication application, NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("application:handleEventsForBackgroundURLSession:completionHandler:")]
 		void HandleEventsForBackgroundUrl (UIApplication application, string sessionIdentifier, NSAction completionHandler);
 
-		[TV (11,0)]
-		[Since (7,0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("application:performFetchWithCompletionHandler:")]
 		void PerformFetch (UIApplication application, Action<UIBackgroundFetchResult> completionHandler);
 
 		// 
 		// 8.0
 		//
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("application:continueUserActivity:restorationHandler:")]
 		bool ContinueUserActivity (UIApplication application, NSUserActivity userActivity, UIApplicationRestorationHandler completionHandler);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("application:didFailToContinueUserActivityWithType:error:")]
 #if XAMCORE_4_0
 		void DidFailToContinueUserActivity (UIApplication application, string userActivityType, NSError error);
@@ -3713,68 +3713,68 @@ namespace XamCore.UIKit {
 		void DidFailToContinueUserActivitiy (UIApplication application, string userActivityType, NSError error);
 #endif
 
-		[NoTV]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UNUserNotificationCenter.RequestAuthorization' instead.")]
 		[Export ("application:didRegisterUserNotificationSettings:")]
 		void DidRegisterUserNotificationSettings (UIApplication application, UIUserNotificationSettings notificationSettings);
 
-		[NoTV]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UNUserNotificationCenterDelegate.DidReceiveNotificationResponse' instead.")]
 		[Export ("application:handleActionWithIdentifier:forLocalNotification:completionHandler:")]
 		void HandleAction (UIApplication application, string actionIdentifier, UILocalNotification localNotification, Action completionHandler);
 
-		[NoTV]
-		[iOS (9,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UNUserNotificationCenterDelegate.DidReceiveNotificationResponse' instead.")]
 		[Export ("application:handleActionWithIdentifier:forLocalNotification:withResponseInfo:completionHandler:")]
 		void HandleAction (UIApplication application, string actionIdentifier, UILocalNotification localNotification, NSDictionary responseInfo, Action completionHandler);
 		
-		[NoTV]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UNUserNotificationCenterDelegate.DidReceiveNotificationResponse' instead.")]
 		[Export ("application:handleActionWithIdentifier:forRemoteNotification:completionHandler:")]
 		void HandleAction (UIApplication application, string actionIdentifier, NSDictionary remoteNotificationInfo, Action completionHandler);
 
-		[NoTV]
-		[iOS (9,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UNUserNotificationCenterDelegate.DidReceiveNotificationResponse' instead.")]
 		[Export ("application:handleActionWithIdentifier:forRemoteNotification:withResponseInfo:completionHandler:")]
 		void HandleAction (UIApplication application, string actionIdentifier, NSDictionary remoteNotificationInfo, NSDictionary responseInfo, Action completionHandler);
 
-		[NoTV]
-		[iOS (9,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("application:performActionForShortcutItem:completionHandler:")]
 		void PerformActionForShortcutItem (UIApplication application, UIApplicationShortcutItem shortcutItem, UIOperationHandler completionHandler);
 		
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("application:willContinueUserActivityWithType:")]
 		bool WillContinueUserActivity (UIApplication application, string userActivityType);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("application:didUpdateUserActivity:")]
 		void UserActivityUpdated (UIApplication application, NSUserActivity userActivity);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("application:shouldAllowExtensionPointIdentifier:")]
 		bool ShouldAllowExtensionPointIdentifier (UIApplication application, NSString extensionPointIdentifier);
 
-		[iOS (8,2)]
+		[Introduced (PlatformName.iOS, 8, 2)]
 		[Export ("application:handleWatchKitExtensionRequest:reply:")]
 		void HandleWatchKitExtensionRequest (UIApplication application, NSDictionary userInfo, Action<NSDictionary> reply);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("applicationShouldRequestHealthAuthorization:")]
 		void ShouldRequestHealthAuthorization (UIApplication application);
 
-		[iOS (10,0), TV (10,0), NoWatch]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS)]
 		[Export ("application:userDidAcceptCloudKitShareWithMetadata:")]
 		void UserDidAcceptCloudKitShare (UIApplication application, CKShareMetadata cloudKitShareMetadata);
 
 #if XAMCORE_2_0 && !TVOS
-		[NoTV]
-		[iOS (11,0), Watch (4,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Export ("application:handleIntent:completionHandler:")]
 		void HandleIntent (UIApplication application, INIntent intent, Action<INIntentResponse> completionHandler);
 #endif // XAMCORE_2_0 && !TVOS
@@ -3782,7 +3782,7 @@ namespace XamCore.UIKit {
 
 	[Static]
 	interface UIExtensionPointIdentifier {
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("UIApplicationKeyboardExtensionPointIdentifier")]
 		NSString Keyboard { get; }
 	}
@@ -3804,34 +3804,34 @@ namespace XamCore.UIKit {
 		[Export ("tag")][Abstract]
 		nint Tag { get; set; }
 
-		[NoTV]
-		[Since (5,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("landscapeImagePhone", ArgumentSemantic.Retain)]
 		UIImage LandscapeImagePhone { get; set;  }
 
-		[NoTV]
-		[Since (5,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("landscapeImagePhoneInsets")]
 		UIEdgeInsets LandscapeImagePhoneInsets { get; set;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setTitleTextAttributes:forState:"), Internal]
 		[Appearance]
 		void _SetTitleTextAttributes ([NullAllowed] NSDictionary attributes, UIControlState state);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("titleTextAttributesForState:"), Internal]
 		[Appearance]
 		NSDictionary _GetTitleTextAttributes (UIControlState state);
 
-		[NoWatch]
-		[iOS (11,0), TV (11,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[NullAllowed, Export ("largeContentSizeImage", ArgumentSemantic.Strong)]
 		UIImage LargeContentSizeImage { get; set; }
 
-		[NoWatch]
-		[iOS (11,0), TV (11,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("largeContentSizeImageInsets", ArgumentSemantic.Assign)]
 		UIEdgeInsets LargeContentSizeImageInsets { get; set; }
 	}
@@ -3896,12 +3896,12 @@ namespace XamCore.UIKit {
 		[Export ("tag")][Override]
 		nint Tag { get; set; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("tintColor", ArgumentSemantic.Retain), NullAllowed]
 		[Appearance]
 		UIColor TintColor { get; set;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("initWithImage:landscapeImagePhone:style:target:action:"), PostGet ("Image")]
 #if !TVOS
 		[PostGet ("LandscapeImagePhone")]
@@ -3909,89 +3909,89 @@ namespace XamCore.UIKit {
 		[PostGet ("Target")]
 		IntPtr Constructor ([NullAllowed] UIImage image, [NullAllowed] UIImage landscapeImagePhone, UIBarButtonItemStyle style, [NullAllowed] NSObject target, [NullAllowed] Selector action);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setBackgroundImage:forState:barMetrics:")]
 		[Appearance]
 		void SetBackgroundImage ([NullAllowed] UIImage backgroundImage, UIControlState state, UIBarMetrics barMetrics);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("backgroundImageForState:barMetrics:")]
 		[Appearance]
 		UIImage GetBackgroundImage (UIControlState state, UIBarMetrics barMetrics);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setBackgroundVerticalPositionAdjustment:forBarMetrics:")]
 		[Appearance]
 		void SetBackgroundVerticalPositionAdjustment (nfloat adjustment, UIBarMetrics forBarMetrics);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("backgroundVerticalPositionAdjustmentForBarMetrics:")]
 		[Appearance]
 		nfloat GetBackgroundVerticalPositionAdjustment (UIBarMetrics forBarMetrics);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setTitlePositionAdjustment:forBarMetrics:")]
 		[Appearance]
 		void SetTitlePositionAdjustment (UIOffset adjustment, UIBarMetrics barMetrics);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("titlePositionAdjustmentForBarMetrics:")]
 		[Appearance]
 		UIOffset GetTitlePositionAdjustment (UIBarMetrics barMetrics);
 
-		[NoTV]
-		[Since (5,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setBackButtonBackgroundImage:forState:barMetrics:")]
 		[Appearance]
 		void SetBackButtonBackgroundImage ([NullAllowed] UIImage backgroundImage, UIControlState forState, UIBarMetrics barMetrics);
 
-		[NoTV]
-		[Since (5,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("backButtonBackgroundImageForState:barMetrics:")]
 		[Appearance]
 		UIImage GetBackButtonBackgroundImage (UIControlState forState, UIBarMetrics barMetrics);
 
-		[NoTV]
-		[Since (5,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setBackButtonTitlePositionAdjustment:forBarMetrics:")]
 		[Appearance]
 		void SetBackButtonTitlePositionAdjustment (UIOffset adjustment, UIBarMetrics barMetrics);
 
-		[NoTV]
-		[Since (5,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("backButtonTitlePositionAdjustmentForBarMetrics:")]
 		[Appearance]
 		UIOffset GetBackButtonTitlePositionAdjustment (UIBarMetrics barMetrics);
 
-		[NoTV]
-		[Since (5,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setBackButtonBackgroundVerticalPositionAdjustment:forBarMetrics:")]
 		[Appearance]
 		void SetBackButtonBackgroundVerticalPositionAdjustment (nfloat adjustment, UIBarMetrics barMetrics);
 
-		[NoTV]
-		[Since (5,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("backButtonBackgroundVerticalPositionAdjustmentForBarMetrics:")]
 		[Appearance]
 		nfloat GetBackButtonBackgroundVerticalPositionAdjustment (UIBarMetrics barMetrics);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Appearance]
 		[Export ("setBackgroundImage:forState:style:barMetrics:")]
 		void SetBackgroundImage ([NullAllowed] 	UIImage backgroundImage, UIControlState state, UIBarButtonItemStyle style, UIBarMetrics barMetrics);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Appearance]
 		[Export ("backgroundImageForState:style:barMetrics:")]
 		UIImage GetBackgroundImage (UIControlState state, UIBarButtonItemStyle style, UIBarMetrics barMetrics);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[NullAllowed, Export ("buttonGroup", ArgumentSemantic.Weak)]
 		UIBarButtonItemGroup ButtonGroup { get; }
 	}
 
-	[iOS (9,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[BaseType (typeof (NSObject))]
 	interface UIBarButtonItemGroup : NSCoding
 	{
 		[DesignatedInitializer]
@@ -4008,7 +4008,7 @@ namespace XamCore.UIKit {
 		bool DisplayingRepresentativeItem { [Bind ("isDisplayingRepresentativeItem")] get; }
 	}
 	
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (UIView))]
 	interface UICollectionReusableView {
 		[Export ("initWithFrame:")]
@@ -4029,12 +4029,12 @@ namespace XamCore.UIKit {
 		[Export ("didTransitionFromLayout:toLayout:")]
 		void DidTransition (UICollectionViewLayout oldLayout, UICollectionViewLayout newLayout);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("preferredLayoutAttributesFittingAttributes:")]
 		UICollectionViewLayoutAttributes PreferredLayoutAttributesFittingAttributes (UICollectionViewLayoutAttributes layoutAttributes);
 	}
 
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (UIScrollView))]
 	// Objective-C exception thrown.  Name: NSInvalidArgumentException Reason: UICollectionView must be initialized with a non-nil layout parameter
 	[DisableDefaultCtor]
@@ -4177,99 +4177,99 @@ namespace XamCore.UIKit {
 		//
 		// 7.0
 		//
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("startInteractiveTransitionToCollectionViewLayout:completion:")]
-		[Async (ResultTypeName="UICollectionViewTransitionResult")]
+		[Async (ResultTypeName = "UICollectionViewTransitionResult")]
 		UICollectionViewTransitionLayout StartInteractiveTransition (UICollectionViewLayout newCollectionViewLayout,
 									     UICollectionViewLayoutInteractiveTransitionCompletion completion);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("setCollectionViewLayout:animated:completion:")]
 		[Async]
 		void SetCollectionViewLayout (UICollectionViewLayout layout, bool animated, UICompletionHandler completion);
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("finishInteractiveTransition")]
 		void FinishInteractiveTransition ();
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("cancelInteractiveTransition")]
 		void CancelInteractiveTransition ();
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("beginInteractiveMovementForItemAtIndexPath:")]
 		bool BeginInteractiveMovementForItem (NSIndexPath indexPath);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("updateInteractiveMovementTargetPosition:")]
 		void UpdateInteractiveMovement (CGPoint targetPosition);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("endInteractiveMovement")]
 		void EndInteractiveMovement ();
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("cancelInteractiveMovement")]
 		void CancelInteractiveMovement ();
 
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[return : NullAllowed]
 		[Export ("supplementaryViewForElementKind:atIndexPath:")]
 		UICollectionReusableView GetSupplementaryView (NSString elementKind, NSIndexPath indexPath);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("visibleSupplementaryViewsOfKind:")]
 		UICollectionReusableView[] GetVisibleSupplementaryViews (NSString elementKind);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("indexPathsForVisibleSupplementaryElementsOfKind:")]
 		NSIndexPath[] GetIndexPathsForVisibleSupplementaryElements (NSString elementKind);
 
-		[iOS (9,0)] // added in Xcode 7.1 / iOS 9.1 SDK
+		[Introduced (PlatformName.iOS, 9, 0)] // added in Xcode 7.1 / iOS 9.1 SDK
 		[Export ("remembersLastFocusedIndexPath")]
 		bool RemembersLastFocusedIndexPath { get; set; }
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[NullAllowed, Export ("prefetchDataSource", ArgumentSemantic.Weak)]
 		IUICollectionViewDataSourcePrefetching PrefetchDataSource { get; set; }
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("prefetchingEnabled")]
 		bool PrefetchingEnabled { [Bind ("isPrefetchingEnabled")] get; set; }
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("dragDelegate", ArgumentSemantic.Weak)]
 		IUICollectionViewDragDelegate DragDelegate { get; set; }
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("dropDelegate", ArgumentSemantic.Weak)]
 		IUICollectionViewDropDelegate DropDelegate { get; set; }
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("dragInteractionEnabled")]
 		bool DragInteractionEnabled { get; set; }
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("reorderingCadence", ArgumentSemantic.Assign)]
 		UICollectionViewReorderingCadence ReorderingCadence { get; set; }
 
-		[NoWatch]
-		[TV (11,0), iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("hasUncommittedUpdates")]
 		bool HasUncommittedUpdates { get; }
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("hasActiveDrag")]
 		bool HasActiveDrag { get; }
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("hasActiveDrop")]
 		bool HasActiveDrop { get; }
 	}
@@ -4277,7 +4277,7 @@ namespace XamCore.UIKit {
 	interface IUICollectionViewDataSourcePrefetching {}
 	
 	[Protocol]
-	[iOS (10, 0)]
+	[Introduced (PlatformName.iOS, 10, 0)]
 	interface UICollectionViewDataSourcePrefetching {
 		
 		[Abstract]
@@ -4291,7 +4291,7 @@ namespace XamCore.UIKit {
 	//
 	// Combined version of UICollectionViewDataSource, UICollectionViewDelegate
 	//
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[Model]
 	[BaseType (typeof (NSObject))]
 	[Protocol (IsInformal = true)]
@@ -4299,7 +4299,7 @@ namespace XamCore.UIKit {
 		
 	}
 	
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -4318,26 +4318,26 @@ namespace XamCore.UIKit {
 		[Export ("collectionView:viewForSupplementaryElementOfKind:atIndexPath:")]
 		UICollectionReusableView GetViewForSupplementaryElement (UICollectionView collectionView, NSString elementKind, NSIndexPath indexPath);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("collectionView:canMoveItemAtIndexPath:")]
 		bool CanMoveItem (UICollectionView collectionView, NSIndexPath indexPath);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("collectionView:moveItemAtIndexPath:toIndexPath:")]
 		void MoveItem (UICollectionView collectionView, NSIndexPath sourceIndexPath, NSIndexPath destinationIndexPath);
 
-		[iOS (10,3), TV (10,2)]
+		[Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.TvOS, 10, 2)]
 		[return: NullAllowed]
 		[Export ("indexTitlesForCollectionView:")]
 		string [] GetIndexTitles (UICollectionView collectionView);
 
-		[iOS (10,3), TV (10,2)]
+		[Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.TvOS, 10, 2)]
 		[return: NullAllowed]
 		[Export ("collectionView:indexPathForIndexTitle:atIndex:")]
 		NSIndexPath GetIndexPath (UICollectionView collectionView, string title, nint atIndex);
 	}
 
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[Model]
 	[Protocol]
 #if XAMCORE_3_0
@@ -4370,11 +4370,11 @@ namespace XamCore.UIKit {
 		[Export ("collectionView:didDeselectItemAtIndexPath:")]
 		void ItemDeselected (UICollectionView collectionView, NSIndexPath indexPath);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("collectionView:willDisplayCell:forItemAtIndexPath:")]
 		void WillDisplayCell (UICollectionView collectionView, UICollectionViewCell cell, NSIndexPath indexPath);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("collectionView:willDisplaySupplementaryView:forElementKind:atIndexPath:")]
 		void WillDisplaySupplementaryView (UICollectionView collectionView, UICollectionReusableView view, string elementKind, NSIndexPath indexPath);
 
@@ -4393,41 +4393,41 @@ namespace XamCore.UIKit {
 		[Export ("collectionView:performAction:forItemAtIndexPath:withSender:")]
 		void PerformAction (UICollectionView collectionView, Selector action, NSIndexPath indexPath, NSObject sender);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("collectionView:transitionLayoutForOldLayout:newLayout:")]
 		UICollectionViewTransitionLayout TransitionLayout (UICollectionView collectionView, UICollectionViewLayout fromLayout, UICollectionViewLayout toLayout);
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("collectionView:targetIndexPathForMoveFromItemAtIndexPath:toProposedIndexPath:")]
 		NSIndexPath GetTargetIndexPathForMove (UICollectionView collectionView, NSIndexPath originalIndexPath, NSIndexPath proposedIndexPath);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("collectionView:targetContentOffsetForProposedContentOffset:")]
 		CGPoint GetTargetContentOffset (UICollectionView collectionView, CGPoint proposedContentOffset);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("collectionView:canFocusItemAtIndexPath:")]
 		bool CanFocusItem (UICollectionView collectionView, NSIndexPath indexPath);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("collectionView:shouldUpdateFocusInContext:")]
 		bool ShouldUpdateFocus (UICollectionView collectionView, UICollectionViewFocusUpdateContext context);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("collectionView:didUpdateFocusInContext:withAnimationCoordinator:")]
 		void DidUpdateFocus (UICollectionView collectionView, UICollectionViewFocusUpdateContext context, UIFocusAnimationCoordinator coordinator);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("indexPathForPreferredFocusedViewInCollectionView:")]
 		[return: NullAllowed]
 		NSIndexPath GetIndexPathForPreferredFocusedView (UICollectionView collectionView);
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("collectionView:shouldSpringLoadItemAtIndexPath:withContext:")]
 		bool ShouldSpringLoadItem (UICollectionView collectionView, NSIndexPath indexPath, IUISpringLoadedInteractionContext context);
 	}
 
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (UICollectionReusableView))]
 	interface UICollectionViewCell {
 		[Export ("initWithFrame:")]
@@ -4450,13 +4450,13 @@ namespace XamCore.UIKit {
 		[Export ("selectedBackgroundView", ArgumentSemantic.Retain)]
 		UIView SelectedBackgroundView { get; set;  }
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("dragStateDidChange:")]
 		void DragStateDidChange (UICollectionViewCellDragState dragState);
 	}
 
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (UIViewController))]
 	interface UICollectionViewController : UICollectionViewSource, NSCoding {
 		[DesignatedInitializer]
@@ -4476,20 +4476,20 @@ namespace XamCore.UIKit {
 		[Export ("initWithCollectionViewLayout:")]
 		IntPtr Constructor (UICollectionViewLayout layout);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("collectionViewLayout")]
 		UICollectionViewLayout Layout { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("useLayoutToLayoutNavigationTransitions", ArgumentSemantic.Assign)]
 		bool UseLayoutToLayoutNavigationTransitions { get; set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("installsStandardGestureForInteractiveMovement")]
 		bool InstallsStandardGestureForInteractiveMovement { get; set; }		
 	}
 	
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (UICollectionViewDelegate))]
 	[Model]
 	[Protocol]
@@ -4513,7 +4513,7 @@ namespace XamCore.UIKit {
 		CGSize GetReferenceSizeForFooter (UICollectionView collectionView, UICollectionViewLayout layout, nint section);
 	}
 
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (UICollectionViewLayout))]
 	interface UICollectionViewFlowLayout {
 		[Export ("minimumLineSpacing")]
@@ -4526,7 +4526,7 @@ namespace XamCore.UIKit {
 		CGSize ItemSize { get; set;  }
 
 		// Default value of this property is CGSize.Zero, setting to any other value causes each cell to be queried
-		[iOS (8,0)] 
+		[Introduced (PlatformName.iOS, 8, 0)] 
 		[Export ("estimatedItemSize")]
 		CGSize EstimatedItemSize { get; set; }
 
@@ -4542,25 +4542,25 @@ namespace XamCore.UIKit {
 		[Export ("sectionInset")]
 		UIEdgeInsets SectionInset { get; set;  }
 
-		[NoWatch]
-		[iOS (11,0), TV (11,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("sectionInsetReference", ArgumentSemantic.Assign)]
 		UICollectionViewFlowLayoutSectionInsetReference SectionInsetReference { get; set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("sectionHeadersPinToVisibleBounds")]
 		bool SectionHeadersPinToVisibleBounds { get; set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("sectionFootersPinToVisibleBounds")]
 		bool SectionFootersPinToVisibleBounds { get; set; }
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("UICollectionViewFlowLayoutAutomaticSize")]
 		CGSize AutomaticSize { get; }
 	}
 
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (NSObject))]
 	interface UICollectionViewLayout : NSCoding {
 		[Export ("collectionView")]
@@ -4606,11 +4606,11 @@ namespace XamCore.UIKit {
 		[Export ("prepareForAnimatedBoundsChange:")]
 		void PrepareForAnimatedBoundsChange (CGRect oldBounds);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("invalidationContextForPreferredLayoutAttributes:withOriginalAttributes:")]
 		UICollectionViewLayoutInvalidationContext GetInvalidationContext (UICollectionViewLayoutAttributes preferredAttributes, UICollectionViewLayoutAttributes originalAttributes);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("shouldInvalidateLayoutForPreferredLayoutAttributes:withOriginalAttributes:")]
 		bool ShouldInvalidateLayout (UICollectionViewLayoutAttributes preferredAttributes, UICollectionViewLayoutAttributes originalAttributes);
 
@@ -4648,78 +4648,78 @@ namespace XamCore.UIKit {
 		[Static, Export ("layoutAttributesClass")]
 		Class LayoutAttributesClass { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Static, Export ("invalidationContextClass")]
 		Class InvalidationContextClass ();
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("invalidationContextForBoundsChange:")]
 		UICollectionViewLayoutInvalidationContext GetInvalidationContextForBoundsChange (CGRect newBounds);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("indexPathsToDeleteForSupplementaryViewOfKind:")]
 		NSIndexPath [] GetIndexPathsToDeleteForSupplementaryView (NSString kind);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("indexPathsToDeleteForDecorationViewOfKind:")]
 		NSIndexPath [] GetIndexPathsToDeleteForDecorationViewOfKind (NSString kind);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("indexPathsToInsertForSupplementaryViewOfKind:")]
 		NSIndexPath [] GetIndexPathsToInsertForSupplementaryView (NSString kind);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("indexPathsToInsertForDecorationViewOfKind:")]
 		NSIndexPath [] GetIndexPathsToInsertForDecorationView (NSString kind);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("invalidateLayoutWithContext:")]
 		void InvalidateLayout (UICollectionViewLayoutInvalidationContext context);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("finalizeLayoutTransition")]
 		void FinalizeLayoutTransition ();
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("prepareForTransitionFromLayout:")]
 		void PrepareForTransitionFromLayout (UICollectionViewLayout oldLayout);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("prepareForTransitionToLayout:")]
 		void PrepareForTransitionToLayout (UICollectionViewLayout newLayout);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("targetContentOffsetForProposedContentOffset:")]
 		CGPoint TargetContentOffsetForProposedContentOffset (CGPoint proposedContentOffset);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("targetIndexPathForInteractivelyMovingItem:withPosition:")]
 		NSIndexPath GetTargetIndexPathForInteractivelyMovingItem (NSIndexPath previousIndexPath, CGPoint position);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("layoutAttributesForInteractivelyMovingItemAtIndexPath:withTargetPosition:")]
 		UICollectionViewLayoutAttributes GetLayoutAttributesForInteractivelyMovingItem (NSIndexPath indexPath, CGPoint targetPosition);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("invalidationContextForInteractivelyMovingItems:withTargetPosition:previousIndexPaths:previousPosition:")]
 		UICollectionViewLayoutInvalidationContext GetInvalidationContextForInteractivelyMovingItems (NSIndexPath[] targetIndexPaths, CGPoint targetPosition, NSIndexPath[] previousIndexPaths, CGPoint previousPosition);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("invalidationContextForEndingInteractiveMovementOfItemsToFinalIndexPaths:previousIndexPaths:movementCancelled:")]
 		UICollectionViewLayoutInvalidationContext GetInvalidationContextForEndingInteractiveMovementOfItems (NSIndexPath[] finalIndexPaths, NSIndexPath[] previousIndexPaths, bool movementCancelled);
 		
-		[NoWatch]
-		[iOS (11,0), TV (11,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("developmentLayoutDirection")]
 		UIUserInterfaceLayoutDirection DevelopmentLayoutDirection { get; }
 
-		[NoWatch]
-		[iOS (11,0), TV (11,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("flipsHorizontallyInOppositeLayoutDirection")]
 		bool FlipsHorizontallyInOppositeLayoutDirection { get; }
 	}
 	
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (NSObject))]
 	interface UICollectionViewLayoutAttributes : UIDynamicItem, NSCopying {
 		[Export ("frame")]
@@ -4764,17 +4764,17 @@ namespace XamCore.UIKit {
 		[Export ("layoutAttributesForSupplementaryViewOfKind:withIndexPath:")]
 		UICollectionViewLayoutAttributes CreateForSupplementaryView (NSString kind, NSIndexPath indexPath);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("bounds")]
 		new CGRect Bounds { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("transform")]
 		new CGAffineTransform Transform { get; set; }
 		
 	}
 
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	interface UICollectionViewLayoutInvalidationContext {
 		[Export ("invalidateDataSourceCounts")]
@@ -4783,52 +4783,52 @@ namespace XamCore.UIKit {
 		[Export ("invalidateEverything")]
 		bool InvalidateEverything { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("invalidatedItemIndexPaths")]
 		NSIndexPath [] InvalidatedItemIndexPaths { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("invalidatedSupplementaryIndexPaths")]
 		NSDictionary InvalidatedSupplementaryIndexPaths { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("invalidatedDecorationIndexPaths")]
 		NSDictionary InvalidatedDecorationIndexPaths { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("contentOffsetAdjustment")]
 		CGPoint ContentOffsetAdjustment { get; set; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("contentSizeAdjustment")]
 		CGSize ContentSizeAdjustment { get; set; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("invalidateItemsAtIndexPaths:")]
 		void InvalidateItems (NSIndexPath [] indexPaths);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("invalidateSupplementaryElementsOfKind:atIndexPaths:")]
 		void InvalidateSupplementaryElements (NSString elementKind, NSIndexPath [] indexPaths);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("invalidateDecorationElementsOfKind:atIndexPaths:")]
 		void InvalidateDecorationElements (NSString elementKind, NSIndexPath [] indexPaths);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[NullAllowed, Export ("previousIndexPathsForInteractivelyMovingItems")]
 		NSIndexPath[] PreviousIndexPathsForInteractivelyMovingItems { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[NullAllowed, Export ("targetIndexPathsForInteractivelyMovingItems")]
 		NSIndexPath[] TargetIndexPathsForInteractivelyMovingItems { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("interactiveMovementTarget")]
 		CGPoint InteractiveMovementTarget { get; }
 	}
 	
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (UICollectionViewLayoutInvalidationContext))]
 	partial interface UICollectionViewFlowLayoutInvalidationContext {
 		[Export ("invalidateFlowLayoutDelegateMetrics")]
@@ -4838,7 +4838,7 @@ namespace XamCore.UIKit {
 		bool InvalidateFlowLayoutAttributes { get; set; }
 	}
 	
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (UICollectionViewLayout))]
 	[DisableDefaultCtor] // NSInternalInconsistencyException Reason: -[UICollectionViewTransitionLayout init] is not a valid initializer - use -initWithCurrentLayout:nextLayout: instead
 	interface UICollectionViewTransitionLayout : NSCoding {
@@ -4864,7 +4864,7 @@ namespace XamCore.UIKit {
 		nfloat TransitionProgress { get; set; }
 	}
 	
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (NSObject))]
 	interface UICollectionViewUpdateItem {
 		[NullAllowed]
@@ -4879,7 +4879,7 @@ namespace XamCore.UIKit {
 		UICollectionUpdateAction UpdateAction { get;  }
 	}
 
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[Static]
 	interface UICollectionElementKindSectionKey
 	{
@@ -4913,21 +4913,21 @@ namespace XamCore.UIKit {
 		[Export ("colorWithCGColor:")][Static]
 		UIColor FromCGColor (CGColor color);
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Static]
 		[Export ("colorNamed:")]
 		[return: NullAllowed]
 		UIColor FromName (string name);
 
 #if !WATCH
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Static]
 		[Export ("colorNamed:inBundle:compatibleWithTraitCollection:")]
 		[return: NullAllowed]
 		UIColor FromName (string name, [NullAllowed] NSBundle inBundle, [NullAllowed] UITraitCollection compatibleWithTraitCollection);
 #endif
 	
-		[iOS (10,0), TV (10,0), Watch (3,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
 		[Static]
 		[Export ("colorWithDisplayP3Red:green:blue:alpha:")]
 		UIColor FromDisplayP3 (nfloat red, nfloat green, nfloat blue, nfloat alpha);
@@ -5015,48 +5015,48 @@ namespace XamCore.UIKit {
 		[Export ("CGColor")]
 		CGColor CGColor { get; }
 
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Export ("CIColor")]
 		CIColor CIColor { get; }
 
-		[NoWatch][NoTV]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 		[Export ("lightTextColor")]
 		[Static]
 		UIColor LightTextColor { get; }
 
-		[NoWatch][NoTV]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 		[Export ("darkTextColor")]
 		[Static]
 		UIColor DarkTextColor { get; }
 
-		[NoWatch][NoTV]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 		[Export ("groupTableViewBackgroundColor")][Static]
 		UIColor GroupTableViewBackgroundColor { get; }
 
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_7_0)]
-		[NoWatch][NoTV]
+		[Introduced (PlatformName.iOS, 2, 0), Deprecated (PlatformName.iOS, 7, 0)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 		[Export ("viewFlipsideBackgroundColor")][Static]
 		UIColor ViewFlipsideBackgroundColor { get; }
 
-		[Since (3,2)]
-		[Availability (Introduced = Platform.iOS_3_2, Deprecated = Platform.iOS_7_0)]
-		[NoWatch][NoTV]
+		[Introduced (PlatformName.iOS, 3, 2)]
+		[Introduced (PlatformName.iOS, 3, 2), Deprecated (PlatformName.iOS, 7, 0)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 		[Export ("scrollViewTexturedBackgroundColor")][Static]
 		UIColor ScrollViewTexturedBackgroundColor { get; }
 
-		[Since (5,0)]
-		[Availability (Introduced = Platform.iOS_5_0, Deprecated = Platform.iOS_7_0)]
-		[NoWatch][NoTV]
+		[Introduced (PlatformName.iOS, 5, 0)]
+		[Introduced (PlatformName.iOS, 5, 0), Deprecated (PlatformName.iOS, 7, 0)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 		[Static, Export ("underPageBackgroundColor")]
 		UIColor UnderPageBackgroundColor { get; }
 
-		[NoWatch]
-		[Since (5,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Static, Export ("colorWithCIColor:")]
 		UIColor FromCIColor (CIColor color);
 
-		[NoWatch]
-		[Since (5,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("initWithCIColor:")]
 		IntPtr Constructor (CIColor ciColor);
 
@@ -5074,7 +5074,7 @@ namespace XamCore.UIKit {
 
 		// From the NSItemProviderReading protocol, a static method.
 		[Static]
-		[iOS (11,0), NoWatch, NoTV]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
 		[Export ("readableTypeIdentifiersForItemProvider", ArgumentSemantic.Copy)]
 #if !WATCH && !TVOS
 		new
@@ -5082,7 +5082,7 @@ namespace XamCore.UIKit {
 		string[] ReadableTypeIdentifiers { get; }
 
 		// From the NSItemProviderReading protocol, a static method.
-		[iOS (11,0), NoWatch, NoTV]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
 		[Static]
 		[Export ("objectWithItemProviderData:typeIdentifier:error:")]
 		[return: NullAllowed]
@@ -5093,7 +5093,7 @@ namespace XamCore.UIKit {
 
 		// From the NSItemProviderWriting protocol, a static method.
 		// NSItemProviderWriting doesn't seem to be implemented for tvOS/watchOS, even though the headers say otherwise.
-		[NoWatch, NoTV, iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 		[Static]
 		[Export ("writableTypeIdentifiersForItemProvider", ArgumentSemantic.Copy)]
 #if !WATCH && !TVOS
@@ -5103,7 +5103,7 @@ namespace XamCore.UIKit {
 	}
 
 #if !WATCH
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (UIDynamicBehavior),
 		   Delegates=new string [] { "CollisionDelegate" },
 		   Events=new Type [] { typeof (UICollisionBehaviorDelegate)})]
@@ -5158,7 +5158,7 @@ namespace XamCore.UIKit {
 		void RemoveAllBoundaries ();
 	}
 	
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	[Protocol]
 	[Model]
@@ -5176,8 +5176,8 @@ namespace XamCore.UIKit {
 		void EndedBoundaryContact (UICollisionBehavior behavior, IUIDynamicItem dynamicItem, [NullAllowed] NSObject boundaryIdentifier);
 	}
 
-	[NoTV]
-	[Since (5,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[BaseType (typeof (NSObject))]
 	// Objective-C exception thrown.  Name: NSInternalInconsistencyException Reason: do not call -[UIDocument init] - the designated initializer is -[UIDocument initWithFileURL:
 	[DisableDefaultCtor]
@@ -5286,19 +5286,19 @@ namespace XamCore.UIKit {
 		NSString StateChangedNotification { get; }
 
 		// ActivityContinuation Category
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("userActivity", ArgumentSemantic.Retain)]
 		NSUserActivity UserActivity { get; set; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("updateUserActivityState:")]
 		void UpdateUserActivityState (NSUserActivity userActivity);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("restoreUserActivityState:")]
 		void RestoreUserActivityState (NSUserActivity userActivity);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("NSUserActivityDocumentURLKey")]
 		NSString UserActivityDocumentUrlKey { get; }
 
@@ -5321,7 +5321,7 @@ namespace XamCore.UIKit {
 		void DidPause (UIDynamicAnimator animator);
 	}
 
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	interface UIDynamicAnimator {
 		[DesignatedInitializer]
@@ -5382,7 +5382,7 @@ namespace XamCore.UIKit {
 
 	}
 
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (UIDynamicBehavior))]
 	interface UIDynamicItemBehavior {
 		[DesignatedInitializer]
@@ -5430,16 +5430,16 @@ namespace XamCore.UIKit {
 		[Export ("angularVelocityForItem:")]
 		nfloat GetAngularVelocityForItem (IUIDynamicItem dynamicItem);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("charge", ArgumentSemantic.Assign)]
 		nfloat Charge { get; set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("anchored")]
 		bool Anchored { [Bind ("isAnchored")] get; set; }
 	}
 
-	[iOS (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	[Protocol]
 	[Model]
@@ -5456,17 +5456,17 @@ namespace XamCore.UIKit {
 		[Export ("transform")]
 		CGAffineTransform Transform { get; set;  }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("collisionBoundsType")]
 		UIDynamicItemCollisionBoundsType CollisionBoundsType { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("collisionBoundingPath")]
 		UIBezierPath CollisionBoundingPath { get; }		
 	}
 
-	[iOS (9,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[BaseType (typeof (NSObject))]
 	interface UIDynamicItemGroup : UIDynamicItem
 	{
 		[Export ("initWithItems:")]
@@ -5479,7 +5479,7 @@ namespace XamCore.UIKit {
 
 	interface IUIDynamicItem {}
 
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	interface UIDynamicBehavior {
 		[Export ("childBehaviors", ArgumentSemantic.Copy)]
@@ -5504,8 +5504,8 @@ namespace XamCore.UIKit {
 		void WillMoveToAnimator ([NullAllowed] UIDynamicAnimator targetAnimator);
 	}
 
-	[iOS (9,0)]
-	[BaseType (typeof(UIDynamicBehavior))]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[BaseType (typeof (UIDynamicBehavior))]
 	[DisableDefaultCtor]
 	interface UIFieldBehavior
 	{
@@ -5591,7 +5591,7 @@ namespace XamCore.UIKit {
 #endif // !WATCH
 	
 	[Static][Internal]
-	[iOS (8,2)]
+	[Introduced (PlatformName.iOS, 8, 2)]
 	interface UIFontWeightConstants {
 		[Field ("UIFontWeightUltraLight")]
 		nfloat UltraLight { get; }
@@ -5622,13 +5622,13 @@ namespace XamCore.UIKit {
 		[Internal] // bug 25511
 		IntPtr _SystemFontOfSize (nfloat size);
 
-		[iOS (8,2)]
+		[Introduced (PlatformName.iOS, 8, 2)]
 		[EditorBrowsable (EditorBrowsableState.Advanced)] // we prefer to show the one using the enum
 		[Internal] // bug 25511
 		[Static][Export ("systemFontOfSize:weight:")]
 		IntPtr _SystemFontOfSize (nfloat size, nfloat weight);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[EditorBrowsable (EditorBrowsableState.Advanced)] // we prefer to show the one using the enum
 		[Internal] // bug 25511
 		[Static][Export ("monospacedDigitSystemFontOfSize:weight:")]
@@ -5646,19 +5646,19 @@ namespace XamCore.UIKit {
 		[Internal] // bug 25511
 		IntPtr _FromName (string name, nfloat size);
 
-		[NoWatch][NoTV]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 		[Static] [Export ("labelFontSize")]
 		nfloat LabelFontSize { get; }
 
-		[NoWatch][NoTV]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 		[Static] [Export ("buttonFontSize")]
 		nfloat ButtonFontSize { get; }
 
-		[NoWatch][NoTV]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 		[Static] [Export ("smallSystemFontSize")]
 		nfloat SmallSystemFontSize { get; }
 
-		[NoWatch][NoTV]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 		[Static] [Export ("systemFontSize")]
 		nfloat SystemFontSize { get; }
 			
@@ -5690,7 +5690,7 @@ namespace XamCore.UIKit {
 		[Export ("xHeight")]
 		nfloat xHeight { get; }
 
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("lineHeight")]
 		nfloat LineHeight { get; }
 
@@ -5700,23 +5700,23 @@ namespace XamCore.UIKit {
 		[Static] [Export ("fontNamesForFamilyName:")]
 		string [] FontNamesForFamilyName (string familyName);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("fontDescriptor")]
 		UIFontDescriptor FontDescriptor { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Static, Export ("fontWithDescriptor:size:")]
 		[Internal] // bug 25511
 		IntPtr _FromDescriptor (UIFontDescriptor descriptor, nfloat pointSize);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Static, Export ("preferredFontForTextStyle:")]
 		[Internal] // bug 25511
 		IntPtr _GetPreferredFontForTextStyle (NSString uiFontTextStyle);
 
 		// FIXME [Watch (3,0)] the API is present but UITraitCollection is not exposed / rdar 27785753
 #if !WATCH
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Static]
 		[Export ("preferredFontForTextStyle:compatibleWithTraitCollection:")]
 		[Internal]
@@ -5725,53 +5725,53 @@ namespace XamCore.UIKit {
 	}
 
 	public enum UIFontTextStyle {
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("UIFontTextStyleHeadline")]
 		Headline,
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("UIFontTextStyleBody")]
 		Body,
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("UIFontTextStyleSubheadline")]
 		Subheadline,
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("UIFontTextStyleFootnote")]
 		Footnote,
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("UIFontTextStyleCaption1")]
 		Caption1,
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("UIFontTextStyleCaption2")]
 		Caption2,
 
-		[Since (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("UIFontTextStyleTitle1")]
 		Title1,
 		
-		[Since (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("UIFontTextStyleTitle2")]
 		Title2,
 		
-		[Since (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("UIFontTextStyleTitle3")]
 		Title3,
 		
-		[Since (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("UIFontTextStyleCallout")]
 		Callout,
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Field ("UIFontTextStyleLargeTitle")]
 		LargeTitle,
 	}
 
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	[ThreadSafe]
 	partial interface UIFontDescriptor : NSSecureCoding, NSCopying {
@@ -5821,12 +5821,12 @@ namespace XamCore.UIKit {
 
 		// FIXME [Watch (3,0)] the API is present but UITraitCollection is not exposed / rdar #27785753
 #if !WATCH
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Static]
 		[Export ("preferredFontDescriptorWithTextStyle:compatibleWithTraitCollection:")]
 		UIFontDescriptor GetPreferredDescriptorForTextStyle (NSString uiFontTextStyle, [NullAllowed] UITraitCollection traitCollection);
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Static]
 		[Wrap ("GetPreferredDescriptorForTextStyle (uiFontTextStyle.GetConstant (), traitCollection)")]
 		UIFontDescriptor GetPreferredDescriptorForTextStyle (UIFontTextStyle uiFontTextStyle, [NullAllowed] UITraitCollection traitCollection);
@@ -5929,7 +5929,7 @@ namespace XamCore.UIKit {
 	}
 
 #if !WATCH
-	[Since (3,2)]
+	[Introduced (PlatformName.iOS, 3, 2)]
 	[BaseType (typeof(NSObject), Delegates=new string [] {"WeakDelegate"}, Events=new Type[] {typeof (UIGestureRecognizerDelegate)})]
 	interface UIGestureRecognizer {
 		[DesignatedInitializer]
@@ -5993,7 +5993,7 @@ namespace XamCore.UIKit {
 		[Export ("requireGestureRecognizerToFail:")]
 		void RequireGestureRecognizerToFail (UIGestureRecognizer otherGestureRecognizer);
 
-		[TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("name")]
 		string Name { get; set; }
 
@@ -6005,7 +6005,7 @@ namespace XamCore.UIKit {
 		[Export ("ignoreTouch:forEvent:")]
 		void IgnoreTouch (UITouch touch, UIEvent forEvent);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Sealed] // Docs: This method is intended to be called, not overridden.
 		[Export ("ignorePress:forEvent:")]
 		void IgnorePress (UIPress button, UIPressesEvent @event);
@@ -6031,53 +6031,53 @@ namespace XamCore.UIKit {
 		[Export ("touchesCancelled:withEvent:")]
 		void TouchesCancelled (NSSet touches, UIEvent evt);
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("shouldRequireFailureOfGestureRecognizer:")]
 		bool ShouldRequireFailureOfGestureRecognizer (UIGestureRecognizer otherGestureRecognizer);
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("shouldBeRequiredToFailByGestureRecognizer:")]
 		bool ShouldBeRequiredToFailByGestureRecognizer (UIGestureRecognizer otherGestureRecognizer);
 
-		[iOS (9,1)]
+		[Introduced (PlatformName.iOS, 9, 1)]
 		[Export ("touchesEstimatedPropertiesUpdated:")]
 		void TouchesEstimatedPropertiesUpdated (NSSet touches);
 
 		// FIXME: likely an array of UITouchType
-		[iOS (9,0)] // added in Xcode 7.1 / iOS 9.1 SDK
+		[Introduced (PlatformName.iOS, 9, 0)] // added in Xcode 7.1 / iOS 9.1 SDK
 		[Export ("allowedTouchTypes", ArgumentSemantic.Copy)]
 		NSNumber[] AllowedTouchTypes { get; set; }
 
 		// FIXME: likely an array of UIPressType
-		[iOS (9,0)] // added in Xcode 7.1 / iOS 9.1 SDK
+		[Introduced (PlatformName.iOS, 9, 0)] // added in Xcode 7.1 / iOS 9.1 SDK
 		[Export ("allowedPressTypes", ArgumentSemantic.Copy)]
 		NSNumber[] AllowedPressTypes { get; set; }
 
-		[iOS (9,2)]
-		[TV (9,1)]
+		[Introduced (PlatformName.iOS, 9, 2)]
+		[Introduced (PlatformName.TvOS, 9, 1)]
 		[Export ("requiresExclusiveTouchType")]
 		bool RequiresExclusiveTouchType { get; set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("pressesBegan:withEvent:")]
 		void PressesBegan (NSSet<UIPress> presses, UIPressesEvent evt);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("pressesChanged:withEvent:")]
 		void PressesChanged (NSSet<UIPress> presses, UIPressesEvent evt);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("pressesEnded:withEvent:")]
 		void PressesEnded (NSSet<UIPress> presses, UIPressesEvent evt);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("pressesCancelled:withEvent:")]
 		void PressesCancelled (NSSet<UIPress> presses, UIPressesEvent evt);
 	}
 
-	[NoWatch]
-	[BaseType (typeof(NSObject))]
-	[Model][Since (3,2)]
+	[Unavailable (PlatformName.WatchOS)]
+	[BaseType (typeof (NSObject))]
+	[Model][Introduced (PlatformName.iOS, 3, 2)]
 	[Protocol]
 	interface UIGestureRecognizerDelegate {
 		[Export ("gestureRecognizer:shouldReceiveTouch:"), DefaultValue (true), DelegateName ("UITouchEventArgs")]
@@ -6089,21 +6089,21 @@ namespace XamCore.UIKit {
 		[Export ("gestureRecognizerShouldBegin:"), DelegateName ("UIGestureProbe"), DefaultValue (true)]
 		bool ShouldBegin (UIGestureRecognizer recognizer);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:"), DelegateName ("UIGesturesProbe"), DefaultValue (false)]
 		bool ShouldBeRequiredToFailBy (UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("gestureRecognizer:shouldRequireFailureOfGestureRecognizer:"), DelegateName ("UIGesturesProbe"), DefaultValue (false)]
 		bool ShouldRequireFailureOf (UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("gestureRecognizer:shouldReceivePress:"), DelegateName ("UIGesturesPress"), DefaultValue (false)]
 		bool ShouldReceivePress (UIGestureRecognizer gestureRecognizer, UIPress press);
 	}
 
-	[iOS (10,0), TV (10,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
+	[BaseType (typeof (NSObject))]
 	interface UIGraphicsRendererFormat : NSCopying
 	{
 		[Deprecated (PlatformName.TvOS, 11, 0, message: "Use 'PreferredFormat' instead.")]
@@ -6114,14 +6114,14 @@ namespace XamCore.UIKit {
 		[Export ("bounds")]
 		CGRect Bounds { get; }
 
-		[TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Static]
 		[Export ("preferredFormat")]
 		UIGraphicsRendererFormat PreferredFormat { get; }
 	}
 
-	[iOS (10,0), TV (10,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
+	[BaseType (typeof (NSObject))]
 	interface UIGraphicsRendererContext
 	{
 		[Export ("CGContext")]
@@ -6146,8 +6146,8 @@ namespace XamCore.UIKit {
 		void ClipToRect (CGRect rect);
 	}
 
-	[iOS (10,0), TV (10,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
+	[BaseType (typeof (NSObject))]
 	[Abstract] // quote form headers "An abstract base class for creating graphics renderers. Do not use this class directly."
 	interface UIGraphicsRenderer
 	{
@@ -6186,8 +6186,8 @@ namespace XamCore.UIKit {
 	// Not worth it, Action<UIGraphicsImageRendererContext> conveys more data
 	//delegate void UIGraphicsImageDrawingActions (UIGraphicsImageRendererContext context);
 
-	[iOS (10,0), TV (10,0)]
-	[BaseType (typeof(UIGraphicsRendererFormat))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
+	[BaseType (typeof (UIGraphicsRendererFormat))]
 	interface UIGraphicsImageRendererFormat
 	{
 		[Export ("scale")]
@@ -6204,22 +6204,22 @@ namespace XamCore.UIKit {
 		[Export ("defaultFormat")]
 		UIGraphicsImageRendererFormat DefaultFormat { get; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Static]
 		[Export ("formatForTraitCollection:")]
 		UIGraphicsImageRendererFormat GetFormat (UITraitCollection traitCollection);
 	}
 
-	[iOS (10,0), TV (10,0)]
-	[BaseType (typeof(UIGraphicsRendererContext))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
+	[BaseType (typeof (UIGraphicsRendererContext))]
 	interface UIGraphicsImageRendererContext
 	{
 		[Export ("currentImage")]
 		UIImage CurrentImage { get; }
 	}
 
-	[iOS (10,0), TV (10,0)]
-	[BaseType (typeof(UIGraphicsRenderer))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
+	[BaseType (typeof (UIGraphicsRenderer))]
 	interface UIGraphicsImageRenderer
 	{
 		[Export ("initWithSize:")]
@@ -6247,8 +6247,8 @@ namespace XamCore.UIKit {
 	//delegate void UIGraphicsPdfDrawingActions (UIGraphicsPdfRendererContext context);
 	// Action<UIGraphicsPdfRendererContext>
 
-	[iOS (10,0), TV (10,0)]
-	[BaseType (typeof (UIGraphicsRendererFormat), Name="UIGraphicsPDFRendererFormat")]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
+	[BaseType (typeof (UIGraphicsRendererFormat), Name = "UIGraphicsPDFRendererFormat")]
 	interface UIGraphicsPdfRendererFormat
 	{
 		[Export ("documentInfo", ArgumentSemantic.Copy)]
@@ -6261,8 +6261,8 @@ namespace XamCore.UIKit {
 		UIGraphicsPdfRendererFormat DefaultFormat { get; }
 	}
 
-	[iOS (10,0), TV (10,0)]
-	[BaseType (typeof (UIGraphicsRendererContext), Name="UIGraphicsPDFRendererContext")]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
+	[BaseType (typeof (UIGraphicsRendererContext), Name = "UIGraphicsPDFRendererContext")]
 	interface UIGraphicsPdfRendererContext
 	{
 		[Export ("pdfContextBounds")]
@@ -6285,7 +6285,7 @@ namespace XamCore.UIKit {
 	}
 
 
-	[iOS (10,0), TV (10,0)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 	[BaseType (typeof (UIGraphicsRenderer), Name = "UIGraphicsPDFRenderer")]
 	interface UIGraphicsPdfRenderer
 	{
@@ -6301,7 +6301,7 @@ namespace XamCore.UIKit {
 	}
 
 	[BaseType (typeof (UIDynamicBehavior))]
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	interface UIGravityBehavior {
 		[DesignatedInitializer]
 		[Export ("initWithItems:")]
@@ -6366,23 +6366,23 @@ namespace XamCore.UIKit {
 		bool SecureTextEntry { [Bind ("isSecureTextEntry")] get; set;  }
 
 		[Abstract]
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("spellCheckingType")]
 		UITextSpellCheckingType SpellCheckingType { get; set; }
 
-		[iOS (10, 0)] // Did not add abstract here breaking change, anyways this is optional in objc
+		[Introduced (PlatformName.iOS, 10, 0)] // Did not add abstract here breaking change, anyways this is optional in objc
 		[Export ("textContentType")]
 		NSString TextContentType { get; set; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("smartQuotesType", ArgumentSemantic.Assign)]
 		UITextSmartQuotesType SmartQuotesType { get; set; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("smartDashesType", ArgumentSemantic.Assign)]
 		UITextSmartDashesType SmartDashesType { get; set; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("smartInsertDeleteType", ArgumentSemantic.Assign)]
 		UITextSmartInsertDeleteType SmartInsertDeleteType { get; set; }
 	}
@@ -6391,51 +6391,51 @@ namespace XamCore.UIKit {
 		[Export ("UIKeyboardFrameBeginUserInfoKey")]
 		CGRect FrameBegin { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("UIKeyboardFrameEndUserInfoKey")]
 		CGRect FrameEnd { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("UIKeyboardAnimationDurationUserInfoKey")]
 		double AnimationDuration { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("UIKeyboardAnimationCurveUserInfoKey")]
 		UIViewAnimationCurve AnimationCurve { get; }
 	}
 	
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[Static]
 	interface UIKeyboard {
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Field ("UIKeyboardWillShowNotification")]
 		[Notification (typeof (UIKeyboardEventArgs))]
 		NSString WillShowNotification { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Field ("UIKeyboardDidShowNotification")]
 		[Notification (typeof (UIKeyboardEventArgs))]
 		NSString DidShowNotification { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Field ("UIKeyboardWillHideNotification")]
 		[Notification (typeof (UIKeyboardEventArgs))]
 		NSString WillHideNotification { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Field ("UIKeyboardDidHideNotification")]
 		[Notification (typeof (UIKeyboardEventArgs))]
 		NSString DidHideNotification { get; }
 
-		[NoTV]
-		[Since (5,0)]
-		[Field("UIKeyboardWillChangeFrameNotification")]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
+		[Field ("UIKeyboardWillChangeFrameNotification")]
 		[Notification (typeof (UIKeyboardEventArgs))]
 		NSString WillChangeFrameNotification { get; }
 		
-		[NoTV]
-		[Since (5,0)]
-		[Field("UIKeyboardDidChangeFrameNotification")]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
+		[Field ("UIKeyboardDidChangeFrameNotification")]
 		[Notification (typeof (UIKeyboardEventArgs))]
 		NSString DidChangeFrameNotification { get; }
 
@@ -6444,51 +6444,51 @@ namespace XamCore.UIKit {
 		// Deprecated methods
 		//
 
-		[NoTV]
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_3_2)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 2, 0), Deprecated (PlatformName.iOS, 3, 2)]
 		[Field ("UIKeyboardCenterBeginUserInfoKey")]
 		NSString CenterBeginUserInfoKey { get; }
 
-		[NoTV]
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_3_2)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 2, 0), Deprecated (PlatformName.iOS, 3, 2)]
 		[Field ("UIKeyboardCenterEndUserInfoKey")]
 		NSString CenterEndUserInfoKey { get; }
 
-		[NoTV]
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_3_2)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 2, 0), Deprecated (PlatformName.iOS, 3, 2)]
 		[Field ("UIKeyboardBoundsUserInfoKey")]
 		NSString BoundsUserInfoKey { get; }
 #endif
 		//
 		// Keys
 		//
-		[NoTV]
-		[Since (3,2)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Field ("UIKeyboardAnimationCurveUserInfoKey")]
 		NSString AnimationCurveUserInfoKey { get; }
 
-		[NoTV]
-		[Since (3,2)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Field ("UIKeyboardAnimationDurationUserInfoKey")]
 		NSString AnimationDurationUserInfoKey { get; }
 
-		[NoTV]
-		[Since (3,2)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Field ("UIKeyboardFrameEndUserInfoKey")]
 		NSString FrameEndUserInfoKey { get; }
 
-		[NoTV]
-		[Since (3,2)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Field ("UIKeyboardFrameBeginUserInfoKey")]
 		NSString FrameBeginUserInfoKey { get; }
 
-		[NoTV]
-		[iOS (9,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("UIKeyboardIsLocalUserInfoKey")]
 		NSString IsLocalUserInfoKey { get; }
 	}
 
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	interface UIKeyCommand : NSCopying, NSSecureCoding {
 		[NullAllowed, Export ("input")]
@@ -6515,18 +6515,18 @@ namespace XamCore.UIKit {
 		[Field ("UIKeyInputEscape")]
 		NSString Escape { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Static]
 		[Export ("keyCommandWithInput:modifierFlags:action:discoverabilityTitle:")]
 		UIKeyCommand Create (NSString keyCommandInput, UIKeyModifierFlags modifierFlags, Selector action, NSString discoverabilityTitle);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[NullAllowed]
 		[Export ("discoverabilityTitle")]
 		NSString DiscoverabilityTitle { get; set; }
 	}
 
-	[Since (5,0)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[Protocol]
 	interface UIKeyInput : UITextInputTraits {
 		[Abstract]
@@ -6701,74 +6701,74 @@ namespace XamCore.UIKit {
 		[Export ("characterOffsetOfPosition:withinRange:")]
 		nint GetCharacterOffsetOfPosition (UITextPosition position, UITextRange range);
 
-		[Availability (Deprecated = Platform.iOS_8_0, Message="Use 'NSAttributedString.BackgroundColorAttributeName'.")]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use 'NSAttributedString.BackgroundColorAttributeName'.")]
 		[Field ("UITextInputTextBackgroundColorKey")]
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		NSString TextBackgroundColorKey { get; }
 
-		[Availability (Deprecated = Platform.iOS_8_0, Message="Use 'NSAttributedString.ForegroundColorAttributeName'.")]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use 'NSAttributedString.ForegroundColorAttributeName'.")]
 		[Field ("UITextInputTextColorKey")]
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		NSString TextColorKey { get; }
 
-		[Availability (Deprecated = Platform.iOS_8_0, Message="Use 'NSAttributedString.FontAttributeName'.")]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use 'NSAttributedString.FontAttributeName'.")]
 		[Field ("UITextInputTextFontKey")]
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		NSString TextFontKey { get; }
 
 		[Field ("UITextInputCurrentInputModeDidChangeNotification")]
 		[Notification]
 		NSString CurrentInputModeDidChangeNotification { get; }
 		
-		[Since (5,1)]
+		[Introduced (PlatformName.iOS, 5, 1)]
 		[Export ("dictationRecognitionFailed")]
 		void DictationRecognitionFailed ();
 		
-		[Since (5,1)]
+		[Introduced (PlatformName.iOS, 5, 1)]
 		[Export ("dictationRecordingDidEnd")]
 		void DictationRecordingDidEnd ();
 		
-		[Since (5,1)]
+		[Introduced (PlatformName.iOS, 5, 1)]
 		[Export ("insertDictationResult:")]
 		void InsertDictationResult (NSArray dictationResult);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Abstract]
 		[Export ("selectionRectsForRange:")]
 		UITextSelectionRect [] GetSelectionRects (UITextRange range);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("shouldChangeTextInRange:replacementText:")]
 		bool ShouldChangeTextInRange (UITextRange inRange, string replacementText);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("frameForDictationResultPlaceholder:")]
 		CGRect GetFrameForDictationResultPlaceholder (NSObject placeholder);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("insertDictationResultPlaceholder")]
 		NSObject InsertDictationResultPlaceholder ();
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("removeDictationResultPlaceholder:willInsertResult:")]
 		void RemoveDictationResultPlaceholder (NSObject placeholder, bool willInsertResult);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("beginFloatingCursorAtPoint:")]
 		void BeginFloatingCursor (CGPoint point);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("updateFloatingCursorAtPoint:")]
 		void UpdateFloatingCursor (CGPoint point);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("endFloatingCursor")]
 		void EndFloatingCursor ();
 	}
 
-	[NoTV]
-	[iOS (9,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[BaseType (typeof (NSObject))]
 	interface UITextInputAssistantItem
 	{
 		[Export ("allowsHidingShortcuts")]
@@ -6803,7 +6803,7 @@ namespace XamCore.UIKit {
 
 	}
 
-	[Since (5,0)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 #if XAMCORE_2_0
 	[BaseType (typeof (NSObject))]
 	interface UITextInputStringTokenizer : UITextInputTokenizer{
@@ -6856,7 +6856,7 @@ namespace XamCore.UIKit {
 #endif
 	}
 
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (NSObject))]
 	interface UITextSelectionRect {
 		[Export ("rect")]
@@ -6875,8 +6875,8 @@ namespace XamCore.UIKit {
 		bool IsVertical { get;  }
 	}
 
-	[NoTV]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	partial interface UILexicon : NSCopying {
 	
@@ -6884,8 +6884,8 @@ namespace XamCore.UIKit {
 	    UILexiconEntry [] Entries { get; }
 	}
 	
-	[NoTV]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	partial interface UILexiconEntry : NSCopying {
 	
@@ -6919,10 +6919,10 @@ namespace XamCore.UIKit {
 	}
 #endif // !WATCH
 
-	[NoTV]
-	[Since (4,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (NSObject))]
-	[Availability (Deprecated = Platform.iOS_10_0, Message = "Use 'UserNotifications.UNNotificationRequest' instead.")]
+	[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UserNotifications.UNNotificationRequest' instead.")]
 	interface UILocalNotification : NSCoding, NSCopying {
 		[Export ("fireDate", ArgumentSemantic.Copy)]
 		[NullAllowed]
@@ -6969,34 +6969,34 @@ namespace XamCore.UIKit {
 		[Field ("UILocalNotificationDefaultSoundName")]
 		NSString DefaultSoundName { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("region", ArgumentSemantic.Copy)]
 		CLRegion Region { get; set; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("regionTriggersOnce", ArgumentSemantic.UnsafeUnretained)]
 		bool RegionTriggersOnce { get; set; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("category")]
 		string Category { get; set; }
 
-		[iOS (8,2)]
+		[Introduced (PlatformName.iOS, 8, 2)]
 		[NullAllowed]
 		[Export ("alertTitle")]
 		string AlertTitle { get; set; }
 	}
 	
 #if !WATCH
-	[Since (3,2)]
-	[BaseType (typeof(UIGestureRecognizer))]
+	[Introduced (PlatformName.iOS, 3, 2)]
+	[BaseType (typeof (UIGestureRecognizer))]
 	interface UILongPressGestureRecognizer {
 		[Export ("initWithTarget:action:")]
 		IntPtr Constructor (NSObject target, Selector action);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("numberOfTouchesRequired")]
 		nuint NumberOfTouchesRequired { get; set; }
 
@@ -7010,8 +7010,8 @@ namespace XamCore.UIKit {
 		nint NumberOfTapsRequired { get; set; }
 	}
 
-	[Since (3,2)]
-	[BaseType (typeof(UIGestureRecognizer))]
+	[Introduced (PlatformName.iOS, 3, 2)]
+	[BaseType (typeof (UIGestureRecognizer))]
 	interface UITapGestureRecognizer {
 		[Export ("initWithTarget:action:")]
 		IntPtr Constructor (NSObject target, Selector action);
@@ -7019,22 +7019,22 @@ namespace XamCore.UIKit {
 		[Export ("numberOfTapsRequired")]
 		nuint NumberOfTapsRequired { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("numberOfTouchesRequired")]
 		nuint NumberOfTouchesRequired { get; set; }
 	}
 
-	[Since (3,2)]
-	[BaseType (typeof(UIGestureRecognizer))]
+	[Introduced (PlatformName.iOS, 3, 2)]
+	[BaseType (typeof (UIGestureRecognizer))]
 	interface UIPanGestureRecognizer {
 		[Export ("initWithTarget:action:")]
 		IntPtr Constructor (NSObject target, Selector action);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("minimumNumberOfTouches")]
 		nuint MinimumNumberOfTouches { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("maximumNumberOfTouches")]
 		nuint MaximumNumberOfTouches { get; set; }
 
@@ -7048,8 +7048,8 @@ namespace XamCore.UIKit {
 		CGPoint VelocityInView ([NullAllowed] UIView view);
 	}
 
-	[NoTV]
-	[Since (7,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (UIPanGestureRecognizer))]
 	interface UIScreenEdgePanGestureRecognizer {
 
@@ -7065,8 +7065,8 @@ namespace XamCore.UIKit {
 	// This class comes with an "init" constructor (which we autogenerate)
 	// and does not require us to call this with initWithFrame:
 	//
-	[NoTV]
-	[Since(6,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (UIControl))]
 	interface UIRefreshControl : UIAppearance {
 		[Export ("refreshing")]
@@ -7084,7 +7084,7 @@ namespace XamCore.UIKit {
 		void EndRefreshing ();
 	}
 
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	interface UIRegion : NSCopying, NSCoding {
 		[Static]
@@ -7113,9 +7113,9 @@ namespace XamCore.UIKit {
 		bool Contains (CGPoint point);
 	}
 
-	[NoTV]
-	[Since (3,2)]
-	[BaseType (typeof(UIGestureRecognizer))]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 3, 2)]
+	[BaseType (typeof (UIGestureRecognizer))]
 	interface UIRotationGestureRecognizer {
 		[Export ("initWithTarget:action:")]
 		IntPtr Constructor (NSObject target, Selector action);
@@ -7127,9 +7127,9 @@ namespace XamCore.UIKit {
 		nfloat Velocity { get; }
 	}
 
-	[NoTV]
-	[Since (3,2)]
-	[BaseType (typeof(UIGestureRecognizer))]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 3, 2)]
+	[BaseType (typeof (UIGestureRecognizer))]
 	interface UIPinchGestureRecognizer {
 		[Export ("initWithTarget:action:")]
 		IntPtr Constructor (NSObject target, Selector action);
@@ -7141,8 +7141,8 @@ namespace XamCore.UIKit {
 		nfloat Velocity { get; }
 	}
 
-	[Since (3,2)]
-	[BaseType (typeof(UIGestureRecognizer))]
+	[Introduced (PlatformName.iOS, 3, 2)]
+	[BaseType (typeof (UIGestureRecognizer))]
 	interface UISwipeGestureRecognizer {
 		[Export ("initWithTarget:action:")]
 		IntPtr Constructor (NSObject target, Selector action);
@@ -7150,12 +7150,12 @@ namespace XamCore.UIKit {
 		[Export ("direction")]
 		UISwipeGestureRecognizerDirection Direction { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("numberOfTouchesRequired")]
 		nuint NumberOfTouchesRequired { get; set; }
 	}
 	
-	[BaseType (typeof(UIView))]
+	[BaseType (typeof (UIView))]
 	interface UIActivityIndicatorView : NSCoding {
 		[DesignatedInitializer]
 		[Export ("initWithFrame:")]
@@ -7180,15 +7180,15 @@ namespace XamCore.UIKit {
 		[Export ("isAnimating")]
 		bool IsAnimating { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("color", ArgumentSemantic.Retain), NullAllowed]
 		[Appearance]
 		UIColor Color { get; set; }
 	}
 #endif // !WATCH
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UIItemProviderPresentationSizeProviding {
 		[Abstract]
@@ -7226,7 +7226,7 @@ namespace XamCore.UIKit {
 #if !WATCH
 		// Thread-safe in iOS 9 or later according to docs.
 		[ThreadSafe]
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Static, Export ("imageNamed:inBundle:compatibleWithTraitCollection:")]
 		UIImage FromBundle (string name, [NullAllowed] NSBundle bundle, [NullAllowed] UITraitCollection traitCollection);
 #endif // !WATCH
@@ -7248,7 +7248,7 @@ namespace XamCore.UIKit {
 		UIImage FromImage (CGImage image, nfloat scale, UIImageOrientation orientation);
 
 #if !WATCH
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Static][Export ("imageWithCIImage:")][Autorelease]
 		[ThreadSafe]			
 		UIImage FromImage (CIImage image);
@@ -7256,7 +7256,7 @@ namespace XamCore.UIKit {
 
 		// From the NSItemProviderReading protocol, a static method.
 		[Static]
-		[iOS (11,0), NoWatch, NoTV]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
 		[Export ("readableTypeIdentifiersForItemProvider", ArgumentSemantic.Copy)]
 #if !WATCH && !TVOS
 		new
@@ -7266,7 +7266,7 @@ namespace XamCore.UIKit {
 		// From the NSItemProviderReading protocol, a static method.
 		[Static]
 		[Export ("objectWithItemProviderData:typeIdentifier:error:")]
-		[iOS (11,0), NoWatch, NoTV]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
 		[return: NullAllowed]
 #if !WATCH && !TVOS
 		new
@@ -7275,12 +7275,12 @@ namespace XamCore.UIKit {
 
 		[Export ("renderingMode")]
 		[ThreadSafe]
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		UIImageRenderingMode RenderingMode { get;  }
 
 		[Export ("imageWithRenderingMode:")]
 		[ThreadSafe]
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		UIImage ImageWithRenderingMode (UIImageRenderingMode renderingMode);
 
 		[Export ("CGImage")]
@@ -7311,37 +7311,37 @@ namespace XamCore.UIKit {
 		[ThreadSafe]
 		void DrawAsPatternInRect (CGRect rect);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("stretchableImageWithLeftCapWidth:topCapHeight:")][Autorelease]
 		[ThreadSafe]
 		UIImage StretchableImage (nint leftCapWidth, nint topCapHeight);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("leftCapWidth")]
 		[ThreadSafe]
 		nint LeftCapWidth { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("topCapHeight")]
 		[ThreadSafe]
 		nint TopCapHeight { get; }
 
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("scale")]
 		[ThreadSafe]
 		nfloat CurrentScale { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Static, Export ("animatedImageNamed:duration:")][Autorelease]
 		[ThreadSafe]
 		UIImage CreateAnimatedImage (string name, double duration);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Static, Export ("animatedImageWithImages:duration:")][Autorelease]
 		[ThreadSafe]
 		UIImage CreateAnimatedImage (UIImage [] images, double duration);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Static, Export ("animatedResizableImageNamed:capInsets:duration:")][Autorelease]
 		[ThreadSafe]
 		UIImage CreateAnimatedImage (string name, UIEdgeInsets capInsets, double duration);
@@ -7351,7 +7351,7 @@ namespace XamCore.UIKit {
 		IntPtr Constructor (CGImage cgImage);
 
 #if !WATCH
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("initWithCIImage:")]
 		[ThreadSafe]
 		IntPtr Constructor (CIImage ciImage);
@@ -7362,28 +7362,28 @@ namespace XamCore.UIKit {
 		IntPtr Constructor (CGImage cgImage, nfloat scale,  UIImageOrientation orientation);
 
 #if !WATCH
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("CIImage")]
 		[ThreadSafe]
 		CIImage CIImage { get; }
 #endif // !WATCH
 		
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("images")]
 		[ThreadSafe]
 		UIImage [] Images { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("duration")]
 		[ThreadSafe]
 		double Duration { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("resizableImageWithCapInsets:")][Autorelease]
 		[ThreadSafe]
 		UIImage CreateResizableImage (UIEdgeInsets capInsets);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("capInsets")]
 		[ThreadSafe]
 		UIEdgeInsets CapInsets { get; }
@@ -7391,91 +7391,91 @@ namespace XamCore.UIKit {
 		//
 		// 6.0
 		//
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("alignmentRectInsets")]
 		[ThreadSafe]
 		UIEdgeInsets AlignmentRectInsets { get;  }
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Static]
 		[Export ("imageWithData:scale:")]
 		[ThreadSafe, Autorelease]
 		UIImage LoadFromData (NSData data, nfloat scale);
 
 #if !WATCH
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Static]
 		[Export ("imageWithCIImage:scale:orientation:")]
 		[ThreadSafe, Autorelease]
 		UIImage FromImage (CIImage ciImage, nfloat scale, UIImageOrientation orientation);
 #endif // !WATCH
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("initWithData:scale:")]
 		[ThreadSafe]
 		IntPtr Constructor (NSData data, nfloat scale);
 
 #if !WATCH
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("initWithCIImage:scale:orientation:")]
 		[ThreadSafe]
 		IntPtr Constructor (CIImage ciImage, nfloat scale, UIImageOrientation orientation);
 #endif // !WATCH
 	
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("resizableImageWithCapInsets:resizingMode:")]
 		[ThreadSafe]
 		UIImage CreateResizableImage (UIEdgeInsets capInsets, UIImageResizingMode resizingMode);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Static]
 		[Export ("animatedResizableImageNamed:capInsets:resizingMode:duration:")]
 		[ThreadSafe]
 		UIImage CreateAnimatedImage (string name, UIEdgeInsets capInsets, UIImageResizingMode resizingMode, double duration);
 		
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("imageWithAlignmentRectInsets:")]
 		[ThreadSafe, Autorelease]
 		UIImage ImageWithAlignmentRectInsets (UIEdgeInsets alignmentInsets);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("resizingMode")]
 		[ThreadSafe]
 		UIImageResizingMode ResizingMode { get; }
 
 #if !WATCH
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("traitCollection")]
 		[ThreadSafe]
 		UITraitCollection TraitCollection { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("imageAsset")]
 		[ThreadSafe]
 		UIImageAsset ImageAsset { get; }
 #endif // !WATCH
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("imageFlippedForRightToLeftLayoutDirection")]
 		UIImage GetImageFlippedForRightToLeftLayoutDirection ();
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("flipsForRightToLeftLayoutDirection")]
 		bool FlipsForRightToLeftLayoutDirection { get; }
 
 #if !WATCH
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("imageRendererFormat")]
 		UIGraphicsImageRendererFormat ImageRendererFormat { get; }
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("imageWithHorizontallyFlippedOrientation")]
 		UIImage GetImageWithHorizontallyFlippedOrientation ();
 #endif
 
 		// From the NSItemProviderWriting protocol, a static method.
 		// NSItemProviderWriting doesn't seem to be implemented for tvOS/watchOS, even though the headers say otherwise.
-		[NoWatch, NoTV, iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 		[Static]
 		[Export ("writableTypeIdentifiersForItemProvider", ArgumentSemantic.Copy)]
 #if !WATCH && !TVOS
@@ -7485,7 +7485,7 @@ namespace XamCore.UIKit {
 	}
 
 #if !WATCH
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	partial interface UIImageAsset : NSSecureCoding {
 		[Export ("imageWithTraitCollection:")]
@@ -7518,16 +7518,16 @@ namespace XamCore.UIKit {
 		[Export ("touchesForWindow:")]
 		NSSet TouchesForWindow (UIWindow window);
 		
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("touchesForGestureRecognizer:")]
 		NSSet TouchesForGestureRecognizer (UIGestureRecognizer window);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("coalescedTouchesForTouch:")]
 		[return: NullAllowed]
 		UITouch[] GetCoalescedTouches (UITouch touch);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("predictedTouchesForTouch:")]
 		[return: NullAllowed]
 		UITouch[] GetPredictedTouches (UITouch touch);		
@@ -7543,7 +7543,7 @@ namespace XamCore.UIKit {
 		[Field ("UIWindowLevelAlert")]
 		nfloat Alert { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Field ("UIWindowLevelStatusBar")]
 		nfloat StatusBar { get; }
 	}
@@ -7590,7 +7590,7 @@ namespace XamCore.UIKit {
 		[Export ("rootViewController", ArgumentSemantic.Retain)]
 		UIViewController RootViewController { get; set; }
 
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("screen", ArgumentSemantic.Retain)]
 		UIScreen Screen { get; set; }
 
@@ -7620,7 +7620,7 @@ namespace XamCore.UIKit {
 		bool Enabled { [Bind ("isEnabled")] get; set; }
 
 		[Export ("selected")]
-		bool Selected { [Bind("isSelected")] get; set; }
+		bool Selected { [Bind ("isSelected")] get; set; }
 
 		[Export ("highlighted")]
 		bool Highlighted { [Bind ("isHighlighted")] get; set; }
@@ -7631,8 +7631,8 @@ namespace XamCore.UIKit {
 		[Export ("contentHorizontalAlignment")]
 		UIControlContentHorizontalAlignment HorizontalAlignment { get; set; }
 
-		[NoWatch]
-		[iOS (11,0), TV (11,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("effectiveContentHorizontalAlignment")]
 		UIControlContentHorizontalAlignment EffectiveContentHorizontalAlignment { get; }
 
@@ -7689,7 +7689,7 @@ namespace XamCore.UIKit {
 		void SendActionForControlEvents (UIControlEvent events);
 	}
 
-	[iOS (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -7697,14 +7697,14 @@ namespace XamCore.UIKit {
 #if XAMCORE_2_0
 		[Abstract]
 #endif
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("barPosition")]
 		UIBarPosition BarPosition { get; }
 	}
 
 	interface IUIBarPositioning {}
 
-	[iOS (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -7714,7 +7714,7 @@ namespace XamCore.UIKit {
 	}
 #endif // !WATCH
 	
-	[Since (3,2)]
+	[Introduced (PlatformName.iOS, 3, 2)]
 	[BaseType (typeof (NSObject))]
 	[ThreadSafe]
 	interface UIBezierPath : NSSecureCoding, NSCopying {
@@ -7821,11 +7821,11 @@ namespace XamCore.UIKit {
 		[Internal, Export ("setLineDash:count:phase:")]
 		void SetLineDash (IntPtr fvalues, nint count, nfloat phase);
 
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("addArcWithCenter:radius:startAngle:endAngle:clockwise:")]
 		void AddArc (CGPoint center, nfloat radius, nfloat startAngle, nfloat endAngle, bool clockWise);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("bezierPathByReversingPath")]
 		UIBezierPath BezierPathByReversingPath ();
 	}
@@ -7861,7 +7861,7 @@ namespace XamCore.UIKit {
 		[Export ("adjustsImageWhenDisabled")]
 		bool AdjustsImageWhenDisabled { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("showsTouchWhenHighlighted")]
 		bool ShowsTouchWhenHighlighted { get; set; }
 
@@ -7960,15 +7960,15 @@ namespace XamCore.UIKit {
 		//
 		// 6.0
 		//
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("currentAttributedTitle", ArgumentSemantic.Retain)]
 		NSAttributedString CurrentAttributedTitle { get;  }
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("setAttributedTitle:forState:")]
 		void SetAttributedTitle (NSAttributedString title, UIControlState state);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("attributedTitleForState:")]
 		NSAttributedString GetAttributedTitle (UIControlState state);
 	}
@@ -8022,9 +8022,9 @@ namespace XamCore.UIKit {
 		[Export ("adjustsFontSizeToFitWidth")]
 		bool AdjustsFontSizeToFitWidth { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("minimumFontSize")]
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_6_0, Message = "Use 'MinimumScaleFactor' instead.")]
+		[Introduced (PlatformName.iOS, 2, 0, message: "Use 'MinimumScaleFactor' instead."), Deprecated (PlatformName.iOS, 6, 0, message: "Use 'MinimumScaleFactor' instead.")]
 		nfloat MinimumFontSize { get; set; }
 
 		[Export ("baselineAdjustment")]
@@ -8039,26 +8039,26 @@ namespace XamCore.UIKit {
 		//
 		// 6.0
 		//
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("attributedText", ArgumentSemantic.Copy)]
 		NSAttributedString AttributedText { get; set;  }
 
-		[NoTV]
-		[Since(6,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("adjustsLetterSpacingToFitWidth")]
-		[Availability (Introduced = Platform.iOS_6_0, Deprecated = Platform.iOS_7_0, Message = "Use 'NSKernAttributeName' instead.")]
+		[Introduced (PlatformName.iOS, 6, 0, message: "Use 'NSKernAttributeName' instead."), Deprecated (PlatformName.iOS, 7, 0, message: "Use 'NSKernAttributeName' instead.")]
 		bool AdjustsLetterSpacingToFitWidth { get; set;  }
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("minimumScaleFactor")]
 		nfloat MinimumScaleFactor { get; set;  }
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("preferredMaxLayoutWidth")]
 		nfloat PreferredMaxLayoutWidth { get; set;  }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("allowsDefaultTighteningForTruncation")]
 		bool AllowsDefaultTighteningForTruncation { get; set; }
 	}
@@ -8111,26 +8111,26 @@ namespace XamCore.UIKit {
 		[Export ("isAnimating")]
 		bool IsAnimating { get; }
 
-		[TV (9,0)] 
-		[NoiOS] // UIKIT_AVAILABLE_TVOS_ONLY
+		[Introduced (PlatformName.TvOS, 9, 0)] 
+		[Unavailable (PlatformName.iOS)] // UIKIT_AVAILABLE_TVOS_ONLY
 		[Export ("adjustsImageWhenAncestorFocused")]
 		bool AdjustsImageWhenAncestorFocused { get; set; }
 
-		[TV (9,0)]
-		[NoiOS] // UIKIT_AVAILABLE_TVOS_ONLY
+		[Introduced (PlatformName.TvOS, 9, 0)]
+		[Unavailable (PlatformName.iOS)] // UIKIT_AVAILABLE_TVOS_ONLY
 		[Export ("focusedFrameGuide")]
 		UILayoutGuide FocusedFrameGuide { get; }
 
-		[TV (11, 0), NoWatch, NoiOS]
+		[Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.iOS)]
 		[Export ("overlayContentView", ArgumentSemantic.Strong)]
 		UIView OverlayContentView { get; }
 
-		[TV (11,0), NoWatch, NoiOS]
+		[Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.iOS)]
 		[Export ("masksFocusEffectToContents")]
 		bool MasksFocusEffectToContents { get; set; }
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (UIControl))]
 	interface UIDatePicker {
 		[Export ("initWithFrame:")]
@@ -8192,7 +8192,7 @@ namespace XamCore.UIKit {
 		[Export ("systemVersion", ArgumentSemantic.Retain)]
 		string SystemVersion { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("orientation")]
 		UIDeviceOrientation Orientation { get; }
 
@@ -8202,27 +8202,27 @@ namespace XamCore.UIKit {
 		string UniqueIdentifier { get; }
 #endif
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("generatesDeviceOrientationNotifications")]
 		bool GeneratesDeviceOrientationNotifications { [Bind ("isGeneratingDeviceOrientationNotifications")] get; }
 				
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("beginGeneratingDeviceOrientationNotifications")]
 		void BeginGeneratingDeviceOrientationNotifications ();
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("endGeneratingDeviceOrientationNotifications")]
 		void EndGeneratingDeviceOrientationNotifications ();
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("batteryMonitoringEnabled")]
 		bool BatteryMonitoringEnabled { [Bind ("isBatteryMonitoringEnabled")] get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("batteryState")]
 		UIDeviceBatteryState BatteryState { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("batteryLevel")]
 		float BatteryLevel { get; } // This is float, not nfloat
 
@@ -8232,22 +8232,22 @@ namespace XamCore.UIKit {
 		[Export ("proximityState")]
 		bool ProximityState { get; }
 
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Internal]
 		[Export ("userInterfaceIdiom")]
 		UIUserInterfaceIdiom _UserInterfaceIdiom { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Field ("UIDeviceOrientationDidChangeNotification")]
 		[Notification]
 		NSString OrientationDidChangeNotification { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Field ("UIDeviceBatteryStateDidChangeNotification")]
 		[Notification]
 		NSString BatteryStateDidChangeNotification { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Field ("UIDeviceBatteryLevelDidChangeNotification")]
 		[Notification]
 		NSString BatteryLevelDidChangeNotification { get; }
@@ -8256,20 +8256,20 @@ namespace XamCore.UIKit {
 		[Notification]
 		NSString ProximityStateDidChangeNotification { get; }
 		
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("isMultitaskingSupported"), Internal]
 		bool _IsMultitaskingSupported { get; }
 
-		[Since (4,2)]
+		[Introduced (PlatformName.iOS, 4, 2)]
 		[Export ("playInputClick")]
 		void PlayInputClick ();
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("identifierForVendor", ArgumentSemantic.Retain)]
 		NSUuid IdentifierForVendor { get;  }
 	}
 	
-	[Since (5,1)]
+	[Introduced (PlatformName.iOS, 5, 1)]
 	[BaseType (typeof (NSObject))]
 	interface UIDictationPhrase {
 		[Export ("alternativeInterpretations")]
@@ -8279,8 +8279,8 @@ namespace XamCore.UIKit {
 		string Text { get; }
 	}
 
-	[NoTV]
-	[Since (3,2)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 3, 2)]
 	[BaseType (typeof (NSObject), Delegates=new string [] {"WeakDelegate"}, Events=new Type [] {typeof (UIDocumentInteractionControllerDelegate)})]
 	interface UIDocumentInteractionController {
 		[Export ("interactionControllerWithURL:"), Static]
@@ -8337,17 +8337,17 @@ namespace XamCore.UIKit {
 		UIGestureRecognizer [] GestureRecognizers { get; }
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
 	[Model]
-	[Since (3,2)]
+	[Introduced (PlatformName.iOS, 3, 2)]
 	[Protocol]
 	interface UIDocumentInteractionControllerDelegate {
-		[Availability (Introduced = Platform.iOS_3_2, Deprecated = Platform.iOS_6_0)]
+		[Introduced (PlatformName.iOS, 3, 2), Deprecated (PlatformName.iOS, 6, 0)]
 		[Export ("documentInteractionController:canPerformAction:"), DelegateName ("UIDocumentInteractionProbe"), DefaultValue (false)]
 		bool CanPerformAction (UIDocumentInteractionController controller, [NullAllowed] Selector action);
 
-		[Availability (Introduced = Platform.iOS_3_2, Deprecated = Platform.iOS_6_0)]
+		[Introduced (PlatformName.iOS, 3, 2), Deprecated (PlatformName.iOS, 6, 0)]
 		[Export ("documentInteractionController:performAction:"), DelegateName ("UIDocumentInteractionProbe"), DefaultValue (false)]
 		bool PerformAction (UIDocumentInteractionController controller, [NullAllowed] Selector action);
 		
@@ -8387,7 +8387,7 @@ namespace XamCore.UIKit {
 		void WillPresentOptionsMenu (UIDocumentInteractionController controller);
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (UINavigationController), Delegates=new string [] { "Delegate" }, Events=new Type [] {typeof(UIImagePickerControllerDelegate)})]
 	interface UIImagePickerController {
 		[Export ("isSourceTypeAvailable:")][Static]
@@ -8397,7 +8397,7 @@ namespace XamCore.UIKit {
 		string [] AvailableMediaTypes (UIImagePickerControllerSourceType sourceType);
 		
 		// This is the foundation to implement both id <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
-		[Export("delegate", ArgumentSemantic.Assign)][NullAllowed]
+		[Export ("delegate", ArgumentSemantic.Assign)][NullAllowed]
 		NSObject Delegate { get; set; }
 
 		[Export ("sourceType")]
@@ -8408,7 +8408,7 @@ namespace XamCore.UIKit {
 
 #if !XAMCORE_3_0
 		[Export ("allowsImageEditing")]
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_3_1)]
+		[Introduced (PlatformName.iOS, 2, 0), Deprecated (PlatformName.iOS, 3, 1)]
 		bool AllowsImageEditing { get; set; }
 #endif
 
@@ -8460,11 +8460,11 @@ namespace XamCore.UIKit {
 		[Static, Export ("isFlashAvailableForCameraDevice:")]
 		bool IsFlashAvailableForCameraDevice (UIImagePickerControllerCameraDevice cameraDevice);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("imageExportPreset", ArgumentSemantic.Assign)]
 		UIImagePickerControllerImageUrlExportPreset ImageExportPreset { get; set; }
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("videoExportPreset")]
 		string VideoExportPreset { get; set; }
 
@@ -8494,27 +8494,27 @@ namespace XamCore.UIKit {
 		[Field ("UIImagePickerControllerMediaMetadata")]
 		NSString MediaMetadata { get; }
 
-		[iOS (9,1)]
+		[Introduced (PlatformName.iOS, 9, 1)]
 		[Field ("UIImagePickerControllerLivePhoto")]
 		NSString LivePhoto { get; }
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Field ("UIImagePickerControllerPHAsset")]
 		NSString PHAsset { get; }
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Field ("UIImagePickerControllerImageURL")]
 		NSString ImageUrl { get; }
 	}
 
 	// UINavigationControllerDelegate, UIImagePickerControllerDelegate
 	[BaseType (typeof (UINavigationControllerDelegate))]
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[Model]
 	[Protocol]
 	interface UIImagePickerControllerDelegate {
 #if !XAMCORE_3_0
-		[Availability (Introduced = Platform.iOS_2_0, Obsoleted = Platform.iOS_3_0)]
+		[Introduced (PlatformName.iOS, 2, 0), Obsoleted (PlatformName.iOS, 3, 0)]
 		[Export ("imagePickerController:didFinishPickingImage:editingInfo:"), EventArgs ("UIImagePickerImagePicked")]
 		void FinishedPickingImage (UIImagePickerController picker, UIImage image, NSDictionary editingInfo);
 #endif
@@ -8526,8 +8526,8 @@ namespace XamCore.UIKit {
 		void Canceled (UIImagePickerController picker);
 	}
 
-	[NoTV]
-	[Since (5,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[BaseType (typeof (UIDocument))]
 	// *** Assertion failure in -[UIManagedDocument init], /SourceCache/UIKit_Sim/UIKit-1914.84/UIDocument.m:258
 	[DisableDefaultCtor]
@@ -8570,7 +8570,7 @@ namespace XamCore.UIKit {
 		bool WriteAdditionalContent (NSObject content, NSUrl absoluteURL, NSUrl absoluteOriginalContentsURL, out NSError error);
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
 	interface UIMenuController {
 		[Static, Export ("sharedMenuController")]
@@ -8591,11 +8591,11 @@ namespace XamCore.UIKit {
 		[Export ("menuFrame")]
 		CGRect MenuFrame { get; } 
 		
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("arrowDirection")]
 		UIMenuControllerArrowDirection ArrowDirection { get; set; }
 
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[NullAllowed] // by default this property is null
 		[Export ("menuItems", ArgumentSemantic.Copy)]
 		UIMenuItem [] MenuItems { get; set; }
@@ -8621,8 +8621,8 @@ namespace XamCore.UIKit {
 		NSString MenuFrameDidChangeNotification { get; }
 	}
 
-	[NoTV]
-	[Since (3,2)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 3, 2)]
 	[BaseType (typeof (NSObject))]
 	interface UIMenuItem {
 		[DesignatedInitializer] // TODO: Add an overload that takes an Action maybe?
@@ -8643,7 +8643,7 @@ namespace XamCore.UIKit {
 		[Export ("initWithFrame:")]
 		IntPtr Constructor (CGRect frame);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		// [Appearance] rdar://22818366
 		[Appearance]
 		[Export ("barStyle", ArgumentSemantic.Assign)]
@@ -8686,7 +8686,7 @@ namespace XamCore.UIKit {
 		[PostGet ("Items")] // that will [PostGet] TopItem too
 		void SetItems (UINavigationItem [] items, bool animated);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("titleTextAttributes", ArgumentSemantic.Copy), Internal]
 		[Appearance]
@@ -8696,22 +8696,22 @@ namespace XamCore.UIKit {
 		[Appearance]
 		UIStringAttributes TitleTextAttributes { get; set; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setBackgroundImage:forBarMetrics:")]
 		[Appearance]
 		void SetBackgroundImage ([NullAllowed] UIImage backgroundImage, UIBarMetrics barMetrics);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("backgroundImageForBarMetrics:")]
 		[Appearance]
 		UIImage GetBackgroundImage (UIBarMetrics forBarMetrics);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setTitleVerticalPositionAdjustment:forBarMetrics:")]
 		[Appearance]
 		void SetTitleVerticalPositionAdjustment (nfloat adjustment, UIBarMetrics barMetrics);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("titleVerticalPositionAdjustmentForBarMetrics:")]
 		[Appearance]
 		nfloat GetTitleVerticalPositionAdjustment (UIBarMetrics barMetrics);
@@ -8719,7 +8719,7 @@ namespace XamCore.UIKit {
 		//
 		// 6.0
 		//
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Appearance]
 		[NullAllowed]
 		[Export ("shadowImage", ArgumentSemantic.Retain)]
@@ -8728,49 +8728,49 @@ namespace XamCore.UIKit {
 		//
 		// 7.0
 		//
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Appearance]
 		[NullAllowed]
 		[Export ("barTintColor", ArgumentSemantic.Retain)]
 		UIColor BarTintColor { get; set;  }
 
-		[NoTV]
-		[Since (7,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Appearance]
 		[NullAllowed]
 		[Export ("backIndicatorImage", ArgumentSemantic.Retain)]
 		UIImage BackIndicatorImage { get; set;  }
 
-		[NoTV]
-		[Since (7,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Appearance]
 		[NullAllowed]
 		[Export ("backIndicatorTransitionMaskImage", ArgumentSemantic.Retain)]
 		UIImage BackIndicatorTransitionMaskImage { get; set;  }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Appearance]
 		[Export ("setBackgroundImage:forBarPosition:barMetrics:")]
 		void SetBackgroundImage ([NullAllowed] UIImage backgroundImage, UIBarPosition barPosition, UIBarMetrics barMetrics);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Appearance]
 		[Export ("backgroundImageForBarPosition:barMetrics:")]
 		UIImage GetBackgroundImage (UIBarPosition barPosition, UIBarMetrics barMetrics);
 		
-		[NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("prefersLargeTitles")]
 		bool PrefersLargeTitles { get; set; }
 
-		[NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Internal, NullAllowed, Export ("largeTitleTextAttributes", ArgumentSemantic.Copy)]
 		[Appearance]
 		NSDictionary _LargeTitleTextAttributes { get; set; }
 
-		[NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Wrap ("_LargeTitleTextAttributes")]
 		[Appearance]
 		UIStringAttributes LargeTitleTextAttributes { get; set; }
@@ -8803,7 +8803,7 @@ namespace XamCore.UIKit {
 		[Export ("title", ArgumentSemantic.Copy)]
 		string Title { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[NullAllowed] // by default this property is null
 		[Export ("backBarButtonItem", ArgumentSemantic.Retain)]
 		UIBarButtonItem BackBarButtonItem { get; set; }
@@ -8811,15 +8811,15 @@ namespace XamCore.UIKit {
 		[Export ("titleView", ArgumentSemantic.Retain), NullAllowed]
 		UIView TitleView { get; [NullAllowed] set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("prompt", ArgumentSemantic.Copy), NullAllowed]
 		string Prompt { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("hidesBackButton", ArgumentSemantic.Assign)]
 		bool HidesBackButton { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("setHidesBackButton:animated:")]
 		void SetHidesBackButton (bool hides, bool animated);
 
@@ -8845,43 +8845,43 @@ namespace XamCore.UIKit {
 		[Export ("setRightBarButtonItem:animated:")][PostGet ("RightBarButtonItem")]
 		void SetRightBarButtonItem ([NullAllowed] UIBarButtonItem item, bool animated);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("leftBarButtonItems", ArgumentSemantic.Copy)]
 		[PostGet ("LeftBarButtonItem")]
 		UIBarButtonItem [] LeftBarButtonItems { get; set;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("rightBarButtonItems", ArgumentSemantic.Copy)]
 		[PostGet ("RightBarButtonItem")]
 		UIBarButtonItem [] RightBarButtonItems { get; set;  }
 
-		[NoTV]
-		[Since (5,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("leftItemsSupplementBackButton")]
 		bool LeftItemsSupplementBackButton { get; set;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setLeftBarButtonItems:animated:")][PostGet ("LeftBarButtonItems")]
 		void SetLeftBarButtonItems (UIBarButtonItem [] items, bool animated);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setRightBarButtonItems:animated:")][PostGet ("RightBarButtonItems")]
 		void SetRightBarButtonItems (UIBarButtonItem [] items, bool animated);
 
-		[NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("largeTitleDisplayMode", ArgumentSemantic.Assign)]
 		UINavigationItemLargeTitleDisplayMode LargeTitleDisplayMode { get; set; }
 
-		[NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("searchController", ArgumentSemantic.Retain)]
 		UISearchController SearchController { get; set; }
 
-		[NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("hidesSearchBarWhenScrolling")]
 		bool HidesSearchBarWhenScrolling { get; set; }
 	}
@@ -8945,15 +8945,15 @@ namespace XamCore.UIKit {
 		[Export ("navigationBar")]
 		UINavigationBar NavigationBar { get; } 
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("toolbarHidden")]
 		bool ToolbarHidden { [Bind ("isToolbarHidden")] get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("setToolbarHidden:animated:")]
 		void SetToolbarHidden (bool hidden, bool animated);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("toolbar")]
 		UIToolbar Toolbar { get; }
 		
@@ -8967,42 +8967,42 @@ namespace XamCore.UIKit {
 		[Field ("UINavigationControllerHideShowBarDuration")]
 		nfloat HideShowBarDuration { get; }
 
-		[NoTV]
-		[Since (7,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("interactivePopGestureRecognizer", ArgumentSemantic.Copy)]
 		UIGestureRecognizer InteractivePopGestureRecognizer { get; }
 
-		[NoTV]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("hidesBarsWhenVerticallyCompact", ArgumentSemantic.UnsafeUnretained)]
 		bool HidesBarsWhenVerticallyCompact { get; set; }
 		
-		[NoTV]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("hidesBarsOnTap", ArgumentSemantic.UnsafeUnretained)]
 		bool HidesBarsOnTap { get; set; }
 		
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("showViewController:sender:")]
 		void ShowViewController (UIViewController vc, [NullAllowed] NSObject sender);
 
-		[NoTV]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("hidesBarsWhenKeyboardAppears", ArgumentSemantic.UnsafeUnretained)]
 		bool HidesBarsWhenKeyboardAppears { get; set; }
 
-		[NoTV]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("hidesBarsOnSwipe", ArgumentSemantic.UnsafeUnretained)]
 		bool HidesBarsOnSwipe { get; set; }
 		
-		[NoTV]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("barHideOnSwipeGestureRecognizer", ArgumentSemantic.Retain)]
 		UIPanGestureRecognizer BarHideOnSwipeGestureRecognizer { get; }
 
-		[NoTV]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("barHideOnTapGestureRecognizer", ArgumentSemantic.UnsafeUnretained)]
 		UITapGestureRecognizer BarHideOnTapGestureRecognizer { get; }
 	}
@@ -9018,27 +9018,27 @@ namespace XamCore.UIKit {
 		[Export ("navigationController:didShowViewController:animated:"), EventArgs ("UINavigationController")]
 		void DidShowViewController (UINavigationController navigationController, [Transient] UIViewController viewController, bool animated);
 
-		[NoTV]
-		[Since(7,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("navigationControllerSupportedInterfaceOrientations:")]
 		[NoDefaultValue]
 		[DelegateName ("Func<UINavigationController,UIInterfaceOrientationMask>")]
 		UIInterfaceOrientationMask SupportedInterfaceOrientations (UINavigationController navigationController);
 
-		[NoTV]
-		[Since(7,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("navigationControllerPreferredInterfaceOrientationForPresentation:")]
 		[DelegateName ("Func<UINavigationController,UIInterfaceOrientation>")]
 		[NoDefaultValue]
 		UIInterfaceOrientation GetPreferredInterfaceOrientation (UINavigationController navigationController);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("navigationController:interactionControllerForAnimationController:")]
 		[DelegateName ("Func<UINavigationController,IUIViewControllerAnimatedTransitioning,IUIViewControllerInteractiveTransitioning>")]
 		[NoDefaultValue]
 		IUIViewControllerInteractiveTransitioning GetInteractionControllerForAnimationController (UINavigationController navigationController, IUIViewControllerAnimatedTransitioning animationController);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("navigationController:animationControllerForOperation:fromViewController:toViewController:")]
 		[DelegateName ("Func<UINavigationController,UINavigationControllerOperation,UIViewController,UIViewController,IUIViewControllerAnimatedTransitioning>")]
 		[NoDefaultValue]
@@ -9087,20 +9087,20 @@ namespace XamCore.UIKit {
 		[Export ("sizeForNumberOfPages:")]
 		CGSize SizeForNumberOfPages (nint pageCount);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Appearance]
 		[NullAllowed]
 		[Export ("pageIndicatorTintColor", ArgumentSemantic.Retain)]
 		UIColor PageIndicatorTintColor { get; set;  }
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Appearance]
 		[NullAllowed]
 		[Export ("currentPageIndicatorTintColor", ArgumentSemantic.Retain)]
 		UIColor CurrentPageIndicatorTintColor { get; set;  }
 	}
 	
-	[Since (5,0)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[BaseType (typeof (UIViewController),
 		   Delegates = new string [] { "WeakDelegate", "WeakDataSource" },
 		   Events = new Type [] { typeof (UIPageViewControllerDelegate), typeof (UIPageViewControllerDataSource)} )]
@@ -9153,12 +9153,12 @@ namespace XamCore.UIKit {
 		[Field ("UIPageViewControllerOptionSpineLocationKey")]
 		NSString OptionSpineLocationKey { get; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Internal, Field ("UIPageViewControllerOptionInterPageSpacingKey")]
 		NSString OptionInterPageSpacingKey { get; }
 	}
 
-	[Since (5,0)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -9166,27 +9166,27 @@ namespace XamCore.UIKit {
 		[Export ("pageViewController:didFinishAnimating:previousViewControllers:transitionCompleted:"), EventArgs ("UIPageViewFinishedAnimation")]
 		void DidFinishAnimating (UIPageViewController pageViewController, bool finished, UIViewController [] previousViewControllers, bool completed);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("pageViewController:spineLocationForInterfaceOrientation:"), DelegateName ("UIPageViewSpineLocationCallback")]
-		[DefaultValue(UIPageViewControllerSpineLocation.Mid)]
+		[DefaultValue (UIPageViewControllerSpineLocation.Mid)]
 		UIPageViewControllerSpineLocation GetSpineLocation (UIPageViewController pageViewController, UIInterfaceOrientation orientation);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("pageViewController:willTransitionToViewControllers:"), EventArgs ("UIPageViewControllerTransition")]
 		void WillTransition (UIPageViewController pageViewController, UIViewController [] pendingViewControllers);
 
-		[NoTV]
-		[Since (7,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("pageViewControllerSupportedInterfaceOrientations:")][DelegateName ("Func<UIPageViewController,UIInterfaceOrientationMask>")][DefaultValue (UIInterfaceOrientationMask.All)]
 		UIInterfaceOrientationMask SupportedInterfaceOrientations (UIPageViewController pageViewController);
 
-		[NoTV]
-		[Since (7,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("pageViewControllerPreferredInterfaceOrientationForPresentation:")][DelegateName ("Func<UIPageViewController,UIInterfaceOrientation>")][DefaultValue (UIInterfaceOrientation.Portrait)]
 		UIInterfaceOrientation GetPreferredInterfaceOrientationForPresentation (UIPageViewController pageViewController);
 	}
 
-	[Since (5,0)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -9199,16 +9199,16 @@ namespace XamCore.UIKit {
 		[Export ("pageViewController:viewControllerAfterViewController:"), DelegateName ("UIPageViewGetViewController"), DefaultValue (null)]
 		UIViewController GetNextViewController (UIPageViewController pageViewController, UIViewController referenceViewController);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("presentationCountForPageViewController:"), DelegateName ("UIPageViewGetNumber"), DefaultValue (1)]
 		nint GetPresentationCount (UIPageViewController pageViewController);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("presentationIndexForPageViewController:"), DelegateName ("UIPageViewGetNumber"), DefaultValue (1)]
 		nint GetPresentationIndex (UIPageViewController pageViewController);
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	interface UIPasteboardChangeEventArgs {
 		[Export ("UIPasteboardChangedTypesAddedKey")]
 		string [] TypesAdded { get; }
@@ -9217,7 +9217,7 @@ namespace XamCore.UIKit {
 		string [] TypesRemoved { get; }
 	}
 	
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
 	// Objective-C exception thrown.  Name: NSInternalInconsistencyException Reason: Calling -[UIPasteboard init] is not allowed.
 	[DisableDefaultCtor]
@@ -9317,7 +9317,7 @@ namespace XamCore.UIKit {
 		[Field ("UIPasteboardTypeListColor")]
 		NSArray TypeListColor { get; }
 
-		[iOS (10,0), NoWatch]
+		[Introduced (PlatformName.iOS, 10, 0), Unavailable (PlatformName.WatchOS)]
 		[Field ("UIPasteboardTypeAutomatic")]
 		NSString Automatic { get; }
 
@@ -9351,49 +9351,49 @@ namespace XamCore.UIKit {
 		[Export ("colors", ArgumentSemantic.Copy)]
 		UIColor [] Colors { get; set; }
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("setItems:options:")]
 		void SetItems (NSDictionary<NSString, NSObject>[] items, NSDictionary options);
 		
 #if !TVOS
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Wrap ("SetItems (items, pasteboardOptions?.Dictionary)")]
 		void SetItems (NSDictionary<NSString, NSObject> [] items, UIPasteboardOptions pasteboardOptions);
 #endif
-		[NoWatch, NoTV, iOS (10, 0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("hasStrings")]
 		bool HasStrings { get; }
 
-		[NoWatch, NoTV, iOS (10, 0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("hasURLs")]
 		bool HasUrls { get; }
 
-		[NoWatch, NoTV, iOS (10, 0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("hasImages")]
 		bool HasImages { get; }
 		
-		[NoWatch, NoTV, iOS (10, 0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("hasColors")]
 		bool HasColors { get; }
 
-		[NoWatch, NoTV, iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("itemProviders", ArgumentSemantic.Copy)]
 		NSItemProvider[] ItemProviders { get; set; }
 
-		[NoWatch, NoTV, iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("setItemProviders:localOnly:expirationDate:")]
 		void SetItemProviders (NSItemProvider[] itemProviders, bool localOnly, [NullAllowed] NSDate expirationDate);
 
-		[NoWatch, NoTV, iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("setObjects:")]
 		void SetObjects (INSItemProviderWriting[] objects);
 
-		[NoWatch, NoTV, iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("setObjects:localOnly:expirationDate:")]
 		void SetObjects (INSItemProviderWriting[] objects, bool localOnly, [NullAllowed] NSDate expirationDate);
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[Static]
 	interface UIPasteboardNames {
 		[Field ("UIPasteboardNameGeneral")]
@@ -9405,14 +9405,14 @@ namespace XamCore.UIKit {
 	}
 
 #if !TVOS
-	[NoWatch, NoTV, iOS (10, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 0)]
 	[StrongDictionary ("UIPasteboardOptionKeys")]
 	interface UIPasteboardOptions {
 		NSDate ExpirationDate { get; set; }
 		bool LocalOnly { get; set; }
 	}
 #endif
-	[NoWatch, NoTV, iOS (10,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 0)]
 	[Static]
 	interface UIPasteboardOptionKeys {
 		[Field ("UIPasteboardOptionExpirationDate")]
@@ -9422,7 +9422,7 @@ namespace XamCore.UIKit {
 		NSString LocalOnlyKey { get; }
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (UIView), Delegates=new string [] { "WeakDelegate" })]
 	interface UIPickerView {
 		[Export ("initWithFrame:")]
@@ -9485,7 +9485,7 @@ namespace XamCore.UIKit {
 		UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath);
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -9505,12 +9505,12 @@ namespace XamCore.UIKit {
 		[Export ("pickerView:didSelectRow:inComponent:")]
 		void Selected (UIPickerView pickerView, nint row, nint component);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("pickerView:attributedTitleForRow:forComponent:")]
 		NSAttributedString GetAttributedTitle (UIPickerView pickerView, nint row, nint component);
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[Protocol, Model]
 	[BaseType (typeof (UIPickerViewDelegate))]
 	interface UIPickerViewAccessibilityDelegate {
@@ -9520,18 +9520,18 @@ namespace XamCore.UIKit {
 		[Export ("pickerView:accessibilityHintForComponent:")]
 		string GetAccessibilityHint (UIPickerView pickerView, nint component);
 
-		[TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("pickerView:accessibilityAttributedLabelForComponent:")]
 		[return: NullAllowed]
 		NSAttributedString GetAccessibilityAttributedLabel (UIPickerView pickerView, nint component);
 
-		[TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("pickerView:accessibilityAttributedHintForComponent:")]
 		[return: NullAllowed]
 		NSAttributedString GetAccessibilityAttributedHint (UIPickerView pickerView, nint component);
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -9545,14 +9545,14 @@ namespace XamCore.UIKit {
 		nint GetRowsInComponent (UIPickerView pickerView, nint component);
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol (IsInformal = true)]
 	interface UIPickerViewModel : UIPickerViewDataSource, UIPickerViewDelegate {
 	}
 
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -9582,12 +9582,12 @@ namespace XamCore.UIKit {
 		void WillTransitionToTraitCollection (UITraitCollection traitCollection, [NullAllowed] IUIViewControllerTransitionCoordinator coordinator);
 	}
 
-	[iOS(8,0),Protocol, Model]
+	[Introduced (PlatformName.iOS, 8, 0), Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	partial interface UIAppearanceContainer {
 	}
 	
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // NSInvalidArgumentException Reason: Don't call -[UIPresentationController init].
 	partial interface UIPresentationController : UIAppearanceContainer, UITraitEnvironment, UIContentContainer, UIFocusEnvironment {
@@ -9620,7 +9620,7 @@ namespace XamCore.UIKit {
 		[Export ("adaptivePresentationStyle")]
 		UIModalPresentationStyle AdaptivePresentationStyle ();
 
-		[iOS (8,3)]
+		[Introduced (PlatformName.iOS, 8, 3)]
 		[Export ("adaptivePresentationStyleForTraitCollection:")]
 		UIModalPresentationStyle AdaptivePresentationStyle (UITraitCollection traitCollection);
 
@@ -9657,7 +9657,7 @@ namespace XamCore.UIKit {
 
 	delegate void UIPreviewHandler (UIPreviewAction action, UIViewController previewViewController);
 
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	interface UIPreviewAction : UIPreviewActionItem, NSCopying {
 		[Static, Export ("actionWithTitle:style:handler:")]
@@ -9669,7 +9669,7 @@ namespace XamCore.UIKit {
 		
 	}
 
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	interface UIPreviewActionGroup : UIPreviewActionItem, NSCopying {
 		[Static, Export ("actionGroupWithTitle:style:actions:")]
@@ -9678,7 +9678,7 @@ namespace XamCore.UIKit {
 	
 	interface IUIPreviewActionItem {}
 	
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Protocol]
 	interface UIPreviewActionItem {
 		[Abstract]
@@ -9701,41 +9701,41 @@ namespace XamCore.UIKit {
 		[Export ("progress")]
 		float Progress { get; set; } // This is float, not nfloat.
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("progressTintColor", ArgumentSemantic.Retain)]
 		[Appearance]
 		[NullAllowed]
 		UIColor ProgressTintColor { get; set;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("trackTintColor", ArgumentSemantic.Retain)]
 		[Appearance]
 		[NullAllowed]
 		UIColor TrackTintColor { get; set;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("progressImage", ArgumentSemantic.Retain)]
 		[Appearance]
 		[NullAllowed]
 		UIImage ProgressImage { get; set;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("trackImage", ArgumentSemantic.Retain)]
 		[Appearance]
 		[NullAllowed]
 		UIImage TrackImage { get; set;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setProgress:animated:")]
 		void SetProgress (float progress /* this is float, not nfloat */, bool animated);
 
-		[Since (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("observedProgress")]
 		[NullAllowed]
 		NSProgress ObservedProgress { get; set; }
 	}
 
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (UIDynamicBehavior))]
 	partial interface UIPushBehavior {
 		[DesignatedInitializer]
@@ -9779,7 +9779,7 @@ namespace XamCore.UIKit {
 	
 	}
 
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (UIDynamicBehavior))]
 	[DisableDefaultCtor] // Objective-C exception thrown.  Name: NSInvalidArgumentException Reason: init is undefined for objects of type UISnapBehavior
 	partial interface UISnapBehavior {
@@ -9790,13 +9790,13 @@ namespace XamCore.UIKit {
 		[Export ("damping", ArgumentSemantic.Assign)]
 		nfloat Damping { get; set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("snapPoint", ArgumentSemantic.Assign)]
 		CGPoint SnapPoint { get; set; }
 	}
 
-	[NoTV]
-	[Since (5,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[BaseType (typeof (UIViewController))]
 	// iOS6 returns the following (confusing) message with the default .ctor:
 	// Objective-C exception thrown.  Name: NSGenericException Reason: -[UIReferenceLibraryViewController initWithNibName:bundle:] is not a valid initializer. You must call -[UIReferenceLibraryViewController initWithTerm:].
@@ -9806,12 +9806,12 @@ namespace XamCore.UIKit {
 		[PostGet ("NibBundle")]
 		IntPtr Constructor ([NullAllowed] string nibName, [NullAllowed] NSBundle bundle);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("dictionaryHasDefinitionForTerm:"), Static]
 		bool DictionaryHasDefinitionForTerm (string term);
 
 		[DesignatedInitializer]
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("initWithTerm:")]
 		IntPtr Constructor (string term);
 	}
@@ -9872,19 +9872,19 @@ namespace XamCore.UIKit {
 		NSUndoManager UndoManager { get; }
 
 		// 3.2
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("inputAccessoryView")]
 		UIView InputAccessoryView { get; }
 
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("inputView")]
 		UIView InputView { get; }
 
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("reloadInputViews")]
 		void ReloadInputViews ();
 
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("remoteControlReceivedWithEvent:")]
 		void RemoteControlReceived  ([NullAllowed] UIEvent theEvent);
 
@@ -9908,11 +9908,11 @@ namespace XamCore.UIKit {
 		[Export ("delete:")]
 		void Delete ([NullAllowed] NSObject sender);
 		
-		[Since (5,0)]	
+		[Introduced (PlatformName.iOS, 5, 0)]	
 		[Export ("makeTextWritingDirectionLeftToRight:")]
 		void MakeTextWritingDirectionLeftToRight ([NullAllowed] NSObject sender);
 	
-		[Since (5,0)]	
+		[Introduced (PlatformName.iOS, 5, 0)]	
 		[Export ("makeTextWritingDirectionRightToLeft:")]
 		void MakeTextWritingDirectionRightToLeft ([NullAllowed] NSObject sender);
 
@@ -9920,15 +9920,15 @@ namespace XamCore.UIKit {
 		// 6.0
 		//
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("toggleBoldface:")]
 		void ToggleBoldface ([NullAllowed] NSObject sender);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("toggleItalics:")]
 		void ToggleItalics ([NullAllowed] NSObject sender);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("toggleUnderline:")]
 		void ToggleUnderline ([NullAllowed] NSObject sender);
 
@@ -9936,70 +9936,70 @@ namespace XamCore.UIKit {
 		// 7.0
 		//
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("keyCommands")]
 		UIKeyCommand [] KeyCommands { get; }
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Static, Export ("clearTextInputContextIdentifier:")]
 		void ClearTextInputContextIdentifier (NSString identifier);
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("targetForAction:withSender:")]
 		NSObject GetTargetForAction (Selector action, [NullAllowed] NSObject sender);
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("textInputContextIdentifier")]
 		NSString TextInputContextIdentifier { get; }
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("textInputMode")]
 		UITextInputMode TextInputMode { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("inputViewController")]
 		UIInputViewController InputViewController { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("inputAccessoryViewController")]
 		UIInputViewController InputAccessoryViewController { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("userActivity"), NullAllowed]
 		NSUserActivity UserActivity { get; set; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("updateUserActivityState:")]
 		void UpdateUserActivityState (NSUserActivity activity);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("restoreUserActivityState:")]
 		void RestoreUserActivityState (NSUserActivity activity);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("pressesBegan:withEvent:")]
 		void PressesBegan (NSSet<UIPress> presses, UIPressesEvent evt);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("pressesChanged:withEvent:")]
 		void PressesChanged (NSSet<UIPress> presses, UIPressesEvent evt);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("pressesEnded:withEvent:")]
 		void PressesEnded (NSSet<UIPress> presses, UIPressesEvent evt);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("pressesCancelled:withEvent:")]
 		void PressesCancelled (NSSet<UIPress> presses, UIPressesEvent evt);
 
 		// from UIResponderInputViewAdditions (UIResponder) - other members already inlined
 
-		[NoTV]
-		[iOS (9,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("inputAssistantItem", ArgumentSemantic.Strong)]
 		UITextInputAssistantItem InputAssistantItem { get; }
 
-		[iOS (9,1)]
+		[Introduced (PlatformName.iOS, 9, 1)]
 		[Export ("touchesEstimatedPropertiesUpdated:")]
 		void TouchesEstimatedPropertiesUpdated (NSSet touches);
 	}
@@ -10018,20 +10018,20 @@ namespace XamCore.UIKit {
 		[Export ("bounds")]
 		CGRect Bounds { get; }
 
-		[NoTV]
-		[Deprecated (PlatformName.iOS, 9, 0, message : "Use the 'Bounds' property.")]
+		[Unavailable (PlatformName.TvOS)]
+		[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Bounds' property.")]
 		[Export ("applicationFrame")]
 		CGRect ApplicationFrame { get; }
 
 		[Export ("mainScreen")][Static]
 		UIScreen MainScreen { get; }
 
-		[NoTV] // Xcode 7.2
-		[Since (3,2)]
+		[Unavailable (PlatformName.TvOS)] // Xcode 7.2
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("availableModes", ArgumentSemantic.Copy)]
 		UIScreenMode [] AvailableModes { get; }
 
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[NullAllowed] // by default this property is null
 		[Export ("currentMode", ArgumentSemantic.Retain)]
 		UIScreenMode CurrentMode {
@@ -10041,46 +10041,46 @@ namespace XamCore.UIKit {
 #endif
 		}
 
-		[NoTV] // Xcode 7.2
-		[Since (4,3)]
+		[Unavailable (PlatformName.TvOS)] // Xcode 7.2
+		[Introduced (PlatformName.iOS, 4, 3)]
 		[Export ("preferredMode", ArgumentSemantic.Retain)]
 		UIScreenMode PreferredMode { get; }
 
-		[Since (4,3)]
+		[Introduced (PlatformName.iOS, 4, 3)]
 		[Export ("mirroredScreen", ArgumentSemantic.Retain)]
 		UIScreen MirroredScreen { get; }
 			
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("screens")][Static]
 		UIScreen [] Screens { get; }
 
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("scale")]
 		nfloat Scale { get; }
 
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("displayLinkWithTarget:selector:")]
 		CoreAnimation.CADisplayLink CreateDisplayLink (NSObject target, Selector sel);
 
-		[iOS (10,3), TV (10,2)]
+		[Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.TvOS, 10, 2)]
 		[Export ("maximumFramesPerSecond")]
 		nint MaximumFramesPerSecond { get; }
 
-		[NoTV]
-		[Since (5,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("brightness")]
 		nfloat Brightness { get; set; }
 
-		[NoTV]
-		[Since (5,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("wantsSoftwareDimming")]
 		bool WantsSoftwareDimming { get; set; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("overscanCompensation")]
 		UIScreenOverscanCompensation OverscanCompensation { get; set; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("UIScreenBrightnessDidChangeNotification")]
 		[Notification]
 		NSString BrightnessDidChangeNotification { get; }
@@ -10097,49 +10097,49 @@ namespace XamCore.UIKit {
 		[Notification]
 		NSString DidConnectNotification { get; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Field ("UIScreenCapturedDidChangeNotification")]
 		[Notification]
 		NSString CapturedDidChangeNotification { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[return: NullAllowed]
 		[Export ("snapshotViewAfterScreenUpdates:")]
 		UIView SnapshotView (bool afterScreenUpdates);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("nativeBounds")]
 		CGRect NativeBounds { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("nativeScale")]
 		nfloat NativeScale { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("coordinateSpace")]
 		IUICoordinateSpace CoordinateSpace { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("fixedCoordinateSpace")]
 		IUICoordinateSpace FixedCoordinateSpace { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("overscanCompensationInsets")]
 		UIEdgeInsets OverscanCompensationInsets { get; }
 
-		[iOS (9,0)] // added in Xcode 7.1 / iOS 9.1 SDK
+		[Introduced (PlatformName.iOS, 9, 0)] // added in Xcode 7.1 / iOS 9.1 SDK
 		[NullAllowed, Export ("focusedView", ArgumentSemantic.Weak)]
 		UIView FocusedView { get; }
 
-		[iOS (9,0)] // added in Xcode 7.1 / iOS 9.1 SDK
+		[Introduced (PlatformName.iOS, 9, 0)] // added in Xcode 7.1 / iOS 9.1 SDK
 		[Export ("supportsFocus")]
 		bool SupportsFocus { get; }
 
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[NullAllowed, Export ("focusedItem", ArgumentSemantic.Weak)]
 		IUIFocusItem FocusedItem { get; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("captured")]
 		bool Captured { [Bind ("isCaptured")] get; }
 	}
@@ -10158,24 +10158,24 @@ namespace XamCore.UIKit {
 		[Export ("contentInset")]
 		UIEdgeInsets ContentInset { get; set; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("adjustedContentInset")]
 		UIEdgeInsets AdjustedContentInset { get; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("adjustedContentInsetDidChange")]
 		[Advice ("You must call the base method when overriding.")] // [RequiresSuper]
 		void AdjustedContentInsetDidChange ();
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("contentInsetAdjustmentBehavior", ArgumentSemantic.Assign)]
 		UIScrollViewContentInsetAdjustmentBehavior ContentInsetAdjustmentBehavior { get; set; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("contentLayoutGuide", ArgumentSemantic.Strong)]
 		UILayoutGuide ContentLayoutGuide { get; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("frameLayoutGuide", ArgumentSemantic.Strong)]
 		UILayoutGuide FrameLayoutGuide { get; }
 
@@ -10210,11 +10210,11 @@ namespace XamCore.UIKit {
 		[Export ("decelerationRate")]
 		nfloat DecelerationRate { get; set; }
 
-		[iOS (10,3), TV (10,2), NoWatch]
+		[Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.TvOS, 10, 2), Unavailable (PlatformName.WatchOS)]
 		[Export ("indexDisplayMode")]
 		UIScrollViewIndexDisplayMode IndexDisplayMode { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("pagingEnabled")]
 		bool PagingEnabled { [Bind ("isPagingEnabled")] get; set; }
 		
@@ -10225,7 +10225,7 @@ namespace XamCore.UIKit {
 		bool ScrollEnabled { [Bind ("isScrollEnabled")] get; set; }
 		
 		[Export ("tracking")]
-		bool Tracking { [Bind("isTracking")] get; } 
+		bool Tracking { [Bind ("isTracking")] get; } 
 		
 		[Export ("dragging")]
 		bool Dragging { [Bind ("isDragging")] get; }
@@ -10278,16 +10278,16 @@ namespace XamCore.UIKit {
 		[Export ("zoomBouncing")]
 		bool ZoomBouncing { [Bind ("isZoomBouncing")] get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("scrollsToTop")]
 		bool ScrollsToTop { get; set; } 
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("panGestureRecognizer")]
 		UIPanGestureRecognizer PanGestureRecognizer { get; }
 
-		[NoTV]
-		[Since (5,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("pinchGestureRecognizer")]
 		UIPinchGestureRecognizer PinchGestureRecognizer { get; }
 		
@@ -10297,18 +10297,18 @@ namespace XamCore.UIKit {
 		[Field ("UIScrollViewDecelerationRateFast")]
 		nfloat DecelerationRateFast { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("keyboardDismissMode")]
 		UIScrollViewKeyboardDismissMode KeyboardDismissMode { get; set; }
 
-		[NoWatch]
-		[iOS (11,0)]
-		[TV (9,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
+		[Introduced (PlatformName.TvOS, 9, 0)]
 		[Deprecated (PlatformName.TvOS, 11, 0, message: "Configuring the 'PanGestureRecognizer' for indirect scrolling automatically supports directional presses now, so this property is no longer useful.")]
 		[Export ("directionalPressGestureRecognizer")]
 		UIGestureRecognizer DirectionalPressGestureRecognizer { get; }
 
-		[NoTV][iOS (10,0)]
+		[Unavailable (PlatformName.TvOS)][Introduced (PlatformName.iOS, 10, 0)]
 		[NullAllowed, Export ("refreshControl", ArgumentSemantic.Strong)]
 		UIRefreshControl RefreshControl { get; set; }
 	}
@@ -10348,19 +10348,19 @@ namespace XamCore.UIKit {
 		[Export ("scrollViewDidEndZooming:withView:atScale:"), EventArgs ("ZoomingEnded")]
 		void ZoomingEnded (UIScrollView scrollView, UIView withView, nfloat atScale);
 
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("scrollViewDidZoom:"), EventArgs ("UIScrollView")]
 		void DidZoom (UIScrollView scrollView);
 		
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("scrollViewWillBeginZooming:withView:"), EventArgs ("UIScrollViewZooming")]
 		void ZoomingStarted (UIScrollView scrollView, UIView view);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("scrollViewWillEndDragging:withVelocity:targetContentOffset:"), EventArgs ("WillEndDragging")]
 		void WillEndDragging (UIScrollView scrollView, CGPoint velocity, ref CGPoint targetContentOffset);
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("scrollViewDidChangeAdjustedContentInset:")]
 		void DidChangeAdjustedContentInset (UIScrollView scrollView);
 	}
@@ -10371,7 +10371,7 @@ namespace XamCore.UIKit {
 		[Export ("accessibilityScrollStatusForScrollView:")]
 		string GetAccessibilityScrollStatus (UIScrollView scrollView);
 
-		[TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("accessibilityAttributedScrollStatusForScrollView:")]
 		[return: NullAllowed]
 		NSAttributedString GetAccessibilityAttributedScrollStatus (UIScrollView scrollView);
@@ -10386,12 +10386,12 @@ namespace XamCore.UIKit {
 		, NSCoding
 #endif
 	{
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[DesignatedInitializer]
 		[Export ("initWithFrame:")]
 		IntPtr Constructor (CGRect frame);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("barStyle")]
 		UIBarStyle BarStyle { get; set; }
 
@@ -10413,11 +10413,11 @@ namespace XamCore.UIKit {
 		[Export ("placeholder", ArgumentSemantic.Copy)]
 		string Placeholder { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("showsBookmarkButton")]
 		bool ShowsBookmarkButton { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("showsCancelButton")]
 		bool ShowsCancelButton { get; set; }
 
@@ -10434,110 +10434,110 @@ namespace XamCore.UIKit {
 		[Export ("translucent", ArgumentSemantic.Assign)]
 		bool Translucent { [Bind ("isTranslucent")] get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("setShowsCancelButton:animated:")]
 		void SetShowsCancelButton (bool showsCancelButton, bool animated);
 
 		// 3.2
-		[NoTV]
-		[Since (3,2)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("searchResultsButtonSelected")]
 		bool SearchResultsButtonSelected { [Bind ("isSearchResultsButtonSelected")] get; set; }
 
-		[NoTV]
-		[Since (3,2)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("showsSearchResultsButton")]
 		bool ShowsSearchResultsButton { get; set; }
 
 		// 5.0
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("backgroundImage", ArgumentSemantic.Retain)]
 		[Appearance]
 		[NullAllowed]
 		UIImage BackgroundImage { get; set;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("scopeBarBackgroundImage", ArgumentSemantic.Retain)]
 		[Appearance]
 		[NullAllowed]
 		UIImage ScopeBarBackgroundImage { get; set;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("searchFieldBackgroundPositionAdjustment")]
 		UIOffset SearchFieldBackgroundPositionAdjustment { get; set;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("searchTextPositionAdjustment")]
 		UIOffset SearchTextPositionAdjustment { get; set;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setSearchFieldBackgroundImage:forState:")]
 		[Appearance]
 		void SetSearchFieldBackgroundImage ([NullAllowed] UIImage backgroundImage, UIControlState state);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("searchFieldBackgroundImageForState:")]
 		[Appearance]
 		UIImage GetSearchFieldBackgroundImage (UIControlState state);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setImage:forSearchBarIcon:state:")]
 		[Appearance]
 		void SetImageforSearchBarIcon ([NullAllowed] UIImage iconImage, UISearchBarIcon icon, UIControlState state);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("imageForSearchBarIcon:state:")]
 		[Appearance]
 		UIImage GetImageForSearchBarIcon (UISearchBarIcon icon, UIControlState state);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setScopeBarButtonBackgroundImage:forState:")]
 		[Appearance]
 		void SetScopeBarButtonBackgroundImage ([NullAllowed] UIImage backgroundImage, UIControlState state);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("scopeBarButtonBackgroundImageForState:")]
 		[Appearance]
 		UIImage GetScopeBarButtonBackgroundImage (UIControlState state);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setScopeBarButtonDividerImage:forLeftSegmentState:rightSegmentState:")]
 		[Appearance]
 		void SetScopeBarButtonDividerImage ([NullAllowed] UIImage dividerImage, UIControlState leftState, UIControlState rightState);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("scopeBarButtonDividerImageForLeftSegmentState:rightSegmentState:")]
 		[Appearance]
 		UIImage GetScopeBarButtonDividerImage (UIControlState leftState, UIControlState rightState);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setScopeBarButtonTitleTextAttributes:forState:"), Internal]
 		[Appearance]
 		void _SetScopeBarButtonTitle (NSDictionary attributes, UIControlState state);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("scopeBarButtonTitleTextAttributesForState:"), Internal]
 		[Appearance]
 		NSDictionary _GetScopeBarButtonTitleTextAttributes (UIControlState state);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setPositionAdjustment:forSearchBarIcon:")]
 		void SetPositionAdjustmentforSearchBarIcon (UIOffset adjustment, UISearchBarIcon icon);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("positionAdjustmentForSearchBarIcon:")]
 		UIOffset GetPositionAdjustmentForSearchBarIcon (UISearchBarIcon icon);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("inputAccessoryView", ArgumentSemantic.Retain)][NullAllowed]
 		UIView InputAccessoryView { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Appearance]
 		[Export ("setBackgroundImage:forBarPosition:barMetrics:")]
 		void SetBackgroundImage ([NullAllowed] UIImage backgroundImage, UIBarPosition barPosition, UIBarMetrics barMetrics);
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("backgroundImageForBarPosition:barMetrics:")]
 		[Appearance]
 		UIImage BackgroundImageForBarPosition (UIBarPosition barPosition, UIBarMetrics barMetrics);
@@ -10547,29 +10547,29 @@ namespace XamCore.UIKit {
 		// (but non-clickable) and NOT in the header files (or in the UISearchBar web documentation)
 		// that makes them private API
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("setBackgroundImage:forBarMetrics:")]
 		[Appearance]
 		void SetBackgroundImage ([NullAllowed] UIImage backgroundImage, UIBarMetrics barMetrics);
 	
 		// note that this one "work" on 7.x (i.e. as a private API) but does not on iOS8
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("backgroundImageForBarMetrics:")]
 		[Appearance]
 		UIImage BackgroundImageForBarMetrics (UIBarMetrics barMetrics);
 #endif
 
-		[Since (7,0), Export ("barTintColor", ArgumentSemantic.Retain)]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("barTintColor", ArgumentSemantic.Retain)]
 		[Appearance]
 		[NullAllowed]
 		UIColor BarTintColor { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("searchBarStyle")]
 		UISearchBarStyle SearchBarStyle { get; set; }
 
-		[NoTV]
-		[iOS (9,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("inputAssistantItem", ArgumentSemantic.Strong)]
 		UITextInputAssistantItem InputAssistantItem { get; }
 	}
@@ -10599,25 +10599,25 @@ namespace XamCore.UIKit {
 		[Export ("searchBarSearchButtonClicked:"), EventArgs ("UISearchBar")]
 		void SearchButtonClicked (UISearchBar searchBar);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("searchBarBookmarkButtonClicked:"), EventArgs ("UISearchBar")]
 		void BookmarkButtonClicked (UISearchBar searchBar);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("searchBarCancelButtonClicked:"), EventArgs ("UISearchBar")]
 		void CancelButtonClicked (UISearchBar searchBar);
 
 		[Export ("searchBar:selectedScopeButtonIndexDidChange:"), EventArgs ("UISearchBarButtonIndex")]
 		void SelectedScopeButtonIndexChanged (UISearchBar searchBar, nint selectedScope);
 
-		[NoTV]
-		[Since (3,2)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("searchBarResultsListButtonClicked:"), EventArgs ("UISearchBar")]
 		void ListButtonClicked (UISearchBar searchBar);
 	}
 
-	[iOS (9,1)][TV (9,0)]
-	[BaseType (typeof(UIViewController))]
+	[Introduced (PlatformName.iOS, 9, 1)][Introduced (PlatformName.TvOS, 9, 0)]
+	[BaseType (typeof (UIViewController))]
 	interface UISearchContainerViewController
 	{
 		// inlined
@@ -10632,7 +10632,7 @@ namespace XamCore.UIKit {
 		IntPtr Constructor (UISearchController searchController);
 	}
 	
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (UIViewController))]
 	partial interface UISearchController : UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
 		[Export ("initWithNibName:bundle:")]
@@ -10659,7 +10659,7 @@ namespace XamCore.UIKit {
 		[Protocolize]
 		UISearchControllerDelegate Delegate { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("dimsBackgroundDuringPresentation", ArgumentSemantic.UnsafeUnretained)]
 		bool DimsBackgroundDuringPresentation { get; set; }
 	
@@ -10672,7 +10672,7 @@ namespace XamCore.UIKit {
 		[Export ("searchBar", ArgumentSemantic.Retain)]
 		UISearchBar SearchBar { get; }
 
-		[iOS (9,1)]
+		[Introduced (PlatformName.iOS, 9, 1)]
 		[Export ("obscuresBackgroundDuringPresentation")]
 		bool ObscuresBackgroundDuringPresentation { get; set; }
 		
@@ -10698,8 +10698,8 @@ namespace XamCore.UIKit {
 	}
 		
 	[BaseType (typeof (NSObject))]
-	[Availability (Deprecated = Platform.iOS_8_0, Message="Use 'UISearchController'.")]
-	[NoTV]
+	[Deprecated (PlatformName.iOS, 8, 0, message: "Use 'UISearchController'.")]
+	[Unavailable (PlatformName.TvOS)]
 	interface UISearchDisplayController {
 		[Export ("initWithSearchBar:contentsController:")]
 		[PostGet ("SearchBar")]
@@ -10741,16 +10741,16 @@ namespace XamCore.UIKit {
 		[Protocolize]
 		UITableViewDelegate SearchResultsDelegate { get; set; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("searchResultsTitle", ArgumentSemantic.Copy)]
 		string SearchResultsTitle { get; set;  }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("displaysSearchBarInNavigationBar", ArgumentSemantic.Assign)]
 		bool DisplaysSearchBarInNavigationBar { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("navigationItem")]
 		UINavigationItem NavigationItem { get; }
 	}
@@ -10758,55 +10758,55 @@ namespace XamCore.UIKit {
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	interface UISearchDisplayDelegate {
 		
 		[Export ("searchDisplayControllerWillBeginSearch:")]
-		[Availability (Deprecated = Platform.iOS_8_0)]
+		[Deprecated (PlatformName.iOS, 8, 0)]
 		void WillBeginSearch (UISearchDisplayController controller);
 		
 		[Export ("searchDisplayControllerDidBeginSearch:")]
-		[Availability (Deprecated = Platform.iOS_8_0)]
+		[Deprecated (PlatformName.iOS, 8, 0)]
 		void DidBeginSearch (UISearchDisplayController controller);
 		
 		[Export ("searchDisplayControllerWillEndSearch:")]
-		[Availability (Deprecated = Platform.iOS_8_0)]
+		[Deprecated (PlatformName.iOS, 8, 0)]
 		void WillEndSearch (UISearchDisplayController controller);
 		
 		[Export ("searchDisplayControllerDidEndSearch:")]
-		[Availability (Deprecated = Platform.iOS_8_0)]
+		[Deprecated (PlatformName.iOS, 8, 0)]
 		void DidEndSearch (UISearchDisplayController controller);
 		
 		[Export ("searchDisplayController:didLoadSearchResultsTableView:")]
-		[Availability (Deprecated = Platform.iOS_8_0)]
+		[Deprecated (PlatformName.iOS, 8, 0)]
 		void DidLoadSearchResults (UISearchDisplayController controller, UITableView tableView);
 
 		[Export ("searchDisplayController:willUnloadSearchResultsTableView:")]
-		[Availability (Deprecated = Platform.iOS_8_0)]
+		[Deprecated (PlatformName.iOS, 8, 0)]
 		void WillUnloadSearchResults (UISearchDisplayController controller, UITableView tableView);
 
 		[Export ("searchDisplayController:willShowSearchResultsTableView:")]
-		[Availability (Deprecated = Platform.iOS_8_0)]
+		[Deprecated (PlatformName.iOS, 8, 0)]
 		void WillShowSearchResults (UISearchDisplayController controller, UITableView tableView);
 
 		[Export ("searchDisplayController:didShowSearchResultsTableView:")]
-		[Availability (Deprecated = Platform.iOS_8_0)]
+		[Deprecated (PlatformName.iOS, 8, 0)]
 		void DidShowSearchResults (UISearchDisplayController controller, UITableView tableView);
 
 		[Export ("searchDisplayController:willHideSearchResultsTableView:")]
-		[Availability (Deprecated = Platform.iOS_8_0)]
+		[Deprecated (PlatformName.iOS, 8, 0)]
 		void WillHideSearchResults (UISearchDisplayController controller, UITableView tableView);
 
 		[Export ("searchDisplayController:didHideSearchResultsTableView:")]
-		[Availability (Deprecated = Platform.iOS_8_0)]
+		[Deprecated (PlatformName.iOS, 8, 0)]
 		void DidHideSearchResults (UISearchDisplayController controller, UITableView tableView);
 
 		[Export ("searchDisplayController:shouldReloadTableForSearchString:")]
-		[Availability (Deprecated = Platform.iOS_8_0)]
+		[Deprecated (PlatformName.iOS, 8, 0)]
 		bool ShouldReloadForSearchString (UISearchDisplayController controller, string forSearchString);
 		
 		[Export ("searchDisplayController:shouldReloadTableForSearchScope:")]
-		[Availability (Deprecated = Platform.iOS_8_0)]
+		[Deprecated (PlatformName.iOS, 8, 0)]
 		bool ShouldReloadForSearchScope (UISearchDisplayController controller, nint forSearchOption);
 	}
 	
@@ -10820,7 +10820,7 @@ namespace XamCore.UIKit {
 	    void UpdateSearchResultsForSearchController (UISearchController searchController);
 	}
 	
-	[BaseType (typeof(UIControl))]
+	[BaseType (typeof (UIControl))]
 	interface UISegmentedControl
 #if IOS
 		: UISpringLoadedInteractionSupporting
@@ -10833,8 +10833,8 @@ namespace XamCore.UIKit {
 		IntPtr Constructor (CGRect frame);
 
 		[Export ("segmentedControlStyle")]
-		[NoTV][NoWatch]
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_7_0, Message = "The 'SegmentedControlStyle' property no longer has any effect.")]
+		[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 2, 0, message: "The 'SegmentedControlStyle' property no longer has any effect."), Deprecated (PlatformName.iOS, 7, 0, message: "The 'SegmentedControlStyle' property no longer has any effect.")]
 		UISegmentedControlStyle ControlStyle { get; set; }
 
 		[Export ("momentary")]
@@ -10888,53 +10888,53 @@ namespace XamCore.UIKit {
 		[Export ("selectedSegmentIndex")]
 		nint SelectedSegment { get; set; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("apportionsSegmentWidthsByContent")]
 		bool ApportionsSegmentWidthsByContent { get; set; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setBackgroundImage:forState:barMetrics:")]
 		[Appearance]
 		void SetBackgroundImage ([NullAllowed] UIImage backgroundImage, UIControlState state, UIBarMetrics barMetrics);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("backgroundImageForState:barMetrics:")]
 		[Appearance]
 		UIImage GetBackgroundImage (UIControlState state, UIBarMetrics barMetrics);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setDividerImage:forLeftSegmentState:rightSegmentState:barMetrics:")]
 		[Appearance]
 		void SetDividerImage ([NullAllowed] UIImage dividerImage, UIControlState leftSegmentState, UIControlState rightSegmentState, UIBarMetrics barMetrics);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("dividerImageForLeftSegmentState:rightSegmentState:barMetrics:")]
 		[Appearance]
 		UIImage DividerImageForLeftSegmentStaterightSegmentStatebarMetrics (UIControlState leftState, UIControlState rightState, UIBarMetrics barMetrics);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setTitleTextAttributes:forState:"), Internal]
 		[Appearance]
 		void _SetTitleTextAttributes (NSDictionary attributes, UIControlState state);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("titleTextAttributesForState:"), Internal]
 		[Appearance]
 		NSDictionary _GetTitleTextAttributes (UIControlState state);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setContentPositionAdjustment:forSegmentType:barMetrics:")]
 		[Appearance]
 		void SetContentPositionAdjustment (UIOffset adjustment, UISegmentedControlSegment leftCenterRightOrAlone, UIBarMetrics barMetrics);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("contentPositionAdjustmentForSegmentType:barMetrics:")]
 		[Appearance]
 		UIOffset ContentPositionAdjustment (UISegmentedControlSegment leftCenterRightOrAlone, UIBarMetrics barMetrics);
 	}
 
-	[NoTV]
-	[BaseType (typeof(UIControl))]
+	[Unavailable (PlatformName.TvOS)]
+	[BaseType (typeof (UIControl))]
 	interface UISlider {
 		[Export ("initWithFrame:")]
 		IntPtr Constructor (CGRect frame);
@@ -11012,19 +11012,19 @@ namespace XamCore.UIKit {
 		[Export ("thumbRectForBounds:trackRect:value:")]
 		CGRect ThumbRectForBounds (CGRect bounds, CGRect trackRect, float value /* This is float, not nfloat */);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("minimumTrackTintColor", ArgumentSemantic.Retain)]
 		[Appearance]
 		[NullAllowed]
 		UIColor MinimumTrackTintColor { get; set; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("maximumTrackTintColor", ArgumentSemantic.Retain)]
 		[Appearance]
 		[NullAllowed]
 		UIColor MaximumTrackTintColor { get; set; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("thumbTintColor", ArgumentSemantic.Retain)]
 		[Appearance]
 		[NullAllowed]
@@ -11032,7 +11032,7 @@ namespace XamCore.UIKit {
 	}
 #endif // !WATCH
 
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[Static]
 	interface UIStringAttributeKey {
 		[Field ("NSFontAttributeName")]
@@ -11071,39 +11071,39 @@ namespace XamCore.UIKit {
 		[Field ("NSVerticalGlyphFormAttributeName")]
 		NSString VerticalGlyphForm { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("NSTextEffectAttributeName")]
 		NSString TextEffect { get; }
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("NSAttachmentAttributeName")]
 		NSString Attachment { get; }
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("NSLinkAttributeName")]
 		NSString Link { get; }
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("NSBaselineOffsetAttributeName")]
 		NSString BaselineOffset { get; }
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("NSUnderlineColorAttributeName")]
 		NSString UnderlineColor { get; }
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("NSStrikethroughColorAttributeName")]
 		NSString StrikethroughColor { get; }
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("NSObliquenessAttributeName")]
 		NSString Obliqueness { get; }
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("NSExpansionAttributeName")]
 		NSString Expansion { get; }
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("NSWritingDirectionAttributeName")]
 		NSString WritingDirection { get; }
 		
@@ -11111,84 +11111,84 @@ namespace XamCore.UIKit {
 // These are internal, if we choose to expose these, we should
 // put them on a better named class
 //
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Internal, Field ("NSTextEffectLetterpressStyle")]
 		NSString NSTextEffectLetterpressStyle { get; }
 
 	//
 	// Document Types
 	//
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Internal, Field ("NSDocumentTypeDocumentAttribute")]
 		NSString NSDocumentTypeDocumentAttribute { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Internal, Field ("NSPlainTextDocumentType")]
 		NSString NSPlainTextDocumentType { get; }
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Internal, Field ("NSRTFDTextDocumentType")]
 		NSString NSRTFDTextDocumentType { get; }
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Internal, Field ("NSRTFTextDocumentType")]
 		NSString NSRTFTextDocumentType { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Internal, Field ("NSHTMLTextDocumentType")]
 		NSString NSHTMLTextDocumentType { get; }
 
 	//
 	//
 	//
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Internal, Field ("NSCharacterEncodingDocumentAttribute")]
 		NSString NSCharacterEncodingDocumentAttribute { get; }
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Internal, Field ("NSDefaultAttributesDocumentAttribute")]
 		NSString NSDefaultAttributesDocumentAttribute { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Internal, Field ("NSPaperSizeDocumentAttribute")]
 		NSString NSPaperSizeDocumentAttribute { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Internal, Field ("NSPaperMarginDocumentAttribute")]
 		NSString NSPaperMarginDocumentAttribute { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Internal, Field ("NSViewSizeDocumentAttribute")]
 		NSString NSViewSizeDocumentAttribute { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Internal, Field ("NSViewZoomDocumentAttribute")]
 		NSString NSViewZoomDocumentAttribute { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Internal, Field ("NSViewModeDocumentAttribute")]
 		NSString NSViewModeDocumentAttribute { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Internal, Field ("NSReadOnlyDocumentAttribute")]
 		NSString NSReadOnlyDocumentAttribute { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Internal, Field ("NSBackgroundColorDocumentAttribute")]
 		NSString NSBackgroundColorDocumentAttribute { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Internal, Field ("NSHyphenationFactorDocumentAttribute")]
 		NSString NSHyphenationFactorDocumentAttribute { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Internal, Field ("NSDefaultTabIntervalDocumentAttribute")]
 		NSString NSDefaultTabIntervalDocumentAttribute { get; }
 	}
 	
 #if !WATCH
-	[NoTV]
-	[BaseType (typeof(UIControl))]
+	[Unavailable (PlatformName.TvOS)]
+	[BaseType (typeof (UIControl))]
 	interface UISwitch : NSCoding {
 		[DesignatedInitializer]
 		[Export ("initWithFrame:")]
@@ -11200,25 +11200,25 @@ namespace XamCore.UIKit {
 		[Export ("setOn:animated:")]
 		void SetState (bool newState, bool animated);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("onTintColor", ArgumentSemantic.Retain)]
 		[Appearance]
 		[NullAllowed]
 		UIColor OnTintColor { get; set; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Appearance]
 		[NullAllowed]
 		[Export ("thumbTintColor", ArgumentSemantic.Retain)]
 		UIColor ThumbTintColor { get; set;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Appearance]
 		[Export ("onImage", ArgumentSemantic.Retain)]
 		[NullAllowed]
 		UIImage OnImage { get; set;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Appearance]
 		[NullAllowed]
 		[Export ("offImage", ArgumentSemantic.Retain)]
@@ -11253,11 +11253,11 @@ namespace XamCore.UIKit {
 		[PostGet ("Items")] // that will trigger a (required) PostGet on SelectedItems too
 		void SetItems ([NullAllowed] UITabBarItem [] items, bool animated);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("beginCustomizingItems:")]
 		void BeginCustomizingItems ([NullAllowed] UITabBarItem [] items);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("endCustomizingAnimated:")]
 #if XAMCORE_2_0
 		bool EndCustomizing (bool animated);
@@ -11265,65 +11265,65 @@ namespace XamCore.UIKit {
 		bool EndCustomizingAnimated (bool animated);
 #endif
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("isCustomizing")]
 		bool IsCustomizing { get; }
 
-		[NoTV]
-		[Since (5,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("selectedImageTintColor", ArgumentSemantic.Retain)]
-		[Availability (Deprecated = Platform.iOS_8_0)]
+		[Deprecated (PlatformName.iOS, 8, 0)]
 		[NullAllowed]
 		[Appearance]
 		UIColor SelectedImageTintColor { get; set;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("backgroundImage", ArgumentSemantic.Retain)]
 		[NullAllowed]
 		[Appearance]
 		UIImage BackgroundImage { get; set;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("selectionIndicatorImage", ArgumentSemantic.Retain)]
 		[NullAllowed]
 		[Appearance]
 		UIImage SelectionIndicatorImage { get; set;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("shadowImage", ArgumentSemantic.Retain)]
 		[Appearance]
 		[NullAllowed]
 		UIImage ShadowImage { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("barTintColor", ArgumentSemantic.Retain)]
 		[Appearance]
 		[NullAllowed]
 		UIColor BarTintColor { get; set; }
 
-		[NoTV]
-		[Since (7,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("itemPositioning")]
 		UITabBarItemPositioning ItemPositioning { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("itemWidth")]
 		nfloat ItemWidth { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("itemSpacing")]
 		nfloat ItemSpacing { get; set; }
 
-		[NoTV]
-		[Since (7,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("barStyle")]
 		UIBarStyle BarStyle { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("translucent")]
 		bool Translucent { [Bind ("isTranslucent")] get; set; }
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[NullAllowed, Export ("unselectedItemTintColor", ArgumentSemantic.Copy)]
 		UIColor UnselectedItemTintColor { get; set; }
 	}
@@ -11353,11 +11353,11 @@ namespace XamCore.UIKit {
 		[Export ("selectedIndex")]
 		nint SelectedIndex { get; [PostGet ("SelectedViewController")] set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("moreNavigationController")]
 		UINavigationController MoreNavigationController { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("customizableViewControllers", ArgumentSemantic.Copy)]
 		UIViewController [] CustomizableViewControllers { get; [NullAllowed]  set; }
 
@@ -11379,19 +11379,19 @@ namespace XamCore.UIKit {
 		[Export ("tabBar:didSelectItem:"), EventArgs ("UITabBarItem")]
 		void ItemSelected (UITabBar tabbar, UITabBarItem item);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("tabBar:willBeginCustomizingItems:"), EventArgs ("UITabBarItems")]
 		void WillBeginCustomizingItems (UITabBar tabbar, UITabBarItem [] items);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("tabBar:didBeginCustomizingItems:"), EventArgs ("UITabBarItems")]
 		void DidBeginCustomizingItems (UITabBar tabbar, UITabBarItem [] items);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("tabBar:willEndCustomizingItems:changed:"), EventArgs ("UITabBarFinalItems")]
 		void WillEndCustomizingItems (UITabBar tabbar, UITabBarItem [] items, bool changed);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("tabBar:didEndCustomizingItems:changed:"), EventArgs ("UITabBarFinalItems")]
 		void DidEndCustomizingItems (UITabBar tabbar, UITabBarItem [] items, bool changed);
 	}
@@ -11407,37 +11407,37 @@ namespace XamCore.UIKit {
 		[Export ("tabBarController:didSelectViewController:"), EventArgs ("UITabBarSelection")]
 		void ViewControllerSelected (UITabBarController tabBarController, UIViewController viewController);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("tabBarController:willBeginCustomizingViewControllers:"), EventArgs ("UITabBarCustomize")]
 		void OnCustomizingViewControllers (UITabBarController tabBarController, UIViewController [] viewControllers);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("tabBarController:willEndCustomizingViewControllers:changed:"), EventArgs ("UITabBarCustomizeChange")]
 		void OnEndCustomizingViewControllers (UITabBarController tabBarController, UIViewController [] viewControllers, bool changed);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("tabBarController:didEndCustomizingViewControllers:changed:"), EventArgs ("UITabBarCustomizeChange")]
 		void FinishedCustomizingViewControllers (UITabBarController tabBarController, UIViewController [] viewControllers, bool changed);
 
-		[NoTV]
-		[Since (7,0), Export ("tabBarControllerSupportedInterfaceOrientations:")]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("tabBarControllerSupportedInterfaceOrientations:")]
 		[NoDefaultValue]
 		[DelegateName ("Func<UITabBarController,UIInterfaceOrientationMask>")]
 		UIInterfaceOrientationMask SupportedInterfaceOrientations  (UITabBarController tabBarController);
 		
-		[NoTV]
-		[Since (7,0), Export ("tabBarControllerPreferredInterfaceOrientationForPresentation:")]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("tabBarControllerPreferredInterfaceOrientationForPresentation:")]
 		[NoDefaultValue]
 		[DelegateName ("Func<UITabBarController,UIInterfaceOrientation>")]
 		UIInterfaceOrientation GetPreferredInterfaceOrientation  (UITabBarController tabBarController);
 		
-		[Since (7,0), Export ("tabBarController:interactionControllerForAnimationController:")]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("tabBarController:interactionControllerForAnimationController:")]
 		[NoDefaultValue]
 		[DelegateName ("Func<UITabBarController,IUIViewControllerAnimatedTransitioning,IUIViewControllerInteractiveTransitioning>")]
 		IUIViewControllerInteractiveTransitioning GetInteractionControllerForAnimationController (UITabBarController tabBarController,
 													 IUIViewControllerAnimatedTransitioning animationController);
 		
-		[Since (7,0), Export ("tabBarController:animationControllerForTransitionFromViewController:toViewController:")]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("tabBarController:animationControllerForTransitionFromViewController:toViewController:")]
 		[NoDefaultValue]
 		[DelegateName ("Func<UITabBarController,UIViewController,UIViewController,IUIViewControllerAnimatedTransitioning>")]
 		IUIViewControllerAnimatedTransitioning GetAnimationControllerForTransition (UITabBarController tabBarController,
@@ -11478,62 +11478,62 @@ namespace XamCore.UIKit {
 		[Export ("badgeValue", ArgumentSemantic.Copy)][NullAllowed]
 		string BadgeValue { get; set; } 
 
-		[NoTV]
-		[Availability (Introduced = Platform.iOS_5_0, Deprecated = Platform.iOS_7_0, Message = "Use the '(string, UIImage, UIImage)' constructor or the 'Image' and 'SelectedImage' properties along with 'RenderingMode = UIImageRenderingMode.AlwaysOriginal'.")]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0, message: "Use the '(string, UIImage, UIImage)' constructor or the 'Image' and 'SelectedImage' properties along with 'RenderingMode = UIImageRenderingMode.AlwaysOriginal'."), Deprecated (PlatformName.iOS, 7, 0, message: "Use the '(string, UIImage, UIImage)' constructor or the 'Image' and 'SelectedImage' properties along with 'RenderingMode = UIImageRenderingMode.AlwaysOriginal'.")]
 		[Export ("setFinishedSelectedImage:withFinishedUnselectedImage:")]
 		[PostGet ("FinishedSelectedImage")]
 		[PostGet ("FinishedUnselectedImage")]
 		void SetFinishedImages ([NullAllowed] UIImage selectedImage, [NullAllowed] UIImage unselectedImage);
 
-		[NoTV]
-		[Availability (Introduced = Platform.iOS_5_0, Deprecated = Platform.iOS_7_0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0), Deprecated (PlatformName.iOS, 7, 0)]
 		[Export ("finishedSelectedImage")]
 		UIImage FinishedSelectedImage { get; }
 
-		[NoTV]
-		[Availability (Introduced = Platform.iOS_5_0, Deprecated = Platform.iOS_7_0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0), Deprecated (PlatformName.iOS, 7, 0)]
 		[Export ("finishedUnselectedImage")]
 		UIImage FinishedUnselectedImage { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("titlePositionAdjustment")]
 		[Appearance]
 		UIOffset TitlePositionAdjustment { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("initWithTitle:image:selectedImage:")]
 		[PostGet ("Image")]
 		[PostGet ("SelectedImage")]
 		IntPtr Constructor ([NullAllowed] string title, [NullAllowed] UIImage image, [NullAllowed] UIImage selectedImage);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("selectedImage", ArgumentSemantic.Retain)][NullAllowed]
 		UIImage SelectedImage { get; set; }
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[NullAllowed, Export ("badgeColor", ArgumentSemantic.Copy)]
 		UIColor BadgeColor { get; set; }
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("setBadgeTextAttributes:forState:")]
 		[Internal]
 		void SetBadgeTextAttributes ([NullAllowed] NSDictionary textAttributes, UIControlState state);
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Wrap ("SetBadgeTextAttributes (textAttributes == null ? null : textAttributes.Dictionary, state)")]
 		void SetBadgeTextAttributes (UIStringAttributes textAttributes, UIControlState state);
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("badgeTextAttributesForState:")]
 		[Internal]
 		NSDictionary<NSString, NSObject> _GetBadgeTextAttributes (UIControlState state);
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Wrap ("new UIStringAttributes (_GetBadgeTextAttributes(state))")]
 		UIStringAttributes GetBadgeTextAttributes (UIControlState state);
 	}
 	
-	[BaseType (typeof(UIScrollView))]
+	[BaseType (typeof (UIScrollView))]
 	interface UITableView : NSCoding, UIDataSourceTranslating
 #if IOS
 		, UISpringLoadedInteractionSupporting
@@ -11669,11 +11669,11 @@ namespace XamCore.UIKit {
 		[Export ("sectionIndexMinimumDisplayRowCount")]
 		nint SectionIndexMinimumDisplayRowCount { get; set; }
 
-		[NoTV][NoWatch]
+		[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 		[Export ("separatorStyle")]
 		UITableViewCellSeparatorStyle SeparatorStyle { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("separatorColor", ArgumentSemantic.Retain)]
 		[Appearance]
 		[NullAllowed] // nullable (and spotted by introspection on iOS9)
@@ -11692,39 +11692,39 @@ namespace XamCore.UIKit {
 		UITableViewCell DequeueReusableCell (NSString identifier);
 
 		// 3.2
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("backgroundView", ArgumentSemantic.Retain), NullAllowed]
 		UIView BackgroundView { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Field ("UITableViewIndexSearch")]
 		NSString IndexSearch { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("UITableViewAutomaticDimension")]
 		nfloat AutomaticDimension { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("allowsMultipleSelection")]
                 bool AllowsMultipleSelection { get; set;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
                 [Export ("allowsMultipleSelectionDuringEditing")]
                 bool AllowsMultipleSelectionDuringEditing { get; set;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
                 [Export ("moveSection:toSection:")]
                 void MoveSection (nint fromSection, nint toSection);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
                 [Export ("moveRowAtIndexPath:toIndexPath:")]
                 void MoveRow (NSIndexPath fromIndexPath, NSIndexPath toIndexPath);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
                 [Export ("indexPathsForSelectedRows")]
                 NSIndexPath [] IndexPathsForSelectedRows { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("registerNib:forCellReuseIdentifier:")]
 #if XAMCORE_2_0
 		void RegisterNibForCellReuse ([NullAllowed] UINib nib, NSString reuseIdentifier);
@@ -11739,39 +11739,39 @@ namespace XamCore.UIKit {
 		//
 		// 6.0
 		//
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Appearance]
 		[NullAllowed]
 		[Export ("sectionIndexColor", ArgumentSemantic.Retain)]
 		UIColor SectionIndexColor { get; set;  }
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Appearance]
 		[NullAllowed]
 		[Export ("sectionIndexTrackingBackgroundColor", ArgumentSemantic.Retain)]
 		UIColor SectionIndexTrackingBackgroundColor { get; set;  }
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("headerViewForSection:")]
 		UITableViewHeaderFooterView GetHeaderView (nint section);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("footerViewForSection:")]
 		UITableViewHeaderFooterView GetFooterView (nint section);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("dequeueReusableCellWithIdentifier:forIndexPath:")]
 		UITableViewCell DequeueReusableCell (NSString reuseIdentifier, NSIndexPath indexPath);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("dequeueReusableHeaderFooterViewWithIdentifier:")]
 		UITableViewHeaderFooterView DequeueReusableHeaderFooterView (NSString reuseIdentifier);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("registerClass:forCellReuseIdentifier:"), Internal]
 		void RegisterClassForCellReuse (IntPtr /*Class*/ cellClass, NSString reuseIdentifier);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("registerNib:forHeaderFooterViewReuseIdentifier:")]
 #if XAMCORE_2_0
 		void RegisterNibForHeaderFooterViewReuse (UINib nib, NSString reuseIdentifier);
@@ -11779,104 +11779,104 @@ namespace XamCore.UIKit {
 		void RegisterNibForHeaderFooterViewReuse (UINib nib, string reuseIdentifier);
 #endif
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("registerClass:forHeaderFooterViewReuseIdentifier:"), Internal]
 		void RegisterClassForHeaderFooterViewReuse (IntPtr /*Class*/ aClass, NSString reuseIdentifier);
 
 		//
 		// 7.0
 		//
-	        [Since (7,0)]
+	        [Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("estimatedRowHeight", ArgumentSemantic.Assign)]
 	        nfloat EstimatedRowHeight { get; set; }
 	
-	        [Since (7,0)]
+	        [Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("estimatedSectionHeaderHeight", ArgumentSemantic.Assign)]
 	        nfloat EstimatedSectionHeaderHeight { get; set; }
 		
-	        [Since (7,0)]
+	        [Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("estimatedSectionFooterHeight", ArgumentSemantic.Assign)]
 	        nfloat EstimatedSectionFooterHeight { get; set; }
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Appearance]
 		[NullAllowed] // by default this property is null
 		[Export ("sectionIndexBackgroundColor", ArgumentSemantic.Retain)]
 		UIColor SectionIndexBackgroundColor { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Appearance]
 		[Export ("separatorInset")]
 		UIEdgeInsets SeparatorInset { get; set; }
 
-		[NoTV]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("separatorEffect", ArgumentSemantic.Copy)]
 		[Appearance]
 		UIVisualEffect SeparatorEffect { get; set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("cellLayoutMarginsFollowReadableWidth")]
 		bool CellLayoutMarginsFollowReadableWidth { get; set; }
 
-		[iOS (9,0)] // added in Xcode 7.1 / iOS 9.1 SDK
+		[Introduced (PlatformName.iOS, 9, 0)] // added in Xcode 7.1 / iOS 9.1 SDK
 		[Export ("remembersLastFocusedIndexPath")]
 		bool RemembersLastFocusedIndexPath { get; set; }
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[NullAllowed, Export ("prefetchDataSource", ArgumentSemantic.Weak)]
 		IUITableViewDataSourcePrefetching PrefetchDataSource { get; set; }
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("dragDelegate", ArgumentSemantic.Weak)]
 		IUITableViewDragDelegate DragDelegate { get; set; }
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("dropDelegate", ArgumentSemantic.Weak)]
 		IUITableViewDropDelegate DropDelegate { get; set; }
 
-		[NoWatch]
-		[TV (11,0), iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("separatorInsetReference", ArgumentSemantic.Assign)]
 		UITableViewSeparatorInsetReference SeparatorInsetReference { get; set; }
 
-		[NoWatch]
-		[TV (11,0), iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Async]
 		[Export ("performBatchUpdates:completion:")]
 		void PerformBatchUpdates ([NullAllowed] Action updates, [NullAllowed] Action<bool> completion);
 		
-		[NoWatch]
-		[TV (11,0), iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("hasUncommittedUpdates")]
 		bool HasUncommittedUpdates { get; }
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("dragInteractionEnabled")]
 		bool DragInteractionEnabled { get; set; }
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("hasActiveDrag")]
 		bool HasActiveDrag { get; }
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("hasActiveDrop")]
 		bool HasActiveDrop { get; }
 
-		[NoWatch]
-		[TV (11,0), iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("insetsContentViewsToSafeArea")]
 		bool InsetsContentViewsToSafeArea { get; set; }
 	}
 
 	interface IUITableViewDataSourcePrefetching {}
-	[iOS (10,0)]
+	[Introduced (PlatformName.iOS, 10, 0)]
 	[Protocol]
 	interface UITableViewDataSourcePrefetching
 	{
@@ -11922,11 +11922,11 @@ namespace XamCore.UIKit {
 		[Export ("tableView:canMoveRowAtIndexPath:")]
 		bool CanMoveRow (UITableView tableView, NSIndexPath indexPath);
 
-		[TV (10,2)]
+		[Introduced (PlatformName.TvOS, 10, 2)]
 		[Export ("sectionIndexTitlesForTableView:")]
 		string [] SectionIndexTitles (UITableView tableView);
 
-		[TV (10,2)] // <- Header removed __TVOS_PROHIBITED;
+		[Introduced (PlatformName.TvOS, 10, 2)] // <- Header removed __TVOS_PROHIBITED;
 		[Export ("tableView:sectionForSectionIndexTitle:atIndex:")]
 		nint SectionFor (UITableView tableView, string title, nint atIndex);
 
@@ -11955,7 +11955,7 @@ namespace XamCore.UIKit {
 		UIView GetViewForFooter (UITableView tableView, nint section);
 
 #if !XAMCORE_3_0
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_3_0)]
+		[Introduced (PlatformName.iOS, 2, 0), Deprecated (PlatformName.iOS, 3, 0)]
 		[Export ("tableView:accessoryTypeForRowWithIndexPath:")]
 		UITableViewCellAccessory AccessoryForRow (UITableView tableView, NSIndexPath indexPath);
 #endif
@@ -11978,18 +11978,18 @@ namespace XamCore.UIKit {
 		[Export ("tableView:editingStyleForRowAtIndexPath:")]
 		UITableViewCellEditingStyle EditingStyleForRow (UITableView tableView, NSIndexPath indexPath);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("tableView:titleForDeleteConfirmationButtonForRowAtIndexPath:")]
 		string TitleForDeleteConfirmation (UITableView tableView, NSIndexPath indexPath);
 		
 		[Export ("tableView:shouldIndentWhileEditingRowAtIndexPath:")]
 		bool ShouldIndentWhileEditing (UITableView tableView, NSIndexPath indexPath);
 		
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("tableView:willBeginEditingRowAtIndexPath:")]
 		void WillBeginEditing (UITableView tableView, NSIndexPath indexPath);
 		
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("tableView:didEndEditingRowAtIndexPath:")]
 		void DidEndEditing (UITableView tableView, [NullAllowed] NSIndexPath indexPath);
 		
@@ -12001,98 +12001,98 @@ namespace XamCore.UIKit {
 
 		// Copy Paste support
 		
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
                 [Export ("tableView:shouldShowMenuForRowAtIndexPath:")]
                 bool ShouldShowMenu (UITableView tableView, NSIndexPath rowAtindexPath);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
                 [Export ("tableView:canPerformAction:forRowAtIndexPath:withSender:")]
                 bool CanPerformAction (UITableView tableView, Selector action, NSIndexPath indexPath, [NullAllowed] NSObject sender);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
                 [Export ("tableView:performAction:forRowAtIndexPath:withSender:")]
                 void PerformAction (UITableView tableView, Selector action, NSIndexPath indexPath, [NullAllowed] NSObject sender);
 		
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("tableView:willDisplayHeaderView:forSection:")]
 		void WillDisplayHeaderView (UITableView tableView, UIView headerView, nint section);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("tableView:willDisplayFooterView:forSection:")]
 		void WillDisplayFooterView (UITableView tableView, UIView footerView, nint section);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("tableView:didEndDisplayingCell:forRowAtIndexPath:")]
 		void CellDisplayingEnded (UITableView tableView, UITableViewCell cell, NSIndexPath indexPath);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("tableView:didEndDisplayingHeaderView:forSection:")]
 		void HeaderViewDisplayingEnded (UITableView tableView, UIView headerView, nint section);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("tableView:didEndDisplayingFooterView:forSection:")]
 		void FooterViewDisplayingEnded (UITableView tableView, UIView footerView, nint section);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("tableView:shouldHighlightRowAtIndexPath:")]
 		bool ShouldHighlightRow (UITableView tableView, NSIndexPath rowIndexPath);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("tableView:didHighlightRowAtIndexPath:")]
 		void RowHighlighted (UITableView tableView, NSIndexPath rowIndexPath);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("tableView:didUnhighlightRowAtIndexPath:")]
 		void RowUnhighlighted (UITableView tableView, NSIndexPath rowIndexPath);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("tableView:estimatedHeightForRowAtIndexPath:")]
 		nfloat EstimatedHeight (UITableView tableView, NSIndexPath indexPath);
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("tableView:estimatedHeightForHeaderInSection:")]
 		nfloat EstimatedHeightForHeader (UITableView tableView, nint section);
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("tableView:estimatedHeightForFooterInSection:")]
 		nfloat EstimatedHeightForFooter (UITableView tableView, nint section);
 
-		[NoTV]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("tableView:editActionsForRowAtIndexPath:")]
 		UITableViewRowAction [] EditActionsForRow (UITableView tableView, NSIndexPath indexPath);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("tableView:canFocusRowAtIndexPath:")]
 		bool CanFocusRow (UITableView tableView, NSIndexPath indexPath);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("tableView:shouldUpdateFocusInContext:")]
 		bool ShouldUpdateFocus (UITableView tableView, UITableViewFocusUpdateContext context);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("tableView:didUpdateFocusInContext:withAnimationCoordinator:")]
 		void DidUpdateFocus (UITableView tableView, UITableViewFocusUpdateContext context, UIFocusAnimationCoordinator coordinator);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("indexPathForPreferredFocusedViewInTableView:")]
 		[return: NullAllowed]
 		NSIndexPath GetIndexPathForPreferredFocusedView (UITableView tableView);
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("tableView:leadingSwipeActionsConfigurationForRowAtIndexPath:")]
 		[return: NullAllowed]
 		UISwipeActionsConfiguration GetLeadingSwipeActionsConfiguration (UITableView tableView, NSIndexPath indexPath);
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("tableView:trailingSwipeActionsConfigurationForRowAtIndexPath:")]
 		[return: NullAllowed]
 		UISwipeActionsConfiguration GetTrailingSwipeActionsConfiguration (UITableView tableView, NSIndexPath indexPath);
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("tableView:shouldSpringLoadRowAtIndexPath:withContext:")]
 		bool ShouldSpringLoadRow (UITableView tableView, NSIndexPath indexPath, IUISpringLoadedInteractionContext context);
 
@@ -12193,26 +12193,26 @@ namespace XamCore.UIKit {
 		[Export ("didTransitionToState:")]
 		void DidTransitionToState (UITableViewCellState mask);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("multipleSelectionBackgroundView", ArgumentSemantic.Retain), NullAllowed]
 		UIView MultipleSelectionBackgroundView { get; set; }
 
-		[NoTV]
-		[Since (7,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("separatorInset")]
 		UIEdgeInsets SeparatorInset { get; set; }
 
-		[iOS (9,0)] // introduced in Xcode 7.1 SDK (iOS 9.1 but hidden in 9.0)
+		[Introduced (PlatformName.iOS, 9, 0)] // introduced in Xcode 7.1 SDK (iOS 9.1 but hidden in 9.0)
 		[Export ("focusStyle", ArgumentSemantic.Assign)]
 		UITableViewCellFocusStyle FocusStyle { get; set; }
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("dragStateDidChange:")]
 		void DragStateDidChange (UITableViewCellDragState dragState);
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("userInteractionEnabledWhileDragging")]
 		bool UserInteractionEnabledWhileDragging { get; set; }
 	}
@@ -12231,11 +12231,11 @@ namespace XamCore.UIKit {
 		[Export ("tableView", ArgumentSemantic.Retain)]
 		UITableView TableView { get; set; }
 
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("clearsSelectionOnViewWillAppear")]
 		bool ClearsSelectionOnViewWillAppear { get; set; }
 
-		[NoTV][iOS (6,0)]
+		[Unavailable (PlatformName.TvOS)][Introduced (PlatformName.iOS, 6, 0)]
 		[NullAllowed, Export ("refreshControl", ArgumentSemantic.Strong)]
 		UIRefreshControl RefreshControl { get; set; }
 	}
@@ -12268,11 +12268,11 @@ namespace XamCore.UIKit {
 		[Export ("tableView:canMoveRowAtIndexPath:")]
 		bool CanMoveRow (UITableView tableView, NSIndexPath indexPath);
 
-		[TV (10,2)]
+		[Introduced (PlatformName.TvOS, 10, 2)]
 		[Export ("sectionIndexTitlesForTableView:")]
 		string [] SectionIndexTitles (UITableView tableView);
 
-		[TV (10,2)]
+		[Introduced (PlatformName.TvOS, 10, 2)]
 		[Export ("tableView:sectionForSectionIndexTitle:atIndex:")]
 		nint SectionFor (UITableView tableView, string title, nint atIndex);
 
@@ -12307,7 +12307,7 @@ namespace XamCore.UIKit {
 		UIView GetViewForFooter (UITableView tableView, nint section);
 
 #if !XAMCORE_3_0
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_3_0)]
+		[Introduced (PlatformName.iOS, 2, 0), Deprecated (PlatformName.iOS, 3, 0)]
 		[Export ("tableView:accessoryTypeForRowWithIndexPath:")]
 		UITableViewCellAccessory AccessoryForRow (UITableView tableView, NSIndexPath indexPath);
 #endif
@@ -12330,18 +12330,18 @@ namespace XamCore.UIKit {
 		[Export ("tableView:editingStyleForRowAtIndexPath:")]
 		UITableViewCellEditingStyle EditingStyleForRow (UITableView tableView, NSIndexPath indexPath);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("tableView:titleForDeleteConfirmationButtonForRowAtIndexPath:")]
 		string TitleForDeleteConfirmation (UITableView tableView, NSIndexPath indexPath);
 		
 		[Export ("tableView:shouldIndentWhileEditingRowAtIndexPath:")]
 		bool ShouldIndentWhileEditing (UITableView tableView, NSIndexPath indexPath);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("tableView:willBeginEditingRowAtIndexPath:")]
 		void WillBeginEditing (UITableView tableView, NSIndexPath indexPath);
 		
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("tableView:didEndEditingRowAtIndexPath:")]
 		void DidEndEditing (UITableView tableView, NSIndexPath indexPath);
 		
@@ -12352,103 +12352,103 @@ namespace XamCore.UIKit {
 		nint IndentationLevel (UITableView tableView, NSIndexPath indexPath);
 
 		// Copy Paste support
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("tableView:shouldShowMenuForRowAtIndexPath:")]
 		bool ShouldShowMenu (UITableView tableView, NSIndexPath rowAtindexPath);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("tableView:canPerformAction:forRowAtIndexPath:withSender:")]
 		bool CanPerformAction (UITableView tableView, Selector action, NSIndexPath indexPath, NSObject sender);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("tableView:performAction:forRowAtIndexPath:withSender:")]
 		void PerformAction (UITableView tableView, Selector action, NSIndexPath indexPath, NSObject sender);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("tableView:willDisplayHeaderView:forSection:")]
 		void WillDisplayHeaderView (UITableView tableView, UIView headerView, nint section);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("tableView:willDisplayFooterView:forSection:")]
 		void WillDisplayFooterView (UITableView tableView, UIView footerView, nint section);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("tableView:didEndDisplayingCell:forRowAtIndexPath:")]
 		void CellDisplayingEnded (UITableView tableView, UITableViewCell cell, NSIndexPath indexPath);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("tableView:didEndDisplayingHeaderView:forSection:")]
 		void HeaderViewDisplayingEnded (UITableView tableView, UIView headerView, nint section);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("tableView:didEndDisplayingFooterView:forSection:")]
 		void FooterViewDisplayingEnded (UITableView tableView, UIView footerView, nint section);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("tableView:shouldHighlightRowAtIndexPath:")]
 		bool ShouldHighlightRow (UITableView tableView, NSIndexPath rowIndexPath);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("tableView:didHighlightRowAtIndexPath:")]
 		void RowHighlighted (UITableView tableView, NSIndexPath rowIndexPath);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("tableView:didUnhighlightRowAtIndexPath:")]
 		void RowUnhighlighted (UITableView tableView, NSIndexPath rowIndexPath);		
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("tableView:estimatedHeightForRowAtIndexPath:")]
 		nfloat EstimatedHeight (UITableView tableView, NSIndexPath indexPath);
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("tableView:estimatedHeightForHeaderInSection:")]
 		nfloat EstimatedHeightForHeader (UITableView tableView, nint section);
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("tableView:estimatedHeightForFooterInSection:")]
 		nfloat EstimatedHeightForFooter (UITableView tableView, nint section);
 
-		[NoTV]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("tableView:editActionsForRowAtIndexPath:")]
 		UITableViewRowAction [] EditActionsForRow (UITableView tableView, NSIndexPath indexPath);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("tableView:canFocusRowAtIndexPath:")]
 		bool CanFocusRow (UITableView tableView, NSIndexPath indexPath);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("tableView:shouldUpdateFocusInContext:")]
 		bool ShouldUpdateFocus (UITableView tableView, UITableViewFocusUpdateContext context);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("tableView:didUpdateFocusInContext:withAnimationCoordinator:")]
 		void DidUpdateFocus (UITableView tableView, UITableViewFocusUpdateContext context, UIFocusAnimationCoordinator coordinator);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("indexPathForPreferredFocusedViewInTableView:")]
 		[return: NullAllowed]
 		NSIndexPath GetIndexPathForPreferredFocusedView (UITableView tableView);
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("tableView:leadingSwipeActionsConfigurationForRowAtIndexPath:")]
 		[return: NullAllowed]
 		UISwipeActionsConfiguration GetLeadingSwipeActionsConfiguration (UITableView tableView, NSIndexPath indexPath);
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("tableView:trailingSwipeActionsConfigurationForRowAtIndexPath:")]
 		[return: NullAllowed]
 		UISwipeActionsConfiguration GetTrailingSwipeActionsConfiguration (UITableView tableView, NSIndexPath indexPath);
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("tableView:shouldSpringLoadRowAtIndexPath:withContext:")]
 		bool ShouldSpringLoadRow (UITableView tableView, NSIndexPath indexPath, IUISpringLoadedInteractionContext context);
 	}
 
-	[Since (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[BaseType (typeof (UIView))]
 	interface UITableViewHeaderFooterView : UIAppearance, NSCoding {
 		[Export ("initWithFrame:")]
@@ -12480,8 +12480,8 @@ namespace XamCore.UIKit {
 
 	}
 
-	[NoTV]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	interface UITableViewRowAction : NSCopying {
 		[Export ("style")]
@@ -12601,11 +12601,11 @@ namespace XamCore.UIKit {
 		void DrawPlaceholder (CGRect rect);
 
 		// 3.2
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("inputAccessoryView", ArgumentSemantic.Retain)][NullAllowed]
 		UIView InputAccessoryView { get; set; }
 
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("inputView", ArgumentSemantic.Retain)][NullAllowed]
 		UIView InputView { get; set; }
 
@@ -12621,7 +12621,7 @@ namespace XamCore.UIKit {
 		[Notification]
 		NSString TextFieldTextDidChangeNotification { get; }
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("UITextFieldDidEndEditingReasonKey")]
 		NSString DidEndEditingReasonKey { get; }
 
@@ -12629,30 +12629,30 @@ namespace XamCore.UIKit {
 		// 6.0
 		//
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[NullAllowed] // by default this property is null (on 6.0, not later)
 		[Export ("attributedText", ArgumentSemantic.Copy)]
 		NSAttributedString AttributedText { get; set;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("attributedPlaceholder", ArgumentSemantic.Copy)]
 		NSAttributedString AttributedPlaceholder { get; set;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("allowsEditingTextAttributes")]
 		bool AllowsEditingTextAttributes { get; set;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("clearsOnInsertion")]
 		bool ClearsOnInsertion { get; set;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("typingAttributes", ArgumentSemantic.Copy)]
 		NSDictionary TypingAttributes { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("defaultTextAttributes", ArgumentSemantic.Copy), NullAllowed]
 		NSDictionary WeakDefaultTextAttributes { get; set; }
 	}
@@ -12674,7 +12674,7 @@ namespace XamCore.UIKit {
 		[Export ("textFieldDidEndEditing:"), EventArgs ("UITextField"), EventName ("Ended")]
 		void EditingEnded (UITextField textField);
 
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("textFieldDidEndEditing:reason:"), EventArgs ("UITextFieldEditingEnded"), EventName ("EndedWithReason")]
 		void EditingEnded (UITextField textField, UITextFieldDidEndEditingReason reason);
 		
@@ -12709,7 +12709,7 @@ namespace XamCore.UIKit {
 		UIColor TextColor { get; set; }
 
 		[Export ("editable")]
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		bool Editable { [Bind ("isEditable")] get; set; }
 
 		[Export ("textAlignment")]
@@ -12729,16 +12729,16 @@ namespace XamCore.UIKit {
 		NSObject WeakDelegate { get; set; }
 
 		[Export ("dataDetectorTypes")]
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		UIDataDetectorType DataDetectorTypes { get; set; }
 
 		// 3.2
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[NullAllowed] // by default this property is null
 		[Export ("inputAccessoryView", ArgumentSemantic.Retain)]
 		UIView InputAccessoryView { get; set; }
 
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("inputView", ArgumentSemantic.Retain)][NullAllowed]
 		UIView InputView { get; set; }
 
@@ -12758,19 +12758,19 @@ namespace XamCore.UIKit {
 		// 6.0
 		//
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("allowsEditingTextAttributes")]
 		bool AllowsEditingTextAttributes { get; set;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("attributedText", ArgumentSemantic.Copy)]
 		NSAttributedString AttributedText { get; set;  }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("clearsOnInsertion")]
 		bool ClearsOnInsertion { get; set;  }		
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("typingAttributes", ArgumentSemantic.Copy)]
 		NSDictionary TypingAttributes {
@@ -12780,38 +12780,38 @@ namespace XamCore.UIKit {
 			set;
 		}
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("selectable")]
 		bool Selectable { [Bind ("isSelectable")] get; set; }
 
 		[DesignatedInitializer]
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("initWithFrame:textContainer:")]
 		[PostGet ("TextContainer")]
 		IntPtr Constructor (CGRect frame, NSTextContainer textContainer);
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("textContainer", ArgumentSemantic.Copy)]
 		NSTextContainer TextContainer { get; }
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("textContainerInset", ArgumentSemantic.Assign)]
 		UIEdgeInsets TextContainerInset { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("layoutManager", ArgumentSemantic.Copy)]
 		NSLayoutManager LayoutManager { get; }
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("textStorage", ArgumentSemantic.Retain)]
 		NSTextStorage TextStorage { get; }
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("linkTextAttributes", ArgumentSemantic.Copy)]
 		NSDictionary WeakLinkTextAttributes { get; set; }
 	}
 
-	[BaseType (typeof(UIScrollViewDelegate))]
+	[BaseType (typeof (UIScrollViewDelegate))]
 	[Model]
 	[Protocol]
 	interface UITextViewDelegate {
@@ -12837,26 +12837,26 @@ namespace XamCore.UIKit {
 		[Export ("textViewDidChangeSelection:"), EventArgs ("UITextView")]
 		void SelectionChanged (UITextView textView);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Deprecated (PlatformName.iOS, 10, 0, message: "Use the 'ShouldInteractWithUrl' overload that takes 'UITextItemInteraction' instead.")]
 		[Export ("textView:shouldInteractWithURL:inRange:"), DelegateName ("Func<UITextView,NSUrl,NSRange,bool>"), DefaultValue ("true")]
 		bool ShouldInteractWithUrl (UITextView textView, NSUrl URL, NSRange characterRange);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Deprecated (PlatformName.iOS, 10, 0, message: "Use the 'ShouldInteractWithTextAttachment' overload that takes 'UITextItemInteraction' instead.")]
 		[Export ("textView:shouldInteractWithTextAttachment:inRange:"), DelegateName ("Func<UITextView,NSTextAttachment,NSRange,bool>"), DefaultValue ("true")]
 		bool ShouldInteractWithTextAttachment (UITextView textView, NSTextAttachment textAttachment, NSRange characterRange);
 
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("textView:shouldInteractWithURL:inRange:interaction:"), DelegateApiName ("AllowUrlInteraction"), DelegateName ("UITextViewDelegateShouldInteractUrlDelegate"), DefaultValue ("true")]
 		bool ShouldInteractWithUrl (UITextView textView, NSUrl url, NSRange characterRange, UITextItemInteraction interaction);
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("textView:shouldInteractWithTextAttachment:inRange:interaction:"), DelegateApiName ("AllowTextAttachmentInteraction"), DelegateName ("UITextViewDelegateShouldInteractTextDelegate"), DefaultValue ("true")]
 		bool ShouldInteractWithTextAttachment (UITextView textView, NSTextAttachment textAttachment, NSRange characterRange, UITextItemInteraction interaction);
 	}
 	
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (UIView))]
 	interface UIToolbar : UIBarPositioning {
 		[Export ("initWithFrame:")]
@@ -12875,33 +12875,33 @@ namespace XamCore.UIKit {
 		//[Export ("setItems:animated:")][PostGet ("Items")]
 		//void SetItems (UIBarButtonItem [] items, bool animated);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setBackgroundImage:forToolbarPosition:barMetrics:")]
 		[Appearance]
 		void SetBackgroundImage ([NullAllowed] UIImage backgroundImage, UIToolbarPosition position, UIBarMetrics barMetrics);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("backgroundImageForToolbarPosition:barMetrics:")]
 		[Appearance]
 		UIImage GetBackgroundImage (UIToolbarPosition position, UIBarMetrics barMetrics);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Appearance]
 		[Export ("setShadowImage:forToolbarPosition:")]
 		void SetShadowImage ([NullAllowed] UIImage shadowImage, UIToolbarPosition topOrBottom);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Appearance]
 		[Export ("shadowImageForToolbarPosition:")]
 		UIImage GetShadowImage (UIToolbarPosition topOrBottom);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Appearance]
 		[NullAllowed]
 		[Export ("barTintColor", ArgumentSemantic.Retain)]
 		UIColor BarTintColor { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("delegate", ArgumentSemantic.Weak), NullAllowed]
 		NSObject WeakDelegate { get; set; }
 
@@ -12912,7 +12912,7 @@ namespace XamCore.UIKit {
 
 	interface IUITimingCurveProvider {}
 
-	[iOS (10,0)]
+	[Introduced (PlatformName.iOS, 10, 0)]
 	[Protocol]
 	interface UITimingCurveProvider : NSCoding, NSCopying {
 		[Abstract]
@@ -12928,7 +12928,7 @@ namespace XamCore.UIKit {
 		UISpringTimingParameters SpringTimingParameters { get; }
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (UIBarPositioningDelegate))]
 	[Model]
 	[Protocol]
@@ -12960,73 +12960,73 @@ namespace XamCore.UIKit {
 		UITouchPhase Phase { get; }
 
 		// 3.2
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("gestureRecognizers", ArgumentSemantic.Copy)]
 		UIGestureRecognizer[] GestureRecognizers { get; }
 
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("majorRadius")]
 		nfloat MajorRadius { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("majorRadiusTolerance")]
 		nfloat MajorRadiusTolerance { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("force")]
 		nfloat Force { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("maximumPossibleForce")]
 		nfloat MaximumPossibleForce { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("type")]
 		UITouchType Type { get; }
 
-		[NoTV]
-		[iOS (9,1)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 9, 1)]
 		[Export ("preciseLocationInView:")]
 		CGPoint GetPreciseLocation ([NullAllowed] UIView view);
 
-		[NoTV]
-		[iOS (9,1)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 9, 1)]
 		[Export ("precisePreviousLocationInView:")]
 		CGPoint GetPrecisePreviousLocation ([NullAllowed] UIView view);
 
-		[NoTV] // stylus only, header unclear but not part of web documentation for tvOS
-		[iOS (9,1)]
+		[Unavailable (PlatformName.TvOS)] // stylus only, header unclear but not part of web documentation for tvOS
+		[Introduced (PlatformName.iOS, 9, 1)]
 		[Export ("azimuthAngleInView:")]
 		nfloat GetAzimuthAngle ([NullAllowed] UIView view);
 
-		[NoTV] // stylus only, header unclear but not part of web documentation for tvOS
-		[iOS (9,1)]
+		[Unavailable (PlatformName.TvOS)] // stylus only, header unclear but not part of web documentation for tvOS
+		[Introduced (PlatformName.iOS, 9, 1)]
 		[Export ("azimuthUnitVectorInView:")]
 		CGVector GetAzimuthUnitVector ([NullAllowed] UIView view);
 		
-		[NoTV] // stylus only, header unclear but not part of web documentation for tvOS
-		[iOS (9,1)]
+		[Unavailable (PlatformName.TvOS)] // stylus only, header unclear but not part of web documentation for tvOS
+		[Introduced (PlatformName.iOS, 9, 1)]
 		[Export ("altitudeAngle")]
 		nfloat AltitudeAngle { get; }
 
-		[NoTV] // header unclear but not part of web documentation for tvOS
-		[iOS (9,1)]
+		[Unavailable (PlatformName.TvOS)] // header unclear but not part of web documentation for tvOS
+		[Introduced (PlatformName.iOS, 9, 1)]
 		[NullAllowed, Export ("estimationUpdateIndex")]
 		NSNumber EstimationUpdateIndex { get; }
 
-		[NoTV] // header unclear but not part of web documentation for tvOS
-		[iOS (9,1)]
+		[Unavailable (PlatformName.TvOS)] // header unclear but not part of web documentation for tvOS
+		[Introduced (PlatformName.iOS, 9, 1)]
 		[Export ("estimatedProperties")]
 		UITouchProperties EstimatedProperties { get; }
 
-		[NoTV] // header unclear but not part of web documentation for tvOS
-		[iOS (9,1)]
+		[Unavailable (PlatformName.TvOS)] // header unclear but not part of web documentation for tvOS
+		[Introduced (PlatformName.iOS, 9, 1)]
 		[Export ("estimatedPropertiesExpectingUpdates")]
 		UITouchProperties EstimatedPropertiesExpectingUpdates { get; }
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (UINavigationController), Delegates=new string [] { "WeakDelegate" }, Events=new Type [] {typeof(UIVideoEditorControllerDelegate)})]
 	interface UIVideoEditorController {
 		[Export ("canEditVideoAtPath:")][Static]
@@ -13052,7 +13052,7 @@ namespace XamCore.UIKit {
 
 	// id<UINavigationControllerDelegate, UIVideoEditorControllerDelegate>
 	[BaseType (typeof (UINavigationControllerDelegate))]
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[Model]
 	[Protocol]
 	interface UIVideoEditorControllerDelegate {
@@ -13184,11 +13184,11 @@ namespace XamCore.UIKit {
 		[Export ("transform")]
 		new CGAffineTransform Transform { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("multipleTouchEnabled")]
 		bool MultipleTouchEnabled { [Bind ("isMultipleTouchEnabled")] get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("exclusiveTouch")]
 		bool ExclusiveTouch { [Bind ("isExclusiveTouch")] get; set; }
 
@@ -13310,9 +13310,9 @@ namespace XamCore.UIKit {
 		[Export ("contentMode")]
 		UIViewContentMode ContentMode { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("contentStretch")]
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_6_0, Message = "Use 'CreateResizableImage' instead.")]
+		[Introduced (PlatformName.iOS, 3, 0, message: "Use 'CreateResizableImage' instead."), Deprecated (PlatformName.iOS, 6, 0, message: "Use 'CreateResizableImage' instead.")]
 		CGRect ContentStretch { get; set; }
 
 		[Static] [Export ("beginAnimations:context:")]
@@ -13358,54 +13358,54 @@ namespace XamCore.UIKit {
 		bool AnimationsEnabled { [Bind ("areAnimationsEnabled")] get; [Bind ("setAnimationsEnabled:")] set; }
 
 		// 3.2:
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("addGestureRecognizer:"), PostGet ("GestureRecognizers")]
 		void AddGestureRecognizer (UIGestureRecognizer gestureRecognizer);
 
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("removeGestureRecognizer:"), PostGet ("GestureRecognizers")]
 		void RemoveGestureRecognizer (UIGestureRecognizer gestureRecognizer);
 
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[NullAllowed] // by default this property is null
 		[Export ("gestureRecognizers", ArgumentSemantic.Copy)]
 		UIGestureRecognizer[] GestureRecognizers { get; set; }
 
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Static, Export ("animateWithDuration:animations:")]
 		void Animate (double duration, /* non null */ NSAction animation);
 
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Static, Export ("animateWithDuration:animations:completion:")]
 		[Async]
 		void AnimateNotify (double duration, /* non null */ NSAction animation, [NullAllowed] UICompletionHandler completion);
 		
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Static, Export ("animateWithDuration:delay:options:animations:completion:")]
 		[Async]
 		void AnimateNotify (double duration, double delay, UIViewAnimationOptions options, /* non null */ NSAction animation, [NullAllowed] UICompletionHandler completion);
 
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Static, Export ("transitionFromView:toView:duration:options:completion:")]
 		[Async]
 		void TransitionNotify (UIView fromView, UIView toView, double duration, UIViewAnimationOptions options, [NullAllowed] UICompletionHandler completion);
 
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Static, Export ("transitionWithView:duration:options:animations:completion:")]
 		[Async]
 		void TransitionNotify (UIView withView, double duration, UIViewAnimationOptions options, [NullAllowed] NSAction animation, [NullAllowed] UICompletionHandler completion);
 
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("contentScaleFactor")]
 		nfloat ContentScaleFactor { get; set; }
 
-		[NoTV]
-		[Since (4,2)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 4, 2)]
 		[Export ("viewPrintFormatter")]
 		UIViewPrintFormatter ViewPrintFormatter { get; }
 
-		[NoTV]
-		[Since (4,2)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 4, 2)]
 		[Export ("drawRect:forViewPrintFormatter:")]
 		void DrawRect (CGRect area, UIViewPrintFormatter formatter);
 
@@ -13413,372 +13413,372 @@ namespace XamCore.UIKit {
 		// 6.0
 		//
 		
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("constraints")]
 		NSLayoutConstraint [] Constraints { get; }
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("addConstraint:")]
 		void AddConstraint (NSLayoutConstraint constraint);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("addConstraints:")]
 		void AddConstraints (NSLayoutConstraint [] constraints);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("removeConstraint:")]
 		void RemoveConstraint (NSLayoutConstraint constraint);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("removeConstraints:")]
 		void RemoveConstraints (NSLayoutConstraint [] constraints);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("needsUpdateConstraints")]
 		bool NeedsUpdateConstraints ();
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("setNeedsUpdateConstraints")]
 		void SetNeedsUpdateConstraints ();
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Static]
 		[Export ("requiresConstraintBasedLayout")]
 		bool RequiresConstraintBasedLayout ();
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("alignmentRectForFrame:")]
 		CGRect AlignmentRectForFrame (CGRect frame);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("frameForAlignmentRect:")]
 		CGRect FrameForAlignmentRect (CGRect alignmentRect);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("alignmentRectInsets")]
 		UIEdgeInsets AlignmentRectInsets { get; }
 
-		[NoTV]
-		[Since(6,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("viewForBaselineLayout")]
-		[Availability (Deprecated = Platform.iOS_9_0, Message="Override 'ViewForFirstBaselineLayout' or 'ViewForLastBaselineLayout'.")]
+		[Deprecated (PlatformName.iOS, 9, 0, message: "Override 'ViewForFirstBaselineLayout' or 'ViewForLastBaselineLayout'.")]
 		UIView ViewForBaselineLayout { get; }
 
-		[Since (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("viewForFirstBaselineLayout")]
 		UIView ViewForFirstBaselineLayout { get; }
 
-		[Since (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("viewForLastBaselineLayout")]
 		UIView ViewForLastBaselineLayout { get; }
 			
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("intrinsicContentSize")]
 		CGSize IntrinsicContentSize { get; }
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("invalidateIntrinsicContentSize")]
 		void InvalidateIntrinsicContentSize ();
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("contentHuggingPriorityForAxis:")]
 		float ContentHuggingPriority (UILayoutConstraintAxis axis); // This returns a float, not nfloat.
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("setContentHuggingPriority:forAxis:")]
 		void SetContentHuggingPriority (float priority /* this is a float, not nfloat */, UILayoutConstraintAxis axis);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("contentCompressionResistancePriorityForAxis:")]
 		float ContentCompressionResistancePriority (UILayoutConstraintAxis axis); // This returns a float, not nfloat.
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("setContentCompressionResistancePriority:forAxis:")]
 		void SetContentCompressionResistancePriority (float priority /* this is a float, not nfloat */, UILayoutConstraintAxis axis);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("constraintsAffectingLayoutForAxis:")]
 		NSLayoutConstraint [] GetConstraintsAffectingLayout (UILayoutConstraintAxis axis);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("hasAmbiguousLayout")]
 		bool HasAmbiguousLayout { get; }
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("exerciseAmbiguityInLayout")]
 		void ExerciseAmbiguityInLayout ();
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("systemLayoutSizeFittingSize:")]
 		CGSize SystemLayoutSizeFittingSize (CGSize size);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("decodeRestorableStateWithCoder:")]
 		void DecodeRestorableState (NSCoder coder);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("encodeRestorableStateWithCoder:")]
 		void EncodeRestorableState (NSCoder coder);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("restorationIdentifier", ArgumentSemantic.Copy)]
 		string RestorationIdentifier { get; set; }
 		
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("gestureRecognizerShouldBegin:")]
 		bool GestureRecognizerShouldBegin (UIGestureRecognizer gestureRecognizer);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("translatesAutoresizingMaskIntoConstraints")]
 		bool TranslatesAutoresizingMaskIntoConstraints { get; set; }
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("updateConstraintsIfNeeded")]
 		void UpdateConstraintsIfNeeded ();
 		
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("updateConstraints")]
 		void UpdateConstraints ();
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("UIViewNoIntrinsicMetric")]
 		nfloat NoIntrinsicMetric { get; }
 		
-		[iOS (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("UILayoutFittingCompressedSize")]
 		CGSize UILayoutFittingCompressedSize { get; }
 
-		[iOS (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("UILayoutFittingExpandedSize")]
 		CGSize UILayoutFittingExpandedSize { get; }
 
 		[NullAllowed]
 		[Export ("tintColor")]
 		[Appearance]
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		UIColor TintColor { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("tintAdjustmentMode")]
 		UIViewTintAdjustmentMode TintAdjustmentMode { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("tintColorDidChange")]
 		void TintColorDidChange ();
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Static, Export ("performWithoutAnimation:")]
 		void PerformWithoutAnimation (NSAction actionsWithoutAnimation);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Static, Export ("performSystemAnimation:onViews:options:animations:completion:")]
 		[Async]
 		void PerformSystemAnimation (UISystemAnimation animation, UIView [] views, UIViewAnimationOptions options, NSAction parallelAnimations, UICompletionHandler completion);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Static, Export ("animateKeyframesWithDuration:delay:options:animations:completion:")]
 		[Async]
 		void AnimateKeyframes (double duration, double delay, UIViewKeyframeAnimationOptions options, NSAction animations, UICompletionHandler completion);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Static, Export ("addKeyframeWithRelativeStartTime:relativeDuration:animations:")]
 		void AddKeyframeWithRelativeStartTime (double frameStartTime, double frameDuration, NSAction animations);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("addMotionEffect:")]
 		[PostGet ("MotionEffects")]
 		void AddMotionEffect (UIMotionEffect effect);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("removeMotionEffect:")]
 		[PostGet ("MotionEffects")]
 		void RemoveMotionEffect (UIMotionEffect effect);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("motionEffects", ArgumentSemantic.Copy)]
 		UIMotionEffect [] MotionEffects { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("snapshotViewAfterScreenUpdates:")]
 		UIView SnapshotView (bool afterScreenUpdates);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("resizableSnapshotViewFromRect:afterScreenUpdates:withCapInsets:")]
 		[return: NullAllowed]
 		UIView ResizableSnapshotView (CGRect rect, bool afterScreenUpdates, UIEdgeInsets capInsets);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("drawViewHierarchyInRect:afterScreenUpdates:")]
 		bool DrawViewHierarchy (CGRect rect, bool afterScreenUpdates);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Static]
 		[Export ("animateWithDuration:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion:")]
 		[Async]
 		void AnimateNotify (double duration, double delay, nfloat springWithDampingRatio, nfloat initialSpringVelocity, UIViewAnimationOptions options, NSAction animations, [NullAllowed] UICompletionHandler completion);
 
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("maskView", ArgumentSemantic.Retain)]
 		UIView MaskView { get; set; }
 
-		[iOS(8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("systemLayoutSizeFittingSize:withHorizontalFittingPriority:verticalFittingPriority:")]
 		// float, not CGFloat / nfloat, but we can't use an enum in the signature
 		CGSize SystemLayoutSizeFittingSize (CGSize targetSize, /* UILayoutPriority */ float horizontalFittingPriority, /* UILayoutPriority */ float verticalFittingPriority);
 
-		[iOS(8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("layoutMargins")]
 		UIEdgeInsets LayoutMargins { get; set; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("directionalLayoutMargins", ArgumentSemantic.Assign)]
 		NSDirectionalEdgeInsets DirectionalLayoutMargins { get; set; }
 
-		[iOS(8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("preservesSuperviewLayoutMargins")]
 		bool PreservesSuperviewLayoutMargins { get; set; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("insetsLayoutMarginsFromSafeArea")]
 		bool InsetsLayoutMarginsFromSafeArea { get; set; }
 
-		[iOS(8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("layoutMarginsDidChange")]
 		void LayoutMarginsDidChange ();
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("safeAreaInsets")]
 		UIEdgeInsets SafeAreaInsets { get; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("safeAreaInsetsDidChange")]
 		void SafeAreaInsetsDidChange ();
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Static]
 		[Export ("userInterfaceLayoutDirectionForSemanticContentAttribute:")]
 		UIUserInterfaceLayoutDirection GetUserInterfaceLayoutDirection (UISemanticContentAttribute attribute);
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Static]
 		[Export ("userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")]
 		UIUserInterfaceLayoutDirection GetUserInterfaceLayoutDirection (UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("effectiveUserInterfaceLayoutDirection")]
 		UIUserInterfaceLayoutDirection EffectiveUserInterfaceLayoutDirection { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("semanticContentAttribute", ArgumentSemantic.Assign)]
 		UISemanticContentAttribute SemanticContentAttribute { get; set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("layoutMarginsGuide", ArgumentSemantic.Strong)]
 		UILayoutGuide LayoutMarginsGuide { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("readableContentGuide", ArgumentSemantic.Strong)]
 		UILayoutGuide ReadableContentGuide { get; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("safeAreaLayoutGuide", ArgumentSemantic.Strong)]
 		UILayoutGuide SafeAreaLayoutGuide { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("inheritedAnimationDuration")]
 		[Static]
 		double InheritedAnimationDuration { get; }
 
 #if XAMCORE_2_0 // NSLayoutXAxisAnchor is a generic type, only supported in Unified (for now)
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("leadingAnchor")]
 		NSLayoutXAxisAnchor LeadingAnchor { get; }
 		
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("trailingAnchor")]
 		NSLayoutXAxisAnchor TrailingAnchor { get; }
 		
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("leftAnchor")]
 		NSLayoutXAxisAnchor LeftAnchor { get; }
 		
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("rightAnchor")]
 		NSLayoutXAxisAnchor RightAnchor { get; }
 		
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("topAnchor")]
 		NSLayoutYAxisAnchor TopAnchor { get; }
 		
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("bottomAnchor")]
 		NSLayoutYAxisAnchor BottomAnchor { get; }
 		
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("widthAnchor")]
 		NSLayoutDimension WidthAnchor { get; }
 		
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("heightAnchor")]
 		NSLayoutDimension HeightAnchor { get; }
 		
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("centerXAnchor")]
 		NSLayoutXAxisAnchor CenterXAnchor { get; }
 		
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("centerYAnchor")]
 		NSLayoutYAxisAnchor CenterYAnchor { get; }
 		
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("firstBaselineAnchor")]
 		NSLayoutYAxisAnchor FirstBaselineAnchor { get; }
 		
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("lastBaselineAnchor")]
 		NSLayoutYAxisAnchor LastBaselineAnchor { get; }
 #endif // XAMCORE_2_0
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("layoutGuides")]
 		UILayoutGuide [] LayoutGuides { get; }
 		
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("addLayoutGuide:")]
 		void AddLayoutGuide (UILayoutGuide guide);
 		
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("removeLayoutGuide:")]
 		void RemoveLayoutGuide (UILayoutGuide guide);
 
-		[iOS (9,0)] // added in Xcode 7.1 / iOS 9.1 SDK
+		[Introduced (PlatformName.iOS, 9, 0)] // added in Xcode 7.1 / iOS 9.1 SDK
 		[Export ("focused")]
 		bool Focused { [Bind ("isFocused")] get; }
 
-		[iOS (9,0)] // added in Xcode 7.1 / iOS 9.1 SDK
+		[Introduced (PlatformName.iOS, 9, 0)] // added in Xcode 7.1 / iOS 9.1 SDK
 		[Export ("canBecomeFocused")]
 		new bool CanBecomeFocused { get; }
 
-		[NoWatch, NoTV, iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("addInteraction:")]
 		void AddInteraction (IUIInteraction interaction);
 	
-		[NoWatch, NoTV, iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("removeInteraction:")]
 		void RemoveInteraction (IUIInteraction interaction);
 	
-		[NoWatch, NoTV, iOS (11, 0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("interactions", ArgumentSemantic.Copy)]
 		IUIInteraction[] Interactions { get; set; }
 
 		// UIAccessibilityInvertColors category
-		[NoWatch]
-		[TV (11,0), iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("accessibilityIgnoresInvertColors")]
 		bool AccessibilityIgnoresInvertColors { get; set; }
 	}
@@ -13789,7 +13789,7 @@ namespace XamCore.UIKit {
 		bool EndEditing (bool force);
 	}
 
-	[iOS (10,0), TV (10,0)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 	[Category]
 	[BaseType (typeof (UILayoutGuide))]
 	interface UILayoutGuide_UIConstraintBasedLayoutDebugging {
@@ -13820,9 +13820,9 @@ namespace XamCore.UIKit {
 		[Export ("viewDidLoad")]
 		void ViewDidLoad ();
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("viewDidUnload")]
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_6_0)]
+		[Introduced (PlatformName.iOS, 3, 0), Deprecated (PlatformName.iOS, 6, 0)]
 		void ViewDidUnload ();
 
 		[Export ("isViewLoaded")]
@@ -13853,31 +13853,31 @@ namespace XamCore.UIKit {
 		[Export ("didReceiveMemoryWarning")]
 		void DidReceiveMemoryWarning ();
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("presentModalViewController:animated:")]
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_6_0, Message = "Use 'PresentViewController (UIViewController, bool, NSAction)' instead and set the 'ModalViewController' property to true.")]
+		[Introduced (PlatformName.iOS, 2, 0, message: "Use 'PresentViewController (UIViewController, bool, NSAction)' instead and set the 'ModalViewController' property to true."), Deprecated (PlatformName.iOS, 6, 0, message: "Use 'PresentViewController (UIViewController, bool, NSAction)' instead and set the 'ModalViewController' property to true.")]
 		void PresentModalViewController (UIViewController modalViewController, bool animated);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("dismissModalViewControllerAnimated:")]
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_6_0, Message = "Use 'DismissViewController (bool, NSAction)' instead.")]
+		[Introduced (PlatformName.iOS, 2, 0, message: "Use 'DismissViewController (bool, NSAction)' instead."), Deprecated (PlatformName.iOS, 6, 0, message: "Use 'DismissViewController (bool, NSAction)' instead.")]
 #if XAMCORE_2_0
 		void DismissModalViewController (bool animated);
 #else
 		void DismissModalViewControllerAnimated (bool animated);
 #endif
 		
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("modalViewController")]
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_6_0, Message = "Use 'PresentedViewController' instead.")]
+		[Introduced (PlatformName.iOS, 2, 0, message: "Use 'PresentedViewController' instead."), Deprecated (PlatformName.iOS, 6, 0, message: "Use 'PresentedViewController' instead.")]
 		UIViewController ModalViewController { get; }
 
 		[Export ("modalTransitionStyle", ArgumentSemantic.Assign)]
 		UIModalTransitionStyle ModalTransitionStyle { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("wantsFullScreenLayout", ArgumentSemantic.Assign)]
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_7_0, Message = "Use 'EdgesForExtendedLayout', 'ExtendedLayoutIncludesOpaqueBars' and 'AutomaticallyAdjustsScrollViewInsets' instead.")]
+		[Introduced (PlatformName.iOS, 3, 0, message: "Use 'EdgesForExtendedLayout', 'ExtendedLayoutIncludesOpaqueBars' and 'AutomaticallyAdjustsScrollViewInsets' instead."), Deprecated (PlatformName.iOS, 7, 0, message: "Use 'EdgesForExtendedLayout', 'ExtendedLayoutIncludesOpaqueBars' and 'AutomaticallyAdjustsScrollViewInsets' instead.")]
 		bool WantsFullScreenLayout { get; set; }
 
 		[Export ("parentViewController")][NullAllowed]
@@ -13888,54 +13888,54 @@ namespace XamCore.UIKit {
 
 		// UIViewControllerRotation category
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("shouldAutorotateToInterfaceOrientation:")]
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_6_0, Message = "Use both 'GetSupportedInterfaceOrientations' and 'PreferredInterfaceOrientationForPresentation' instead.")]
+		[Introduced (PlatformName.iOS, 2, 0, message: "Use both 'GetSupportedInterfaceOrientations' and 'PreferredInterfaceOrientationForPresentation' instead."), Deprecated (PlatformName.iOS, 6, 0, message: "Use both 'GetSupportedInterfaceOrientations' and 'PreferredInterfaceOrientationForPresentation' instead.")]
 		bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation);
 
-		[NoTV]
-		[Availability (Deprecated = Platform.iOS_8_0, Message="Use Adaptive View Controllers instead.")]
+		[Unavailable (PlatformName.TvOS)]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use Adaptive View Controllers instead.")]
 		[Export ("rotatingHeaderView")]
 		UIView RotatingHeaderView { get; }
 
-		[NoTV]
-		[Availability (Deprecated = Platform.iOS_8_0, Message="Use Adaptive View Controllers instead.")]
+		[Unavailable (PlatformName.TvOS)]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use Adaptive View Controllers instead.")]
 		[Export ("rotatingFooterView")]
 		UIView RotatingFooterView { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("interfaceOrientation")]
-		[Availability (Deprecated = Platform.iOS_8_0, Message="Use Adaptive View Controllers instead.")]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use Adaptive View Controllers instead.")]
 		UIInterfaceOrientation InterfaceOrientation { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("willRotateToInterfaceOrientation:duration:")]
-		[Availability (Deprecated = Platform.iOS_8_0, Message="Use Adaptive View Controllers instead.")]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use Adaptive View Controllers instead.")]
 		void WillRotate (UIInterfaceOrientation toInterfaceOrientation, double duration);
 				 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("didRotateFromInterfaceOrientation:")]
-		[Availability (Deprecated = Platform.iOS_8_0, Message="Use Adaptive View Controllers instead.")]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use Adaptive View Controllers instead.")]
 		void DidRotate (UIInterfaceOrientation fromInterfaceOrientation);
 		
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("willAnimateRotationToInterfaceOrientation:duration:")]
-		[Availability (Deprecated = Platform.iOS_8_0, Message="Use Adaptive View Controllers instead.")]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use Adaptive View Controllers instead.")]
 		void WillAnimateRotation (UIInterfaceOrientation toInterfaceOrientation, double duration);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("willAnimateFirstHalfOfRotationToInterfaceOrientation:duration:")]
-		[Availability (Deprecated = Platform.iOS_5_0)]
+		[Deprecated (PlatformName.iOS, 5, 0)]
 		void WillAnimateFirstHalfOfRotation (UIInterfaceOrientation toInterfaceOrientation, double duration);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("didAnimateFirstHalfOfRotationToInterfaceOrientation:")]
-		[Availability (Deprecated = Platform.iOS_5_0)]
+		[Deprecated (PlatformName.iOS, 5, 0)]
 		void DidAnimateFirstHalfOfRotation (UIInterfaceOrientation toInterfaceOrientation);
 		
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("willAnimateSecondHalfOfRotationFromInterfaceOrientation:duration:")]
-		[Availability (Deprecated = Platform.iOS_5_0)]
+		[Deprecated (PlatformName.iOS, 5, 0)]
 		void WillAnimateSecondHalfOfRotation (UIInterfaceOrientation fromInterfaceOrientation, double duration);
 
 		// These come from @interface UIViewController (UIViewControllerEditing)
@@ -13949,8 +13949,8 @@ namespace XamCore.UIKit {
 		UIBarButtonItem EditButtonItem { get; }
 
 		// These come from @interface UIViewController (UISearchDisplayControllerSupport)
-		[NoTV]
-		[Availability (Deprecated = Platform.iOS_8_0, Message="Use 'UISearchController' instead.")]
+		[Unavailable (PlatformName.TvOS)]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use 'UISearchController' instead.")]
 		[Export ("searchDisplayController", ArgumentSemantic.Retain)]
 		UISearchDisplayController SearchDisplayController { get; }
 		
@@ -13958,11 +13958,11 @@ namespace XamCore.UIKit {
 		[Export ("navigationItem", ArgumentSemantic.Retain)]
 		UINavigationItem NavigationItem  {get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("hidesBottomBarWhenPushed")]
 		bool HidesBottomBarWhenPushed { get; set; }
 
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("splitViewController", ArgumentSemantic.Retain)]
 		UISplitViewController SplitViewController { get; }
 
@@ -13976,302 +13976,302 @@ namespace XamCore.UIKit {
 		[Export ("toolbarItems", ArgumentSemantic.Retain)]
 		UIBarButtonItem [] ToolbarItems { get; [NullAllowed] set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("setToolbarItems:animated:")][PostGet ("ToolbarItems")]
 		void SetToolbarItems ([NullAllowed] UIBarButtonItem [] items, bool animated);
 
 		// These come in 3.2
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("modalPresentationStyle", ArgumentSemantic.Assign)]
 		UIModalPresentationStyle ModalPresentationStyle { get; set; }
 
 		// 3.2 extensions from MoviePlayer
-		[NoMac]
-		[NoTV]
-		[Availability (Deprecated = Platform.iOS_9_0, Message = "Use 'AVPlayerViewController' (AVKit) instead.")]
+		[Unavailable (PlatformName.MacOSX)]
+		[Unavailable (PlatformName.TvOS)]
+		[Deprecated (PlatformName.iOS, 9, 0, message: "Use 'AVPlayerViewController' (AVKit) instead.")]
 		[Export ("presentMoviePlayerViewControllerAnimated:")]
 		void PresentMoviePlayerViewController (MPMoviePlayerViewController moviePlayerViewController);
 
-		[NoMac]
-		[NoTV]
-		[Availability (Deprecated = Platform.iOS_9_0, Message = "Use 'AVPlayerViewController' (AVKit) instead.")]
+		[Unavailable (PlatformName.MacOSX)]
+		[Unavailable (PlatformName.TvOS)]
+		[Deprecated (PlatformName.iOS, 9, 0, message: "Use 'AVPlayerViewController' (AVKit) instead.")]
 		[Export ("dismissMoviePlayerViewControllerAnimated")]
 		void DismissMoviePlayerViewController ();
 
 
 		// This is defined in a category in UIPopoverSupport.h: UIViewController (UIPopoverController)
-		[NoTV]
-		[Availability (Introduced = Platform.iOS_3_2, Deprecated = Platform.iOS_7_0, Message = "Use 'PreferredContentSize' instead.")]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 3, 2, message: "Use 'PreferredContentSize' instead."), Deprecated (PlatformName.iOS, 7, 0, message: "Use 'PreferredContentSize' instead.")]
 		[Export ("contentSizeForViewInPopover")]
 		CGSize ContentSizeForViewInPopover { get; set; }
 
 		// This is defined in a category in UIPopoverSupport.h: UIViewController (UIPopoverController)
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("modalInPopover")]
 		bool ModalInPopover { [Bind ("isModalInPopover")] get; set; }
 
-		[Since (4,3)] // It seems apple added a setter now but seems it is a mistake on new property radar:27929872
+		[Introduced (PlatformName.iOS, 4, 3)] // It seems apple added a setter now but seems it is a mistake on new property radar:27929872
 		[Export ("disablesAutomaticKeyboardDismissal")]
 		bool DisablesAutomaticKeyboardDismissal { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("storyboard", ArgumentSemantic.Retain)]
 		UIStoryboard Storyboard { get;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("presentedViewController")]
 		UIViewController PresentedViewController { get;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("presentingViewController")]
 		UIViewController PresentingViewController { get;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("definesPresentationContext", ArgumentSemantic.Assign)]
 		bool DefinesPresentationContext { get; set;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("providesPresentationContextTransitionStyle", ArgumentSemantic.Assign)]
 		bool ProvidesPresentationContextTransitionStyle { get; set;  }
 
-		[NoTV]
-		[Since (5,0)]
-		[Availability (Introduced = Platform.iOS_5_0, Deprecated = Platform.iOS_6_0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
+		[Introduced (PlatformName.iOS, 5, 0), Deprecated (PlatformName.iOS, 6, 0)]
 		[Export ("viewWillUnload")]
 		void ViewWillUnload ();
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("performSegueWithIdentifier:sender:")]
 		void PerformSegue (string identifier, [NullAllowed] NSObject sender);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("prepareForSegue:sender:")]
 		void PrepareForSegue (UIStoryboardSegue segue, [NullAllowed] NSObject sender);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("viewWillLayoutSubviews")]
 		void ViewWillLayoutSubviews ();
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("viewDidLayoutSubviews")]
 		void ViewDidLayoutSubviews ();
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("isBeingPresented")]
 		bool IsBeingPresented { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("isBeingDismissed")]
 		bool IsBeingDismissed { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("isMovingToParentViewController")]
 		bool IsMovingToParentViewController { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("isMovingFromParentViewController")]
 		bool IsMovingFromParentViewController { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("presentViewController:animated:completion:")]
 		[Async]
 		void PresentViewController (UIViewController viewControllerToPresent, bool animated, [NullAllowed] NSAction completionHandler);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("dismissViewControllerAnimated:completion:")]
 		[Async]
 		void DismissViewController (bool animated, [NullAllowed] NSAction completionHandler);
 
 		// UIViewControllerRotation
-		[NoTV]
-		[Since (5,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Static]
 		[Export ("attemptRotationToDeviceOrientation")]
 		void AttemptRotationToDeviceOrientation ();
 
-		[NoTV]
-		[Availability (Introduced = Platform.iOS_5_0, Deprecated = Platform.iOS_6_0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0), Deprecated (PlatformName.iOS, 6, 0)]
 		[Export ("automaticallyForwardAppearanceAndRotationMethodsToChildViewControllers")]
 		/*PROTECTED*/ bool AutomaticallyForwardAppearanceAndRotationMethodsToChildViewControllers { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("childViewControllers")]
 		/*PROTECTED, MUSTCALLBASE*/ UIViewController [] ChildViewControllers { get;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("addChildViewController:")]
 		[PostGet ("ChildViewControllers")]
 		/*PROTECTED, MUSTCALLBASE*/ void AddChildViewController (UIViewController childController);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("removeFromParentViewController")]
 		/*PROTECTED, MUSTCALLBASE*/ void RemoveFromParentViewController ();
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("transitionFromViewController:toViewController:duration:options:animations:completion:")]
 		[Async]
 		/*PROTECTED, MUSTCALLBASE*/ void Transition (UIViewController fromViewController, UIViewController toViewController, double duration, UIViewAnimationOptions options, /* non null */ NSAction animations, UICompletionHandler completionHandler);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("willMoveToParentViewController:")]
 		void WillMoveToParentViewController ([NullAllowed] UIViewController parent);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("didMoveToParentViewController:")]
 		void DidMoveToParentViewController ([NullAllowed] UIViewController parent);
 
 		//
 		// Exposed in iOS 6.0, but they existed and are now officially supported on iOS 5.0
 		//
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("beginAppearanceTransition:animated:")]
 		void BeginAppearanceTransition (bool isAppearing, bool animated);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("endAppearanceTransition")]
 		void EndAppearanceTransition ();
 		
 		//
 		// 6.0
 		//
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("shouldPerformSegueWithIdentifier:sender:")]
 		bool ShouldPerformSegue (string segueIdentifier, NSObject sender);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("canPerformUnwindSegueAction:fromViewController:withSender:")]
 		bool CanPerformUnwind (Selector segueAction, UIViewController fromViewController, NSObject sender);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("viewControllerForUnwindSegueAction:fromViewController:withSender:")]
 		UIViewController GetViewControllerForUnwind (Selector segueAction, UIViewController fromViewController, NSObject sender);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("segueForUnwindingToViewController:fromViewController:identifier:")]
 		UIStoryboardSegue GetSegueForUnwinding (UIViewController toViewController, UIViewController fromViewController, string identifier);
 
-		[NoTV]
-		[Since (6,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("supportedInterfaceOrientations")]
 		UIInterfaceOrientationMask GetSupportedInterfaceOrientations ();
 
-		[NoTV]
-		[Since (6,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("preferredInterfaceOrientationForPresentation")]
 		UIInterfaceOrientation PreferredInterfaceOrientationForPresentation ();
 
-		[NoTV]
-		[Since (6,0)]
-		[Availability (Deprecated = Platform.iOS_8_0, Message="Use Adaptive View Controllers instead.")]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use Adaptive View Controllers instead.")]
 		[Export ("shouldAutomaticallyForwardRotationMethods")]
 		bool ShouldAutomaticallyForwardRotationMethods { get; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("shouldAutomaticallyForwardAppearanceMethods")]
 		bool ShouldAutomaticallyForwardAppearanceMethods { get; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("restorationIdentifier", ArgumentSemantic.Copy)]
 		string RestorationIdentifier { get; set; }
 
 		[NullAllowed]
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("restorationClass")]
 		Class RestorationClass { get; set; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("encodeRestorableStateWithCoder:")]
 		void EncodeRestorableState (NSCoder coder);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("decodeRestorableStateWithCoder:")]
 		void DecodeRestorableState (NSCoder coder);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("updateViewConstraints")]
 		void UpdateViewConstraints ();
 
-		[NoTV]
-		[Since (6,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("shouldAutorotate")]
 		bool ShouldAutorotate ();
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("edgesForExtendedLayout", ArgumentSemantic.Assign)]
 		UIRectEdge EdgesForExtendedLayout { get; set; }
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("extendedLayoutIncludesOpaqueBars", ArgumentSemantic.Assign)]
 		bool ExtendedLayoutIncludesOpaqueBars { get; set; }
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Deprecated (PlatformName.iOS, 11, 0, message: "Use UIScrollView's 'ContentInsetAdjustmentBehavior' instead.")]
 		[Deprecated (PlatformName.TvOS, 11, 0, message: "Use UIScrollView's 'ContentInsetAdjustmentBehavior' instead.")]
 		[Export ("automaticallyAdjustsScrollViewInsets", ArgumentSemantic.Assign)]
 		bool AutomaticallyAdjustsScrollViewInsets { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("preferredContentSize", ArgumentSemantic.Copy)]
 		new CGSize PreferredContentSize { get; set; }
 
-		[NoTV][NoWatch]
-		[Since (7,0)]
+		[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("preferredStatusBarStyle")]
 		UIStatusBarStyle PreferredStatusBarStyle ();
 
-		[NoTV]
-		[Since (7,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("prefersStatusBarHidden")]
 		bool PrefersStatusBarHidden ();
 
-		[NoTV]
-		[Since (7,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("setNeedsStatusBarAppearanceUpdate")]
 		void SetNeedsStatusBarAppearanceUpdate ();
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("applicationFinishedRestoringState")]
 		void ApplicationFinishedRestoringState ();
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("transitioningDelegate", ArgumentSemantic.Assign), NullAllowed]
 		NSObject WeakTransitioningDelegate { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Wrap ("WeakTransitioningDelegate")]
 		[Protocolize]
 		UIViewControllerTransitioningDelegate TransitioningDelegate { get; set; }
 
-		[NoTV]
-		[Since (7,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("childViewControllerForStatusBarStyle")]
 		UIViewController ChildViewControllerForStatusBarStyle ();
 
-		[NoTV]
-		[Since (7,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("childViewControllerForStatusBarHidden")]
 		UIViewController ChildViewControllerForStatusBarHidden ();
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Deprecated (PlatformName.iOS, 11, 0, message: "Use UIView's 'SafeAreaLayoutGuide' instead.")]
 		[Deprecated (PlatformName.TvOS, 11, 0, message: "Use UIView's 'SafeAreaLayoutGuide' instead.")]
 		[Export ("topLayoutGuide")]
 		IUILayoutSupport TopLayoutGuide { get; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Deprecated (PlatformName.iOS, 11, 0, message: "Use UIView's 'SafeAreaLayoutGuide' instead.")]
 		[Deprecated (PlatformName.TvOS, 11, 0, message: "Use UIView's 'SafeAreaLayoutGuide' instead.")]
 		[Export ("bottomLayoutGuide")]
 		IUILayoutSupport BottomLayoutGuide { get; }
 		
-		[NoTV][NoWatch]
-		[Since (7,0)]
+		[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("preferredStatusBarUpdateAnimation")]
 		UIStatusBarAnimation PreferredStatusBarUpdateAnimation { get; }
 
-		[NoTV]
-		[Since (7,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("modalPresentationCapturesStatusBarAppearance", ArgumentSemantic.Assign)]
 		bool ModalPresentationCapturesStatusBarAppearance { get; set; }
 
@@ -14279,163 +14279,163 @@ namespace XamCore.UIKit {
 		// iOS 8
 		//
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("targetViewControllerForAction:sender:")]
 		UIViewController GetTargetViewControllerForAction (Selector action,  [NullAllowed] NSObject sender);
 	
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("showViewController:sender:")]
 		void ShowViewController (UIViewController vc,  [NullAllowed] NSObject sender);
 	
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("showDetailViewController:sender:")]
 		void ShowDetailViewController (UIViewController vc, [NullAllowed] NSObject sender);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("setOverrideTraitCollection:forChildViewController:")]
 		void SetOverrideTraitCollection (UITraitCollection collection, UIViewController childViewController);
 		
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("overrideTraitCollectionForChildViewController:")]
 		UITraitCollection GetOverrideTraitCollectionForChildViewController (UIViewController childViewController);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("extensionContext")]
 		NSExtensionContext ExtensionContext { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("presentationController")]
 		UIPresentationController PresentationController { get; }
 
-		[NoTV]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("popoverPresentationController")]
 		UIPopoverPresentationController PopoverPresentationController { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("UIViewControllerShowDetailTargetDidChangeNotification")]
 		[Notification]
 		NSString ShowDetailTargetDidChangeNotification { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("loadViewIfNeeded")]
 		void LoadViewIfNeeded ();
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("viewIfLoaded", ArgumentSemantic.Strong), NullAllowed]
 		UIView ViewIfLoaded { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("allowedChildViewControllersForUnwindingFromSource:")]
 		UIViewController[] GetAllowedChildViewControllersForUnwinding (UIStoryboardUnwindSegueSource segueSource);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("childViewControllerContainingSegueSource:")]
 		[return: NullAllowed]
 		UIViewController GetChildViewControllerContainingSegueSource (UIStoryboardUnwindSegueSource segueSource);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("unwindForSegue:towardsViewController:")]
 		void Unwind (UIStoryboardSegue unwindSegue, UIViewController subsequentVC);
 		
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("addKeyCommand:")]
 		void AddKeyCommand (UIKeyCommand command);
 		
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("removeKeyCommand:")]
 		void RemoveKeyCommand (UIKeyCommand command);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("registerForPreviewingWithDelegate:sourceView:")]
 		IUIViewControllerPreviewing RegisterForPreviewingWithDelegate (IUIViewControllerPreviewingDelegate previewingDelegate, UIView sourceView);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("unregisterForPreviewingWithContext:")]
 		void UnregisterForPreviewingWithContext (IUIViewControllerPreviewing previewing);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("previewActionItems")]
 		IUIPreviewActionItem[] PreviewActionItems { get; }
 
 		[Field ("UIViewControllerHierarchyInconsistencyException")]
 		NSString HierarchyInconsistencyException { get; }
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("restoresFocusAfterTransition")]
 		bool RestoresFocusAfterTransition { get; set; }
 
-		[NoWatch, NoiOS]
-		[TV (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.iOS)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("preferredUserInterfaceStyle")]
 		UIUserInterfaceStyle PreferredUserInterfaceStyle { get; }
 
-		[NoWatch, NoiOS]
-		[TV (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.iOS)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("setNeedsUserInterfaceAppearanceUpdate")]
 		void SetNeedsUserInterfaceAppearanceUpdate ();
 
-		[NoWatch, NoiOS]
-		[TV (11, 0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.iOS)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		[NullAllowed, Export ("childViewControllerForUserInterfaceStyle")]
 		UIViewController ChildViewControllerForUserInterfaceStyle { get; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("additionalSafeAreaInsets", ArgumentSemantic.Assign)]
 		UIEdgeInsets AdditionalSafeAreaInsets { get; set; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("systemMinimumLayoutMargins")]
 		NSDirectionalEdgeInsets SystemMinimumLayoutMargins { get; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("viewRespectsSystemMinimumLayoutMargins")]
 		bool ViewRespectsSystemMinimumLayoutMargins { get; set; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("viewLayoutMarginsDidChange")]
 		[Advice ("You must call the base method when overriding.")] // [RequiresSuper]
 		void ViewLayoutMarginsDidChange ();
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("viewSafeAreaInsetsDidChange")]
 		[Advice ("You must call the base method when overriding.")] // [RequiresSuper]
 		void ViewSafeAreaInsetsDidChange ();
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("childViewControllerForScreenEdgesDeferringSystemGestures")]
 		UIViewController ChildViewControllerForScreenEdgesDeferringSystemGestures { get; }
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("preferredScreenEdgesDeferringSystemGestures")]
 		UIRectEdge PreferredScreenEdgesDeferringSystemGestures { get; }
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("setNeedsUpdateOfScreenEdgesDeferringSystemGestures")]
 		void SetNeedsUpdateOfScreenEdgesDeferringSystemGestures ();
 
 		// UIHomeIndicatorAutoHidden (UIViewController) category
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("childViewControllerForHomeIndicatorAutoHidden")]
 		UIViewController ChildViewControllerForHomeIndicatorAutoHidden { get; }
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("prefersHomeIndicatorAutoHidden")]
 		bool PrefersHomeIndicatorAutoHidden { get; }
 
-		[NoWatch, NoTV]
-		[iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("setNeedsUpdateOfHomeIndicatorAutoHidden")]
 		void SetNeedsUpdateOfHomeIndicatorAutoHidden ();
 	}
 
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[Protocol, Model, BaseType (typeof (NSObject))]
 	partial interface UIViewControllerContextTransitioning {
 		[Abstract]
@@ -14502,7 +14502,7 @@ namespace XamCore.UIKit {
 #if XAMCORE_4_0 // Can't break the world right now
 		[Abstract]
 #endif
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("pauseInteractiveTransition")]
 		void PauseInteractiveTransition ();
 	}
@@ -14514,30 +14514,30 @@ namespace XamCore.UIKit {
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	partial interface UITraitEnvironment {
 #if XAMCORE_2_0
 		[Abstract]
 #endif
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("traitCollection")]
 		UITraitCollection TraitCollection { get; }
 
 #if XAMCORE_2_0
 		[Abstract]
 #endif
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("traitCollectionDidChange:")]
 		void TraitCollectionDidChange ([NullAllowed] UITraitCollection previousTraitCollection);
 	}
 	
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	partial interface UITraitCollection : NSCopying, NSSecureCoding {
 		[Export ("userInterfaceIdiom")]
 		UIUserInterfaceIdiom UserInterfaceIdiom { get; }
 
-		[TV (10, 0), NoWatch, NoiOS]
+		[Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.iOS)]
 		[Export ("userInterfaceStyle")]
 		UIUserInterfaceStyle UserInterfaceStyle { get; }
 
@@ -14568,49 +14568,49 @@ namespace XamCore.UIKit {
 		[Static, Export ("traitCollectionWithVerticalSizeClass:")]
 		UITraitCollection FromVerticalSizeClass (UIUserInterfaceSizeClass verticalSizeClass);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Static, Export ("traitCollectionWithForceTouchCapability:")]
 		UITraitCollection FromForceTouchCapability (UIForceTouchCapability capability);
 
-		[TV (10, 0), NoWatch, NoiOS]
+		[Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.iOS)]
 		[Static]
 		[Export ("traitCollectionWithUserInterfaceStyle:")]
 		UITraitCollection FromUserInterfaceStyle (UIUserInterfaceStyle userInterfaceStyle);
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Static]
 		[Export ("traitCollectionWithDisplayGamut:")]
 		UITraitCollection FromDisplayGamut (UIDisplayGamut displayGamut);
 		
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Static]
 		[Export ("traitCollectionWithLayoutDirection:")]
 		UITraitCollection FromLayoutDirection (UITraitEnvironmentLayoutDirection layoutDirection);
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Static]
 		[Export ("traitCollectionWithPreferredContentSizeCategory:")]
 		[Internal]
 		UITraitCollection FromPreferredContentSizeCategory (NSString preferredContentSizeCategory);
 		
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("forceTouchCapability")]
 		UIForceTouchCapability ForceTouchCapability { get; }
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("displayGamut")]
 		UIDisplayGamut DisplayGamut { get; }
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("preferredContentSizeCategory")]
 		string PreferredContentSizeCategory { get; }
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("layoutDirection")]
 		UITraitEnvironmentLayoutDirection LayoutDirection { get; }
 	}
 	
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[Static]
 	partial interface UITransitionContext {
 		[Field ("UITransitionContextFromViewControllerKey")]
@@ -14619,16 +14619,16 @@ namespace XamCore.UIKit {
 		[Field ("UITransitionContextToViewControllerKey")]
 		NSString ToViewControllerKey { get; }
 
-		[iOS(8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("UITransitionContextFromViewKey")]
 		NSString FromViewKey { get; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("UITransitionContextToViewKey")]
 		NSString ToViewKey { get; }
 	}
 
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[Model, BaseType (typeof (NSObject))]
 	[Protocol]
 	partial interface UIViewControllerAnimatedTransitioning {
@@ -14640,7 +14640,7 @@ namespace XamCore.UIKit {
 		[Export ("animateTransition:")]
 		void AnimateTransition (IUIViewControllerContextTransitioning transitionContext);
 		
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("interruptibleAnimatorForTransition:")]
 		IUIViewImplicitlyAnimating GetInterruptibleAnimator (IUIViewControllerContextTransitioning transitionContext);
 
@@ -14649,7 +14649,7 @@ namespace XamCore.UIKit {
 	}
 	interface IUIViewControllerAnimatedTransitioning {}
 
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[Model, BaseType (typeof (NSObject))]
 	[Protocol]
 	partial interface UIViewControllerInteractiveTransitioning {
@@ -14663,7 +14663,7 @@ namespace XamCore.UIKit {
 		[Export ("completionCurve")]
 		UIViewAnimationCurve CompletionCurve { get; }
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("wantsInteractiveStart")]
 		bool WantsInteractiveStart { get; }
 	}
@@ -14688,12 +14688,12 @@ namespace XamCore.UIKit {
 		[Export ("interactionControllerForDismissal:")]
 		IUIViewControllerInteractiveTransitioning GetInteractionControllerForDismissal (IUIViewControllerAnimatedTransitioning animator);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("presentationControllerForPresentedViewController:presentingViewController:sourceViewController:")]
 		UIPresentationController GetPresentationControllerForPresentedViewController (UIViewController presentedViewController, [NullAllowed] UIViewController presentingViewController, UIViewController sourceViewController);
 	}
 	
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	partial interface UIPercentDrivenInteractiveTransition : UIViewControllerInteractiveTransitioning {
 		[Export ("duration")]
@@ -14708,17 +14708,17 @@ namespace XamCore.UIKit {
 		[Export ("completionCurve", ArgumentSemantic.Assign)]
 		new UIViewAnimationCurve CompletionCurve { get; set; }
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[NullAllowed, Export ("timingCurve", ArgumentSemantic.Strong)]
 		IUITimingCurveProvider TimingCurve { get; set; }
 
 		// getter comes from UIViewControllerInteractiveTransitioning but
 		// headers declares a setter here
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("wantsInteractiveStart")]
 		new bool WantsInteractiveStart { get; set; }
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("pauseInteractiveTransition")]
 		void PauseInteractiveTransition ();
 	
@@ -14736,7 +14736,7 @@ namespace XamCore.UIKit {
 	// This protocol is only for consumption (there is no API to set a transition coordinator context,
 	// you'll be provided an existing one), so we do not provide a model to subclass.
 	//
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[Protocol]
 	partial interface UIViewControllerTransitionCoordinatorContext {
 		[Abstract]
@@ -14786,14 +14786,14 @@ namespace XamCore.UIKit {
 #if XAMCORE_2_0
 		[Abstract]
 #endif
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("targetTransform")]
 		CGAffineTransform TargetTransform ();
 
 #if XAMCORE_2_0
 		[Abstract]
 #endif
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("viewForKey:")]
 		[EditorBrowsable (EditorBrowsableState.Advanced)] // this is not the one we want to be seen (compat only)
 		UIView GetTransitionViewControllerForKey (NSString key);
@@ -14801,7 +14801,7 @@ namespace XamCore.UIKit {
 #if XAMCORE_4_0 // This is abstract in headers but is a breaking change
 		[Abstract]
 #endif
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("isInterruptible")]
 		bool IsInterruptible { get; }
 	}
@@ -14811,7 +14811,7 @@ namespace XamCore.UIKit {
 	// This protocol is only for consumption (there is no API to set a transition coordinator,
 	// only get an existing one), so we do not provide a model to subclass.
 	//
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[Protocol]
 	partial interface UIViewControllerTransitionCoordinator : UIViewControllerTransitionCoordinatorContext {
 		[Abstract]
@@ -14831,7 +14831,7 @@ namespace XamCore.UIKit {
 #if XAMCORE_4_0 // This is abstract in headers but is a breaking change
 		[Abstract]
 #endif
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("notifyWhenInteractionChangesUsingBlock:")]
 		void NotifyWhenInteractionChanges (Action<IUIViewControllerTransitionCoordinatorContext> handler);
 	}
@@ -14843,7 +14843,7 @@ namespace XamCore.UIKit {
 		IUIViewControllerTransitionCoordinator GetTransitionCoordinator ();
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (UIView), Delegates=new string [] { "WeakDelegate" }, Events=new Type [] {typeof(UIWebViewDelegate)})]
 	interface UIWebView : UIScrollViewDelegate {
 		[Export ("initWithFrame:")]
@@ -14898,60 +14898,60 @@ namespace XamCore.UIKit {
 		[Export ("dataDetectorTypes")]
 		UIDataDetectorType DataDetectorTypes { get; set; }
 
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("allowsInlineMediaPlayback")]
 		bool AllowsInlineMediaPlayback { get; set; }
 		
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("mediaPlaybackRequiresUserAction")]
 		bool MediaPlaybackRequiresUserAction { get; set; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("scrollView", ArgumentSemantic.Retain)]
 		UIScrollView ScrollView { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("mediaPlaybackAllowsAirPlay")]
 		bool MediaPlaybackAllowsAirPlay { get; set; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("suppressesIncrementalRendering")]
 		bool SuppressesIncrementalRendering { get; set; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("keyboardDisplayRequiresUserAction")]
 		bool KeyboardDisplayRequiresUserAction { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("paginationMode")]
 		UIWebPaginationMode PaginationMode { get; set; }
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("paginationBreakingMode")]
 		UIWebPaginationBreakingMode PaginationBreakingMode { get; set; }
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("pageLength")]
 		nfloat PageLength { get; set; }
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("gapBetweenPages")]
 		nfloat GapBetweenPages { get; set; }
 	
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("pageCount")]
 		nint PageCount { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("allowsPictureInPictureMediaPlayback")]
 		bool AllowsPictureInPictureMediaPlayback { get; set; }
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("allowsLinkPreview")]
 		bool AllowsLinkPreview { get; set; }
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -14969,7 +14969,7 @@ namespace XamCore.UIKit {
 		void LoadFailed (UIWebView webView, NSError error);
 	}
 
-	[Since (3,2)]
+	[Introduced (PlatformName.iOS, 3, 2)]
 	[BaseType (typeof (NSObject))]
 	interface UITextChecker {
 		[Export ("rangeOfMisspelledWordInString:range:startingAt:wrap:language:")]
@@ -15006,7 +15006,7 @@ namespace XamCore.UIKit {
 	}
 
 	[Static]
-	[iOS (10,0), TV (10,0)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 	interface UITextContentType {
 		[Field ("UITextContentTypeName")]
 		NSString Name { get; }
@@ -15077,16 +15077,16 @@ namespace XamCore.UIKit {
 		[Field ("UITextContentTypeCreditCardNumber")]
 		NSString CreditCardNumber { get; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Field ("UITextContentTypeUsername")]
 		NSString Username { get; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Field ("UITextContentTypePassword")]
 		NSString Password { get; }
 	}
 	
-	[Since (3,2)]
+	[Introduced (PlatformName.iOS, 3, 2)]
 	[BaseType (typeof (UIViewController), Delegates=new string [] { "WeakDelegate" }, Events=new Type [] {typeof(UISplitViewControllerDelegate)})]
 	interface UISplitViewController {
 		[Export ("initWithNibName:bundle:")]
@@ -15104,149 +15104,149 @@ namespace XamCore.UIKit {
 		[Export ("delegate", ArgumentSemantic.Assign)][NullAllowed]
 		NSObject WeakDelegate { get; set; }
 		
-		[Since (5,1)]
+		[Introduced (PlatformName.iOS, 5, 1)]
 		[Export ("presentsWithGesture")]
 		bool PresentsWithGesture { get; set; }
 
 		//
 		// iOS 8
 		//
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("collapsed")]
 		bool Collapsed { [Bind ("isCollapsed")] get; }
 		
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("preferredDisplayMode")]
 		UISplitViewControllerDisplayMode PreferredDisplayMode { get; set; }
 		
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("displayMode")]
 		UISplitViewControllerDisplayMode DisplayMode { get; }
 		
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("preferredPrimaryColumnWidthFraction", ArgumentSemantic.UnsafeUnretained)]
 		nfloat PreferredPrimaryColumnWidthFraction { get; set; }
 		
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("minimumPrimaryColumnWidth", ArgumentSemantic.UnsafeUnretained)]
 		nfloat MinimumPrimaryColumnWidth { get; set; }
 		
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("maximumPrimaryColumnWidth", ArgumentSemantic.UnsafeUnretained)]
 		nfloat MaximumPrimaryColumnWidth { get; set; }
 		
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("primaryColumnWidth")]
 		nfloat PrimaryColumnWidth { get; }
 		
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("displayModeButtonItem")]
 		UIBarButtonItem DisplayModeButtonItem { get; }
 		
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("showViewController:sender:")]
 		void ShowViewController (UIViewController vc,  [NullAllowed] NSObject sender);
 		
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("showDetailViewController:sender:")]
 		void ShowDetailViewController (UIViewController vc,  [NullAllowed] NSObject sender);
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("UISplitViewControllerAutomaticDimension")]
 		nfloat AutomaticDimension { get; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("primaryEdge", ArgumentSemantic.Assign)]
 		UISplitViewControllerPrimaryEdge PrimaryEdge { get; set; }
 	}
 
-	[Since (3,2)]
+	[Introduced (PlatformName.iOS, 3, 2)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
 	interface UISplitViewControllerDelegate {
-		[NoTV]
-		[Since (7,0)]  // While introduced in 7.0, it was not made public, it was only publicized in iOS 8 and made retroactively supported
-		[Export ("splitViewControllerSupportedInterfaceOrientations:"), DelegateName("Func<UISplitViewController,UIInterfaceOrientationMask>"), DefaultValue(UIInterfaceOrientationMask.All)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]  // While introduced in 7.0, it was not made public, it was only publicized in iOS 8 and made retroactively supported
+		[Export ("splitViewControllerSupportedInterfaceOrientations:"), DelegateName ("Func<UISplitViewController,UIInterfaceOrientationMask>"), DefaultValue (UIInterfaceOrientationMask.All)]
 		UIInterfaceOrientationMask SupportedInterfaceOrientations (UISplitViewController splitViewController);
 		
-		[NoTV]
-		[Since (7,0)]  // While introduced in 7.0, it was not made public, it was only publicized in iOS 8 and made retroactively supported
-		[Export ("splitViewControllerPreferredInterfaceOrientationForPresentation:"), DelegateName("Func<UISplitViewController,UIInterfaceOrientation>"), DefaultValue (UIInterfaceOrientation.Unknown)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]  // While introduced in 7.0, it was not made public, it was only publicized in iOS 8 and made retroactively supported
+		[Export ("splitViewControllerPreferredInterfaceOrientationForPresentation:"), DelegateName ("Func<UISplitViewController,UIInterfaceOrientation>"), DefaultValue (UIInterfaceOrientation.Unknown)]
 		UIInterfaceOrientation GetPreferredInterfaceOrientationForPresentation (UISplitViewController splitViewController);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("splitViewController:popoverController:willPresentViewController:"), EventArgs ("UISplitViewPresent")]
-		[Availability (Deprecated = Platform.iOS_8_0, Message="Use 'UISearchController' instead.")]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use 'UISearchController' instead.")]
 		void WillPresentViewController (UISplitViewController svc, UIPopoverController pc, UIViewController aViewController);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("splitViewController:willHideViewController:withBarButtonItem:forPopoverController:"), EventArgs ("UISplitViewHide")]
-		[Availability (Deprecated = Platform.iOS_8_0, Message="Use 'UISearchController' instead.")]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use 'UISearchController' instead.")]
 		void WillHideViewController (UISplitViewController svc, UIViewController aViewController, UIBarButtonItem barButtonItem, UIPopoverController pc);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("splitViewController:willShowViewController:invalidatingBarButtonItem:"), EventArgs ("UISplitViewShow")]
-		[Availability (Deprecated = Platform.iOS_8_0, Message="Use 'UISearchController' instead.")]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use 'UISearchController' instead.")]
 		void WillShowViewController (UISplitViewController svc, UIViewController aViewController, UIBarButtonItem button);
 
-		[NoTV]
-		[Since (5,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("splitViewController:shouldHideViewController:inOrientation:"), DelegateName ("UISplitViewControllerHidePredicate"), DefaultValue (true)]
-		[Availability (Deprecated = Platform.iOS_8_0, Message="Use 'UISearchController' instead.")]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use 'UISearchController' instead.")]
 		bool ShouldHideViewController (UISplitViewController svc, UIViewController viewController, UIInterfaceOrientation inOrientation);
 	
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("splitViewController:willChangeToDisplayMode:"), EventArgs ("UISplitViewControllerDisplayMode")]
 		void WillChangeDisplayMode (UISplitViewController svc, UISplitViewControllerDisplayMode displayMode);
 		
-		[iOS (8,0)]
-		[Export ("targetDisplayModeForActionInSplitViewController:"), DelegateName("UISplitViewControllerFetchTargetForActionHandler"), DefaultValue(UISplitViewControllerDisplayMode.Automatic)]
+		[Introduced (PlatformName.iOS, 8, 0)]
+		[Export ("targetDisplayModeForActionInSplitViewController:"), DelegateName ("UISplitViewControllerFetchTargetForActionHandler"), DefaultValue (UISplitViewControllerDisplayMode.Automatic)]
 		UISplitViewControllerDisplayMode GetTargetDisplayModeForAction (UISplitViewController svc);
 		
-		[iOS (8,0)]
-		[Export ("splitViewController:showViewController:sender:"), DelegateName("UISplitViewControllerDisplayEvent"), DefaultValue(false)]
+		[Introduced (PlatformName.iOS, 8, 0)]
+		[Export ("splitViewController:showViewController:sender:"), DelegateName ("UISplitViewControllerDisplayEvent"), DefaultValue (false)]
 		bool EventShowViewController (UISplitViewController splitViewController, UIViewController vc, NSObject sender);
 		
-		[iOS (8,0)]
-		[Export ("splitViewController:showDetailViewController:sender:"), DelegateName("UISplitViewControllerDisplayEvent"),DefaultValue(false)]
+		[Introduced (PlatformName.iOS, 8, 0)]
+		[Export ("splitViewController:showDetailViewController:sender:"), DelegateName ("UISplitViewControllerDisplayEvent"), DefaultValue (false)]
 		bool EventShowDetailViewController (UISplitViewController splitViewController, UIViewController vc, NSObject sender);
 		
-		[iOS (8,0)]
-		[Export ("primaryViewControllerForCollapsingSplitViewController:"), DelegateName("UISplitViewControllerGetViewController"), DefaultValue(null)]
+		[Introduced (PlatformName.iOS, 8, 0)]
+		[Export ("primaryViewControllerForCollapsingSplitViewController:"), DelegateName ("UISplitViewControllerGetViewController"), DefaultValue (null)]
 		UIViewController GetPrimaryViewControllerForCollapsingSplitViewController (UISplitViewController splitViewController);
 		
-		[iOS (8,0)]
-		[Export ("primaryViewControllerForExpandingSplitViewController:"), DelegateName("UISplitViewControllerGetViewController"), DefaultValue(null)]
+		[Introduced (PlatformName.iOS, 8, 0)]
+		[Export ("primaryViewControllerForExpandingSplitViewController:"), DelegateName ("UISplitViewControllerGetViewController"), DefaultValue (null)]
 		UIViewController GetPrimaryViewControllerForExpandingSplitViewController (UISplitViewController splitViewController);
 		
-		[iOS (8,0)]
-		[Export ("splitViewController:collapseSecondaryViewController:ontoPrimaryViewController:"),DelegateName ("UISplitViewControllerCanCollapsePredicate"), DefaultValue (true)]
+		[Introduced (PlatformName.iOS, 8, 0)]
+		[Export ("splitViewController:collapseSecondaryViewController:ontoPrimaryViewController:"), DelegateName ("UISplitViewControllerCanCollapsePredicate"), DefaultValue (true)]
 		bool CollapseSecondViewController (UISplitViewController splitViewController, UIViewController secondaryViewController, UIViewController primaryViewController);
 		
-		[iOS (8,0)]
-		[Export ("splitViewController:separateSecondaryViewControllerFromPrimaryViewController:"), DelegateName("UISplitViewControllerGetSecondaryViewController"), DefaultValue(null)]
+		[Introduced (PlatformName.iOS, 8, 0)]
+		[Export ("splitViewController:separateSecondaryViewControllerFromPrimaryViewController:"), DelegateName ("UISplitViewControllerGetSecondaryViewController"), DefaultValue (null)]
 		UIViewController SeparateSecondaryViewController (UISplitViewController splitViewController, UIViewController primaryViewController);
 	}
 
 	[Category]
 	[BaseType (typeof (UIViewController))]
 	partial interface UISplitViewController_UIViewController {
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("splitViewController", ArgumentSemantic.Retain)]
 		UISplitViewController GetSplitViewController ();
 		
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("collapseSecondaryViewController:forSplitViewController:")]
 		void CollapseSecondaryViewController (UIViewController secondaryViewController, UISplitViewController splitViewController);
 		
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("separateSecondaryViewControllerForSplitViewController:")]
 		UIViewController SeparateSecondaryViewControllerForSplitViewController (UISplitViewController splitViewController);
 	}
 
-	[NoTV]
-	[Since (5,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[BaseType (typeof (UIControl))]
 	interface UIStepper {
 		[Export ("initWithFrame:")]
@@ -15277,48 +15277,48 @@ namespace XamCore.UIKit {
 		// 6.0
 		//
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Appearance]
 		[Export ("setBackgroundImage:forState:")]
 		void SetBackgroundImage ([NullAllowed] UIImage image, UIControlState state);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Appearance]
 		[Export ("backgroundImageForState:")]
 		UIImage BackgroundImage (UIControlState state);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Appearance]
 		[Export ("setDividerImage:forLeftSegmentState:rightSegmentState:")]
 		void SetDividerImage ([NullAllowed] UIImage image, UIControlState leftState, UIControlState rightState);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Appearance]
 		[Export ("dividerImageForLeftSegmentState:rightSegmentState:")]
 		UIImage GetDividerImage (UIControlState leftState, UIControlState rightState);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Appearance]
 		[Export ("setIncrementImage:forState:")]
 		void SetIncrementImage ([NullAllowed] UIImage image, UIControlState state);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Appearance]
 		[Export ("incrementImageForState:")]
 		UIImage GetIncrementImage (UIControlState state);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Appearance]
 		[Export ("setDecrementImage:forState:")]
 		void SetDecrementImage ([NullAllowed] UIImage image, UIControlState state);
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Appearance]
 		[Export ("decrementImageForState:")]
 		UIImage GetDecrementImage (UIControlState state);
 	}
 
-	[Since (5,0)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[BaseType (typeof (NSObject))]
 	interface UIStoryboard {
 		[Static]
@@ -15340,8 +15340,8 @@ namespace XamCore.UIKit {
 #endif
 	}
 
-	[Availability (Deprecated = Platform.iOS_9_0)]
-	[Since (5,0)]
+	[Deprecated (PlatformName.iOS, 9, 0)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[DisableDefaultCtor] // as it subclass UIStoryboardSegue we end up with the same error
 	[BaseType (typeof (UIStoryboardSegue))]
 	interface UIStoryboardPopoverSegue {
@@ -15352,7 +15352,7 @@ namespace XamCore.UIKit {
 		UIPopoverController PopoverController { get;  }
 	}
 
-	[Since (5,0)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // NSInvalidArgumentException Reason: Don't call -[UIStoryboardSegue init]
 	interface UIStoryboardSegue {
@@ -15373,13 +15373,13 @@ namespace XamCore.UIKit {
 		[Export ("perform")]
 		void Perform ();
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Static]
 		[Export ("segueWithIdentifier:source:destination:performHandler:")]
 		UIStoryboardSegue Create ([NullAllowed] string identifier, UIViewController source, UIViewController destination, NSAction performHandler);
 	}
 
-	[Since (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] 
 	interface UIStoryboardUnwindSegueSource {
@@ -15394,7 +15394,7 @@ namespace XamCore.UIKit {
 		NSObject Sender { get; }
 	}
 	
-	[Since (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Protocol]
 	interface UIPopoverBackgroundViewMethods {
 		//
@@ -15411,7 +15411,7 @@ namespace XamCore.UIKit {
 		UIEdgeInsets GetContentViewInsets ();
 	}
 	
-	[Since (5,0)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[BaseType (typeof (UIView))]
 	interface UIPopoverBackgroundView : UIPopoverBackgroundViewMethods {
 		[Export ("initWithFrame:")]
@@ -15425,12 +15425,12 @@ namespace XamCore.UIKit {
 		UIPopoverArrowDirection ArrowDirection { get; set; }
 #pragma warning restore 618
 
-		[Since(6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Static, Export ("wantsDefaultContentAppearance")]
 		bool WantsDefaultContentAppearance { get; }
 	}
 		
-	[Since (3,2)]
+	[Introduced (PlatformName.iOS, 3, 2)]
 	[BaseType (typeof (NSObject), Delegates=new string [] { "WeakDelegate" }, Events=new Type [] {typeof(UIPopoverControllerDelegate)})]
 	[DisableDefaultCtor] // bug #1786
 	interface UIPopoverController : UIAppearanceContainer {
@@ -15475,20 +15475,20 @@ namespace XamCore.UIKit {
 		void Dismiss (bool animated);
 		
 		// @property (nonatomic, readwrite) UIEdgeInsets popoverLayoutMargins
-		[Since (5,0)][Export ("popoverLayoutMargins")]
+		[Introduced (PlatformName.iOS, 5, 0)][Export ("popoverLayoutMargins")]
 		UIEdgeInsets PopoverLayoutMargins { get; set; }
 		
 		// @property (nonatomic, readwrite, retain) Class popoverBackgroundViewClass
 		// Class is not pretty so we'll expose it manually as a System.Type
-		[Since (5,0)][Internal][Export ("popoverBackgroundViewClass", ArgumentSemantic.Retain)]
+		[Introduced (PlatformName.iOS, 5, 0)][Internal][Export ("popoverBackgroundViewClass", ArgumentSemantic.Retain)]
 		IntPtr PopoverBackgroundViewClass { get; set; }
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("backgroundColor", ArgumentSemantic.Copy)]
 		UIColor BackgroundColor { get; set; }
 	}
 
-	[Since (3,2)]
+	[Introduced (PlatformName.iOS, 3, 2)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -15499,12 +15499,12 @@ namespace XamCore.UIKit {
 		[Export ("popoverControllerShouldDismissPopover:"), DelegateName ("UIPopoverControllerCondition"), DefaultValue ("true")]
 		bool ShouldDismiss (UIPopoverController popoverController);
 		
-		[Since (7,0), Export ("popoverController:willRepositionPopoverToRect:inView:"), EventArgs ("UIPopoverControllerReposition")]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("popoverController:willRepositionPopoverToRect:inView:"), EventArgs ("UIPopoverControllerReposition")]
 		void WillReposition (UIPopoverController popoverController, ref CGRect rect, ref UIView view);
 	}
 
-	[NoTV]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (UIPresentationController),
 		Delegates=new string [] {"WeakDelegate"},
 		Events=new Type [] { typeof (UIPopoverPresentationControllerDelegate) })]
@@ -15536,7 +15536,7 @@ namespace XamCore.UIKit {
 		[Export ("sourceRect", ArgumentSemantic.UnsafeUnretained)]
 		CGRect SourceRect { get; set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("canOverlapSourceViewRect")]
 		bool CanOverlapSourceViewRect { get; set; }
 		
@@ -15567,22 +15567,19 @@ namespace XamCore.UIKit {
 		[Export ("adaptivePresentationStyleForPresentationController:")]
 		UIModalPresentationStyle GetAdaptivePresentationStyle (UIPresentationController forPresentationController);
 	
-		[Export ("presentationController:viewControllerForAdaptivePresentationStyle:"), 
-			DelegateName ("UIAdaptivePresentationWithStyleRequested"), DefaultValue (null)]
+		[Export ("presentationController:viewControllerForAdaptivePresentationStyle:"), DelegateName ("UIAdaptivePresentationWithStyleRequested"), DefaultValue (null)]
 		UIViewController GetViewControllerForAdaptivePresentation (UIPresentationController controller, UIModalPresentationStyle style);
 
-		[iOS (8,3)]
-		[Export ("adaptivePresentationStyleForPresentationController:traitCollection:"),
-			DelegateName ("UIAdaptivePresentationStyleWithTraitsRequested"), DefaultValue (UIModalPresentationStyle.None)]
+		[Introduced (PlatformName.iOS, 8, 3)]
+		[Export ("adaptivePresentationStyleForPresentationController:traitCollection:"), DelegateName ("UIAdaptivePresentationStyleWithTraitsRequested"), DefaultValue (UIModalPresentationStyle.None)]
 		UIModalPresentationStyle GetAdaptivePresentationStyle (UIPresentationController controller, UITraitCollection traitCollection);
 
-		[iOS (8,3)]
-		[Export ("presentationController:willPresentWithAdaptiveStyle:transitionCoordinator:"),
-			EventName ("WillPresentController"), EventArgs ("UIWillPresentAdaptiveStyle")]
+		[Introduced (PlatformName.iOS, 8, 3)]
+		[Export ("presentationController:willPresentWithAdaptiveStyle:transitionCoordinator:"), EventName ("WillPresentController"), EventArgs ("UIWillPresentAdaptiveStyle")]
 		void WillPresent (UIPresentationController presentationController, UIModalPresentationStyle style, IUIViewControllerTransitionCoordinator transitionCoordinator);
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[Protocol, Model]
 	[BaseType (typeof (UIAdaptivePresentationControllerDelegate))]
 	partial interface UIPopoverPresentationControllerDelegate {
@@ -15595,12 +15592,11 @@ namespace XamCore.UIKit {
 		[Export ("popoverPresentationControllerDidDismissPopover:"), EventName ("DidDismiss")]
 		void DidDismissPopover (UIPopoverPresentationController popoverPresentationController);
 		
-		[Export ("popoverPresentationController:willRepositionPopoverToRect:inView:"),
-			EventName ("WillReposition"), EventArgs ("UIPopoverPresentationControllerReposition")]
+		[Export ("popoverPresentationController:willRepositionPopoverToRect:inView:"), EventName ("WillReposition"), EventArgs ("UIPopoverPresentationControllerReposition")]
 		void WillRepositionPopover (UIPopoverPresentationController popoverPresentationController, ref CGRect targetRect, ref UIView inView);
 	}
 	
-	[Since (3,2)]
+	[Introduced (PlatformName.iOS, 3, 2)]
 	[BaseType (typeof (NSObject))]
 	interface UIScreenMode {
 		[Export ("pixelAspectRatio")]
@@ -15610,12 +15606,12 @@ namespace XamCore.UIKit {
 		CGSize Size { get; }
 	}
 
-	[Since (4,2)]
+	[Introduced (PlatformName.iOS, 4, 2)]
 	[BaseType (typeof (NSObject))]
 	interface UITextInputMode : NSSecureCoding {
 		[Export ("currentInputMode"), NullAllowed][Static]
-		[Availability (Introduced = Platform.iOS_4_2, Deprecated = Platform.iOS_7_0)]
-		[NoTV]
+		[Introduced (PlatformName.iOS, 4, 2), Deprecated (PlatformName.iOS, 7, 0)]
+		[Unavailable (PlatformName.TvOS)]
 		UITextInputMode CurrentInputMode { get; }
 
 		[Export ("primaryLanguage", ArgumentSemantic.Retain)]
@@ -15625,14 +15621,14 @@ namespace XamCore.UIKit {
 		[Notification]
 		NSString CurrentInputModeDidChangeNotification { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Static]
 		[Export ("activeInputModes")]
 		UITextInputMode [] ActiveInputModes { get; }
 	}
 
-	[NoTV]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // NSGenericException Reason: -[UIPrinter init] not allowed
 	partial interface UIPrinter {
@@ -15665,8 +15661,8 @@ namespace XamCore.UIKit {
 		void ContactPrinter (UIPrinterContactPrinterHandler completionHandler);
 	}
 
-	[NoTV]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // NSGenericException Reason: -[UIPrinterPickerController init] not allowed
 	partial interface UIPrinterPickerController {
@@ -15699,7 +15695,7 @@ namespace XamCore.UIKit {
 		void Dismiss (bool animated);
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	partial interface UIPrinterPickerControllerDelegate {
@@ -15726,8 +15722,8 @@ namespace XamCore.UIKit {
 		void DidSelectPrinter (UIPrinterPickerController printerPickerController);
 	}
 
-	[NoTV]
-	[Since (4,2)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 4, 2)]
 	[BaseType (typeof (NSObject))]
 	interface UIPrintPaper {
 		[Export ("bestPaperForPageSize:withPapersFromArray:")][Static]
@@ -15740,8 +15736,8 @@ namespace XamCore.UIKit {
 		CGRect PrintableRect { get; }
 	}
 
-	[NoTV]
-	[Since (4,2)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 4, 2)]
 	[BaseType (typeof (NSObject))]
 	interface UIPrintPageRenderer {
 		[Export ("footerHeight")]
@@ -15788,7 +15784,7 @@ namespace XamCore.UIKit {
 		UIPrintFormatter [] PrintFormattersForPage (nint index);
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -15817,7 +15813,7 @@ namespace XamCore.UIKit {
 		[Export ("printInteractionControllerDidFinishJob:"), EventArgs ("UIPrintInteraction")]
 		void DidFinishJob (UIPrintInteractionController printInteractionController);
 
-		[Since (7,0), Export ("printInteractionController:cutLengthForPaper:")]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("printInteractionController:cutLengthForPaper:")]
 		[NoDefaultValue]
 #if XAMCORE_2_0
 		[DelegateName ("Func<UIPrintInteractionController,UIPrintPaper,nfloat>")]
@@ -15826,13 +15822,13 @@ namespace XamCore.UIKit {
 #endif
 		nfloat CutLengthForPaper (UIPrintInteractionController printInteractionController, UIPrintPaper paper);
 
-		[iOS (9, 0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("printInteractionController:chooseCutterBehavior:"), DefaultValue ("UIPrinterCutterBehavior.NoCut"), DelegateName ("UIPrintInteractionCutterBehavior")]
 		UIPrinterCutterBehavior ChooseCutterBehavior (UIPrintInteractionController printInteractionController, NSNumber [] availableBehaviors);
 	}
 
-	[NoTV]
-	[Since (4,2)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 4, 2)]
 	[BaseType (typeof (NSObject), Delegates=new string [] { "WeakDelegate" }, Events=new Type [] {typeof(UIPrintInteractionControllerDelegate)})]
 	// Objective-C exception thrown.  Name: NSGenericException Reason: -[UIPrintInteractionController init] not allowed
 	[DisableDefaultCtor]
@@ -15914,22 +15910,22 @@ namespace XamCore.UIKit {
 #endif
 		PresentFromRectInView (CGRect rect, UIView view, bool animated, UIPrintInteractionCompletionHandler completion);
 
-		[Since (7,0), Export ("showsNumberOfCopies")]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("showsNumberOfCopies")]
 		bool ShowsNumberOfCopies { get; set; }
 
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("showsPaperSelectionForLoadedPapers")]
 		bool ShowsPaperSelectionForLoadedPapers { get; set; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Async (ResultTypeName = "UIPrintInteractionCompletionResult")]
 		[Export ("printToPrinter:completionHandler:")]
 		bool PrintToPrinter (UIPrinter printer, UIPrintInteractionCompletionHandler completion);
 	}
 
-	[NoTV]
-	[Since (4,2)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 4, 2)]
 	[BaseType (typeof (NSObject))]
 	// Objective-C exception thrown.  Name: NSGenericException Reason: -[UIPrintInfo init] not allowed
 	[DisableDefaultCtor]
@@ -15959,34 +15955,34 @@ namespace XamCore.UIKit {
 		NSDictionary ToDictionary { get; }
 	}
 
-	[NoTV]
-	[Since (4,2)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 4, 2)]
 	[BaseType (typeof (UIPrintFormatter))]
 	interface UIViewPrintFormatter {
 		[Export ("view")]
 		UIView View { get; }
 	}
 
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	partial interface UIVisualEffect : NSCopying, NSSecureCoding {
 	}
 
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (UIVisualEffect))]
 	partial interface UIBlurEffect {
 	    [Static, Export ("effectWithStyle:")]
 	    UIBlurEffect FromStyle (UIBlurEffectStyle style);
 	}
 
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (UIVisualEffect))]
 	partial interface UIVibrancyEffect {
 	    [Static, Export ("effectForBlurEffect:")]
 	    UIVibrancyEffect FromBlurEffect (UIBlurEffect blurEffect);
 	}
 		
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (UIView))]
 	partial interface UIVisualEffectView : NSSecureCoding {
 	
@@ -16002,8 +15998,8 @@ namespace XamCore.UIKit {
 		UIVisualEffect Effect { get; set; }
 	}
 
-	[NoTV]
-	[Since (4,2)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 4, 2)]
 	[BaseType (typeof (UIPrintFormatter))]
 	// accessing the properties fails with 7.0GM if the default `init` is used to create the instance, e.g. 
 	// [UISimpleTextPrintFormatter color]: unrecognized selector sent to instance 0x18bd70d0
@@ -16027,22 +16023,22 @@ namespace XamCore.UIKit {
 		[Export ("initWithText:")]
 		IntPtr Constructor ([NullAllowed] string text);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("initWithAttributedText:")]
 		IntPtr Constructor ([NullAllowed] NSAttributedString text);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[NullAllowed]
 		[Export ("attributedText", ArgumentSemantic.Copy)]
 		NSAttributedString AttributedText { get; set; }
 	}
 
-	[NoTV]
-	[Since (4,2)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 4, 2)]
 	[BaseType (typeof (NSObject))]
 	interface UIPrintFormatter : NSCopying {
 
-		[Deprecated (PlatformName.iOS, 10, 0, message:"Use 'PerPageContentInsets' instead.")]
+		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'PerPageContentInsets' instead.")]
 		[Export ("contentInsets")]
 		UIEdgeInsets ContentInsets { get; set; }
 
@@ -16070,13 +16066,13 @@ namespace XamCore.UIKit {
 		[Export ("removeFromPrintPageRenderer")]
 		void RemoveFromPrintPageRenderer ();
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("perPageContentInsets")]
 		UIEdgeInsets PerPageContentInsets { get; set; }
 	}
 
-	[NoTV]
-	[Since (4,2)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 4, 2)]
 	[BaseType (typeof (UIPrintFormatter))]
 #if XAMCORE_4_0
 	[DisableDefaultCtor] // nonfunctional (and it doesn't show up in the header anyway)
@@ -16090,14 +16086,14 @@ namespace XamCore.UIKit {
 		IntPtr Constructor ([NullAllowed] string text);
 	}
 
-	[Since(7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (NSObject))]
 	interface UIMotionEffect : NSCoding, NSCopying {
 		[Export ("keyPathsAndRelativeValuesForViewerOffset:")]
 		NSDictionary ComputeKeyPathsAndRelativeValues (UIOffset viewerOffset);
 	}
 
-	[Since(7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (UIMotionEffect))]
 	interface UIInterpolatingMotionEffect : NSCoding {
 		[DesignatedInitializer]
@@ -16119,7 +16115,7 @@ namespace XamCore.UIKit {
 		NSObject MaximumRelativeValue { get; set;  }
 	}
 
-	[Since(7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (UIMotionEffect))]
 	interface UIMotionEffectGroup {
 		[NullAllowed] // by default this property is null
@@ -16127,8 +16123,8 @@ namespace XamCore.UIKit {
 		UIMotionEffect [] MotionEffects { get; set; }
 	}
 
-	[iOS (10,0), TV (10,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
+	[BaseType (typeof (NSObject))]
 	interface UISpringTimingParameters : UITimingCurveProvider
 	{
 		[Export ("initialVelocity")]
@@ -16146,78 +16142,78 @@ namespace XamCore.UIKit {
 		IntPtr Constructor (nfloat ratio);
 	}
 		
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[Category, BaseType (typeof (NSString))]
 	interface UIStringDrawing {
 		// note: duplicate from maccore's foundation.cs where it's binded on NSString2 (for Classic)
 		[ThreadSafe]
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_7_0, Message = "Use 'NSString.DrawString (CGPoint, UIStringAttributes)' instead.")]
+		[Introduced (PlatformName.iOS, 2, 0, message: "Use 'NSString.DrawString (CGPoint, UIStringAttributes)' instead."), Deprecated (PlatformName.iOS, 7, 0, message: "Use 'NSString.DrawString (CGPoint, UIStringAttributes)' instead.")]
 		[Export ("drawAtPoint:withFont:")]
 		CGSize DrawString (CGPoint point, UIFont font);
 
 		// note: duplicate from maccore's foundation.cs where it's binded on NSString2 (for Classic)
 		[ThreadSafe]
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_7_0, Message = "Use 'NSString.DrawString (CGRect, UIStringAttributes)' instead.")]
+		[Introduced (PlatformName.iOS, 2, 0, message: "Use 'NSString.DrawString (CGRect, UIStringAttributes)' instead."), Deprecated (PlatformName.iOS, 7, 0, message: "Use 'NSString.DrawString (CGRect, UIStringAttributes)' instead.")]
 		[Export ("drawAtPoint:forWidth:withFont:lineBreakMode:")]
 		CGSize DrawString (CGPoint point, nfloat width, UIFont font, UILineBreakMode breakMode);
 
 		// note: duplicate from maccore's foundation.cs where it's binded on NSString2 (for Classic)
 		[ThreadSafe]
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_7_0, Message = "Use 'NSString.DrawString (CGRect, UIStringAttributes)' instead.")]
+		[Introduced (PlatformName.iOS, 2, 0, message: "Use 'NSString.DrawString (CGRect, UIStringAttributes)' instead."), Deprecated (PlatformName.iOS, 7, 0, message: "Use 'NSString.DrawString (CGRect, UIStringAttributes)' instead.")]
 		[Export ("drawAtPoint:forWidth:withFont:fontSize:lineBreakMode:baselineAdjustment:")]
 		CGSize DrawString (CGPoint point, nfloat width, UIFont font, nfloat fontSize, UILineBreakMode breakMode, UIBaselineAdjustment adjustment);
 
 		// note: duplicate from maccore's foundation.cs where it's binded on NSString2 (for Classic)
 		[ThreadSafe]
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_7_0, Message = "Use 'NSString.DrawString (CGRect, UIStringAttributes)' instead.")]
+		[Introduced (PlatformName.iOS, 2, 0, message: "Use 'NSString.DrawString (CGRect, UIStringAttributes)' instead."), Deprecated (PlatformName.iOS, 7, 0, message: "Use 'NSString.DrawString (CGRect, UIStringAttributes)' instead.")]
 		[Export ("drawAtPoint:forWidth:withFont:minFontSize:actualFontSize:lineBreakMode:baselineAdjustment:")]
 		CGSize DrawString (CGPoint point, nfloat width, UIFont font, nfloat minFontSize, ref nfloat actualFontSize, UILineBreakMode breakMode, UIBaselineAdjustment adjustment);
 
 		// note: duplicate from maccore's foundation.cs where it's binded on NSString2 (for Classic)
 		[ThreadSafe]
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_7_0, Message = "Use 'NSString.DrawString (CGRect, UIStringAttributes)' instead.")]
+		[Introduced (PlatformName.iOS, 2, 0, message: "Use 'NSString.DrawString (CGRect, UIStringAttributes)' instead."), Deprecated (PlatformName.iOS, 7, 0, message: "Use 'NSString.DrawString (CGRect, UIStringAttributes)' instead.")]
 		[Export ("drawInRect:withFont:")]
 		CGSize DrawString (CGRect rect, UIFont font);
 
 		// note: duplicate from maccore's foundation.cs where it's binded on NSString2 (for Classic)
 		[ThreadSafe]
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_7_0, Message = "Use 'NSString.DrawString (CGRect, UIStringAttributes)' instead.")]
+		[Introduced (PlatformName.iOS, 2, 0, message: "Use 'NSString.DrawString (CGRect, UIStringAttributes)' instead."), Deprecated (PlatformName.iOS, 7, 0, message: "Use 'NSString.DrawString (CGRect, UIStringAttributes)' instead.")]
 		[Export ("drawInRect:withFont:lineBreakMode:")]
 		CGSize DrawString (CGRect rect, UIFont font, UILineBreakMode mode);
 
 		// note: duplicate from maccore's foundation.cs where it's binded on NSString2 (for Classic)
 		[ThreadSafe]
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_7_0, Message = "Use 'NSString.DrawString (CGRect, UIStringAttributes)' instead.")]
+		[Introduced (PlatformName.iOS, 2, 0, message: "Use 'NSString.DrawString (CGRect, UIStringAttributes)' instead."), Deprecated (PlatformName.iOS, 7, 0, message: "Use 'NSString.DrawString (CGRect, UIStringAttributes)' instead.")]
 		[Export ("drawInRect:withFont:lineBreakMode:alignment:")]
 		CGSize DrawString (CGRect rect, UIFont font, UILineBreakMode mode, UITextAlignment alignment);
 
 		// note: duplicate from maccore's foundation.cs where it's binded on NSString2 (for Classic)
 		[ThreadSafe]
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_7_0, Message = "Use 'NSString.GetSizeUsingAttributes (UIStringAttributes)' instead.")]
+		[Introduced (PlatformName.iOS, 2, 0, message: "Use 'NSString.GetSizeUsingAttributes (UIStringAttributes)' instead."), Deprecated (PlatformName.iOS, 7, 0, message: "Use 'NSString.GetSizeUsingAttributes (UIStringAttributes)' instead.")]
 		[Export ("sizeWithFont:")]
 		CGSize StringSize (UIFont font);
 
 		// note: duplicate from maccore's foundation.cs where it's binded on NSString2 (for Classic)
 		[ThreadSafe]
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_7_0, Message = "Use 'NSString.GetBoundingRect (CGSize, NSStringDrawingOptions, UIStringAttributes, NSStringDrawingContext)' instead.")]
+		[Introduced (PlatformName.iOS, 2, 0, message: "Use 'NSString.GetBoundingRect (CGSize, NSStringDrawingOptions, UIStringAttributes, NSStringDrawingContext)' instead."), Deprecated (PlatformName.iOS, 7, 0, message: "Use 'NSString.GetBoundingRect (CGSize, NSStringDrawingOptions, UIStringAttributes, NSStringDrawingContext)' instead.")]
 		[Export ("sizeWithFont:forWidth:lineBreakMode:")]
 		CGSize StringSize (UIFont font, nfloat forWidth, UILineBreakMode breakMode);
 
 		// note: duplicate from maccore's foundation.cs where it's binded on NSString2 (for Classic)
 		[ThreadSafe]
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_7_0, Message = "Use 'NSString.GetBoundingRect (CGSize, NSStringDrawingOptions, UIStringAttributes, NSStringDrawingContext)' instead.")]
+		[Introduced (PlatformName.iOS, 2, 0, message: "Use 'NSString.GetBoundingRect (CGSize, NSStringDrawingOptions, UIStringAttributes, NSStringDrawingContext)' instead."), Deprecated (PlatformName.iOS, 7, 0, message: "Use 'NSString.GetBoundingRect (CGSize, NSStringDrawingOptions, UIStringAttributes, NSStringDrawingContext)' instead.")]
 		[Export ("sizeWithFont:constrainedToSize:")]
 		CGSize StringSize (UIFont font, CGSize constrainedToSize);
 
 		// note: duplicate from maccore's foundation.cs where it's binded on NSString2 (for Classic)
 		[ThreadSafe]
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_7_0, Message = "Use 'NSString.GetBoundingRect (CGSize, NSStringDrawingOptions, UIStringAttributes, NSStringDrawingContext)' instead.")]
+		[Introduced (PlatformName.iOS, 2, 0, message: "Use 'NSString.GetBoundingRect (CGSize, NSStringDrawingOptions, UIStringAttributes, NSStringDrawingContext)' instead."), Deprecated (PlatformName.iOS, 7, 0, message: "Use 'NSString.GetBoundingRect (CGSize, NSStringDrawingOptions, UIStringAttributes, NSStringDrawingContext)' instead.")]
 		[Export ("sizeWithFont:constrainedToSize:lineBreakMode:")]
 		CGSize StringSize (UIFont font, CGSize constrainedToSize, UILineBreakMode lineBreakMode);
 
 		// note: duplicate from maccore's foundation.cs where it's binded on NSString2 (for Classic)
 		[ThreadSafe]
-		[Availability (Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_7_0)]
+		[Introduced (PlatformName.iOS, 2, 0), Deprecated (PlatformName.iOS, 7, 0)]
 		// Wait for guidance here: https://devforums.apple.com/thread/203655
 		//[Obsolete ("Deprecated on iOS7.   No guidance.")]
 		[Export ("sizeWithFont:minFontSize:actualFontSize:forWidth:lineBreakMode:")]
@@ -16227,53 +16223,53 @@ namespace XamCore.UIKit {
 
 	[Category, BaseType (typeof (NSString))]
 	interface NSStringDrawing {
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("sizeWithAttributes:")]
 		CGSize WeakGetSizeUsingAttributes (NSDictionary attributes);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Wrap ("WeakGetSizeUsingAttributes (This, attributes.Dictionary)")]
 		CGSize GetSizeUsingAttributes (UIStringAttributes attributes);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("drawAtPoint:withAttributes:")]
 		void WeakDrawString (CGPoint point, NSDictionary attributes);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Wrap ("WeakDrawString (This, point, attributes.Dictionary)")]
 		void DrawString (CGPoint point, UIStringAttributes attributes);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("drawInRect:withAttributes:")]
 		void WeakDrawString (CGRect rect, NSDictionary attributes);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Wrap ("WeakDrawString (This, rect, attributes.Dictionary)")]
 		void DrawString (CGRect rect, UIStringAttributes attributes);
 	}
 
 	[Category, BaseType (typeof (NSString))]
 	interface NSExtendedStringDrawing {
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("drawWithRect:options:attributes:context:")]
 		void WeakDrawString (CGRect rect, NSStringDrawingOptions options, NSDictionary attributes, [NullAllowed] NSStringDrawingContext context);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Wrap ("WeakDrawString (This, rect, options, attributes == null ? null : attributes.Dictionary, context)")]
 		void DrawString (CGRect rect, NSStringDrawingOptions options, UIStringAttributes attributes, [NullAllowed] NSStringDrawingContext context);
 		
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Export ("boundingRectWithSize:options:attributes:context:")]
 		CGRect WeakGetBoundingRect (CGSize size, NSStringDrawingOptions options, NSDictionary attributes, [NullAllowed] NSStringDrawingContext context);
 
-		[Since (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Wrap ("WeakGetBoundingRect (This, size, options, attributes == null ? null : attributes.Dictionary, context)")]
 		CGRect GetBoundingRect (CGSize size, NSStringDrawingOptions options, UIStringAttributes attributes, [NullAllowed] NSStringDrawingContext context);
 	}
 
 #if !WATCH
-	[NoWatch]
-	[Since (7,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[BaseType (typeof (UIView))]
 	interface UIInputView : NSCoding {
 		[DesignatedInitializer]
@@ -16283,7 +16279,7 @@ namespace XamCore.UIKit {
 		[Export ("inputViewStyle")]
 		UIInputViewStyle InputViewStyle { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("allowsSelfSizing")]
 		bool AllowsSelfSizing { get; set; }
 	}
@@ -16293,8 +16289,8 @@ namespace XamCore.UIKit {
 
 	interface IUITextDocumentProxy {}
 	
-	[NoWatch]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (UIViewController))]
 	partial interface UIInputViewController : UITextInputDelegate {
 
@@ -16314,7 +16310,7 @@ namespace XamCore.UIKit {
 		[Export ("advanceToNextInputMode")]
 		void AdvanceToNextInputMode ();
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("requestSupplementaryLexiconWithCompletion:")]
 		[Async]
 		void RequestSupplementaryLexicon (Action<UILexicon> completionHandler);
@@ -16323,20 +16319,20 @@ namespace XamCore.UIKit {
 		[Export ("primaryLanguage")]
 		string PrimaryLanguage { get; set; }
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("handleInputModeListFromView:withEvent:")]
 		void HandleInputModeList (UIView fromView, UIEvent withEvent);
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("hasFullAccess")]
 		bool HasFullAccess { get; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("needsInputModeSwitchKey")]
 		bool NeedsInputModeSwitchKey { get; }
 	}
 
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UIInteraction
 	{
@@ -16353,8 +16349,8 @@ namespace XamCore.UIKit {
 		void DidMoveToView ([NullAllowed] UIView view);
 	}
 	
-	[NoWatch]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	partial interface UITextDocumentProxy : UIKeyInput {
@@ -16375,7 +16371,7 @@ namespace XamCore.UIKit {
 #if XAMCORE_4_0
 		[Abstract]
 #endif
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[NullAllowed, Export ("documentInputMode")]
 		UITextInputMode DocumentInputMode { get; }
 
@@ -16384,7 +16380,7 @@ namespace XamCore.UIKit {
 #if XAMCORE_4_0
 		[Abstract]
 #endif
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("selectedText")]
 		string SelectedText { get; }
 
@@ -16393,14 +16389,14 @@ namespace XamCore.UIKit {
 #if XAMCORE_4_0
 		[Abstract]
 #endif
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("documentIdentifier", ArgumentSemantic.Copy)]
 		NSUuid DocumentIdentifier { get; }
 	}
 
-	[NoWatch]
-	[iOS (9,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[BaseType (typeof (NSObject))]
 	interface UILayoutGuide : NSCoding
 	{
 		[Export ("layoutFrame")]
@@ -16445,8 +16441,8 @@ namespace XamCore.UIKit {
 #endif // XAMCORE_2_0
 	}
 		
-	[NoWatch]
-	[Since (7,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[Protocol]
 	[Model]
 	[BaseType (typeof (NSObject))]
@@ -16456,7 +16452,7 @@ namespace XamCore.UIKit {
 		nfloat Length { get; }
 
 #if XAMCORE_2_0 // NSLayoutYAxisAnchor is generic, which is only supported in Unified (for now at least)
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("topAnchor", ArgumentSemantic.Strong)]
 #if XAMCORE_4_0
 		// Apple added a new required member in iOS 9, but that breaks our binary compat, so we can't do that in our existing code.
@@ -16464,7 +16460,7 @@ namespace XamCore.UIKit {
 #endif
 		NSLayoutYAxisAnchor TopAnchor { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("bottomAnchor", ArgumentSemantic.Strong)]
 #if XAMCORE_4_0
 		// Apple added a new required member in iOS 9, but that breaks our binary compat, so we can't do that in our existing code.
@@ -16472,7 +16468,7 @@ namespace XamCore.UIKit {
 #endif
 		NSLayoutYAxisAnchor BottomAnchor { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("heightAnchor", ArgumentSemantic.Strong)]
 #if XAMCORE_4_0
 		// Apple added a new required member in iOS 9, but that breaks our binary compat, so we can't do that in our existing code.
@@ -16487,8 +16483,8 @@ namespace XamCore.UIKit {
 	// This protocol is supposed to be an aggregate to existing classes,
 	// at the moment there is no API that require a specific UIAccessibilityIdentification
 	// implementation, so we don't provide a Model class (for now at least).
-	[NoWatch]
-	[Since (5, 0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[Protocol]
 	interface UIAccessibilityIdentification {
 		[Abstract]
@@ -16500,9 +16496,9 @@ namespace XamCore.UIKit {
 	interface IUIAccessibilityIdentification {}
 
 	[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UserNotifications.UNNotificationSettings' instead.")]
-	[NoWatch]
-	[NoTV]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	partial interface UIUserNotificationSettings : NSCoding, NSSecureCoding, NSCopying {
 
@@ -16516,9 +16512,9 @@ namespace XamCore.UIKit {
 		UIUserNotificationSettings GetSettingsForTypes (UIUserNotificationType types, [NullAllowed] NSSet categories);
 	}
 
-	[NoWatch]
-	[NoTV]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UserNotifications.UNNotificationCategory' instead.")]
 	[BaseType (typeof (NSObject))]
 	partial interface UIUserNotificationCategory : NSCopying, NSMutableCopying, NSSecureCoding {
@@ -16531,9 +16527,9 @@ namespace XamCore.UIKit {
 	}
 
 	[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UserNotifications.UNNotificationCategory' instead.")]
-	[NoWatch]
-	[NoTV]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (UIUserNotificationCategory))]
 	partial interface UIMutableUserNotificationCategory {
 
@@ -16546,9 +16542,9 @@ namespace XamCore.UIKit {
 	}
 
 	[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UserNotifications.UNNotificationAction' instead.")]
-	[NoWatch]
-	[NoTV]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	partial interface UIUserNotificationAction : NSCopying, NSMutableCopying, NSSecureCoding {
 
@@ -16567,27 +16563,27 @@ namespace XamCore.UIKit {
 		[Export ("destructive", ArgumentSemantic.Assign)]
 		bool Destructive { [Bind ("isDestructive")]get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("parameters", ArgumentSemantic.Copy)]
 		NSDictionary Parameters { get; [NotImplemented] set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("behavior", ArgumentSemantic.Assign)]
 		UIUserNotificationActionBehavior Behavior { get; [NotImplemented] set;}
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UNTextInputNotificationAction.TextInputButtonTitle' instead.")]
 		[Field ("UIUserNotificationTextInputActionButtonTitleKey")]
 		NSString TextInputActionButtonTitleKey { get; }
 
 		// note: defined twice, where watchOS is defined it says it's not in iOS, the other one (for iOS 9) says it's not in tvOS
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UNTextInputNotificationResponse.UserText' instead.")]
 		[Field ("UIUserNotificationActionResponseTypedTextKey")]
 		NSString ResponseTypedTextKey { get; }
 	}
 #else
-	[Watch (2,0)]
+	[Introduced (PlatformName.WatchOS, 2, 0)]
 	[Static]
 	[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UserNotifications.UNNotificationAction' or 'UserNotifications.UNTextInputNotificationAction' instead.")]
 	interface UIUserNotificationAction {
@@ -16598,9 +16594,9 @@ namespace XamCore.UIKit {
 #endif
 
 	[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UserNotifications.UNNotificationAction' instead.")]
-	[NoWatch]
-	[NoTV]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (UIUserNotificationAction))]
 	partial interface UIMutableUserNotificationAction {
 
@@ -16621,19 +16617,19 @@ namespace XamCore.UIKit {
 		[Export ("destructive", ArgumentSemantic.Assign)]
 		bool Destructive { [Bind ("isDestructive")]get; set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("behavior", ArgumentSemantic.Assign)]
 		UIUserNotificationActionBehavior Behavior { get; set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("parameters", ArgumentSemantic.Copy), NullAllowed]
 		NSDictionary Parameters { get; set; }		
 	}
 
 #if !WATCH
-	[NoWatch]
-	[NoTV]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'UIDocumentPickerViewController' instead.")]
 	[BaseType (typeof (UIViewController), Delegates=new string [] {"Delegate"}, Events=new Type [] {typeof (UIDocumentMenuDelegate)})]
 	[DisableDefaultCtor] // NSInvalidArgumentException Reason: You cannot initialize a UIDocumentMenuViewController except by the initWithDocumentTypes:inMode: and initWithURL:inMode: initializers.
@@ -16659,9 +16655,9 @@ namespace XamCore.UIKit {
 		void AddOption (string title, [NullAllowed] UIImage image, UIDocumentMenuOrder order, Action completionHandler);
 	}
 
-	[NoWatch]
-	[NoTV]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	partial interface UIDocumentMenuDelegate {
@@ -16676,9 +16672,9 @@ namespace XamCore.UIKit {
 		void WasCancelled (UIDocumentMenuViewController documentMenu);
 	}
 
-	[NoWatch]
-	[NoTV]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (UIViewController), Delegates=new string [] {"Delegate"}, Events=new Type [] {typeof (UIDocumentPickerDelegate)})]
 	[DisableDefaultCtor] // NSInvalidArgumentException Reason: You cannot initialize a UIDocumentPickerViewController except by the initWithDocumentTypes:inMode: and initWithURL:inMode: initializers
 	partial interface UIDocumentPickerViewController : NSCoding {
@@ -16692,7 +16688,7 @@ namespace XamCore.UIKit {
 		[Export ("initWithURL:inMode:")]
 		IntPtr Constructor (NSUrl url, UIDocumentPickerMode mode);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("initWithURLs:inMode:")]
 		[DesignatedInitializer]
 		IntPtr Constructor (NSUrl[] urls, UIDocumentPickerMode mode);
@@ -16707,14 +16703,14 @@ namespace XamCore.UIKit {
 		[Export ("documentPickerMode", ArgumentSemantic.Assign)]
 		UIDocumentPickerMode DocumentPickerMode { get; }
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("allowsMultipleSelection")]
 		bool AllowsMultipleSelection { get; set; }
 	}
 
-	[NoWatch]
-	[NoTV]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	partial interface UIDocumentPickerDelegate {
@@ -16725,7 +16721,7 @@ namespace XamCore.UIKit {
 		[Export ("documentPicker:didPickDocumentAtURL:"), EventArgs ("UIDocumentPicked")]
 		void DidPickDocument (UIDocumentPickerViewController controller, NSUrl url);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("documentPicker:didPickDocumentsAtURLs:"), EventArgs ("UIDocumentPickedAtUrls"), EventName ("DidPickDocumentAtUrls")]
 		void DidPickDocument (UIDocumentPickerViewController controller, NSUrl[] urls);
 
@@ -16733,9 +16729,9 @@ namespace XamCore.UIKit {
 		void WasCancelled (UIDocumentPickerViewController controller);
 	}
 
-	[NoWatch]
-	[NoTV]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (UIViewController))]
 	partial interface UIDocumentPickerExtensionViewController {
 		[Export ("initWithNibName:bundle:")]
@@ -16766,8 +16762,8 @@ namespace XamCore.UIKit {
 
 	// note: used (internally, not exposed) by UITableView and UICollectionView for state restoration
 	// user objects must adopt the protocol
-	[NoWatch]
-	[iOS (6,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	[Protocol]
 	interface UIDataSourceModelAssociation {
 
@@ -16780,8 +16776,8 @@ namespace XamCore.UIKit {
 		NSIndexPath GetIndexPath (string identifier, UIView view);
 	}
 
-	[NoWatch]
-	[iOS (5,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[Protocol]
 	interface UIAccessibilityReadingContent {
 
@@ -16801,18 +16797,18 @@ namespace XamCore.UIKit {
 		[Export ("accessibilityPageContent")]
 		string GetAccessibilityPageContent ();
 
-		[TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("accessibilityAttributedContentForLineNumber:")]
 		[return: NullAllowed]
 		NSAttributedString GetAccessibilityAttributedContent (nint lineNumber);
 
-		[TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("accessibilityAttributedPageContent")]
 		NSAttributedString GetAccessibilityAttributedPageContent ();
 	}
 
-	[NoWatch]
-	[iOS (7,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[Protocol]
 	interface UIGuidedAccessRestrictionDelegate {
 		[Abstract]
@@ -16833,8 +16829,8 @@ namespace XamCore.UIKit {
 	}
 
 	[DisableDefaultCtor] // [Assert] -init is not a useful initializer for this class. Use one of the designated initializers instead
-	[NoWatch]
-	[iOS (9,0)] // added in Xcode 7.1 / iOS 9.1 SDK
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)] // added in Xcode 7.1 / iOS 9.1 SDK
 	[BaseType (typeof (UIFocusUpdateContext))]
 	interface UICollectionViewFocusUpdateContext {
 		
@@ -16845,8 +16841,8 @@ namespace XamCore.UIKit {
 		NSIndexPath NextFocusedIndexPath { [return: NullAllowed] get; }
 	}
 
-	[iOS (10,0), TV (10,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
+	[BaseType (typeof (NSObject))]
 	interface UICubicTimingParameters : UITimingCurveProvider
 	{
 		[Export ("animationCurve")]
@@ -16869,7 +16865,7 @@ namespace XamCore.UIKit {
 
 	interface IUIFocusAnimationContext {}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UIFocusAnimationContext {
 		[Abstract]
@@ -16877,8 +16873,8 @@ namespace XamCore.UIKit {
 		double Duration { get; }
 	}
 		
-	[NoWatch]
-	[iOS (9,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	interface UIFocusAnimationCoordinator {
 		[Export ("addCoordinatedAnimations:completion:")]
@@ -16886,34 +16882,34 @@ namespace XamCore.UIKit {
 		void AddCoordinatedAnimations ([NullAllowed] Action animations, [NullAllowed] Action completion);
 
 		[Async]
-		[TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("addCoordinatedFocusingAnimations:completion:")]
 		void AddCoordinatedFocusingAnimations ([NullAllowed] Action<IUIFocusAnimationContext> animations, [NullAllowed] Action completion);
 
 		[Async]
-		[TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("addCoordinatedUnfocusingAnimations:completion:")]
 		void AddCoordinatedUnfocusingAnimations ([NullAllowed] Action<IUIFocusAnimationContext> animations, [NullAllowed] Action completion);
 	}
 
-	[NoWatch]
-	[iOS (9,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (UILayoutGuide))]
 	interface UIFocusGuide {
 		[Export ("enabled")]
 		bool Enabled { [Bind ("isEnabled")] get; set; }
 
-		[Availability (Deprecated = Platform.iOS_10_0, Message = "Use 'PreferredFocusEnvironments' instead.")]
+		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'PreferredFocusEnvironments' instead.")]
 		[NullAllowed, Export ("preferredFocusedView", ArgumentSemantic.Weak)]
 		UIView PreferredFocusedView { get; set; }
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("preferredFocusEnvironments", ArgumentSemantic.Copy), NullAllowed] // null_resettable
 		IUIFocusEnvironment[] PreferredFocusEnvironments { get; set; }
 	}
 
 	interface IUIFocusItem {}
-	[iOS (10,0)]
+	[Introduced (PlatformName.iOS, 10, 0)]
 	[Protocol]
 	interface UIFocusItem : UIFocusEnvironment
 	{
@@ -16923,9 +16919,9 @@ namespace XamCore.UIKit {
 	}
 		
 	[DisableDefaultCtor] // [Assert] -init is not a useful initializer for this class. Use one of the designated initializers instead
-	[NoWatch]
-	[iOS (9,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[BaseType (typeof (NSObject))]
 	interface UIFocusUpdateContext {
 		[NullAllowed, Export ("previouslyFocusedView", ArgumentSemantic.Weak)]
 		UIView PreviouslyFocusedView { get; }
@@ -16936,43 +16932,43 @@ namespace XamCore.UIKit {
 		[Export ("focusHeading", ArgumentSemantic.Assign)]
 		UIFocusHeading FocusHeading { get; }
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[NullAllowed, Export ("previouslyFocusedItem", ArgumentSemantic.Weak)]
 		IUIFocusItem PreviouslyFocusedItem { get; }
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[NullAllowed, Export ("nextFocusedItem", ArgumentSemantic.Weak)]
 		IUIFocusItem NextFocusedItem { get; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Notification]
 		[Field ("UIFocusDidUpdateNotification")]
 		NSString DidUpdateNotification { get; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Notification]
 		[Field ("UIFocusMovementDidFailNotification")]
 		NSString MovementDidFailNotification { get; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Field ("UIFocusUpdateContextKey")]
 		NSString Key { get; }
 
-		[iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[Field ("UIFocusUpdateAnimationCoordinatorKey")]
 		NSString AnimationCoordinatorKey { get; }
 	}
 
-	[NoWatch]
-	[iOS (11,0), TV (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface UIFocusSystem {
 		[Static]
 		[Export ("environment:containsEnvironment:")]
 		bool Contains (IUIFocusEnvironment environment, IUIFocusEnvironment otherEnvironment);
 
-		[NoiOS]
+		[Unavailable (PlatformName.iOS)]
 		[Static]
 		[Export ("registerURL:forSoundIdentifier:")]
 		void RegisterUrl (NSUrl soundFileUrl, NSString identifier);
@@ -16984,14 +16980,14 @@ namespace XamCore.UIKit {
 
 	interface IUIFocusDebuggerOutput {}
 
-	[NoWatch]
-	[iOS (11,0), TV (11,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 	[Protocol]
 	interface UIFocusDebuggerOutput {}
 
-	[NoWatch]
-	[iOS (11,0), TV (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	interface UIFocusDebugger {
 		[Static]
 		[Export ("help")]
@@ -17010,8 +17006,8 @@ namespace XamCore.UIKit {
 		IUIFocusDebuggerOutput SimulateFocusUpdateRequest (IUIFocusEnvironment environment);
 	}
 
-	[NoWatch]
-	[iOS (9,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	interface UIPress {
 		[Export ("timestamp")]
@@ -17036,8 +17032,8 @@ namespace XamCore.UIKit {
 		nfloat Force { get; }
 	}
 
-	[NoWatch]
-	[iOS (9,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (UIEvent))]
 	interface UIPressesEvent {
 		[Export ("allPresses")]
@@ -17047,7 +17043,7 @@ namespace XamCore.UIKit {
 		NSSet<UIPress> GetPresses (UIGestureRecognizer gesture);
 	}
 
-	[NoWatch, NoTV, iOS (10,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 0)]
 	[BaseType (typeof(NSObject), Delegates=new string [] {"Delegate"}, Events=new Type [] { typeof (UIPreviewInteractionDelegate)})]
 	[DisableDefaultCtor]
 	interface UIPreviewInteraction {
@@ -17071,9 +17067,9 @@ namespace XamCore.UIKit {
 
 	interface IUIPreviewInteractionDelegate { }
 
-	[NoWatch, NoTV, iOS (10, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 0)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface UIPreviewInteractionDelegate {
 
 		[Abstract]
@@ -17086,7 +17082,7 @@ namespace XamCore.UIKit {
 		void DidCancel (UIPreviewInteraction previewInteraction);
 
 		[Export ("previewInteractionShouldBegin:")]
-		[DelegateName ("Func<UIPreviewInteraction,bool>"), DefaultValue(true)]
+		[DelegateName ("Func<UIPreviewInteraction,bool>"), DefaultValue (true)]
 		bool ShouldBegin (UIPreviewInteraction previewInteraction);
 
 		[Export ("previewInteraction:didUpdateCommitTransition:ended:")]
@@ -17094,8 +17090,8 @@ namespace XamCore.UIKit {
 		void DidUpdateCommit (UIPreviewInteraction previewInteraction, nfloat transitionProgress, bool ended);
 	}
 	
-	[NoWatch]
-	[iOS (9,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (UIFocusUpdateContext))]
 	interface UITableViewFocusUpdateContext {
 		
@@ -17106,8 +17102,8 @@ namespace XamCore.UIKit {
 		NSIndexPath NextFocusedIndexPath { [return: NullAllowed] get; }
 	}
 
-	[NoWatch, NoiOS]
-	[TV (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.iOS)]
+	[Introduced (PlatformName.TvOS, 11, 0)]
 	public enum UIFocusSoundIdentifier {
 
 		[Field ("UIFocusSoundIdentifierNone")]
@@ -17118,8 +17114,8 @@ namespace XamCore.UIKit {
 	}
 
 	interface IUIFocusEnvironment {}
-	[NoWatch]
-	[iOS (9,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Protocol]
 	interface UIFocusEnvironment {
 		// Apple moved this member to @optional since they deprecated it
@@ -17127,8 +17123,8 @@ namespace XamCore.UIKit {
 		// and we need to teach the intro and xtro tests about it
 		[Abstract]
 		[NullAllowed, Export ("preferredFocusedView", ArgumentSemantic.Weak)]
-		[iOS (9,0)] // duplicated so it's inlined properly
-		[Availability (Deprecated = Platform.iOS_10_0, Message = "Use 'PreferredFocusEnvironments' instead.")]
+		[Introduced (PlatformName.iOS, 9, 0)] // duplicated so it's inlined properly
+		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'PreferredFocusEnvironments' instead.")]
 		UIView PreferredFocusedView { get; }
 
 		[Abstract]
@@ -17154,12 +17150,12 @@ namespace XamCore.UIKit {
 #if XAMCORE_4_0
 		[Abstract]
 #endif
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("preferredFocusEnvironments", ArgumentSemantic.Copy)]
 		IUIFocusEnvironment[] PreferredFocusEnvironments { get; }
 
-		[NoiOS]
-		[TV (11,0)]
+		[Unavailable (PlatformName.iOS)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("soundIdentifierForFocusUpdateInContext:")]
 		[return: NullAllowed]
 		NSString GetSoundIdentifier (UIFocusUpdateContext context);
@@ -17167,7 +17163,7 @@ namespace XamCore.UIKit {
 	}
 #endif // !WATCH
 
-	[NoWatch][NoTV]
+	[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 	[Static][Internal]
 	interface UITextAttributesConstants {
 		[Field ("UITextAttributeFont")]
@@ -17209,7 +17205,7 @@ namespace XamCore.UIKit {
 	interface IUITextDropDelegate {}
 	interface IUITextDropRequest {}
 
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UIDragAnimating
 	{
@@ -17222,7 +17218,7 @@ namespace XamCore.UIKit {
 		void AddCompletion (Action<UIViewAnimatingPosition> completion);
 	}
 	
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UIDragDropSession
 	{
@@ -17251,8 +17247,8 @@ namespace XamCore.UIKit {
 		bool CanLoadObjects (Class itemProviderReadingClass);
 	}
 	
-	[NoWatch, NoTV, iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface UIDragItem
 	{
@@ -17270,8 +17266,8 @@ namespace XamCore.UIKit {
 		Func<UIDragPreview> PreviewProvider { get; set; }
 	}
 	
-	[NoWatch, NoTV, iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface UIDragPreview : NSCopying
 	{
@@ -17299,8 +17295,8 @@ namespace XamCore.UIKit {
 		UIDragPreview GetPreview (NSUrl url, [NullAllowed] string title);
 	}
 	
-	[NoWatch, NoTV, iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	interface UIDragPreviewParameters : NSCopying
 	{
 		[Export ("initWithTextLineRects:")]
@@ -17313,8 +17309,8 @@ namespace XamCore.UIKit {
 		UIColor BackgroundColor { get; set; }
 	}
 	
-	[NoWatch, NoTV, iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface UIDragPreviewTarget : NSCopying
 	{
@@ -17335,7 +17331,7 @@ namespace XamCore.UIKit {
 		CGAffineTransform Transform { get; }
 	}
 	
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UIDragSession : UIDragDropSession
 	{
@@ -17344,9 +17340,9 @@ namespace XamCore.UIKit {
 		NSObject LocalContext { get; set; }
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface UIDragInteraction : UIInteraction {
 		[Export ("initWithDelegate:")]
@@ -17367,10 +17363,10 @@ namespace XamCore.UIKit {
 		bool EnabledByDefault { [Bind ("isEnabledByDefault")] get; }
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface UIDragInteractionDelegate {
 		[Abstract]
 		[Export ("dragInteraction:itemsForBeginningSession:")]
@@ -17425,8 +17421,8 @@ namespace XamCore.UIKit {
 		void WillAnimateCancel (UIDragInteraction interaction, UIDragItem item, IUIDragAnimating animator);
 	}
 
-	[NoWatch, NoTV, iOS (11,0)]
-	[BaseType (typeof(NSObject))] // If Apple adds a delegate setter: Delegates=new string [] {"Delegate"}, Events=new Type [] { typeof (UIDropInteractionDelegate)})]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))] // If Apple adds a delegate setter: Delegates=new string [] {"Delegate"}, Events=new Type [] { typeof (UIDropInteractionDelegate)})]
 	[DisableDefaultCtor]
 	interface UIDropInteraction : UIInteraction
 	{
@@ -17442,9 +17438,9 @@ namespace XamCore.UIKit {
 		bool AllowsSimultaneousDropSessions { get; set; }
 	}
 	
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface UIDropInteractionDelegate
 	{
 		[Export ("dropInteraction:canHandleSession:"), DelegateName ("Func<UIDropInteraction,IUIDropSession,bool>"), NoDefaultValue]
@@ -17469,15 +17465,15 @@ namespace XamCore.UIKit {
 		void SessionDidEnd (UIDropInteraction interaction, IUIDropSession session);
 	
 		[Export ("dropInteraction:previewForDroppingItem:withDefault:")]
-		[return: NullAllowed][DelegateName("UIDropInteractionPreviewForItem"), NoDefaultValue]
+		[return: NullAllowed][DelegateName ("UIDropInteractionPreviewForItem"), NoDefaultValue]
 		UITargetedDragPreview GetPreviewForDroppingItem (UIDropInteraction interaction, UIDragItem item, UITargetedDragPreview defaultPreview);
 	
-		[Export ("dropInteraction:item:willAnimateDropWithAnimator:"), EventArgs("UIDropInteractionAnimation")]
+		[Export ("dropInteraction:item:willAnimateDropWithAnimator:"), EventArgs ("UIDropInteractionAnimation")]
 		void WillAnimateDrop (UIDropInteraction interaction, UIDragItem item, IUIDragAnimating animator);
 	}
 	
-	[NoWatch, NoTV, iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface UIDropProposal : NSCopying
 	{
@@ -17495,7 +17491,7 @@ namespace XamCore.UIKit {
 		bool PrefersFullSizePreview { get; set; }
 	}
 
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UIDropSession : UIDragDropSession, NSProgressReporting
 	{
@@ -17512,8 +17508,8 @@ namespace XamCore.UIKit {
 		NSProgress LoadObjects (Class itemProviderReadingClass, Action<INSItemProviderReading []> completion);
 	}
 	
-	[NoWatch, NoTV, iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface UITargetedDragPreview : NSCopying
 	{
@@ -17553,10 +17549,10 @@ namespace XamCore.UIKit {
 		UITargetedDragPreview GetPreview (NSUrl url, [NullAllowed] string title, UIDragPreviewTarget target);
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface UICollectionViewDragDelegate {
 		[Abstract]
 		[Export ("collectionView:itemsForBeginningDragSession:atIndexPath:")]
@@ -17582,10 +17578,10 @@ namespace XamCore.UIKit {
 		bool DragSessionIsRestrictedToDraggingApplication (UICollectionView collectionView, IUIDragSession session);
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface UICollectionViewDropDelegate {
 		[Abstract]
 		[Export ("collectionView:performDropWithCoordinator:")]
@@ -17611,9 +17607,9 @@ namespace XamCore.UIKit {
 		UIDragPreviewParameters GetDropPreviewParameters (UICollectionView collectionView, NSIndexPath indexPath);
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
-	[BaseType (typeof(UIDropProposal))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (UIDropProposal))]
 	[DisableDefaultCtor] // NSInternalInconsistencyException Reason: Not implemented
 	interface UICollectionViewDropProposal {
 
@@ -17629,8 +17625,8 @@ namespace XamCore.UIKit {
 		UICollectionViewDropIntent Intent { get; }
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UICollectionViewDropCoordinator {
 		[Abstract]
@@ -17666,9 +17662,9 @@ namespace XamCore.UIKit {
 		IUIDragAnimating DropItemToTarget (UIDragItem dragItem, UIDragPreviewTarget target);
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface UICollectionViewPlaceholder {
 		[Export ("initWithInsertionIndexPath:reuseIdentifier:")]
@@ -17679,9 +17675,9 @@ namespace XamCore.UIKit {
 		Action<UICollectionViewCell> CellUpdateHandler { get; set; }
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
-	[BaseType (typeof(UICollectionViewPlaceholder))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (UICollectionViewPlaceholder))]
 	interface UICollectionViewDropPlaceholder {
 		// inlined
 		[Export ("initWithInsertionIndexPath:reuseIdentifier:")]
@@ -17691,8 +17687,8 @@ namespace XamCore.UIKit {
 		Func<UICollectionViewCell, UIDragPreviewParameters> PreviewParametersProvider { get; set; }
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UICollectionViewDropItem {
 		[Abstract]
@@ -17708,8 +17704,8 @@ namespace XamCore.UIKit {
 		CGSize PreviewSize { get; }
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UICollectionViewDropPlaceholderContext : UIDragAnimating {
 		[Abstract]
@@ -17729,10 +17725,10 @@ namespace XamCore.UIKit {
 		void SetNeedsCellUpdate ();
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface UITableViewDragDelegate {
 		[Abstract]
 		[Export ("tableView:itemsForBeginningDragSession:atIndexPath:")]
@@ -17758,10 +17754,10 @@ namespace XamCore.UIKit {
 		bool DragSessionIsRestrictedToDraggingApplication (UITableView tableView, IUIDragSession session);
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface UITableViewDropDelegate {
 		[Abstract]
 		[Export ("tableView:performDropWithCoordinator:")]
@@ -17787,9 +17783,9 @@ namespace XamCore.UIKit {
 		UIDragPreviewParameters GetDropPreviewParameters (UITableView tableView, NSIndexPath indexPath);
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
-	[BaseType (typeof(UIDropProposal))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (UIDropProposal))]
 	[DisableDefaultCtor] // NSInternalInconsistencyException Reason: Not implemented
 	interface UITableViewDropProposal {
 
@@ -17805,8 +17801,8 @@ namespace XamCore.UIKit {
 		UITableViewDropIntent Intent { get; }
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UITableViewDropCoordinator {
 		[Abstract]
@@ -17842,9 +17838,9 @@ namespace XamCore.UIKit {
 		IUIDragAnimating DropItemToTarget (UIDragItem dragItem, UIDragPreviewTarget target);
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface UITableViewPlaceholder {
 		[Export ("initWithInsertionIndexPath:reuseIdentifier:rowHeight:")]
@@ -17855,9 +17851,9 @@ namespace XamCore.UIKit {
 		Action<UITableViewCell> CellUpdateHandler { get; set; }
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
-	[BaseType (typeof(UITableViewPlaceholder))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (UITableViewPlaceholder))]
 	interface UITableViewDropPlaceholder {
 		// inlined
 		[Export ("initWithInsertionIndexPath:reuseIdentifier:rowHeight:")]
@@ -17867,7 +17863,7 @@ namespace XamCore.UIKit {
 		Func<UITableViewCell, UIDragPreviewParameters> PreviewParametersProvider { get; set; }
 	}
 
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UITableViewDropItem {
 		[Abstract]
@@ -17883,7 +17879,7 @@ namespace XamCore.UIKit {
 		CGSize PreviewSize { get; }
 	}
 
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UITableViewDropPlaceholderContext : UIDragAnimating {
 		[Abstract]
@@ -17899,9 +17895,9 @@ namespace XamCore.UIKit {
 		bool DeletePlaceholder ();
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface UITextDragPreviewRenderer {
 		[Export ("initWithLayoutManager:range:")]
@@ -17930,8 +17926,8 @@ namespace XamCore.UIKit {
 		void Adjust (ref CGRect firstLineRect, ref CGRect bodyRect, ref CGRect lastLineRect, CGPoint origin);
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UITextDraggable : UITextInput {
 		[Abstract]
@@ -17951,10 +17947,10 @@ namespace XamCore.UIKit {
 		UITextDragOptions TextDragOptions { get; set; }
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface UITextDragDelegate {
 		[Export ("textDraggableView:itemsForDrag:")]
 		UIDragItem[] GetItemsForDrag (IUITextDraggable textDraggableView, IUITextDragRequest dragRequest);
@@ -17973,8 +17969,8 @@ namespace XamCore.UIKit {
 		void DragSessionDidEnd (IUITextDraggable textDraggableView, IUIDragSession session, UIDropOperation operation);
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UITextDragRequest {
 		[Abstract]
@@ -17998,9 +17994,9 @@ namespace XamCore.UIKit {
 		IUIDragSession DragSession { get; }
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
-	[BaseType (typeof(UIDropProposal))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (UIDropProposal))]
 	[DisableDefaultCtor]
 	interface UITextDropProposal : NSCopying {
 		// inlined
@@ -18020,8 +18016,8 @@ namespace XamCore.UIKit {
 		UITextDropPerformer DropPerformer { get; set; }
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UITextDroppable : UITextInput, UITextPasteConfigurationSupporting {
 		[Abstract]
@@ -18037,10 +18033,10 @@ namespace XamCore.UIKit {
 		bool TextDropActive { [Bind ("isTextDropActive")] get; }
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface UITextDropDelegate {
 		[Export ("textDroppableView:willBecomeEditableForDrop:")]
 		UITextDropEditability WillBecomeEditable (IUITextDroppable textDroppableView, IUITextDropRequest drop);
@@ -18068,8 +18064,8 @@ namespace XamCore.UIKit {
 		void DropSessionDidEnd (IUITextDroppable textDroppableView, IUIDropSession session);
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UITextDropRequest {
 		[Abstract]
@@ -18091,7 +18087,7 @@ namespace XamCore.UIKit {
 
 #endregion
 
-	[TV (11,0), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UIDataSourceTranslating {
 		[Abstract]
@@ -18117,9 +18113,9 @@ namespace XamCore.UIKit {
 		void PerformUsingPresentationValues (Action actionsToTranslate);
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface UISpringLoadedInteraction : UIInteraction {
 		[Export ("initWithInteractionBehavior:interactionEffect:activationHandler:")]
@@ -18138,8 +18134,8 @@ namespace XamCore.UIKit {
 
 	interface IUISpringLoadedInteractionBehavior {}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UISpringLoadedInteractionBehavior {
 		[Abstract]
@@ -18152,8 +18148,8 @@ namespace XamCore.UIKit {
 
 	interface IUISpringLoadedInteractionEffect {}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UISpringLoadedInteractionEffect {
 		[Abstract]
@@ -18163,8 +18159,8 @@ namespace XamCore.UIKit {
 
 	interface IUISpringLoadedInteractionContext {}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UISpringLoadedInteractionContext {
 		[Abstract]
@@ -18184,8 +18180,8 @@ namespace XamCore.UIKit {
 		CGPoint LocationInView ([NullAllowed] UIView view);
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UISpringLoadedInteractionSupporting {
 		[Abstract]
@@ -18195,17 +18191,17 @@ namespace XamCore.UIKit {
 
 	// https://bugzilla.xamarin.com/show_bug.cgi?id=58282, we should be able to write one delegate with a 'Action<bool>'. See original signature:
 	// typedef void (^UIContextualActionHandler)(UIContextualAction * _Nonnull, __kindof UIView * _Nonnull, void (^ _Nonnull)(BOOL));
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	delegate void UIContextualActionHandler (UIContextualAction action, UIView sourceView, [BlockCallback] UIContextualActionCompletionHandler completionHandler);
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	delegate void UIContextualActionCompletionHandler (bool finished);
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface UIContextualAction {
 		[Static]
@@ -18228,9 +18224,9 @@ namespace XamCore.UIKit {
 		UIImage Image { get; set; }
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface UISwipeActionsConfiguration {
 		[Static]
@@ -18246,8 +18242,8 @@ namespace XamCore.UIKit {
 
 	interface IUITextPasteConfigurationSupporting {}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UITextPasteConfigurationSupporting : UIPasteConfigurationSupporting {
 		[Abstract]
@@ -18257,10 +18253,10 @@ namespace XamCore.UIKit {
 
 	interface IUITextPasteDelegate {}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface UITextPasteDelegate {
 		[Export ("textPasteConfigurationSupporting:transformPasteItem:")]
 		void TransformPasteItem (IUITextPasteConfigurationSupporting textPasteConfigurationSupporting, IUITextPasteItem item);
@@ -18277,8 +18273,8 @@ namespace XamCore.UIKit {
 
 	interface IUITextPasteItem {}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UITextPasteItem {
 		[Abstract]
@@ -18314,9 +18310,9 @@ namespace XamCore.UIKit {
 		void SetDefaultResult ();
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	interface UIPasteConfiguration : NSSecureCoding, NSCopying {
 		[Export ("acceptableTypeIdentifiers", ArgumentSemantic.Copy)]
 		string[] AcceptableTypeIdentifiers { get; set; }
@@ -18342,8 +18338,8 @@ namespace XamCore.UIKit {
 
 	interface IUIPasteConfigurationSupporting {}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface UIPasteConfigurationSupporting {
 		[Abstract]
@@ -18357,9 +18353,9 @@ namespace XamCore.UIKit {
 		bool CanPaste (NSItemProvider[] itemProviders);
 	}
 
-	[NoTV, NoWatch]
-	[iOS (11,0)]
-	[BaseType (typeof(UIViewController))]
+	[Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (UIViewController))]
 	interface UIDocumentBrowserViewController : NSCoding {
 		[Export ("initForOpeningFilesWithContentTypes:")]
 		[DesignatedInitializer]
@@ -18403,10 +18399,10 @@ namespace XamCore.UIKit {
 
 	interface IUIDocumentBrowserViewControllerDelegate {}
 
-	[NoTV, NoWatch]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface UIDocumentBrowserViewControllerDelegate {
 		[Export ("documentBrowser:didPickDocumentURLs:")]
 		void DidPickDocumentUrls (UIDocumentBrowserViewController controller, NSUrl[] documentUrls);
@@ -18427,9 +18423,9 @@ namespace XamCore.UIKit {
 		void WillPresent (UIDocumentBrowserViewController controller, UIActivityViewController activityViewController);
 	}
 
-	[NoTV, NoWatch]
-	[iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface UIDocumentBrowserTransitionController : UIViewControllerAnimatedTransitioning {
 		[NullAllowed, Export ("loadingProgress", ArgumentSemantic.Strong)]
@@ -18439,9 +18435,9 @@ namespace XamCore.UIKit {
 		UIView TargetView { get; set; }
 	}
 
-	[NoTV, NoWatch]
-	[iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface UIDocumentBrowserAction {
 		[Export ("initWithIdentifier:localizedTitle:availability:handler:")]
@@ -18468,8 +18464,8 @@ namespace XamCore.UIKit {
 	}
 #endif // !WATCH
 
-	[Watch (4,0), TV (11,0), iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface UIFontMetrics {
 		[Static]
@@ -18494,15 +18490,15 @@ namespace XamCore.UIKit {
 		nfloat GetScaledValue (nfloat value);
 
 #if !WATCH
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Export ("scaledFontForFont:compatibleWithTraitCollection:")]
 		UIFont GetScaledFont (UIFont font, [NullAllowed] UITraitCollection traitCollection);
 
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Export ("scaledFontForFont:maximumPointSize:compatibleWithTraitCollection:")]
 		UIFont GetScaledFont (UIFont font, nfloat maximumPointSize, [NullAllowed] UITraitCollection traitCollection);
 
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Export ("scaledValueForValue:compatibleWithTraitCollection:")]
 		nfloat GetScaledValue (nfloat value, [NullAllowed] UITraitCollection traitCollection);
 #endif // !WATCH

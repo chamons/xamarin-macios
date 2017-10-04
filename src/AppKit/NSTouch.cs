@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace XamCore.AppKit {
 	public partial class NSTouch {

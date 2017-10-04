@@ -16,7 +16,7 @@ using XamCore.CoreFoundation;
 
 namespace XamCore.ImageIO {
 
-	[iOS (7,0), Mac (10,8)]
+	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 	public partial class CGImageMetadataEnumerateOptions {
 
 		public bool Recursive { get; set; }
@@ -35,7 +35,7 @@ namespace XamCore.ImageIO {
 	public delegate bool CGImageMetadataTagBlock (NSString path, CGImageMetadataTag tag);
 
 	// CGImageMetadata.h
-	[iOS (7,0), Mac (10,8)]
+	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 	public partial class CGImageMetadata : INativeObject, IDisposable {
 
 		public CGImageMetadata (IntPtr handle)
@@ -86,7 +86,7 @@ namespace XamCore.ImageIO {
 			}
 		}
 
-		[DllImport (Constants.ImageIOLibrary, EntryPoint="CGImageMetadataGetTypeID")]
+		[DllImport (Constants.ImageIOLibrary, EntryPoint = "CGImageMetadataGetTypeID")]
 		public extern static /* CFTypeID */ nint GetTypeID ();
 
 

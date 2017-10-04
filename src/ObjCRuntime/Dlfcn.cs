@@ -84,7 +84,7 @@ namespace XamCore.ObjCRuntime {
 		[DllImport (Constants.libSystemLibrary)]
 		public static extern int dlclose (IntPtr handle);
 
-		[DllImport (Constants.libSystemLibrary, EntryPoint="dlopen")]
+		[DllImport (Constants.libSystemLibrary, EntryPoint = "dlopen")]
 		internal static extern IntPtr _dlopen (string path, int mode /* this is int32, not nint */);
 
 		static bool warningShown;
@@ -118,7 +118,7 @@ namespace XamCore.ObjCRuntime {
 			return dlsym ((IntPtr) lookupType, symbol);
 		}
 
-		[DllImport (Constants.libSystemLibrary, EntryPoint="dlerror")]
+		[DllImport (Constants.libSystemLibrary, EntryPoint = "dlerror")]
 		internal static extern IntPtr dlerror_ ();
 
 		public static string dlerror ()

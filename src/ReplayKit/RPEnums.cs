@@ -11,11 +11,11 @@ using XamCore.UIKit;
 
 namespace XamCore.ReplayKit {
 
-	[iOS (9,0)]
-	[TV (10,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
 	[Native]
 	[ErrorDomain ("RPRecordingErrorDomain")]
-	public enum RPRecordingError : nint {
+	public enum RPRecordingError : long {
 		None = 0,
 		Unknown = -5800,
 		UserDeclined = -5801,
@@ -33,27 +33,27 @@ namespace XamCore.ReplayKit {
 		CarPlay = -5813,
 	}
 
-	[NoiOS]
-	[TV (10,0)]
+	[Unavailable (PlatformName.iOS)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
 	[Native]
-	public enum RPPreviewViewControllerMode : nint {
+	public enum RPPreviewViewControllerMode : long {
 		Preview,
 		Share
 	}
 
 	[Native]
-	[iOS (10,0)]
-	[TV (10,0)]
-	public enum RPSampleBufferType : nint {
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	public enum RPSampleBufferType : long {
 		Video = 1,
 		AudioApp,
 		AudioMic
 	}
 
 	[Native]
-	[iOS (11,0)]
-	[NoTV]
-	public enum RPCameraPosition : nint {
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.TvOS)]
+	public enum RPCameraPosition : long {
 		Front = 1,
 		Back,
 	}

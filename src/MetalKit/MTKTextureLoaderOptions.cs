@@ -1,4 +1,4 @@
-﻿//
+//
 // MTKTextureLoaderOptions.cs strong dictionary
 //
 // Authors:
@@ -14,7 +14,7 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.MetalKit {
 #if !COREBUILD
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	public partial class MTKTextureLoaderOptions : DictionaryContainer {
 
 		public MTLTextureUsage? TextureUsage {
@@ -47,7 +47,7 @@ namespace XamCore.MetalKit {
 			}
 		}
 
-		[iOS (10,0)][Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		public MTLStorageMode? TextureStorageMode {
 			get {
 				var val = GetNUIntValue (MTKTextureLoaderKeys.TextureStorageModeKey);
@@ -63,7 +63,7 @@ namespace XamCore.MetalKit {
 			}
 		}
 
-		[iOS (10,0)][Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		public MTKTextureLoaderCubeLayout? CubeLayout {
 			get {
 				var val = GetNSStringValue (MTKTextureLoaderKeys.CubeLayoutKey);
@@ -79,7 +79,7 @@ namespace XamCore.MetalKit {
 			}
 		}
 
-		[iOS (10,0)][Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		public MTKTextureLoaderOrigin? Origin {
 			get {
 				var val = GetNSStringValue (MTKTextureLoaderKeys.OriginKey);

@@ -1,4 +1,4 @@
-﻿// 
+// 
 // MidiThruConnection.cs
 //
 // Authors: Alex Soto (alex.soto@xamarin.com)

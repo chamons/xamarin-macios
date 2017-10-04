@@ -48,7 +48,7 @@ namespace XamCore.Foundation  {
 
 #if !XAMCORE_4_0
 	[Native]
-	public enum NSBundleExecutableArchitecture : nint {
+	public enum NSBundleExecutableArchitecture : long {
 #else
 	public enum NSBundleExecutableArchitecture {
 #endif
@@ -60,7 +60,7 @@ namespace XamCore.Foundation  {
 #endif
 
 	[Native]
-	public enum NSComparisonResult : nint {
+	public enum NSComparisonResult : long {
 		Ascending = -1,
 		Same,
 		Descending
@@ -136,7 +136,7 @@ namespace XamCore.Foundation  {
 	}
 
 	[Native]
-	public enum NSNetServicesStatus : nint {
+	public enum NSNetServicesStatus : long {
 		UnknownError = -72000,
 		CollisionError = -72001,
 		NotFoundError	= -72002,
@@ -183,44 +183,44 @@ namespace XamCore.Foundation  {
 		Hour = 32,
 		Minute = 64,
 		Second = 128,
-		[Availability (Introduced = Platform.Mac_10_4 | Platform.iOS_2_0, Deprecated = Platform.Mac_10_10 | Platform.iOS_8_0)]
+		[Introduced (PlatformName.MacOSX, 10, 4), Introduced (PlatformName.iOS, 2, 0), Deprecated (PlatformName.MacOSX, 10, 10), Deprecated (PlatformName.iOS, 8, 0)]
 		Week = 256,
 		Weekday = 512,
 		WeekdayOrdinal = 1024,
-		[Availability (Introduced = Platform.Mac_10_6 | Platform.iOS_4_0)]
+		[Introduced (PlatformName.MacOSX, 10, 6), Introduced (PlatformName.iOS, 4, 0)]
 		Quarter = 2048,
 
-		[Availability (Introduced = Platform.Mac_10_7 | Platform.iOS_5_0)]
+		[Introduced (PlatformName.MacOSX, 10, 7), Introduced (PlatformName.iOS, 5, 0)]
 		WeekOfMonth = (1 << 12),
-		[Availability (Introduced = Platform.Mac_10_7 | Platform.iOS_5_0)]
+		[Introduced (PlatformName.MacOSX, 10, 7), Introduced (PlatformName.iOS, 5, 0)]
 		WeekOfYear = (1 << 13),
-		[Availability (Introduced = Platform.Mac_10_7 | Platform.iOS_5_0)]
+		[Introduced (PlatformName.MacOSX, 10, 7), Introduced (PlatformName.iOS, 5, 0)]
 		YearForWeakOfYear = (1 << 14),
 
-		[Availability (Introduced = Platform.Mac_10_7 | Platform.iOS_5_0)]
+		[Introduced (PlatformName.MacOSX, 10, 7), Introduced (PlatformName.iOS, 5, 0)]
 		Nanosecond = (1 << 15),
 
-		[Availability (Introduced = Platform.Mac_10_7 | Platform.iOS_5_0)]
+		[Introduced (PlatformName.MacOSX, 10, 7), Introduced (PlatformName.iOS, 5, 0)]
 		Calendar = (1 << 20),
-		[Availability (Introduced = Platform.Mac_10_7 | Platform.iOS_5_0)]
+		[Introduced (PlatformName.MacOSX, 10, 7), Introduced (PlatformName.iOS, 5, 0)]
 		TimeZone = (1 << 21),
 	}
 
 	[Flags]
 	[Native]
-	public enum NSDataReadingOptions : nuint {
+	public enum NSDataReadingOptions : ulong {
 		Mapped =   1 << 0,
 		Uncached = 1 << 1,
 
-		[iOS (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		Coordinated = 1 << 2,
-		[iOS (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		MappedAlways = 1 << 3
 	}
 
 	[Flags]
 	[Native]
-	public enum NSDataWritingOptions : nuint {
+	public enum NSDataWritingOptions : ulong {
 		Atomic = 1,
 
 		WithoutOverwriting  = 2,
@@ -230,23 +230,23 @@ namespace XamCore.Foundation  {
 		Coordinated = 1 << 2,
 #endif
 			
-		[iOS (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		FileProtectionNone = 0x10000000,
-		[iOS (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		FileProtectionComplete = 0x20000000,
-		[iOS (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		FileProtectionMask = 0xf0000000,
-		[iOS (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		FileProtectionCompleteUnlessOpen = 0x30000000,
-		[iOS (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		FileProtectionCompleteUntilFirstUserAuthentication = 0x40000000,
 	}
 	
 	public delegate void NSSetEnumerator (NSObject obj, ref bool stop);
 
-	[iOS (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Native]
-	public enum NSOperationQueuePriority : nint {
+	public enum NSOperationQueuePriority : long {
 		VeryLow = -8, Low = -4, Normal = 0, High = 4, VeryHigh = 8
 	}
 
@@ -363,7 +363,7 @@ namespace XamCore.Foundation  {
 
 		CoderReadCorruptError = 4864,
 		CoderValueNotFoundError = 4865,
-		[Mac (10,13), iOS (11,0), Watch (4,0), TV (11,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		CoderInvalidValueError = 4866,
 		CoderErrorMinimum = 4864,
 		CoderErrorMaximum = 4991,
@@ -375,21 +375,21 @@ namespace XamCore.Foundation  {
 		BundleOnDemandResourceExceededMaximumSizeError = 4993,
 		BundleOnDemandResourceInvalidTagError = 4994,
 
-		[Mac (10,12)][iOS (10,0)][NoTV][NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)][Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 		CloudSharingNetworkFailureError = 5120,
-		[Mac (10,12)][iOS (10,0)][NoTV][NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)][Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 		CloudSharingQuotaExceededError = 5121,
-		[Mac (10,12)][iOS (10,0)][NoTV][NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)][Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 		CloudSharingTooManyParticipantsError = 5122,
-		[Mac (10,12)][iOS (10,0)][NoTV][NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)][Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 		CloudSharingConflictError = 5123,
-		[Mac (10,12)][iOS (10,0)][NoTV][NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)][Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 		CloudSharingNoPermissionError = 5124,
-		[Mac (10,12)][iOS (10,0)][NoTV][NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)][Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 		CloudSharingOtherError = 5375,
-		[Mac (10,12)][iOS (10,0)][NoTV][NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)][Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 		CloudSharingErrorMinimum = 5120,
-		[Mac (10,12)][iOS (10,0)][NoTV][NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)][Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 		CloudSharingErrorMaximum = 5375,
 	}
 	
@@ -497,7 +497,7 @@ namespace XamCore.Foundation  {
 
 	[Flags]
 	[Native]
-	public enum NSStreamEvent : nuint {
+	public enum NSStreamEvent : ulong {
 		None = 0,
 		OpenCompleted = 1 << 0,
 		HasBytesAvailable = 1 << 1,
@@ -547,7 +547,7 @@ namespace XamCore.Foundation  {
 		Or
 	}	
 
-	[iOS (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Flags]
 	[Native]
 	public enum NSVolumeEnumerationOptions : nuint_compat_int {
@@ -557,7 +557,7 @@ namespace XamCore.Foundation  {
 		ProduceFileReferenceUrls = 1 << 2,
 	}
 
-	[iOS (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Flags]
 	[Native]
 	public enum NSDirectoryEnumerationOptions : nuint_compat_int {
@@ -567,7 +567,7 @@ namespace XamCore.Foundation  {
 		SkipsHiddenFiles             = 1 << 2,
 	}
 
-	[iOS (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Flags]
 	[Native]
 	public enum NSFileManagerItemReplacementOptions : nuint_compat_int {
@@ -630,7 +630,7 @@ namespace XamCore.Foundation  {
 	
 	[Flags]
 	[Native]
-	public enum NSStringDrawingOptions : nuint {
+	public enum NSStringDrawingOptions : ulong {
 		UsesLineFragmentOrigin = (1 << 0),
 		UsesFontLeading = (1 << 1),
 		DisableScreenFontSubstitution = (1 << 2),
@@ -683,9 +683,9 @@ namespace XamCore.Foundation  {
 	public enum NSFileCoordinatorReadingOptions : nuint_compat_int {
 		WithoutChanges = 1,
 		ResolvesSymbolicLink = 1 << 1,
-		[Availability (Introduced = Platform.Mac_10_10 | Platform.iOS_8_0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		ImmediatelyAvailableMetadataOnly = 1 << 2,
-		[Availability (Introduced = Platform.Mac_10_10 | Platform.iOS_8_0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		ForUploading = 1 << 3
 	}
 
@@ -709,7 +709,7 @@ namespace XamCore.Foundation  {
 	}
 
 	[Native]
-	public enum NSUbiquitousKeyValueStoreChangeReason : nint {
+	public enum NSUbiquitousKeyValueStoreChangeReason : long {
 		ServerChange, InitialSyncChange, QuotaViolationChange, AccountChange
 	}
 
@@ -725,7 +725,7 @@ namespace XamCore.Foundation  {
 	[Native]
 	public enum NSJsonWritingOptions : nuint_compat_int {
 		PrettyPrinted = 1,
-		[Mac (10,13), iOS (11,0), TV (11,0), Watch (4,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		SortedKeys = (1 << 1),
 	}
 
@@ -790,12 +790,12 @@ namespace XamCore.Foundation  {
 	// MonoMac AppKit redefines this
 	// NSInteger -> NSAttributedString.h
 	[Native]
-	public enum NSUnderlineStyle : nint {
+	public enum NSUnderlineStyle : long {
 		None	= 0x00,
 		Single	= 0x01,
-		[iOS (7, 0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		Thick	= 0x02,
-		[iOS (7, 0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		Double	= 0x09,
 		PatternSolid 		= 0x0000,
 		PatternDot 			= 0x0100,
@@ -811,7 +811,7 @@ namespace XamCore.Foundation  {
 #if MONOMAC
 	[Obsolete ("Use NSWritingDirection in AppKit instead.")]
 #endif
-	public enum NSWritingDirection : nint {
+	public enum NSWritingDirection : long {
 		Natural = -1, LeftToRight = 0, RightToLeft = 1,
 	}
 #endif // !MONOMAC || !XAMCORE_3_0
@@ -833,7 +833,7 @@ namespace XamCore.Foundation  {
 	}
 
 	[Native]
-	public enum NSByteCountFormatterCountStyle : nint {
+	public enum NSByteCountFormatterCountStyle : long {
 		File, Memory, Decimal, Binary
 	}
 
@@ -856,7 +856,7 @@ namespace XamCore.Foundation  {
 	}
 
 	[Native]
-	public enum NSLigatureType : nint {
+	public enum NSLigatureType : long {
 		None, Default, All 
 	}
 
@@ -877,21 +877,21 @@ namespace XamCore.Foundation  {
 		None = 0,
 		WrapCalendarComponents = 1 << 0,
 
-		[Availability (Introduced = Platform.Mac_10_9 | Platform.iOS_7_0)]
+		[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 7, 0)]
 		MatchStrictly = 1 << 1,
-		[Availability (Introduced = Platform.Mac_10_9 | Platform.iOS_7_0)]
+		[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 7, 0)]
 		SearchBackwards = 1 << 2,
 
-		[Availability (Introduced = Platform.Mac_10_9 | Platform.iOS_7_0)]
+		[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 7, 0)]
 		MatchPreviousTimePreservingSmallerUnits = 1 << 8,
-		[Availability (Introduced = Platform.Mac_10_9 | Platform.iOS_7_0)]
+		[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 7, 0)]
 		MatchNextTimePreservingSmallerUnits = 1 << 9,
-		[Availability (Introduced = Platform.Mac_10_9 | Platform.iOS_7_0)]
+		[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 7, 0)]
 		MatchNextTime = 1 << 10,
 
-		[Availability (Introduced = Platform.Mac_10_9 | Platform.iOS_7_0)]
+		[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 7, 0)]
 		MatchFirst = 1 << 12,
-		[Availability (Introduced = Platform.Mac_10_9 | Platform.iOS_7_0)]
+		[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 7, 0)]
 		MatchLast = 1 << 13,
 	}
 	
@@ -902,7 +902,7 @@ namespace XamCore.Foundation  {
 		Video,
 		Background,
 		Voice,
-		[Mac (10,12)][iOS (10,0)][Watch (3,0)][TV (10,0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)]
 		CallSignaling = 11,
 	}
 
@@ -913,7 +913,7 @@ namespace XamCore.Foundation  {
 		Stable = 1 << 4
 	}
 
-	[iOS (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[Flags]
 	[Native]
 	public enum NSDataBase64DecodingOptions : nuint_compat_int {
@@ -921,7 +921,7 @@ namespace XamCore.Foundation  {
 		IgnoreUnknownCharacters = 1
 	}
 
-	[iOS (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[Flags]
 	[Native]
 	public enum NSDataBase64EncodingOptions : nuint_compat_int {
@@ -933,16 +933,16 @@ namespace XamCore.Foundation  {
 	}
 
 #if !XAMCORE_3_0
-	[iOS (7,0)][Deprecated (PlatformName.iOS, 9, 0, message: "Use 'NSWritingDirectionFormatType'.")]
+	[Introduced (PlatformName.iOS, 7, 0)][Deprecated (PlatformName.iOS, 9, 0, message: "Use 'NSWritingDirectionFormatType'.")]
 	[Flags]
 	[Native]
-	public enum NSTextWritingDirection : nint {
+	public enum NSTextWritingDirection : long {
 		Embedding = 0, Override = 2
 	}
 #endif
 
 	[Native]
-	public enum NSUrlSessionAuthChallengeDisposition : nint {
+	public enum NSUrlSessionAuthChallengeDisposition : long {
 		UseCredential = 0,
 		PerformDefaultHandling = 1,
 		CancelAuthenticationChallenge = 2,
@@ -950,7 +950,7 @@ namespace XamCore.Foundation  {
 	}
 
 	[Native]
-	public enum NSUrlSessionTaskState : nint {
+	public enum NSUrlSessionTaskState : long {
 		Running = 0,
 		Suspended = 1,
 		Canceling = 2,
@@ -958,7 +958,7 @@ namespace XamCore.Foundation  {
 	}
 	
 	[Native]
-	public enum NSUrlSessionResponseDisposition : nint {
+	public enum NSUrlSessionResponseDisposition : long {
 		Cancel = 0,
 		Allow = 1,
 		BecomeDownload = 2,
@@ -966,7 +966,7 @@ namespace XamCore.Foundation  {
 	}
 
 	[Native]
-	public enum NSUrlErrorCancelledReason : nint {
+	public enum NSUrlErrorCancelledReason : long {
 		UserForceQuitApplication,
 		BackgroundUpdatesDisabled,
 		InsufficientSystemResources			
@@ -984,7 +984,7 @@ namespace XamCore.Foundation  {
 	}
 
 	[Native]
-	public enum NSTimeZoneNameStyle : nint {
+	public enum NSTimeZoneNameStyle : long {
 		Standard,
 		ShortStandard,
 		DaylightSaving,
@@ -994,7 +994,7 @@ namespace XamCore.Foundation  {
 	}
 
 	[Native]
-	public enum NSItemProviderErrorCode : nint {
+	public enum NSItemProviderErrorCode : long {
 		Unknown = -1,
 		None = 0,
 		ItemUnavailable = -1000,
@@ -1003,21 +1003,21 @@ namespace XamCore.Foundation  {
 	}
 
 	[Native]
-	[Availability (Introduced = Platform.Mac_10_10 | Platform.iOS_8_0)]
-	public enum NSDateComponentsFormatterUnitsStyle : nint {
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
+	public enum NSDateComponentsFormatterUnitsStyle : long {
 		Positional = 0,
 		Abbreviated,
 		Short,
 		Full,
 		SpellOut,
-		[iOS (10,0)][TV (10,0)][Watch (3,0)][Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 		Brief,
 	}
 
 	[Flags]
 	[Native]
-	[Availability (Introduced = Platform.Mac_10_10 | Platform.iOS_8_0)]
-	public enum NSDateComponentsFormatterZeroFormattingBehavior : nuint {
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
+	public enum NSDateComponentsFormatterZeroFormattingBehavior : ulong {
 		None = (0),
 		Default = (1 << 0),
 		DropLeading = (1 << 1),
@@ -1028,8 +1028,8 @@ namespace XamCore.Foundation  {
 	}
 
 	[Native]
-	[Availability (Introduced = Platform.Mac_10_10 | Platform.iOS_8_0)]
-	public enum NSFormattingContext : nint {
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
+	public enum NSFormattingContext : long {
 		Unknown = 0,
 		Dynamic = 1,
 		Standalone = 2,
@@ -1038,9 +1038,9 @@ namespace XamCore.Foundation  {
 		MiddleOfSentence = 5
 	}
 
-	[Availability (Introduced = Platform.Mac_10_10 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum NSDateIntervalFormatterStyle : nuint {
+	public enum NSDateIntervalFormatterStyle : ulong {
 		None = 0,
 		Short = 1,
 		Medium = 2,
@@ -1048,25 +1048,25 @@ namespace XamCore.Foundation  {
 		Full = 4
 	}
 
-	[Availability (Introduced = Platform.Mac_10_10 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum NSEnergyFormatterUnit : nint {
+	public enum NSEnergyFormatterUnit : long {
 		Joule = 11,
 		Kilojoule = 14,
 		Calorie = (7 << 8) + 1,
 		Kilocalorie = (7 << 8) + 2
 	}
 
-	[Availability (Introduced = Platform.Mac_10_10 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum NSFormattingUnitStyle : nint {
+	public enum NSFormattingUnitStyle : long {
 		Short = 1,
 		Medium,
 		Long
 	}
 
 	[Native]
-	public enum NSMassFormatterUnit : nint {
+	public enum NSMassFormatterUnit : long {
 		Gram = 11,
 		Kilogram = 14,
 		Ounce = (6 << 8) + 1,
@@ -1075,7 +1075,7 @@ namespace XamCore.Foundation  {
 	}
 
 	[Native]
-	public enum NSLengthFormatterUnit : nint {
+	public enum NSLengthFormatterUnit : long {
 		Millimeter = 8,
 		Centimeter = 9,
 		Meter = 11,
@@ -1086,9 +1086,9 @@ namespace XamCore.Foundation  {
 		Mile = (5 << 8) + 4
 	}
 
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum NSQualityOfService : nint {
+	public enum NSQualityOfService : long {
 		UserInteractive = 33,
 		UserInitiated = 25,
 		Utility = 17,
@@ -1113,20 +1113,20 @@ namespace XamCore.Foundation  {
 		}
 	}
 
-	[Mac (10,10,3)]
-	[Watch (4,0)]
-	[TV (11,0)]
-	[iOS (11,0)]
+	[Introduced (PlatformName.MacOSX, 10, 10, 3)]
+	[Introduced (PlatformName.WatchOS, 4, 0)]
+	[Introduced (PlatformName.TvOS, 11, 0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum NSProcessInfoThermalState : nint {
+	public enum NSProcessInfoThermalState : long {
 		Nominal, Fair, Serious, Critical
 	}
 
 	[Native]
 #if XAMCORE_2_0
-	public enum NSUrlRelationship : nint {
+	public enum NSUrlRelationship : long {
 #else
-	public enum NSURLRelationship : nint {
+	public enum NSURLRelationship : long {
 #endif
 		Contains, Same, Other
 	}
@@ -1144,11 +1144,11 @@ namespace XamCore.Foundation  {
 		Dash          = 1 << 7,
 		Replacement   = 1 << 8,
 		Correction    = 1 << 9,
-		[Availability (Introduced = Platform.iOS_4_0 | Platform.Mac_10_7)]
+		[Introduced (PlatformName.iOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 7)]
 		RegularExpression  = 1 << 10,
-		[Availability (Introduced = Platform.iOS_4_0 | Platform.Mac_10_7)]
+		[Introduced (PlatformName.iOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 7)]
 		PhoneNumber        = 1 << 11,
-		[Availability (Introduced = Platform.iOS_4_0 | Platform.Mac_10_7)]
+		[Introduced (PlatformName.iOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 7)]
 		TransitInformation = 1 << 12,
 	}
 
@@ -1190,17 +1190,17 @@ namespace XamCore.Foundation  {
 		InternalError          = 1 << 4
 	}
 
-	[Mac(10,11),iOS (9,0)]
+	[Introduced (PlatformName.MacOSX, 10, 11), Introduced (PlatformName.iOS, 9, 0)]
 	[Native]
 	[Flags]
-	public enum NSPersonNameComponentsFormatterOptions : nuint
+	public enum NSPersonNameComponentsFormatterOptions : ulong
 	{
 		Phonetic = (1 << 1)
 	}
 
-	[Mac(10,11),iOS (9,0)]
+	[Introduced (PlatformName.MacOSX, 10, 11), Introduced (PlatformName.iOS, 9, 0)]
 	[Native]
-	public enum NSPersonNameComponentsFormatterStyle : nint
+	public enum NSPersonNameComponentsFormatterStyle : long
 	{
 		Default = 0,
 		Short,
@@ -1210,27 +1210,27 @@ namespace XamCore.Foundation  {
 	}
 
 #if MONOMAC
-	[Mac (10,11)][NoWatch][NoTV][NoiOS]
+	[Introduced (PlatformName.MacOSX, 10, 11)][Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.iOS)]
 	[Native]
 	[Flags]
-	public enum NSFileManagerUnmountOptions : nuint
+	public enum NSFileManagerUnmountOptions : ulong
 	{
 		AllPartitionsAndEjectDisk = 1 << 0,
 		WithoutUI = 1 << 1
 	}
 #endif
 
-	[iOS (9,0)][Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
-	public enum NSDecodingFailurePolicy : nint {
+	public enum NSDecodingFailurePolicy : long {
 		RaiseException,
 		SetErrorAndReturn
 	}
 
-	[iOS (10,0)][TV (10,0)][Watch (3,0)][Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	[Flags]
-	public enum NSIso8601DateFormatOptions : nuint {
+	public enum NSIso8601DateFormatOptions : ulong {
 		Year = 1 << 0,
 		Month = 1 << 1,
 		WeekOfYear = 1 << 2,
@@ -1241,59 +1241,59 @@ namespace XamCore.Foundation  {
 		DashSeparatorInDate = 1 << 8,
 		ColonSeparatorInTime = 1 << 9,
 		ColonSeparatorInTimeZone = 1 << 10,
-		[Mac (10,13), iOS (11,0), TV (11,0), Watch (4,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		FractionalSeconds = 1 << 11,
 		FullDate = Year | Month | Day | DashSeparatorInDate,
 		FullTime = Time | ColonSeparatorInTime | TimeZone | ColonSeparatorInTimeZone,
 		InternetDateTime = FullDate | FullTime,
 	}
 
-	[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
-	public enum NSUrlSessionTaskMetricsResourceFetchType : nint {
+	public enum NSUrlSessionTaskMetricsResourceFetchType : long {
 		Unknown,
 		NetworkLoad,
 		ServerPush,
 		LocalCache
 	}
 
-	[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
 	[Flags]
-	public enum NSMeasurementFormatterUnitOptions : nuint {
+	public enum NSMeasurementFormatterUnitOptions : ulong {
 		ProvidedUnit = (1 << 0),
 		NaturalScale = (1 << 1),
 		TemperatureWithoutUnit = (1 << 2)
 	}
 
 
-	[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum NSItemProviderRepresentationVisibility : nint {
+	public enum NSItemProviderRepresentationVisibility : long {
 		All = 0,
 		Team = 1,
 		Group = 2,
 		OwnProcess = 3,
 	}
 
-	[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum NSItemProviderFileOptions : nint {
+	public enum NSItemProviderFileOptions : long {
 		OpenInPlace = 1,
 	}
 
-	[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum NSLinguisticTaggerUnit : nint {
+	public enum NSLinguisticTaggerUnit : long {
 		Word,
 		Sentence,
 		Paragraph,
 		Document,
 	}
 
-	[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum NSUrlSessionDelayedRequestDisposition : nint {
+	public enum NSUrlSessionDelayedRequestDisposition : long {
 		ContinueLoading = 0,
 		UseNewRequest = 1,
 		Cancel = 2,

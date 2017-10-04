@@ -29,7 +29,7 @@ using System.Runtime.InteropServices;
 
 namespace XamCore.ObjCRuntime {
 #if !XAMCORE_2_0
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 #endif
 	public partial class Selector {
 #if !XAMCORE_2_0

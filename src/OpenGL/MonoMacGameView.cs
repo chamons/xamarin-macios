@@ -54,12 +54,12 @@ namespace OpenTK.Platform.MacOS
 		FrameEventArgs updateEventArgs = new FrameEventArgs ();
 		FrameEventArgs renderEventArgs = new FrameEventArgs ();
 
-		[Export("initWithFrame:")]
+		[Export ("initWithFrame:")]
 		public MonoMacGameView (CGRect frame) : this(frame, null)
 		{
 		}
 
-		[Export("initWithCoder:")]
+		[Export ("initWithCoder:")]
 		public MonoMacGameView (NSCoder coder) : base(coder)
 		{
 		}
@@ -92,7 +92,7 @@ namespace OpenTK.Platform.MacOS
 			notificationProxy = NSNotificationCenter.DefaultCenter.AddObserver (NSView.GlobalFrameChangedNotification, HandleReshape);
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		public override void DrawRect (CGRect dirtyRect)
 		{
 			if (animating) {
@@ -106,7 +106,7 @@ namespace OpenTK.Platform.MacOS
 			}
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		public override void LockFocus ()
 		{
 			base.LockFocus ();

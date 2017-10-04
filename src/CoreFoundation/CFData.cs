@@ -63,7 +63,7 @@ namespace XamCore.CoreFoundation {
 			get { return handle; }
 		}
 		
-		[DllImport (Constants.CoreFoundationLibrary, EntryPoint="CFDataGetTypeID")]
+		[DllImport (Constants.CoreFoundationLibrary, EntryPoint = "CFDataGetTypeID")]
 		public extern static /* CFTypeID */ nint GetTypeID ();
 
 		protected virtual void Dispose (bool disposing)

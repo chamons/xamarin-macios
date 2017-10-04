@@ -16,8 +16,8 @@ using XamCore.Foundation;
 namespace XamCore.CoreVideo {
 
 	// CVPixelBufferPool.h
-	[Watch (4,0)]
-	[iOS (4,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	public partial class CVPixelBufferPool : INativeObject
 #if !COREBUILD
 		, IDisposable
@@ -53,7 +53,7 @@ namespace XamCore.CoreVideo {
 			this.handle = CVPixelBufferPoolRetain (handle);
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal CVPixelBufferPool (IntPtr handle, bool owns)
 		{
 			if (!owns)
@@ -184,12 +184,12 @@ namespace XamCore.CoreVideo {
 		}
 
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[DllImport (Constants.CoreVideoLibrary)]
 		static extern void CVPixelBufferPoolFlush (/* CVPixelBufferPoolRef __nonnull */ IntPtr pool,
 			CVPixelBufferPoolFlushFlags options);
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		public void Flush (CVPixelBufferPoolFlushFlags options)
 		{
 			CVPixelBufferPoolFlush (handle, options);

@@ -1,4 +1,4 @@
-﻿// 
+// 
 // VTCompressionProperties.cs: Strongly Typed dictionary for VTCompressionPropertyKeys 
 //
 // Authors: Alex Soto (alex.soto@xamarin.com)
@@ -274,7 +274,7 @@ namespace XamCore.VideoToolbox {
 			}
 		}
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		public VTH264EntropyMode H264EntropyMode { 
 			get {
 				var key = GetNSStringValue (VTCompressionPropertyKey.H264EntropyMode);

@@ -7,7 +7,7 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.CoreFoundation {
 	public class CFType {
-		[DllImport (Constants.CoreFoundationLibrary, EntryPoint="CFGetTypeID")]
+		[DllImport (Constants.CoreFoundationLibrary, EntryPoint = "CFGetTypeID")]
 		public static extern nint GetTypeID (IntPtr typeRef);
 
 		[DllImport (Constants.CoreFoundationLibrary)]
@@ -22,7 +22,7 @@ namespace XamCore.CoreFoundation {
 				return s.ToString ();
 		}
 		
-		[DllImport (Constants.CoreFoundationLibrary, EntryPoint="CFEqual")]
+		[DllImport (Constants.CoreFoundationLibrary, EntryPoint = "CFEqual")]
 		extern static bool CFEqual (/*CFTypeRef*/ IntPtr cf1, /*CFTypeRef*/ IntPtr cf2);
 
 		public static bool Equal (IntPtr cf1, IntPtr cf2)

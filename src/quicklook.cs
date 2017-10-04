@@ -40,7 +40,7 @@ using System.ComponentModel;
 
 namespace XamCore.QuickLook {
 #if !MONOMAC
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (UIViewController), Delegates = new string [] { "WeakDelegate" }, Events=new Type [] { typeof (QLPreviewControllerDelegate)})]
 	interface QLPreviewController {
 		[Export ("initWithNibName:bundle:")]
@@ -79,7 +79,7 @@ namespace XamCore.QuickLook {
 		void RefreshCurrentPreviewItem ();
 	}
 
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -94,7 +94,7 @@ namespace XamCore.QuickLook {
 		QLPreviewItem GetPreviewItem (QLPreviewController controller, nint index);
 	}
 
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -111,15 +111,15 @@ namespace XamCore.QuickLook {
 #if !MONOMAC
 		// UIView and UIImage do not exists in MonoMac
 		
-		[Since (4,2)]
+		[Introduced (PlatformName.iOS, 4, 2)]
 		[Export ("previewController:frameForPreviewItem:inSourceView:"), DelegateName ("QLFrame"), DefaultValue (typeof (CGRect))]
 		CGRect FrameForPreviewItem (QLPreviewController controller, [Protocolize] QLPreviewItem item, ref UIView view);
 		
-		[Since (4,2)]
+		[Introduced (PlatformName.iOS, 4, 2)]
 		[Export ("previewController:transitionImageForPreviewItem:contentRect:"), DelegateName ("QLTransition"), DefaultValue (null)]
 		UIImage TransitionImageForPreviewItem (QLPreviewController controller, [Protocolize] QLPreviewItem item, CGRect contentRect);
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("previewController:transitionViewForPreviewItem:"), DelegateName ("QLTransitionView"), DefaultValue (null)]
 		[return: NullAllowed]
 		UIView TransitionViewForPreviewItem (QLPreviewController controller, IQLPreviewItem item);
@@ -128,7 +128,7 @@ namespace XamCore.QuickLook {
 
 	interface IQLPreviewItem {}
 
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -144,7 +144,7 @@ namespace XamCore.QuickLook {
 		string ItemTitle { get; }
 	}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface QLPreviewingController {
 		[Export ("preparePreviewOfSearchableItemWithIdentifier:queryString:completionHandler:")]
@@ -154,14 +154,14 @@ namespace XamCore.QuickLook {
 		void PreparePreviewOfFile (NSUrl url, Action<NSError> handler);
 	}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	interface QLThumbnailProvider {
 		[Export ("provideThumbnailForFileRequest:completionHandler:")]
 		void ProvideThumbnail (QLFileThumbnailRequest request, Action<QLThumbnailReply, NSError> handler);
 	}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface QLThumbnailReply {
@@ -178,7 +178,7 @@ namespace XamCore.QuickLook {
 		QLThumbnailReply CreateReply (NSUrl fileUrl);
 	}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	interface QLFileThumbnailRequest {
 		[Export ("maximumSize")]

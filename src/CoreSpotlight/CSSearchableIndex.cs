@@ -1,4 +1,4 @@
-﻿//
+//
 // CSSearchableIndex.cs: Implements some nicer methods for CSSearchableIndex
 //
 // Authors:
@@ -15,7 +15,7 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.CoreSpotlight {
 
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	public enum CSFileProtection {
 		None,
 		Complete,

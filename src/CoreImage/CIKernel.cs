@@ -1,4 +1,4 @@
-﻿// 
+// 
 // CIKernel.cs: CoreImgage CIKernel class
 //
 // Authors:

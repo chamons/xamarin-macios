@@ -46,7 +46,7 @@ namespace XamCore.AudioToolbox {
 		AIFF = 0x41494646, // AIFF
 		AIFC = 0x41494643, // AIFC
 		WAVE = 0x57415645, // WAVE
-		[NoWatch, iOS (11,0), Mac(10,13), TV (11,0)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0)]
 		RF64 = 0x52463634, // RF64
 		SoundDesigner2 = 0x53643266, // Sd2f
 		Next = 0x4e655854, // NeXT
@@ -62,7 +62,7 @@ namespace XamCore.AudioToolbox {
 		ThreeGP = 0x33677070, // 3gpp
 		ThreeGP2 = 0x33677032, // 3gp2
 		AMR = 0x616d7266, // amrf
-		[NoWatch, iOS (11,0), Mac(10,13), TV (11,0)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0)]
 		FLAC =  0x666c6163, // flac
 	}
 
@@ -165,14 +165,14 @@ namespace XamCore.AudioToolbox {
 		CAFiXML					= 0x69584d4c,	// 'iXML'
 	}
 
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	struct AudioFramePacketTranslation {
 		public long Frame;
 		public long Packet;
 		public int FrameOffsetInPacket;
 	}
 
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	struct AudioBytePacketTranslation {
 		public long Byte;
 		public long Packet;
@@ -186,7 +186,7 @@ namespace XamCore.AudioToolbox {
 		IsEstimate = 1
 	}
 	
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	public struct AudioFileSmpteTime { // AudioFile_SMPTE_Time
 		public sbyte Hours;
 		public byte  Minutes;
@@ -195,7 +195,7 @@ namespace XamCore.AudioToolbox {
 		public uint  SubFrameSampleOffset;
 	}
 
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	public struct AudioFileMarker
 	{
 		public double FramePosition;
@@ -311,7 +311,7 @@ namespace XamCore.AudioToolbox {
 		}
 	}
 
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	public struct AudioFilePacketTableInfo
 	{
 		public long ValidFrames;
@@ -319,7 +319,7 @@ namespace XamCore.AudioToolbox {
 		public int RemainderFrames;
 	}
 
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	public struct AudioFileRegion {
 		readonly IntPtr ptr;
 		//
@@ -1676,7 +1676,7 @@ namespace XamCore.AudioToolbox {
 			dSetSize = SourceSetSize;
 		}
 
-		[MonoPInvokeCallback(typeof(ReadProc))]
+		[MonoPInvokeCallback (typeof (ReadProc))]
 		static int SourceRead (IntPtr clientData, long inPosition, int requestCount, IntPtr buffer, out int actualCount)
 		{
 			GCHandle handle = GCHandle.FromIntPtr (clientData);
@@ -1686,7 +1686,7 @@ namespace XamCore.AudioToolbox {
 
 		public abstract bool Read (long position, int requestCount, IntPtr buffer, out int actualCount);
 
-		[MonoPInvokeCallback(typeof(WriteProc))]
+		[MonoPInvokeCallback (typeof (WriteProc))]
 		static int SourceWrite (IntPtr clientData, long position, int requestCount, IntPtr buffer, out int actualCount)
 		{
 			GCHandle handle = GCHandle.FromIntPtr (clientData);
@@ -1695,7 +1695,7 @@ namespace XamCore.AudioToolbox {
 		}
 		public abstract bool Write (long position, int requestCount, IntPtr buffer, out int actualCount);
 
-		[MonoPInvokeCallback(typeof(GetSizeProc))]
+		[MonoPInvokeCallback (typeof (GetSizeProc))]
 		static long SourceGetSize (IntPtr clientData)
 		{
 			GCHandle handle = GCHandle.FromIntPtr (clientData);
@@ -1703,7 +1703,7 @@ namespace XamCore.AudioToolbox {
 			return audioSource.Size;
 		}
 
-		[MonoPInvokeCallback(typeof(SetSizeProc))]
+		[MonoPInvokeCallback (typeof (SetSizeProc))]
 		static int SourceSetSize (IntPtr clientData, long size)
 		{
 			GCHandle handle = GCHandle.FromIntPtr (clientData);

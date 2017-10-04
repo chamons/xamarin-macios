@@ -8,7 +8,7 @@ using XamCore.Security;
 
 namespace XamCore.NetworkExtension {
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[Abstract] // documented as such and ...
 	[DisableDefaultCtor] // can't be created (with `init`) without crashing introspection tests
@@ -32,8 +32,8 @@ namespace XamCore.NetworkExtension {
 #endif
 	}
 	
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NETunnelProvider))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NETunnelProvider))]
 	[DisableDefaultCtor] // no valid handle when `init` is called
 	interface NEAppProxyProvider
 	{
@@ -52,8 +52,8 @@ namespace XamCore.NetworkExtension {
 		bool HandleNewFlow (NEAppProxyFlow flow);
 	}
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NETunnelProviderManager))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NETunnelProviderManager))]
 	[DisableDefaultCtor] // no valid handle when `init` is called
 	interface NEAppProxyProviderManager
 	{
@@ -63,8 +63,8 @@ namespace XamCore.NetworkExtension {
 		void LoadAllFromPreferences (Action<NSArray, NSError> completionHandler);
 	}
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NEAppProxyFlow), Name="NEAppProxyTCPFlow")]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NEAppProxyFlow), Name = "NEAppProxyTCPFlow")]
 	[DisableDefaultCtor]
 	interface NEAppProxyTcpFlow
 	{
@@ -82,13 +82,13 @@ namespace XamCore.NetworkExtension {
 
 	delegate void NEDatagramRead (NSData [] datagrams, NWEndpoint [] remoteEndpoints, NSError error);
 	
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NEAppProxyFlow), Name="NEAppProxyUDPFlow")]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NEAppProxyFlow), Name = "NEAppProxyUDPFlow")]
 	[DisableDefaultCtor]
 	interface NEAppProxyUdpFlow
 	{
 		[Export ("readDatagramsWithCompletionHandler:")]
-		[Async (ResultTypeName="NEDatagramReadResult")]
+		[Async (ResultTypeName = "NEDatagramReadResult")]
 		void ReadDatagrams (NEDatagramRead completionHandler);
 	
 		[Export ("writeDatagrams:sentByEndpoints:completionHandler:")]
@@ -99,8 +99,8 @@ namespace XamCore.NetworkExtension {
 		NWEndpoint LocalEndpoint { get; }
 	}
 		
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface NEAppRule : NSSecureCoding, NSCopying
 	{
@@ -115,7 +115,7 @@ namespace XamCore.NetworkExtension {
 		string MatchDesignatedRequirement { get; }
 #endif
 
-		[iOS (9,3)]
+		[Introduced (PlatformName.iOS, 9, 3)]
 		[NullAllowed, Export ("matchPath")]
 		string MatchPath { get; set; }
 	
@@ -126,8 +126,8 @@ namespace XamCore.NetworkExtension {
 		string [] MatchDomains { get; set; }
 	}
 	
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject), Name="NEDNSSettings")]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject), Name = "NEDNSSettings")]
 	[DisableDefaultCtor]
 	interface NEDnsSettings : NSSecureCoding, NSCopying
 	{
@@ -151,8 +151,8 @@ namespace XamCore.NetworkExtension {
 	}
 
 #if !MONOMAC
-	[iOS (9,0)]
-	[BaseType (typeof(NEFilterProvider))]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[BaseType (typeof (NEFilterProvider))]
 	[DisableDefaultCtor] // no valid handle when `init` is called
 	interface NEFilterControlProvider
 	{
@@ -174,8 +174,8 @@ namespace XamCore.NetworkExtension {
 		void NotifyRulesChanged ();
 	}
 
-	[iOS (9,0)]
-	[BaseType (typeof(NEFilterNewFlowVerdict))]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[BaseType (typeof (NEFilterNewFlowVerdict))]
 	interface NEFilterControlVerdict : NSSecureCoding, NSCopying
 	{
 		[Static]
@@ -191,8 +191,8 @@ namespace XamCore.NetworkExtension {
 		NEFilterControlVerdict UpdateRules ();
 	}
 
-	[iOS (9,0)]
-	[BaseType (typeof(NEFilterProvider))]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[BaseType (typeof (NEFilterProvider))]
 	[DisableDefaultCtor] // no valid handle when `init` is called
 	interface NEFilterDataProvider
 	{
@@ -218,8 +218,8 @@ namespace XamCore.NetworkExtension {
 		void HandleRulesChanged ();
 	}
 
-	[iOS (9,0)]
-	[BaseType (typeof(NEFilterVerdict))]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[BaseType (typeof (NEFilterVerdict))]
 	interface NEFilterDataVerdict : NSSecureCoding, NSCopying
 	{
 		[Static]
@@ -243,8 +243,8 @@ namespace XamCore.NetworkExtension {
 		NEFilterDataVerdict NeedRulesVerdict ();
 	}
 		
-	[iOS (9,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[BaseType (typeof (NSObject))]
 	interface NEFilterFlow : NSSecureCoding, NSCopying
 	{
 		[NullAllowed, Export ("URL")]
@@ -253,7 +253,7 @@ namespace XamCore.NetworkExtension {
 #endif
 
 	// according to Xcode7 SDK this was available (in parts) in iOS8
-	[iOS (8,0)][Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface NEFilterManager {
@@ -276,7 +276,7 @@ namespace XamCore.NetworkExtension {
 		[NullAllowed, Export ("localizedDescription")]
 		string LocalizedDescription { get; set; }
 
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[NullAllowed, Export ("providerConfiguration", ArgumentSemantic.Strong)]
 		NEFilterProviderConfiguration ProviderConfiguration { get; set; }
 
@@ -294,8 +294,8 @@ namespace XamCore.NetworkExtension {
 	}
 
 #if !MONOMAC
-	[iOS (9,0)]
-	[BaseType (typeof(NEFilterVerdict))]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[BaseType (typeof (NEFilterVerdict))]
 	interface NEFilterNewFlowVerdict : NSSecureCoding, NSCopying
 	{
 		[Static]
@@ -324,8 +324,8 @@ namespace XamCore.NetworkExtension {
 	}
 #endif
 		
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NEProvider))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NEProvider))]
 	[Abstract] // documented as such
 	interface NEFilterProvider
 	{
@@ -347,8 +347,8 @@ namespace XamCore.NetworkExtension {
 		NSString RemediationMapRemediationUrls { get; }
 	}
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface NEFilterProviderConfiguration : NSSecureCoding, NSCopying
 	{
 		[Export ("filterBrowsers")]
@@ -377,8 +377,8 @@ namespace XamCore.NetworkExtension {
 	}
 
 #if !MONOMAC
-	[iOS (9,0)]
-	[BaseType (typeof(NEFilterVerdict))]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[BaseType (typeof (NEFilterVerdict))]
 	interface NEFilterRemediationVerdict : NSSecureCoding, NSCopying
 	{
 		[Static]
@@ -394,15 +394,15 @@ namespace XamCore.NetworkExtension {
 		NEFilterRemediationVerdict NeedRulesVerdict ();
 	}
 
-	[iOS (9,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[BaseType (typeof (NSObject))]
 	interface NEFilterVerdict : NSSecureCoding, NSCopying
 	{
 	}
 #endif
 		
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface NEFlowMetaData : NSCopying, NSSecureCoding
 	{
 		[Export ("sourceAppUniqueIdentifier")]
@@ -413,10 +413,10 @@ namespace XamCore.NetworkExtension {
 	}
 
 #if !MONOMAC
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	delegate void NEHotspotHelperHandler (NEHotspotHelperCommand cmd);
 
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	interface NEHotspotHelper {
 		[Static][Internal]
@@ -437,13 +437,13 @@ namespace XamCore.NetworkExtension {
 	}
 
 	[Static]
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	interface NEHotspotHelperOptionInternal {
 		[Field ("kNEHotspotHelperOptionDisplayName")]
 		NSString DisplayName { get; }
 	}
 
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Category]
 	[BaseType (typeof (NSMutableUrlRequest))]
 	interface NSMutableURLRequest_NEHotspotHelper {
@@ -451,7 +451,7 @@ namespace XamCore.NetworkExtension {
 		void BindTo (NEHotspotHelperCommand command);
 	}
 
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	interface NEHotspotHelperCommand {
 		[Export ("commandType")]
@@ -473,7 +473,7 @@ namespace XamCore.NetworkExtension {
 		NWUdpSession CreateUdpSession (NWEndpoint endpoint);
 	}
 
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	interface NEHotspotHelperResponse {
 		[Export ("setNetwork:")]
@@ -486,8 +486,8 @@ namespace XamCore.NetworkExtension {
 		void Deliver ();
 	}
 
-	[iOS (9,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[BaseType (typeof (NSObject))]
 	interface NEHotspotNetwork {
 		[Export ("SSID")]
 		string Ssid { get; }
@@ -518,8 +518,8 @@ namespace XamCore.NetworkExtension {
 	}
 #endif
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface NEIPv4Route : NSSecureCoding, NSCopying
 	{
@@ -540,8 +540,8 @@ namespace XamCore.NetworkExtension {
 		NEIPv4Route DefaultRoute { get; }
 	}
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface NEIPv6Route : NSSecureCoding, NSCopying
 	{
@@ -562,8 +562,8 @@ namespace XamCore.NetworkExtension {
 		NEIPv6Route DefaultRoute { get; }
 	}
 	
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface NEIPv4Settings : NSSecureCoding, NSCopying
 	{
@@ -583,8 +583,8 @@ namespace XamCore.NetworkExtension {
 		NEIPv4Route[] ExcludedRoutes { get; set; }
 	}
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface NEIPv6Settings : NSSecureCoding, NSCopying
 	{
@@ -604,8 +604,8 @@ namespace XamCore.NetworkExtension {
 		NEIPv6Route[] ExcludedRoutes { get; set; }
 	}
 	
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // init returns nil
 	interface NEProvider
 	{
@@ -625,14 +625,14 @@ namespace XamCore.NetworkExtension {
 		[NullAllowed, Export ("defaultPath")]
 		NWPath DefaultPath { get; }
 
-		[iOS (10,0)][Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("displayMessage:completionHandler:")]
 		[Async]
 		void DisplayMessage (string message, Action<bool> completionHandler);
 	}
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface NEProxySettings : NSSecureCoding, NSCopying
 	{
 		[Export ("autoProxyConfigurationEnabled")]
@@ -666,8 +666,8 @@ namespace XamCore.NetworkExtension {
 		string[] MatchDomains { get; set; }
 	}
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface NEProxyServer : NSSecureCoding, NSCopying
 	{
@@ -690,8 +690,8 @@ namespace XamCore.NetworkExtension {
 		string Password { get; set; }
 	}
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface NETunnelNetworkSettings : NSSecureCoding, NSCopying
 	{
@@ -708,8 +708,8 @@ namespace XamCore.NetworkExtension {
 		NEProxySettings ProxySettings { get; set; }
 	}
 		
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NEProvider))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NEProvider))]
 	[DisableDefaultCtor] // init returns nil
 	interface NETunnelProvider
 	{
@@ -734,8 +734,8 @@ namespace XamCore.NetworkExtension {
 		bool Reasserting { get; set; }
 	}
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NEVpnManager))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NEVpnManager))]
 	interface NETunnelProviderManager
 	{
 		[Static]
@@ -756,8 +756,8 @@ namespace XamCore.NetworkExtension {
 	}
 
 	
-	[iOS (8,0)][Mac (10,10, onlyOn64 : true)]
-	[BaseType (typeof (NSObject), Name="NEVPNManager")]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject), Name = "NEVPNManager")]
 	[DisableDefaultCtor] // Assertion failed: (0), function -[NEVPNManager init], file /SourceCache/NetworkExtension_Sim/NetworkExtension-168.1.8/Framework/NEVPNManager.m, line 41.
 	interface NEVpnManager {
 
@@ -773,10 +773,10 @@ namespace XamCore.NetworkExtension {
 
 		[NullAllowed]
 		[Export ("protocol", ArgumentSemantic.Retain)]
-		[Availability (Deprecated = Platform.iOS_9_0 | Platform.Mac_10_11, Message = "Use 'ProtocolConfiguration' instead.")]
+		[Deprecated (PlatformName.iOS, 9, 0, message: "Use 'ProtocolConfiguration' instead."), Deprecated (PlatformName.MacOSX, 10, 11, message: "Use 'ProtocolConfiguration' instead.")]
 		NEVpnProtocol Protocol { get; set; }
 
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[NullAllowed]
 		[Export ("protocolConfiguration", ArgumentSemantic.Retain)]
 		NEVpnProtocol ProtocolConfiguration { get; set; }
@@ -816,11 +816,11 @@ namespace XamCore.NetworkExtension {
 		NSString ConfigurationChangeNotification { get; }
 	}
 
-	[iOS (8,0)][Mac (10,10, onlyOn64 : true)]
-	[BaseType (typeof (NSObject), Name="NEVPNConnection")]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject), Name = "NEVPNConnection")]
 	interface NEVpnConnection {
 
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[NullAllowed, Export ("connectedDate")]
 		NSDate ConnectedDate { get; }
 
@@ -830,19 +830,19 @@ namespace XamCore.NetworkExtension {
 		[Export ("startVPNTunnelAndReturnError:")]
 		bool StartVpnTunnel (out NSError error);
 
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Internal]
 		[Export ("startVPNTunnelWithOptions:andReturnError:")]
 		bool StartVpnTunnel ([NullAllowed] NSDictionary options, out NSError error);
 
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Wrap ("StartVpnTunnel (options == null ? null : options.Dictionary, out error);")]
 		bool StartVpnTunnel ([NullAllowed] NEVpnConnectionStartOptions options, out NSError error);
 
 		[Export ("stopVPNTunnel")]
 		void StopVpnTunnel ();
 
-		[iOS (10,0)][Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("manager")]
 		NEVpnManager Manager { get; }
 
@@ -852,7 +852,7 @@ namespace XamCore.NetworkExtension {
 	}
 
 	[Static][Internal]
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	interface NEVpnConnectionStartOptionInternal {
 		[Field ("NEVPNConnectionStartOptionPassword")]
 		NSString Password { get; }
@@ -861,9 +861,9 @@ namespace XamCore.NetworkExtension {
 		NSString Username { get; }
 	}
 
-	[iOS (8,0)][Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[Abstract]
-	[BaseType (typeof (NSObject), Name="NEVPNProtocol")]
+	[BaseType (typeof (NSObject), Name = "NEVPNProtocol")]
 	interface NEVpnProtocol : NSCopying, NSSecureCoding {
 
 		[NullAllowed] // by default this property is null
@@ -878,16 +878,16 @@ namespace XamCore.NetworkExtension {
 		[Export ("passwordReference", ArgumentSemantic.Copy)]
 		NSData PasswordReference { get; set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[NullAllowed, Export ("identityReference", ArgumentSemantic.Copy)]
 		NSData IdentityReference { get; set; }
 
-		[Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[NullAllowed] // by default this property is null
 		[Export ("identityData", ArgumentSemantic.Copy)]
 		NSData IdentityData { get; set; }
 
-		[Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[NullAllowed] // by default this property is null
 		[Export ("identityDataPassword")]
 		string IdentityDataPassword { get; set; }
@@ -895,13 +895,13 @@ namespace XamCore.NetworkExtension {
 		[Export ("disconnectOnSleep")]
 		bool DisconnectOnSleep { get; set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[NullAllowed, Export ("proxySettings", ArgumentSemantic.Copy)]
 		NEProxySettings ProxySettings { get; set; }
 	}
 
-	[iOS (8,0)][Mac (10,10, onlyOn64 : true)]
-	[BaseType (typeof (NEVpnProtocol), Name="NEVPNProtocolIPSec")]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NEVpnProtocol), Name = "NEVPNProtocolIPSec")]
 	interface NEVpnProtocolIpSec {
 
 		[Export ("authenticationMethod")]
@@ -923,8 +923,8 @@ namespace XamCore.NetworkExtension {
 		string RemoteIdentifier { get; set; }
 	}
 
-	[iOS (8,0)][Mac (10,10, onlyOn64 : true)]
-	[BaseType (typeof (NSObject), Name="NEVPNIKEv2SecurityAssociationParameters")]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject), Name = "NEVPNIKEv2SecurityAssociationParameters")]
 	interface NEVpnIke2SecurityAssociationParameters : NSSecureCoding, NSCopying {
 
 		[Export ("encryptionAlgorithm")]
@@ -940,8 +940,8 @@ namespace XamCore.NetworkExtension {
 		int LifetimeMinutes { get; set; } /* int32_t */
 	}
 
-	[iOS (8,0)][Mac (10,10, onlyOn64 : true)]
-	[BaseType (typeof (NEVpnProtocolIpSec), Name="NEVPNProtocolIKEv2")]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NEVpnProtocolIpSec), Name = "NEVPNProtocolIKEv2")]
 	interface NEVpnProtocolIke2 {
 
 		[Export ("deadPeerDetectionRate")]
@@ -961,36 +961,36 @@ namespace XamCore.NetworkExtension {
 		[Export ("childSecurityAssociationParameters")]
 		NEVpnIke2SecurityAssociationParameters ChildSecurityAssociationParameters { get; }
 
-		[iOS (8,3)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 8, 3)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Export ("certificateType")]
 		NEVpnIke2CertificateType CertificateType { get; set; }
 
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Export ("useConfigurationAttributeInternalIPSubnet")]
 		bool UseConfigurationAttributeInternalIPSubnet { get; set; }
 
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Export ("disableMOBIKE")]
 		bool DisableMobike { get; set; }
 
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Export ("disableRedirect")]
 		bool DisableRedirect { get; set; }
 
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Export ("enablePFS")]
 		bool EnablePfs { get; set; }
 
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Export ("enableRevocationCheck")]
 		bool EnableRevocationCheck { get; set; }
 
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Export ("strictRevocationCheck")]
 		bool StrictRevocationCheck { get; set; }
 	}
 
-	[iOS (8,0)][Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[Abstract]
 	[BaseType (typeof (NSObject))]
 	interface NEOnDemandRule : NSSecureCoding, NSCopying {
@@ -1018,22 +1018,22 @@ namespace XamCore.NetworkExtension {
 		NSUrl ProbeUrl { get; set; }
 	}
 
-	[iOS (8,0)][Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NEOnDemandRule))]
 	interface NEOnDemandRuleConnect {
 	}
 
-	[iOS (8,0)][Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NEOnDemandRule))]
 	interface NEOnDemandRuleDisconnect {
 	}
 
-	[iOS (8,0)][Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NEOnDemandRule))]
 	interface NEOnDemandRuleIgnore {
 	}
 
-	[iOS (8,0)][Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NEOnDemandRule))]
 	interface NEOnDemandRuleEvaluateConnection {
 
@@ -1042,7 +1042,7 @@ namespace XamCore.NetworkExtension {
 		NEEvaluateConnectionRule [] ConnectionRules { get; set; }
 	}
 
-	[iOS (8,0)][Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface NEEvaluateConnectionRule : NSSecureCoding, NSCopying {
 
@@ -1064,14 +1064,14 @@ namespace XamCore.NetworkExtension {
 		NSUrl ProbeUrl { get; set; }
 	}
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[Abstract]
 	interface NWEndpoint : NSSecureCoding, NSCopying {
 	}
 	
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NWEndpoint))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NWEndpoint))]
 	interface NWHostEndpoint
 	{
 		[Static]
@@ -1085,7 +1085,7 @@ namespace XamCore.NetworkExtension {
 		string Port { get; }
 	}
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NWEndpoint))]
 	[DisableDefaultCtor]
 	interface NWBonjourServiceEndpoint {
@@ -1104,8 +1104,8 @@ namespace XamCore.NetworkExtension {
 		string Domain { get; }
 	}
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface NWPath
 	{
 		[Export ("status")]
@@ -1118,8 +1118,8 @@ namespace XamCore.NetworkExtension {
 		bool IsEqualToPath (NWPath path);
 	}
 	
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject), Name="NWTCPConnection")]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject), Name = "NWTCPConnection")]
 	interface NWTcpConnection
 	{
 		[Export ("initWithUpgradeForConnection:")]
@@ -1173,7 +1173,7 @@ namespace XamCore.NetworkExtension {
 
 	interface INWTcpConnectionAuthenticationDelegate {}
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject), Name = "NWTCPConnectionAuthenticationDelegate")]
 	interface NWTcpConnectionAuthenticationDelegate {
@@ -1193,8 +1193,8 @@ namespace XamCore.NetworkExtension {
 		// and SecCertificate - both *NOT* NSObject -> because of that NSArray is used above
 	}
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject), Name="NWTLSParameters")]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject), Name = "NWTLSParameters")]
 	interface NWTlsParameters
 	{
 		[NullAllowed, Export ("TLSSessionID", ArgumentSemantic.Copy)]
@@ -1210,8 +1210,8 @@ namespace XamCore.NetworkExtension {
 		nuint MaximumSslProtocolVersion { get; set; }
 	}
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject), Name="NWUDPSession")]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject), Name = "NWUDPSession")]
 	interface NWUdpSession
 	{
 		[Export ("initWithUpgradeForSession:")]
@@ -1257,7 +1257,7 @@ namespace XamCore.NetworkExtension {
 	}
 
 #if !MONOMAC
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (NEFilterFlow))]
 	interface NEFilterBrowserFlow {
 		[Export ("request")]
@@ -1272,7 +1272,7 @@ namespace XamCore.NetworkExtension {
 		NSUrl ParentUrl { get; }
 	}
 		
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (NEFilterFlow))]
 	interface NEFilterSocketFlow {
 		[NullAllowed]
@@ -1294,7 +1294,7 @@ namespace XamCore.NetworkExtension {
 	}
 #endif
 				
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NETunnelNetworkSettings))]
 	[DisableDefaultCtor]
 	interface NEPacketTunnelNetworkSettings {
@@ -1318,8 +1318,8 @@ namespace XamCore.NetworkExtension {
 		NSNumber Mtu { get; set; }
 	}
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface NEPacketTunnelFlow {
 		[Export ("readPacketsWithCompletionHandler:")]
 		[Async (ResultType = typeof (NEPacketTunnelFlowReadResult))]
@@ -1328,17 +1328,17 @@ namespace XamCore.NetworkExtension {
 		[Export ("writePackets:withProtocols:")]
 		bool WritePackets (NSData[] packets, NSNumber[] protocols);
 
-		[iOS (10,0)][Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Async]
 		[Export ("readPacketObjectsWithCompletionHandler:")]
 		void ReadPacketObjects (Action<NEPacket[]> completionHandler);
 
-		[iOS (10,0)][Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("writePacketObjects:")]
 		bool WritePacketObjects (NEPacket[] packets);
 	}
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NETunnelProvider))]
 	interface NEPacketTunnelProvider {
 		[Export ("startTunnelWithOptions:completionHandler:")]
@@ -1362,7 +1362,7 @@ namespace XamCore.NetworkExtension {
 		NWUdpSession CreateUdpSession (NWEndpoint remoteEndpoint, [NullAllowed] NWHostEndpoint localEndpoint);
 	}
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NEVpnProtocol))]
 	interface NETunnelProviderProtocol {
 		[NullAllowed, Export ("providerConfiguration", ArgumentSemantic.Copy)]
@@ -1372,8 +1372,8 @@ namespace XamCore.NetworkExtension {
 		string ProviderBundleIdentifier { get; set; }
 	}
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NEVpnConnection))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NEVpnConnection))]
 	interface NETunnelProviderSession {
 		[Export ("startTunnelWithOptions:andReturnError:")]
 		bool StartTunnel ([NullAllowed] NSDictionary<NSString,NSObject> options, [NullAllowed] out NSError error);
@@ -1385,7 +1385,7 @@ namespace XamCore.NetworkExtension {
 		bool SendProviderMessage (NSData messageData, [NullAllowed] out NSError error, [NullAllowed] Action<NSData> responseHandler);
 	}
 
-	[Watch (3,0)][TV (10,0)][Mac (10,12, onlyOn64 : true)][iOS (10,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)][Introduced (PlatformName.iOS, 10, 0)]
 	[BaseType (typeof (NSObject))]
 	interface NEPacket : NSCopying, NSSecureCoding {
 		[Export ("initWithData:protocolFamily:")]

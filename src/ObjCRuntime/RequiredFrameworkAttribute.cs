@@ -33,7 +33,7 @@ namespace ObjCRuntime {
 namespace MonoMac {
 #endif
 
-	[AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
+	[AttributeUsage (AttributeTargets.Assembly, AllowMultiple = true)]
 	public class RequiredFrameworkAttribute : Attribute
 	{
 		public string Name { get; private set; }

@@ -53,7 +53,7 @@ namespace XamCore.CoreFoundation {
 			this.Handle = handle;
 		}
 		
-		[DllImport (Constants.CoreFoundationLibrary, EntryPoint="CFDictionaryGetTypeID")]
+		[DllImport (Constants.CoreFoundationLibrary, EntryPoint = "CFDictionaryGetTypeID")]
 		public extern static nint GetTypeID ();
 
 		~CFDictionary ()

@@ -205,7 +205,7 @@ namespace XamCore.CoreGraphics {
 
 		// Keep this public, as we want to avoid creating instances of the object
 		// just to peek at the flags
-		[DllImport (Constants.ApplicationServicesCoreGraphicsLibrary, EntryPoint="CGEventGetFlags")]
+		[DllImport (Constants.ApplicationServicesCoreGraphicsLibrary, EntryPoint = "CGEventGetFlags")]
 		public extern static CGEventFlags GetFlags (IntPtr eventHandle);
 
 		[DllImport (Constants.ApplicationServicesCoreGraphicsLibrary)]
@@ -220,10 +220,10 @@ namespace XamCore.CoreGraphics {
 			}
 		}
 
-		[DllImport (Constants.ApplicationServicesCoreGraphicsLibrary, EntryPoint="CGEventGetIntegerValueField")]
+		[DllImport (Constants.ApplicationServicesCoreGraphicsLibrary, EntryPoint = "CGEventGetIntegerValueField")]
 		internal extern static long GetLong (IntPtr eventHandle, CGEventField eventField);
 
-		[DllImport (Constants.ApplicationServicesCoreGraphicsLibrary, EntryPoint="CGEventGetDoubleValueField")]
+		[DllImport (Constants.ApplicationServicesCoreGraphicsLibrary, EntryPoint = "CGEventGetDoubleValueField")]
 		internal extern static double GetDouble (IntPtr eventHandle, CGEventField eventField);
 
 		internal long GetLong (CGEventField eventField)
@@ -360,7 +360,7 @@ namespace XamCore.CoreGraphics {
 		}
 
 		[DllImport (Constants.ApplicationServicesCoreGraphicsLibrary)]
-		unsafe extern static void CGEventKeyboardSetUnicodeString (IntPtr handle, nuint len,  [MarshalAs(UnmanagedType.LPWStr)] string buffer);
+		unsafe extern static void CGEventKeyboardSetUnicodeString (IntPtr handle, nuint len,  [MarshalAs (UnmanagedType.LPWStr)] string buffer);
 
 		public unsafe void SetUnicodeString (string value)
 		{

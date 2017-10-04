@@ -40,7 +40,7 @@ namespace XamCore.AppKit {
 				throw new ArgumentNullException ("attribs");
 
 			unsafe {
-				NSOpenGLPixelFormatAttribute [] copy = new NSOpenGLPixelFormatAttribute [attribs.Length+1];
+				NSOpenGLPixelFormatAttribute [] copy = new NSOpenGLPixelFormatAttribute [attribs.Length + 1];
 				Array.Copy (attribs, 0, copy, 0, attribs.Length);
 
 				fixed (NSOpenGLPixelFormatAttribute* pArray = copy){
@@ -153,7 +153,7 @@ namespace XamCore.AppKit {
 				throw new ArgumentNullException ("attribs");
 
 			unsafe {
-				var copy = new NSOpenGLPixelFormatAttribute [attribs.Length + 1 /* null termination */];
+				var copy = new NSOpenGLPixelFormatAttribute [attribs.Length + 1];
 				for (int i = 0; i < attribs.Length; i++) {
 					var input = attribs [i];
 					if (input is NSOpenGLPixelFormatAttribute) {

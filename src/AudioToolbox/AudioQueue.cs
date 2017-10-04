@@ -70,7 +70,7 @@ namespace XamCore.AudioToolbox {
 		EnqueueDuringReset   = -66632,
 		InvalidOfflineMode   = -66626,
 		BufferEnqueuedTwice  = -66666,
-		[iOS (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		CannotStartYet       = -66665,
 		
 		// There is countless of not well documented error codes returned
@@ -234,7 +234,7 @@ namespace XamCore.AudioToolbox {
 		EndOfStream        = (1 << 9),
 	}
 	
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	public struct AudioQueueBuffer {
 		public uint AudioDataBytesCapacity;
 		public IntPtr AudioData;
@@ -259,16 +259,16 @@ namespace XamCore.AudioToolbox {
 		}
 	}
 
-	[StructLayout(LayoutKind.Explicit)]
+	[StructLayout (LayoutKind.Explicit)]
 	public struct AudioQueueParameterEvent {
-		[FieldOffset(0)]
+		[FieldOffset (0)]
 		[Advice ("Use Parameter.")]
 		public uint ID;
 
-		[FieldOffset(0)] 
+		[FieldOffset (0)] 
 		public AudioQueueParameter Parameter;
 
-		[FieldOffset(4)] 
+		[FieldOffset (4)] 
 		public float Value;
 
 		public AudioQueueParameterEvent (AudioQueueParameter parameter, float value)
@@ -279,13 +279,13 @@ namespace XamCore.AudioToolbox {
 		}
 	}
 
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	public struct AudioQueueLevelMeterState {
 		public float AveragePower;
 		public float PeakPower;
 	}
 
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	public struct AudioQueueChannelAssignment
 	{
 		IntPtr deviceUID; // CFString
@@ -760,7 +760,7 @@ namespace XamCore.AudioToolbox {
 
 		Hashtable listeners;
 		
-		[MonoPInvokeCallback(typeof(AudioQueuePropertyListenerProc))]
+		[MonoPInvokeCallback (typeof (AudioQueuePropertyListenerProc))]
 		static void property_changed (IntPtr userData, IntPtr AQ, AudioQueueProperty id)
 		{
 			GCHandle gch = GCHandle.FromIntPtr (userData);
@@ -1129,7 +1129,7 @@ namespace XamCore.AudioToolbox {
 			}
 		}
 
-		[iOS (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		public AudioQueueStatus SetChannelAssignments (params AudioQueueChannelAssignment[] channelAssignments)
 		{
 			if (channelAssignments == null)
@@ -1157,7 +1157,7 @@ namespace XamCore.AudioToolbox {
 		}	
 #endif
 
-		[iOS (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[DllImport (Constants.AudioToolboxLibrary)]
 		extern static AudioQueueStatus AudioQueueProcessingTapNew (IntPtr inAQ, AudioQueueProcessingTapCallbackShared inCallback,
 			IntPtr inClientData, AudioQueueProcessingTapFlags inFlags, out uint outMaxFrames,
@@ -1165,7 +1165,7 @@ namespace XamCore.AudioToolbox {
 
 #if !XAMCORE_2_0
 		[Obsolete ("Use CreateProcessingTap (AudioQueueProcessingTapDelegate, AudioQueueProcessingTapFlags, out AudioQueueStatus) instead", true)]
-		[iOS (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		public AudioQueueProcessingTap CreateProcessingTap (AudioQueueProcessingTapCallback processingCallback, AudioQueueProcessingTapFlags flags,
 		                                                    out AudioQueueStatus status)
 		{
@@ -1173,7 +1173,7 @@ namespace XamCore.AudioToolbox {
 		}
 #endif
 
-		[iOS (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		public AudioQueueProcessingTap CreateProcessingTap (AudioQueueProcessingTapDelegate processingCallback, AudioQueueProcessingTapFlags flags,
 		                                                    out AudioQueueStatus status)
 		{		
@@ -1212,7 +1212,7 @@ namespace XamCore.AudioToolbox {
 	                                                      ref AudioTimeStamp timeStamp, ref AudioQueueProcessingTapFlags flags,
 	                                                      AudioBuffers data);
 
-	[iOS (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	public class AudioQueueProcessingTap : IDisposable
 	{
 		internal static readonly AudioQueueProcessingTapCallbackShared CreateTapCallback = TapCallback;
@@ -1296,11 +1296,11 @@ namespace XamCore.AudioToolbox {
 		                                                  out flags, out parentNumberOfFrames, (IntPtr) data);
 		}
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.AudioToolboxLibrary)]
 		extern static AudioQueueStatus AudioQueueProcessingTapGetQueueTime (IntPtr inAQTap, out double outQueueSampleTime, out uint outQueueFrameCount);
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		public AudioQueueStatus GetQueueTime (out double sampleTime, out uint frameCount)
 		{
 			return AudioQueueProcessingTapGetQueueTime (TapHandle, out sampleTime, out frameCount);
@@ -1327,7 +1327,7 @@ namespace XamCore.AudioToolbox {
 							    IntPtr userData, IntPtr cfrunLoop_callbackRunloop, IntPtr cfstr_runMode,
 							    uint flags, out IntPtr audioQueue);
 
-		[MonoPInvokeCallback(typeof(AudioQueueOutputCallback))]
+		[MonoPInvokeCallback (typeof (AudioQueueOutputCallback))]
 		static void output_callback (IntPtr userData, IntPtr AQ, IntPtr audioQueueBuffer)
 		{
 			GCHandle gch = GCHandle.FromIntPtr (userData);
@@ -1386,7 +1386,7 @@ namespace XamCore.AudioToolbox {
 			handle = h;
 		}
 
-		[DllImport (Constants.AudioToolboxLibrary, EntryPoint="AudioQueueSetOfflineRenderFormat")]
+		[DllImport (Constants.AudioToolboxLibrary, EntryPoint = "AudioQueueSetOfflineRenderFormat")]
 		extern static AudioQueueStatus AudioQueueSetOfflineRenderFormat2 (IntPtr aq, IntPtr format, IntPtr layout);
 
 		[DllImport (Constants.AudioToolboxLibrary)]
@@ -1427,7 +1427,7 @@ namespace XamCore.AudioToolbox {
 	public class InputAudioQueue : AudioQueue {
 		static unsafe readonly AudioQueueInputCallback dInputCallback = input_callback;
 
-		[MonoPInvokeCallback(typeof(AudioQueueInputCallback))]
+		[MonoPInvokeCallback (typeof (AudioQueueInputCallback))]
 		unsafe static void input_callback (IntPtr userData, IntPtr AQ, IntPtr audioQueueBuffer,
 					    AudioTimeStamp *startTime, int descriptors, IntPtr inPacketDesc)
 		{

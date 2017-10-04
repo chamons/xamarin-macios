@@ -339,7 +339,7 @@ namespace CHeaderToXML
                     case "GL_APIENTRY":  // ES 1.1 & 2.0
                     case "CL_API_CALL": // CL 1.0
                         inRettype = false;
-                        funcname = words [i+1].Substring(Prefix.Length);
+                        funcname = words [i + 1].Substring(Prefix.Length);
                         quit = true;
                         break;
                     default:

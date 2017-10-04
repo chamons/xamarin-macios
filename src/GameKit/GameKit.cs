@@ -20,18 +20,18 @@ namespace XamCore.GameKit {
 
 	// NSUInteger -> GKPeerPickerController.h
 #if XAMCORE_4_0
-	[NoTV] // preserve binary compatibility with existing/shipping code
+	[Unavailable (PlatformName.TvOS)] // preserve binary compatibility with existing/shipping code
 #endif
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Native]
-	[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_7_0)]
+	[Introduced (PlatformName.iOS, 3, 0), Deprecated (PlatformName.iOS, 7, 0)]
 	public enum GKPeerPickerConnectionType : nuint_compat_int {
 		Online = 1 << 0,
 		Nearby = 1 << 1
 	}
 
 	// untyped enum -> GKPublicConstants.h
-	[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_7_0)]
+	[Introduced (PlatformName.iOS, 3, 0), Deprecated (PlatformName.iOS, 7, 0)]
 	[ErrorDomain ("GKVoiceChatServiceErrorDomain")]
 	public enum GKVoiceChatServiceError {
 		Internal = 32000,	
@@ -55,14 +55,14 @@ namespace XamCore.GameKit {
 #endif
 
 	// untyped enum -> GKPublicConstants.h
-	[Availability (Introduced = Platform.iOS_3_0 | Platform.Mac_10_8, Deprecated = Platform.iOS_7_0 | Platform.Mac_10_10)]
+	[Introduced (PlatformName.iOS, 3, 0), Introduced (PlatformName.MacOSX, 10, 8), Deprecated (PlatformName.iOS, 7, 0), Deprecated (PlatformName.MacOSX, 10, 10)]
 	public enum GKSendDataMode {
 		Reliable,
 		Unreliable,
 	} 
 
 	// untyped enum -> GKPublicConstants.h
-	[Availability (Introduced = Platform.iOS_3_0 | Platform.Mac_10_8, Deprecated = Platform.iOS_7_0 | Platform.Mac_10_10)]
+	[Introduced (PlatformName.iOS, 3, 0), Introduced (PlatformName.MacOSX, 10, 8), Deprecated (PlatformName.iOS, 7, 0), Deprecated (PlatformName.MacOSX, 10, 10)]
 	public enum GKSessionMode {
 	    Server, 
 	    Client,
@@ -70,7 +70,7 @@ namespace XamCore.GameKit {
 	}
 
 	// untyped enum -> GKPublicConstants.h
-	[Availability (Introduced = Platform.iOS_3_0 | Platform.Mac_10_8, Deprecated = Platform.iOS_7_0 | Platform.Mac_10_10)]
+	[Introduced (PlatformName.iOS, 3, 0), Introduced (PlatformName.MacOSX, 10, 8), Deprecated (PlatformName.iOS, 7, 0), Deprecated (PlatformName.MacOSX, 10, 10)]
 	public enum GKPeerConnectionState {
 		Available,
 		Unavailable,
@@ -80,24 +80,24 @@ namespace XamCore.GameKit {
 	}
 
 	// NSInteger -> GKLeaderboard.h
-	[iOS (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Native]
-	public enum GKLeaderboardTimeScope : nint {
+	public enum GKLeaderboardTimeScope : long {
 		Today, Week, AllTime
 	}
 
 	// NSInteger -> GKLeaderboard.h
-	[iOS (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Native]
-	public enum GKLeaderboardPlayerScope : nint {
+	public enum GKLeaderboardPlayerScope : long {
 		Global, FriendsOnly
 	}
 
 	// NSInteger -> GKError.h
-	[iOS (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Native]
 	[ErrorDomain ("GKErrorDomain")]
-	public enum GKError : nint {
+	public enum GKError : long {
 		None = 0,
 		Unknown = 1,
 		Cancelled,
@@ -137,22 +137,22 @@ namespace XamCore.GameKit {
 	}
 
 	[Native]
-	[iOS (10,0)][Mac (10,12)][TV (10,0)]
-	public enum GKConnectionState : nint {
+	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.TvOS, 10, 0)]
+	public enum GKConnectionState : long {
 		NotConnected,
 		Connected,
 	}
 
 	[Native]
-	[iOS (10,0)][Mac (10,12)][TV (10,0)]
-	public enum GKTransportType : nint {
+	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.TvOS, 10, 0)]
+	public enum GKTransportType : long {
 		Unreliable,
 		Reliable,
 	}
 
 	[Native]
 	[ErrorDomain ("GKGameSessionErrorDomain")]
-	public enum GKGameSessionErrorCode : nint {
+	public enum GKGameSessionErrorCode : long {
 		Unknown = 1,
 		NotAuthenticated = 2,
 		SessionConflict = 3,
@@ -172,23 +172,23 @@ namespace XamCore.GameKit {
 	}
 
 	// NSInteger -> GKMatch.h
-	[Availability (Introduced = Platform.iOS_4_0 | Platform.Mac_10_8, Deprecated = Platform.iOS_7_0 | Platform.Mac_10_10)]
+	[Introduced (PlatformName.iOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 8), Deprecated (PlatformName.iOS, 7, 0), Deprecated (PlatformName.MacOSX, 10, 10)]
 	[Native]
-	public enum GKMatchSendDataMode : nint {
+	public enum GKMatchSendDataMode : long {
 		Reliable, Unreliable
 	}
 
 	// NSInteger -> GKMatch.h
-	[iOS (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Native]
-	public enum GKPlayerConnectionState : nint {
+	public enum GKPlayerConnectionState : long {
 		Unknown, Connected, Disconnected
 	}
 
 	// NSInteger -> GKVoiceChat.h
-	[iOS (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Native]
-	public enum GKVoiceChatPlayerState : nint {
+	public enum GKVoiceChatPlayerState : long {
 		Connected,
 		Disconnected,
 		Speaking,
@@ -197,38 +197,38 @@ namespace XamCore.GameKit {
 	}
 
 	// NSInteger -> GKPlayer.h
-	[iOS (5,0)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[Native]
-	public enum GKPhotoSize : nint {
+	public enum GKPhotoSize : long {
 		Small, Normal
 	}
 
 	// NSInteger -> GKTurnBasedMatch.h
-	[iOS (5,0)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[Native]
-	public enum GKTurnBasedMatchStatus : nint {
+	public enum GKTurnBasedMatchStatus : long {
 		Unknown, Open, Ended, Matching
 	}
 
 	// NSInteger -> GKTurnBasedMatch.h
-	[iOS (5,0)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[Native]
-	public enum GKTurnBasedParticipantStatus : nint {
+	public enum GKTurnBasedParticipantStatus : long {
 		Unknown, Invited, Declined, Matching, Active, Done
 	}
 
 	// NSInteger -> GKTurnBasedMatch.h
-	[iOS (5,0)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[Native]
-	public enum GKTurnBasedMatchOutcome : nint {
+	public enum GKTurnBasedMatchOutcome : long {
 		None, Quit, Won, Lost, Tied, TimeExpired,
 		First, Second, Third, Fourth, CustomRange = 0xff0000
 	}
 
 	// NSInteger -> GKChallenge.h
-	[iOS (6,0)][Mac (10,9)]
+	[Introduced (PlatformName.iOS, 6, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 	[Native]
-	public enum GKChallengeState : nint	{
+	public enum GKChallengeState : long	{
 		Invalid = 0,
 		Pending,
 		Completed,
@@ -236,9 +236,9 @@ namespace XamCore.GameKit {
 	}
 
 	// NSInteger -> GKGameCenterViewController.h
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Native]
-	public enum GKGameCenterViewControllerState : nint {
+	public enum GKGameCenterViewControllerState : long {
 		Default = -1,
 		Leaderboards ,
 		Achievements,
@@ -247,7 +247,7 @@ namespace XamCore.GameKit {
 
 	// NSInteger -> GKMatchmaker.h
 	[Native]
-	public enum GKInviteeResponse : nint
+	public enum GKInviteeResponse : long
 	{
 		Accepted           = 0,
 		Declined           = 1,
@@ -267,7 +267,7 @@ namespace XamCore.GameKit {
 	}
 
 	// uint8_t -> GKTurnBasedMatch.h
-	[iOS (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	public enum GKTurnBasedExchangeStatus : sbyte
 	{
 		Unknown,
@@ -278,7 +278,7 @@ namespace XamCore.GameKit {
 	}
 
 	[Native]
-	public enum GKInviteRecipientResponse : nint {
+	public enum GKInviteRecipientResponse : long {
 		Accepted = 0,
 		Declined = 1,
 		Failed = 2,

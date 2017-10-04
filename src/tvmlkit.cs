@@ -8,40 +8,40 @@ using XamCore.UIKit;
 
 namespace XamCore.TVMLKit {
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[Native]
-	public enum TVColorType : nint {
+	public enum TVColorType : long {
 		None,
 		Plain,
 		LinearGradientTopToBottom,
 		LinearGradientLeftToRight
 	}
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[Native]
-	public enum TVElementAlignment : nint {
+	public enum TVElementAlignment : long {
 		Undefined,
 		Left,
 		Center,
 		Right,
-		[TV (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		Leading,
-		[TV (11, 0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		Trailing,
 	}
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[Native]
-	public enum TVElementContentAlignment : nint {
+	public enum TVElementContentAlignment : long {
 		Undefined,
 		Top,
 		Center,
 		Bottom
 	}
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[Native]
-	public enum TVElementPosition : nint {
+	public enum TVElementPosition : long {
 		Undefined,
 		Center,
 		Top,
@@ -54,23 +54,23 @@ namespace XamCore.TVMLKit {
 		BottomRight,
 		Header,
 		Footer,
-		[TV (11, 0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		Leading,
-		[TV (11, 0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		Trailing,
-		[TV (11, 0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		TopLeading,
-		[TV (11, 0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		TopTrailing,
-		[TV (11, 0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		BottomLeading,
-		[TV (11, 0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		BottomTrailing,
 	}
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[Native]
-	public enum TVElementEventType : nint {
+	public enum TVElementEventType : long {
 		Play = 1,
 		Select,
 		HoldSelect,
@@ -78,46 +78,46 @@ namespace XamCore.TVMLKit {
 		Change
 	}
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[Native]
-	public enum TVElementUpdateType : nint {
+	public enum TVElementUpdateType : long {
 		None,
 		Subtree,
 		Children,
 		Self,
-		[TV (10,0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		Styles,
 	}
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[Native]
-	public enum TVElementResettableProperty : nint {
+	public enum TVElementResettableProperty : long {
 		UpdateType,
 		AutoHighlightIdentifier
 	}
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[Native]
-	public enum TVImageType : nint {
+	public enum TVImageType : long {
 		Image,
 		Fullscreen,
 		Decoration,
 		Hero
 	}
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[Native]
 	[ErrorDomain ("TVMLKitErrorDomain")]
-	public enum TVMLKitError : nint {
+	public enum TVMLKitError : long {
 		Unknown = 1,
 		InternetUnavailable,
 		FailedToLaunch,
 		Last
 	}
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[Native]
-	public enum TVViewElementStyleType : nint {
+	public enum TVViewElementStyleType : long {
 		Integer = 1,
 		Double,
 		Point,
@@ -128,9 +128,9 @@ namespace XamCore.TVMLKit {
 		EdgeInsets
 	}
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[Native]
-	public enum TVTextElementStyle : nint {
+	public enum TVTextElementStyle : long {
 		None,
 		Title,
 		Subtitle,
@@ -138,7 +138,7 @@ namespace XamCore.TVMLKit {
 		Decoration
 	}
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	interface TVApplicationControllerContext : NSCopying {
 		[Export ("javaScriptApplicationURL", ArgumentSemantic.Copy)]
@@ -151,7 +151,7 @@ namespace XamCore.TVMLKit {
 		NSDictionary<NSString,NSObject> LaunchOptions { get; set; }
 	}
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface TVApplicationControllerDelegate {
@@ -201,8 +201,8 @@ namespace XamCore.TVMLKit {
 		void Stop ();
 	}
 
-	[TV (9,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.TvOS, 9, 0)]
+	[BaseType (typeof (NSObject))]
 	interface TVColor : NSCopying {
 		[Export ("colorType")]
 		TVColorType ColorType { get; }
@@ -218,7 +218,7 @@ namespace XamCore.TVMLKit {
 	}
 
 #if false // TVMLKit/TVElementTypes.h was removed from Xcode 7.1 beta 3 (mistake?)
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[Static]
 	interface TVAttributeKey {
 		// FIXME: does it fit here ?
@@ -316,7 +316,7 @@ namespace XamCore.TVMLKit {
 		NSString TVAttributeSiriData { get; }
 	}
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[Static]
 	interface TVElementKey {
 		[Field ("TVElementKeyActivityIndicator")]
@@ -612,7 +612,7 @@ namespace XamCore.TVMLKit {
 	}
 
 	// FIXME: enum'ify ?
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[Static]
 	interface TVKeyboardType {
 		[Field ("TVKeyboardTypeEmailAddress")]
@@ -626,7 +626,7 @@ namespace XamCore.TVMLKit {
 	}
 #endif
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	interface TVElementFactory {
 		// FIXME: provide System.Type overload
@@ -635,8 +635,8 @@ namespace XamCore.TVMLKit {
 		void RegisterViewElementClass (Class elementClass, string elementName);
 	}
 
-	[TV (9,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.TvOS, 9, 0)]
+	[BaseType (typeof (NSObject))]
 	interface TVViewElementStyle : NSCopying {
 		// FIXME: badly named, unsure of return value
 		[Export ("valueForStyleProperty:")]
@@ -662,7 +662,7 @@ namespace XamCore.TVMLKit {
 		[Export ("margin")]
 		UIEdgeInsets Margin { get; }
 
-		[TV (10,0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("focusMargin")]
 		UIEdgeInsets FocusMargin { get; }
 
@@ -724,7 +724,7 @@ namespace XamCore.TVMLKit {
 		TVColor TintColor { get; }
 	}
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	interface TVViewElement : NSCopying {
 		[Export ("elementIdentifier")]
@@ -769,8 +769,8 @@ namespace XamCore.TVMLKit {
 		void DispatchEvent (string eventName, bool canBubble, bool isCancellable, [NullAllowed] NSDictionary<NSString, NSObject> extraInfo, [NullAllowed] Action<bool, bool> completion);
 	}
 
-	[TV (9,0)]
-	[BaseType (typeof(TVViewElement))]
+	[Introduced (PlatformName.TvOS, 9, 0)]
+	[BaseType (typeof (TVViewElement))]
 	interface TVImageElement {
 		[NullAllowed, Export ("URL")]
 		NSUrl Url { get; }
@@ -782,7 +782,7 @@ namespace XamCore.TVMLKit {
 		TVImageType ImageType { get; }
 	}
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[Protocol]
 	interface TVInterfaceCreating {
 		[Export ("viewForElement:existingView:")]
@@ -797,12 +797,12 @@ namespace XamCore.TVMLKit {
 		[return: NullAllowed]
 		NSUrl GetUrlForResource (string resourceName);
 
-		[TV (9,2)]
+		[Introduced (PlatformName.TvOS, 9, 2)]
 		[Export ("imageForResource:")]
 		[return: NullAllowed]
 		UIImage GetImageForResource (string resourceName);
 
-		[TV (10,0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("collectionViewCellClassForElement:")]
 		[return: NullAllowed]
 		Class GetCollectionViewCellClass (TVViewElement element);
@@ -810,7 +810,7 @@ namespace XamCore.TVMLKit {
 
 	interface ITVInterfaceCreating {}
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	interface TVInterfaceFactory : TVInterfaceCreating {
 		[Static]
@@ -821,7 +821,7 @@ namespace XamCore.TVMLKit {
 		ITVInterfaceCreating ExtendedInterfaceCreator { get; set; }
 	}
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	interface TVStyleFactory {
 		[Static]
@@ -829,7 +829,7 @@ namespace XamCore.TVMLKit {
 		void RegisterStyle (string styleName, TVViewElementStyleType type, bool inherited);
 	}
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[BaseType (typeof (TVViewElement))]
 	interface TVTextElement {
 		[NullAllowed, Export ("attributedText")]

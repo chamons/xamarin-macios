@@ -41,7 +41,7 @@ namespace XamCore.AudioToolbox {
 		BadSpecifierSizeError = 0x21737063,		// '!spc'
 		SystemSoundUnspecifiedError = -1500,
 		SystemSoundClientTimedOutError = -1501,
-		[iOS (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		SystemSoundExceededMaximumDurationError = -1502,
 	}
 

@@ -29,7 +29,7 @@ namespace XamCore.Foundation
 		}
 #endif
 
-		[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		public NSProgress LoadObject<T> (Action<T, NSError> completionHandler) where T: NSObject, INSItemProviderReading
 		{
 			return LoadObject (new Class (typeof (T)), (rv, err) =>
@@ -41,7 +41,7 @@ namespace XamCore.Foundation
 			});
 		}
 
-		[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		public Task<T> LoadObjectAsync<T> () where T: NSObject, INSItemProviderReading
 		{
 			var rv = LoadObjectAsync (new Class (typeof (T)));
@@ -54,7 +54,7 @@ namespace XamCore.Foundation
 			});
 		}
 
-		[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		public Task<T> LoadObjectAsync<T> (out NSProgress result) where T: NSObject, INSItemProviderReading
 		{
 			var rv = LoadObjectAsync (new Class (typeof (T)), out result);

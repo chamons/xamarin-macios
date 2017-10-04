@@ -589,19 +589,19 @@ namespace OpenTK.Graphics.OpenGL
 
         #region Uniform
 
-        [CLSCompliant(false)]
+        [CLSCompliant (false)]
         public static void Uniform2(int location, ref Vector2 vector)
         {
             GL.Uniform2(location, vector.X, vector.Y);
         }
 
-        [CLSCompliant(false)]
+        [CLSCompliant (false)]
         public static void Uniform3(int location, ref Vector3 vector)
         {
             GL.Uniform3(location, vector.X, vector.Y, vector.Z);
         }
 
-        [CLSCompliant(false)]
+        [CLSCompliant (false)]
         public static void Uniform4(int location, ref Vector4 vector)
         {
             GL.Uniform4(location, vector.X, vector.Y, vector.Z, vector.W);
@@ -790,7 +790,7 @@ namespace OpenTK.Graphics.OpenGL
 
         #region public static void VertexAttrib2(Int32 index, ref Vector2 v)
 
-        [CLSCompliant(false)]
+        [CLSCompliant (false)]
         public static void VertexAttrib2(Int32 index, ref Vector2 v)
         {
             GL.VertexAttrib2(index, v.X, v.Y);
@@ -800,7 +800,7 @@ namespace OpenTK.Graphics.OpenGL
 
         #region public static void VertexAttrib3(Int32 index, ref Vector3 v)
 
-        [CLSCompliant(false)]
+        [CLSCompliant (false)]
         public static void VertexAttrib3(Int32 index, ref Vector3 v)
         {
             GL.VertexAttrib3(index, v.X, v.Y, v.Z);
@@ -810,7 +810,7 @@ namespace OpenTK.Graphics.OpenGL
 
         #region public static void VertexAttrib4(Int32 index, ref Vector4 v)
 
-        [CLSCompliant(false)]
+        [CLSCompliant (false)]
         public static void VertexAttrib4(Int32 index, ref Vector4 v)
         {
             GL.VertexAttrib4(index, v.X, v.Y, v.Z, v.W);
@@ -883,7 +883,7 @@ namespace OpenTK.Graphics.OpenGL
 
         #region public static void Rect(ref System.Drawing.RectangleF rect)
 
-        [CLSCompliant(false)]
+        [CLSCompliant (false)]
         public static void Rect(ref System.Drawing.RectangleF rect)
         {
             GL.Rect(rect.Left, rect.Top, rect.Right, rect.Bottom);
@@ -902,7 +902,7 @@ namespace OpenTK.Graphics.OpenGL
 
         #region public static void Rect(ref System.Drawing.Rectangle rect)
 
-        [CLSCompliant(false)]
+        [CLSCompliant (false)]
         public static void Rect(ref System.Drawing.Rectangle rect)
         {
             GL.Rect(rect.Left, rect.Top, rect.Right, rect.Bottom);
@@ -930,7 +930,7 @@ namespace OpenTK.Graphics.OpenGL
 
         #endregion
 
-        #region [Vertex|Normal|Index|Color|FogCoord|VertexAttrib]Pointer
+        #region [Vertex | Normal | Index | Color | FogCoord | VertexAttrib]Pointer
 
         public static void VertexPointer(int size, VertexPointerType type, int stride, int pointer)
         {
@@ -969,7 +969,7 @@ namespace OpenTK.Graphics.OpenGL
 
         #endregion
 
-        #region Get[Float|Double]
+        #region Get[Float | Double]
 
         public static void GetFloat(GetPName pname, out Vector2 vector)
         {

@@ -319,10 +319,10 @@ namespace XamCore.ObjCRuntime {
 		[DllImport ("/usr/lib/libobjc.dylib")]
 		internal extern static IntPtr class_getInstanceVariable (IntPtr cls, string name);
 
-		[DllImport ("/usr/lib/libobjc.dylib", CharSet=CharSet.Ansi)]
+		[DllImport ("/usr/lib/libobjc.dylib", CharSet = CharSet.Ansi)]
 		internal extern static bool class_addProperty (IntPtr cls, string name, objc_attribute_prop [] attributes, int count);
 
-		[StructLayout (LayoutKind.Sequential, CharSet=CharSet.Ansi)]
+		[StructLayout (LayoutKind.Sequential, CharSet = CharSet.Ansi)]
 		internal struct objc_attribute_prop {
 			[MarshalAs (UnmanagedType.LPStr)] internal string name;
 			[MarshalAs (UnmanagedType.LPStr)] internal string value;

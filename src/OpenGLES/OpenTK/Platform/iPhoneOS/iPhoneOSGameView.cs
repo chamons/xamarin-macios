@@ -222,14 +222,14 @@ namespace OpenTK.Platform.iPhoneOS
         TimeSpan prevRenderTime;
 
 
-        [Export("initWithCoder:")]
+        [Export ("initWithCoder:")]
         public iPhoneOSGameView(NSCoder coder)
             : base(coder)
         {
             stopwatch = new System.Diagnostics.Stopwatch ();
         }
 
-        [Export("initWithFrame:")]
+        [Export ("initWithFrame:")]
         public iPhoneOSGameView(RectangleF frame)
             : base(frame)
         {

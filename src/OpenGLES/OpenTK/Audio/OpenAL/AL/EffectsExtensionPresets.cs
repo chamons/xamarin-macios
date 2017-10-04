@@ -1,4 +1,4 @@
-﻿#region --- OpenTK.OpenAL License ---
+#region --- OpenTK.OpenAL License ---
 /* EfxPresets.cs
  * C headers: \OpenAL 1.1 SDK\include\ "efx.h", "efx-creative.h", "Efx-Util.h"
  * Spec: Effects Extension Guide.pdf (bundled with OpenAL SDK)
@@ -19,7 +19,7 @@ namespace OpenTK.Audio.OpenAL
 
 #pragma warning disable 1591
 
-        [CLSCompliant(false)]
+        [CLSCompliant (false)]
         public struct EaxReverb
         {
             public uint Environment;            // TODO: EAX-EFX conversion
@@ -105,7 +105,7 @@ namespace OpenTK.Audio.OpenAL
         }
 
         // TODO: CLS compliance.
-        [CLSCompliant(false)]
+        [CLSCompliant (false)]
         public static void GetEaxFromEfxEax(ref EaxReverb input, out EfxEaxReverb output)
         {
             output.AirAbsorptionGainHF = 0.995f; // input.AirAbsorptionHF  * somegain?
@@ -208,7 +208,7 @@ namespace OpenTK.Audio.OpenAL
 
         // TODO: CLS compliance.
         ///<summary>EAX Reverb Presets in legacy format - use ConvertReverbParameters() to convert to EFX EAX Reverb Presets for use with the OpenAL Effects Extension.</summary>
-        [CLSCompliant(false)]
+        [CLSCompliant (false)]
         public static class ReverbPresets
         {
             // CASTLE PRESETS

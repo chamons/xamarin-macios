@@ -17,14 +17,14 @@ using XamCore.Foundation;
 namespace XamCore.CoreGraphics {
 
 	// uint32_t enum -> CGColorConversionInfo.h
-	[iOS (10,0)][TV (10,0)][Watch (3,0)][Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 	public enum CGColorConversionInfoTransformType : uint {
 		FromSpace = 0,
 		ToSpace,
 		ApplySpace
 	}
 
-	[iOS (10,0)][TV (10,0)][Watch (3,0)][Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 	[StructLayout (LayoutKind.Sequential)]
 	public struct GColorConversionInfoTriple {
 		public CGColorSpace Space;
@@ -33,7 +33,7 @@ namespace XamCore.CoreGraphics {
 	}
 
 	// CGColorConverter.h
-	[iOS (10,0)][TV (10,0)][Watch (3,0)][Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 	public partial class CGColorConversionInfo : INativeObject, IDisposable {
 
 		/* invoked by marshallers */
@@ -42,7 +42,7 @@ namespace XamCore.CoreGraphics {
 			Handle = handle;
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal CGColorConversionInfo (IntPtr handle, bool owns)
 		{
 			Handle = handle;
@@ -50,7 +50,7 @@ namespace XamCore.CoreGraphics {
 				CFObject.CFRetain (Handle);
 		}
 
-		[DllImport(Constants.CoreGraphicsLibrary)]
+		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static /* CGColorConversionInfoRef __nullable */ IntPtr CGColorConversionInfoCreateFromList (/* __nullable CFDictionaryRef */ IntPtr options, 
 			/* CGColorSpaceRef __nullable */ IntPtr space1, CGColorConversionInfoTransformType transform1, CGColorRenderingIntent intent1,
 			/* CGColorSpaceRef __nullable */ IntPtr space2, CGColorConversionInfoTransformType transform2, CGColorRenderingIntent intent2,
@@ -61,7 +61,7 @@ namespace XamCore.CoreGraphics {
 		// https://developer.apple.com/library/ios/documentation/Xcode/Conceptual/iPhoneOSABIReference/Articles/ARM64FunctionCallingConventions.html
 		// Declare dummies until we're on the stack then the arguments
 		// <quote>C language requires arguments smaller than int to be promoted before a call, but beyond that, unused bytes on the stack are not specified by this ABI</quote>
-		[DllImport(Constants.CoreGraphicsLibrary, EntryPoint="CGColorConversionInfoCreateFromList")]
+		[DllImport (Constants.CoreGraphicsLibrary, EntryPoint = "CGColorConversionInfoCreateFromList")]
 		extern static /* CGColorConversionInfoRef __nullable */ IntPtr CGColorConversionInfoCreateFromList_arm64 (/* __nullable CFDictionaryRef */ IntPtr options,
 			IntPtr space1, long transform1, long intent1, // varargs starts after them
 			IntPtr dummy4, IntPtr dummy5, IntPtr dummy6, IntPtr dummy7, // dummies so the rest goes to the stack
@@ -111,11 +111,11 @@ namespace XamCore.CoreGraphics {
 				throw new Exception ("Failed to create CGColorConverter");
 		}
 
-		[iOS (10,0)][Mac (10,12)]
-		[DllImport(Constants.CoreGraphicsLibrary)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static IntPtr CGColorConversionInfoCreate (/* cg_nullable CGColorSpaceRef */ IntPtr src, /* cg_nullable CGColorSpaceRef */ IntPtr dst);
 
-		[iOS (10,0)][Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 		public CGColorConversionInfo (CGColorSpace src, CGColorSpace dst)
 		{
 			// API accept null arguments but returns null, which we can't use

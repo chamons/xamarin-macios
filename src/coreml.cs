@@ -1,4 +1,4 @@
-﻿//
+//
 // CoreML C# bindings
 //
 // Authors:
@@ -17,9 +17,9 @@ using XamCore.Foundation;
 
 namespace XamCore.CoreML {
 
-	[Watch (4,0), TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum MLFeatureType : nint {
+	public enum MLFeatureType : long {
 		Invalid = 0,
 		Int64 = 1,
 		Double = 2,
@@ -29,24 +29,24 @@ namespace XamCore.CoreML {
 		Dictionary = 6,
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[ErrorDomain ("MLModelErrorDomain")]
 	[Native]
-	public enum MLModelError : nint {
+	public enum MLModelError : long {
 		Generic = 0,
 		FeatureType = 1,
 		IO = 3,
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum MLMultiArrayDataType : nint {
+	public enum MLMultiArrayDataType : long {
 		Double = 65536 | 64,
 		Float32 = 65536 | 32,
 		Int32 = 131072 | 32,
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	interface MLDictionaryFeatureProvider : MLFeatureProvider {
 
@@ -57,7 +57,7 @@ namespace XamCore.CoreML {
 		IntPtr Constructor (NSDictionary<NSString, NSObject> dictionary, out NSError error);
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	interface MLFeatureDescription : NSCopying {
 
@@ -87,7 +87,7 @@ namespace XamCore.CoreML {
 
 	interface IMLFeatureProvider { }
 
-	[Watch (4,0), TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface MLFeatureProvider {
 
@@ -101,7 +101,7 @@ namespace XamCore.CoreML {
 		MLFeatureValue GetFeatureValue (string featureName);
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	interface MLFeatureValue : NSCopying {
 
@@ -162,7 +162,7 @@ namespace XamCore.CoreML {
 		bool IsEqual (MLFeatureValue value);
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	interface MLModel {
 
@@ -190,7 +190,7 @@ namespace XamCore.CoreML {
 		NSUrl CompileModel (NSUrl modelUrl, out NSError error);
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	interface MLModelDescription {
 
@@ -214,7 +214,7 @@ namespace XamCore.CoreML {
 		MLModelMetadata Metadata { get; }
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Internal]
 	[Static]
 	interface MLModelMetadataKeys {
@@ -235,7 +235,7 @@ namespace XamCore.CoreML {
 		NSString CreatorDefinedKey { get; }
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[StrongDictionary ("MLModelMetadataKeys")]
 	interface MLModelMetadata {
 		string Description { get; }
@@ -245,7 +245,7 @@ namespace XamCore.CoreML {
 		string CreatorDefined { get; }
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
 	interface MLMultiArray {
@@ -302,7 +302,7 @@ namespace XamCore.CoreML {
 		void SetObject (NSNumber obj, IntPtr key);
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
 	interface MLDictionaryConstraint {
@@ -311,7 +311,7 @@ namespace XamCore.CoreML {
 		MLFeatureType KeyType { get; }
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
 	interface MLImageConstraint {
@@ -326,7 +326,7 @@ namespace XamCore.CoreML {
 		uint PixelFormatType { get; }
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
 	interface MLMultiArrayConstraint {
@@ -339,7 +339,7 @@ namespace XamCore.CoreML {
 		MLMultiArrayDataType DataType { get; }
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	interface MLPredictionOptions {
 

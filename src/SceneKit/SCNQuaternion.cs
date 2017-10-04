@@ -47,7 +47,7 @@ namespace XamCore.SceneKit
     /// Represents a Quaternion.
     /// </summary>
     [Serializable]
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     public struct SCNQuaternion : IEquatable<SCNQuaternion>
     {
         #region Fields
@@ -113,9 +113,9 @@ namespace XamCore.SceneKit
         /// <summary>
         /// Gets or sets an OpenTK.Vector3 with the X, Y and Z components of this instance.
         /// </summary>
-        [Obsolete("Use Xyz property instead.")]
-        [CLSCompliant(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete ("Use Xyz property instead.")]
+        [CLSCompliant (false)]
+        [EditorBrowsable (EditorBrowsableState.Never)]
         [XmlIgnore]
         public SCNVector3 XYZ { get { return Xyz; } set { Xyz = value; } }
 #endif
@@ -338,7 +338,7 @@ namespace XamCore.SceneKit
         /// <param name="left">The first instance.</param>
         /// <param name="right">The second instance.</param>
         /// <returns>A new instance containing the result of the calculation.</returns>
-        [Obsolete("Use Multiply instead.")]
+        [Obsolete ("Use Multiply instead.")]
         public static SCNQuaternion Mult(SCNQuaternion left, SCNQuaternion right)
         {
             return new SCNQuaternion(
@@ -352,7 +352,7 @@ namespace XamCore.SceneKit
         /// <param name="left">The first instance.</param>
         /// <param name="right">The second instance.</param>
         /// <param name="result">A new instance containing the result of the calculation.</param>
-        [Obsolete("Use Multiply instead.")]
+        [Obsolete ("Use Multiply instead.")]
         public static void Mult(ref SCNQuaternion left, ref SCNQuaternion right, out SCNQuaternion result)
         {
             result = new SCNQuaternion(

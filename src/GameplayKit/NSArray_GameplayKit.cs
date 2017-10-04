@@ -1,4 +1,4 @@
-﻿//
+//
 // NSArray_GameplayKit.cs: Generic extensions to NSArray
 //
 // Authors:
@@ -13,7 +13,7 @@ using XamCore.Foundation;
 using XamCore.ObjCRuntime;
 
 namespace XamCore.GameplayKit {
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	public static class NSArray_GameplayKit {
 
 		[Export ("shuffledArrayWithRandomSource:")]

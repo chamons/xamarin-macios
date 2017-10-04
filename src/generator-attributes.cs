@@ -125,7 +125,7 @@ public class RetainAttribute : Attribute {
 public class ReleaseAttribute : Attribute {
 }
 
-[AttributeUsage(AttributeTargets.All, AllowMultiple=true)]
+[AttributeUsage (AttributeTargets.All, AllowMultiple = true)]
 public class PostGetAttribute : Attribute {
 	public PostGetAttribute (string name)
 	{
@@ -318,7 +318,7 @@ public class TransientAttribute : Attribute {
 }
 
 // Used for mandatory methods that must be implemented in a [Model].
-[AttributeUsage(AttributeTargets.Method|AttributeTargets.Property|AttributeTargets.Interface, AllowMultiple=true)]
+[AttributeUsage (AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Interface, AllowMultiple = true)]
 public class AbstractAttribute : Attribute {
 	public AbstractAttribute () {} 
 }
@@ -371,7 +371,7 @@ public class AlignAttribute : Attribute {
 //
 // Indicates that this array should be turned into a params
 //
-[AttributeUsage(AttributeTargets.Parameter, AllowMultiple=false)]
+[AttributeUsage (AttributeTargets.Parameter, AllowMultiple = false)]
 public class ParamsAttribute : Attribute {
 }
 
@@ -380,10 +380,10 @@ public class ParamsAttribute : Attribute {
 // declaration to specify what kind of bridge needs to be provided on
 // callback.   Either a Block style setup, or a C-style setup
 //
-[AttributeUsage(AttributeTargets.Parameter, AllowMultiple=false)]
+[AttributeUsage (AttributeTargets.Parameter, AllowMultiple = false)]
 public class BlockCallbackAttribute : Attribute { }
 
-[AttributeUsage(AttributeTargets.Parameter, AllowMultiple=false)]
+[AttributeUsage (AttributeTargets.Parameter, AllowMultiple = false)]
 public class CCallbackAttribute : Attribute { }
 
 
@@ -400,7 +400,7 @@ public class CCallbackAttribute : Attribute { }
 // If you do not specify it, it will use NSNotificationCenter.DefaultCenter,
 // you would typically use this to specify the code needed to get to it.
 //
-[AttributeUsage(AttributeTargets.Property, AllowMultiple=true)]
+[AttributeUsage (AttributeTargets.Property, AllowMultiple = true)]
 public class NotificationAttribute : Attribute {
 	public NotificationAttribute (Type t) { Type = t; }
 	public NotificationAttribute (Type t, string notificationCenter) { Type = t; NotificationCenter = notificationCenter; }
@@ -417,7 +417,7 @@ public class NotificationAttribute : Attribute {
 // the key, instead of extracting a value out of the
 // userInfo dictionary
 //
-[AttributeUsage(AttributeTargets.Property, AllowMultiple=true)]
+[AttributeUsage (AttributeTargets.Property, AllowMultiple = true)]
 public class ProbePresenceAttribute : Attribute {
 	public ProbePresenceAttribute () {}
 }
@@ -589,11 +589,11 @@ public class MarshalDirectiveAttribute : Attribute {
 // In the ZeroCopy case it is a problem because we pass handles to stack-allocated
 // strings that stop existing after the invocation is over.
 //
-[AttributeUsage(AttributeTargets.Assembly|AttributeTargets.Method|AttributeTargets.Interface, AllowMultiple=true)]
+[AttributeUsage (AttributeTargets.Assembly | AttributeTargets.Method | AttributeTargets.Interface, AllowMultiple = true)]
 public class ZeroCopyStringsAttribute : Attribute {
 }
 
-[AttributeUsage(AttributeTargets.Method|AttributeTargets.Property, AllowMultiple=true)]
+[AttributeUsage (AttributeTargets.Method | AttributeTargets.Property, AllowMultiple = true)]
 public class SnippetAttribute : Attribute {
 	public SnippetAttribute (string s)
 	{
@@ -626,7 +626,7 @@ public class PostSnippetAttribute : SnippetAttribute {
 //
 // Code to run from a generated Dispose method
 //
-[AttributeUsage(AttributeTargets.Interface, AllowMultiple=true)]
+[AttributeUsage (AttributeTargets.Interface, AllowMultiple = true)]
 public class DisposeAttribute : SnippetAttribute {
 	public DisposeAttribute (string s) : base (s) {}
 }
@@ -638,7 +638,7 @@ public class DisposeAttribute : SnippetAttribute {
 // the UIApperance proxies, so we must label all the options.   This will be a list that
 // is organically grown as we find them
 //
-[AttributeUsage (AttributeTargets.Property|AttributeTargets.Method, AllowMultiple=false)]
+[AttributeUsage (AttributeTargets.Property | AttributeTargets.Method, AllowMultiple = false)]
 public class AppearanceAttribute : Attribute {
 	public AppearanceAttribute () {}
 }
@@ -656,7 +656,7 @@ public class AppearanceAttribute : Attribute {
 //     [Export ("method_in_the_objective_c_category")]
 //     void ThisWillBecome_a_c_sharp_extension_method_in_class_UIViewExtensions ();
 // }
-[AttributeUsage (AttributeTargets.Interface, AllowMultiple=false)]
+[AttributeUsage (AttributeTargets.Interface, AllowMultiple = false)]
 public class CategoryAttribute : Attribute {
 	public bool AllowStaticMembers;
 	public CategoryAttribute () { }
@@ -695,7 +695,7 @@ public class DesignatedInitializerAttribute : Attribute {
 //[Export ("saveAccount:withCompletionHandler:")] [Async]
 //void SaveAccount (ACAccount account, ACAccountStoreSaveCompletionHandler completionHandler);
 // }
-[AttributeUsage (AttributeTargets.Method, AllowMultiple=false)]
+[AttributeUsage (AttributeTargets.Method, AllowMultiple = false)]
 public class AsyncAttribute : Attribute {
 
 	//This will automagically generate the async method.
@@ -756,7 +756,7 @@ public class AsyncAttribute : Attribute {
 //	    BarOptions BarDictionary { get; set; }
 //  }
 //
-[AttributeUsage (AttributeTargets.Interface | AttributeTargets.Property, AllowMultiple=false)]
+[AttributeUsage (AttributeTargets.Interface | AttributeTargets.Property, AllowMultiple = false)]
 public class StrongDictionaryAttribute : Attribute {
 	public StrongDictionaryAttribute ()
 	{
@@ -774,7 +774,7 @@ public class StrongDictionaryAttribute : Attribute {
 // When this attribtue is applied to a property, currently it merely adds
 // a DebuggerBrowsable(Never) to the property, to prevent a family of crashes
 //
-[AttributeUsage (AttributeTargets.Property, AllowMultiple=false)]
+[AttributeUsage (AttributeTargets.Property, AllowMultiple = false)]
 public class OptionalImplementationAttribute : Attribute {
 	public OptionalImplementationAttribute () {}
 }
@@ -784,7 +784,7 @@ public class OptionalImplementationAttribute : Attribute {
 // time but when you need the final binding assembly to include your own
 // custom implementation
 //
-[AttributeUsage (AttributeTargets.Method | AttributeTargets.Property, AllowMultiple=false)]
+[AttributeUsage (AttributeTargets.Method | AttributeTargets.Property, AllowMultiple = false)]
 public class ManualAttribute : Attribute {
 	public ManualAttribute () {}
 }

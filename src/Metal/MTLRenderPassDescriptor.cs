@@ -1,4 +1,4 @@
-﻿#if XAMCORE_2_0 && !COREBUILD
+#if XAMCORE_2_0 && !COREBUILD
 using System;
 
 namespace XamCore.Metal {

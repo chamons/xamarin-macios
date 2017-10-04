@@ -18,7 +18,7 @@ using System;
 
 namespace XamCore.AddressBookUI {
 
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Contacts' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Contacts' API instead.")]
 	[BaseType (typeof (UIViewController))]
 	interface ABNewPersonViewController {
 		[Export ("initWithNibName:bundle:")]
@@ -42,7 +42,7 @@ namespace XamCore.AddressBookUI {
 		NSObject WeakDelegate { get; set; }
 	}
 
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Contacts' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Contacts' API instead.")]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -57,7 +57,7 @@ namespace XamCore.AddressBookUI {
 #endif
 	}
 
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Contacts' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Contacts' API instead.")]
 	[BaseType (typeof (UINavigationController))]
 	interface ABPeoplePickerNavigationController : UIAppearance {
 		[Export ("initWithNibName:bundle:")]
@@ -82,23 +82,23 @@ namespace XamCore.AddressBookUI {
 		[Export ("peoplePickerDelegate", ArgumentSemantic.Assign)]
 		NSObject WeakDelegate {get; set;}
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("predicateForEnablingPerson", ArgumentSemantic.Copy)]
 		[NullAllowed]
 		NSPredicate PredicateForEnablingPerson { get; set; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("predicateForSelectionOfPerson", ArgumentSemantic.Copy)]
 		[NullAllowed]
 		NSPredicate PredicateForSelectionOfPerson { get; set; }
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("predicateForSelectionOfProperty", ArgumentSemantic.Copy)]
 		[NullAllowed]
 		NSPredicate PredicateForSelectionOfProperty { get; set; }
 	}
 
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Contacts' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Contacts' API instead.")]
 #if XAMCORE_3_0
 	[BaseType (typeof (NSObject))]
 #else
@@ -107,7 +107,7 @@ namespace XamCore.AddressBookUI {
 	[Model]
 	[Protocol]
 	interface ABPeoplePickerNavigationControllerDelegate {
-		[Availability (Deprecated = Platform.iOS_8_0, Message = "Use 'DidSelectPerson' instead (or 'ABPeoplePickerNavigationController.PredicateForSelectionOfPerson').")]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use 'DidSelectPerson' instead (or 'ABPeoplePickerNavigationController.PredicateForSelectionOfPerson').")]
 		[Export ("peoplePickerNavigationController:shouldContinueAfterSelectingPerson:")]
 #if XAMCORE_2_0
 		bool ShouldContinue (ABPeoplePickerNavigationController peoplePicker, ABPerson selectedPerson);
@@ -115,7 +115,7 @@ namespace XamCore.AddressBookUI {
 		bool ShouldContinue (ABPeoplePickerNavigationController peoplePicker, IntPtr selectedPerson);
 #endif
 
-		[Availability (Deprecated = Platform.iOS_8_0, Message = "Use 'DidSelectPerson' instead (or 'ABPeoplePickerNavigationController.PredicateForSelectionOfProperty').")]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use 'DidSelectPerson' instead (or 'ABPeoplePickerNavigationController.PredicateForSelectionOfProperty').")]
 		[Export ("peoplePickerNavigationController:shouldContinueAfterSelectingPerson:property:identifier:")]
 #if XAMCORE_2_0
 		bool ShouldContinue (ABPeoplePickerNavigationController peoplePicker, ABPerson selectedPerson, int /* ABPropertyId = int32 */ propertyId, int /* ABMultiValueIdentifier = int32 */ identifier);
@@ -138,7 +138,7 @@ namespace XamCore.AddressBookUI {
 #endif
 		}
 
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Contacts' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Contacts' API instead.")]
 	[BaseType (typeof (UIViewController))]
 	interface ABPersonViewController : UIViewControllerRestoration {
 		[Export ("initWithNibName:bundle:")]
@@ -181,8 +181,8 @@ namespace XamCore.AddressBookUI {
 		void SetHighlightedItemForProperty (int /* ABPropertyId = int32 */ property, int /* ABMultiValueIdentifier = int32 */ identifier);
 	}
 
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Contacts' API instead.")]
-	[Static, iOS (8,0)]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Contacts' API instead.")]
+	[Static, Introduced (PlatformName.iOS, 8, 0)]
 	interface ABPersonPredicateKey {
 		[Field ("ABPersonBirthdayProperty")]
 		NSString Birthday { get; }
@@ -254,7 +254,7 @@ namespace XamCore.AddressBookUI {
 		NSString UrlAddresses { get; }
 	}
 
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Contacts' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Contacts' API instead.")]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -269,7 +269,7 @@ namespace XamCore.AddressBookUI {
 #endif
 	}
 
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Contacts' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Contacts' API instead.")]
 	[BaseType (typeof (UIViewController))]
 	interface ABUnknownPersonViewController {
 		[Export ("initWithNibName:bundle:")]
@@ -305,7 +305,7 @@ namespace XamCore.AddressBookUI {
 		NSObject WeakDelegate {get; set;}
 	}
 
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Contacts' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Contacts' API instead.")]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]

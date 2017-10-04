@@ -36,7 +36,7 @@ namespace XamCore.CoreServices {
 			this.handle = handle;
 		}
 
-		[DllImport (Constants.CFNetworkLibrary, EntryPoint="CFHTTPAuthenticationGetTypeID")]
+		[DllImport (Constants.CFNetworkLibrary, EntryPoint = "CFHTTPAuthenticationGetTypeID")]
 		public extern static /* CFTypeID */ nint GetTypeID ();
 
 		~CFHTTPAuthentication ()

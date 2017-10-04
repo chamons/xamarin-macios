@@ -20,31 +20,31 @@ namespace OpenTK.Platform.MacOS.Carbon
         // CGSize -> HISize
         // CGRect -> HIRect
 
-        [DllImport(appServices,EntryPoint="CGGetActiveDisplayList")]
+        [DllImport (appServices, EntryPoint = "CGGetActiveDisplayList")]
         internal unsafe static extern CGDisplayErr GetActiveDisplayList(int maxDisplays, IntPtr* activeDspys, out int dspyCnt);
 
-        [DllImport(appServices,EntryPoint="CGMainDisplayID")]
+        [DllImport (appServices, EntryPoint = "CGMainDisplayID")]
         internal static extern IntPtr MainDisplayID();
 
-        [DllImport(appServices,EntryPoint="CGDisplayPixelsWide")]
+        [DllImport (appServices, EntryPoint = "CGDisplayPixelsWide")]
         internal static extern int DisplayPixelsWide(IntPtr display);
 
-        [DllImport(appServices,EntryPoint="CGDisplayPixelsHigh")]
+        [DllImport (appServices, EntryPoint = "CGDisplayPixelsHigh")]
         internal static extern int DisplayPixelsHigh(IntPtr display);
 
-        [DllImport(appServices,EntryPoint="CGDisplayCurrentMode")]
+        [DllImport (appServices, EntryPoint = "CGDisplayCurrentMode")]
         internal static extern IntPtr DisplayCurrentMode(IntPtr display);
 
-        [DllImport(appServices,EntryPoint="CGDisplayCapture")]
+        [DllImport (appServices, EntryPoint = "CGDisplayCapture")]
         internal static extern CGDisplayErr DisplayCapture(IntPtr display);
 
-        [DllImport(appServices,EntryPoint="CGDisplayRelease")]
+        [DllImport (appServices, EntryPoint = "CGDisplayRelease")]
         internal static extern CGDisplayErr DisplayRelease(IntPtr display);
 
-        [DllImport(appServices, EntryPoint = "CGDisplayAvailableModes")]
+        [DllImport (appServices, EntryPoint = "CGDisplayAvailableModes")]
         internal static extern IntPtr DisplayAvailableModes(IntPtr display);
 
-        [DllImport(appServices, EntryPoint = "CGDisplaySwitchToMode")]
+        [DllImport (appServices, EntryPoint = "CGDisplaySwitchToMode")]
         internal static extern IntPtr DisplaySwitchToMode(IntPtr display, IntPtr displayMode);
 
     }

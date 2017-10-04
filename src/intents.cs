@@ -1,4 +1,4 @@
-﻿//
+//
 // Intents bindings
 //
 // Authors:
@@ -29,7 +29,7 @@ namespace XamCore.Intents {
 	[Unavailable (PlatformName.MacOSX)]
 	[Unavailable (PlatformName.WatchOS)]
 	[Native]
-	public enum INBookRestaurantReservationIntentCode : nint {
+	public enum INBookRestaurantReservationIntentCode : long {
 		Success = 0,
 		Denied,
 		Failure,
@@ -43,7 +43,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Native]
 	[Flags]
-	public enum INCallCapabilityOptions : nuint {
+	public enum INCallCapabilityOptions : ulong {
 		AudioCall = (1 << 0),
 		VideoCall = (1 << 1)
 	}
@@ -52,14 +52,14 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Native]
-	public enum INCallRecordType : nint {
+	public enum INCallRecordType : long {
 		Unknown = 0,
 		Outgoing,
 		Missed,
 		Received,
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		Latest,
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		Voicemail,
 	}
 
@@ -67,24 +67,24 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INCancelWorkoutIntentResponseCode : nint {
+	public enum INCancelWorkoutIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
-		[Deprecated (PlatformName.iOS, 11, 0, message:"Use 'HandleInApp' instead.")] // yup just iOS
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'HandleInApp' instead.")] // yup just iOS
 		ContinueInApp,
 		Failure,
 		FailureRequiringAppLaunch,
 		FailureNoMatchingWorkout,
-		[NoWatch, iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 11, 0)]
 		Success,
-		[NoWatch, iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 11, 0)]
 		HandleInApp,
 	}
 
 	[Introduced (PlatformName.iOS, 10, 0)]
 	[Unavailable (PlatformName.MacOSX)] // xtro mac !unknown-native-enum! INCarAirCirculationMode bound
 	[Native]
-	public enum INCarAirCirculationMode : nint {
+	public enum INCarAirCirculationMode : long {
 		Unknown = 0,
 		FreshAir,
 		RecirculateAir
@@ -93,7 +93,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.iOS, 10, 0)]
 	[Unavailable (PlatformName.MacOSX)] // xtro mac !unknown-native-enum! INCarAudioSource bound
 	[Native]
-	public enum INCarAudioSource : nint {
+	public enum INCarAudioSource : long {
 		Unknown = 0,
 		CarPlay,
 		iPod,
@@ -109,7 +109,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.iOS, 10, 0)]
 	[Unavailable (PlatformName.MacOSX)] // xtro mac !unknown-native-enum! INCarDefroster bound
 	[Native]
-	public enum INCarDefroster : nint {
+	public enum INCarDefroster : long {
 		Unknown = 0,
 		Front,
 		Rear,
@@ -119,7 +119,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.iOS, 10, 0)]
 	[Unavailable (PlatformName.MacOSX)] // xtro mac !unknown-native-enum! INCarSeat bound
 	[Native]
-	public enum INCarSeat : nint {
+	public enum INCarSeat : long {
 		Unknown = 0,
 		Driver,
 		Passenger,
@@ -139,7 +139,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Native]
-	public enum INConditionalOperator : nint {
+	public enum INConditionalOperator : long {
 		All = 0,
 		Any,
 		None
@@ -149,24 +149,24 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INEndWorkoutIntentResponseCode : nint {
+	public enum INEndWorkoutIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
-		[Deprecated (PlatformName.iOS, 11, 0, message:"Use 'HandleInApp' instead.")] // yup just iOS
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'HandleInApp' instead.")] // yup just iOS
 		ContinueInApp,
 		Failure,
 		FailureRequiringAppLaunch,
 		FailureNoMatchingWorkout,
-		[NoWatch, iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 11, 0)]
 		Success,
-		[NoWatch, iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 11, 0)]
 		HandleInApp,
 	}
 
 	[Introduced (PlatformName.iOS, 10, 0)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INGetAvailableRestaurantReservationBookingDefaultsIntentResponseCode : nint {
+	public enum INGetAvailableRestaurantReservationBookingDefaultsIntentResponseCode : long {
 		Success,
 		Failure,
 		Unspecified
@@ -175,7 +175,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.iOS, 10, 0)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INGetAvailableRestaurantReservationBookingsIntentCode : nint {
+	public enum INGetAvailableRestaurantReservationBookingsIntentCode : long {
 		Success,
 		Failure,
 		FailureRequestUnsatisfiable,
@@ -185,7 +185,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.iOS, 10, 0)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INGetRestaurantGuestIntentResponseCode : nint {
+	public enum INGetRestaurantGuestIntentResponseCode : long {
 		Success,
 		Failure
 	}
@@ -194,7 +194,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INGetRideStatusIntentResponseCode : nint {
+	public enum INGetRideStatusIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		[Deprecated (PlatformName.iOS, 11, 0)]
@@ -210,7 +210,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.iOS, 10, 0)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INGetUserCurrentRestaurantReservationBookingsIntentResponseCode : nint {
+	public enum INGetUserCurrentRestaurantReservationBookingsIntentResponseCode : long {
 		Success,
 		Failure,
 		FailureRequestUnsatisfiable,
@@ -222,7 +222,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Native]
 	[ErrorDomain ("INIntentErrorDomain")]
-	public enum INIntentErrorCode : nint {
+	public enum INIntentErrorCode : long {
 		InteractionOperationNotSupported = 1900,
 		DonatingInteraction = 1901,
 		DeletingAllInteractions = 1902,
@@ -242,7 +242,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Native]
-	public enum INIntentHandlingStatus : nint {
+	public enum INIntentHandlingStatus : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -255,7 +255,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Native]
-	public enum INInteractionDirection : nint {
+	public enum INInteractionDirection : long {
 		Unspecified = 0,
 		Outgoing,
 		Incoming
@@ -265,7 +265,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INListRideOptionsIntentResponseCode : nint {
+	public enum INListRideOptionsIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		[Deprecated (PlatformName.iOS, 11, 0)]
@@ -278,7 +278,7 @@ namespace XamCore.Intents {
 		FailureRequiringAppLaunchNoServiceInArea,
 		FailureRequiringAppLaunchServiceTemporarilyUnavailable,
 		FailureRequiringAppLaunchPreviousRideNeedsCompletion,
-		[iOS (11,0), Watch (4,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		FailurePreviousRideNeedsFeedback,
 	}
 
@@ -286,13 +286,13 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Native]
-	public enum INMessageAttribute : nint {
+	public enum INMessageAttribute : long {
 		Unknown = 0,
 		Read,
 		Unread,
 		Flagged,
 		Unflagged,
-		[iOS (11,0), Mac (10,13, onlyOn64:true), Watch (4,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.WatchOS, 4, 0)]
 		Played,
 	}
 
@@ -301,12 +301,12 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Native]
 	[Flags]
-	public enum INMessageAttributeOptions : nuint {
+	public enum INMessageAttributeOptions : ulong {
 		Read = (1 << 0),
 		Unread = (1 << 1),
 		Flagged = (1 << 2),
 		Unflagged = (1 << 3),
-		[iOS (11,0), Mac (10,13, onlyOn64:true), Watch (4,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.WatchOS, 4, 0)]
 		Played = (1UL << 4),
 	}
 
@@ -314,7 +314,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INPauseWorkoutIntentResponseCode : nint {
+	public enum INPauseWorkoutIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'HandleInApp' instead.")] // yup just iOS
@@ -322,9 +322,9 @@ namespace XamCore.Intents {
 		Failure,
 		FailureRequiringAppLaunch,
 		FailureNoMatchingWorkout,
-		[NoWatch, iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 11, 0)]
 		Success,
-		[NoWatch, iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 11, 0)]
 		HandleInApp,
 	}
 
@@ -332,7 +332,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INPaymentMethodType : nint {
+	public enum INPaymentMethodType : long {
 		Unknown = 0,
 		Checking,
 		Savings,
@@ -348,7 +348,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INPaymentStatus : nint {
+	public enum INPaymentStatus : long {
 		Unknown = 0,
 		Pending,
 		Completed,
@@ -358,7 +358,7 @@ namespace XamCore.Intents {
 	}
 
 	[Native]
-	public enum INPersonSuggestionType : nint {
+	public enum INPersonSuggestionType : long {
 		SocialProfile = 1,
 		InstantMessageAddress
 	}
@@ -368,7 +368,7 @@ namespace XamCore.Intents {
 	[Unavailable (PlatformName.MacOSX)] // xtro mac !unknown-native-enum! INPhotoAttributeOptions bound
 	[Native]
 	[Flags]
-	public enum INPhotoAttributeOptions : nuint {
+	public enum INPhotoAttributeOptions : ulong {
 		Photo = (1 << 0),
 		Video = (1 << 1),
 		Gif = (1 << 2),
@@ -398,7 +398,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.iOS, 10, 0)]
 	[Unavailable (PlatformName.MacOSX)] // xtro mac !unknown-native-enum! INRadioType bound
 	[Native]
-	public enum INRadioType : nint {
+	public enum INRadioType : long {
 		Unknown = 0,
 		AM,
 		FM,
@@ -410,7 +410,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.iOS, 10, 0)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INRelativeReference : nint {
+	public enum INRelativeReference : long {
 		Unknown = 0,
 		Next,
 		Previous
@@ -419,7 +419,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.iOS, 10, 0)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INRelativeSetting : nint {
+	public enum INRelativeSetting : long {
 		Unknown = 0,
 		Lowest,
 		Lower,
@@ -431,7 +431,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INRequestPaymentIntentResponseCode : nint {
+	public enum INRequestPaymentIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -443,7 +443,7 @@ namespace XamCore.Intents {
 		FailurePaymentsAmountAboveMaximum,
 		FailurePaymentsCurrencyUnsupported,
 		FailureNoBankAccount,
-		[iOS (11,0), Watch (4,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		FailureNotEligible,
 	}
 
@@ -451,7 +451,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INRequestRideIntentResponseCode : nint {
+	public enum INRequestRideIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		[Deprecated (PlatformName.iOS, 11, 0)]
@@ -469,7 +469,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.iOS, 10, 0)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INRestaurantReservationUserBookingStatus : nuint {
+	public enum INRestaurantReservationUserBookingStatus : ulong {
 		Pending,
 		Confirmed,
 		Denied
@@ -479,7 +479,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INResumeWorkoutIntentResponseCode : nint {
+	public enum INResumeWorkoutIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'HandleInApp' instead.")] // yup just iOS
@@ -487,9 +487,9 @@ namespace XamCore.Intents {
 		Failure,
 		FailureRequiringAppLaunch,
 		FailureNoMatchingWorkout,
-		[NoWatch, iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 11, 0)]
 		Success,
-		[NoWatch, iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 11, 0)]
 		HandleInApp,
 	}
 
@@ -497,7 +497,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INRidePhase : nint {
+	public enum INRidePhase : long {
 		Unknown = 0,
 		Received,
 		Confirmed,
@@ -511,7 +511,7 @@ namespace XamCore.Intents {
 	[Unavailable (PlatformName.MacOSX)]
 	[Unavailable (PlatformName.WatchOS)]
 	[Native]
-	public enum INSaveProfileInCarIntentResponseCode : nint {
+	public enum INSaveProfileInCarIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -524,7 +524,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Native]
-	public enum INSearchCallHistoryIntentResponseCode : nint {
+	public enum INSearchCallHistoryIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		ContinueInApp,
@@ -533,9 +533,9 @@ namespace XamCore.Intents {
 		[Introduced (PlatformName.iOS, 10, 2)]
 		[Introduced (PlatformName.MacOSX, 10, 12, 2, PlatformArchitecture.Arch64)]
 		FailureAppConfigurationRequired,
-		[iOS (11,0), Mac (10,13, onlyOn64:true), Watch (4,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.WatchOS, 4, 0)]
 		InProgress,
-		[iOS (11,0), Mac (10,13, onlyOn64:true), Watch (4,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.WatchOS, 4, 0)]
 		Success,
 	}
 
@@ -543,7 +543,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Native]
-	public enum INSearchForMessagesIntentResponseCode : nint {
+	public enum INSearchForMessagesIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -551,7 +551,7 @@ namespace XamCore.Intents {
 		Failure,
 		FailureRequiringAppLaunch,
 		FailureMessageServiceNotAvailable,
-		[iOS (11,0), Mac (10,13, onlyOn64:true), Watch (4,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.WatchOS, 4, 0)]
 		FailureMessageTooManyResults,
 	}
 
@@ -559,7 +559,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INSearchForPhotosIntentResponseCode : nint {
+	public enum INSearchForPhotosIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		ContinueInApp,
@@ -574,7 +574,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Native]
-	public enum INSendMessageIntentResponseCode : nint {
+	public enum INSendMessageIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -588,7 +588,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INSendPaymentIntentResponseCode : nint {
+	public enum INSendPaymentIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -610,7 +610,7 @@ namespace XamCore.Intents {
 	[Unavailable (PlatformName.MacOSX)]
 	[Unavailable (PlatformName.WatchOS)]
 	[Native]
-	public enum INSetAudioSourceInCarIntentResponseCode : nint {
+	public enum INSetAudioSourceInCarIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -623,7 +623,7 @@ namespace XamCore.Intents {
 	[Unavailable (PlatformName.MacOSX)]
 	[Unavailable (PlatformName.WatchOS)]
 	[Native]
-	public enum INSetClimateSettingsInCarIntentResponseCode : nint {
+	public enum INSetClimateSettingsInCarIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -636,7 +636,7 @@ namespace XamCore.Intents {
 	[Unavailable (PlatformName.MacOSX)]
 	[Unavailable (PlatformName.WatchOS)]
 	[Native]
-	public enum INSetDefrosterSettingsInCarIntentResponseCode : nint {
+	public enum INSetDefrosterSettingsInCarIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -649,7 +649,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Unavailable (PlatformName.WatchOS)]
 	[Native]
-	public enum INSetMessageAttributeIntentResponseCode : nint {
+	public enum INSetMessageAttributeIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -664,7 +664,7 @@ namespace XamCore.Intents {
 	[Unavailable (PlatformName.MacOSX)]
 	[Unavailable (PlatformName.WatchOS)]
 	[Native]
-	public enum INSetProfileInCarIntentResponseCode : nint {
+	public enum INSetProfileInCarIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -677,7 +677,7 @@ namespace XamCore.Intents {
 	[Unavailable (PlatformName.MacOSX)]
 	[Unavailable (PlatformName.WatchOS)]
 	[Native]
-	public enum INSetRadioStationIntentResponseCode : nint {
+	public enum INSetRadioStationIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -691,7 +691,7 @@ namespace XamCore.Intents {
 	[Unavailable (PlatformName.MacOSX)]
 	[Unavailable (PlatformName.WatchOS)]
 	[Native]
-	public enum INSetSeatSettingsInCarIntentResponseCode : nint {
+	public enum INSetSeatSettingsInCarIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -704,7 +704,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INSiriAuthorizationStatus : nint {
+	public enum INSiriAuthorizationStatus : long {
 		NotDetermined = 0,
 		Restricted,
 		Denied,
@@ -715,7 +715,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Native]
-	public enum INStartAudioCallIntentResponseCode : nint {
+	public enum INStartAudioCallIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		ContinueInApp,
@@ -727,9 +727,9 @@ namespace XamCore.Intents {
 		[Introduced (PlatformName.iOS, 10, 2)]
 		[Introduced (PlatformName.MacOSX, 10, 12, 2, PlatformArchitecture.Arch64)]
 		FailureCallingServiceNotAvailable,
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		FailureContactNotSupportedByApp,
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		FailureNoValidNumber,
 	}
 
@@ -737,7 +737,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INStartPhotoPlaybackIntentResponseCode : nint {
+	public enum INStartPhotoPlaybackIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		ContinueInApp,
@@ -751,7 +751,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Unavailable (PlatformName.WatchOS)]
 	[Native]
-	public enum INStartVideoCallIntentResponseCode : nint {
+	public enum INStartVideoCallIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		ContinueInApp,
@@ -763,9 +763,9 @@ namespace XamCore.Intents {
 		[Introduced (PlatformName.iOS, 10, 2)]
 		[Introduced (PlatformName.MacOSX, 10, 12, 2, PlatformArchitecture.Arch64)]
 		FailureCallingServiceNotAvailable,
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		FailureContactNotSupportedByApp,
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		FailureInvalidNumber,
 	}
 
@@ -773,7 +773,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INStartWorkoutIntentResponseCode : nint {
+	public enum INStartWorkoutIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		ContinueInApp,
@@ -781,9 +781,9 @@ namespace XamCore.Intents {
 		FailureRequiringAppLaunch,
 		FailureOngoingWorkout,
 		FailureNoMatchingWorkout,
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		Success,
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		HandleInApp,
 	}
 
@@ -791,7 +791,7 @@ namespace XamCore.Intents {
 	[Unavailable (PlatformName.MacOSX)]
 	[Unavailable (PlatformName.WatchOS)]
 	[Native]
-	public enum INVocabularyStringType : nint {
+	public enum INVocabularyStringType : long {
 		ContactName = 1,
 		ContactGroupName,
 		PhotoTag = 100,
@@ -804,9 +804,9 @@ namespace XamCore.Intents {
 		PaymentsOrganizationName = 400,
 		[Introduced (PlatformName.iOS, 10, 3)]
 		PaymentsAccountNickname,
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		NotebookItemTitle = 500,
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		NotebookItemGroupName,
 	}
 
@@ -814,7 +814,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)] // xtro mac !unknown-native-enum! INWorkoutGoalUnitType bound
 	[Native]
-	public enum INWorkoutGoalUnitType : nint {
+	public enum INWorkoutGoalUnitType : long {
 		Unknown = 0,
 		Inch,
 		Meter,
@@ -832,7 +832,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)] // xtro mac !unknown-native-enum! INWorkoutLocationType bound
 	[Native]
-	public enum INWorkoutLocationType : nint {
+	public enum INWorkoutLocationType : long {
 		Unknown = 0,
 		Outdoor,
 		Indoor
@@ -842,7 +842,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Native]
-	public enum INPersonHandleType : nint {
+	public enum INPersonHandleType : long {
 		Unknown = 0,
 		EmailAddress,
 		PhoneNumber
@@ -852,7 +852,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INAccountType : nint {
+	public enum INAccountType : long {
 		Unknown = 0,
 		Checking,
 		Credit,
@@ -867,7 +867,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INActivateCarSignalIntentResponseCode : nint {
+	public enum INActivateCarSignalIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -880,16 +880,16 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INAmountType : nint {
+	public enum INAmountType : long {
 		Unknown = 0,
 		MinimumDue,
 		AmountDue,
 		CurrentBalance,
-		[iOS (11,0), Watch (4,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		MaximumTransferAmount,
-		[iOS (11,0), Watch (4,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		MinimumTransferAmount,
-		[iOS (11,0), Watch (4,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		StatementBalance,
 	}
 
@@ -897,7 +897,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INBillType : nint {
+	public enum INBillType : long {
 		Unknown = 0,
 		AutoInsurance,
 		Cable,
@@ -928,7 +928,7 @@ namespace XamCore.Intents {
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
 	[Flags]
-	public enum INCarSignalOptions : nuint {
+	public enum INCarSignalOptions : ulong {
 		Audible = (1 << 0),
 		Visible = (1 << 1),
 	}
@@ -937,7 +937,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INGetCarLockStatusIntentResponseCode : nint {
+	public enum INGetCarLockStatusIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -950,7 +950,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INGetCarPowerLevelStatusIntentResponseCode : nint {
+	public enum INGetCarPowerLevelStatusIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -963,7 +963,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INPayBillIntentResponseCode : nint {
+	public enum INPayBillIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -978,7 +978,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INSearchForBillsIntentResponseCode : nint {
+	public enum INSearchForBillsIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -993,7 +993,7 @@ namespace XamCore.Intents {
 	[Introduced (PlatformName.WatchOS, 3, 2)]
 	[Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum INSetCarLockStatusIntentResponseCode : nint {
+	public enum INSetCarLockStatusIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -1002,9 +1002,9 @@ namespace XamCore.Intents {
 		FailureRequiringAppLaunch,
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INAddTasksIntentResponseCode : nint {
+	public enum INAddTasksIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -1013,9 +1013,9 @@ namespace XamCore.Intents {
 		FailureRequiringAppLaunch,
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INAppendToNoteIntentResponseCode : nint {
+	public enum INAppendToNoteIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -1025,26 +1025,26 @@ namespace XamCore.Intents {
 		FailureCannotUpdatePasswordProtectedNote,
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INBalanceType : nint {
+	public enum INBalanceType : long {
 		Unknown = 0,
 		Money,
 		Points,
 		Miles,
 	}
 
-	[Watch (3,2), Mac (10,12, onlyOn64:true), iOS (10,0)]
+	[Introduced (PlatformName.WatchOS, 3, 2), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
-	public enum INCallCapability : nint {
+	public enum INCallCapability : long {
 		Unknown = 0,
 		AudioCall,
 		VideoCall,
 	}
 
-	[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INCallDestinationType : nint {
+	public enum INCallDestinationType : long {
 		Unknown = 0,
 		Normal,
 		Emergency,
@@ -1052,10 +1052,10 @@ namespace XamCore.Intents {
 		Redial,
 	}
 
-	[Watch (3,2), Mac (10,12, onlyOn64:true), iOS (10,0)]
+	[Introduced (PlatformName.WatchOS, 3, 2), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
 	[Flags]
-	public enum INCallRecordTypeOptions : nuint {
+	public enum INCallRecordTypeOptions : ulong {
 		Outgoing = (1 << 0),
 		Missed = (1 << 1),
 		Received = (1 << 2),
@@ -1063,29 +1063,18 @@ namespace XamCore.Intents {
 		Voicemail = (1 << 4),
 	}
 
-	[NoWatch, NoMac, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INCancelRideIntentResponseCode : nint {
+	public enum INCancelRideIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		Success,
 		Failure,
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INCreateNoteIntentResponseCode : nint {
-		Unspecified = 0,
-		Ready,
-		InProgress,
-		Success,
-		Failure,
-		FailureRequiringAppLaunch,
-	}
-
-	[Watch (4,0), NoMac, iOS (11,0)]
-	[Native]
-	public enum INCreateTaskListIntentResponseCode : nint {
+	public enum INCreateNoteIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -1094,18 +1083,29 @@ namespace XamCore.Intents {
 		FailureRequiringAppLaunch,
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INDateSearchType : nint {
+	public enum INCreateTaskListIntentResponseCode : long {
+		Unspecified = 0,
+		Ready,
+		InProgress,
+		Success,
+		Failure,
+		FailureRequiringAppLaunch,
+	}
+
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
+	[Native]
+	public enum INDateSearchType : long {
 		Unknown = 0,
 		ByDueDate,
 		ByModifiedDate,
 		ByCreatedDate,
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INGetVisualCodeIntentResponseCode : nint {
+	public enum INGetVisualCodeIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		ContinueInApp,
@@ -1116,16 +1116,16 @@ namespace XamCore.Intents {
 		FailureAppConfigurationRequired,
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INLocationSearchType : nint {
+	public enum INLocationSearchType : long {
 		Unknown = 0,
 		ByLocationTrigger,
 	}
 
-	[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INMessageType : nint {
+	public enum INMessageType : long {
 		Unspecified = 0,
 		Text,
 		Audio,
@@ -1147,26 +1147,26 @@ namespace XamCore.Intents {
 		MediaAudio,
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INNoteContentType : nint {
+	public enum INNoteContentType : long {
 		Unknown = 0,
 		Text,
 		Image,
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INNotebookItemType : nint {
+	public enum INNotebookItemType : long {
 		Unknown = 0,
 		Note,
 		TaskList,
 		Task,
 	}
 
-	[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INRecurrenceFrequency : nint {
+	public enum INRecurrenceFrequency : long {
 		Unknown = 0,
 		Minute,
 		Hourly,
@@ -1176,31 +1176,31 @@ namespace XamCore.Intents {
 		Yearly,
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INRequestPaymentCurrencyAmountUnsupportedReason : nint {
+	public enum INRequestPaymentCurrencyAmountUnsupportedReason : long {
 		AmountBelowMinimum = 1,
 		AmountAboveMaximum,
 		CurrencyUnsupported,
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INRequestPaymentPayerUnsupportedReason : nint {
+	public enum INRequestPaymentPayerUnsupportedReason : long {
 		CredentialsUnverified = 1,
 		NoAccount,
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INRideFeedbackTypeOptions : nuint {
+	public enum INRideFeedbackTypeOptions : ulong {
 		Rate = (1 << 0),
 		Tip = (1 << 1),
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INSearchForAccountsIntentResponseCode : nint {
+	public enum INSearchForAccountsIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -1211,9 +1211,9 @@ namespace XamCore.Intents {
 		FailureAccountNotFound,
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INSearchForNotebookItemsIntentResponseCode : nint {
+	public enum INSearchForNotebookItemsIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -1222,42 +1222,42 @@ namespace XamCore.Intents {
 		FailureRequiringAppLaunch,
 	}
 
-	[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INSendMessageRecipientUnsupportedReason : nint {
+	public enum INSendMessageRecipientUnsupportedReason : long {
 		NoAccount = 1,
 		Offline,
 		MessagingServiceNotEnabledForRecipient,
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INSendPaymentCurrencyAmountUnsupportedReason : nint {
+	public enum INSendPaymentCurrencyAmountUnsupportedReason : long {
 		AmountBelowMinimum = 1,
 		AmountAboveMaximum,
 		CurrencyUnsupported,
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INSendPaymentPayeeUnsupportedReason : nint {
+	public enum INSendPaymentPayeeUnsupportedReason : long {
 		CredentialsUnverified = 1,
 		InsufficientFunds,
 		NoAccount,
 	}
 
-	[NoWatch, NoMac, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INSendRideFeedbackIntentResponseCode : nint {
+	public enum INSendRideFeedbackIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		Success,
 		Failure,
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INSetTaskAttributeIntentResponseCode : nint {
+	public enum INSetTaskAttributeIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -1266,41 +1266,41 @@ namespace XamCore.Intents {
 		FailureRequiringAppLaunch,
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INSortType : nint {
+	public enum INSortType : long {
 		Unknown = 0,
 		AsIs,
 		ByDate,
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INSpatialEvent : nint {
+	public enum INSpatialEvent : long {
 		Unknown = 0,
 		Arrive,
 		Depart,
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INTaskStatus : nint {
+	public enum INTaskStatus : long {
 		Unknown = 0,
 		NotCompleted,
 		Completed,
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INTaskType : nint {
+	public enum INTaskType : long {
 		Unknown = 0,
 		NotCompletable,
 		Completable,
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INTransferMoneyIntentResponseCode : nint {
+	public enum INTransferMoneyIntentResponseCode : long {
 		Unspecified = 0,
 		Ready,
 		InProgress,
@@ -1311,9 +1311,9 @@ namespace XamCore.Intents {
 		FailureInsufficientFunds,
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum INVisualCodeType : nint {
+	public enum INVisualCodeType : long {
 		Unknown = 0,
 		Contact,
 		RequestPayment,
@@ -1590,9 +1590,9 @@ namespace XamCore.Intents {
 	[BaseType (typeof (INIntent))]
 	interface INBookRestaurantReservationIntent : NSCopying {
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("initWithRestaurant:bookingDateComponents:partySize:bookingIdentifier:guest:selectedOffer:guestProvidedSpecialRequestText:")]
-		IntPtr Constructor (INRestaurant restaurant, NSDateComponents bookingDateComponents, nuint partySize, [NullAllowed] string bookingIdentifier, [NullAllowed] INRestaurantGuest guest, [NullAllowed] INRestaurantOffer selectedOffer, [NullAllowed] string guestProvidedSpecialRequestText);
+		IntPtr Constructor (INRestaurant restaurant, NSDateComponents bookingDateComponents, ulong partySize, [NullAllowed] string bookingIdentifier, [NullAllowed] INRestaurantGuest guest, [NullAllowed] INRestaurantOffer selectedOffer, [NullAllowed] string guestProvidedSpecialRequestText);
 
 		[Export ("restaurant", ArgumentSemantic.Copy)]
 		INRestaurant Restaurant { get; set; }
@@ -1708,7 +1708,7 @@ namespace XamCore.Intents {
 	[DisableDefaultCtor]
 	interface INCallRecordTypeResolutionResult {
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("successWithResolvedCallRecordType:")]
@@ -1722,7 +1722,7 @@ namespace XamCore.Intents {
 		[Export ("successWithResolvedValue:")]
 		INCallRecordTypeResolutionResult SuccessWithResolvedValue (INCallRecordType resolvedValue);
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("confirmationRequiredWithCallRecordTypeToConfirm:")]
@@ -1813,7 +1813,7 @@ namespace XamCore.Intents {
 	[DisableDefaultCtor]
 	interface INCarAirCirculationModeResolutionResult {
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("successWithResolvedCarAirCirculationMode:")]
@@ -1825,7 +1825,7 @@ namespace XamCore.Intents {
 		[Export ("successWithResolvedValue:")]
 		INCarAirCirculationModeResolutionResult SuccessWithResolvedValue (INCarAirCirculationMode resolvedValue);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Static]
 		[Export ("confirmationRequiredWithCarAirCirculationModeToConfirm:")]
 		INCarAirCirculationModeResolutionResult ConfirmationRequiredWithCarAirCirculationModeToConfirm (INCarAirCirculationMode carAirCirculationModeToConfirm);
@@ -1861,7 +1861,7 @@ namespace XamCore.Intents {
 	[DisableDefaultCtor]
 	interface INCarAudioSourceResolutionResult {
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("successWithResolvedCarAudioSource:")]
@@ -1873,7 +1873,7 @@ namespace XamCore.Intents {
 		[Export ("successWithResolvedValue:")]
 		INCarAudioSourceResolutionResult SuccessWithResolvedValue (INCarAudioSource resolvedValue);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("confirmationRequiredWithCarAudioSourceToConfirm:")]
@@ -1910,7 +1910,7 @@ namespace XamCore.Intents {
 	[DisableDefaultCtor]
 	interface INCarDefrosterResolutionResult {
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("successWithResolvedCarDefroster:")]
@@ -1922,7 +1922,7 @@ namespace XamCore.Intents {
 		[Export ("successWithResolvedValue:")]
 		INCarDefrosterResolutionResult SuccessWithResolvedValue (INCarDefroster resolvedValue);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("confirmationRequiredWithCarDefrosterToConfirm:")]
@@ -1959,7 +1959,7 @@ namespace XamCore.Intents {
 	[DisableDefaultCtor]
 	interface INCarSeatResolutionResult {
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("successWithResolvedCarSeat:")]
@@ -1971,7 +1971,7 @@ namespace XamCore.Intents {
 		[Export ("successWithResolvedValue:")]
 		INCarSeatResolutionResult SuccessWithResolvedValue (INCarSeat resolvedValue);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("confirmationRequiredWithCarSeatToConfirm:")]
@@ -2068,11 +2068,11 @@ namespace XamCore.Intents {
 		[Export ("initWithStartDateComponents:endDateComponents:")]
 		IntPtr Constructor ([NullAllowed] NSDateComponents startDateComponents, [NullAllowed] NSDateComponents endDateComponents);
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("initWithEKRecurrenceRule:")]
 		IntPtr Constructor (EKRecurrenceRule recurrenceRule);
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("initWithStartDateComponents:endDateComponents:recurrenceRule:")]
 		[DesignatedInitializer]
 		IntPtr Constructor ([NullAllowed] NSDateComponents startDateComponents, [NullAllowed] NSDateComponents endDateComponents, [NullAllowed] INRecurrenceRule recurrenceRule);
@@ -2083,11 +2083,11 @@ namespace XamCore.Intents {
 		[NullAllowed, Export ("endDateComponents", ArgumentSemantic.Copy)]
 		NSDateComponents EndDateComponents { get; }
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("recurrenceRule", ArgumentSemantic.Copy)]
 		INRecurrenceRule RecurrenceRule { get; }
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("EKRecurrenceRule")]
 		[NullAllowed]
 		EKRecurrenceRule EKRecurrenceRule { get; }
@@ -2212,12 +2212,12 @@ namespace XamCore.Intents {
 	{
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface INNotebookDomainHandling : INCreateNoteIntentHandling, INAppendToNoteIntentHandling, INAddTasksIntentHandling, INCreateTaskListIntentHandling, INSetTaskAttributeIntentHandling, INSearchForNotebookItemsIntentHandling {
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface INVisualCodeDomainHandling : INGetVisualCodeIntentHandling {
 	}
@@ -2370,7 +2370,7 @@ namespace XamCore.Intents {
 	[BaseType (typeof (INIntent))]
 	interface INGetAvailableRestaurantReservationBookingDefaultsIntent {
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("initWithRestaurant:")]
 		IntPtr Constructor ([NullAllowed] INRestaurant restaurant);
 
@@ -2436,7 +2436,7 @@ namespace XamCore.Intents {
 	[BaseType (typeof (INIntent))]
 	interface INGetAvailableRestaurantReservationBookingsIntent : NSCopying {
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("initWithRestaurant:partySize:preferredBookingDateComponents:maximumNumberOfResults:earliestBookingDateForResults:latestBookingDateForResults:")]
 		IntPtr Constructor (INRestaurant restaurant, nuint partySize, [NullAllowed] NSDateComponents preferredBookingDateComponents, [NullAllowed] NSNumber maximumNumberOfResults, [NullAllowed] NSDate earliestBookingDateForResults, [NullAllowed] NSDate latestBookingDateForResults);
 
@@ -2638,11 +2638,11 @@ namespace XamCore.Intents {
 	[BaseType (typeof (INIntent))]
 	interface INGetUserCurrentRestaurantReservationBookingsIntent : NSCopying {
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("initWithRestaurant:reservationIdentifier:maximumNumberOfResults:earliestBookingDateForResults:")]
 		IntPtr Constructor ([NullAllowed] INRestaurant restaurant, [NullAllowed] string reservationIdentifier, [NullAllowed] NSNumber maximumNumberOfResults, [NullAllowed] NSDate earliestBookingDateForResults);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Wrap ("this (restaurant, reservationIdentifier, NSNumber.FromNInt (maximumNumberOfResults), earliestBookingDateForResults)")]
 		IntPtr Constructor ([NullAllowed] INRestaurant restaurant, [NullAllowed] string reservationIdentifier, nint maximumNumberOfResults, [NullAllowed] NSDate earliestBookingDateForResults);
 
@@ -2719,7 +2719,7 @@ namespace XamCore.Intents {
 		[Export ("imageWithURL:")]
 		INImage FromUrl (NSUrl url);
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Static]
 		[Export ("imageWithURL:width:height:")]
 		[return: NullAllowed]
@@ -2727,22 +2727,22 @@ namespace XamCore.Intents {
 
 		// INImage_IntentsUI (IntentsUI)
 
-		[NoMac, NoWatch]
+		[Unavailable (PlatformName.MacOSX), Unavailable (PlatformName.WatchOS)]
 		[Static]
 		[Export ("imageWithCGImage:")]
 		INImage FromImage (CGImage image);
 
-		[NoMac, NoWatch]
+		[Unavailable (PlatformName.MacOSX), Unavailable (PlatformName.WatchOS)]
 		[Static]
 		[Export ("imageWithUIImage:")]
 		INImage FromImage (UIImage image);
 
-		[NoMac, NoWatch]
+		[Unavailable (PlatformName.MacOSX), Unavailable (PlatformName.WatchOS)]
 		[Static]
 		[Export ("imageSizeForIntentResponse:")]
 		CGSize GetImageSize (INIntentResponse response);
 
-		[NoMac, NoWatch, iOS (11,0)]
+		[Unavailable (PlatformName.MacOSX), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 11, 0)]
 		[Async]
 		[Export ("fetchUIImageWithCompletion:")]
 		void FetchImage (Action<UIImage> completion);
@@ -2796,7 +2796,7 @@ namespace XamCore.Intents {
 		[Wrap ("INIntentIdentifierExtensions.GetValue (IdentifierString)")]
 		INIntentIdentifier? Identifier { get; }
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("intentDescription")]
 		string IntentDescription { get; }
 	}
@@ -2892,7 +2892,7 @@ namespace XamCore.Intents {
 		// From INParameter.h INInteraction ()
 
 		[Internal]
-		[iOS (11,0), Watch (4,0), NoMac]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX)]
 		[Export ("parameterValueForParameter:")]
 		IntPtr _GetParameterValue (INParameter parameter);
 	}
@@ -2971,12 +2971,12 @@ namespace XamCore.Intents {
 	[DisableDefaultCtor]
 	interface INMessage : NSCopying, NSSecureCoding {
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:messageType:")]
 		[DesignatedInitializer]
 		IntPtr Constructor (string identifier, [NullAllowed] string conversationIdentifier, [NullAllowed] string content, [NullAllowed] NSDate dateSent, [NullAllowed] INPerson sender, [NullAllowed] INPerson [] recipients, [NullAllowed] INSpeakableString groupName, INMessageType messageType);
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:messageType:")]
 		IntPtr Constructor (string identifier, [NullAllowed] string conversationIdentifier, [NullAllowed] string content, [NullAllowed] NSDate dateSent, [NullAllowed] INPerson sender, [NullAllowed] INPerson [] recipients, INMessageType messageType);
 
@@ -2986,7 +2986,7 @@ namespace XamCore.Intents {
 		[Export ("identifier")]
 		string Identifier { get; }
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("conversationIdentifier")]
 		string ConversationIdentifier { get; }
 
@@ -3002,11 +3002,11 @@ namespace XamCore.Intents {
 		[NullAllowed, Export ("recipients", ArgumentSemantic.Copy)]
 		INPerson [] Recipients { get; }
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("groupName", ArgumentSemantic.Copy)]
 		INSpeakableString GroupName { get; }
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("messageType")]
 		INMessageType MessageType { get; }
 	}
@@ -3018,7 +3018,7 @@ namespace XamCore.Intents {
 	[DisableDefaultCtor]
 	interface INMessageAttributeOptionsResolutionResult {
 
-		[Watch (4,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("successWithResolvedMessageAttributeOptions:")]
@@ -3032,7 +3032,7 @@ namespace XamCore.Intents {
 		[Export ("successWithResolvedValue:")]
 		INMessageAttributeOptionsResolutionResult SuccessWithResolvedValue (INMessageAttributeOptions resolvedValue);
 
-		[Watch (4,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("confirmationRequiredWithMessageAttributeOptionsToConfirm:")]
@@ -3072,7 +3072,7 @@ namespace XamCore.Intents {
 	[DisableDefaultCtor]
 	interface INMessageAttributeResolutionResult {
 
-		[Watch (4,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("successWithResolvedMessageAttribute:")]
@@ -3086,7 +3086,7 @@ namespace XamCore.Intents {
 		[Export ("successWithResolvedValue:")]
 		INMessageAttributeResolutionResult SuccessWithResolvedValue (INMessageAttribute resolvedValue);
 
-		[Watch (4,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("confirmationRequiredWithMessageAttributeToConfirm:")]
@@ -3292,7 +3292,7 @@ namespace XamCore.Intents {
 		[Export ("siriMatches", ArgumentSemantic.Copy), NullAllowed]
 		INPerson [] SiriMatches { get; }
 
-		[Mac (10,13, onlyOn64:true), iOS (11,0), Watch (4,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Export ("isMe")]
 		bool IsMe { get; }
 	}
@@ -3420,12 +3420,12 @@ namespace XamCore.Intents {
 	[BaseType (typeof (NSObject))]
 	interface INPreferences {
 
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Static]
 		[Export ("siriAuthorizationStatus")]
 		INSiriAuthorizationStatus SiriAuthorizationStatus { get; }
 
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Static]
 		[Async]
 		[Export ("requestSiriAuthorization:")]
@@ -3474,7 +3474,7 @@ namespace XamCore.Intents {
 	[DisableDefaultCtor]
 	interface INRadioTypeResolutionResult {
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("successWithResolvedRadioType:")]
@@ -3486,7 +3486,7 @@ namespace XamCore.Intents {
 		[Export ("successWithResolvedValue:")]
 		INRadioTypeResolutionResult SuccessWithResolvedValue (INRadioType resolvedValue);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("confirmationRequiredWithRadioTypeToConfirm:")]
@@ -3523,7 +3523,7 @@ namespace XamCore.Intents {
 	[DisableDefaultCtor]
 	interface INRelativeReferenceResolutionResult {
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("successWithResolvedRelativeReference:")]
@@ -3535,7 +3535,7 @@ namespace XamCore.Intents {
 		[Export ("successWithResolvedValue:")]
 		INRelativeReferenceResolutionResult SuccessWithResolvedValue (INRelativeReference resolvedValue);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("confirmationRequiredWithRelativeReferenceToConfirm:")]
@@ -3572,7 +3572,7 @@ namespace XamCore.Intents {
 	[DisableDefaultCtor]
 	interface INRelativeSettingResolutionResult {
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("successWithResolvedRelativeSetting:")]
@@ -3584,7 +3584,7 @@ namespace XamCore.Intents {
 		[Export ("successWithResolvedValue:")]
 		INRelativeSettingResolutionResult SuccessWithResolvedValue (INRelativeSetting resolvedValue);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("confirmationRequiredWithRelativeSettingToConfirm:")]
@@ -3659,7 +3659,7 @@ namespace XamCore.Intents {
 		[Export ("resolvePayerForRequestPayment:withCompletion:")]
 		void ResolvePayer (INRequestPaymentIntent intent, Action<INPersonResolutionResult> completion);
 
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("resolvePayerForRequestPayment:completion:")]
 		void ResolvePayer (INRequestPaymentIntent intent, Action<INRequestPaymentPayerResolutionResult> completion);
 
@@ -3668,7 +3668,7 @@ namespace XamCore.Intents {
 		[Export ("resolveCurrencyAmountForRequestPayment:withCompletion:")]
 		void ResolveCurrencyAmount (INRequestPaymentIntent intent, Action<INCurrencyAmountResolutionResult> completion);
 
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("resolveCurrencyAmountForRequestPayment:completion:")]
 		void ResolveCurrencyAmount (INRequestPaymentIntent intent, Action<INRequestPaymentCurrencyAmountResolutionResult> completion);
 
@@ -4095,7 +4095,7 @@ namespace XamCore.Intents {
 		[Export ("completedWithOutstandingPaymentAmount:")]
 		INRideCompletionStatus GetOutstandingPaymentAmount (INCurrencyAmount outstandingPaymentAmount);
 
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Static]
 		[Export ("completedWithOutstandingFeedbackType:")]
 		INRideCompletionStatus GetCompleted (INRideFeedbackTypeOptions feedbackType);
@@ -4127,14 +4127,14 @@ namespace XamCore.Intents {
 		[NullAllowed, Export ("paymentAmount", ArgumentSemantic.Strong)]
 		INCurrencyAmount PaymentAmount { get; }
 
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("feedbackType", ArgumentSemantic.Assign)]
 		INRideFeedbackTypeOptions FeedbackType { get; }
 
 		[Export ("outstanding")]
 		bool Outstanding { [Bind ("isOutstanding")] get; }
 
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("defaultTippingOptions", ArgumentSemantic.Strong)]
 		NSSet<INCurrencyAmount> DefaultTippingOptions { get; set; }
 	}
@@ -4147,12 +4147,12 @@ namespace XamCore.Intents {
 	interface INRideDriver : NSCopying, NSSecureCoding {
 
 		[Export ("initWithPersonHandle:nameComponents:displayName:image:rating:phoneNumber:")]
-		[Deprecated (PlatformName.iOS, 10,2, message:"Use the overload signature instead")]
+		[Deprecated (PlatformName.iOS, 10, 2, message: "Use the overload signature instead")]
 		[Unavailable (PlatformName.WatchOS)]
 		IntPtr Constructor (INPersonHandle personHandle, [NullAllowed] NSPersonNameComponents nameComponents, [NullAllowed] string displayName, [NullAllowed] INImage image, [NullAllowed] string rating, [NullAllowed] string phoneNumber);
 
 		[Export ("initWithPhoneNumber:nameComponents:displayName:image:rating:")]
-		[Introduced (PlatformName.iOS, 10,2)]
+		[Introduced (PlatformName.iOS, 10, 2)]
 		[DesignatedInitializer]
 		IntPtr Constructor (string phoneNumber, [NullAllowed] NSPersonNameComponents nameComponents, [NullAllowed] string displayName, [NullAllowed] INImage image, [NullAllowed] string rating);
 
@@ -4345,7 +4345,7 @@ namespace XamCore.Intents {
 		[NullAllowed, Export ("profileNumber", ArgumentSemantic.Copy)]
 		NSNumber ProfileNumber { get; }
 
-		[Deprecated (PlatformName.iOS, 10,2, message:"Use 'ProfileName' instead.")]
+		[Deprecated (PlatformName.iOS, 10, 2, message: "Use 'ProfileName' instead.")]
 		[NullAllowed, Export ("profileLabel")]
 		string ProfileLabel { get; }
 
@@ -4402,12 +4402,12 @@ namespace XamCore.Intents {
 	[BaseType (typeof (INIntent))]
 	interface INSearchCallHistoryIntent {
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("initWithDateCreated:recipient:callCapabilities:callTypes:unseen:")]
 		[DesignatedInitializer]
 		IntPtr Constructor ([NullAllowed] INDateComponentsRange dateCreated, [NullAllowed] INPerson recipient, INCallCapabilityOptions callCapabilities, INCallRecordTypeOptions callTypes, [NullAllowed] NSNumber unseen);
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Wrap ("this (dateCreated, recipient, callCapabilities, callTypes, new NSNumber (unseen))")]
 		IntPtr Constructor ([NullAllowed] INDateComponentsRange dateCreated, [NullAllowed] INPerson recipient, INCallCapabilityOptions callCapabilities, INCallRecordTypeOptions callTypes, bool unseen);
 
@@ -4432,12 +4432,12 @@ namespace XamCore.Intents {
 		[Export ("callCapabilities", ArgumentSemantic.Assign)]
 		INCallCapabilityOptions CallCapabilities { get; }
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("callTypes", ArgumentSemantic.Assign)]
 		INCallRecordTypeOptions CallTypes { get; }
 
 		[Protected]
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("unseen", ArgumentSemantic.Copy)]
 		NSNumber WeakUnseen { get; }
 	}
@@ -4473,11 +4473,11 @@ namespace XamCore.Intents {
 		[Export ("resolveRecipientForSearchCallHistory:withCompletion:")]
 		void ResolveRecipient (INSearchCallHistoryIntent intent, Action<INPersonResolutionResult> completion);
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("resolveCallTypesForSearchCallHistory:withCompletion:")]
 		void ResolveCallTypes (INSearchCallHistoryIntent intent, Action<INCallRecordTypeOptionsResolutionResult> completion);
 
-		[Watch (4,0), NoMac, iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("resolveUnseenForSearchCallHistory:withCompletion:")]
 		void ResolveUnseen (INSearchCallHistoryIntent intent, Action<INBooleanResolutionResult> completion);
 	}
@@ -4496,7 +4496,7 @@ namespace XamCore.Intents {
 		[Export ("code")]
 		INSearchCallHistoryIntentResponseCode Code { get; }
 
-		[Mac (10,13, onlyOn64:true), iOS (11,0), Watch (4,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[NullAllowed, Export ("callRecords", ArgumentSemantic.Copy)]
 		INCallRecord [] CallRecords { get; set; }
 	}
@@ -4507,7 +4507,7 @@ namespace XamCore.Intents {
 	[BaseType (typeof (INIntent))]
 	interface INSearchForMessagesIntent {
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("initWithRecipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:speakableGroupNames:")]
 		[DesignatedInitializer]
 		IntPtr Constructor ([NullAllowed] INPerson [] recipients, [NullAllowed] INPerson [] senders, [NullAllowed] string [] searchTerms, INMessageAttributeOptions attributes, [NullAllowed] INDateComponentsRange dateTimeRange, [NullAllowed] string [] identifiers, [NullAllowed] string [] notificationIdentifiers, [NullAllowed] INSpeakableString [] speakableGroupNames);
@@ -4566,11 +4566,11 @@ namespace XamCore.Intents {
 		[Export ("groupNamesOperator", ArgumentSemantic.Assign)]
 		INConditionalOperator GroupNamesOperator { get; }
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("speakableGroupNames", ArgumentSemantic.Copy)]
 		INSpeakableString [] SpeakableGroupNames { get; }
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("speakableGroupNamesOperator", ArgumentSemantic.Assign)]
 		INConditionalOperator SpeakableGroupNamesOperator { get; }
 	}
@@ -4612,7 +4612,7 @@ namespace XamCore.Intents {
 		[Export ("resolveGroupNamesForSearchForMessages:withCompletion:")]
 		void ResolveGroupNames (INSearchForMessagesIntent intent, Action<INStringResolutionResult []> completion);
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("resolveSpeakableGroupNamesForSearchForMessages:withCompletion:")]
 		void ResolveSpeakableGroupNames (INSearchForMessagesIntent intent, Action<INSpeakableStringResolutionResult []> completion);
 	}
@@ -4701,7 +4701,7 @@ namespace XamCore.Intents {
 		[Export ("resolveAlbumNameForSearchForPhotos:withCompletion:")]
 		void ResolveAlbumName (INSearchForPhotosIntent intent, Action<INStringResolutionResult> completion);
 
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("resolveSearchTermsForSearchForPhotos:withCompletion:")]
 		void ResolveSearchTerms (INSearchForPhotosIntent intent, Action<INStringResolutionResult []> completion);
 
@@ -4733,7 +4733,7 @@ namespace XamCore.Intents {
 	[BaseType (typeof (INIntent))]
 	interface INSendMessageIntent {
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("initWithRecipients:content:speakableGroupName:conversationIdentifier:serviceName:sender:")]
 		[DesignatedInitializer]
 		IntPtr Constructor ([NullAllowed] INPerson [] recipients, [NullAllowed] string content, [NullAllowed] INSpeakableString speakableGroupName, [NullAllowed] string conversationIdentifier, [NullAllowed] string serviceName, [NullAllowed] INPerson sender);
@@ -4750,11 +4750,11 @@ namespace XamCore.Intents {
 		[NullAllowed, Export ("content")]
 		string Content { get; }
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("speakableGroupName", ArgumentSemantic.Copy)]
 		INSpeakableString SpeakableGroupName { get; }
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("conversationIdentifier")]
 		string ConversationIdentifier { get; }
 
@@ -4796,7 +4796,7 @@ namespace XamCore.Intents {
 		[Export ("resolveRecipientsForSendMessage:withCompletion:")]
 		void ResolveRecipients (INSendMessageIntent intent, Action<INPersonResolutionResult []> completion);
 
-		[Watch (4,0), iOS (11,0), Mac (10,13, onlyOn64:true)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 		[Export ("resolveRecipientsForSendMessage:completion:")]
 		void ResolveRecipients (INSendMessageIntent intent, Action<INSendMessageRecipientResolutionResult []> completion);
 
@@ -4809,7 +4809,7 @@ namespace XamCore.Intents {
 		[Export ("resolveGroupNameForSendMessage:withCompletion:")]
 		void ResolveGroupName (INSendMessageIntent intent, Action<INStringResolutionResult> completion);
 
-		[Watch (4,0), iOS (11,0), Mac (10,13, onlyOn64:true)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 		[Export ("resolveSpeakableGroupNameForSendMessage:withCompletion:")]
 		void ResolveSpeakableGroupName (INSendMessageIntent intent, Action<INSpeakableStringResolutionResult> completion);
 	}
@@ -4828,7 +4828,7 @@ namespace XamCore.Intents {
 		[Export ("code")]
 		INSendMessageIntentResponseCode Code { get; }
 
-		[Watch (4,0), iOS (11,0), Mac (10,13, onlyOn64:true)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 		[NullAllowed, Export ("sentMessage", ArgumentSemantic.Copy)]
 		INMessage SentMessage { get; set; }
 	}
@@ -4877,7 +4877,7 @@ namespace XamCore.Intents {
 		[Export ("resolvePayeeForSendPayment:withCompletion:")]
 		void ResolvePayee (INSendPaymentIntent intent, Action<INPersonResolutionResult> completion);
 
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("resolvePayeeForSendPayment:completion:")]
 		void ResolvePayee (INSendPaymentIntent intent, Action<INSendPaymentPayeeResolutionResult> completion);
 
@@ -4886,7 +4886,7 @@ namespace XamCore.Intents {
 		[Export ("resolveCurrencyAmountForSendPayment:withCompletion:")]
 		void ResolveCurrencyAmount (INSendPaymentIntent intent, Action<INCurrencyAmountResolutionResult> completion);
 
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("resolveCurrencyAmountForSendPayment:completion:")]
 		void ResolveCurrencyAmount (INSendPaymentIntent intent, Action<INSendPaymentCurrencyAmountResolutionResult> completion);
 
@@ -5460,14 +5460,14 @@ namespace XamCore.Intents {
 		[NullAllowed, Export ("pronunciationHint")]
 		string PronunciationHint { get; }
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 #if XAMCORE_4_0
 		[Abstract]
 #endif
 		[NullAllowed, Export ("vocabularyIdentifier")]
 		string VocabularyIdentifier { get; }
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 #if XAMCORE_4_0
 		[Abstract]
 #endif
@@ -5491,7 +5491,7 @@ namespace XamCore.Intents {
 	[DisableDefaultCtor]
 	interface INSpeakableString : INSpeakable {
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Export ("initWithVocabularyIdentifier:spokenPhrase:pronunciationHint:")]
 		IntPtr InitWithVocabularyIdentifier (string vocabularyIdentifier, string spokenPhrase, [NullAllowed] string pronunciationHint);
@@ -5556,12 +5556,12 @@ namespace XamCore.Intents {
 		[Export ("initWithContacts:")]
 		IntPtr Constructor ([NullAllowed] INPerson [] contacts);
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("initWithDestinationType:contacts:")]
 		[DesignatedInitializer]
 		IntPtr Constructor (INCallDestinationType destinationType, [NullAllowed] INPerson [] contacts);
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("destinationType", ArgumentSemantic.Assign)]
 		INCallDestinationType DestinationType { get; }
 
@@ -5588,7 +5588,7 @@ namespace XamCore.Intents {
 #endif
 		(INStartAudioCallIntent intent, Action<INStartAudioCallIntentResponse> completion);
 
-		[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("resolveDestinationTypeForStartAudioCall:withCompletion:")]
 		void ResolveDestinationType (INStartAudioCallIntent intent, Action<INCallDestinationTypeResolutionResult> completion);
 
@@ -5941,7 +5941,7 @@ namespace XamCore.Intents {
 		void SetVocabularyStrings (NSOrderedSet<NSString> vocabulary, INVocabularyStringType type);
 
 		[Advice ("This API is not allowed in extensions.")]
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("setVocabulary:ofType:")]
 		void SetVocabulary (NSOrderedSet<IINSpeakable> vocabulary, INVocabularyStringType type);
 
@@ -5957,7 +5957,7 @@ namespace XamCore.Intents {
 	[BaseType (typeof (INIntentResolutionResult))]
 	interface INWorkoutGoalUnitTypeResolutionResult {
 
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("successWithResolvedWorkoutGoalUnitType:")]
@@ -5970,7 +5970,7 @@ namespace XamCore.Intents {
 		[Export ("successWithResolvedValue:")]
 		INWorkoutGoalUnitTypeResolutionResult SuccessWithResolvedValue (INWorkoutGoalUnitType resolvedValue);
 
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("confirmationRequiredWithWorkoutGoalUnitTypeToConfirm:")]
@@ -6009,7 +6009,7 @@ namespace XamCore.Intents {
 	[BaseType (typeof (INIntentResolutionResult))]
 	interface INWorkoutLocationTypeResolutionResult {
 
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("successWithResolvedWorkoutLocationType:")]
@@ -6022,7 +6022,7 @@ namespace XamCore.Intents {
 		[Export ("successWithResolvedValue:")]
 		INWorkoutLocationTypeResolutionResult SuccessWithResolvedValue (INWorkoutLocationType resolvedValue);
 
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("confirmationRequiredWithWorkoutLocationTypeToConfirm:")]
@@ -6218,7 +6218,7 @@ namespace XamCore.Intents {
 		[Export ("successWithResolvedValue:")]
 		INBillTypeResolutionResult SuccessWithResolvedValue (INBillType resolvedValue);
 
-		[iOS (11,0), Watch (4,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Internal]
 		[Static]
 		[Export ("successWithResolvedBillType:")]
@@ -6231,7 +6231,7 @@ namespace XamCore.Intents {
 		[Export ("confirmationRequiredWithValueToConfirm:")]
 		INBillTypeResolutionResult ConfirmationRequiredWithValueToConfirm (INBillType valueToConfirm);
 
-		[iOS (11,0), Watch (4,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Internal]
 		[Static]
 		[Export ("confirmationRequiredWithBillTypeToConfirm:")]
@@ -6263,7 +6263,7 @@ namespace XamCore.Intents {
 	[DisableDefaultCtor]
 	interface INCarSignalOptionsResolutionResult {
 
-		[iOS (11,0), Watch (4,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Internal]
 		[Static]
 		[Export ("successWithResolvedCarSignalOptions:")]
@@ -6276,7 +6276,7 @@ namespace XamCore.Intents {
 		[Export ("successWithResolvedValue:")]
 		INCarSignalOptionsResolutionResult SuccessWithResolvedValue (INCarSignalOptions resolvedValue);
 
-		[iOS (11,0), Watch (4,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Internal]
 		[Static]
 		[Export ("confirmationRequiredWithCarSignalOptionsToConfirm:")]
@@ -6559,7 +6559,7 @@ namespace XamCore.Intents {
 		[Export ("initWithNickname:number:accountType:organizationName:")]
 		IntPtr Constructor (INSpeakableString nickname, [NullAllowed] string accountNumber, INAccountType accountType, [NullAllowed] INSpeakableString organizationName);
 
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("initWithNickname:number:accountType:organizationName:balance:secondaryBalance:")]
 		[DesignatedInitializer]
 		IntPtr Constructor (INSpeakableString nickname, [NullAllowed] string accountNumber, INAccountType accountType, [NullAllowed] INSpeakableString organizationName, [NullAllowed] INBalanceAmount balance, [NullAllowed] INBalanceAmount secondaryBalance);
@@ -6576,11 +6576,11 @@ namespace XamCore.Intents {
 		[Export ("organizationName", ArgumentSemantic.Copy), NullAllowed]
 		INSpeakableString OrganizationName { get; }
 
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("balance", ArgumentSemantic.Copy)]
 		INBalanceAmount Balance { get; }
 
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("secondaryBalance", ArgumentSemantic.Copy)]
 		INBalanceAmount SecondaryBalance { get; }
 	}
@@ -6686,7 +6686,7 @@ namespace XamCore.Intents {
 	[DisableDefaultCtor]
 	interface INPaymentStatusResolutionResult {
 
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("successWithResolvedPaymentStatus:")]
@@ -6699,7 +6699,7 @@ namespace XamCore.Intents {
 		[Export ("successWithResolvedValue:")]
 		INPaymentStatusResolutionResult SuccessWithResolvedValue (INPaymentStatus resolvedValue);
 
-		[Watch (4,0), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Internal]
 		[Static]
 		[Export ("confirmationRequiredWithPaymentStatusToConfirm:")]
@@ -6895,7 +6895,7 @@ namespace XamCore.Intents {
 		INCarSignalOptions Signals { get; set; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResolutionResult))]
 	[DisableDefaultCtor]
 	interface INAccountTypeResolutionResult {
@@ -6927,7 +6927,7 @@ namespace XamCore.Intents {
 		INAccountTypeResolutionResult Unsupported { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntent))]
 	interface INAddTasksIntent {
 
@@ -6948,7 +6948,7 @@ namespace XamCore.Intents {
 		INTemporalEventTrigger TemporalEventTrigger { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface INAddTasksIntentHandling {
 
@@ -6972,7 +6972,7 @@ namespace XamCore.Intents {
 		void ResolveTemporalEventTrigger (INAddTasksIntent intent, Action<INTemporalEventTriggerResolutionResult> completion);
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResponse))]
 	[DisableDefaultCtor]
 	interface INAddTasksIntentResponse {
@@ -6991,7 +6991,7 @@ namespace XamCore.Intents {
 		INTask [] AddedTasks { get; set; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntent))]
 	interface INAppendToNoteIntent {
 
@@ -7006,7 +7006,7 @@ namespace XamCore.Intents {
 		INNoteContent Content { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface INAppendToNoteIntentHandling {
 
@@ -7024,7 +7024,7 @@ namespace XamCore.Intents {
 		void ResolveContentForAppend (INAppendToNoteIntent intent, Action<INNoteContentResolutionResult> completion);
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResponse))]
 	[DisableDefaultCtor]
 	interface INAppendToNoteIntentResponse {
@@ -7040,7 +7040,7 @@ namespace XamCore.Intents {
 		INNote Note { get; set; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface INBalanceAmount : NSCopying, NSSecureCoding {
@@ -7063,7 +7063,7 @@ namespace XamCore.Intents {
 		string CurrencyCode { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResolutionResult))]
 	[DisableDefaultCtor]
 	interface INBalanceTypeResolutionResult {
@@ -7095,7 +7095,7 @@ namespace XamCore.Intents {
 		INBalanceTypeResolutionResult Unsupported { get; }
 	}
 
-	[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResolutionResult))]
 	[DisableDefaultCtor]
 	interface INCallDestinationTypeResolutionResult {
@@ -7127,7 +7127,7 @@ namespace XamCore.Intents {
 		INCallDestinationTypeResolutionResult Unsupported { get; }
 	}
 
-	[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface INCallRecord : NSCopying, NSSecureCoding {
@@ -7160,7 +7160,7 @@ namespace XamCore.Intents {
 		NSNumber WeakUnseen { get; }
 	}
 
-	[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResolutionResult))]
 	[DisableDefaultCtor]
 	interface INCallRecordTypeOptionsResolutionResult {
@@ -7192,7 +7192,7 @@ namespace XamCore.Intents {
 		INCallRecordTypeOptionsResolutionResult Unsupported { get; }
 	}
 
-	[NoWatch, NoMac, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntent))]
 	[DisableDefaultCtor]
 	interface INCancelRideIntent {
@@ -7205,7 +7205,7 @@ namespace XamCore.Intents {
 		string RideIdentifier { get; }
 	}
 
-	[NoWatch, NoMac, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface INCancelRideIntentHandling {
 
@@ -7217,7 +7217,7 @@ namespace XamCore.Intents {
 		void Confirm (INCancelRideIntent intent, Action<INCancelRideIntentResponse> completion);
 	}
 
-	[NoWatch, NoMac, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResponse))]
 	[DisableDefaultCtor]
 	interface INCancelRideIntentResponse {
@@ -7236,7 +7236,7 @@ namespace XamCore.Intents {
 		NSDateComponents CancellationFeeThreshold { get; set; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntent))]
 	[DisableDefaultCtor]
 	interface INCreateNoteIntent {
@@ -7255,7 +7255,7 @@ namespace XamCore.Intents {
 		INSpeakableString GroupName { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface INCreateNoteIntentHandling {
 
@@ -7276,7 +7276,7 @@ namespace XamCore.Intents {
 		void ResolveGroupName (INCreateNoteIntent intent, Action<INSpeakableStringResolutionResult> completion);
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResponse))]
 	[DisableDefaultCtor]
 	interface INCreateNoteIntentResponse {
@@ -7292,7 +7292,7 @@ namespace XamCore.Intents {
 		INNote CreatedNote { get; set; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntent))]
 	[DisableDefaultCtor]
 	interface INCreateTaskListIntent {
@@ -7311,7 +7311,7 @@ namespace XamCore.Intents {
 		INSpeakableString GroupName { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface INCreateTaskListIntentHandling {
 
@@ -7332,7 +7332,7 @@ namespace XamCore.Intents {
 		void ResolveGroupName (INCreateTaskListIntent intent, Action<INSpeakableStringResolutionResult> completion);
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResponse))]
 	[DisableDefaultCtor]
 	interface INCreateTaskListIntentResponse {
@@ -7348,7 +7348,7 @@ namespace XamCore.Intents {
 		INTaskList CreatedTaskList { get; set; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResolutionResult))]
 	[DisableDefaultCtor]
 	interface INDateSearchTypeResolutionResult {
@@ -7380,7 +7380,7 @@ namespace XamCore.Intents {
 		INDateSearchTypeResolutionResult Unsupported { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntent))]
 	[DisableDefaultCtor]
 	interface INGetVisualCodeIntent {
@@ -7393,7 +7393,7 @@ namespace XamCore.Intents {
 		INVisualCodeType VisualCodeType { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface INGetVisualCodeIntentHandling {
 
@@ -7408,7 +7408,7 @@ namespace XamCore.Intents {
 		void ResolveVisualCodeType (INGetVisualCodeIntent intent, Action<INVisualCodeTypeResolutionResult> completion);
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResponse))]
 	[DisableDefaultCtor]
 	interface INGetVisualCodeIntentResponse {
@@ -7424,7 +7424,7 @@ namespace XamCore.Intents {
 		INImage VisualCodeImage { get; set; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INNoteContent))]
 	interface INImageNoteContent : NSSecureCoding, NSCopying {
 
@@ -7435,7 +7435,7 @@ namespace XamCore.Intents {
 		INImage Image { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResolutionResult))]
 	[DisableDefaultCtor]
 	interface INLocationSearchTypeResolutionResult {
@@ -7467,7 +7467,7 @@ namespace XamCore.Intents {
 		INLocationSearchTypeResolutionResult Unsupported { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	interface INNote : NSCopying, NSSecureCoding {
 
@@ -7493,12 +7493,12 @@ namespace XamCore.Intents {
 		string Identifier { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	interface INNoteContent : NSSecureCoding, NSCopying {
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResolutionResult))]
 	[DisableDefaultCtor]
 	interface INNoteContentResolutionResult {
@@ -7534,7 +7534,7 @@ namespace XamCore.Intents {
 		INNoteContentResolutionResult Unsupported { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResolutionResult))]
 	interface INNoteContentTypeResolutionResult {
 
@@ -7565,7 +7565,7 @@ namespace XamCore.Intents {
 		INNoteContentTypeResolutionResult Unsupported { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResolutionResult))]
 	interface INNoteResolutionResult {
 
@@ -7600,7 +7600,7 @@ namespace XamCore.Intents {
 		INNoteResolutionResult Unsupported { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResolutionResult))]
 	interface INNotebookItemTypeResolutionResult {
 
@@ -7635,7 +7635,7 @@ namespace XamCore.Intents {
 		INNotebookItemTypeResolutionResult Unsupported { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface INParameter : NSSecureCoding {
@@ -7667,7 +7667,7 @@ namespace XamCore.Intents {
 		nuint GetIndex (string subKeyPath);
 	}
 
-	[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface INRecurrenceRule : NSCopying, NSSecureCoding {
@@ -7682,7 +7682,7 @@ namespace XamCore.Intents {
 		INRecurrenceFrequency Frequency { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INCurrencyAmountResolutionResult))]
 	[DisableDefaultCtor]
 	interface INRequestPaymentCurrencyAmountResolutionResult {
@@ -7713,7 +7713,7 @@ namespace XamCore.Intents {
 		INRequestPaymentCurrencyAmountResolutionResult Unsupported { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INPersonResolutionResult))]
 	[DisableDefaultCtor]
 	interface INRequestPaymentPayerResolutionResult {
@@ -7744,7 +7744,7 @@ namespace XamCore.Intents {
 		INRequestPaymentPayerResolutionResult Unsupported { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntent))]
 	interface INSearchForAccountsIntent {
 
@@ -7765,7 +7765,7 @@ namespace XamCore.Intents {
 		INBalanceType RequestedBalanceType { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface INSearchForAccountsIntentHandling {
 
@@ -7789,7 +7789,7 @@ namespace XamCore.Intents {
 		void ResolveRequestedBalanceType (INSearchForAccountsIntent intent, Action<INBalanceTypeResolutionResult> completion);
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResponse))]
 	[DisableDefaultCtor]
 	interface INSearchForAccountsIntentResponse {
@@ -7805,7 +7805,7 @@ namespace XamCore.Intents {
 		INPaymentAccount [] Accounts { get; set; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntent))]
 	interface INSearchForNotebookItemsIntent {
 
@@ -7838,7 +7838,7 @@ namespace XamCore.Intents {
 		INDateSearchType DateSearchType { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface INSearchForNotebookItemsIntentHandling {
 
@@ -7874,7 +7874,7 @@ namespace XamCore.Intents {
 		void ResolveDateSearchType (INSearchForNotebookItemsIntent intent, Action<INDateSearchTypeResolutionResult> completion);
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResponse))]
 	[DisableDefaultCtor]
 	interface INSearchForNotebookItemsIntentResponse {
@@ -7899,7 +7899,7 @@ namespace XamCore.Intents {
 		INSortType SortType { get; set; }
 	}
 
-	[Watch (4,0), Mac (10,13, onlyOn64:true), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INPersonResolutionResult))]
 	[DisableDefaultCtor]
 	interface INSendMessageRecipientResolutionResult {
@@ -7930,7 +7930,7 @@ namespace XamCore.Intents {
 		INSendMessageRecipientResolutionResult Unsupported { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INCurrencyAmountResolutionResult))]
 	[DisableDefaultCtor]
 	interface INSendPaymentCurrencyAmountResolutionResult {
@@ -7961,7 +7961,7 @@ namespace XamCore.Intents {
 		INSendPaymentCurrencyAmountResolutionResult Unsupported { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INPersonResolutionResult))]
 	[DisableDefaultCtor]
 	interface INSendPaymentPayeeResolutionResult {
@@ -7992,7 +7992,7 @@ namespace XamCore.Intents {
 		INSendPaymentPayeeResolutionResult Unsupported { get; }
 	}
 
-	[NoWatch, NoMac, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntent))]
 	[DisableDefaultCtor]
 	interface INSendRideFeedbackIntent {
@@ -8011,7 +8011,7 @@ namespace XamCore.Intents {
 		INCurrencyAmount Tip { get; set; }
 	}
 
-	[NoWatch, NoMac, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface INSendRideFeedbackIntentHandling {
 
@@ -8023,7 +8023,7 @@ namespace XamCore.Intents {
 		void Confirm (INSendRideFeedbackIntent sendRideFeedbackIntent, Action<INSendRideFeedbackIntentResponse> completion);
 	}
 
-	[NoWatch, NoMac, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResponse))]
 	[DisableDefaultCtor]
 	interface INSendRideFeedbackIntentResponse {
@@ -8036,7 +8036,7 @@ namespace XamCore.Intents {
 		INSendRideFeedbackIntentResponseCode Code { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntent))]
 	interface INSetTaskAttributeIntent {
 
@@ -8057,7 +8057,7 @@ namespace XamCore.Intents {
 		INTemporalEventTrigger TemporalEventTrigger { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface INSetTaskAttributeIntentHandling {
 
@@ -8081,7 +8081,7 @@ namespace XamCore.Intents {
 		void ResolveTemporalEventTrigger (INSetTaskAttributeIntent intent, Action<INTemporalEventTriggerResolutionResult> completion);
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResponse))]
 	[DisableDefaultCtor]
 	interface INSetTaskAttributeIntentResponse {
@@ -8097,7 +8097,7 @@ namespace XamCore.Intents {
 		INTask ModifiedTask { get; set; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface INSpatialEventTrigger {
@@ -8112,7 +8112,7 @@ namespace XamCore.Intents {
 		INSpatialEvent Event { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResolutionResult))]
 	[DisableDefaultCtor]
 	interface INSpatialEventTriggerResolutionResult {
@@ -8148,7 +8148,7 @@ namespace XamCore.Intents {
 		INSpatialEventTriggerResolutionResult Unsupported { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface INTask : NSCopying, NSSecureCoding {
@@ -8181,7 +8181,7 @@ namespace XamCore.Intents {
 		string Identifier { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface INTaskList : NSCopying, NSSecureCoding {
@@ -8208,7 +8208,7 @@ namespace XamCore.Intents {
 		string Identifier { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResolutionResult))]
 	[DisableDefaultCtor]
 	interface INTaskListResolutionResult {
@@ -8244,7 +8244,7 @@ namespace XamCore.Intents {
 		INTaskListResolutionResult Unsupported { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResolutionResult))]
 	[DisableDefaultCtor]
 	interface INTaskResolutionResult {
@@ -8280,7 +8280,7 @@ namespace XamCore.Intents {
 		INTaskResolutionResult Unsupported { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResolutionResult))]
 	[DisableDefaultCtor]
 	interface INTaskStatusResolutionResult {
@@ -8312,7 +8312,7 @@ namespace XamCore.Intents {
 		INTaskStatusResolutionResult Unsupported { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface INTemporalEventTrigger : NSCopying, NSSecureCoding {
@@ -8324,7 +8324,7 @@ namespace XamCore.Intents {
 		INDateComponentsRange DateComponentsRange { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResolutionResult))]
 	[DisableDefaultCtor]
 	interface INTemporalEventTriggerResolutionResult {
@@ -8360,7 +8360,7 @@ namespace XamCore.Intents {
 		INTemporalEventTriggerResolutionResult Unsupported { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INNoteContent))]
 	[DisableDefaultCtor]
 	interface INTextNoteContent : NSSecureCoding, NSCopying {
@@ -8372,7 +8372,7 @@ namespace XamCore.Intents {
 		string Text { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntent))]
 	[DisableDefaultCtor]
 	interface INTransferMoneyIntent {
@@ -8397,7 +8397,7 @@ namespace XamCore.Intents {
 		string TransactionNote { get; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface INTransferMoneyIntentHandling {
 
@@ -8424,7 +8424,7 @@ namespace XamCore.Intents {
 		void ResolveTransactionNote (INTransferMoneyIntent intent, Action<INStringResolutionResult> completion);
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResponse))]
 	[DisableDefaultCtor]
 	interface INTransferMoneyIntentResponse {
@@ -8455,7 +8455,7 @@ namespace XamCore.Intents {
 		INCurrencyAmount TransferFee { get; set; }
 	}
 
-	[Watch (4,0), NoMac, iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (INIntentResolutionResult))]
 	[DisableDefaultCtor]
 	interface INVisualCodeTypeResolutionResult {

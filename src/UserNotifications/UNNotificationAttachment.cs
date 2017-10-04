@@ -1,4 +1,4 @@
-﻿//
+//
 // UNNotificationAttachment extensions & syntax sugar
 //
 // Authors:

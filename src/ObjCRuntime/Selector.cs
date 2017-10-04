@@ -133,7 +133,7 @@ namespace XamCore.ObjCRuntime {
 		extern static /* const char* */ IntPtr sel_getName (/* SEL */ IntPtr sel);
 
 		// objc/runtime.h
-		[DllImport ("/usr/lib/libobjc.dylib", EntryPoint="sel_registerName")]
+		[DllImport ("/usr/lib/libobjc.dylib", EntryPoint = "sel_registerName")]
 		public extern static /* SEL */ IntPtr GetHandle (/* const char* */ string name);
 
 		// objc/objc.h

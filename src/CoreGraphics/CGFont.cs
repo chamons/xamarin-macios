@@ -47,7 +47,7 @@ namespace XamCore.CoreGraphics {
 #if !COREBUILD
 		internal IntPtr handle;
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal CGFont (IntPtr handle, bool owns)
 		{
 			if (handle == IntPtr.Zero)
@@ -308,7 +308,7 @@ namespace XamCore.CoreGraphics {
 
 #endif // !WATCH
 
-		[DllImport (Constants.CoreTextLibrary, EntryPoint="CGFontGetTypeID")]
+		[DllImport (Constants.CoreTextLibrary, EntryPoint = "CGFontGetTypeID")]
 		public extern static /* CFTypeID */ nint GetTypeID ();
 #endif // !COREBUILD
 	}

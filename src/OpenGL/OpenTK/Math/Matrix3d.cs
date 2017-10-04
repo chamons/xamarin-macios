@@ -31,7 +31,7 @@ namespace OpenTK
     #pragma warning disable 3019
 
     [Serializable]
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     public struct Matrix3d : IEquatable<Matrix3d>
     {
         #region Fields & Access
@@ -192,7 +192,7 @@ namespace OpenTK
         /// <summary>Converts the matrix into left double*.</summary>
         /// <param name="matrix">The matrix to convert.</param>
         /// <returns>A double* for the matrix.</returns>
-        [CLSCompliant(false)]
+        [CLSCompliant (false)]
         unsafe public static explicit operator double*(Matrix3d matrix)
         {
             return &matrix.R0C0;
@@ -323,7 +323,7 @@ namespace OpenTK
         /// <summary>Indicates whether the current matrix is equal to another matrix.</summary>
         /// <param name="matrix">The OpenTK.Matrix3d structure to compare with.</param>
         /// <returns>true if the current matrix is equal to the matrix parameter; otherwise, false.</returns>
-        [CLSCompliant(false)]
+        [CLSCompliant (false)]
         public bool Equals(Matrix3d matrix)
         {
             return

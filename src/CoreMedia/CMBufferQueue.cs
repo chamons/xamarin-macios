@@ -26,7 +26,7 @@ namespace XamCore.CoreMedia {
 	public delegate bool   CMBufferGetBool (INativeObject buffer);
 	public delegate int    CMBufferCompare (INativeObject first, INativeObject second);
 
-	[iOS (7,1)]
+	[Introduced (PlatformName.iOS, 7, 1)]
 	public delegate nint   CMBufferGetSize (INativeObject buffer);
 
 	public class CMBufferQueue : INativeObject
@@ -105,10 +105,10 @@ namespace XamCore.CoreMedia {
 
 		// CMItemCount -> CMBase.h (looks weird but it's 4 bytes in 32bits and 8 bytes in 64bits, x86_64 and ARM64)
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static OSStatus CMBufferQueueCreate (/* CFAllocatorRef */ IntPtr allocator, /* CMItemCount */ nint capacity, CMBufferCallbacks cbacks, /* CMBufferQueueRef* */ out IntPtr result);
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static OSStatus CMBufferQueueCreate (/* CFAllocatorRef */ IntPtr allocator, /* CMItemCount */ nint capacity, /* CMBufferCallbacks */ IntPtr cbacks, /* CMBufferQueueRef* */ out IntPtr result);
 
 		internal CMBufferQueue (int count)
@@ -155,7 +155,7 @@ namespace XamCore.CoreMedia {
 			return null;
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		unsafe extern static /* CMBufferCallbacks */ IntPtr CMBufferQueueGetCallbacksForUnsortedSampleBuffers ();
 		
 		public static CMBufferQueue CreateUnsorted (int count)
@@ -174,7 +174,7 @@ namespace XamCore.CoreMedia {
 			return null;
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static OSStatus CMBufferQueueEnqueue (/* CMBufferQueueRef */ IntPtr queue, /* CMBufferRef */ IntPtr buf);
 		
 		//
@@ -192,7 +192,7 @@ namespace XamCore.CoreMedia {
 			}
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* CMBufferRef */ IntPtr CMBufferQueueDequeueAndRetain (/* CMBufferQueueRef */ IntPtr queue);
 
 		public INativeObject Dequeue ()
@@ -215,7 +215,7 @@ namespace XamCore.CoreMedia {
 			}
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* CMBufferRef */ IntPtr CMBufferQueueDequeueIfDataReadyAndRetain (/* CMBufferQueueRef */ IntPtr queue);
 		
 		public INativeObject DequeueIfDataReady ()
@@ -238,7 +238,7 @@ namespace XamCore.CoreMedia {
 			}
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static byte CMBufferQueueIsEmpty (/* CMBufferQueueRef */ IntPtr queue);
 		public bool IsEmpty {
 			get {
@@ -247,14 +247,14 @@ namespace XamCore.CoreMedia {
 		}
 
 		
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static OSStatus CMBufferQueueMarkEndOfData (/* CMBufferQueueRef */ IntPtr queue);
 		public int MarkEndOfData ()
 		{
 			return CMBufferQueueMarkEndOfData (handle);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static byte CMBufferQueueContainsEndOfData (/* CMBufferQueueRef */ IntPtr queue);
 		public bool ContainsEndOfData {
 			get {
@@ -262,7 +262,7 @@ namespace XamCore.CoreMedia {
 			}
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static byte CMBufferQueueIsAtEndOfData (/* CMBufferQueueRef */ IntPtr queue);
 		public bool IsAtEndOfData {
 			get {
@@ -270,14 +270,14 @@ namespace XamCore.CoreMedia {
 			}
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static OSStatus CMBufferQueueReset (/* CMBufferQueueRef */ IntPtr queue);
 		public OSStatus Reset ()
 		{
 			return CMBufferQueueReset (handle);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static nint CMBufferQueueGetBufferCount (/* CMBufferQueueRef */ IntPtr queue);
 		public nint BufferCount {
 			get {
@@ -285,7 +285,7 @@ namespace XamCore.CoreMedia {
 			}
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static CMTime CMBufferQueueGetDuration (/* CMBufferQueueRef */ IntPtr queue);
 		public CMTime Duration {
 			get {
@@ -293,12 +293,12 @@ namespace XamCore.CoreMedia {
 			}
 		}
 		
-		[iOS (7,1)][Mac (10,10)]
-		[DllImport(Constants.CoreMediaLibrary)]
+		[Introduced (PlatformName.iOS, 7, 1)][Introduced (PlatformName.MacOSX, 10, 10)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* size_t */ nint CMBufferQueueGetTotalSize (/* CMBufferQueueRef */ IntPtr queue);
 
-		[iOS (7,1)]
-		[Availability (Platform.Mac_10_10)]
+		[Introduced (PlatformName.iOS, 7, 1)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		public nint GetTotalSize ()
 		{
 			return CMBufferQueueGetTotalSize (handle);

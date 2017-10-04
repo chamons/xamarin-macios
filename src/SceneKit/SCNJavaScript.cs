@@ -17,7 +17,7 @@ using XamCore.JavaScriptCore;
 
 namespace XamCore.SceneKit
 {
-	[Availability (Platform.Mac_10_10 | Platform.iOS_8_0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	public static class SCNJavaScript
 	{
 		[DllImport (Constants.SceneKitLibrary)]

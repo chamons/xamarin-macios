@@ -41,13 +41,13 @@ namespace XamCore.PassKit {
 
 	public partial class PKPaymentRequest {
 
-		[Watch (4,0)][iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0)][Introduced (PlatformName.iOS, 11, 0)]
 		public PKContactFields RequiredBillingContactFields {
 			get { return PKContactFieldsExtensions.GetValue (WeakRequiredBillingContactFields); }
 			set { WeakRequiredBillingContactFields = PKContactFieldsExtensions.GetSet (value); }
 		}
 
-		[Watch (4,0)][iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0)][Introduced (PlatformName.iOS, 11, 0)]
 		public PKContactFields RequiredShippingContactFields {
 			get { return PKContactFieldsExtensions.GetValue (WeakRequiredShippingContactFields); }
 			set { WeakRequiredShippingContactFields = PKContactFieldsExtensions.GetSet (value); }

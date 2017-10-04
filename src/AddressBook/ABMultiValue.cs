@@ -43,49 +43,49 @@ namespace XamCore.AddressBook {
 	static class ABMultiValue {
 		public const uint_compat_int Mask = (1 << 8);
 
-		[DllImport (Constants.AddressBookLibrary, EntryPoint="ABMultiValueCopyValueAtIndex")]
+		[DllImport (Constants.AddressBookLibrary, EntryPoint = "ABMultiValueCopyValueAtIndex")]
 		public static extern IntPtr CopyValueAtIndex (IntPtr multiValue, nint index);
 
-		[DllImport (Constants.AddressBookLibrary, EntryPoint="ABMultiValueCopyLabelAtIndex")]
+		[DllImport (Constants.AddressBookLibrary, EntryPoint = "ABMultiValueCopyLabelAtIndex")]
 		public static extern IntPtr CopyLabelAtIndex (IntPtr multiValue, nint index);
 
-		[DllImport (Constants.AddressBookLibrary, EntryPoint="ABMultiValueGetIdentifierAtIndex")]
+		[DllImport (Constants.AddressBookLibrary, EntryPoint = "ABMultiValueGetIdentifierAtIndex")]
 		public static extern int /* ABMultiValueIdentifier */ GetIdentifierAtIndex (IntPtr multiValue, nint index);
 
-		[DllImport (Constants.AddressBookLibrary, EntryPoint="ABMultiValueCopyArrayOfAllValues")]
+		[DllImport (Constants.AddressBookLibrary, EntryPoint = "ABMultiValueCopyArrayOfAllValues")]
 		public static extern IntPtr CopyArrayOfAllValues (IntPtr multiValue);
 
-		[DllImport (Constants.AddressBookLibrary, EntryPoint="ABMultiValueGetCount")]
+		[DllImport (Constants.AddressBookLibrary, EntryPoint = "ABMultiValueGetCount")]
 		public static extern nint GetCount (IntPtr multiValue);
 
-		[DllImport (Constants.AddressBookLibrary, EntryPoint="ABMultiValueGetFirstIndexOfValue")]
+		[DllImport (Constants.AddressBookLibrary, EntryPoint = "ABMultiValueGetFirstIndexOfValue")]
 		public static extern nint GetFirstIndexOfValue (IntPtr multiValue, IntPtr value);
 
-		[DllImport (Constants.AddressBookLibrary, EntryPoint="ABMultiValueGetIndexForIdentifier")]
+		[DllImport (Constants.AddressBookLibrary, EntryPoint = "ABMultiValueGetIndexForIdentifier")]
 		public static extern nint GetIndexForIdentifier (IntPtr multiValue, int /* ABMultiValueIdentifier */ identifier);
 
-		[DllImport (Constants.AddressBookLibrary, EntryPoint="ABMultiValueGetPropertyType")]
+		[DllImport (Constants.AddressBookLibrary, EntryPoint = "ABMultiValueGetPropertyType")]
 		public static extern ABPropertyType GetPropertyType (IntPtr multiValue);
 
-		[DllImport (Constants.AddressBookLibrary, EntryPoint="ABMultiValueCreateMutable")]
+		[DllImport (Constants.AddressBookLibrary, EntryPoint = "ABMultiValueCreateMutable")]
 		public static extern IntPtr CreateMutable (ABPropertyType type);
 
-		[DllImport (Constants.AddressBookLibrary, EntryPoint="ABMultiValueCreateMutableCopy")]
+		[DllImport (Constants.AddressBookLibrary, EntryPoint = "ABMultiValueCreateMutableCopy")]
 		public static extern IntPtr CreateMutableCopy (IntPtr multiValue);
 
-		[DllImport (Constants.AddressBookLibrary, EntryPoint="ABMultiValueAddValueAndLabel")]
+		[DllImport (Constants.AddressBookLibrary, EntryPoint = "ABMultiValueAddValueAndLabel")]
 		public static extern bool AddValueAndLabel (IntPtr multiValue, IntPtr value, IntPtr label, out int /* int32_t */ outIdentifier);
 
-		[DllImport (Constants.AddressBookLibrary, EntryPoint="ABMultiValueReplaceValueAtIndex")]
+		[DllImport (Constants.AddressBookLibrary, EntryPoint = "ABMultiValueReplaceValueAtIndex")]
 		public static extern bool ReplaceValueAtIndex (IntPtr multiValue, IntPtr value, nint index);
 
-		[DllImport (Constants.AddressBookLibrary, EntryPoint="ABMultiValueReplaceLabelAtIndex")]
+		[DllImport (Constants.AddressBookLibrary, EntryPoint = "ABMultiValueReplaceLabelAtIndex")]
 		public static extern bool ReplaceLabelAtIndex (IntPtr multiValue, IntPtr value, nint index);
 
-		[DllImport (Constants.AddressBookLibrary, EntryPoint="ABMultiValueInsertValueAndLabelAtIndex")]
+		[DllImport (Constants.AddressBookLibrary, EntryPoint = "ABMultiValueInsertValueAndLabelAtIndex")]
 		public static extern bool InsertValueAndLabelAtIndex (IntPtr multiValue, IntPtr value, IntPtr label, nint index, out int /* int32_t */ outIdentifier);
 
-		[DllImport (Constants.AddressBookLibrary, EntryPoint="ABMultiValueRemoveValueAndLabelAtIndex")]
+		[DllImport (Constants.AddressBookLibrary, EntryPoint = "ABMultiValueRemoveValueAndLabelAtIndex")]
 		public static extern bool RemoveValueAndLabelAtIndex (IntPtr multiValue, nint index);
 
 		public static IntPtr ToIntPtr (NSObject value)
@@ -94,7 +94,7 @@ namespace XamCore.AddressBook {
 		}
 	}
 
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Contacts' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Contacts' API instead.")]
 	public struct ABMultiValueEntry<T>
 	{
 		ABMultiValue<T> self;
@@ -166,7 +166,7 @@ namespace XamCore.AddressBook {
 		}
 	}
 
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Contacts' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Contacts' API instead.")]
 	public class ABMultiValue<T> : INativeObject, IDisposable, IEnumerable<ABMultiValueEntry<T>>
 	{
 		IntPtr handle;
@@ -286,7 +286,7 @@ namespace XamCore.AddressBook {
 		}
 	}
 
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Contacts' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Contacts' API instead.")]
 	public class ABMutableMultiValue<T> : ABMultiValue<T>
 	{
 		internal ABMutableMultiValue (IntPtr handle)
@@ -331,7 +331,7 @@ namespace XamCore.AddressBook {
 		}
 	}
 
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Contacts' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Contacts' API instead.")]
 	public class ABMutableDateMultiValue : ABMutableMultiValue<NSDate> {
 		public ABMutableDateMultiValue ()
 			: base (ABMultiValue.CreateMutable (ABPropertyType.MultiDateTime))
@@ -339,7 +339,7 @@ namespace XamCore.AddressBook {
 		}
 	}
 
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Contacts' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Contacts' API instead.")]
 	public class ABMutableDictionaryMultiValue : ABMutableMultiValue<NSDictionary> {
 		public ABMutableDictionaryMultiValue ()
 			: base (ABMultiValue.CreateMutable (ABPropertyType.MultiDictionary))
@@ -347,7 +347,7 @@ namespace XamCore.AddressBook {
 		}
 	}
 
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Contacts' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Contacts' API instead.")]
 	public class ABMutableStringMultiValue : ABMutableMultiValue<string> {
 		public ABMutableStringMultiValue ()
 			: base (ABMultiValue.CreateMutable (ABPropertyType.MultiString), 

@@ -1,4 +1,4 @@
-﻿#if XAMARIN_APPLETLS
+#if XAMARIN_APPLETLS
 //
 // AppleTlsProvider.cs
 //

@@ -7,12 +7,12 @@ using XamCore.AppKit;
 namespace XamCore.FinderSync {
 	delegate void GetValuesCompletionHandler (NSDictionary<NSString, NSObject> values, NSError error);
 
-	[Mac (10, 10, onlyOn64: true)]
-	[BaseType (typeof(NSExtensionContext))]
+	[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSExtensionContext))]
 	interface FIFinderSyncController : NSSecureCoding, NSCopying
 	{
 		[Static]
-		[Export("defaultController")]
+		[Export ("defaultController")]
 		FIFinderSyncController DefaultController { get; }
 
 		[Export ("directoryURLs", ArgumentSemantic.Copy)]
@@ -30,26 +30,26 @@ namespace XamCore.FinderSync {
 		[NullAllowed, Export ("selectedItemURLs")]
 		NSUrl[] SelectedItemURLs { get; }
 
-		[Mac (10,13, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 		[Export ("lastUsedDateForItemWithURL:")]
 		[return: NullAllowed]
 		NSDate GetLastUsedDate (NSUrl itemUrl);
 
-		[Mac (10,13, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 		[Async, Export ("setLastUsedDate:forItemWithURL:completion:")]
 		void SetLastUsedDate (NSDate lastUsedDate, NSUrl itemUrl, Action<NSError> completion);
 
-		[Mac (10,13, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 		[Export ("tagDataForItemWithURL:")]
 		[return: NullAllowed]
 		NSData GetTagData (NSUrl itemUrl);
 
-		[Async, Mac (10,13, onlyOn64 : true)]
+		[Async, Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 		[Export ("setTagData:forItemWithURL:completion:")]
 		void SetTagData ([NullAllowed] NSData tagData, NSUrl itemUrl, Action<NSError> completion);
 	}
 
-	[Mac (10, 10, onlyOn64: true)]
+	[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[Protocol (Name = "FIFinderSync")]
 	interface FIFinderSyncProtocol
 	{
@@ -75,23 +75,23 @@ namespace XamCore.FinderSync {
 		[Export ("toolbarItemToolTip")]
 		string ToolbarItemToolTip { get; }
 
-		[Mac (10,13, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 		[Export ("supportedServiceNamesForItemWithURL:")]
 		string[] SupportedServiceNames (NSUrl itemUrl);
 
 #if FALSE // TODO: Activate after 10.13 foundation APIs have been merged.  Bug 57800
-		[Mac (10,13, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 		[Export ("makeListenerEndpointForServiceName:andReturnError:")]
 		[return: NullAllowed]
 		NSXpcListenerEndpoint MakeListenerEndpoint (string serviceName, [NullAllowed] out NSError error);
 #endif
-		[Mac (10,13, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 		[Async, Export ("valuesForAttributes:forItemWithURL:completion:")]
 		void GetValues (string[] attributes, NSUrl itemUrl, GetValuesCompletionHandler completion);
 	}
 
-	[Mac (10, 10, onlyOn64: true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface FIFinderSync : NSExtensionRequestHandling, FIFinderSyncProtocol
 	{
 	}

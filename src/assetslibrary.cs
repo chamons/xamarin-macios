@@ -18,7 +18,7 @@ using System;
 
 namespace XamCore.AssetsLibrary {
 
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Photos' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Photos' API instead.")]
 	interface ALAssetLibraryChangedEventArgs {
 		[Export ("ALAssetLibraryUpdatedAssetsKey")]
 		NSSet UpdatedAssets { get; }
@@ -33,7 +33,7 @@ namespace XamCore.AssetsLibrary {
 		NSSet DeletedAssetGroupsKey { get; }
 	}
 	
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Photos' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Photos' API instead.")]
 	[BaseType (typeof (NSObject))]
 	interface ALAssetsLibrary {
 		[Export ("assetForURL:resultBlock:failureBlock:")]
@@ -90,7 +90,7 @@ namespace XamCore.AssetsLibrary {
 		[Notification (typeof (ALAssetLibraryChangedEventArgs))]
 		NSString ChangedNotification { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("groupForURL:resultBlock:failureBlock:")]
 #if XAMCORE_2_0
 		void GroupForUrl (NSUrl groupURL, Action<ALAssetsGroup> resultBlock, Action<NSError> failureBlock);
@@ -98,7 +98,7 @@ namespace XamCore.AssetsLibrary {
 		void GroupForUrl (NSUrl groupURL, ALAssetsLibraryGroupResult resultBlock, ALAssetsLibraryAccessFailure failureBlock);
 #endif
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("addAssetsGroupAlbumWithName:resultBlock:failureBlock:")]
 #if XAMCORE_2_0
 		void AddAssetsGroupAlbum (string name, Action<ALAssetsGroup> resultBlock, Action<NSError> failureBlock);
@@ -106,45 +106,45 @@ namespace XamCore.AssetsLibrary {
 		void AddAssetsGroupAlbum (string name, ALAssetsLibraryGroupResult resultBlock, ALAssetsLibraryAccessFailure failureBlock);
 #endif
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Static]
 		[Export ("authorizationStatus")]
 		ALAuthorizationStatus AuthorizationStatus { get; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Static]
 		[Export ("disableSharedPhotoStreamsSupport")]
 		void DisableSharedPhotoStreamsSupport ();
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("ALAssetLibraryUpdatedAssetsKey")]
 		NSString UpdatedAssetsKey { get; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("ALAssetLibraryInsertedAssetGroupsKey")]
 		NSString InsertedAssetGroupsKey { get; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("ALAssetLibraryUpdatedAssetGroupsKey")]
 		NSString UpdatedAssetGroupsKey { get; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("ALAssetLibraryDeletedAssetGroupsKey")]
 		NSString DeletedAssetGroupsKey { get; }
 	}
 
 #if !XAMCORE_2_0
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Photos' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Photos' API instead.")]
 	delegate void ALAssetsLibraryAssetForURLResultDelegate (ALAsset asset);
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Photos' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Photos' API instead.")]
 	delegate void ALAssetsLibraryAccessFailureDelegate (NSError error);
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Photos' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Photos' API instead.")]
 	delegate void ALAssetsLibraryWriteCompletionDelegate (NSUrl assetURL, NSError error);
 #endif
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Photos' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Photos' API instead.")]
 	delegate void ALAssetsLibraryGroupsEnumerationResultsDelegate (ALAssetsGroup group, ref bool stop);
 
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Photos' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Photos' API instead.")]
 	[BaseType (typeof (NSObject))]
 	interface ALAsset {
 		[Export ("valueForProperty:")]
@@ -180,7 +180,7 @@ namespace XamCore.AssetsLibrary {
 		[Field ("ALAssetPropertyURLs"), Internal]
 		NSString _PropertyURLs { get; }
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("ALAssetPropertyAssetURL"), Internal]
 		NSString _PropertyAssetURL { get; }
 
@@ -193,19 +193,19 @@ namespace XamCore.AssetsLibrary {
 		[Field ("ALAssetTypeUnknown"), Internal]
 		NSString _TypeUnknown { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("originalAsset")]
 		ALAsset OriginalAsset { get;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("editable")]
 		bool Editable { [Bind ("isEditable")] get;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("aspectRatioThumbnail")]
 		CGImage AspectRatioThumbnail ();
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("writeModifiedImageDataToSavedPhotosAlbum:metadata:completionBlock:")]
 		[Async]
 #if XAMCORE_2_0
@@ -214,7 +214,7 @@ namespace XamCore.AssetsLibrary {
 		void WriteModifiedImageToSavedToPhotosAlbum (NSData imageData, NSDictionary metadata,  [NullAllowed] ALAssetsLibraryWriteCompletionDelegate completionBlock);
 #endif
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("writeModifiedVideoAtPathToSavedPhotosAlbum:completionBlock:")]
 		[Async]
 #if XAMCORE_2_0
@@ -223,7 +223,7 @@ namespace XamCore.AssetsLibrary {
 		void WriteModifiedVideoToSavedPhotosAlbum (NSUrl videoPathURL,  [NullAllowed] ALAssetsLibraryWriteCompletionDelegate completionBlock);
 #endif
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setImageData:metadata:completionBlock:")]
 		[Async]
 #if XAMCORE_2_0
@@ -232,7 +232,7 @@ namespace XamCore.AssetsLibrary {
 		void SetImageData (NSData imageData, NSDictionary metadata,  [NullAllowed] ALAssetsLibraryWriteCompletionDelegate completionBlock);
 #endif
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("setVideoAtPath:completionBlock:")]
 		[Async]
 #if XAMCORE_2_0
@@ -243,7 +243,7 @@ namespace XamCore.AssetsLibrary {
 	}
 
 	[BaseType (typeof (NSObject))]
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Photos' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Photos' API instead.")]
 	interface ALAssetRepresentation {
 		[Export ("UTI")]
 		string Uti { get; }
@@ -278,16 +278,16 @@ namespace XamCore.AssetsLibrary {
 		[Export ("scale")]
 		float Scale { get; } /* float, not CGFloat */
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("filename")]
 		string Filename { get; }
 		
-		[Since (5,1)]
+		[Introduced (PlatformName.iOS, 5, 1)]
 		[Export ("dimensions")]
 		CGSize Dimensions { get; }
 	}
 
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Photos' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Photos' API instead.")]
 	[BaseType (typeof (NSObject))]
 	interface ALAssetsFilter {
 		[Static, Export ("allPhotos")]
@@ -300,20 +300,20 @@ namespace XamCore.AssetsLibrary {
 		ALAssetsFilter AllAssets { get; }
 	}
 
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Photos' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Photos' API instead.")]
 	delegate void ALAssetsEnumerator (ALAsset result, nint index, ref bool stop);
 
 #if !XAMCORE_2_0
-	[Since (5,0)]
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Photos' API instead.")]
+	[Introduced (PlatformName.iOS, 5, 0)]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Photos' API instead.")]
 	delegate void ALAssetsLibraryGroupResult (ALAssetsGroup group);
 
-	[Since (5,0)]
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Photos' API instead.")]
+	[Introduced (PlatformName.iOS, 5, 0)]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Photos' API instead.")]
 	delegate void ALAssetsLibraryAccessFailure (NSError error);
 #endif
 
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Photos' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Photos' API instead.")]
 	[BaseType (typeof (NSObject))]
 	interface ALAssetsGroup {
 		[Export ("valueForProperty:"), Internal]
@@ -346,15 +346,15 @@ namespace XamCore.AssetsLibrary {
 		[Field ("ALAssetsGroupPropertyPersistentID"), Internal]
 		NSString _PersistentID { get; }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("editable")]
 		bool Editable { [Bind ("isEditable")] get;  }
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("addAsset:")]
 		bool AddAsset (ALAsset asset);
 
-		[Since (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Field ("ALAssetsGroupPropertyURL"), Internal]
 		NSString _PropertyUrl { get; }
 	}

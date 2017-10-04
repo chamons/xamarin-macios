@@ -22,7 +22,7 @@ using XamCore.UIKit;
 
 namespace XamCore.WebKit
 {
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)] // Not defined in 32-bit
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)] // Not defined in 32-bit
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor ()] // Crashes during deallocation in Xcode 6 beta 2. radar 17377712.
 	interface WKBackForwardListItem {
@@ -37,7 +37,7 @@ namespace XamCore.WebKit
 		NSUrl InitialUrl { get; }
 	}
 
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)] // Not defined in 32-bit
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)] // Not defined in 32-bit
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor ()] // Crashes during deallocation in Xcode 6 beta 2. radar 17377712.
 	interface WKBackForwardList {
@@ -61,16 +61,16 @@ namespace XamCore.WebKit
 		WKBackForwardListItem ItemAtIndex (nint index);
 	}
 
-	[Mac (10,13, onlyOn64: true), iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	interface WKContentRuleList
 	{
 		[Export ("identifier")]
 		string Identifier { get; }
 	}
 
-	[Mac (10,13, onlyOn64: true), iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	interface WKContentRuleListStore
 	{
 		[Static]
@@ -98,8 +98,8 @@ namespace XamCore.WebKit
 		void GetAvailableContentRuleListIdentifiers (Action<string []> callback);
 	}
 	
-	[Mac (10,13), iOS (11,0)]
-	[BaseType (typeof(NSObject), Name = "WKHTTPCookieStore")]
+	[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject), Name = "WKHTTPCookieStore")]
 	[DisableDefaultCtor]
 	interface WKHttpCookieStore
 	{
@@ -124,7 +124,7 @@ namespace XamCore.WebKit
 
 	interface IWKHttpCookieStoreObserver {}
 	
-	[Mac (10,13), iOS (11,0)]
+	[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol (Name = "WKHTTPCookieStoreObserver")]
 	interface WKHttpCookieStoreObserver
 	{
@@ -132,7 +132,7 @@ namespace XamCore.WebKit
 		void CookiesDidChangeInCookieStore (WKHttpCookieStore cookieStore);
 	}
 	
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)] // Not defined in 32-bit
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)] // Not defined in 32-bit
 	[BaseType (typeof (NSObject))]
 	interface WKFrameInfo : NSCopying {
 
@@ -142,21 +142,21 @@ namespace XamCore.WebKit
 		[Export ("request", ArgumentSemantic.Copy)]
 		NSUrlRequest Request { get; }
 
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Export ("securityOrigin")]
 		WKSecurityOrigin SecurityOrigin { get; }
 
-		[iOS (11,0)][Mac (10,13, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 		[NullAllowed, Export ("webView", ArgumentSemantic.Weak)]
 		WKWebView WebView { get; }
 	}
 
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)] // Not defined in 32-bit
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)] // Not defined in 32-bit
 	[BaseType (typeof (NSObject))]
 	interface WKNavigation {
 	}
 
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)] // Not defined in 32-bit
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)] // Not defined in 32-bit
 	[BaseType (typeof (NSObject))]
 	interface WKNavigationAction {
 
@@ -181,7 +181,7 @@ namespace XamCore.WebKit
 #endif
 	}
 
-	[Mac (10,10, onlyOn64 : true), iOS (8,0)]
+	[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 8, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface WKNavigationDelegate {
@@ -213,12 +213,12 @@ namespace XamCore.WebKit
 		[Export ("webView:didReceiveAuthenticationChallenge:completionHandler:")]
 		void DidReceiveAuthenticationChallenge (WKWebView webView, NSUrlAuthenticationChallenge challenge, Action<NSUrlSessionAuthChallengeDisposition,NSUrlCredential> completionHandler);
 
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Export ("webViewWebContentProcessDidTerminate:")]
 		void ContentProcessDidTerminate (WKWebView webView);
 	}
 
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)] // Not defined in 32-bit
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)] // Not defined in 32-bit
 	[BaseType (typeof (NSObject))]
 	interface WKNavigationResponse {
 
@@ -232,7 +232,7 @@ namespace XamCore.WebKit
 		bool CanShowMimeType { get; }
 	}
 
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)] // Not defined in 32-bit
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)] // Not defined in 32-bit
 	[BaseType (typeof (NSObject))]
 	interface WKPreferences : NSCoding {
 		[Export ("minimumFontSize")]
@@ -253,13 +253,13 @@ namespace XamCore.WebKit
 		bool PlugInsEnabled { get; set; }
 
 		// Headers says 10,12,3 but it is not available likely they meant 10,12,4
-		[Mac (10,12,4, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 12, 4, PlatformArchitecture.Arch64)]
 		[Export ("tabFocusesLinks")]
 		bool TabFocusesLinks { get; set; }
 #endif
 	}
 
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)] // Not defined in 32-bit
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)] // Not defined in 32-bit
 	[BaseType (typeof (NSObject))]
 	interface WKScriptMessage {
 
@@ -278,7 +278,7 @@ namespace XamCore.WebKit
 		WKFrameInfo FrameInfo { get; }
 	}
 
-	[Mac (10,10, onlyOn64 : true), iOS (8,0)]
+	[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 8, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface WKScriptMessageHandler {
@@ -288,7 +288,7 @@ namespace XamCore.WebKit
 		void DidReceiveScriptMessage (WKUserContentController userContentController, WKScriptMessage message);
 	}
 
-	[iOS (9,0)][Mac(10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface WKSecurityOrigin {
@@ -303,8 +303,8 @@ namespace XamCore.WebKit
 	}
 
 	
-	[Mac (10,13, onlyOn64: true), iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	interface WKSnapshotConfiguration : NSCopying {
 		[Export ("rect")]
 		CGRect Rect { get; set; }
@@ -315,7 +315,7 @@ namespace XamCore.WebKit
 
 #if XAMCORE_2_0
 	interface IWKUrlSchemeHandler {}
-	[Mac (10,13), iOS (11,0)]
+	[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol (Name = "WKURLSchemeHandler")]
 	interface WKUrlSchemeHandler
 	{
@@ -330,7 +330,7 @@ namespace XamCore.WebKit
 #endif
 	interface IWKUrlSchemeTask {}
 
-	[Mac (10,13), iOS (11,0)]
+	[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol (Name = "WKURLSchemeTask")]
 	interface WKUrlSchemeTask
 	{
@@ -355,8 +355,8 @@ namespace XamCore.WebKit
 		void DidFailWithError (NSError error);
 	}
 	
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface WKWebsiteDataRecord
 	{
 		[Export ("displayName")]
@@ -366,7 +366,7 @@ namespace XamCore.WebKit
 		NSSet<NSString> DataTypes { get; }
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Static]
 	interface WKWebsiteDataType {
 		[Field ("WKWebsiteDataTypeDiskCache", "WebKit")]
@@ -394,8 +394,8 @@ namespace XamCore.WebKit
 		NSString IndexedDBDatabases { get; }
 	}
 	
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface WKWebsiteDataStore : NSCoding {
 
 		[Static]
@@ -425,19 +425,19 @@ namespace XamCore.WebKit
 		[Async]
 		void RemoveDataOfTypes (NSSet<NSString> websiteDataTypes, NSDate date, Action completionHandler);
 
-		[Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("httpCookieStore")]
 		WKHttpCookieStore HttpCookieStore { get; }
 	}
 
-	[Mac (10,12, onlyOn64 : true)][NoiOS, NoWatch, NoTV]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)][Unavailable (PlatformName.iOS), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[BaseType (typeof (NSObject))]
 	interface WKOpenPanelParameters	{
 		[Export ("allowsMultipleSelection")]
 		bool AllowsMultipleSelection { get; }
 	}
 	
-	[Mac (10,10, onlyOn64 : true), iOS (8,0)]
+	[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 8, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface WKUIDelegate {
@@ -456,31 +456,31 @@ namespace XamCore.WebKit
 		void RunJavaScriptTextInputPanel (WKWebView webView, string prompt, [NullAllowed] string defaultText,
 			WKFrameInfo frame, Action<string> completionHandler);
 
-		[Mac (10,12, onlyOn64 : true)][NoiOS, NoWatch, NoTV]
+		[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)][Unavailable (PlatformName.iOS), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
 		[Export ("webView:runOpenPanelWithParameters:initiatedByFrame:completionHandler:")]
 		void RunOpenPanel (WKWebView webView, WKOpenPanelParameters parameters, WKFrameInfo frame, Action<NSUrl[]> completionHandler);
 
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Export ("webViewDidClose:")]
 		void DidClose (WKWebView webView);
 
-		[iOS (10,0)][NoMac]
+		[Introduced (PlatformName.iOS, 10, 0)][Unavailable (PlatformName.MacOSX)]
 		[Export ("webView:shouldPreviewElement:")]
 		bool ShouldPreviewElement (WKWebView webView, WKPreviewElementInfo elementInfo);
 
 #if !MONOMAC
-		[iOS (10,0)][NoMac]
+		[Introduced (PlatformName.iOS, 10, 0)][Unavailable (PlatformName.MacOSX)]
 		[Export ("webView:previewingViewControllerForElement:defaultActions:")]
 		[return: NullAllowed]
 		UIViewController GetPreviewingViewController (WKWebView webView, WKPreviewElementInfo elementInfo, IWKPreviewActionItem[] previewActions);
 
-		[iOS (10,0)][NoMac]
+		[Introduced (PlatformName.iOS, 10, 0)][Unavailable (PlatformName.MacOSX)]
 		[Export ("webView:commitPreviewingViewController:")]
 		void CommitPreviewingViewController (WKWebView webView, UIViewController previewingViewController);
 #endif
 	}
 
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)] // Not defined in 32-bit
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)] // Not defined in 32-bit
 	[BaseType (typeof (NSObject))]
 	interface WKUserContentController : NSCoding {
 
@@ -499,20 +499,20 @@ namespace XamCore.WebKit
 		[Export ("removeScriptMessageHandlerForName:")]
 		void RemoveScriptMessageHandler (string name);
 
-		[Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("addContentRuleList:")]
 		void AddContentRuleList (WKContentRuleList contentRuleList);
 	
-		[Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("removeContentRuleList:")]
 		void RemoveContentRuleList (WKContentRuleList contentRuleList);
 	
-		[Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("removeAllContentRuleLists")]
 		void RemoveAllContentRuleLists ();
 	}
 
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)] // Not defined in 32-bit
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)] // Not defined in 32-bit
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // all properties are getters
 	interface WKUserScript : NSCopying {
@@ -530,7 +530,7 @@ namespace XamCore.WebKit
 		bool IsForMainFrameOnly { [Bind ("isForMainFrameOnly")] get; }
 	}
 
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)] // Not defined in 32-bit
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)] // Not defined in 32-bit
 	[BaseType (
 #if MONOMAC
 		typeof (NSView)
@@ -647,46 +647,46 @@ namespace XamCore.WebKit
 		UIScrollView ScrollView { get; }
 #endif
 
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Export ("loadData:MIMEType:characterEncodingName:baseURL:")]
 		[return: NullAllowed]
 		WKNavigation LoadData (NSData data, string mimeType, string characterEncodingName, NSUrl baseUrl);
 
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Export ("loadFileURL:allowingReadAccessToURL:")]
 		[return: NullAllowed]
 		WKNavigation LoadFileUrl (NSUrl url, NSUrl readAccessUrl);
 		
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Export ("customUserAgent")]
 		string CustomUserAgent { get; set; }
 
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-		[Deprecated (PlatformName.iOS, 10,0, message: "Use 'ServerTrust' property.")]
-		[Deprecated (PlatformName.MacOSX, 10,12, message: "Use 'ServerTrust' property.")]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'ServerTrust' property.")]
+		[Deprecated (PlatformName.MacOSX, 10, 12, message: "Use 'ServerTrust' property.")]
 		[Export ("certificateChain", ArgumentSemantic.Copy)]
 		SecCertificate[] CertificateChain { get; }
 
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Export ("allowsLinkPreview")]
 		bool AllowsLinkPreview { get; set; }
 
-		[iOS (10,0)][Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[NullAllowed, Export ("serverTrust")]
 		SecTrust ServerTrust { get; }
 
 #if !MONOMAC
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Async]
 		[Export ("takeSnapshotWithConfiguration:completionHandler:")]
 		void TakeSnapshot ([NullAllowed] WKSnapshotConfiguration snapshotConfiguration, Action<UIImage, NSError> completionHandler);
 #else
-		[Mac (10,13)]
+		[Introduced (PlatformName.MacOSX, 10, 13)]
 		[Export ("takeSnapshotWithConfiguration:completionHandler:")]
 		[Async]
 		void TakeSnapshot ([NullAllowed] WKSnapshotConfiguration snapshotConfiguration, Action<NSImage, NSError> completionHandler);
 #endif
-		[Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Static]
 		[Export ("handlesURLScheme:")]
 		bool HandlesUrlScheme (string urlScheme);
@@ -695,7 +695,7 @@ namespace XamCore.WebKit
 
 	delegate void WKJavascriptEvaluationResult (NSObject result, NSError error);
 
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)] // Not defined in 32-bit
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)] // Not defined in 32-bit
 	[BaseType (typeof (NSObject))]
 	interface WKWebViewConfiguration : NSCopying, NSCoding {
 
@@ -711,15 +711,15 @@ namespace XamCore.WebKit
 		[Export ("suppressesIncrementalRendering")]
 		bool SuppressesIncrementalRendering { get; set; }
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("websiteDataStore", ArgumentSemantic.Strong)]
 		WKWebsiteDataStore WebsiteDataStore { get; set; }
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("applicationNameForUserAgent")]
 		string ApplicationNameForUserAgent { get; set; }
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("allowsAirPlayForMediaPlayback")]
 		bool AllowsAirPlayForMediaPlayback { get; set; }
 
@@ -727,58 +727,58 @@ namespace XamCore.WebKit
 		[Export ("allowsInlineMediaPlayback")]
 		bool AllowsInlineMediaPlayback { get; set; }
 
-		[Availability (Introduced = Platform.iOS_8_0, Deprecated = Platform.iOS_9_0, Message = "Use 'RequiresUserActionForMediaPlayback' or 'MediaTypesRequiringUserActionForPlayback' instead.")]
+		[Introduced (PlatformName.iOS, 8, 0, message: "Use 'RequiresUserActionForMediaPlayback' or 'MediaTypesRequiringUserActionForPlayback' instead."), Deprecated (PlatformName.iOS, 9, 0, message: "Use 'RequiresUserActionForMediaPlayback' or 'MediaTypesRequiringUserActionForPlayback' instead.")]
 		[Export ("mediaPlaybackRequiresUserAction")]
 		bool MediaPlaybackRequiresUserAction { get; set; }
 
-		[Availability (Introduced = Platform.iOS_8_0, Deprecated = Platform.iOS_9_0, Message = "Use 'AllowsAirPlayForMediaPlayback' instead.")]
+		[Introduced (PlatformName.iOS, 8, 0, message: "Use 'AllowsAirPlayForMediaPlayback' instead."), Deprecated (PlatformName.iOS, 9, 0, message: "Use 'AllowsAirPlayForMediaPlayback' instead.")]
 		[Export ("mediaPlaybackAllowsAirPlay")]
 		bool MediaPlaybackAllowsAirPlay { get; set; }
 
 		[Export ("selectionGranularity")]
 		WKSelectionGranularity SelectionGranularity { get; set; }
 
-		[Availability (Introduced = Platform.iOS_9_0, Deprecated = Platform.iOS_10_0, Message = "Use 'MediaTypesRequiringUserActionForPlayback' instead.")]
+		[Introduced (PlatformName.iOS, 9, 0, message: "Use 'MediaTypesRequiringUserActionForPlayback' instead."), Deprecated (PlatformName.iOS, 10, 0, message: "Use 'MediaTypesRequiringUserActionForPlayback' instead.")]
 		[Export ("requiresUserActionForMediaPlayback")]
 		bool RequiresUserActionForMediaPlayback { get; set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("allowsPictureInPictureMediaPlayback")]
 		bool AllowsPictureInPictureMediaPlayback { get; set; }
 
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("dataDetectorTypes", ArgumentSemantic.Assign)]
 		WKDataDetectorTypes DataDetectorTypes { get; set; }
 #endif
-		[iOS (10,0)][Mac (10,12, only64: true)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("mediaTypesRequiringUserActionForPlayback", ArgumentSemantic.Assign)]
 		WKAudiovisualMediaTypes MediaTypesRequiringUserActionForPlayback { get; set; }
 
-		[iOS (10,0)]
-		[NoMac]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Unavailable (PlatformName.MacOSX)]
 		[Export ("ignoresViewportScaleLimits")]
 		bool IgnoresViewportScaleLimits { get; set; }
 
 #if XAMCORE_2_0
-		[Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("setURLSchemeHandler:forURLScheme:")]
 		void SetUrlSchemeHandler ([NullAllowed] IWKUrlSchemeHandler urlSchemeHandler, string urlScheme);
 	
-		[Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("urlSchemeHandlerForURLScheme:")]
 		[return: NullAllowed]
 		IWKUrlSchemeHandler GetUrlSchemeHandler (string urlScheme);
 #endif
 	}
 
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)] // Not defined in 32-bit
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)] // Not defined in 32-bit
 	[BaseType (typeof (NSObject))]
 	interface WKProcessPool : NSCoding {
 		// as of Mac 10.10, iOS 8.0 Beta 2,
 		// this interface is completely empty
 	}
 
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)] // Not defined in 32-bit
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)] // Not defined in 32-bit
 	[BaseType (typeof (NSObject))]
 	interface WKWindowFeatures {
 		// Filled in from open source headers
@@ -811,7 +811,7 @@ namespace XamCore.WebKit
 #if !MONOMAC
 	interface IWKPreviewActionItem {}
 
-	[iOS (10,0)][NoMac]
+	[Introduced (PlatformName.iOS, 10, 0)][Unavailable (PlatformName.MacOSX)]
 	[Protocol]
 	interface WKPreviewActionItem : UIPreviewActionItem {
 		[Abstract]
@@ -820,7 +820,7 @@ namespace XamCore.WebKit
 	}
 #endif
 
-	[iOS (10,0)][NoMac]
+	[Introduced (PlatformName.iOS, 10, 0)][Unavailable (PlatformName.MacOSX)]
 	[Static]
 	interface WKPreviewActionItemIdentifier {
 		[Field ("WKPreviewActionItemIdentifierOpen")]
@@ -836,7 +836,7 @@ namespace XamCore.WebKit
 		NSString Share { get; }
 	}
 
-	[iOS (10,0)][NoMac]
+	[Introduced (PlatformName.iOS, 10, 0)][Unavailable (PlatformName.MacOSX)]
 	[BaseType (typeof (NSObject))]
 	interface WKPreviewElementInfo : NSCopying {
 		[NullAllowed, Export ("linkURL")]

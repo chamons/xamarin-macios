@@ -47,7 +47,7 @@ namespace XamCore.ObjCRuntime {
 		Disabled,
 	}
 
-	[AttributeUsage(AttributeTargets.Assembly, AllowMultiple=true)]
+	[AttributeUsage (AttributeTargets.Assembly, AllowMultiple = true)]
 #if XAMCORE_2_0
 	sealed
 #endif

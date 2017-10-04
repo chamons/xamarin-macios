@@ -1,4 +1,4 @@
-﻿// 
+// 
 // SKFieldNode.cs: SKFieldNode class
 //
 // Authors:

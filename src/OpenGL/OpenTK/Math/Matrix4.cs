@@ -31,7 +31,7 @@ namespace OpenTK
     /// Represents a 4x4 Matrix
     /// </summary>
     [Serializable]
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     public struct Matrix4 : IEquatable<Matrix4>
     {
         #region Fields
@@ -679,7 +679,7 @@ namespace OpenTK
         /// </summary>
         /// <param name="trans">The translation vector.</param>
         /// <returns>A new Matrix4 instance.</returns>
-        [Obsolete("Use CreateTranslation instead.")]
+        [Obsolete ("Use CreateTranslation instead.")]
         public static Matrix4 Translation(Vector3 trans)
         {
             return Translation(trans.X, trans.Y, trans.Z);
@@ -692,7 +692,7 @@ namespace OpenTK
         /// <param name="y">Y translation</param>
         /// <param name="z">Z translation</param>
         /// <returns>A Translation matrix</returns>
-        [Obsolete("Use CreateTranslation instead.")]
+        [Obsolete ("Use CreateTranslation instead.")]
         public static Matrix4 Translation(float x, float y, float z)
         {
             Matrix4 result = Identity;
@@ -752,7 +752,7 @@ namespace OpenTK
         /// </summary>
         /// <param name="angle">angle in radians to rotate counter-clockwise around the x-axis</param>
         /// <returns>A rotation matrix</returns>
-        [Obsolete("Use CreateRotationX instead.")]
+        [Obsolete ("Use CreateRotationX instead.")]
         public static Matrix4 RotateX(float angle)
         {
             float cos = (float)System.Math.Cos(angle);
@@ -771,7 +771,7 @@ namespace OpenTK
         /// </summary>
         /// <param name="angle">angle in radians to rotate counter-clockwise around the y-axis</param>
         /// <returns>A rotation matrix</returns>
-        [Obsolete("Use CreateRotationY instead.")]
+        [Obsolete ("Use CreateRotationY instead.")]
         public static Matrix4 RotateY(float angle)
         {
             float cos = (float)System.Math.Cos(angle);
@@ -790,7 +790,7 @@ namespace OpenTK
         /// </summary>
         /// <param name="angle">angle in radians to rotate counter-clockwise around the z-axis</param>
         /// <returns>A rotation matrix</returns>
-        [Obsolete("Use CreateRotationZ instead.")]
+        [Obsolete ("Use CreateRotationZ instead.")]
         public static Matrix4 RotateZ(float angle)
         {
             float cos = (float)System.Math.Cos(angle);
@@ -810,7 +810,7 @@ namespace OpenTK
         /// <param name="axis">the axis to rotate about</param>
         /// <param name="angle">angle in radians to rotate counter-clockwise (looking in the direction of the given axis)</param>
         /// <returns>A rotation matrix</returns>
-        [Obsolete("Use CreateFromAxisAngle instead.")]
+        [Obsolete ("Use CreateFromAxisAngle instead.")]
         public static Matrix4 Rotate(Vector3 axis, float angle)
         {
             float cos = (float)System.Math.Cos(-angle);
@@ -895,7 +895,7 @@ namespace OpenTK
         /// <param name="near">Distance to the near clip plane</param>
         /// <param name="far">Distance to the far clip plane</param>
         /// <returns>A projection matrix that transforms camera space to raster space</returns>
-        [Obsolete("Use CreatePerspectiveOffCenter instead.")]
+        [Obsolete ("Use CreatePerspectiveOffCenter instead.")]
         public static Matrix4 Frustum(float left, float right, float bottom, float top, float near, float far)
         {
             float invRL = 1.0f / (right - left);
@@ -915,7 +915,7 @@ namespace OpenTK
         /// <param name="near">Distance to the near clip plane</param>
         /// <param name="far">Distance to the far clip plane</param>
         /// <returns>A projection matrix that transforms camera space to raster space</returns>
-        [Obsolete("Use CreatePerspectiveFieldOfView instead.")]
+        [Obsolete ("Use CreatePerspectiveFieldOfView instead.")]
         public static Matrix4 Perspective(float fovy, float aspect, float near, float far)
         {
             float yMax = near * (float)System.Math.Tan(0.5f * fovy);

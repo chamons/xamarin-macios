@@ -35,7 +35,7 @@ using XamCore.AudioToolbox;
 namespace XamCore.AVFoundation {
 
 	// Should be called AVAudioSetting but AVAudioSetting has been already used by keys class
-	[iOS (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	public class AudioSettings : DictionaryContainer
 	{
 #if !COREBUILD
@@ -172,7 +172,7 @@ namespace XamCore.AVFoundation {
 			}			
 		}
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		public AVAudioBitRateStrategy? BitRateStrategy {
 			set {
 				NSString v = null;
@@ -212,7 +212,7 @@ namespace XamCore.AVFoundation {
 			}
 		}
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		public AVSampleRateConverterAlgorithm? SampleRateConverterAlgorithm {
 			get {
 				var k = GetNSStringValue (AVAudioSettings.AVSampleRateConverterAlgorithmKey);
@@ -242,7 +242,7 @@ namespace XamCore.AVFoundation {
 			}
 		}
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		public AVAudioQuality? EncoderAudioQualityForVBR {
 			get {
 				return (AVAudioQuality?) (long?) GetNIntValue (AVAudioSettings.AVEncoderAudioQualityForVBRKey);

@@ -17,7 +17,7 @@ namespace XamCore.CoreFoundation
 {
 
 #if false
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	internal public struct CFMachPortContext {
 		public delegate IntPtr CBRetain (IntPtr info);
 		public delegate void CBRelease (IntPtr info);

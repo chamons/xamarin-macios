@@ -62,7 +62,7 @@ namespace XamCore.CoreFoundation {
 			get {return handle;}
 		}
 
-		[DllImport (Constants.CoreFoundationLibrary, EntryPoint="CFArrayGetTypeID")]
+		[DllImport (Constants.CoreFoundationLibrary, EntryPoint = "CFArrayGetTypeID")]
 		public extern static /* CFTypeID */ nint GetTypeID ();
 
 		~CFArray ()

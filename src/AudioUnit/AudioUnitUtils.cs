@@ -80,7 +80,7 @@ namespace XamCore.AudioUnit
 			throw new ArgumentException();            
         }
 
-	    [DllImport(Constants.AudioToolboxLibrary, EntryPoint = "AudioSessionSetProperty")]
+	    [DllImport (Constants.AudioToolboxLibrary, EntryPoint = "AudioSessionSetProperty")]
 	    static extern int AudioSessionSetProperty(
 		    UInt32 inID,
 		    UInt32 inDataSize,

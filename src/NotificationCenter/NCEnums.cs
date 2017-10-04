@@ -10,17 +10,17 @@ using XamCore.UIKit;
 
 namespace XamCore.NotificationCenter {
 
-	[iOS (8,0)][Mac (10,10)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 	[Native]
-	public enum NCUpdateResult : nuint {
+	public enum NCUpdateResult : ulong {
 		NewData,
 		NoData,
 		Failed
 	}
 
-	[iOS (10,0)][NoMac]
+	[Introduced (PlatformName.iOS, 10, 0)][Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum NCWidgetDisplayMode : nint {
+	public enum NCWidgetDisplayMode : long {
 		Compact,
 		Expanded
 	}

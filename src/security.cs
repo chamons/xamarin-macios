@@ -14,7 +14,7 @@ using XamCore.ObjCRuntime;
 namespace XamCore.Security {
 
 	[Static]
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	interface SecPolicyIdentifier {
 		// they are CFString -> https://github.com/Apple-FOSS-Mirror/libsecurity_keychain/blob/master/lib/SecPolicy.cpp
 
@@ -44,32 +44,32 @@ namespace XamCore.Security {
 		[Field ("kSecPolicyAppleCodeSigning")]
 		NSString AppleCodeSigning { get; }
 
-		[iOS (9,0)][Mac (10,7)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 7)]
 		[Field ("kSecPolicyMacAppStoreReceipt")]
 		NSString MacAppStoreReceipt { get; }
 
 		[Field ("kSecPolicyAppleIDValidation")]
 		NSString AppleIDValidation { get; }
 			
-		[MountainLion]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[Field ("kSecPolicyAppleTimeStamping")]
 		NSString AppleTimeStamping { get; }
 
-		[Mavericks]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("kSecPolicyAppleRevocation")]
 		NSString AppleRevocation { get; }
 
-		[iOS (7,0)][Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("kSecPolicyApplePassbookSigning")]
 		NSString ApplePassbookSigning { get; }
 
-		[Mac(10,11), iOS (9,0)]
+		[Introduced (PlatformName.MacOSX, 10, 11), Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("kSecPolicyApplePayIssuerEncryption")]
 		NSString ApplePayIssuerEncryption { get; }
 	}
 
 	[Static]
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	interface SecPolicyPropertyKey {
 		[Field ("kSecPolicyOid")]
 		NSString Oid { get; }
@@ -80,18 +80,18 @@ namespace XamCore.Security {
 		[Field ("kSecPolicyClient")]
 		NSString Client { get; }
 
-		[Mavericks]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("kSecPolicyRevocationFlags")]
 		NSString RevocationFlags { get; }
 
-		[iOS (7,0)][Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("kSecPolicyTeamIdentifier")]
 		NSString TeamIdentifier { get; }
 	}
 	
 	[Static]
-	[Since (8,0), NoMac, NoWatch]
-	[NoTV] // removed in tvOS 10
+	[Introduced (PlatformName.iOS, 8, 0), Unavailable (PlatformName.MacOSX), Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)] // removed in tvOS 10
 	interface SecSharedCredential {
 		[Field ("kSecSharedPassword")]
 		NSString SharedPassword { get; }
@@ -99,7 +99,7 @@ namespace XamCore.Security {
 	
 
 	[Static]
-	[Since (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	interface SecTrustPropertyKey {
 		[Field ("kSecPropertyTypeTitle")]
 		NSString Title { get; }
@@ -109,7 +109,7 @@ namespace XamCore.Security {
 	}
 
 	[Static]
-	[Since (7,0), Mavericks]
+	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 	interface SecTrustResultKey {
 		[Field ("kSecTrustEvaluationDate")]
 		NSString EvaluationDate { get; }
@@ -129,14 +129,14 @@ namespace XamCore.Security {
 		[Field ("kSecTrustRevocationValidUntilDate")]
 		NSString RevocationValidUntilDate { get; }
 
-		[iOS (9,0)]
-		[Mac (10,12)] // headers says 10.11 but it's not present in 10.11
+		[Introduced (PlatformName.iOS, 9, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)] // headers says 10.11 but it's not present in 10.11
 		[Field ("kSecTrustCertificateTransparency")]
 		NSString CertificateTransparency { get; }
 
-		[iOS (10,0)][Mac (10,12)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kSecTrustCertificateTransparencyWhiteList")]
 		NSString CertificateTransparencyWhiteList { get; }
 	}
@@ -156,14 +156,14 @@ namespace XamCore.Security {
 		[Field ("kSecAttrKeyTypeRSA")]
 		RSA = 0,
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("kSecAttrKeyTypeEC")]
 		EC = 1,
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kSecAttrKeyTypeECSECPrimeRandom")]
 		ECSecPrimeRandom = 2,
 	}
@@ -306,58 +306,58 @@ namespace XamCore.Security {
 
 	[Static][Internal]
 	interface KeysAccessible {
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("kSecAttrAccessibleWhenUnlocked")]
 		IntPtr WhenUnlocked { get; }
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("kSecAttrAccessibleAfterFirstUnlock")]
 		IntPtr AfterFirstUnlock { get; }
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("kSecAttrAccessibleAlways")]
 		IntPtr Always { get; }
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("kSecAttrAccessibleWhenUnlockedThisDeviceOnly")]
 		IntPtr WhenUnlockedThisDeviceOnly { get; }
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly")]
 		IntPtr AfterFirstUnlockThisDeviceOnly { get; }
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("kSecAttrAccessibleAlwaysThisDeviceOnly")]
 		IntPtr AlwaysThisDeviceOnly { get; }
 
-		[iOS (8,0)]
-		[Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly")]
 		IntPtr WhenPasscodeSetThisDeviceOnly { get; }
 	}
 
 	[Static][Internal]
 	interface SecAttributeKey {
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("kSecAttrAccessible")]
 		IntPtr Accessible { get; }
 
-		[iOS (8,0), Mac(10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("kSecAttrAccessControl")]
 		IntPtr AccessControl { get; }
 
-		[iOS (7,0)]
-		[Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("kSecAttrSynchronizableAny")]
 		IntPtr SynchronizableAny { get; }
 
-		[iOS (7,0)]
-		[Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("kSecAttrSynchronizable")]
 		IntPtr Synchronizable { get; }
 
-		[iOS (9,0)]
-		[NoMac]
+		[Introduced (PlatformName.iOS, 9, 0)]
+		[Unavailable (PlatformName.MacOSX)]
 		[Field ("kSecAttrSyncViewHint")]
 		IntPtr SyncViewHint { get; }
 
@@ -487,20 +487,20 @@ namespace XamCore.Security {
 		[Field ("kSecAttrCanUnwrap")]
 		IntPtr CanUnwrap { get; }
 
-		[iOS (9,0)]
-		[Mac (10,12)]
+		[Introduced (PlatformName.iOS, 9, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
 		[Field ("kSecAttrTokenID")]
 		IntPtr TokenID { get; }
 
-		[iOS (9,0)]
-		[NoMac]
+		[Introduced (PlatformName.iOS, 9, 0)]
+		[Unavailable (PlatformName.MacOSX)]
 		[Field ("kSecAttrTokenIDSecureEnclave")]
 		IntPtr SecureEnclave { get; }
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kSecAttrAccessGroupToken")]
 		IntPtr AccessGroupToken { get; }
 	}
@@ -608,35 +608,35 @@ namespace XamCore.Security {
 		IntPtr UseItemList { get; }
 
 #if !MONOMAC || !XAMCORE_2_0 // Don't break compat API
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("kSecUseOperationPrompt")]
 		IntPtr UseOperationPrompt { get; }
 
-		[Availability (Introduced = Platform.iOS_8_0, Deprecated = Platform.iOS_9_0)]
+		[Introduced (PlatformName.iOS, 8, 0), Deprecated (PlatformName.iOS, 9, 0)]
 		[Field ("kSecUseNoAuthenticationUI")]
 		IntPtr UseNoAuthenticationUI { get; }
 #endif
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("kSecUseAuthenticationUI")]
 		IntPtr UseAuthenticationUI { get; }
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("kSecUseAuthenticationContext")]
 		IntPtr UseAuthenticationContext { get; }
 	}
 
-	[NoiOS][NoTV][NoWatch]
+	[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 	[Static][Internal]
 	interface SecCertificateOIDs
 	{
-		[Mac (10,7)]
+		[Introduced (PlatformName.MacOSX, 10, 7)]
 		[Field ("kSecOIDX509V1SubjectPublicKey")]
 		IntPtr SubjectPublicKey { get; }
 	}
 
-	[NoiOS][NoTV][NoWatch]
-	[Mac (10,7)]
+	[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.MacOSX, 10, 7)]
 	[Static][Internal]
 	interface SecPropertyKey
 	{
@@ -653,7 +653,7 @@ namespace XamCore.Security {
 		IntPtr Value { get; }
 	}
 
-	[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 	enum SecKeyAlgorithm {
 		[Field ("kSecKeyAlgorithmRSASignatureRaw")]
 		RsaSignatureRaw,
@@ -830,7 +830,7 @@ namespace XamCore.Security {
 		EcdhKeyExchangeCofactorX963Sha512,
 	}
 
-	[iOS (10,0)][TV (10,0)][Watch (3,0)][Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 	enum SslSessionConfig {
 		[Field ("kSSLSessionConfig_default")]
 		Default,
@@ -862,18 +862,18 @@ namespace XamCore.Security {
 		[Field ("kSSLSessionConfig_anonymous")]
 		Anonymous,
 
-		[iOS (10,2)][TV (10,1)][Mac (10,12,2)]
-		[Watch (3,2)]
+		[Introduced (PlatformName.iOS, 10, 2)][Introduced (PlatformName.TvOS, 10, 1)][Introduced (PlatformName.MacOSX, 10, 12, 2)]
+		[Introduced (PlatformName.WatchOS, 3, 2)]
 		[Field ("kSSLSessionConfig_3DES_fallback")]
 		ThreeDesFallback,
 
-		[iOS (10,2)][TV (10,1)][Mac (10,12,2)]
-		[Watch (3,2)]
+		[Introduced (PlatformName.iOS, 10, 2)][Introduced (PlatformName.TvOS, 10, 1)][Introduced (PlatformName.MacOSX, 10, 12, 2)]
+		[Introduced (PlatformName.WatchOS, 3, 2)]
 		[Field ("kSSLSessionConfig_TLSv1_3DES_fallback")]
 		Tls1ThreeDesFallback,
 	}
 
-	[iOS (10,0)][TV (10,0)][Watch (3,0)][Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 	[Internal][Static]
 	interface SecKeyKeyExchangeParameterKey {
 		[Field ("kSecKeyKeyExchangeParameterRequestedSize")]
@@ -883,7 +883,7 @@ namespace XamCore.Security {
 		NSString SharedInfoKey { get; }
 	}
 
-	[iOS (10,0)][TV (10,0)][Watch (3,0)][Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 	[StrongDictionary ("SecKeyKeyExchangeParameterKey")]
 	interface SecKeyKeyExchangeParameter {
 

@@ -5,7 +5,7 @@ using System;
 
 namespace XamCore.PushKit 
 {
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface PKPushCredentials {
@@ -16,7 +16,7 @@ namespace XamCore.PushKit
 		NSData Token { get; }
 	}
 
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface PKPushPayload {
@@ -27,7 +27,7 @@ namespace XamCore.PushKit
 		NSDictionary DictionaryPayload { get; }
 	}
 
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface PKPushRegistry {
@@ -49,23 +49,23 @@ namespace XamCore.PushKit
 		IntPtr Constructor (DispatchQueue queue);
 	}
 	
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Static]
 	interface PKPushType {
 		
 		[Field ("PKPushTypeVoIP")]
 		NSString Voip { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("PKPushTypeComplication")]
 		NSString Complication { get; }
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Field ("PKPushTypeFileProvider")]
 		NSString FileProvider { get; }
 	}
 
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Model]
 	[Protocol]
 	[BaseType (typeof (NSObject))]
@@ -75,11 +75,11 @@ namespace XamCore.PushKit
 		void DidUpdatePushCredentials (PKPushRegistry registry, PKPushCredentials credentials, string type);
 
 		[Abstract] // now optional in iOS 11
-		[Deprecated (PlatformName.iOS, 11,0, message: "Use the 'DidReceiveIncomingPushWithPayload' overload accepting an 'Action' argument instead.")]
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use the 'DidReceiveIncomingPushWithPayload' overload accepting an 'Action' argument instead.")]
 		[Export ("pushRegistry:didReceiveIncomingPushWithPayload:forType:"), EventArgs ("PKPushRegistryRecieved"), EventName ("IncomingPushReceived")]
 		void DidReceiveIncomingPush (PKPushRegistry registry, PKPushPayload payload, string type);
 
-		[iOS (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("pushRegistry:didReceiveIncomingPushWithPayload:forType:withCompletionHandler:")]
 		void DidReceiveIncomingPush (PKPushRegistry registry, PKPushPayload payload, string type, Action completion);
 

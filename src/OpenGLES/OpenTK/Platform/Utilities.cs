@@ -182,7 +182,7 @@ namespace OpenTK.Platform
         /// <param name="minor">The minor OpenGL version number for this IGraphicsContext.</param>
         /// <param name="flags">A bitwise collection of GraphicsContextFlags with specific options for this IGraphicsContext.</param>
         /// <returns>A new IGraphicsContext instance.</returns>
-        [Obsolete("Call new OpenTK.Graphics.GraphicsContext() directly, instead.")]
+        [Obsolete ("Call new OpenTK.Graphics.GraphicsContext() directly, instead.")]
         public static IGraphicsContext CreateGraphicsContext(
             GraphicsMode mode, IWindowInfo window,
             int major, int minor, GraphicsContextFlags flags)

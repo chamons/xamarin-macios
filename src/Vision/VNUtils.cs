@@ -1,4 +1,4 @@
-﻿//
+//
 // VNUtils.cs
 //
 // Authors:
@@ -18,7 +18,7 @@ using XamCore.Foundation;
 using Vector2 = global::OpenTK.Vector2;
 
 namespace XamCore.Vision {
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	public static partial class VNUtils {
 	
 		[Field ("VNNormalizedIdentityRect", Constants.VisionLibrary)]

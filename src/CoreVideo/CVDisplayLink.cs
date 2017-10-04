@@ -46,7 +46,7 @@ namespace XamCore.CoreVideo {
 			this.handle = handle;
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal CVDisplayLink (IntPtr handle, bool owns)
 		{
 			if (!owns)

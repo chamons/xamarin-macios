@@ -108,19 +108,19 @@ namespace XamCore.CoreGraphics {
 			}
 		}
 
-		[DllImport (Constants.ApplicationServicesCoreGraphicsLibrary, EntryPoint="CGEventSourceButtonState")]
+		[DllImport (Constants.ApplicationServicesCoreGraphicsLibrary, EntryPoint = "CGEventSourceButtonState")]
 		public extern static bool GetButtonState (CGEventSourceStateID stateID, CGMouseButton button);
 
-		[DllImport (Constants.ApplicationServicesCoreGraphicsLibrary, EntryPoint="CGEventSourceKeyState")]
+		[DllImport (Constants.ApplicationServicesCoreGraphicsLibrary, EntryPoint = "CGEventSourceKeyState")]
 		public extern static bool GetKeyState (CGEventSourceStateID stateID, ushort keycode);
 
-		[DllImport (Constants.ApplicationServicesCoreGraphicsLibrary, EntryPoint="CGEventSourceFlagsState")]
+		[DllImport (Constants.ApplicationServicesCoreGraphicsLibrary, EntryPoint = "CGEventSourceFlagsState")]
 		public extern static  CGEventFlags GetFlagsState (CGEventSourceStateID stateID);
 
-		[DllImport (Constants.ApplicationServicesCoreGraphicsLibrary, EntryPoint="CGEventSourceSecondsSinceLastEventType")]
+		[DllImport (Constants.ApplicationServicesCoreGraphicsLibrary, EntryPoint = "CGEventSourceSecondsSinceLastEventType")]
 		public extern static double GetSecondsSinceLastEventType (CGEventSourceStateID stateID, CGEventType eventType);
 
-		[DllImport (Constants.ApplicationServicesCoreGraphicsLibrary, EntryPoint="CGEventSourceCounterForEventType")]
+		[DllImport (Constants.ApplicationServicesCoreGraphicsLibrary, EntryPoint = "CGEventSourceCounterForEventType")]
 		public extern static uint /* uint32_t */ GetCounterForEventType (CGEventSourceStateID stateID, CGEventType eventType);
 
 		[DllImport (Constants.ApplicationServicesCoreGraphicsLibrary)]

@@ -43,7 +43,7 @@ namespace XamCore.CoreGraphics {
 		{
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal CGDataProvider (IntPtr handle, bool owns)
 		{
 			this.handle = handle;

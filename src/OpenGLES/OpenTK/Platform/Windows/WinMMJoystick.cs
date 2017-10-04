@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 //
 // The Open Toolkit Library License
 //
@@ -312,7 +312,7 @@ namespace OpenTK.Platform.Windows
         {
             public ushort Mid;
             public ushort ProductId;
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
+            [MarshalAs (UnmanagedType.ByValTStr, SizeConst = 32)]
             public string ProductName;
             public int XMin;
             public int XMax;
@@ -333,9 +333,9 @@ namespace OpenTK.Platform.Windows
             public int MaxAxes;
             public int NumAxes;
             public int MaxButtons;
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
+            [MarshalAs (UnmanagedType.ByValTStr, SizeConst = 32)]
             public string RegKey;
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
+            [MarshalAs (UnmanagedType.ByValTStr, SizeConst = 260)]
             public string OemVxD;
 
             public static readonly int SizeInBytes;
@@ -349,7 +349,7 @@ namespace OpenTK.Platform.Windows
         struct JoyInfoEx
         {
             public int Size;
-            [MarshalAs(UnmanagedType.I4)]
+            [MarshalAs (UnmanagedType.I4)]
             public JoystickFlags Flags;
             public int XPos;
             public int YPos;
@@ -373,11 +373,11 @@ namespace OpenTK.Platform.Windows
 
         static class UnsafeNativeMethods
         {
-            [DllImport("Winmm.dll"), SuppressUnmanagedCodeSecurity]
+            [DllImport ("Winmm.dll"), SuppressUnmanagedCodeSecurity]
             public static extern JoystickError joyGetDevCaps(int uJoyID, out JoyCaps pjc, int cbjc);
-            [DllImport("Winmm.dll"), SuppressUnmanagedCodeSecurity]
+            [DllImport ("Winmm.dll"), SuppressUnmanagedCodeSecurity]
             public static extern uint joyGetPosEx(int uJoyID, ref JoyInfoEx pji);
-            [DllImport("Winmm.dll"), SuppressUnmanagedCodeSecurity]
+            [DllImport ("Winmm.dll"), SuppressUnmanagedCodeSecurity]
             public static extern int joyGetNumDevs();
         }
 

@@ -26,7 +26,7 @@ namespace XamCore.CoreMedia {
 	}
 
 	// CMSync.h
-	[iOS (6,0)][Mac (10,8)]
+	[Introduced (PlatformName.iOS, 6, 0)][Introduced (PlatformName.MacOSX, 10, 8)]
 	public class CMClock : CMClockOrTimebase
 	{
 		public CMClock (IntPtr handle) : base (handle)
@@ -38,7 +38,7 @@ namespace XamCore.CoreMedia {
 		{
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* CMClockRef */ IntPtr CMClockGetHostTimeClock ();
 
 		public static CMClock HostTimeClock {
@@ -47,7 +47,7 @@ namespace XamCore.CoreMedia {
 			}
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static CMTime CMClockGetTime (/* CMClockRef */ IntPtr clock);
 
 		public CMTime CurrentTime {
@@ -65,8 +65,8 @@ namespace XamCore.CoreMedia {
 		}
 #elif !MONOMAC
 		// CMAudioClock.h
-		[Mac (10,10)]
-		[DllImport(Constants.CoreMediaLibrary)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* OSStatus */ CMClockError CMAudioClockCreate (/* CFAllocatorRef */ IntPtr allocator, /* CMClockRef* */ out IntPtr clockOut);
 
 		public static CMClock CreateAudioClock (out CMClockError clockError)
@@ -77,7 +77,7 @@ namespace XamCore.CoreMedia {
 		}
 #endif
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* OSStatus */ CMClockError CMClockGetAnchorTime (/* CMClockRef */ IntPtr clock, out CMTime outClockTime, out CMTime outReferenceClockTime);
 
 		public CMClockError GetAnchorTime (out CMTime clockTime, out CMTime referenceClockTime)
@@ -85,7 +85,7 @@ namespace XamCore.CoreMedia {
 			return CMClockGetAnchorTime (Handle, out clockTime, out referenceClockTime);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* Boolean */ bool CMClockMightDrift (/* CMClockRef */ IntPtr clock, /* CMClockRef */ IntPtr otherClock);
 
 		public bool MightDrift (CMClock otherClock)
@@ -96,7 +96,7 @@ namespace XamCore.CoreMedia {
 			return CMClockMightDrift (Handle, otherClock.Handle);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static void CMClockInvalidate (/* CMClockRef */ IntPtr clock);
 
 		public void Invalidate ()
@@ -104,10 +104,10 @@ namespace XamCore.CoreMedia {
 			CMClockInvalidate (Handle);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary, EntryPoint="CMClockConvertHostTimeToSystemUnits")]
+		[DllImport (Constants.CoreMediaLibrary, EntryPoint = "CMClockConvertHostTimeToSystemUnits")]
 		public extern static /* uint64_t */ ulong ConvertHostTimeToSystemUnits (CMTime hostTime);
 
-		[DllImport(Constants.CoreMediaLibrary, EntryPoint="CMClockMakeHostTimeFromSystemUnits")]
+		[DllImport (Constants.CoreMediaLibrary, EntryPoint = "CMClockMakeHostTimeFromSystemUnits")]
 		public extern static CMTime CreateHostTimeFromSystemUnits (/* uint64_t */ ulong hostTime);
 	}
 
@@ -122,7 +122,7 @@ namespace XamCore.CoreMedia {
 		ReadOnly					= -12757,
 	}
 
-	[iOS (6,0)][Mac (10,8)]
+	[Introduced (PlatformName.iOS, 6, 0)][Introduced (PlatformName.MacOSX, 10, 8)]
 	public class CMTimebase : CMClockOrTimebase
 	{
 		public CMTimebase (IntPtr handle)
@@ -135,7 +135,7 @@ namespace XamCore.CoreMedia {
 		{
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* OSStatus */ CMTimebaseError CMTimebaseCreateWithMasterClock (/* CFAllocatorRef */ IntPtr allocator, /* CMClockRef */ IntPtr masterClock, /* CMTimebaseRef* */ out IntPtr timebaseOut);
 
 		public CMTimebase (CMClock masterClock)
@@ -150,7 +150,7 @@ namespace XamCore.CoreMedia {
 			CFObject.CFRetain (Handle);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* OSStatus */ CMTimebaseError CMTimebaseCreateWithMasterTimebase (/* CFAllocatorRef */ IntPtr allocator, /* CMTimebaseRef */ IntPtr masterTimebase, /* CMTimebaseRef* */ out IntPtr timebaseOut);
 
 		public CMTimebase (CMTimebase masterTimebase)
@@ -166,7 +166,7 @@ namespace XamCore.CoreMedia {
 		}
 
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* Float64 */ double CMTimebaseGetEffectiveRate (/* CMTimebaseRef */ IntPtr timebase);
 
 		public double EffectiveRate {
@@ -175,10 +175,10 @@ namespace XamCore.CoreMedia {
 			}
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* Float64 */ double CMTimebaseGetRate (/* CMTimebaseRef */ IntPtr timebase);
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* OSStatus */ CMTimebaseError CMTimebaseSetRate (/* CMTimebaseRef */ IntPtr timebase, /* Float64 */ double rate);
 
 		public double Rate {
@@ -192,10 +192,10 @@ namespace XamCore.CoreMedia {
 			}
 		} 
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static CMTime CMTimebaseGetTime (/* CMTimebaseRef */ IntPtr timebase);
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* OSStatus */ CMTimebaseError CMTimebaseSetTime (/* CMTimebaseRef */ IntPtr timebase, CMTime time);
 
 		public new CMTime Time {
@@ -209,10 +209,10 @@ namespace XamCore.CoreMedia {
 			}
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* CMTimebaseRef */ IntPtr CMTimebaseGetMasterTimebase (/* CMTimebaseRef */ IntPtr timebase);
 
-		[Availability (Introduced = Platform.iOS_6_0 | Platform.Mac_10_8, Deprecated = Platform.iOS_9_0 | Platform.Mac_10_11, Message="Use 'CopyMasterTimebase' instead.")]
+		[Introduced (PlatformName.iOS, 6, 0, message: "Use 'CopyMasterTimebase' instead."), Introduced (PlatformName.MacOSX, 10, 8, message: "Use 'CopyMasterTimebase' instead."), Deprecated (PlatformName.iOS, 9, 0, message: "Use 'CopyMasterTimebase' instead."), Deprecated (PlatformName.MacOSX, 10, 11, message: "Use 'CopyMasterTimebase' instead.")]
 		public CMTimebase GetMasterTimebase ()
 		{
 			var ptr = CMTimebaseGetMasterTimebase (Handle);
@@ -222,10 +222,10 @@ namespace XamCore.CoreMedia {
 			return new CMTimebase (ptr, false);			
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* CMClockRef */ IntPtr CMTimebaseGetMasterClock (/* CMTimebaseRef */ IntPtr timebase);
 
-		[Availability (Introduced = Platform.iOS_6_0 | Platform.Mac_10_8, Deprecated = Platform.iOS_9_0 | Platform.Mac_10_11, Message="Use 'CopyMasterClock' instead.")]
+		[Introduced (PlatformName.iOS, 6, 0, message: "Use 'CopyMasterClock' instead."), Introduced (PlatformName.MacOSX, 10, 8, message: "Use 'CopyMasterClock' instead."), Deprecated (PlatformName.iOS, 9, 0, message: "Use 'CopyMasterClock' instead."), Deprecated (PlatformName.MacOSX, 10, 11, message: "Use 'CopyMasterClock' instead.")]
 		public CMClock GetMasterClock ()
 		{
 			var ptr = CMTimebaseGetMasterClock (Handle);
@@ -235,10 +235,10 @@ namespace XamCore.CoreMedia {
 			return new CMClock (ptr, false);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* CMClockOrTimebaseRef */ IntPtr CMTimebaseGetMaster (/* CMTimebaseRef */ IntPtr timebase);
 
-		[Availability (Introduced = Platform.iOS_6_0 | Platform.Mac_10_8, Deprecated = Platform.iOS_9_0 | Platform.Mac_10_11, Message="Use 'CopyMaster' instead.")]
+		[Introduced (PlatformName.iOS, 6, 0, message: "Use 'CopyMaster' instead."), Introduced (PlatformName.MacOSX, 10, 8, message: "Use 'CopyMaster' instead."), Deprecated (PlatformName.iOS, 9, 0, message: "Use 'CopyMaster' instead."), Deprecated (PlatformName.MacOSX, 10, 11, message: "Use 'CopyMaster' instead.")]
 		public CMClockOrTimebase GetMaster ()
 		{
 			var ptr = CMTimebaseGetMaster (Handle);
@@ -248,10 +248,10 @@ namespace XamCore.CoreMedia {
 			return new CMClockOrTimebase (ptr, false);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* CMClockRef */ IntPtr CMTimebaseGetUltimateMasterClock (/* CMTimebaseRef */ IntPtr timebase);
 
-		[Availability (Introduced = Platform.iOS_6_0 | Platform.Mac_10_8, Deprecated = Platform.iOS_9_0 | Platform.Mac_10_11, Message="Use 'CopyUltimateMasterClock' instead.")]
+		[Introduced (PlatformName.iOS, 6, 0, message: "Use 'CopyUltimateMasterClock' instead."), Introduced (PlatformName.MacOSX, 10, 8, message: "Use 'CopyUltimateMasterClock' instead."), Deprecated (PlatformName.iOS, 9, 0, message: "Use 'CopyUltimateMasterClock' instead."), Deprecated (PlatformName.MacOSX, 10, 11, message: "Use 'CopyUltimateMasterClock' instead.")]
 		public CMClock GetUltimateMasterClock ()
 		{
 			var ptr  = CMTimebaseGetUltimateMasterClock (Handle);
@@ -261,7 +261,7 @@ namespace XamCore.CoreMedia {
 			return new CMClock (ptr, false);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static CMTime CMTimebaseGetTimeWithTimeScale (/* CMTimebaseRef */ IntPtr timebase, CMTimeScale timescale, CMTimeRoundingMethod method);
 
 		public CMTime GetTime (CMTimeScale timeScale, CMTimeRoundingMethod roundingMethod)
@@ -269,7 +269,7 @@ namespace XamCore.CoreMedia {
 			return CMTimebaseGetTimeWithTimeScale (Handle, timeScale, roundingMethod);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* OSStatus */ CMTimebaseError CMTimebaseSetAnchorTime (/* CMTimebaseRef */ IntPtr timebase, CMTime timebaseTime, CMTime immediateMasterTime);
 
 		public CMTimebaseError SetAnchorTime (CMTime timebaseTime, CMTime immediateMasterTime)
@@ -277,7 +277,7 @@ namespace XamCore.CoreMedia {
 			return CMTimebaseSetAnchorTime (Handle, timebaseTime, immediateMasterTime);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* OSStatus */ CMTimebaseError CMTimebaseGetTimeAndRate (/* CMTimebaseRef */ IntPtr timebase, out CMTime time, /* Float64* */ out double rate);
 
 		public CMTimebaseError GetTimeAndRate (out CMTime time, out double rate)
@@ -285,7 +285,7 @@ namespace XamCore.CoreMedia {
 			return CMTimebaseGetTimeAndRate (Handle, out time, out rate);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* OSStatus */  CMTimebaseError CMTimebaseSetRateAndAnchorTime (/* CMTimebaseRef */ IntPtr timebase, /* Float64 */ double rate, CMTime timebaseTime, CMTime immediateMasterTime);
 
 		public CMTimebaseError SetRateAndAnchorTime (double rate, CMTime timebaseTime, CMTime immediateMasterTime)
@@ -293,7 +293,7 @@ namespace XamCore.CoreMedia {
 			return CMTimebaseSetRateAndAnchorTime (Handle, rate, timebaseTime, immediateMasterTime);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* OSStatus */ CMTimebaseError CMTimebaseNotificationBarrier (/* CMTimebaseRef */ IntPtr timebase);
 
 		public CMTimebaseError NotificationBarrier ()
@@ -304,7 +304,7 @@ namespace XamCore.CoreMedia {
 		public const double VeryLongTimeInterval = 256.0 * 365.0 * 24.0 * 60.0 * 60.0;
 
  #if !COREBUILD
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* OSStatus */ CMTimebaseError CMTimebaseAddTimer (/* CMTimebaseRef */ IntPtr timebase, /* CFRunLoopTimerRef */ IntPtr timer, /* CFRunLoopRef */ IntPtr runloop);
 
 		public CMTimebaseError AddTimer (NSTimer timer, NSRunLoop runloop)
@@ -319,7 +319,7 @@ namespace XamCore.CoreMedia {
 				return CMTimebaseAddTimer (Handle, timer.Handle, cf.Handle);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* OSStatus */ CMTimebaseError CMTimebaseRemoveTimer (/* CMTimebaseRef */ IntPtr timebase, /* CFRunLoopTimerRef */ IntPtr timer);
 
 		public CMTimebaseError RemoveTimer (NSTimer timer)
@@ -330,7 +330,7 @@ namespace XamCore.CoreMedia {
 			return CMTimebaseRemoveTimer (Handle, timer.Handle);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* OSStatus */ CMTimebaseError CMTimebaseSetTimerNextFireTime (/* CMTimebaseRef */ IntPtr timebase, /* CFRunLoopTimerRef */ IntPtr timer, CMTime fireTime, /* uint32_t */ uint flags);
 
 		public CMTimebaseError SetTimerNextFireTime (NSTimer timer, CMTime fireTime)
@@ -341,7 +341,7 @@ namespace XamCore.CoreMedia {
 			return CMTimebaseSetTimerNextFireTime (Handle, timer.Handle, fireTime, 0);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* OSStatus */ CMTimebaseError CMTimebaseSetTimerToFireImmediately (/* CMTimebaseRef */ IntPtr timebase, /* CFRunLoopTimerRef */ IntPtr timer);
 
 		public CMTimebaseError SetTimerToFireImmediately (NSTimer timer)
@@ -431,20 +431,20 @@ namespace XamCore.CoreMedia {
 			return new CMClock (ptr, deprecated);
 		}
 
-		[iOS (9,0)][Mac (10,11)]
-		[DllImport(Constants.CoreMediaLibrary)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		static extern unsafe /* CMTimebaseRef */ IntPtr  CMTimebaseCopyMasterTimebase (/* CMTimebaseRef */ IntPtr timebase);
 
-		[iOS (9,0)][Mac (10,11)]
-		[DllImport(Constants.CoreMediaLibrary)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		static extern unsafe /* CMClockRef */ IntPtr  CMTimebaseCopyMasterClock (/* CMTimebaseRef */ IntPtr timebase);
 
-		[iOS (9,0)][Mac (10,11)]
-		[DllImport(Constants.CoreMediaLibrary)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		static extern unsafe IntPtr /* void* */ CMTimebaseCopyMaster (/* CMTimebaseRef */ IntPtr timebase);
 
-		[iOS (9,0)][Mac (10,11)]
-		[DllImport(Constants.CoreMediaLibrary)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		static extern unsafe /* CMClockRef */ IntPtr CMTimebaseCopyUltimateMasterClock (/* CMTimebaseRef */ IntPtr timebase);
 #endif
 		//
@@ -465,7 +465,7 @@ namespace XamCore.CoreMedia {
 		RateMustBeNonZero			= -12755,
 	}
 
-	[iOS (6,0)][Mac (10,8)]
+	[Introduced (PlatformName.iOS, 6, 0)][Introduced (PlatformName.MacOSX, 10, 8)]
 	public class CMClockOrTimebase : IDisposable, INativeObject
 	{
 		internal IntPtr handle;
@@ -510,7 +510,7 @@ namespace XamCore.CoreMedia {
 			}
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static CMTime CMSyncGetTime (/* CMClockOrTimebaseRef */ IntPtr clockOrTimebase);
 
 		public CMTime Time { 
@@ -519,7 +519,7 @@ namespace XamCore.CoreMedia {
 			}
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* Float64 */ double CMSyncGetRelativeRate (/* CMClockOrTimebaseRef */ IntPtr ofClockOrTimebase, /* CMClockOrTimebaseRef */ IntPtr relativeToClockOrTimebase);
 
 		public static double GetRelativeRate (CMClockOrTimebase clockOrTimebaseA, CMClockOrTimebase clockOrTimebaseB)
@@ -533,7 +533,7 @@ namespace XamCore.CoreMedia {
 			return CMSyncGetRelativeRate (clockOrTimebaseA.Handle, clockOrTimebaseB.Handle);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* OSStatus */ CMSyncError CMSyncGetRelativeRateAndAnchorTime (
 			/* CMClockOrTimebaseRef */ IntPtr ofClockOrTimebase, 
 			/* CMClockOrTimebaseRef */ IntPtr relativeToClockOrTimebase,
@@ -552,7 +552,7 @@ namespace XamCore.CoreMedia {
 			return CMSyncGetRelativeRateAndAnchorTime (clockOrTimebaseA.Handle, clockOrTimebaseB.handle, out relativeRate, out timeA, out timeB);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static CMTime CMSyncConvertTime (CMTime time, /* CMClockOrTimebaseRef */ IntPtr fromClockOrTimebase, /* CMClockOrTimebaseRef */ IntPtr toClockOrTimebase);
 
 		public static CMTime ConvertTime (CMTime time, CMClockOrTimebase from, CMClockOrTimebase to)
@@ -565,7 +565,7 @@ namespace XamCore.CoreMedia {
 			return CMSyncConvertTime (time, from.Handle, to.Handle);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* Boolean */ bool CMSyncMightDrift (/* CMClockOrTimebaseRef */ IntPtr clockOrTimebase1, /* CMClockOrTimebaseRef */ IntPtr clockOrTimebase2);
 
 		public static bool MightDrift (CMClockOrTimebase clockOrTimebaseA, CMClockOrTimebase clockOrTimebaseB)

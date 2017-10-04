@@ -1,4 +1,4 @@
-﻿//
+//
 // CoreSpotlight enums
 //
 // Authors:
@@ -16,11 +16,11 @@ using XamCore.Foundation;
 namespace XamCore.CoreSpotlight {
 #if !MONOMAC // TODO: Verify this is available in future OS X El Capitan betas, it was not included in beta 1, also do not forget foundation.cs(3801,3)
 	// NSInteger -> CNContact.h
-	[NoTV] // CS_TVOS_UNAVAILABLE
-	[iOS (9,0), Mac (10,11)]
+	[Unavailable (PlatformName.TvOS)] // CS_TVOS_UNAVAILABLE
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	[ErrorDomain ("CSIndexErrorDomain")]
-	public enum CSIndexErrorCode : nint {
+	public enum CSIndexErrorCode : long {
 		UnknownError =	-1,
 		IndexUnavailableError = -1000,
 		InvalidItemError = -1001,
@@ -30,10 +30,10 @@ namespace XamCore.CoreSpotlight {
 		IndexingUnsupported = -1005,
 	}
 
-	[NoTV][iOS (10,0)]
+	[Unavailable (PlatformName.TvOS)][Introduced (PlatformName.iOS, 10, 0)]
 	[ErrorDomain ("CSSearchQueryErrorDomain")]
 	[Native]
-	public enum CSSearchQueryErrorCode : nint {
+	public enum CSSearchQueryErrorCode : long {
 		Unknown = -2000,
 		IndexUnreachable = -2001,
 		InvalidQuery = -2002,

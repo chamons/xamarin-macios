@@ -47,7 +47,7 @@ namespace XamCore.SceneKit
     /// Represents a 4x4 Matrix
     /// </summary>
     [Serializable]
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     public struct SCNMatrix4 : IEquatable<SCNMatrix4>
     {
         #region Fields
@@ -739,7 +739,7 @@ namespace XamCore.SceneKit
         /// </summary>
         /// <param name="trans">The translation vector.</param>
         /// <returns>A new SCNMatrix4 instance.</returns>
-        [Obsolete("Use CreateTranslation instead.")]
+        [Obsolete ("Use CreateTranslation instead.")]
         public static SCNMatrix4 Translation(SCNVector3 trans)
         {
             return Translation(trans.X, trans.Y, trans.Z);
@@ -752,7 +752,7 @@ namespace XamCore.SceneKit
         /// <param name="y">Y translation</param>
         /// <param name="z">Z translation</param>
         /// <returns>A Translation matrix</returns>
-        [Obsolete("Use CreateTranslation instead.")]
+        [Obsolete ("Use CreateTranslation instead.")]
         public static SCNMatrix4 Translation(pfloat x, pfloat y, pfloat z)
         {
             SCNMatrix4 result = Identity;
@@ -814,7 +814,7 @@ namespace XamCore.SceneKit
         /// </summary>
         /// <param name="angle">angle in radians to rotate counter-clockwise around the x-axis</param>
         /// <returns>A rotation matrix</returns>
-        [Obsolete("Use CreateRotationX instead.")]
+        [Obsolete ("Use CreateRotationX instead.")]
         public static SCNMatrix4 RotateX(pfloat angle)
         {
             pfloat cos = (pfloat)System.Math.Cos(angle);
@@ -833,7 +833,7 @@ namespace XamCore.SceneKit
         /// </summary>
         /// <param name="angle">angle in radians to rotate counter-clockwise around the y-axis</param>
         /// <returns>A rotation matrix</returns>
-        [Obsolete("Use CreateRotationY instead.")]
+        [Obsolete ("Use CreateRotationY instead.")]
         public static SCNMatrix4 RotateY(pfloat angle)
         {
             pfloat cos = (pfloat)System.Math.Cos(angle);
@@ -852,7 +852,7 @@ namespace XamCore.SceneKit
         /// </summary>
         /// <param name="angle">angle in radians to rotate counter-clockwise around the z-axis</param>
         /// <returns>A rotation matrix</returns>
-        [Obsolete("Use CreateRotationZ instead.")]
+        [Obsolete ("Use CreateRotationZ instead.")]
         public static SCNMatrix4 RotateZ(pfloat angle)
         {
             pfloat cos = (pfloat)System.Math.Cos(angle);
@@ -872,7 +872,7 @@ namespace XamCore.SceneKit
         /// <param name="axis">the axis to rotate about</param>
         /// <param name="angle">angle in radians to rotate counter-clockwise (looking in the direction of the given axis)</param>
         /// <returns>A rotation matrix</returns>
-        [Obsolete("Use CreateFromAxisAngle instead.")]
+        [Obsolete ("Use CreateFromAxisAngle instead.")]
         public static SCNMatrix4 Rotate(SCNVector3 axis, pfloat angle)
         {
             pfloat cos = (pfloat)System.Math.Cos(-angle);
@@ -975,7 +975,7 @@ namespace XamCore.SceneKit
         /// <param name="near">Distance to the near clip plane</param>
         /// <param name="far">Distance to the far clip plane</param>
         /// <returns>A projection matrix that transforms camera space to raster space</returns>
-        [Obsolete("Use CreatePerspectiveOffCenter instead.")]
+        [Obsolete ("Use CreatePerspectiveOffCenter instead.")]
         public static SCNMatrix4 Frustum(pfloat left, pfloat right, pfloat bottom, pfloat top, pfloat near, pfloat far)
         {
             pfloat invRL = 1.0f / (right - left);
@@ -995,7 +995,7 @@ namespace XamCore.SceneKit
         /// <param name="near">Distance to the near clip plane</param>
         /// <param name="far">Distance to the far clip plane</param>
         /// <returns>A projection matrix that transforms camera space to raster space</returns>
-        [Obsolete("Use CreatePerspectiveFieldOfView instead.")]
+        [Obsolete ("Use CreatePerspectiveFieldOfView instead.")]
         public static SCNMatrix4 Perspective(pfloat fovy, pfloat aspect, pfloat near, pfloat far)
         {
             pfloat yMax = near * (float)System.Math.Tan(0.5f * fovy);

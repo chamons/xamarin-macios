@@ -42,7 +42,7 @@ using vImagePixelCount = System.nint;
 
 namespace XamCore.Accelerate {
 	// vImage_Buffer - vImage_Types.h
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	public struct vImageBuffer {
 		public IntPtr Data { get; set; }
 
@@ -71,7 +71,7 @@ namespace XamCore.Accelerate {
 	}
 
 	// vImage_AffineTransform - vImage_Types.h
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	public struct vImageAffineTransformFloat {
 		// all defined as 'float'
 		public float a, b, c, d;
@@ -81,7 +81,7 @@ namespace XamCore.Accelerate {
 	}
 
 	// vImage_AffineTransform_Double - vImage_Types.h
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	public struct vImageAffineTransformDouble {
 		public double a, b, c, d;
 		public double tx, ty;
@@ -91,7 +91,7 @@ namespace XamCore.Accelerate {
 
 	// vImage_Error (ssize_t) - vImageTypes.h
 	[Native]
-	public enum vImageError : nint {
+	public enum vImageError : long {
 		NoError                      =    0,
 		RoiLargerThanInputBuffer     =    -21766,
 		InvalidKernelSize            =    -21767,
@@ -155,7 +155,7 @@ namespace XamCore.Accelerate {
 		NoAllocate = 512
 	}
 
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	public struct PixelFFFF {
 		// all defined as 'float'
 		public float A, R, G, B;
@@ -165,7 +165,7 @@ namespace XamCore.Accelerate {
 		public static PixelFFFF Zero;
 	}
 
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	public struct Pixel8888 {
 		public byte A, R, G, B;
 #if XAMCORE_2_0
@@ -174,7 +174,7 @@ namespace XamCore.Accelerate {
 		public static Pixel8888 Zero;
 	}
 
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	public struct PixelARGB16U {
 		public Pixel16U A, R, G, B;
 #if XAMCORE_2_0
@@ -183,7 +183,7 @@ namespace XamCore.Accelerate {
 		public static PixelARGB16U Zero;
 	}
 
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	public struct PixelARGB16S {
 		public Pixel16S A, R, G, B;
 #if XAMCORE_2_0
@@ -238,14 +238,14 @@ namespace XamCore.Accelerate {
 			return (vImageError) (long) vImageConvolveWithBias_PlanarF (ref src, ref dest, tempBuffer, srcOffsetToROI_X, srcOffsetToROI_Y, kernel, kernel_height, kernel_width, bias, backgroundColor, flags);
 		}
 
-		[DllImport (Constants.AccelerateImageLibrary,EntryPoint="vImageConvolveWithBias_ARGB8888")]
+		[DllImport (Constants.AccelerateImageLibrary, EntryPoint = "vImageConvolveWithBias_ARGB8888")]
 		extern static nint vImageConvolveWithBias_ARGB8888 (ref vImageBuffer src, ref vImageBuffer dest, IntPtr tempBuffer, vImagePixelCount srcOffsetToROI_X, vImagePixelCount srcOffsetToROI_Y,  short *kernel, uint kernel_height, uint kernel_width, int divisor, int bias, Pixel8888 backgroundColor, vImageFlags flags);
 		public static vImageError ConvolveWithBiasARGB8888 (ref vImageBuffer src, ref vImageBuffer dest, IntPtr tempBuffer, vImagePixelCount srcOffsetToROI_X, vImagePixelCount srcOffsetToROI_Y,  short *kernel, uint kernel_height, uint kernel_width, int divisor, int bias, Pixel8888 backgroundColor, vImageFlags flags)
 		{
 			return (vImageError) (long) vImageConvolveWithBias_ARGB8888 (ref src, ref dest, tempBuffer, srcOffsetToROI_X, srcOffsetToROI_Y, kernel, kernel_height, kernel_width, divisor, bias, backgroundColor, flags);
 		}
 		
-		[DllImport (Constants.AccelerateImageLibrary,EntryPoint="vImageConvolveWithBias_ARGBFFFF")]
+		[DllImport (Constants.AccelerateImageLibrary, EntryPoint = "vImageConvolveWithBias_ARGBFFFF")]
 		extern static nint vImageConvolveWithBias_ARGBFFFF (ref vImageBuffer src, ref vImageBuffer dest, IntPtr tempBuffer, vImagePixelCount srcOffsetToROI_X, vImagePixelCount srcOffsetToROI_Y,  float *kernel, uint kernel_height, uint kernel_width, float bias,  PixelFFFF backgroundColor, vImageFlags flags);
 		public static vImageError ConvolveWithBiasARGBFFFF (ref vImageBuffer src, ref vImageBuffer dest, IntPtr tempBuffer, vImagePixelCount srcOffsetToROI_X, vImagePixelCount srcOffsetToROI_Y,  float *kernel, uint kernel_height, uint kernel_width, float bias,  PixelFFFF backgroundColor, vImageFlags flags)
 		{

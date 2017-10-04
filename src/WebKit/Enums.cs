@@ -67,7 +67,7 @@ namespace XamCore.WebKit {
 	}
 
 	[Flags]
-	public enum WebDragSourceAction : nuint {
+	public enum WebDragSourceAction : ulong {
 		None = 0,
 		DHTML = 1,
 		Image = 2, 
@@ -81,7 +81,7 @@ namespace XamCore.WebKit {
 	}
 
 	[Flags]
-	public enum WebDragDestinationAction : nuint {
+	public enum WebDragDestinationAction : ulong {
 		None = 0,
 		DHTML = 1,
 		Image = 2, 
@@ -98,7 +98,7 @@ namespace XamCore.WebKit {
 	public enum WebNavigationType : uint_compat_int {
 #else
 	[Native]
-	public enum WebNavigationType : nint {
+	public enum WebNavigationType : long {
 #endif
 		LinkClicked, FormSubmitted, BackForward, Reload, FormResubmitted, Other
 	}

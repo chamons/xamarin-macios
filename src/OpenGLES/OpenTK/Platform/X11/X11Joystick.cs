@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 //
 // The Open Toolkit Library License
 //
@@ -200,16 +200,16 @@ namespace OpenTK.Platform.X11
 
         static class UnsafeNativeMethods
         {
-            [DllImport("libc", SetLastError = true)]
+            [DllImport ("libc", SetLastError = true)]
             public static extern int ioctl(int d, JoystickIoctlCode request, ref int data);
 
-            [DllImport("libc", SetLastError = true)]
-            public static extern int open([MarshalAs(UnmanagedType.LPStr)]string pathname, OpenFlags flags);
+            [DllImport ("libc", SetLastError = true)]
+            public static extern int open([MarshalAs (UnmanagedType.LPStr)]string pathname, OpenFlags flags);
 
-            [DllImport("libc", SetLastError = true)]
+            [DllImport ("libc", SetLastError = true)]
             public static extern int close(int fd);
 
-            [DllImport("libc", SetLastError = true)]
+            [DllImport ("libc", SetLastError = true)]
             unsafe public static extern IntPtr read(int fd, void* buffer, UIntPtr count);
         }
 

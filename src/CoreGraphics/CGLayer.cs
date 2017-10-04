@@ -52,7 +52,7 @@ namespace XamCore.CoreGraphics {
 			CGLayerRetain (handle);
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal CGLayer (IntPtr handle, bool owns)
 		{
 			if (!owns)

@@ -170,26 +170,26 @@ namespace XamCore.CoreAnimation {
 		[Export ("paused")]
 		bool Paused { [Bind ("isPaused")] get; set; }
 	
-		[Deprecated (PlatformName.iOS, 10,0, message: "Use 'PreferredFramesPerSecond' property.")]
-		[Deprecated (PlatformName.TvOS, 10,0, message: "Use 'PreferredFramesPerSecond' property.")]
-		[Deprecated (PlatformName.WatchOS, 3,0, message: "Use 'PreferredFramesPerSecond' property.")]
+		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'PreferredFramesPerSecond' property.")]
+		[Deprecated (PlatformName.TvOS, 10, 0, message: "Use 'PreferredFramesPerSecond' property.")]
+		[Deprecated (PlatformName.WatchOS, 3, 0, message: "Use 'PreferredFramesPerSecond' property.")]
 		[Export ("frameInterval")]
 		nint FrameInterval { get; set;  }
 
 		[Export ("duration")]
 		double Duration { get; }
 
-		[Watch (3,0)][TV (10,0)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("targetTimestamp")]
 		double TargetTimestamp { get; }
 
-		[Watch (3,0)][TV (10,0)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("preferredFramesPerSecond")]
 		nint PreferredFramesPerSecond { get; set; }
 	}
 #endif
 
-	[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 	enum CAContentsFormat {
 		[Field ("kCAContentsFormatGray8Uint")]
 		Gray8Uint,
@@ -443,19 +443,19 @@ namespace XamCore.CoreAnimation {
 		[Protocolize]
 		CALayerDelegate Delegate { get; set; }
 
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("shadowColor")]
 		CGColor ShadowColor { get; set; }
 
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("shadowOffset")]
 		CGSize ShadowOffset { get; set; }
 
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("shadowOpacity")]
 		float ShadowOpacity { get; set; } /* float, not CGFloat */
 
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("shadowRadius")]
 		nfloat ShadowRadius { get; set; }
 
@@ -513,7 +513,7 @@ namespace XamCore.CoreAnimation {
 		[Field ("kCAOnOrderOut")]
 		NSString OnOrderOut { get; }
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		[Internal]
 		[Export ("contentsFormat")]
 		NSString _ContentsFormat { get; set; }
@@ -558,29 +558,29 @@ namespace XamCore.CoreAnimation {
 		void AddConstraint (CAConstraint c);
 #endif
 
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("shouldRasterize")]
 		bool ShouldRasterize { get; set; }
 
 		[NullAllowed]
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("shadowPath")]
 		CGPath ShadowPath { get; set; }
 
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("rasterizationScale")]
 		nfloat RasterizationScale { get; set; }
 
-		[Since (6,0)]
-		[Mac (10,8)]
+		[Introduced (PlatformName.iOS, 6, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[Export ("drawsAsynchronously")]
 		bool DrawsAsynchronously { get; set; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("allowsEdgeAntialiasing")]
 		bool AllowsEdgeAntialiasing { get; set; }
 
-		[Since (7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("allowsGroupOpacity")]
 		bool AllowsGroupOpacity { get; set; }
 
@@ -588,8 +588,8 @@ namespace XamCore.CoreAnimation {
 		[Export ("compositingFilter", ArgumentSemantic.Strong)]
 		NSObject CompositingFilter { get; set; }
 
-		[NoWatch] // headers not updated
-		[TV (11,0)][Mac (10,13)][iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS)] // headers not updated
+		[Introduced (PlatformName.TvOS, 11, 0)][Introduced (PlatformName.MacOSX, 10, 13)][Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("maskedCorners", ArgumentSemantic.Assign)]
 		CACornerMask MaskedCorners { get; set; }
 	}
@@ -598,7 +598,7 @@ namespace XamCore.CoreAnimation {
 	interface ICAMetalDrawable {}
 
 	[Protocol]
-	[iOS (8,0)][Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	interface CAMetalDrawable : MTLDrawable {
 		[Abstract]
 		[Export ("texture")]
@@ -609,7 +609,7 @@ namespace XamCore.CoreAnimation {
 		CAMetalLayer Layer { get; }
 	}
 
-	[iOS (8,0)][Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (CALayer))]
 	interface CAMetalLayer {
 		[NullAllowed] // by default this property is null
@@ -634,13 +634,13 @@ namespace XamCore.CoreAnimation {
 		[Export ("presentsWithTransaction")]
 		bool PresentsWithTransaction { [Bind ("presentsWithTransaction")] get; set; }
 
-		[NoWatch][NoTV][NoiOS]
-		[Mac (10,13)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.iOS)]
+		[Introduced (PlatformName.MacOSX, 10, 13)]
 		[Export ("displaySyncEnabled")]
 		bool DisplaySyncEnabled { get; set; }
 
-		[NoWatch] // headers not updated
-		[TV (11,0)][Mac (10,13)][iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS)] // headers not updated
+		[Introduced (PlatformName.TvOS, 11, 0)][Introduced (PlatformName.MacOSX, 10, 13)][Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("allowsNextDrawableTimeout")]
 		bool AllowsNextDrawableTimeout { get; set; }
 	}
@@ -766,11 +766,11 @@ namespace XamCore.CoreAnimation {
 		[Export ("strokeColor")] [NullAllowed]
 		CGColor StrokeColor { get; set; }
 
-		[Since (4,2)]
+		[Introduced (PlatformName.iOS, 4, 2)]
 		[Export ("strokeStart")]
 		nfloat StrokeStart { get; set; }
 
-		[Since (4,2)]
+		[Introduced (PlatformName.iOS, 4, 2)]
 		[Export ("strokeEnd")]
 		nfloat StrokeEnd { get; set; }
 
@@ -839,7 +839,7 @@ namespace XamCore.CoreAnimation {
 		Natural,
 	}
 
-	[Since (3,2)]
+	[Introduced (PlatformName.iOS, 3, 2)]
 	[BaseType (typeof (CALayer))]
 	interface CATextLayer {
 		[Export ("layer"), New, Static]
@@ -921,7 +921,7 @@ namespace XamCore.CoreAnimation {
 		NSString AlignmentJustified { get; }
 #endif // !XAMCORE_4_0
 
-		[iOS(9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("allowsFontSubpixelQuantization")]
 		bool AllowsFontSubpixelQuantization { get; set; }
 	}
@@ -944,7 +944,7 @@ namespace XamCore.CoreAnimation {
 		[Export ("drawLayer:inContext:"), EventArgs ("CALayerDrawEventArgs")]
 		void DrawLayer (CALayer layer, CGContext context);
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("layerWillDraw:")]
 		void WillDrawLayer (CALayer layer);
 
@@ -961,7 +961,7 @@ namespace XamCore.CoreAnimation {
 		[Export ("layer"), New, Static]
 		CALayer Create ();
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("presentsWithTransaction")]
 		bool PresentsWithTransaction { get; set; }
 	}
@@ -1008,7 +1008,7 @@ namespace XamCore.CoreAnimation {
 		void DidChangeValueForKey (string key);
 
 		[Export ("shouldArchiveValueForKey:")]
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		bool ShouldArchiveValueForKey ([NullAllowed] string key);
 
 		[Field ("kCATransitionFade")]
@@ -1050,11 +1050,11 @@ namespace XamCore.CoreAnimation {
 		[Field ("kCAAnimationPaced")]
 		NSString AnimationPaced { get; }
 
-		[Lion] // iOS 4.0
+		[Introduced (PlatformName.MacOSX, 10, 7)] // iOS 4.0
 		[Field ("kCAAnimationCubic")]
 		NSString AnimationCubic { get; }
 
-		[Lion] // iOS 4.0
+		[Introduced (PlatformName.MacOSX, 10, 7)] // iOS 4.0
 		[Field ("kCAAnimationCubicPaced")]
 		NSString AnimationCubicPaced { get; }
 
@@ -1066,19 +1066,19 @@ namespace XamCore.CoreAnimation {
 		NSString RotateModeAutoReverse { get; }
 
 		#region SceneKitAdditions
-		[iOS (8,0)][Mac (10,9, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)]
 		[Export ("usesSceneTimeBase")]
 		bool UsesSceneTimeBase { get; set; }
 
-		[iOS (8,0)][Mac (10,9, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)]
 		[Export ("fadeInDuration")]
 		nfloat FadeInDuration { get; set; }
 
-		[iOS (8,0)][Mac (10,9, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)]
 		[Export ("fadeOutDuration")]
 		nfloat FadeOutDuration { get; set; }
 
-		[Mac (10,9, onlyOn64 : true), iOS (8, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 8, 0)]
 		[NullAllowed] // by default this property is null
 		[Export ("animationEvents", ArgumentSemantic.Retain)]
 		SCNAnimationEvent [] AnimationEvents { get; set; }
@@ -1145,7 +1145,7 @@ namespace XamCore.CoreAnimation {
 		NSObject By { get; set; }
 	}
 
-	[iOS(9,0), Mac(10,11)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	[BaseType (typeof (CABasicAnimation))]
 	interface CASpringAnimation {
 		[Static, New, Export ("animationWithKeyPath:")]
@@ -1157,7 +1157,7 @@ namespace XamCore.CoreAnimation {
 		[Export ("stiffness")]
 		nfloat Stiffness { get; set; }
 
-		[Export("damping")]
+		[Export ("damping")]
 		nfloat Damping { get; set; }
 
 		[Export ("initialVelocity")]
@@ -1167,7 +1167,7 @@ namespace XamCore.CoreAnimation {
 		double /* CFTimeInterval */ SettlingDuration { get; }
 	}
 	
-	[BaseType (typeof (CAPropertyAnimation), Name="CAKeyframeAnimation")]
+	[BaseType (typeof (CAPropertyAnimation), Name = "CAKeyframeAnimation")]
 	interface CAKeyFrameAnimation {
 		[Static, Export ("animationWithKeyPath:")]
 #if XAMCORE_2_0
@@ -1274,7 +1274,7 @@ namespace XamCore.CoreAnimation {
 		NSString Removed { get; }
 
 #if !XAMCORE_2_0
-		[Availability (Deprecated = Platform.iOS_4_0, Message = "Use CAFillMode.Forwards instead")]
+		[Deprecated (PlatformName.iOS, 4, 0, message: "Use CAFillMode.Forwards instead")]
 		[Field ("kCAFillModeFrozen")]
 		NSString Frozen { get; }
 #endif
@@ -1322,7 +1322,7 @@ namespace XamCore.CoreAnimation {
 		[Export ("setValue:forKey:")]
 		void SetValueForKey ([NullAllowed] NSObject anObject, NSString key);
 
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Static, Export ("completionBlock"), NullAllowed]
 		NSAction CompletionBlock { get; set; }
 
@@ -1391,19 +1391,19 @@ namespace XamCore.CoreAnimation {
 		[Export ("getControlPointAtIndex:values:"), Internal]
 		void GetControlPointAtIndex (nint idx, IntPtr /* float[2] */ point);
 	
-		[Field("kCAMediaTimingFunctionLinear")]
+		[Field ("kCAMediaTimingFunctionLinear")]
 		NSString Linear { get; }
 		
-		[Field("kCAMediaTimingFunctionEaseIn")]
+		[Field ("kCAMediaTimingFunctionEaseIn")]
 		NSString EaseIn { get; }
 		
-		[Field("kCAMediaTimingFunctionEaseOut")]
+		[Field ("kCAMediaTimingFunctionEaseOut")]
 		NSString EaseOut { get; }
 		
-		[Field("kCAMediaTimingFunctionEaseInEaseOut")]
+		[Field ("kCAMediaTimingFunctionEaseInEaseOut")]
 		NSString EaseInEaseOut { get; }
 
-		[Field("kCAMediaTimingFunctionDefault")]
+		[Field ("kCAMediaTimingFunctionDefault")]
 		NSString Default { get; }
 	}
 
@@ -1480,7 +1480,7 @@ namespace XamCore.CoreAnimation {
 	}
 #endif
 
-	[Since (5,0)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[BaseType (typeof (NSObject))]
 	interface CAEmitterCell : CAMediaTiming, NSSecureCoding {
 		[NullAllowed] // by default this property is null
@@ -1605,12 +1605,12 @@ namespace XamCore.CoreAnimation {
 		[Export ("alphaRange")]
 		float AlphaRange { get; set; } /* float, not CGFloat */
 
-		[iOS(9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("contentsScale")]
 		nfloat ContentsScale { get; set; }
 	}
 
-	[Since (5,0)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[BaseType (typeof (CALayer))]
 	interface CAEmitterLayer {
 		[Export ("layer"), New, Static]
@@ -1711,7 +1711,7 @@ namespace XamCore.CoreAnimation {
 		NSString RenderAdditive { get; }			
 	}
 
-	[Since(7,0), Mavericks]
+	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 	[BaseType (typeof (NSObject))]
 	interface CAEmitterBehavior : NSSecureCoding {
 
@@ -1740,7 +1740,7 @@ namespace XamCore.CoreAnimation {
 		[Field ("kCAEmitterBehaviorAttractor")]
 		NSString Attractor { get; }			
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		[Field ("kCAEmitterBehaviorSimpleAttractor")]
 		NSString SimpleAttractor { get; }
 

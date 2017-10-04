@@ -48,8 +48,8 @@ namespace XamCore.ModelIO {
 
 	delegate void MDLObjectHandler (MDLObject mdlObject, ref bool stop);
 
-	[iOS (9,0)][Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(MDLPhysicallyPlausibleLight))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (MDLPhysicallyPlausibleLight))]
 	[DisableDefaultCtor]
 	interface MDLAreaLight
 	{
@@ -68,8 +68,8 @@ namespace XamCore.ModelIO {
 		float Aspect { get; set; }
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface MDLAsset : NSCopying
 	{
 		[Export ("initWithURL:")]
@@ -78,9 +78,9 @@ namespace XamCore.ModelIO {
 		[Export ("initWithURL:vertexDescriptor:bufferAllocator:")]
 		IntPtr Constructor (NSUrl url, [NullAllowed] MDLVertexDescriptor vertexDescriptor, [NullAllowed] IMDLMeshBufferAllocator bufferAllocator);
 
-		[iOS (10,0)]
-		[TV (10,0)]
-		[Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("initWithBufferAllocator:")]
 		IntPtr Constructor ([NullAllowed] IMDLMeshBufferAllocator bufferAllocator);
 
@@ -99,32 +99,32 @@ namespace XamCore.ModelIO {
 		[Export ("canExportFileExtension:")]
 		bool CanExportFileExtension (string extension);
 
-		[iOS (10,3), TV (10,2), Mac (10,12,4)]
+		[Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 4)]
 		[Export ("components", ArgumentSemantic.Copy)]
 		IMDLComponent[] Components { get; }
 
-		[iOS (10,3), TV (10,2), Mac (10,12,4)]
+		[Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 4)]
 		[EditorBrowsable (EditorBrowsableState.Advanced)]
 		[Export ("setComponent:forProtocol:")]
 		void SetComponent (IMDLComponent component, Protocol protocol);
 
-		[iOS (10,3), TV (10,2), Mac (10,12,4)]
+		[Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 4)]
 		[Wrap ("SetComponent (component, new Protocol (type))")]
 		void SetComponent (IMDLComponent component, Type type);
 
-		[iOS (10,3), TV (10,2), Mac (10,12,4)]
+		[Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 4)]
 		[EditorBrowsable (EditorBrowsableState.Advanced)]
 		[Export ("componentConformingToProtocol:")]
 		[return: NullAllowed]
 		IMDLComponent GetComponent (Protocol protocol);
 
-		[iOS (10,3), TV (10,2), Mac (10,12,4)]
+		[Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 4)]
 		[Wrap ("GetComponent (new Protocol (type))")]
 		IMDLComponent GetComponent (Type type);
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("childObjectsOfClass:")]
 		MDLObject[] GetChildObjects (Class objectClass);
 
@@ -172,19 +172,19 @@ namespace XamCore.ModelIO {
 		[Export ("objectAtIndex:")]
 		MDLObject GetObject (nuint index);
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("masters", ArgumentSemantic.Retain)]
 		IMDLObjectContainerComponent Masters { get; set; }
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Static]
 		[Export ("assetWithSCNScene:")]
 		MDLAsset FromScene (SCNScene scene);
 
-		[iOS (10, 0), Mac (10, 12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Static]
 		[Export ("assetWithSCNScene:bufferAllocator:")]
 		MDLAsset FromScene (SCNScene scene, [NullAllowed] IMDLMeshBufferAllocator bufferAllocator);
@@ -199,9 +199,9 @@ namespace XamCore.ModelIO {
 	interface IMDLLightProbeIrradianceDataSource {}
 
 	// Added in iOS 10 SDK but it is supposed to be present in iOS 9.
-	[Mac (10,12)]
+	[Introduced (PlatformName.MacOSX, 10, 12)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface MDLLightProbeIrradianceDataSource
 	{
 		[Abstract]
@@ -216,8 +216,8 @@ namespace XamCore.ModelIO {
 		NSData GetSphericalHarmonicsCoefficients (Vector3 position);
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(MDLObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (MDLObject))]
 	interface MDLCamera
 	{
 		[Export ("projectionMatrix")]
@@ -236,9 +236,9 @@ namespace XamCore.ModelIO {
 		}
 #endif
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("projection", ArgumentSemantic.Assign)]
 		MDLCameraProjection Projection { get; set; }
 
@@ -340,14 +340,14 @@ namespace XamCore.ModelIO {
 			[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")] set;
 		}
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Static]
 		[Export ("cameraWithSCNCamera:")]
 		MDLCamera FromSceneCamera (SCNCamera sceneCamera);
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(MDLTexture))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (MDLTexture))]
 	[DisableDefaultCtor]
 	interface MDLCheckerboardTexture
 	{
@@ -372,8 +372,8 @@ namespace XamCore.ModelIO {
 		CGColor Color2 { get; set; }
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(MDLTexture))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (MDLTexture))]
 	[DisableDefaultCtor]
 	interface MDLColorSwatchTexture
 	{
@@ -391,8 +391,8 @@ namespace XamCore.ModelIO {
 	}
 
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(MDLObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (MDLObject))]
 	interface MDLLight
 	{
 		[Export ("irradianceAtPoint:")]
@@ -406,21 +406,21 @@ namespace XamCore.ModelIO {
 		[Export ("lightType")]
 		MDLLightType LightType { get; set; }
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("colorSpace")]
 		// No documentation to confirm but this should be a constant (hence NSString).
 		NSString ColorSpace { get; set; }
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Static]
 		[Export ("lightWithSCNLight:")]
 		MDLLight FromSceneLight (SCNLight sceneLight);
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(MDLLight))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (MDLLight))]
 	interface MDLLightProbe
 	{
 		[Export ("initWithReflectiveTexture:irradianceTexture:")]
@@ -450,8 +450,8 @@ namespace XamCore.ModelIO {
 		MDLLightProbe Create (nint textureSize, MDLTransform transform, MDLLight[] lightsToConsider, MDLObject[] objectsToConsider, [NullAllowed] MDLTexture reflectiveCubemap, [NullAllowed] MDLTexture irradianceCubemap);
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface MDLMaterial : MDLNamed, INSFastEnumeration
 	{
 		[Export ("initWithName:scatteringFunction:")]
@@ -471,7 +471,7 @@ namespace XamCore.ModelIO {
 		[return: NullAllowed]
 		MDLMaterialProperty GetProperty (MDLMaterialSemantic semantic);
 
-		[iOS (10,2), Mac (10,12,2)]
+		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 2)]
 		[Export ("propertiesWithSemantic:")]
 		MDLMaterialProperty[] GetProperties (MDLMaterialSemantic semantic);
 
@@ -497,20 +497,20 @@ namespace XamCore.ModelIO {
 		[Export ("count")]
 		nuint Count { get; }
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("materialFace", ArgumentSemantic.Assign)]
 		MDLMaterialFace MaterialFace { get; set; }
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Static]
 		[Export ("materialWithSCNMaterial:")]
 		MDLMaterial FromSceneMaterial (SCNMaterial material);
 	}
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface MDLMaterialProperty : MDLNamed, NSCopying
 	{
@@ -621,16 +621,16 @@ namespace XamCore.ModelIO {
 		}
 #endif
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("luminance")]
 		float Luminance { get; set; }
 	}
 
-	[iOS (10,0), Mac (10,12)]
-	[TV (10,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface MDLMaterialPropertyConnection : MDLNamed
 	{
@@ -644,9 +644,9 @@ namespace XamCore.ModelIO {
 		MDLMaterialProperty Input { get; }
 	}
 
-	[iOS (10,0), Mac (10,12)]
-	[TV (10,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface MDLMaterialPropertyNode : MDLNamed
 	{
@@ -663,9 +663,9 @@ namespace XamCore.ModelIO {
 		MDLMaterialProperty[] Outputs { get; }
 	}
 
-	[iOS (10,0), Mac (10,12)]
-	[TV (10,0)]
-	[BaseType (typeof(MDLMaterialPropertyNode))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[BaseType (typeof (MDLMaterialPropertyNode))]
 	[DisableDefaultCtor]
 	interface MDLMaterialPropertyGraph
 	{
@@ -682,13 +682,13 @@ namespace XamCore.ModelIO {
 		MDLMaterialPropertyConnection[] Connections { get; }
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(MDLObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (MDLObject))]
 	interface MDLMesh
 	{
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("initWithBufferAllocator:")]
 		IntPtr Constructor ([NullAllowed] IMDLMeshBufferAllocator bufferAllocator);
 
@@ -703,9 +703,9 @@ namespace XamCore.ModelIO {
 		[return: NullAllowed]
 		MDLVertexAttributeData GetVertexAttributeDataForAttribute (string attributeName);
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("vertexAttributeDataForAttributeNamed:asFormat:")]
 		[return: NullAllowed]
 		MDLVertexAttributeData GetVertexAttributeData (string attributeName, MDLVertexFormat format);
@@ -721,16 +721,16 @@ namespace XamCore.ModelIO {
 		[Export ("vertexCount")]
 		nuint VertexCount {
 			get;
-			[iOS (10,0)]
-			[Mac (10,12)]
-			[TV (10,0)]
+			[Introduced (PlatformName.iOS, 10, 0)]
+			[Introduced (PlatformName.MacOSX, 10, 12)]
+			[Introduced (PlatformName.TvOS, 10, 0)]
 			set;
 		}
 
 		[Export ("vertexBuffers", ArgumentSemantic.Retain)]
 		IMDLMeshBuffer[] VertexBuffers {
 			get;
-			[iOS (10,2), Mac (10,12,2), TV (10,1)]
+			[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 2), Introduced (PlatformName.TvOS, 10, 1)]
 			set;
 		}
 
@@ -738,15 +738,15 @@ namespace XamCore.ModelIO {
 		[Export ("submeshes", ArgumentSemantic.Copy)]
 		NSMutableArray<MDLSubmesh> Submeshes {
 			get;
-			[iOS (10,0)]
-			[Mac (10,12)]
-			[TV (10,0)]
+			[Introduced (PlatformName.iOS, 10, 0)]
+			[Introduced (PlatformName.MacOSX, 10, 12)]
+			[Introduced (PlatformName.TvOS, 10, 0)]
 			set;
 		}
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("allocator", ArgumentSemantic.Retain)]
 		IMDLMeshBufferAllocator Allocator { get; }
 
@@ -755,15 +755,15 @@ namespace XamCore.ModelIO {
 		[Export ("addAttributeWithName:format:")]
 		void AddAttribute (string name, MDLVertexFormat format);
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("addAttributeWithName:format:type:data:stride:")]
 		void AddAttribute (string name, MDLVertexFormat format, string type, NSData data, nint stride);
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("addAttributeWithName:format:type:data:stride:time:")]
 		void AddAttribute (string name, MDLVertexFormat format, string type, NSData data, nint stride, double time);
 
@@ -776,30 +776,30 @@ namespace XamCore.ModelIO {
 		[Export ("addTangentBasisForTextureCoordinateAttributeNamed:normalAttributeNamed:tangentAttributeNamed:")]
 		void AddTangentBasisWithNormals (string textureCoordinateAttributeName, string normalAttributeName, string tangentAttributeName);
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("addUnwrappedTextureCoordinatesForAttributeNamed:")]
 		void AddUnwrappedTextureCoordinates (string textureCoordinateAttributeName);
 
 		[Export ("makeVerticesUnique")]
 		void MakeVerticesUnique ();
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("replaceAttributeNamed:withData:")]
 		void ReplaceAttribute (string name, MDLVertexAttributeData newData);
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("updateAttributeNamed:withData:")]
 		void UpdateAttribute (string name, MDLVertexAttributeData newData);
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("removeAttributeNamed:")]
 		void RemoveAttribute (string name);
 
@@ -874,7 +874,7 @@ namespace XamCore.ModelIO {
 		MDLMesh CreateCylindroid (float height, Vector2 radii, nuint radialSegments, nuint verticalSegments, MDLGeometryType geometryType, bool inwardNormals, [NullAllowed] IMDLMeshBufferAllocator allocator);
 
 		[Static]
-		[iOS (10,2), Mac (12,1,1), TV (10,1)]
+		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.MacOSX, 12, 1, 1), Introduced (PlatformName.TvOS, 10, 1)]
 		[Export ("newCapsuleWithHeight:radii:radialSegments:verticalSegments:hemisphereSegments:geometryType:inwardNormals:allocator:")]
 		[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")]
 		MDLMesh CreateCapsule (float height, Vector2 radii, nuint radialSegments, nuint verticalSegments, nuint hemisphereSegments, MDLGeometryType geometryType, bool inwardNormals, [NullAllowed] IMDLMeshBufferAllocator allocator);
@@ -889,7 +889,7 @@ namespace XamCore.ModelIO {
 		MDLMesh CreateIcosahedron (float radius, bool inwardNormals, [NullAllowed] IMDLMeshBufferAllocator allocator);
 
 		[Static]
-		[iOS (10,2), Mac (12,1,1), TV (10,1)]
+		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.MacOSX, 12, 1, 1), Introduced (PlatformName.TvOS, 10, 1)]
 		[Export ("newIcosahedronWithRadius:inwardNormals:geometryType:allocator:")]
 		MDLMesh CreateIcosahedron (float radius, bool inwardNormals, MDLGeometryType geometryType, [NullAllowed] IMDLMeshBufferAllocator allocator);
 
@@ -921,20 +921,20 @@ namespace XamCore.ModelIO {
 		[Export ("generateLightMapVertexColorsWithLightsToConsider:objectsToConsider:vertexAttributeNamed:")]
 		bool GenerateLightMapVertexColors (MDLLight [] lightsToConsider, MDLObject [] objectsToConsider, string vertexAttributeName);
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Static]
 		[Export ("meshWithSCNGeometry:")]
 		MDLMesh FromGeometry (SCNGeometry geometry);
 
-		[iOS (10, 0), Mac (10, 12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Static]
 		[Export ("meshWithSCNGeometry:bufferAllocator:")]
 		MDLMesh FromGeometry (SCNGeometry geometry, [NullAllowed] IMDLMeshBufferAllocator bufferAllocator);
 	}
 
 	interface IMDLMeshBuffer {}
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Protocol]
 	interface MDLMeshBuffer : NSCopying
 	{
@@ -960,7 +960,7 @@ namespace XamCore.ModelIO {
 	}
 
 	interface IMDLMeshBufferAllocator {}
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Protocol]
 	interface MDLMeshBufferAllocator
 	{
@@ -991,15 +991,15 @@ namespace XamCore.ModelIO {
 		IMDLMeshBuffer CreateBuffer ([NullAllowed] IMDLMeshBufferZone zone, NSData data, MDLMeshBufferType type);
 	}
 
-	[iOS (9,0),Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface MDLMeshBufferDataAllocator : MDLMeshBufferAllocator
 	{
 
 	}
 
-	[iOS (9,0),Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface MDLMeshBufferZoneDefault : MDLMeshBufferZone
 	{
 		// We get Capacity and Allocator from MDLMeshBufferZone
@@ -1010,8 +1010,8 @@ namespace XamCore.ModelIO {
 		// IMDLMeshBufferAllocator Allocator { get; }
 	}
 
-	[iOS (9,0),Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface MDLMeshBufferData : MDLMeshBuffer, NSCopying
 	{
 		[Export ("initWithType:length:")]
@@ -1025,7 +1025,7 @@ namespace XamCore.ModelIO {
 	}
 
 	interface IMDLMeshBufferZone {}
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Protocol]
 	interface MDLMeshBufferZone
 	{
@@ -1036,7 +1036,7 @@ namespace XamCore.ModelIO {
 		IMDLMeshBufferAllocator Allocator { get; }
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Protocol]
 	interface MDLNamed {
 		[Abstract]
@@ -1044,8 +1044,8 @@ namespace XamCore.ModelIO {
 		string Name { get; set; }
 	}
 
-	[iOS (9,0),Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(MDLTexture))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (MDLTexture))]
 	[DisableDefaultCtor]
 	interface MDLNoiseTexture
 	{
@@ -1063,14 +1063,14 @@ namespace XamCore.ModelIO {
 		IntPtr Constructor (float smoothness, [NullAllowed] string name, Vector2i textureDimensions, int channelCount, MDLTextureChannelEncoding channelEncoding, bool grayscale);
 
 		[Internal]
-		[iOS (10,2), Mac (12,1,1)]
+		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.MacOSX, 12, 1, 1)]
 		[Export ("initCellularNoiseWithFrequency:name:textureDimensions:channelEncoding:")]
 		[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")]
 		IntPtr InitCellularNoiseWithFrequency (float frequency, [NullAllowed] string name, Vector2i textureDimensions, MDLTextureChannelEncoding channelEncoding);
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(MDLTexture))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (MDLTexture))]
 	[DisableDefaultCtor]
 	interface MDLNormalMapTexture
 	{
@@ -1082,11 +1082,11 @@ namespace XamCore.ModelIO {
 		IntPtr Constructor (MDLTexture sourceTexture, [NullAllowed] string name, float smoothness, float contrast);
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface MDLObject : MDLNamed
 	{
-		[iOS (10,3), TV (10,2), Mac (10,12,4)]
+		[Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 4)]
 		[Export ("components", ArgumentSemantic.Copy)]
 		IMDLComponent[] Components { get; }
 
@@ -1114,25 +1114,25 @@ namespace XamCore.ModelIO {
 		[NullAllowed, Export ("parent", ArgumentSemantic.Weak)]
 		MDLObject Parent { get; set; }
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[NullAllowed, Export ("instance", ArgumentSemantic.Retain)]
 		MDLObject Instance { get; set; }
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("path")]
 		string Path { get; }
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("objectAtPath:")]
 		MDLObject GetObject (string path);
 
-		[iOS (10,2), Mac (12,1,1), TV (10,1)]
+		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.MacOSX, 12, 1, 1), Introduced (PlatformName.TvOS, 10, 1)]
 		[Export ("enumerateChildObjectsOfClass:root:usingBlock:stopPointer:")]
 		void EnumerateChildObjects (Class objectClass, MDLObject root, MDLObjectHandler handler, ref bool stop);
 
@@ -1142,9 +1142,9 @@ namespace XamCore.ModelIO {
 		[Export ("children", ArgumentSemantic.Retain), NullAllowed]
 		IMDLObjectContainerComponent Children { get; set; }
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("hidden")]
 		bool Hidden { get; set; }
 
@@ -1155,26 +1155,26 @@ namespace XamCore.ModelIO {
 		[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")]
 		MDLAxisAlignedBoundingBox GetBoundingBox (double atTime);
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Static]
 		[Export ("objectWithSCNNode:")]
 		MDLObject FromNode (SCNNode node);
 
-		[iOS (10,0), Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Static]
 		[Export ("objectWithSCNNode:bufferAllocator:")]
 		MDLObject FromNode (SCNNode node, [NullAllowed] IMDLMeshBufferAllocator bufferAllocator);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface MDLObjectContainer : MDLObjectContainerComponent
 	{
 	}
 
 	interface IMDLObjectContainerComponent {}
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Protocol]
 	interface MDLObjectContainerComponent : MDLComponent, INSFastEnumeration
 	{
@@ -1189,14 +1189,14 @@ namespace XamCore.ModelIO {
 #if XAMCORE_4_0
 		[Abstract]
 #endif
-		[iOS (10,3), TV (10,2), Mac (10,12,4)]
+		[Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 4)]
 		[Export ("objectAtIndexedSubscript:")]
 		MDLObject GetObject (nuint index);
 
 #if XAMCORE_4_0
 		[Abstract]
 #endif
-		[iOS (10,3), TV (10,2), Mac (10,12,4)]
+		[Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 4)]
 		[Export ("count")]
 		nuint Count { get; }
 
@@ -1207,14 +1207,14 @@ namespace XamCore.ModelIO {
 
 	interface IMDLComponent {}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Protocol]
 	interface MDLComponent
 	{
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(MDLPhysicallyPlausibleLight))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (MDLPhysicallyPlausibleLight))]
 	interface MDLPhotometricLight
 	{
 		[Export ("initWithIESProfile:")]
@@ -1236,8 +1236,8 @@ namespace XamCore.ModelIO {
 		NSData SphericalHarmonicsCoefficients { get; }
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(MDLLight))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (MDLLight))]
 	interface MDLPhysicallyPlausibleLight
 	{
 		[Export ("setColorByTemperature:")]
@@ -1262,8 +1262,8 @@ namespace XamCore.ModelIO {
 		float AttenuationEndDistance { get; set; }
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(MDLScatteringFunction))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (MDLScatteringFunction))]
 	interface MDLPhysicallyPlausibleScatteringFunction
 	{
 		[Export ("version")]
@@ -1303,8 +1303,8 @@ namespace XamCore.ModelIO {
 		MDLMaterialProperty ClearcoatGloss { get; }
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface MDLScatteringFunction : MDLNamed
 	{
 		[Export ("baseColor", ArgumentSemantic.Retain)]
@@ -1332,8 +1332,8 @@ namespace XamCore.ModelIO {
 		MDLMaterialProperty AmbientOcclusionScale { get; }
 	}
 
-	[iOS (9,0),Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(MDLTexture))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (MDLTexture))]
 	[DisableDefaultCtor]
 	interface MDLSkyCubeTexture
 	{
@@ -1389,8 +1389,8 @@ namespace XamCore.ModelIO {
 		}
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(MDLCamera))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (MDLCamera))]
 	interface MDLStereoscopicCamera
 	{
 		[Export ("interPupillaryDistance")]
@@ -1478,8 +1478,8 @@ namespace XamCore.ModelIO {
 #endif
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface MDLSubmesh : MDLNamed
 	{
 		[Export ("initWithName:indexBuffer:indexCount:indexType:geometryType:material:")]
@@ -1497,9 +1497,9 @@ namespace XamCore.ModelIO {
 		[Export ("indexBuffer", ArgumentSemantic.Retain)]
 		IMDLMeshBuffer IndexBuffer { get; }
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("indexBufferAsIndexType:")]
 		IMDLMeshBuffer GetIndexBuffer (MDLIndexBitDepth indexType);
 
@@ -1518,7 +1518,7 @@ namespace XamCore.ModelIO {
 		[NullAllowed, Export ("topology", ArgumentSemantic.Retain)]
 		MDLSubmeshTopology Topology {
 			get;
-			[iOS (10,2), Mac (12,1,1), TV (10,1)]
+			[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.MacOSX, 12, 1, 1), Introduced (PlatformName.TvOS, 10, 1)]
 			set;
 		}
 
@@ -1526,15 +1526,15 @@ namespace XamCore.ModelIO {
 		[Export ("submeshWithSCNGeometryElement:")]
 		MDLSubmesh FromGeometryElement (SCNGeometryElement element);
 
-		[iOS (10, 0), Mac (10, 12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Static]
 		[Export ("submeshWithSCNGeometryElement:bufferAllocator:")]
 		MDLSubmesh FromGeometryElement (SCNGeometryElement element, [NullAllowed] IMDLMeshBufferAllocator bufferAllocator);
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface MDLTexture : MDLNamed
 	{
 		[Static]
@@ -1611,15 +1611,15 @@ namespace XamCore.ModelIO {
 		[Export ("isCube")]
 		bool IsCube { get; set; }
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("hasAlphaValues")]
 		bool HasAlphaValues { get; set; }
 	}
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface MDLTextureFilter {
 		[Export ("sWrapMode", ArgumentSemantic.Assign)]
 		MDLMaterialTextureWrapMode SWrapMode { get; set; }
@@ -1640,8 +1640,8 @@ namespace XamCore.ModelIO {
 		MDLMaterialMipMapFilterMode MipFilter { get; set; }
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface MDLTextureSampler
 	{
 		[NullAllowed, Export ("texture", ArgumentSemantic.Retain)]
@@ -1654,16 +1654,16 @@ namespace XamCore.ModelIO {
 		MDLTransform Transform { get; set; }
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface MDLTransform : MDLTransformComponent, NSCopying {
 
 		[Export ("initWithTransformComponent:")]
 		IntPtr Constructor (IMDLTransformComponent component);
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("initWithTransformComponent:resetsTransform:")]
 		IntPtr Constructor (IMDLTransformComponent component, bool resetsTransform);
 
@@ -1684,16 +1684,16 @@ namespace XamCore.ModelIO {
 #if !XAMCORE_4_0
 		[Obsolete ("Use the '(MatrixFloat4x4, bool)' overload instead.")]
 #endif
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("initWithMatrix:resetsTransform:")]
 		[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")]
 		IntPtr Constructor (Matrix4 matrix, bool resetsTransform);
 
 #if !XAMCORE_4_0
 		[Sealed]
-		[iOS (10,0), Mac (10,12), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("initWithMatrix:resetsTransform:")]
 		[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")]
 		IntPtr Constructor (MatrixFloat4x4 matrix, bool resetsTransform);
@@ -1748,7 +1748,7 @@ namespace XamCore.ModelIO {
 		[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")]
 		void SetRotation (Vector3 rotation, double time);
 
-		[iOS (10,3), TV (10,2), Mac (10,12,4)]
+		[Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 4)]
 		[Export ("setMatrix:forTime:")]
 		[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")]
 #if !XAMCORE_4_0
@@ -1758,7 +1758,7 @@ namespace XamCore.ModelIO {
 
 #if !XAMCORE_4_0
 		[Sealed]
-		[iOS (10,3), TV (10,2), Mac (10,12,4)]
+		[Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 4)]
 		[Export ("setMatrix:forTime:")]
 		[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")]
 		void SetMatrix4x4 (MatrixFloat4x4 matrix, double time);
@@ -1798,7 +1798,7 @@ namespace XamCore.ModelIO {
 	}
 
 	interface IMDLTransformComponent {}
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Protocol]
 	interface MDLTransformComponent : MDLComponent
 	{
@@ -1809,9 +1809,9 @@ namespace XamCore.ModelIO {
 			[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")] set;
 		}
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 #if XAMCORE_4_0
 		[Abstract]
 #endif
@@ -1827,7 +1827,7 @@ namespace XamCore.ModelIO {
 		double MaximumTime { get; }
 
 		// Added in iOS 10 SDK but it is supposed to be present in iOS 9.
-		[Mac (10,12)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
 #if XAMCORE_4_0
 		[Abstract]
 #endif
@@ -1855,8 +1855,8 @@ namespace XamCore.ModelIO {
 		Matrix4 CreateGlobalTransform (MDLObject obj, double atTime);
 	}
 
-	[iOS (9,0),Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(MDLTexture), Name = "MDLURLTexture")]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (MDLTexture), Name = "MDLURLTexture")]
 	[DisableDefaultCtor]
 	interface MDLUrlTexture
 	{
@@ -1871,8 +1871,8 @@ namespace XamCore.ModelIO {
 		NSUrl Url { get; set; }
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface MDLVertexAttribute : NSCopying
 	{
 		[Export ("initWithName:format:offset:bufferIndex:")]
@@ -1890,9 +1890,9 @@ namespace XamCore.ModelIO {
 		[Export ("bufferIndex", ArgumentSemantic.Assign)]
 		nuint BufferIndex { get; set; }
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("time")]
 		double Time { get; set; }
 
@@ -1903,8 +1903,8 @@ namespace XamCore.ModelIO {
 		}
 	}
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // apple headers: created by MDLMesh's vertexAttributeData selector
 	interface MDLVertexAttributeData
 	{
@@ -1920,13 +1920,13 @@ namespace XamCore.ModelIO {
 		[Export ("format", ArgumentSemantic.Assign)]
 		MDLVertexFormat Format { get; set; }
 
-		[iOS (10,3), TV (10,2), Mac (10,12,4, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 4, PlatformArchitecture.Arch64)]
 		[Export ("bufferSize", ArgumentSemantic.Assign)]
 		nuint BufferSize { get; set; }
 	}
 
-	[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface MDLMeshBufferMap
 	{
 		// FIXME: provide better API.
@@ -1937,8 +1937,8 @@ namespace XamCore.ModelIO {
 		IntPtr Bytes { get; }
 	}
 
-	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface MDLVertexDescriptor : NSCopying
 	{
 		[Export ("initWithVertexDescriptor:")]
@@ -1951,9 +1951,9 @@ namespace XamCore.ModelIO {
 		[Export ("addOrReplaceAttribute:")]
 		void AddOrReplaceAttribute (MDLVertexAttribute attribute);
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("removeAttributeNamed:")]
 		void RemoveAttribute (string name);
 
@@ -1973,7 +1973,7 @@ namespace XamCore.ModelIO {
 		void SetPackedOffsets ();
 	}
 
-	[iOS (9,0),Mac(10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (
 #if MONOMAC && !XAMCORE_4_0
 		typeof(NSObject)
@@ -1993,9 +1993,9 @@ namespace XamCore.ModelIO {
 		[Export ("initWithAsset:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:")]
 		IntPtr Constructor (MDLAsset asset, int divisions, float interiorNBWidth, float exteriorNBWidth, float patchRadius);
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("initWithAsset:divisions:patchRadius:")]
 		IntPtr Constructor (MDLAsset asset, int divisions, float patchRadius);
 
@@ -2015,9 +2015,9 @@ namespace XamCore.ModelIO {
 		[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")]
 		void SetVoxel (Vector4i index);
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("setVoxelsForMesh:divisions:patchRadius:")]
 		void SetVoxels (MDLMesh mesh, int divisions, float patchRadius);
 
@@ -2095,47 +2095,47 @@ namespace XamCore.ModelIO {
 			get;
 		}
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("convertToSignedShellField")]
 		void ConvertToSignedShellField ();
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("isValidSignedShellField")]
 		bool IsValidSignedShellField { get; }
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("shellFieldInteriorThickness")]
 		float ShellFieldInteriorThickness { get; set; }
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("shellFieldExteriorThickness")]
 		float ShellFieldExteriorThickness { get; set; }
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("coarseMesh")]
 		[return: NullAllowed]
 		MDLMesh GetCoarseMesh ();
 
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("coarseMeshUsingAllocator:")]
 		[return: NullAllowed]
 		MDLMesh GetCoarseMeshUsingAllocator ([NullAllowed] IMDLMeshBufferAllocator allocator);
 	}
 
 	[Static]
-	[Mac(10,11, onlyOn64 : true),iOS(9,0)]
+	[Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 9, 0)]
 	interface MDLVertexAttributes {
 		[Field ("MDLVertexAttributeAnisotropy")]
 		NSString Anisotropy { get; }
@@ -2183,13 +2183,13 @@ namespace XamCore.ModelIO {
 		NSString TextureCoordinate { get; }
 	}
 
-	[iOS (9,0),Mac(10,11, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface MDLVertexBufferLayout : NSCopying
 	{
-		[iOS (10,0)]
-		[Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("initWithStride:")]
 		IntPtr Constructor (nuint stride);
 
@@ -2197,10 +2197,10 @@ namespace XamCore.ModelIO {
 		nuint Stride { get; set; }
 	}
 
-	[iOS (9,0)][Mac(10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface MDLSubmeshTopology {
-		[iOS (10,2), Mac (10,12,2)]
+		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 2)]
 		[Export ("initWithSubmesh:")]
 		IntPtr Constructor (MDLSubmesh submesh);
 

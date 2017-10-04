@@ -1,4 +1,4 @@
-﻿// 
+// 
 // VTFrameSilo.cs: VideoToolbox VTFrameSilo class
 //
 // Authors:
@@ -16,7 +16,7 @@ using XamCore.Foundation;
 using XamCore.CoreMedia;
 
 namespace XamCore.VideoToolbox {
-	[Mac (10,10), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	public class VTFrameSilo : INativeObject, IDisposable {
 		IntPtr handle;
 		GCHandle callbackHandle;
@@ -32,7 +32,7 @@ namespace XamCore.VideoToolbox {
 			get {return handle; }
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal VTFrameSilo (IntPtr handle, bool owns)
 		{
 			this.handle = handle;

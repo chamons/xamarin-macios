@@ -1,4 +1,4 @@
-﻿//
+//
 // Contacts bindings
 //
 // Authors:
@@ -16,17 +16,17 @@ using XamCore.Foundation;
 namespace XamCore.Contacts {
 
 	// NSInteger -> CNContact.h
-	[iOS (9,0), Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
-	public enum CNContactType : nint {
+	public enum CNContactType : long {
 		Person,
 		Organization
 	}
 
 	// NSInteger -> CNContact.h
-	[iOS (9,0), Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
-	public enum CNContactSortOrder : nint {
+	public enum CNContactSortOrder : long {
 		None,
 		UserDefault,
 		GivenName,
@@ -34,33 +34,33 @@ namespace XamCore.Contacts {
 	}
 
 	// NSInteger -> CNContactFormatter.h
-	[iOS (9,0), Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
-	public enum CNContactFormatterStyle : nint {
+	public enum CNContactFormatterStyle : long {
 		FullName,
 		PhoneticFullName
 	}
 
 	// NSInteger -> CNContactFormatter.h
-	[iOS (9,0), Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
-	public enum CNContactDisplayNameOrder : nint {
+	public enum CNContactDisplayNameOrder : long {
 		UserDefault,
 		GivenNameFirst,
 		FamilyNameFirst
 	}
 
 	// NSInteger -> CNContactStore.h
-	[iOS (9,0), Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
-	public enum CNEntityType : nint {
+	public enum CNEntityType : long {
 		Contacts
 	}
 
 	// NSInteger -> CNContactStore.h
-	[iOS (9,0), Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
-	public enum CNAuthorizationStatus : nint {
+	public enum CNAuthorizationStatus : long {
 		NotDetermined = 0,
 		Restricted,
 		Denied,
@@ -68,9 +68,9 @@ namespace XamCore.Contacts {
 	}
 
 	// NSInteger -> CNContainer.h
-	[iOS (9,0), Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
-	public enum CNContainerType : nint {
+	public enum CNContainerType : long {
 		Unassigned = 0,
 		Local,
 		Exchange,
@@ -78,10 +78,10 @@ namespace XamCore.Contacts {
 	}
 
 	// NSInteger -> CNError.h
-	[iOS (9,0), Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	[ErrorDomain ("CNErrorDomain")]
-	public enum CNErrorCode : nint {
+	public enum CNErrorCode : long {
 		CommunicationError = 1,
 		DataAccessError = 2,
 		AuthorizationDenied = 100,
@@ -95,18 +95,18 @@ namespace XamCore.Contacts {
 		ValidationConfigurationError = 302,
 		PredicateInvalid = 400,
 		PolicyViolation = 500,
-		[iOS (11,0), Mac (10,13)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13)]
 		ClientIdentifierInvalid = 600,
-		[iOS (11,0), Mac (10,13)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13)]
 		ClientIdentifierDoesNotExist = 601,
-		[iOS (11,0), Mac (10,13)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13)]
 		VCardMalformed = 700,
 	}
 
 	// NSInteger -> CNPostalAddressFormatter.h
-	[iOS (9,0), Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
-	public enum CNPostalAddressFormatterStyle : nint {
+	public enum CNPostalAddressFormatterStyle : long {
 		MailingAddress,
 	}
 }

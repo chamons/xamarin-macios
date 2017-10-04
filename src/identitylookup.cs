@@ -1,4 +1,4 @@
-﻿//
+//
 // IdentityLookup C# bindings
 //
 // Authors:
@@ -14,18 +14,18 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.IdentityLookup {
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum ILMessageFilterAction : nint {
+	public enum ILMessageFilterAction : long {
 		None = 0,
 		Allow = 1,
 		Filter = 2,
 	}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[ErrorDomain ("ILMessageFilterErrorDomain")]
 	[Native]
-	public enum ILMessageFilterError : nint {
+	public enum ILMessageFilterError : long {
 		System = 1,
 		InvalidNetworkUrl = 2,
 		NetworkUrlUnauthorized = 3,
@@ -33,13 +33,13 @@ namespace XamCore.IdentityLookup {
 		RedundantNetworkDeferral = 5,
 	}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
 	interface ILMessageFilterExtension {
 	}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSExtensionContext))]
 	interface ILMessageFilterExtensionContext {
@@ -51,7 +51,7 @@ namespace XamCore.IdentityLookup {
 
 	interface IILMessageFilterQueryHandling { }
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface ILMessageFilterQueryHandling {
 
@@ -60,7 +60,7 @@ namespace XamCore.IdentityLookup {
 		void HandleQueryRequest (ILMessageFilterQueryRequest queryRequest, ILMessageFilterExtensionContext context, Action<ILMessageFilterQueryResponse> completion);
 	}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface ILMessageFilterQueryRequest : NSSecureCoding {
@@ -72,7 +72,7 @@ namespace XamCore.IdentityLookup {
 		string MessageBody { get; }
 	}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
 	interface ILMessageFilterQueryResponse : NSSecureCoding {
@@ -81,7 +81,7 @@ namespace XamCore.IdentityLookup {
 		ILMessageFilterAction Action { get; set; }
 	}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface ILNetworkResponse : NSSecureCoding {

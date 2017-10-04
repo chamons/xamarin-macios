@@ -16,7 +16,7 @@ namespace OpenTK.Platform.MacOS.Carbon
 
     #region --- Types defined in MacTypes.h ---
 
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     internal struct Point
     {
         internal short V;
@@ -29,7 +29,7 @@ namespace OpenTK.Platform.MacOS.Carbon
         }
     }
 
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     internal struct Rect
     {
         short top;
@@ -91,19 +91,19 @@ namespace OpenTK.Platform.MacOS.Carbon
     #endregion
     #region --- Types defined in HIGeometry.h ---
 
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     internal struct HIPoint
     {
         public float X;
         public float Y;
     }
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     internal struct HISize
     {
         public float Width;
         public float Height;
     }
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     internal struct HIRect
     {
         public HIPoint Origin;
@@ -120,7 +120,7 @@ namespace OpenTK.Platform.MacOS.Carbon
 
     #region --- Types defined in CarbonEvents.h ---
 
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     internal struct EventTypeSpec
     {
         internal EventTypeSpec(EventClass evtClass, AppEventKind evtKind)
@@ -402,14 +402,14 @@ namespace OpenTK.Platform.MacOS.Carbon
     {
         const string carbon = "/System/Library/Frameworks/Carbon.framework/Versions/Current/Carbon";
         
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern EventClass GetEventClass(IntPtr inEvent);
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern uint GetEventKind(IntPtr inEvent);
 
         #region --- Window Construction ---
 
-        [DllImport(carbon,EntryPoint="CreateNewWindow")]
+        [DllImport (carbon, EntryPoint = "CreateNewWindow")]
         private static extern OSStatus _CreateNewWindow(WindowClass @class, WindowAttributes attributes, ref Rect r, out IntPtr window);
 
         internal static IntPtr CreateNewWindow(WindowClass @class, WindowAttributes attributes, Rect r)
@@ -427,32 +427,32 @@ namespace OpenTK.Platform.MacOS.Carbon
             return retval;
         }
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern void DisposeWindow(IntPtr window);
 
         #endregion
         #region --- Showing / Hiding Windows ---
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern void ShowWindow(IntPtr window);
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern void HideWindow(IntPtr window);
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern bool IsWindowVisible(IntPtr window);
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern void SelectWindow(IntPtr window);
 
         #endregion
         #region --- Window Boundaries ---
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern OSStatus RepositionWindow(IntPtr window, IntPtr parentWindow, WindowPositionMethod method);
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern void SizeWindow(IntPtr window, short w, short h, bool fUpdate);
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern void MoveWindow(IntPtr window, short x, short y, bool fUpdate);
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         static extern OSStatus GetWindowBounds(IntPtr window, WindowRegionCode regionCode, out Rect globalBounds);
         internal static Rect GetWindowBounds(IntPtr window, WindowRegionCode regionCode)
         {
@@ -471,20 +471,20 @@ namespace OpenTK.Platform.MacOS.Carbon
         #endregion
         #region --- Processing Events ---
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         static extern IntPtr GetEventDispatcherTarget();
 
-        [DllImport(carbon,EntryPoint="ReceiveNextEvent")]
+        [DllImport (carbon, EntryPoint = "ReceiveNextEvent")]
         static extern OSStatus ReceiveNextEvent(uint inNumTypes,
             IntPtr inList,
             double inTimeout,
             bool inPullEvent,
             out IntPtr outEvent);
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         static extern void SendEventToEventTarget(IntPtr theEvent, IntPtr theTarget);
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         static extern void ReleaseEvent(IntPtr theEvent);
 
         // Processes events in the queue and then returns.
@@ -527,7 +527,7 @@ namespace OpenTK.Platform.MacOS.Carbon
 
         #region --- Processing apple event ---
 
-        [StructLayout(LayoutKind.Sequential)]
+        [StructLayout (LayoutKind.Sequential)]
 
         struct EventRecord 
         {
@@ -538,10 +538,10 @@ namespace OpenTK.Platform.MacOS.Carbon
             public uint modifiers;
         }
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         static extern bool ConvertEventRefToEventRecord(IntPtr inEvent, out EventRecord outEvent);
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         static extern OSStatus AEProcessAppleEvent(ref EventRecord theEventRecord);
 
         static internal void ProcessAppleEvent(IntPtr inEvent)
@@ -557,7 +557,7 @@ namespace OpenTK.Platform.MacOS.Carbon
         #endregion
         #region --- Getting Event Parameters ---
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         static extern OSStatus GetEventParameter(
             IntPtr inEvent, EventParamName inName, EventParamType inDesiredType,
             IntPtr outActualType, uint inBufferSize, IntPtr outActualSize, IntPtr outData);
@@ -688,7 +688,7 @@ namespace OpenTK.Platform.MacOS.Carbon
         #endregion
         #region --- Event Handlers ---
 
-        [DllImport(carbon,EntryPoint="InstallEventHandler")]
+        [DllImport (carbon, EntryPoint = "InstallEventHandler")]
         static extern OSStatus _InstallEventHandler(
                                 IntPtr eventTargetRef, IntPtr handlerProc, 
                                 int numtypes, EventTypeSpec[] typeList, 
@@ -733,30 +733,30 @@ namespace OpenTK.Platform.MacOS.Carbon
 
         }
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern OSStatus RemoveEventHandler(IntPtr inHandlerRef);
 
         #endregion
         #region --- GetWindowEventTarget ---
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern IntPtr GetWindowEventTarget(IntPtr window);
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern IntPtr GetApplicationEventTarget();
 
         #endregion
         #region --- UPP Event Handlers ---
         
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern IntPtr NewEventHandlerUPP(MacOSEventHandler handler);
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern void DisposeEventHandlerUPP(IntPtr userUPP);
 
         #endregion
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         static extern IntPtr GetControlBounds(IntPtr control, out Rect bounds);
 
         internal static Rect GetControlBounds(IntPtr control)
@@ -767,22 +767,22 @@ namespace OpenTK.Platform.MacOS.Carbon
             return retval;
         }
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern OSStatus ActivateWindow (IntPtr inWindow, bool inActivate);
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern void RunApplicationEventLoop();
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern void QuitApplicationEventLoop();
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern IntPtr GetControlOwner(IntPtr control);
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern IntPtr HIViewGetWindow(IntPtr inView);
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         static extern OSStatus HIViewGetFrame(IntPtr inView, out HIRect outRect);
         internal static HIRect HIViewGetFrame(IntPtr inView)
         {
@@ -796,7 +796,7 @@ namespace OpenTK.Platform.MacOS.Carbon
         }
         #region --- SetWindowTitle ---
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         static extern void SetWindowTitleWithCFString(IntPtr windowRef, IntPtr title);
 
         internal static void SetWindowTitle(IntPtr windowRef, string title)
@@ -816,7 +816,7 @@ namespace OpenTK.Platform.MacOS.Carbon
 
         #endregion
         
-        [DllImport(carbon,EntryPoint="ChangeWindowAttributes")]
+        [DllImport (carbon, EntryPoint = "ChangeWindowAttributes")]
         static extern OSStatus _ChangeWindowAttributes(IntPtr windowRef, WindowAttributes setTheseAttributes, WindowAttributes clearTheseAttributes); 
           internal static void ChangeWindowAttributes(IntPtr windowRef, WindowAttributes setTheseAttributes, WindowAttributes clearTheseAttributes)
           {
@@ -828,30 +828,30 @@ namespace OpenTK.Platform.MacOS.Carbon
             }
           }
   
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         static extern IntPtr __CFStringMakeConstantString(string cStr);
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         static extern void CFRelease(IntPtr cfStr);
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern OSStatus CallNextEventHandler(IntPtr nextHandler, IntPtr theEvent);
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern IntPtr GetWindowPort(IntPtr windowRef);
   
         #region --- Menus ---
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern IntPtr AcquireRootMenu();
 
 
         #endregion
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal static extern bool IsWindowCollapsed(IntPtr windowRef);
 
-        [DllImport(carbon, EntryPoint = "CollapseWindow")]
+        [DllImport (carbon, EntryPoint = "CollapseWindow")]
         static extern OSStatus _CollapseWindow(IntPtr windowRef, bool collapse);
 
         internal static void CollapseWindow(IntPtr windowRef, bool collapse)
@@ -864,7 +864,7 @@ namespace OpenTK.Platform.MacOS.Carbon
             }
         }
 
-        [DllImport(carbon, EntryPoint="IsWindowInStandardState")]
+        [DllImport (carbon, EntryPoint = "IsWindowInStandardState")]
         static extern bool _IsWindowInStandardState(IntPtr windowRef, IntPtr inIdealSize, IntPtr outIdealStandardState);
 
         internal static bool IsWindowInStandardState(IntPtr windowRef)
@@ -872,7 +872,7 @@ namespace OpenTK.Platform.MacOS.Carbon
             return _IsWindowInStandardState(windowRef, IntPtr.Zero, IntPtr.Zero);
         }
 
-        [DllImport(carbon, EntryPoint = "ZoomWindowIdeal")]
+        [DllImport (carbon, EntryPoint = "ZoomWindowIdeal")]
         unsafe static extern OSStatus _ZoomWindowIdeal(IntPtr windowRef, short inPartCode, IntPtr toIdealSize);
 
         internal static void ZoomWindowIdeal(IntPtr windowRef, WindowPartCode inPartCode, ref Point toIdealSize)
@@ -894,7 +894,7 @@ namespace OpenTK.Platform.MacOS.Carbon
             }
         }
 
-        [DllImport(carbon)]
+        [DllImport (carbon)]
         internal unsafe static extern OSStatus DMGetGDeviceByDisplayID(
             IntPtr displayID, out IntPtr displayDevice, Boolean failToMain);
 
@@ -948,7 +948,7 @@ namespace OpenTK.Platform.MacOS.Carbon
         const string gestaltlib = "/System/Library/Frameworks/Carbon.framework/Versions/Current/Carbon";
 
 
-        [DllImport(gestaltlib)]
+        [DllImport (gestaltlib)]
         internal static extern OSStatus Gestalt(GestaltSelector selector, out int response);
     }
 

@@ -1,4 +1,4 @@
-﻿//
+//
 // Vision C# bindings
 //
 // Authors:
@@ -25,9 +25,9 @@ using Matrix3 = global::OpenTK.NMatrix3;
 namespace XamCore.Vision {
 
 	[ErrorDomain ("VNErrorDomain")]
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	enum VNErrorCode : nint {
+	enum VNErrorCode : long {
 		Ok = 0,
 		RequestCancelled,
 		InvalidFormat,
@@ -46,22 +46,22 @@ namespace XamCore.Vision {
 		InvalidModel,
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	enum VNRequestTrackingLevel : nuint {
+	enum VNRequestTrackingLevel : ulong {
 		Accurate = 0,
 		Fast,
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	enum VNImageCropAndScaleOption : nuint {
+	enum VNImageCropAndScaleOption : ulong {
 		CenterCrop = 0,
 		ScaleFit = 1,
 		ScaleFill,
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	enum VNBarcodeSymbology {
 		[Field ("VNBarcodeSymbologyAztec")]
 		Aztec,
@@ -115,7 +115,7 @@ namespace XamCore.Vision {
 		Upce,
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface VNCoreMLModel {
@@ -126,10 +126,10 @@ namespace XamCore.Vision {
 		VNCoreMLModel FromMLModel (MLModel model, out NSError error);
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	delegate void VNRequestCompletionHandler (VNRequest request, NSError error);
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNImageBasedRequest))]
 	interface VNCoreMLRequest {
@@ -152,7 +152,7 @@ namespace XamCore.Vision {
 		IntPtr Constructor ([NullAllowed] VNRequestCompletionHandler completionHandler);
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Abstract]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNImageBasedRequest))]
@@ -176,7 +176,7 @@ namespace XamCore.Vision {
 		NSString [] WeakSymbologies { get; set; }
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNImageBasedRequest))]
 	interface VNDetectFaceLandmarksRequest : VNFaceObservationAccepting {
@@ -186,7 +186,7 @@ namespace XamCore.Vision {
 		IntPtr Constructor ([NullAllowed] VNRequestCompletionHandler completionHandler);
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNImageBasedRequest))]
 	interface VNDetectFaceRectanglesRequest {
@@ -196,7 +196,7 @@ namespace XamCore.Vision {
 		IntPtr Constructor ([NullAllowed] VNRequestCompletionHandler completionHandler);
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNImageBasedRequest))]
 	interface VNDetectHorizonRequest {
@@ -206,7 +206,7 @@ namespace XamCore.Vision {
 		IntPtr Constructor ([NullAllowed] VNRequestCompletionHandler completionHandler);
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNImageBasedRequest))]
 	interface VNDetectRectanglesRequest {
@@ -234,7 +234,7 @@ namespace XamCore.Vision {
 		nuint MaximumObservations { get; set; }
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNImageBasedRequest))]
 	interface VNDetectTextRectanglesRequest {
@@ -247,7 +247,7 @@ namespace XamCore.Vision {
 		bool ReportCharacterBoxes { get; set; }
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Abstract]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
@@ -257,7 +257,7 @@ namespace XamCore.Vision {
 		nuint PointCount { get; }
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNFaceLandmarkRegion))]
 	interface VNFaceLandmarkRegion2D {
@@ -271,7 +271,7 @@ namespace XamCore.Vision {
 		IntPtr _GetPointsInImage (CGSize imageSize);
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Abstract]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
@@ -281,7 +281,7 @@ namespace XamCore.Vision {
 		float Confidence { get; }
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNFaceLandmarks))]
 	interface VNFaceLandmarks2D {
@@ -328,7 +328,7 @@ namespace XamCore.Vision {
 
 	interface IVNFaceObservationAccepting { }
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface VNFaceObservationAccepting {
 
@@ -337,7 +337,7 @@ namespace XamCore.Vision {
 		VNFaceObservation [] InputFaceObservations { get; set; }
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Abstract]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNTargetedImageRequest))]
@@ -465,7 +465,7 @@ namespace XamCore.Vision {
 		IntPtr Constructor (NSData imageData, CGImagePropertyOrientation orientation, VNImageOptions options, VNRequestCompletionHandler completionHandler);
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNImageRegistrationRequest))]
 	interface VNTranslationalImageRegistrationRequest {
@@ -592,7 +592,7 @@ namespace XamCore.Vision {
 		IntPtr Constructor (NSData imageData, CGImagePropertyOrientation orientation, VNImageOptions options, VNRequestCompletionHandler completionHandler);
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNImageRegistrationRequest))]
 	interface VNHomographicImageRegistrationRequest {
@@ -719,7 +719,7 @@ namespace XamCore.Vision {
 		IntPtr Constructor (NSData imageData, CGImagePropertyOrientation orientation, VNImageOptions options, VNRequestCompletionHandler completionHandler);
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Abstract]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
@@ -732,7 +732,7 @@ namespace XamCore.Vision {
 		float Confidence { get; }
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNObservation))]
 	interface VNDetectedObjectObservation {
@@ -745,7 +745,7 @@ namespace XamCore.Vision {
 		CGRect BoundingBox { get; }
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNDetectedObjectObservation))]
 	interface VNFaceObservation {
@@ -759,7 +759,7 @@ namespace XamCore.Vision {
 		VNFaceObservation FromBoundingBox (CGRect boundingBox);
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNObservation))]
 	interface VNClassificationObservation {
@@ -768,7 +768,7 @@ namespace XamCore.Vision {
 		string Identifier { get; }
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNObservation))]
 	interface VNCoreMLFeatureValueObservation {
@@ -777,7 +777,7 @@ namespace XamCore.Vision {
 		MLFeatureValue FeatureValue { get; }
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNObservation))]
 	interface VNPixelBufferObservation {
@@ -786,7 +786,7 @@ namespace XamCore.Vision {
 		CVPixelBuffer PixelBuffer { get; }
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNDetectedObjectObservation))]
 	interface VNRectangleObservation {
@@ -809,7 +809,7 @@ namespace XamCore.Vision {
 		VNRectangleObservation FromBoundingBox (CGRect boundingBox);
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNDetectedObjectObservation))]
 	interface VNTextObservation {
@@ -823,7 +823,7 @@ namespace XamCore.Vision {
 		VNTextObservation FromBoundingBox (CGRect boundingBox);
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (VNRectangleObservation))]
 	interface VNBarcodeObservation {
 
@@ -846,7 +846,7 @@ namespace XamCore.Vision {
 		string PayloadStringValue { get; }
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNObservation))]
 	interface VNHorizonObservation {
@@ -858,14 +858,14 @@ namespace XamCore.Vision {
 		nfloat Angle { get; }
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Abstract]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNObservation))]
 	interface VNImageAlignmentObservation {
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNImageAlignmentObservation))]
 	interface VNImageTranslationAlignmentObservation {
@@ -874,7 +874,7 @@ namespace XamCore.Vision {
 		CGAffineTransform AlignmentTransform { get; set; }
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNImageAlignmentObservation))]
 	interface VNImageHomographicAlignmentObservation {
@@ -888,7 +888,7 @@ namespace XamCore.Vision {
 		}
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Abstract]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
@@ -918,7 +918,7 @@ namespace XamCore.Vision {
 		bool UsesCpuOnly { get; set; }
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Abstract]
 	[DisableDefaultCtor]
 	[BaseType (typeof (VNRequest))]
@@ -932,7 +932,7 @@ namespace XamCore.Vision {
 		CGRect RegionOfInterest { get; set; }
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Internal]
 	[Static]
 	interface VNImageOptionKeys {
@@ -946,7 +946,7 @@ namespace XamCore.Vision {
 		NSString CIContextKey { get; }
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[StrongDictionary ("VNImageOptionKeys")]
 	interface VNImageOptions {
 		[Export ("PropertiesKey")] // Have the option to set your own dict
@@ -959,7 +959,7 @@ namespace XamCore.Vision {
 		CIContext CIContext { get; set; }
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface VNImageRequestHandler {
@@ -1028,7 +1028,7 @@ namespace XamCore.Vision {
 		bool Perform (VNRequest [] requests, out NSError error);
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // it's a designated initializer
 	interface VNSequenceRequestHandler {
@@ -1068,7 +1068,7 @@ namespace XamCore.Vision {
 		bool Perform (VNRequest [] requests, NSData imageData, CGImagePropertyOrientation orientation, out NSError error);
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Abstract]
 	[BaseType (typeof (VNImageBasedRequest))]
 	[DisableDefaultCtor]
@@ -1195,7 +1195,7 @@ namespace XamCore.Vision {
 		IntPtr Constructor (NSData imageData, CGImagePropertyOrientation orientation, VNImageOptions options, VNRequestCompletionHandler completionHandler);
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (VNTrackingRequest))]
 	[DisableDefaultCtor]
 	interface VNTrackObjectRequest {
@@ -1211,7 +1211,7 @@ namespace XamCore.Vision {
 		IntPtr Constructor (VNDetectedObjectObservation observation, [NullAllowed] VNRequestCompletionHandler completionHandler);
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (VNTrackingRequest))]
 	[DisableDefaultCtor]
 	interface VNTrackRectangleRequest {
@@ -1228,7 +1228,7 @@ namespace XamCore.Vision {
 		IntPtr Constructor (VNRectangleObservation observation, [NullAllowed] VNRequestCompletionHandler completionHandler);
 	}
 
-	[TV (11,0), Mac (10,13, onlyOn64: true), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Abstract]
 	[BaseType (typeof (VNImageBasedRequest))]
 	[DisableDefaultCtor]

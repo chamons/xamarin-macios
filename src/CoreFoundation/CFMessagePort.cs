@@ -1,4 +1,4 @@
-﻿//
+//
 // CFMessagePort.cs: CFMessagePort is a wrapper around two native Mach ports with bidirectional communication support
 //
 // Authors:
@@ -42,7 +42,7 @@ namespace XamCore.CoreFoundation {
 		// CFMessagePortContext
 		[StructLayout (LayoutKind.Sequential)]
 		struct ContextProxy {
-			/* CFIndex */ nint version; // must be 0
+			/* CFIndex */ long version; // must be 0
 			public /* void * */ IntPtr info;
 			public /* CFAllocatorRetainCallBack*/ Func<IntPtr, IntPtr> retain;
 			public /* CFAllocatorReleaseCallBack*/ Action<IntPtr> release;

@@ -45,9 +45,9 @@ namespace XamCore.CoreImage {
 
 		public CIImageOrientation? ImageOrientation;
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		public bool? AutoAdjustCrop;
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		public bool? AutoAdjustLevel;
 		
 		internal NSDictionary ToDictionary ()

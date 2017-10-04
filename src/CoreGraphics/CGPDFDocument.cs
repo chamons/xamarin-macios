@@ -77,7 +77,7 @@ namespace XamCore.CoreGraphics {
 			CGPDFDocumentRetain (handle);
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal CGPDFDocument (IntPtr handle, bool owns)
 		{
 			this.handle = handle;

@@ -51,7 +51,7 @@ namespace XamCore.QTKit {
 	}
 
 	[Native]
-	public enum QTCaptureDeviceControlsSpeed : nint {
+	public enum QTCaptureDeviceControlsSpeed : long {
 		FastestReverse = -19000,	
 		VeryFastReverse = -16000,
 		FastReverse = -13000,
@@ -76,7 +76,7 @@ namespace XamCore.QTKit {
 	}
 
 	[Native]
-	public enum QTError : nint {
+	public enum QTError : long {
 		Unknown = -1,
 		None,
 		IncompatibleInput = 1002,

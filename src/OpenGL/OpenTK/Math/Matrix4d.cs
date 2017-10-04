@@ -31,7 +31,7 @@ namespace OpenTK
     /// Represents a 4x4 Matrix with double-precision components.
     /// </summary>
     [Serializable]
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     public struct Matrix4d : IEquatable<Matrix4d>
     {
         #region Fields
@@ -679,7 +679,7 @@ namespace OpenTK
         /// </summary>
         /// <param name="trans">The vector to translate along</param>
         /// <returns>A Translation matrix</returns>
-        [Obsolete("Use CreateTranslation instead.")]
+        [Obsolete ("Use CreateTranslation instead.")]
         public static Matrix4d Translation(Vector3d trans)
         {
             return Translation(trans.X, trans.Y, trans.Z);
@@ -692,7 +692,7 @@ namespace OpenTK
         /// <param name="y">Y translation</param>
         /// <param name="z">Z translation</param>
         /// <returns>A Translation matrix</returns>
-        [Obsolete("Use CreateTranslation instead.")]
+        [Obsolete ("Use CreateTranslation instead.")]
         public static Matrix4d Translation(double x, double y, double z)
         {
             Matrix4d result = Identity;

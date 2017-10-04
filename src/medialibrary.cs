@@ -29,7 +29,7 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.MediaLibrary {
 	[Static]
-	[Mac (10,9, onlyOn64 : true)]
+	[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)]
 	interface MediaLibraryTypeIdentifierKey {
 		[Field ("MLFolderRootGroupTypeIdentifier")]
 		NSString FolderRootGroupTypeIdentifier { get; }
@@ -49,7 +49,7 @@ namespace XamCore.MediaLibrary {
 		[Field ("MLiTunesPodcastPlaylistTypeIdentifier")]
 		NSString ITunesPodcastPlaylistTypeIdentifier { get; }
 
-		[Mac (10,10,3, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, 3, PlatformArchitecture.Arch64)]
 		[Field ("MLiTunesVideoPlaylistTypeIdentifier")]
 		NSString ITunesVideoPlaylistTypeIdentifier { get; }
 
@@ -71,7 +71,7 @@ namespace XamCore.MediaLibrary {
 		[Field ("MLiTunesMusicPlaylistTypeIdentifier")]
 		NSString ITunesMusicPlaylistTypeIdentifier { get; }
 
-		[Mac (10,10,3, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, 3, PlatformArchitecture.Arch64)]
 		[Field ("MLiTunesMusicVideosPlaylistTypeIdentifier")]
 		NSString ITunesMusicVideosPlaylistTypeIdentifier { get; }
 
@@ -84,119 +84,119 @@ namespace XamCore.MediaLibrary {
 		[Field ("MLiTunesiTunesUPlaylistTypeIdentifier")]
 		NSString ITunesiTunesUPlaylistTypeIdentifier { get; }
 
-		[Mac (10,10, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosRootGroupTypeIdentifier")]
 		NSString PhotosRootGroupTypeIdentifier { get; }
 
-		[Mac (10,10, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosSharedGroupTypeIdentifier")]
 		NSString PhotosSharedGroupTypeIdentifier { get; }
 
-		[Mac (10,10, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosAlbumsGroupTypeIdentifier")]
 		NSString PhotosAlbumsGroupTypeIdentifier { get; }
 
-		[Mac (10,10, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosAlbumTypeIdentifier")]
 		NSString PhotosAlbumTypeIdentifier { get; }
 
-		[Mac (10,10,3, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, 3, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosFolderTypeIdentifier")]
 		NSString PhotosFolderTypeIdentifier { get; }
 
-		[Mac (10,10, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosSmartAlbumTypeIdentifier")]
 		NSString PhotosSmartAlbumTypeIdentifier { get; }
 
-		[Mac (10,10, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosPublishedAlbumTypeIdentifier")]
 		NSString PhotosPublishedAlbumTypeIdentifier { get; }
 
-		[Mac (10,10, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosAllMomentsGroupTypeIdentifier")]
 		NSString PhotosAllMomentsGroupTypeIdentifier { get; }
 
-		[Mac (10,10, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosMomentGroupTypeIdentifier")]
 		NSString PhotosMomentGroupTypeIdentifier { get; }
 
-		[Mac (10,10, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosAllCollectionsGroupTypeIdentifier")]
 		NSString PhotosAllCollectionsGroupTypeIdentifier { get; }
 
-		[Mac (10,10, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosCollectionGroupTypeIdentifier")]
 		NSString PhotosCollectionGroupTypeIdentifier { get; }
 
-		[Mac (10,10, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosAllYearsGroupTypeIdentifier")]
 		NSString PhotosAllYearsGroupTypeIdentifier { get; }
 
-		[Mac (10,10, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosYearGroupTypeIdentifier")]
 		NSString PhotosYearGroupTypeIdentifier { get; }
 
-		[Mac (10,10, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosLastImportGroupTypeIdentifier")]
 		NSString PhotosLastImportGroupTypeIdentifier { get; }
 
-		[Mac (10,10, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosMyPhotoStreamTypeIdentifier")]
 		NSString PhotosMyPhotoStreamTypeIdentifier { get; }
 
-		[Mac (10,10, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosSharedPhotoStreamTypeIdentifier")]
 		NSString PhotosSharedPhotoStreamTypeIdentifier { get; }
 
-		[Mac (10,10, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosFavoritesGroupTypeIdentifier")]
 		NSString PhotosFavoritesGroupTypeIdentifier { get; }
 
-		[Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosFrontCameraGroupTypeIdentifier")]
 		NSString PhotosFrontCameraGroupTypeIdentifier { get; }
 
-		[Mac (10,13, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosLivePhotosGroupTypeIdentifier")]
 		NSString PhotosLivePhotosGroupTypeIdentifier { get; }
 
-		[Mac (10,13, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosLongExposureGroupTypeIdentifier")]
 		NSString PhotosLongExposureGroupTypeIdentifier { get; }
 
-		[Mac (10,13, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosAnimatedGroupTypeIdentifier")]
 		NSString PhotosAnimatedGroupTypeIdentifier { get; }
 
-		[Mac (10,10, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosPanoramasGroupTypeIdentifier")]
 		NSString PhotosPanoramasGroupTypeIdentifier { get; }
 
-		[Mac (10,10, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosVideosGroupTypeIdentifier")]
 		NSString PhotosVideosGroupTypeIdentifier { get; }
 
-		[Mac (10,10,3, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, 3, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosSloMoGroupTypeIdentifier")]
 		NSString PhotosSloMoGroupTypeIdentifier { get; }
 
-		[Mac (10,10,3, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, 3, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosTimelapseGroupTypeIdentifier")]
 		NSString PhotosTimelapseGroupTypeIdentifier { get; }
 
-		[Mac (10,10,3, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, 3, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosBurstGroupTypeIdentifier")]
 		NSString PhotosBurstGroupTypeIdentifier { get; }
 
-		[Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosScreenshotGroupTypeIdentifier")]
 		NSString PhotosScreenshotGroupTypeIdentifier { get; }
 
-		[Mac (10,10,3, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, 3, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosFacesAlbumTypeIdentifier")]
 		NSString PhotosFacesAlbumTypeIdentifier { get; }
 
-		[Mac (10,10,3, onlyOn64 : true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, 3, PlatformArchitecture.Arch64)]
 		[Field ("MLPhotosAllPhotosAlbumTypeIdentifier")]
 		NSString PhotosAllPhotosAlbumTypeIdentifier { get; }
 
@@ -408,8 +408,8 @@ namespace XamCore.MediaLibrary {
 		NSString FinalCutFolderGroupTypeIdentifier { get; }
 	}
 
-	[Mac (10,9, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface MLMediaLibrary
 	{
@@ -442,8 +442,8 @@ namespace XamCore.MediaLibrary {
 		NSString MediaLoadAppFoldersKey { get; }
 	}
 
-	[Mac (10,9, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface MLMediaSource
 	{
@@ -473,7 +473,7 @@ namespace XamCore.MediaLibrary {
 		[Export ("mediaObjectsForIdentifiers:")]
 		NSDictionary<NSString, MLMediaObject> MediaObjectsForIdentifiers (NSString[] mediaObjectIdentifiers);
 
-		[Mac (10,10, onlyOn64: true)]
+		[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 		[Field ("MLMediaSourcePhotosIdentifier")]
 		NSString MediaSourcePhotosIdentifier { get; }
 
@@ -511,8 +511,8 @@ namespace XamCore.MediaLibrary {
 		NSString MediaSourceAppDefinedFoldersIdentifier { get; }
 	}
 
-	[Mac (10,9, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface MLMediaGroup
 	{
@@ -553,8 +553,8 @@ namespace XamCore.MediaLibrary {
 		MLMediaObject[] MediaObjects { get; }
 	}
 
-	[Mac (10,9, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface MLMediaObject
 	{

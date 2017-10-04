@@ -113,16 +113,16 @@ namespace XamCore.CoreFoundation {
 		internal IntPtr handle;
 		internal string str;
 
-		[DllImport (Constants.CoreFoundationLibrary, CharSet=CharSet.Unicode)]
+		[DllImport (Constants.CoreFoundationLibrary, CharSet = CharSet.Unicode)]
 		extern static IntPtr CFStringCreateWithCharacters (IntPtr allocator, string str, nint count);
 
-		[DllImport (Constants.CoreFoundationLibrary, CharSet=CharSet.Unicode)]
+		[DllImport (Constants.CoreFoundationLibrary, CharSet = CharSet.Unicode)]
 		extern static nint CFStringGetLength (IntPtr handle);
 
-		[DllImport (Constants.CoreFoundationLibrary, CharSet=CharSet.Unicode)]
+		[DllImport (Constants.CoreFoundationLibrary, CharSet = CharSet.Unicode)]
 		extern static IntPtr CFStringGetCharactersPtr (IntPtr handle);
 
-		[DllImport (Constants.CoreFoundationLibrary, CharSet=CharSet.Unicode)]
+		[DllImport (Constants.CoreFoundationLibrary, CharSet = CharSet.Unicode)]
 		extern static IntPtr CFStringGetCharacters (IntPtr handle, CFRange range, IntPtr buffer);
 
 		internal static IntPtr LowLevelCreate (string str)
@@ -153,7 +153,7 @@ namespace XamCore.CoreFoundation {
 			}
 		}
 
-		[DllImport (Constants.CoreFoundationLibrary, EntryPoint="CFStringGetTypeID")]
+		[DllImport (Constants.CoreFoundationLibrary, EntryPoint = "CFStringGetTypeID")]
 		public extern static nint GetTypeID ();
 		
 		public void Dispose ()
@@ -246,7 +246,7 @@ namespace XamCore.CoreFoundation {
 			}
 		}
 
-		[DllImport (Constants.CoreFoundationLibrary, CharSet=CharSet.Unicode)]
+		[DllImport (Constants.CoreFoundationLibrary, CharSet = CharSet.Unicode)]
 		extern static char CFStringGetCharacterAtIndex (IntPtr handle, nint p);
 		
 		public char this [nint p] {

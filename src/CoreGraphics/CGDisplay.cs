@@ -1,4 +1,4 @@
-﻿#if MONOMAC
+#if MONOMAC
 using System;
 using System.Runtime.InteropServices;
 using XamCore.ObjCRuntime;
@@ -24,7 +24,7 @@ namespace XamCore.CoreGraphics
 			}
 		}
 
-		[DllImport (Constants.CoreGraphicsLibrary, EntryPoint="CGDisplayModeGetTypeID")]
+		[DllImport (Constants.CoreGraphicsLibrary, EntryPoint = "CGDisplayModeGetTypeID")]
 		public static extern nint GetTypeID ();
 
 		[DllImport (Constants.CoreGraphicsLibrary)]
@@ -106,7 +106,7 @@ namespace XamCore.CoreGraphics
 		[DllImport (Constants.CoreGraphicsLibrary, EntryPoint = "CGCaptureAllDisplays")]
 		public static extern int CaptureAllDisplays ();
 
-		[DllImport (Constants.CoreGraphicsLibrary, EntryPoint="CGCaptureAllDisplaysWithOptions")]
+		[DllImport (Constants.CoreGraphicsLibrary, EntryPoint = "CGCaptureAllDisplaysWithOptions")]
 		static extern int CaptureAllDisplays (CGCaptureOptions options);
 
 

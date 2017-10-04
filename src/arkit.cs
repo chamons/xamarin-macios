@@ -30,30 +30,30 @@ using Matrix4 = global::OpenTK.NMatrix4;
 
 namespace XamCore.ARKit {
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum ARTrackingState : nint {
+	public enum ARTrackingState : long {
 		NotAvailable,
 		Limited,
 		Normal,
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum ARTrackingStateReason : nint {
+	public enum ARTrackingStateReason : long {
 		None,
 		Initializing,
 		ExcessiveMotion,
 		InsufficientFeatures,
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[ErrorDomain ("ARErrorDomain")]
 	[Native]
-	public enum ARErrorCode : nint {
+	public enum ARErrorCode : long {
 		UnsupportedConfiguration = 100,
 		SensorUnavailable = 101,
 		SensorFailed = 102,
@@ -61,53 +61,53 @@ namespace XamCore.ARKit {
 		WorldTrackingFailed = 200,
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[Flags]
 	[Native]
-	public enum ARHitTestResultType : nuint {
+	public enum ARHitTestResultType : ulong {
 		FeaturePoint = 1 << 0,
 		EstimatedHorizontalPlane = 1 << 1,
 		ExistingPlane = 1 << 3,
 		ExistingPlaneUsingExtent = 1 << 4,
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum ARPlaneAnchorAlignment : nint {
+	public enum ARPlaneAnchorAlignment : long {
 		Horizontal,
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[Flags]
 	[Native]
-	public enum ARSessionRunOptions : nuint {
+	public enum ARSessionRunOptions : ulong {
 		ResetTracking = 1 << 0,
 		RemoveExistingAnchors = 1 << 1,
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum ARWorldAlignment : nint {
+	public enum ARWorldAlignment : long {
 		Gravity,
 		GravityAndHeading,
 		Camera,
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[Flags]
 	[Native]
-	public enum ARPlaneDetection : nuint {
+	public enum ARPlaneDetection : ulong {
 		None = 0,
 		Horizontal = 1 << 0,
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface ARAnchor : NSCopying {
@@ -126,8 +126,8 @@ namespace XamCore.ARKit {
 		IntPtr Constructor (Matrix4 transform);
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface ARCamera : NSCopying {
@@ -178,8 +178,8 @@ namespace XamCore.ARKit {
 		Matrix4 GetViewMatrix (UIInterfaceOrientation orientation);
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface ARFrame : NSCopying {
@@ -215,8 +215,8 @@ namespace XamCore.ARKit {
 		CGAffineTransform GetDisplayTransform (UIInterfaceOrientation orientation, CGSize viewportSize);
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface ARHitTestResult {
@@ -243,8 +243,8 @@ namespace XamCore.ARKit {
 		ARAnchor Anchor { get; }
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface ARLightEstimate {
@@ -256,8 +256,8 @@ namespace XamCore.ARKit {
 		nfloat AmbientColorTemperature { get; }
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[BaseType (typeof (ARAnchor))]
 	[DisableDefaultCtor]
 	interface ARPlaneAnchor {
@@ -280,8 +280,8 @@ namespace XamCore.ARKit {
 		}
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface ARPointCloud {
@@ -298,8 +298,8 @@ namespace XamCore.ARKit {
 		IntPtr GetRawIdentifiers ();
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[BaseType (typeof (SCNView))]
 	interface ARSCNView {
 
@@ -329,8 +329,8 @@ namespace XamCore.ARKit {
 
 	interface IARSCNViewDelegate {}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface ARSCNViewDelegate : SCNSceneRendererDelegate, ARSessionObserver {
@@ -352,8 +352,8 @@ namespace XamCore.ARKit {
 		void DidRemoveNode (ISCNSceneRenderer renderer, SCNNode node, ARAnchor anchor);
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[BaseType (typeof (SKView))]
 	interface ARSKView {
 
@@ -377,8 +377,8 @@ namespace XamCore.ARKit {
 
 	interface IARSKViewDelegate {}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface ARSKViewDelegate : SKViewDelegate, ARSessionObserver {
@@ -400,8 +400,8 @@ namespace XamCore.ARKit {
 		void DidRemoveNode (ARSKView view, SKNode node, ARAnchor anchor);
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[BaseType (typeof (NSObject))]
 	interface ARSession {
 
@@ -431,8 +431,8 @@ namespace XamCore.ARKit {
 		void RemoveAnchor (ARAnchor anchor);
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[Protocol]
 	interface ARSessionObserver {
 
@@ -454,8 +454,8 @@ namespace XamCore.ARKit {
 
 	interface IARSessionDelegate {}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface ARSessionDelegate : ARSessionObserver {
@@ -473,8 +473,8 @@ namespace XamCore.ARKit {
 		void DidRemoveAnchors (ARSession session, ARAnchor[] anchors);
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[BaseType (typeof (NSObject))]
 	[Abstract]
 	[DisableDefaultCtor]
@@ -494,8 +494,8 @@ namespace XamCore.ARKit {
 		bool ProvidesAudioData { get; set; }
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[BaseType (typeof (ARConfiguration))]
 	interface ARWorldTrackingConfiguration {
 
@@ -503,13 +503,13 @@ namespace XamCore.ARKit {
 		ARPlaneDetection PlaneDetection { get; set; }
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
-	[BaseType (typeof(ARConfiguration))]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
+	[BaseType (typeof (ARConfiguration))]
 	interface AROrientationTrackingConfiguration {}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[Static]
 	interface ARSCNDebugOptions {
 
@@ -520,8 +520,8 @@ namespace XamCore.ARKit {
 		SCNDebugOptions ShowFeaturePoints { get; }
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[Protocol]
 	interface ARTrackable {
 		[Abstract]
@@ -529,13 +529,13 @@ namespace XamCore.ARKit {
 		bool IsTracked { get; }
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
-	[BaseType (typeof(ARConfiguration))]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
+	[BaseType (typeof (ARConfiguration))]
 	interface ARFaceTrackingConfiguration {}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[StrongDictionary ("ARBlendShapeLocationKeys")]
 	interface ARBlendShapeLocationOptions {
 
@@ -642,8 +642,8 @@ namespace XamCore.ARKit {
 		float NoseSneerRight { get; set; }
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
 	[Static]
 	[Internal]
 	interface ARBlendShapeLocationKeys {
@@ -802,9 +802,9 @@ namespace XamCore.ARKit {
 		NSString NoseSneerRightKey { get; }
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
-	[BaseType (typeof(ARAnchor))]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
+	[BaseType (typeof (ARAnchor))]
 	interface ARFaceAnchor : ARTrackable {
 		[Export ("geometry")]
 		ARFaceGeometry Geometry { get; }
@@ -817,9 +817,9 @@ namespace XamCore.ARKit {
 		ARBlendShapeLocationOptions BlendShapes { get; }
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface ARFaceGeometry : NSCopying {
 		[EditorBrowsable (EditorBrowsableState.Advanced)]
@@ -854,9 +854,9 @@ namespace XamCore.ARKit {
 		short TriangleIndices { get; }
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
-	[BaseType (typeof(SCNGeometry))]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
+	[BaseType (typeof (SCNGeometry))]
 	[DisableDefaultCtor]
 	interface ARSCNFaceGeometry {
 		[Static]
@@ -873,9 +873,9 @@ namespace XamCore.ARKit {
 		void Update (ARFaceGeometry faceGeometry);
 	}
 
-	[iOS (11,0)]
-	[NoWatch, NoTV, NoMac]
-	[BaseType (typeof(ARLightEstimate))]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX)]
+	[BaseType (typeof (ARLightEstimate))]
 	[DisableDefaultCtor]
 	interface ARDirectionalLightEstimate {
 		[Export ("sphericalHarmonicsCoefficients", ArgumentSemantic.Copy)]

@@ -80,7 +80,7 @@ namespace XamCore.CoreGraphics {
 			CGColorSpaceRetain (handle);
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal CGColorSpace (IntPtr handle, bool owns)
 		{
 			if (!owns)
@@ -225,73 +225,73 @@ namespace XamCore.CoreGraphics {
 			return r == IntPtr.Zero ? null : new CGColorSpace (r, true);
 		}
 			
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		public static CGColorSpace CreateGenericGray ()
 		{
 			return Create (CGColorSpaceNames.GenericGray.Handle);
 		}
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		public static CGColorSpace CreateGenericRgb ()
 		{
 			return Create (CGColorSpaceNames.GenericRgb.Handle);
 		}
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		public static CGColorSpace CreateGenericCmyk ()
 		{
 			return Create (CGColorSpaceNames.GenericCmyk.Handle);
 		}
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		public static CGColorSpace CreateGenericRgbLinear ()
 		{
 			return Create (CGColorSpaceNames.GenericRgbLinear.Handle);
 		}
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		public static CGColorSpace CreateAdobeRgb1988 ()
 		{
 			return Create (CGColorSpaceNames.AdobeRgb1998.Handle);
 		}
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		public static CGColorSpace CreateSrgb ()
 		{
 			return Create (CGColorSpaceNames.Srgb.Handle);
 		}
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		public static CGColorSpace CreateGenericGrayGamma2_2 ()
 		{
 			return Create (CGColorSpaceNames.GenericGrayGamma2_2.Handle);
 		}
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		public static CGColorSpace CreateGenericXyz ()
 		{
 			return Create (CGColorSpaceNames.GenericXyz.Handle);
 		}
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		public static CGColorSpace CreateAcesCGLinear ()
 		{
 			return Create (CGColorSpaceNames.AcesCGLinear.Handle);
 		}
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		public static CGColorSpace CreateItuR_709 ()
 		{
 			return Create (CGColorSpaceNames.ItuR_709.Handle);
 		}
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		public static CGColorSpace CreateItuR_2020 ()
 		{
 			return Create (CGColorSpaceNames.ItuR_2020.Handle);
 		}
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		public static CGColorSpace CreateRommRgb ()
 		{
 			return Create (CGColorSpaceNames.RommRgb.Handle);
@@ -373,63 +373,63 @@ namespace XamCore.CoreGraphics {
 		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static /* CFDataRef */ IntPtr CGColorSpaceCopyICCProfile (/* CGColorSpaceRef */ IntPtr space);
 
-		[iOS (7,0)] // note: pre-release docs/headers says iOS6 and later, available on OSX since 10.5
+		[Introduced (PlatformName.iOS, 7, 0)] // note: pre-release docs/headers says iOS6 and later, available on OSX since 10.5
 		public NSData GetICCProfile ()
 		{
 			IntPtr ptr = CGColorSpaceCopyICCProfile (handle);
 			return (ptr == IntPtr.Zero) ? null : new NSData (ptr, true);
 		}
 
-		[iOS (10,0)][Mac (10,12)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[DllImport (Constants.CoreGraphicsLibrary)]
 		static extern /* CFDataRef* */ IntPtr CGColorSpaceCopyICCData (/* CGColorSpaceRef */ IntPtr space);
 
-		[iOS (10,0)][Mac (10,12)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		public NSData GetIccData ()
 		{
 			IntPtr ptr = CGColorSpaceCopyICCData (handle);
 			return (ptr == IntPtr.Zero) ? null : new NSData (ptr, true);
 		}
 
-		[iOS (10,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[DllImport (Constants.CoreGraphicsLibrary)]
 		static extern unsafe /* CFStringRef* */ IntPtr CGColorSpaceCopyName (/* CGColorSpaceRef */ IntPtr space);
 
-		[iOS (10,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		public string Name {
 			get {
 				return CFString.FetchString (CGColorSpaceCopyName (handle));
 			}
 		}
 
-		[iOS (10,0)][Mac (10,12)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[DllImport (Constants.CoreGraphicsLibrary)]
 		static extern bool CGColorSpaceIsWideGamutRGB (/* CGColorSpaceRef */ IntPtr space);
 
-		[iOS (10,0)][Mac (10,12)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		public bool IsWideGamutRgb {
 			get {
 				return CGColorSpaceIsWideGamutRGB (handle);
 			}
 		}
 
-		[iOS (10,0)][Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[DllImport (Constants.CoreGraphicsLibrary)]
 		static extern bool CGColorSpaceSupportsOutput (/* CGColorSpaceRef */ IntPtr space);
 
-		[iOS (10,0)][Mac (10,12)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		public bool SupportsOutput {
 			get {
 				return CGColorSpaceSupportsOutput (handle);

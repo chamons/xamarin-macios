@@ -63,9 +63,9 @@ namespace XamCore.AudioUnit
 		Initialized = -10849,
 		InvalidOfflineRender = -10848,
 		Unauthorized = -10847,
-		[iOS (11,0), Mac (10,13, onlyOn64: true), TV (11,0), NoWatch]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		MidiOutputBufferFull = -66753,
-		[iOS (11,0), Mac (10,13, onlyOn64: true), TV (11,0), NoWatch]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		ExtensionNotFound = -66744,
 	}
 
@@ -78,7 +78,7 @@ namespace XamCore.AudioUnit
 		NotPermitted			= -66748,
 		InitializationTimedOut	= -66747,
 		InvalidFormat			= -66746,
-		[iOS (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		RenderTimeout			= -66745,
 	}
 
@@ -169,14 +169,14 @@ namespace XamCore.AudioUnit
 	delegate AudioUnitStatus CallbackShared (IntPtr /* void* */ clientData, ref AudioUnitRenderActionFlags /* AudioUnitRenderActionFlags* */ actionFlags, ref AudioTimeStamp /* AudioTimeStamp* */ timeStamp, uint /* UInt32 */ busNumber, uint /* UInt32 */ numberFrames, IntPtr /* AudioBufferList* */ data);
 #endif // !COREBUILD
 
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	struct AURenderCallbackStruct
 	{
 		public Delegate Proc;
 		public IntPtr ProcRefCon; 
 	}
 
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	struct AudioUnitConnection
 	{
 		public IntPtr SourceAudioUnit;
@@ -219,7 +219,7 @@ namespace XamCore.AudioUnit
 #endif // !COREBUILD
 	}
 
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	struct AUSamplerInstrumentData
 	{
 		public IntPtr FileUrl;
@@ -229,7 +229,7 @@ namespace XamCore.AudioUnit
 		public byte PresetID;
 	}
 
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	unsafe struct AudioUnitParameterInfoNative // AudioUnitParameterInfo in Obj-C
 	{
 		fixed byte /* char[52] */ name[52]; // unused
@@ -322,7 +322,7 @@ namespace XamCore.AudioUnit
 	{
 		CFNameRelease		= (1 << 4),
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		OmitFromPresets		= (1 << 13),
 		PlotHistory			= (1 << 14),
 		MeterReadOnly		= (1 << 15),
@@ -481,7 +481,7 @@ namespace XamCore.AudioUnit
 #if !XAMCORE_2_0
 		[Obsolete]
 		// callback funtion should be static method and be attatched a MonoPInvokeCallback attribute.        
-		[XamCore.MonoPInvokeCallback(typeof(AURenderCallback))]
+		[XamCore.MonoPInvokeCallback (typeof (AURenderCallback))]
 		static int renderCallback(IntPtr inRefCon, ref AudioUnitRenderActionFlags _ioActionFlags,
 					  ref AudioTimeStamp _inTimeStamp,
 					  int _inBusNumber,
@@ -727,7 +727,7 @@ namespace XamCore.AudioUnit
 			return AudioUnitSetProperty (handle, AudioUnitPropertyIDType.SampleRate, scope, 0, ref sampleRate, sizeof (double));
 		}
 
-		[iOS (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		public AudioUnitStatus MusicDeviceMIDIEvent (uint status, uint data1, uint data2, uint offsetSampleFrame = 0)
 		{
 			return MusicDeviceMIDIEvent (handle, status, data1, data2, offsetSampleFrame);
@@ -804,7 +804,7 @@ namespace XamCore.AudioUnit
 		#endregion
 
 #if !MONOMAC
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[DllImport (Constants.AudioUnitLibrary)]
 #if XAMCORE_2_0
 		static extern AudioComponentStatus AudioOutputUnitPublish (AudioComponentDescription inDesc, IntPtr /* CFStringRef */ inName, uint /* UInt32 */ inVersion, IntPtr /* AudioUnit */ inOutputUnit);
@@ -812,7 +812,7 @@ namespace XamCore.AudioUnit
 		static extern AudioComponentStatus AudioOutputUnitPublish (ref AudioComponentDescription inDesc, IntPtr inName, uint inVersion, IntPtr inOutputUnit);
 #endif
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		public AudioComponentStatus AudioOutputUnitPublish (AudioComponentDescription description, string name, uint version = 1)
 		{
 #if !XAMCORE_2_0
@@ -832,11 +832,11 @@ namespace XamCore.AudioUnit
 			}
 		}
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[DllImport (Constants.AudioUnitLibrary)]
 		static extern IntPtr AudioOutputUnitGetHostIcon (IntPtr /* AudioUnit */ au, float /* float */ desiredPointSize);
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		public XamCore.UIKit.UIImage GetHostIcon (float desiredPointSize)
 		{
 			return new XamCore.UIKit.UIImage (AudioOutputUnitGetHostIcon (handle, desiredPointSize));
@@ -932,7 +932,7 @@ namespace XamCore.AudioUnit
 			GC.SuppressFinalize (this);
 		}
 		
-		[DllImport(Constants.AudioUnitLibrary)]
+		[DllImport (Constants.AudioUnitLibrary)]
 		static extern int AudioComponentInstanceDispose(IntPtr inInstance);
 
 #if XAMCORE_2_0
@@ -960,7 +960,7 @@ namespace XamCore.AudioUnit
 					      AudioBufferList ioData);
 		
 		[Obsolete]
-		[StructLayout(LayoutKind.Sequential)]
+		[StructLayout (LayoutKind.Sequential)]
 		class AURenderCallbackStrct {
 			public AURenderCallback inputProc;
 			public IntPtr inputProcRefCon;
@@ -969,27 +969,27 @@ namespace XamCore.AudioUnit
 		}
 #endif
 
-		[DllImport(Constants.AudioUnitLibrary, EntryPoint = "AudioComponentInstanceNew")]
+		[DllImport (Constants.AudioUnitLibrary, EntryPoint = "AudioComponentInstanceNew")]
 		static extern int AudioComponentInstanceNew(IntPtr inComponent, out IntPtr inDesc);
 
-		[DllImport(Constants.AudioUnitLibrary)]
+		[DllImport (Constants.AudioUnitLibrary)]
 		static extern IntPtr AudioComponentInstanceGetComponent (IntPtr inComponent);
 		
-		[DllImport(Constants.AudioUnitLibrary)]
+		[DllImport (Constants.AudioUnitLibrary)]
 		static extern int AudioUnitInitialize(IntPtr inUnit);
 		
-		[DllImport(Constants.AudioUnitLibrary)]
+		[DllImport (Constants.AudioUnitLibrary)]
 		static extern int AudioUnitUninitialize(IntPtr inUnit);
 
-		[DllImport(Constants.AudioUnitLibrary)]
+		[DllImport (Constants.AudioUnitLibrary)]
 		static extern int AudioOutputUnitStart(IntPtr ci);
 
-		[DllImport(Constants.AudioUnitLibrary)]
+		[DllImport (Constants.AudioUnitLibrary)]
 		static extern int AudioOutputUnitStop(IntPtr ci);
 
 #if !XAMCORE_2_0
 		[Obsolete]
-		[DllImport(Constants.AudioUnitLibrary)]
+		[DllImport (Constants.AudioUnitLibrary)]
 		static extern int AudioUnitRender(IntPtr inUnit,
 						  ref AudioUnitRenderActionFlags ioActionFlags,
 						  ref AudioTimeStamp inTimeStamp,
@@ -998,80 +998,80 @@ namespace XamCore.AudioUnit
 						  AudioBufferList ioData);
 #endif
 
-		[DllImport(Constants.AudioUnitLibrary)]
+		[DllImport (Constants.AudioUnitLibrary)]
 		static extern AudioUnitStatus AudioUnitRender(IntPtr inUnit, ref AudioUnitRenderActionFlags ioActionFlags, ref AudioTimeStamp inTimeStamp,
 						  uint inOutputBusNumber, uint inNumberFrames, IntPtr ioData);
 
 #if !XAMCORE_2_0
 		[Obsolete]
-		[DllImport(Constants.AudioUnitLibrary)]
+		[DllImport (Constants.AudioUnitLibrary)]
 		static extern int AudioUnitSetProperty(IntPtr inUnit,
-						       [MarshalAs(UnmanagedType.U4)] AudioUnitPropertyIDType inID,
-						       [MarshalAs(UnmanagedType.U4)] AudioUnitScopeType inScope,
-						       [MarshalAs(UnmanagedType.U4)] uint inElement,
+						       [MarshalAs (UnmanagedType.U4)] AudioUnitPropertyIDType inID,
+						       [MarshalAs (UnmanagedType.U4)] AudioUnitScopeType inScope,
+						       [MarshalAs (UnmanagedType.U4)] uint inElement,
 						       AURenderCallbackStrct inData,
 						       uint inDataSize);
 #endif
 
-		[DllImport(Constants.AudioUnitLibrary)]
+		[DllImport (Constants.AudioUnitLibrary)]
 		static extern int AudioUnitSetProperty (IntPtr inUnit, AudioUnitPropertyIDType inID, AudioUnitScopeType inScope, uint inElement,
 						       ref AudioStreamBasicDescription inData,
 						       uint inDataSize);
         
-		[DllImport(Constants.AudioUnitLibrary)]
+		[DllImport (Constants.AudioUnitLibrary)]
 		static extern AudioUnitStatus AudioUnitSetProperty (IntPtr inUnit, AudioUnitPropertyIDType inID, AudioUnitScopeType inScope, uint inElement,
 						       ref uint inData, uint inDataSize);
 
-		[DllImport(Constants.AudioUnitLibrary)]
+		[DllImport (Constants.AudioUnitLibrary)]
 		static extern AudioUnitStatus AudioUnitSetProperty (IntPtr inUnit, AudioUnitPropertyIDType inID, AudioUnitScopeType inScope, uint inElement,
 						       ref double inData, uint inDataSize);
 
-		[DllImport(Constants.AudioUnitLibrary)]
+		[DllImport (Constants.AudioUnitLibrary)]
 		static extern AudioUnitStatus AudioUnitSetProperty (IntPtr inUnit, AudioUnitPropertyIDType inID, AudioUnitScopeType inScope, uint inElement,
 						       ref IntPtr inData, int inDataSize);
 
-		[DllImport(Constants.AudioUnitLibrary)]
+		[DllImport (Constants.AudioUnitLibrary)]
 		static extern AudioUnitStatus AudioUnitSetProperty (IntPtr inUnit, AudioUnitPropertyIDType inID, AudioUnitScopeType inScope, uint inElement,
 						       ref AURenderCallbackStruct inData, int inDataSize);
 
-		[DllImport(Constants.AudioUnitLibrary)]
+		[DllImport (Constants.AudioUnitLibrary)]
 		static extern AudioUnitStatus AudioUnitSetProperty (IntPtr inUnit, AudioUnitPropertyIDType inID, AudioUnitScopeType inScope, uint inElement,
 						       ref AudioUnitConnection inData, int inDataSize);
 
-		[DllImport(Constants.AudioUnitLibrary)]
+		[DllImport (Constants.AudioUnitLibrary)]
 		static extern AudioUnitStatus AudioUnitSetProperty (IntPtr inUnit, AudioUnitPropertyIDType inID, AudioUnitScopeType inScope, uint inElement,
 						       ref AUSamplerInstrumentData inData, int inDataSize);
 
-		[DllImport(Constants.AudioUnitLibrary)]
+		[DllImport (Constants.AudioUnitLibrary)]
 		static extern AudioUnitStatus AudioUnitGetProperty (IntPtr inUnit, AudioUnitPropertyIDType inID, AudioUnitScopeType inScope, uint inElement,
 						       ref AudioStreamBasicDescription outData,
 						       ref uint ioDataSize);
 
-		[DllImport(Constants.AudioUnitLibrary)]
+		[DllImport (Constants.AudioUnitLibrary)]
 		static extern AudioUnitStatus AudioUnitGetProperty (IntPtr inUnit, AudioUnitPropertyIDType inID, AudioUnitScopeType inScope, uint inElement,
 							   ref IntPtr outData,
 						       ref int ioDataSize);
 
-		[DllImport(Constants.AudioUnitLibrary)]
+		[DllImport (Constants.AudioUnitLibrary)]
 		static extern AudioUnitStatus AudioUnitGetProperty (IntPtr inUnit, AudioUnitPropertyIDType inID, AudioUnitScopeType inScope, uint inElement,
 						ref uint outData,
 						ref int ioDataSize);
 
-		[DllImport(Constants.AudioUnitLibrary)]
+		[DllImport (Constants.AudioUnitLibrary)]
 		static extern unsafe AudioUnitStatus AudioUnitGetProperty (IntPtr inUnit, AudioUnitPropertyIDType inID, AudioUnitScopeType inScope, uint inElement,
 						       uint* outData,
 						       ref uint ioDataSize);
 
-		[DllImport(Constants.AudioUnitLibrary)]
+		[DllImport (Constants.AudioUnitLibrary)]
 		static extern unsafe AudioUnitStatus AudioUnitGetProperty (IntPtr inUnit, AudioUnitPropertyIDType inID, AudioUnitScopeType inScope, uint inElement,
 						       ref AudioUnitParameterInfoNative outData,
 						       ref uint ioDataSize);
 
-		[DllImport(Constants.AudioUnitLibrary)]
+		[DllImport (Constants.AudioUnitLibrary)]
 		static extern int AudioUnitGetProperty(IntPtr inUnit,
-						       [MarshalAs(UnmanagedType.U4)] AudioUnitPropertyIDType inID,
-						       [MarshalAs(UnmanagedType.U4)] AudioUnitScopeType inScope,
-						       [MarshalAs(UnmanagedType.U4)] uint inElement,
+						       [MarshalAs (UnmanagedType.U4)] AudioUnitPropertyIDType inID,
+						       [MarshalAs (UnmanagedType.U4)] AudioUnitScopeType inScope,
+						       [MarshalAs (UnmanagedType.U4)] uint inElement,
 						       ref uint flag,
 						       ref uint ioDataSize
 			);
@@ -1167,7 +1167,7 @@ namespace XamCore.AudioUnit
 	}
 
 #if !XAMCORE_3_0 || MONOMAC
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	struct AudioObjectPropertyAddress
 	{
 		public uint /* UInt32 */ Selector;
@@ -1272,19 +1272,19 @@ namespace XamCore.AudioUnit
 		ParameterHistoryInfo = 53,
 		Nickname = 54,
 		OfflineRender = 37,
-		[Availability (Introduced = Platform.iOS_8_0 |Platform.Mac_10_3)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 3)]
 		ParameterIDName = 34,
-		[Availability (Introduced = Platform.iOS_8_0 | Platform.Mac_10_3)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 3)]
 		ParameterStringFromValue = 33,
 		ParameterClumpName = 35,
-		[Availability (Introduced = Platform.iOS_8_0 | Platform.Mac_10_3)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 3)]
 		ParameterValueFromString = 38,
 		ContextName = 25,
 		PresentationLatency = 40,
 		ClassInfoFromDocument = 50,
 		RequestViewController = 56,
 		ParametersForOverview = 57,
-		[iOS (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		SupportsMpe = 58,
 
 #if MONOMAC
@@ -1372,18 +1372,18 @@ namespace XamCore.AudioUnit
 		MatrixLevels = 3006,
 		MatrixDimensions = 3009,
 		MeterClipping = 3011,
-		[iOS (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		InputAnchorTimeStamp = 3016,
 
 		// SpatialMixer
 		ReverbRoomType = 10,
 		UsesInternalReverb = 1005,
 		SpatializationAlgorithm = 3000,
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_9_0)]
+		[Introduced (PlatformName.iOS, 3, 0), Deprecated (PlatformName.iOS, 9, 0)]
 		DistanceParams = 3010,
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_9_0)]
+		[Introduced (PlatformName.iOS, 3, 0), Deprecated (PlatformName.iOS, 9, 0)]
 		AttenuationCurve = 3013,
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_9_0)]
+		[Introduced (PlatformName.iOS, 3, 0), Deprecated (PlatformName.iOS, 9, 0)]
 		RenderingFlags = 3003,
 
 		// AUScheduledSoundPlayer
@@ -1489,9 +1489,9 @@ namespace XamCore.AudioUnit
 		ReverbFilterFrequency				= 14,
 		ReverbFilterBandwidth				= 15,
 		ReverbFilterGain					= 16,
-		[Availability (Introduced = Platform.iOS_8_0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		ReverbFilterType					= 17,
-		[Availability (Introduced = Platform.iOS_8_0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		ReverbFilterEnable					= 18,
 
 		// AUMultiChannelMixer
@@ -1545,7 +1545,7 @@ namespace XamCore.AudioUnit
 		AULowShelfCutoffFrequency			= 0,
 		AULowShelfGain						= 1,
 
-		[Availability (Obsoleted = Platform.iOS_7_0)]
+		[Obsoleted (PlatformName.iOS, 7, 0)]
 		AUDCFilterDecayTime					= 0,
 
 		// AUParametricEQ
@@ -1642,7 +1642,7 @@ namespace XamCore.AudioUnit
 		ObstructionAttenuation = 11
 	}
 
-	[Availability (Introduced = Platform.iOS_8_0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	public enum SpatialMixerAttenuation {
 		Power = 0,
 		Exponential = 1,
@@ -1651,10 +1651,10 @@ namespace XamCore.AudioUnit
 	}
 
 	[Flags]
-	[Availability (Introduced = Platform.iOS_8_0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	public enum SpatialMixerRenderingFlags {
 		InterAuralDelay = (1 << 0),
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_9_0)]
+		[Introduced (PlatformName.iOS, 3, 0), Deprecated (PlatformName.iOS, 9, 0)]
 		DistanceAttenuation = (1 << 2),
 	}
 
@@ -1664,11 +1664,11 @@ namespace XamCore.AudioUnit
 		BeganToRender = 0x02,
 		BeganToRenderLate = 0x04,
 
-		[Availability (Introduced = Platform.iOS_8_0 | Platform.Mac_10_10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		Loop                   = 0x08,
-		[Availability (Introduced = Platform.iOS_8_0 | Platform.Mac_10_10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		Interrupt              = 0x10,
-		[Availability (Introduced = Platform.iOS_8_0 | Platform.Mac_10_10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		InterruptAtLoop        = 0x20
 	}
 
@@ -1703,14 +1703,14 @@ namespace XamCore.AudioUnit
 	}
 
 	[Native]
-	public enum AudioUnitBusType : nint
+	public enum AudioUnitBusType : long
 	{
 		Input = 1,
 		Output = 2
 	}
 
 	[Native]
-	public enum AUHostTransportStateFlags : nuint
+	public enum AUHostTransportStateFlags : ulong
 	{
 		Changed = 1,
 		Moving = 2,
@@ -1913,14 +1913,14 @@ namespace XamCore.AudioUnit
 		MidiSysEx = 9
 	}
 
-	[iOS (9,0), Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	public enum AudioComponentInstantiationOptions : uint {
 		OutOfProcess = 1,
 		InProcess = 2
 	}
 
 	[Native]
-	public enum AUAudioUnitBusType : nint
+	public enum AUAudioUnitBusType : long
 	{
 		Input = 1,
 		Output = 2
@@ -2033,7 +2033,7 @@ namespace XamCore.AudioUnit
 		DistanceAttenuation = (1 << 2)
 	}
 
-	[iOS (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[StructLayout (LayoutKind.Sequential)]
 	public struct AUParameterAutomationEvent {
 		public ulong HostTime;
@@ -2043,7 +2043,7 @@ namespace XamCore.AudioUnit
 		ulong Reserved;
 	}
 
-	[iOS (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	public enum AUParameterAutomationEventType : uint {
 		Value = 0,
 		Touch = 1,

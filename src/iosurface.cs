@@ -17,9 +17,9 @@ namespace XamCore.IOSurface {
 	[Static]
 	[Internal]
 	// See bug #59201 [iOS (10,0)]
-	[iOS (11, 0)]
-	[TV (11,0)]
-	[Mac (10, 12)]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Introduced (PlatformName.TvOS, 11, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 12)]
 	interface IOSurfacePropertyKey {
 		[Field ("IOSurfacePropertyAllocSizeKey")]
 		NSString AllocSizeKey { get; }
@@ -110,10 +110,10 @@ namespace XamCore.IOSurface {
 		bool PixelSizeCastingAllowed { get; set; }
 	}
 
-	[iOS (11,0)]
-	[TV (11,0)]
-	[Mac (10,12)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Introduced (PlatformName.TvOS, 11, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 12)]
+	[BaseType (typeof (NSObject))]
 	interface IOSurface : NSSecureCoding
 	{
 		[Internal, Export ("initWithProperties:")]
@@ -213,7 +213,7 @@ namespace XamCore.IOSurface {
 		[Export ("allowsPixelSizeCasting")]
 		bool AllowsPixelSizeCasting { get; }
 	
-		[iOS (11,0)][Mac (10,13)]
+		[Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.MacOSX, 10, 13)]
 		[Internal, Export ("setPurgeable:oldState:")]
 		int _SetPurgeable (IOSurfacePurgeabilityState newState, IntPtr oldStatePtr);
 	}

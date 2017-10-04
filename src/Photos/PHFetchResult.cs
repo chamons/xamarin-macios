@@ -1,4 +1,4 @@
-﻿#if !MONOMAC
+#if !MONOMAC
 
 using XamCore.ObjCRuntime;
 using XamCore.Foundation;

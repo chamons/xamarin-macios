@@ -96,21 +96,21 @@ namespace XamCore.SceneKit {
 	interface MTLRenderPassDescriptor {}
 #endif
 
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	delegate void SCNSceneSourceStatusHandler (float /* float, not CGFloat */ totalProgress, SCNSceneSourceStatus status, NSError error, ref bool stopLoading);
 
 	delegate void SCNAnimationDidStartHandler (SCNAnimation animation, SCNAnimatable receiver);
 	delegate void SCNAnimationDidStopHandler (SCNAnimation animation, SCNAnimatable receiver, bool completed);
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[Model, Protocol]
 	[BaseType (typeof (NSObject))]
 	interface SCNAnimatable {
 #if XAMCORE_2_0
 		[Abstract]
 #endif
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Export ("addAnimation:forKey:")]
 		void AddAnimation (CAAnimation animation, [NullAllowed] NSString key);
 
@@ -135,21 +135,21 @@ namespace XamCore.SceneKit {
 #if XAMCORE_2_0
 		[Abstract]
 #endif
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Export ("animationForKey:")]
 		CAAnimation GetAnimation (NSString key);
 
 #if XAMCORE_2_0
 		[Abstract]
 #endif
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("pauseAnimationForKey:")]
 		void PauseAnimation (NSString key);
 
 #if XAMCORE_2_0
 		[Abstract]
 #endif
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("resumeAnimationForKey:")]
 		void ResumeAnimation (NSString key);
 
@@ -159,29 +159,29 @@ namespace XamCore.SceneKit {
 		[Introduced (PlatformName.WatchOS, 3, 0)]
 		[Deprecated (PlatformName.WatchOS, 4, 0, message: "Use 'SCNAnimationPlayer.Paused' instead.")]
 		[Introduced (PlatformName.TvOS, 9, 0)]
-		[Deprecated (PlatformName.TvOS, 11, 0,   message: "Use 'SCNAnimationPlayer.Paused' instead.")]
+		[Deprecated (PlatformName.TvOS, 11, 0, message: "Use 'SCNAnimationPlayer.Paused' instead.")]
 		[Introduced (PlatformName.iOS, 8, 0)]
-		[Deprecated (PlatformName.iOS, 11, 0,    message: "Use 'SCNAnimationPlayer.Paused' instead.")]
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'SCNAnimationPlayer.Paused' instead.")]
 		[Introduced (PlatformName.MacOSX, 10, 9)]
-		[Deprecated (PlatformName.MacOSX, 10, 13,message: "Use 'SCNAnimationPlayer.Paused' instead.")]
+		[Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'SCNAnimationPlayer.Paused' instead.")]
 		[Export ("isAnimationForKeyPaused:")]
 		bool IsAnimationPaused (NSString key);
 
 #if XAMCORE_2_0
 		[Abstract]
 #endif
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("removeAnimationForKey:fadeOutDuration:")]
 		void RemoveAnimation (NSString key, nfloat duration);
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("setSpeed:forAnimationKey:")]
 		void SetSpeed (nfloat speed, NSString key);
 	}
 
-	[Watch (3,0)]
-	[iOS(9,0),Mac(10,11)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface SCNAudioPlayer
 	{
@@ -214,9 +214,9 @@ namespace XamCore.SceneKit {
 		SCNAudioSource AudioSource { get; }
 	}
 	
-	[Watch (3,0)]
-	[iOS (9,0), Mac(10,11)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface SCNAudioSource : NSCopying, NSSecureCoding
 	{
@@ -255,8 +255,8 @@ namespace XamCore.SceneKit {
 	}
 		
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[Model, Protocol]
 	[BaseType (typeof (NSObject))]
 	interface SCNBoundingVolume {
@@ -266,7 +266,7 @@ namespace XamCore.SceneKit {
 		[Export ("getBoundingBoxMin:max:")]
 		bool GetBoundingBox (ref SCNVector3 min, ref SCNVector3 max);
 
-		[Mac (10,9)] // Yep, Apple broke backwards compatibility in 10.9 by introducing a new required member.
+		[Introduced (PlatformName.MacOSX, 10, 9)] // Yep, Apple broke backwards compatibility in 10.9 by introducing a new required member.
 		[Abstract]
 		[Export ("setBoundingBoxMin:max:")]
 		void SetBoundingBox (ref SCNVector3 min, ref SCNVector3 max);
@@ -278,8 +278,8 @@ namespace XamCore.SceneKit {
 		bool GetBoundingSphere (ref SCNVector3 center, ref nfloat radius);
 	}
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (SCNGeometry))]
 	interface SCNBox {
 		[Export ("width")]
@@ -310,8 +310,8 @@ namespace XamCore.SceneKit {
 		SCNBox Create (nfloat width, nfloat height, nfloat length, nfloat chamferRadius);
 	}
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	interface SCNCamera : SCNAnimatable, SCNTechniqueSupport, NSCopying, NSSecureCoding {
 		[NullAllowed] // by default this property is null
@@ -319,16 +319,16 @@ namespace XamCore.SceneKit {
 		string Name { get; set;  }
 
 		[Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'FieldOfView' or 'FocalLength' instead.")]
-		[Deprecated (PlatformName.iOS,    11, 0,  message: "Use 'FieldOfView' or 'FocalLength' instead.")]
-		[Deprecated (PlatformName.TvOS,   11, 0,  message: "Use 'FieldOfView' or 'FocalLength' instead.")]
-		[Deprecated (PlatformName.WatchOS, 4, 0,  message: "Use 'FieldOfView' or 'FocalLength' instead.")]
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'FieldOfView' or 'FocalLength' instead.")]
+		[Deprecated (PlatformName.TvOS, 11, 0, message: "Use 'FieldOfView' or 'FocalLength' instead.")]
+		[Deprecated (PlatformName.WatchOS, 4, 0, message: "Use 'FieldOfView' or 'FocalLength' instead.")]
 		[Export ("xFov")]
 		double XFov { get; set;  }
 
 		[Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'FieldOfView' or 'FocalLength' instead.")]
-		[Deprecated (PlatformName.iOS,    11, 0,  message: "Use 'FieldOfView' or 'FocalLength' instead.")]
-		[Deprecated (PlatformName.TvOS,   11, 0,  message: "Use 'FieldOfView' or 'FocalLength' instead.")]
-		[Deprecated (PlatformName.WatchOS, 4, 0,  message: "Use 'FieldOfView' or 'FocalLength' instead.")]
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'FieldOfView' or 'FocalLength' instead.")]
+		[Deprecated (PlatformName.TvOS, 11, 0, message: "Use 'FieldOfView' or 'FocalLength' instead.")]
+		[Deprecated (PlatformName.WatchOS, 4, 0, message: "Use 'FieldOfView' or 'FocalLength' instead.")]
 		[Export ("yFov")]
 		double YFov { get; set;  }
 
@@ -344,194 +344,194 @@ namespace XamCore.SceneKit {
 		[Static, Export ("camera")]
 		SCNCamera Create ();
 
-		[iOS (8,0)][Mac (10,9)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("projectionTransform")]
-		SCNMatrix4 ProjectionTransform { get; [Mac (10,9)] set; }
+		SCNMatrix4 ProjectionTransform { get; [Introduced (PlatformName.MacOSX, 10, 9)] set; }
 
-		[iOS (8,0)][Mac (10,9)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("automaticallyAdjustsZRange")]
 		bool AutomaticallyAdjustsZRange { get; set; }
 		
-		[iOS (8,0)][Mac (10,9)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("orthographicScale")]
 		double OrthographicScale { get; set; }
 
 		[Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'FocusDistance' instead.")]
-		[Deprecated (PlatformName.iOS,    11, 0,  message: "Use 'FocusDistance' instead.")]
-		[Deprecated (PlatformName.TvOS,   11, 0,  message: "Use 'FocusDistance' instead.")]
-		[Deprecated (PlatformName.WatchOS, 4, 0,  message: "Use 'FocusDistance' instead.")]
-		[iOS (8,0)][Mac (10,9)]
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'FocusDistance' instead.")]
+		[Deprecated (PlatformName.TvOS, 11, 0, message: "Use 'FocusDistance' instead.")]
+		[Deprecated (PlatformName.WatchOS, 4, 0, message: "Use 'FocusDistance' instead.")]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("focalDistance")]
 		nfloat FocalDistance { get; set; }
 
 		[Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'FocusDistance' instead.")]
-		[Deprecated (PlatformName.iOS,    11, 0,  message: "Use 'FocusDistance' instead.")]
-		[Deprecated (PlatformName.TvOS,   11, 0,  message: "Use 'FocusDistance' instead.")]
-		[Deprecated (PlatformName.WatchOS, 4, 0,  message: "Use 'FocusDistance' instead.")]
-		[iOS (8,0)][Mac (10,9)]
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'FocusDistance' instead.")]
+		[Deprecated (PlatformName.TvOS, 11, 0, message: "Use 'FocusDistance' instead.")]
+		[Deprecated (PlatformName.WatchOS, 4, 0, message: "Use 'FocusDistance' instead.")]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("focalSize")]
 		nfloat FocalSize { get; set; }
 
 		[Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'FStop' instead.")]
-		[Deprecated (PlatformName.iOS,    11, 0,  message: "Use 'FStop' instead.")]
-		[Deprecated (PlatformName.TvOS,   11, 0,  message: "Use 'FStop' instead.")]
-		[Deprecated (PlatformName.WatchOS, 4, 0,  message: "Use 'FStop' instead.")]
-		[iOS (8,0)][Mac (10,9)]
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'FStop' instead.")]
+		[Deprecated (PlatformName.TvOS, 11, 0, message: "Use 'FStop' instead.")]
+		[Deprecated (PlatformName.WatchOS, 4, 0, message: "Use 'FStop' instead.")]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("focalBlurRadius")]
 		nfloat FocalBlurRadius { get; set; }
 
 		[Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'FStop' instead with FStop = SensorHeight / Aperture.")]
-		[Deprecated (PlatformName.iOS,    11, 0,  message: "Use 'FStop' instead with FStop = SensorHeight / Aperture.")]
-		[Deprecated (PlatformName.TvOS,   11, 0,  message: "Use 'FStop' instead with FStop = SensorHeight / Aperture.")]
-		[Deprecated (PlatformName.WatchOS, 4, 0,  message: "Use 'FStop' instead with FStop = SensorHeight / Aperture.")]
-		[iOS (8,0)][Mac (10,9)]
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'FStop' instead with FStop = SensorHeight / Aperture.")]
+		[Deprecated (PlatformName.TvOS, 11, 0, message: "Use 'FStop' instead with FStop = SensorHeight / Aperture.")]
+		[Deprecated (PlatformName.WatchOS, 4, 0, message: "Use 'FStop' instead with FStop = SensorHeight / Aperture.")]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("aperture")]
 		nfloat Aperture { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("motionBlurIntensity")]
 		nfloat MotionBlurIntensity { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("wantsHDR")]
 		bool WantsHdr { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("exposureOffset")]
 		nfloat ExposureOffset { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("averageGray")]
 		nfloat AverageGray { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("whitePoint")]
 		nfloat WhitePoint { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("wantsExposureAdaptation")]
 		bool WantsExposureAdaptation { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("exposureAdaptationBrighteningSpeedFactor")]
 		nfloat ExposureAdaptationBrighteningSpeedFactor { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("exposureAdaptationDarkeningSpeedFactor")]
 		nfloat ExposureAdaptationDarkeningSpeedFactor { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("minimumExposure")]
 		nfloat MinimumExposure { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("maximumExposure")]
 		nfloat MaximumExposure { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("bloomThreshold")]
 		nfloat BloomThreshold { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("bloomIntensity")]
 		nfloat BloomIntensity { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("bloomBlurRadius")]
 		nfloat BloomBlurRadius { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("vignettingPower")]
 		nfloat VignettingPower { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("vignettingIntensity")]
 		nfloat VignettingIntensity { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("colorFringeStrength")]
 		nfloat ColorFringeStrength { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("colorFringeIntensity")]
 		nfloat ColorFringeIntensity { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("saturation")]
 		nfloat Saturation { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("contrast")]
 		nfloat Contrast { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("colorGrading")]
 		SCNMaterialProperty ColorGrading { get; }
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("categoryBitMask")]
 		nuint CategoryBitMask { get; set; }
 
 #if XAMCORE_2_0
-		[NoWatch]
-		[iOS (9,0), Mac(10,11)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Static]
 		[Export ("cameraWithMDLCamera:")]
 		SCNCamera FromModelCamera (MDLCamera modelCamera);
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("fieldOfView")]
 		nfloat FieldOfView { get; set; }
 	
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("projectionDirection", ArgumentSemantic.Assign)]
 		SCNCameraProjectionDirection ProjectionDirection { get; set; }
 	
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("focalLength")]
 		nfloat FocalLength { get; set; }
 	
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("sensorHeight")]
 		nfloat SensorHeight { get; set; }
 	
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("wantsDepthOfField")]
 		bool WantsDepthOfField { get; set; }
 	
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("focusDistance")]
 		nfloat FocusDistance { get; set; }
 	
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("focalBlurSampleCount")]
 		nint FocalBlurSampleCount { get; set; }
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("fStop")]
 		nfloat FStop { get; set; }
 	
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("apertureBladeCount")]
 		nint ApertureBladeCount { get; set; }
 	
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("screenSpaceAmbientOcclusionIntensity")]
 		nfloat ScreenSpaceAmbientOcclusionIntensity { get; set; }
 	
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("screenSpaceAmbientOcclusionRadius")]
 		nfloat ScreenSpaceAmbientOcclusionRadius { get; set; }
 	
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("screenSpaceAmbientOcclusionBias")]
 		nfloat ScreenSpaceAmbientOcclusionBias { get; set; }
 	
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("screenSpaceAmbientOcclusionDepthThreshold")]
 		nfloat ScreenSpaceAmbientOcclusionDepthThreshold { get; set; }
 	
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("screenSpaceAmbientOcclusionNormalThreshold")]
 		nfloat ScreenSpaceAmbientOcclusionNormalThreshold { get; set; }
 
@@ -540,8 +540,8 @@ namespace XamCore.SceneKit {
 
 	interface ISCNCameraControlConfiguration {}
 
-	[NoWatch]
-	[TV (11,0), Mac (10,13), iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface SCNCameraControlConfiguration
 	{
@@ -572,10 +572,10 @@ namespace XamCore.SceneKit {
 
 	interface ISCNCameraControllerDelegate {}
 	
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	[Model] // Figured I would keep the model for convenience, as all the methods here are optional
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface SCNCameraControllerDelegate
 	{
 		[Export ("cameraInertiaWillStartForController:")]
@@ -585,8 +585,8 @@ namespace XamCore.SceneKit {
 		void CameraInertiaDidEnd (SCNCameraController cameraController);
 	}
 	
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	interface SCNCameraController
 	{
 		[Export ("delegate", ArgumentSemantic.Assign)]
@@ -667,8 +667,8 @@ namespace XamCore.SceneKit {
 		void EndInteraction (CGPoint location, CGSize viewport, CGPoint velocity);
 	}
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (SCNGeometry))]
 	interface SCNCapsule {
 		[Export ("capRadius")]
@@ -690,8 +690,8 @@ namespace XamCore.SceneKit {
 		SCNCapsule Create (nfloat capRadius, nfloat height);
 	}
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (SCNGeometry))]
 	interface SCNCone {
 		[Export ("topRadius")]
@@ -713,8 +713,8 @@ namespace XamCore.SceneKit {
 		SCNCone Create (nfloat topRadius, nfloat bottomRadius, nfloat height);
 	}
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (SCNGeometry))]
 	interface SCNCylinder {
 		[Export ("radius")]
@@ -733,8 +733,8 @@ namespace XamCore.SceneKit {
 		SCNCylinder Create (nfloat radius, nfloat height);
 	}
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (SCNGeometry))]
 	interface SCNFloor {
 		[Export ("reflectivity")]
@@ -746,19 +746,19 @@ namespace XamCore.SceneKit {
 		[Export ("reflectionFalloffEnd")]
 		nfloat ReflectionFalloffEnd { get; set;  }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("reflectionCategoryBitMask")]
 		nuint ReflectionCategoryBitMask { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("width")]
 		nfloat Width { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("length")]
 		nfloat Length { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("reflectionResolutionScaleFactor")]
 		nfloat ReflectionResolutionScaleFactor { get; set; }
 
@@ -766,8 +766,8 @@ namespace XamCore.SceneKit {
 		SCNFloor Create ();
 	}
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] 
 	interface SCNGeometry : SCNAnimatable, SCNBoundingVolume, SCNShadable, NSCopying, NSSecureCoding {
@@ -780,11 +780,11 @@ namespace XamCore.SceneKit {
 		[Export ("firstMaterial", ArgumentSemantic.Retain)]
 		SCNMaterial FirstMaterial { get; set;  }
 
-		[iOS (9,0)][Mac(10,11)] // header mistake (10,10) as tests shows it does not exists
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)] // header mistake (10,10) as tests shows it does not exists
 		[Export ("geometryElements")]
 		SCNGeometryElement [] GeometryElements { get; }
 
-		[iOS (9,0)][Mac(10,11)] // header mistake (10,10) as tests shows it does not exists
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)] // header mistake (10,10) as tests shows it does not exists
 		[Export ("geometrySources")]
 		SCNGeometrySource [] GeometrySources { get; }
 		
@@ -814,40 +814,40 @@ namespace XamCore.SceneKit {
 		[Export ("geometryElementAtIndex:")]
 		SCNGeometryElement GetGeometryElement (nint elementIndex);
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[NullAllowed] // by default this property is null
 		[Export ("levelsOfDetail", ArgumentSemantic.Copy)]
 		SCNLevelOfDetail [] LevelsOfDetail { get; set; }
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Static, Export ("geometry")]
 		SCNGeometry Create ();
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("subdivisionLevel")]
 		nuint SubdivisionLevel { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[NullAllowed] // by default this property is null
 		[Export ("edgeCreasesElement", ArgumentSemantic.Retain)]
 		SCNGeometryElement EdgeCreasesElement { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[NullAllowed] // by default this property is null
 		[Export ("edgeCreasesSource", ArgumentSemantic.Retain)]
 		SCNGeometrySource EdgeCreasesSource { get; set; }
 
 #if XAMCORE_2_0
-		[NoWatch]
-		[iOS (9,0), Mac(10,11)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Static]
 		[Export ("geometryWithMDLMesh:")]
 		SCNGeometry FromMesh (MDLMesh mesh);
 #endif
 	}
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	interface SCNGeometrySource : NSSecureCoding {
 		[Export ("data")]
@@ -891,16 +891,16 @@ namespace XamCore.SceneKit {
 		SCNGeometrySource FromTextureCoordinates (IntPtr texcoords, nint count);
 
 #if XAMCORE_2_0 || !MONOMAC
-		[NoWatch]
-		[iOS (9,0)][Mac (10,11)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Static]
 		[Export ("geometrySourceWithBuffer:vertexFormat:semantic:vertexCount:dataOffset:dataStride:")]
 		SCNGeometrySource FromMetalBuffer (IMTLBuffer mtlBuffer, MTLVertexFormat vertexFormat, NSString geometrySourceSemantic, nint vertexCount, nint offset, nint stride);
 #endif
 	}
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[Static]
 	interface SCNGeometrySourceSemantic {
 		[Field ("SCNGeometrySourceSemanticVertex")]
@@ -915,29 +915,29 @@ namespace XamCore.SceneKit {
 		[Field ("SCNGeometrySourceSemanticTexcoord")]
 		NSString Texcoord { get; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Field ("SCNGeometrySourceSemanticTangent")]
 		NSString Tangent { get; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("SCNGeometrySourceSemanticVertexCrease")]
 		NSString VertexCrease { get; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("SCNGeometrySourceSemanticEdgeCrease")]
 		NSString EdgeCrease { get; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("SCNGeometrySourceSemanticBoneWeights")]
 		NSString BoneWeights { get; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("SCNGeometrySourceSemanticBoneIndices")]
 		NSString BoneIndices { get; }
 	}
 	
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	interface SCNGeometryElement : NSSecureCoding {
 		[Export ("data")]
@@ -957,8 +957,8 @@ namespace XamCore.SceneKit {
 		SCNGeometryElement FromData ([NullAllowed] NSData data, SCNGeometryPrimitiveType primitiveType, nint primitiveCount, nint bytesPerIndex);
 
 #if XAMCORE_2_0
-		[NoWatch]
-		[iOS (9,0), Mac(10,11)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Static]
 		[Export ("geometryElementWithMDLSubmesh:")]
 		SCNGeometryElement FromSubmesh (MDLSubmesh submesh);
@@ -966,8 +966,8 @@ namespace XamCore.SceneKit {
 	}
 
 #if XAMCORE_2_0 && !WATCH
-	[NoWatch, NoTV, Mac (10,13), iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface SCNGeometryTessellator : NSCopying, NSSecureCoding
 	{
@@ -997,8 +997,8 @@ namespace XamCore.SceneKit {
 	}
 #endif
 	
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[Static]
 	interface SCNHitTest {
 		[Field ("SCNHitTestFirstFoundOnlyKey")]
@@ -1022,27 +1022,27 @@ namespace XamCore.SceneKit {
 		[Field ("SCNHitTestRootNodeKey")]
 		NSString RootNodeKey { get; }
 
-		[Mac (10,9), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SCNHitTestIgnoreHiddenNodesKey")]
 		NSString IgnoreHiddenNodesKey { get; }
 
 #if !XAMCORE_2_0 // Less preferred name, but let's not break stable API
-		[Mac (10,9), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0)]
 		[Obsolete ("Use IgnoreHiddenNodesKey")]
 		[Field ("SCNHitTestIgnoreHiddenNodesKey")]
 		NSString IgnoreHiddenNodes { get; }
 #endif
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Field ("SCNHitTestOptionCategoryBitMask")]
 		NSString OptionCategoryBitMaskKey { get; }
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Field ("SCNHitTestOptionSearchMode")]
 		NSString OptionSearchModeKey { get; }
 	}
 	
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	// quote: The SCNHitTestResult class is exposed as the return object from the hitTest:options: method, as an array of SCNHitTestResult objects.
 	[DisableDefaultCtor] // crash when calling description
@@ -1068,7 +1068,7 @@ namespace XamCore.SceneKit {
 		[Export ("modelTransform")]
 		SCNMatrix4 ModelTransform { get;  }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("boneNode")]
 		SCNNode BoneNode { get; }
 
@@ -1080,7 +1080,7 @@ namespace XamCore.SceneKit {
 	}
 
 #if MONOMAC
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (CAOpenGLLayer))]
 	interface SCNLayer : SCNSceneRenderer, SCNTechniqueSupport {
 //		We already pull in the Scene property from the SCNSceneRenderer protocol, no need to redefine it here.
@@ -1089,8 +1089,8 @@ namespace XamCore.SceneKit {
 	}
 #endif
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	interface SCNLight : SCNAnimatable, SCNTechniqueSupport, NSCopying, NSSecureCoding {
 		[Export ("type", ArgumentSemantic.Copy)]
@@ -1102,11 +1102,11 @@ namespace XamCore.SceneKit {
 		[Wrap ("WeakColor")]
 		NSColor Color { get; set;  }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("temperature")]
 		nfloat Temperature { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("intensity")]
 		nfloat Intensity { get; set; }
 
@@ -1123,7 +1123,7 @@ namespace XamCore.SceneKit {
 		[Wrap ("WeakShadowColor")]
 		NSColor ShadowColor { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("shadowBias")]
 		nfloat ShadowBias { get; set; }
 
@@ -1134,92 +1134,92 @@ namespace XamCore.SceneKit {
 		SCNLight Create ();
 
 #if XAMCORE_3_0
-		[Availability (Unavailable = Platform.iOS_Version)]
+		[Obsoleted (PlatformName.iOS)]
 #elif !MONOMAC
 		[Obsolete ("Do not use; this method only exist in macOS, not in iOS.")]
 #endif
-		[NoTV]
-		[Availability (Deprecated = Platform.Mac_10_10)]
+		[Unavailable (PlatformName.TvOS)]
+		[Deprecated (PlatformName.MacOSX, 10, 10)]
 		[Export ("attributeForKey:")]
 		NSObject GetAttribute (NSString lightAttribute);
 
 #if XAMCORE_3_0
-		[Availability (Unavailable = Platform.iOS_Version)]
+		[Obsoleted (PlatformName.iOS)]
 #elif !MONOMAC
 		[Obsolete ("Do not use; this method only exist in macOS, not in iOS.")]
 #endif
-		[NoTV]
-		[Availability (Deprecated = Platform.Mac_10_10)]
+		[Unavailable (PlatformName.TvOS)]
+		[Deprecated (PlatformName.MacOSX, 10, 10)]
 		[Export ("setAttribute:forKey:")]
 		void SetAttribute (NSObject value, NSString attribuetKey);
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("gobo")]
 		SCNMaterialProperty Gobo { get; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[NullAllowed, Export ("IESProfileURL", ArgumentSemantic.Retain)]
 		NSUrl IesProfileUrl { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("shadowMapSize")]
 		CGSize ShadowMapSize { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("shadowSampleCount")]
 		nuint ShadowSampleCount { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("shadowMode")]
 		SCNShadowMode ShadowMode { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("attenuationStartDistance")]
 		nfloat AttenuationStartDistance { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("attenuationEndDistance")]
 		nfloat AttenuationEndDistance { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("attenuationFalloffExponent")]
 		nfloat AttenuationFalloffExponent { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("spotInnerAngle")]
 		nfloat SpotInnerAngle { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("spotOuterAngle")]
 		nfloat SpotOuterAngle { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("orthographicScale")]
 		nfloat OrthographicScale { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("zNear")]
 		nfloat ZNear { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("zFar")]
 		nfloat ZFar { get; set; }
 
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("categoryBitMask")]
 		nuint CategoryBitMask { get; set; }
 
 #if XAMCORE_2_0
-		[NoWatch]
-		[iOS (9,0), Mac(10,11)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Static]
 		[Export ("lightWithMDLLight:")]
 		SCNLight FromModelLight (MDLLight mdllight);
 #endif
 	}
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[Static]
 	interface SCNLightType {
 		[Field ("SCNLightTypeAmbient")]
@@ -1234,17 +1234,17 @@ namespace XamCore.SceneKit {
 		[Field ("SCNLightTypeSpot")]
 		NSString Spot { get; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Field ("SCNLightTypeIES")]
 		NSString Ies { get; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Field ("SCNLightTypeProbe")]
 		NSString Probe { get; }
 	}
 
 #if MONOMAC
-	[Availability (Introduced = Platform.Mac_10_8, Deprecated = Platform.Mac_10_10)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Deprecated (PlatformName.MacOSX, 10, 10)]
 	[Static]
 	interface SCNLightAttribute {
 		[Field ("SCNLightAttenuationStartKey")]
@@ -1270,8 +1270,8 @@ namespace XamCore.SceneKit {
 	}
 #endif
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[Static]
 	interface SCNLightingModel {
 		[Field ("SCNLightingModelPhong")]
@@ -1286,13 +1286,13 @@ namespace XamCore.SceneKit {
 		[Field ("SCNLightingModelConstant")]
 		NSString Constant { get; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Field ("SCNLightingModelPhysicallyBased")]
 		NSString PhysicallyBased { get; }
 	}
 	
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	interface SCNMaterial : SCNAnimatable, SCNShadable, NSCopying, NSSecureCoding {
 		[NullAllowed] // by default this property is null
@@ -1353,58 +1353,58 @@ namespace XamCore.SceneKit {
 		[Static, Export ("material")]
 		SCNMaterial Create ();
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("readsFromDepthBuffer")]
 		bool ReadsFromDepthBuffer  { get; set; }
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("fresnelExponent")]
 		nfloat FresnelExponent { get; set; }
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("blendMode", ArgumentSemantic.Assign)]
 		SCNBlendMode BlendMode { get; set; }
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("ambientOcclusion")]
 		SCNMaterialProperty AmbientOcclusion { get; }
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("selfIllumination")]
 		SCNMaterialProperty SelfIllumination { get; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("metalness")]
 		SCNMaterialProperty Metalness { get; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("roughness")]
 		SCNMaterialProperty Roughness { get; }
 
 #if XAMCORE_2_0
-		[NoWatch]
-		[iOS (9,0), Mac(10,11)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Static]
 		[Export ("materialWithMDLMaterial:")]
 		SCNMaterial FromMaterial (MDLMaterial material);
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("displacement")]
 		SCNMaterialProperty Displacement { get; }
 	
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("fillMode", ArgumentSemantic.Assign)]
 		SCNFillMode FillMode { get; set; }
 	
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("colorBufferWriteMask", ArgumentSemantic.Assign)]
 		SCNColorMask ColorBufferWriteMask { get; set; }
 
 #endif
 	}
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // runtime -> [SCNKit ERROR] Do not instantiate SCNMaterialProperty objects directly
 	interface SCNMaterialProperty : SCNAnimatable, NSSecureCoding {
@@ -1428,7 +1428,7 @@ namespace XamCore.SceneKit {
 
 		[Deprecated (PlatformName.iOS, 10, 0)]
 		[Deprecated (PlatformName.MacOSX, 10, 12)]
-		[NoWatch, NoTV]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
 		[NullAllowed, Export ("borderColor", ArgumentSemantic.Retain)]
 		NSObject BorderColor { get; set; }
 
@@ -1444,7 +1444,7 @@ namespace XamCore.SceneKit {
 		[Wrap ("Contents")]
 		NSImage ContentImage { get; set; }
 
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Wrap ("Contents")]
 		CALayer ContentLayer { get; set; }
 
@@ -1465,28 +1465,28 @@ namespace XamCore.SceneKit {
 		[Wrap ("Contents")]
 		NSImage [] ContentImageCube { get; set; }
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("intensity")]
 		nfloat Intensity { get; set; }
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("maxAnisotropy")]
 		nfloat MaxAnisotropy { get; set; }
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Static, Export ("materialPropertyWithContents:")]
 		SCNMaterialProperty Create (NSObject contents);
 	}
 
 #if !WATCH
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[StrongDictionary ("SCNProgram")]
 	interface SCNProgramSemanticOptions {
 		nuint MappingChannel { get; set; }
 	}
 #endif
 
-	[Watch (3,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[StrongDictionary ("SCNHitTest")]
 	interface SCNHitTestOptions {
 		bool FirstFoundOnly { get; set; }
@@ -1499,7 +1499,7 @@ namespace XamCore.SceneKit {
 		SCNHitTestSearchMode OptionSearchMode { get; }
 	}
 
-	[Watch (3,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[StrongDictionary ("SCNSceneSourceLoading")]
 	interface SCNSceneLoadingOptions {
 		NSUrl [] AssetDirectoryUrls { get; set; }
@@ -1510,17 +1510,17 @@ namespace XamCore.SceneKit {
 		bool StrictConformance { get; set; }
 		bool UseSafeMode { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("SCNSceneSourceLoading.OptionPreserveOriginalTopology")]
 		bool PreserveOriginalTopology { get; set; }
 
 #if !TVOS && !WATCH
 		// note: generator's StrongDictionary does not support No* attributes yet
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		float ConvertUnitsToMeters { get; set; } /* 'floating value encapsulated in a NSNumber' probably a float since it's a graphics framework */
-		[NoTV]
-		[NoWatch]
+		[Unavailable (PlatformName.TvOS)]
+		[Unavailable (PlatformName.WatchOS)]
 		bool ConvertToYUp { get; set; }
 #endif
 
@@ -1528,14 +1528,14 @@ namespace XamCore.SceneKit {
 		NSString _AnimationImportPolicyKey { get; set; }
 	}
 
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	delegate bool SCNNodePredicate (SCNNode node, out bool stop);
 
-	[Mac (10, 8), iOS (8, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	delegate void SCNNodeHandler (SCNNode node, out bool stop);
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	interface SCNNode : SCNAnimatable, SCNBoundingVolume, SCNActionable, NSCopying, NSSecureCoding 
 #if IOS || TVOS
@@ -1590,11 +1590,11 @@ namespace XamCore.SceneKit {
 		[Export ("name", ArgumentSemantic.Copy)]
 		string Name { get; set;  }
 
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Export ("rendererDelegate", ArgumentSemantic.Assign), NullAllowed]
 		NSObject WeakRendererDelegate { get; set;  }
 
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Wrap ("WeakRendererDelegate")]
 		[Protocolize]
 		SCNNodeRendererDelegate RendererDelegate { get; set; }
@@ -1630,50 +1630,50 @@ namespace XamCore.SceneKit {
 		[Export ("clone")]
 		SCNNode Clone ();
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[NullAllowed] // by default this property is null
 		[Export ("skinner", ArgumentSemantic.Retain)]
 		SCNSkinner Skinner { get; set; }
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[NullAllowed] // by default this property is null
 		[Export ("morpher", ArgumentSemantic.Retain)]
 		SCNMorpher Morpher { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("orientation")]
 		SCNQuaternion Orientation { get; set; }
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("constraints", ArgumentSemantic.Copy)]
 		SCNConstraint [] Constraints { get; [NullAllowed] set; }
 
-		[NoWatch, Mac (10, 9)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 9)]
 		[NullAllowed] // by default this property is null
 		[Export ("filters", ArgumentSemantic.Copy)]
 		CIFilter [] Filters { get; set; }
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("flattenedClone")]
 		SCNNode FlattenedClone ();
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("convertPosition:toNode:")]
 		SCNVector3 ConvertPositionToNode (SCNVector3 position, [NullAllowed] SCNNode node);
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("convertPosition:fromNode:")]
 		SCNVector3 ConvertPositionFromNode (SCNVector3 position, [NullAllowed] SCNNode node);
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("convertTransform:fromNode:")]
 		SCNMatrix4 ConvertTransformFromNode (SCNMatrix4 transform, [NullAllowed] SCNNode node);
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("convertTransform:toNode:")]
 		SCNMatrix4 ConvertTransformToNode (SCNMatrix4 transform, [NullAllowed] SCNNode node);
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("hitTestWithSegmentFromPoint:toPoint:options:")]
 		[EditorBrowsable (EditorBrowsableState.Advanced)]
 		SCNHitTestResult [] HitTest (SCNVector3 pointA, SCNVector3 pointB, [NullAllowed] NSDictionary options);
@@ -1681,58 +1681,58 @@ namespace XamCore.SceneKit {
 		[Wrap ("HitTest (pointA, pointB, options == null ? null : options.Dictionary)")]
 		SCNHitTestResult [] HitTest (SCNVector3 pointA, SCNVector3 pointB, SCNHitTestOptions options);
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("eulerAngles")]
 		SCNVector3 EulerAngles { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("castsShadow")]
 		bool CastsShadow { get; set; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("movabilityHint", ArgumentSemantic.Assign)]
 		SCNMovabilityHint MovabilityHint { get; set; }
 
-		[Mac (10,10, onlyOn64 : true)] // More broken 32-bit code, 17710842
+		[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)] // More broken 32-bit code, 17710842
 		[Export ("physicsBody", ArgumentSemantic.Retain), NullAllowed]
 		SCNPhysicsBody PhysicsBody { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[NullAllowed] // by default this property is null
 		[Export ("physicsField", ArgumentSemantic.Retain)]
 		SCNPhysicsField PhysicsField { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("paused")]
 		bool Paused { [Bind ("isPaused")] get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("categoryBitMask")]
 		nuint CategoryBitMask { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("enumerateChildNodesUsingBlock:")]
 		void EnumerateChildNodes (SCNNodeHandler handler);
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("enumerateHierarchyUsingBlock:")]
 		void EnumerateHierarchy (SCNNodeHandler handler);
 
 		#region SCNParticleSystemSupport (SCNNode) category
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("particleSystems")]
 		SCNParticleSystem [] ParticleSystems { get; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("addParticleSystem:")]
 		void AddParticleSystem (SCNParticleSystem system);
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("removeAllParticleSystems")]
 		void RemoveAllParticleSystems ();
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("removeParticleSystem:")]
 		void RemoveParticleSystem (SCNParticleSystem system);
 
@@ -1740,35 +1740,35 @@ namespace XamCore.SceneKit {
 
 		#region SCNAudioSupport (SCNNode) category
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("audioPlayers")]
 		SCNAudioPlayer [] AudioPlayers { get; }
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("addAudioPlayer:")]
 		void AddAudioPlayer (SCNAudioPlayer player);
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("removeAllAudioPlayers")]
 		void RemoveAllAudioPlayers ();
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("removeAudioPlayer:")]
 		void RemoveAudioPlayer (SCNAudioPlayer player);
 
 		#endregion
 
 #if XAMCORE_2_0
-		[NoWatch]
-		[iOS (9,0), Mac(10,11)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Static]
 		[Export ("nodeWithMDLObject:")]
 		SCNNode FromModelObject (MDLObject mdlObject);
 #endif
 	}
 
-	[NoWatch]
-	[Mac (10,8), iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[Model, Protocol]
 	interface SCNNodeRendererDelegate {
@@ -1776,8 +1776,8 @@ namespace XamCore.SceneKit {
 		void Render (SCNNode node, SCNRenderer renderer, [NullAllowed] NSDictionary arguments);
 	}
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (SCNGeometry))]
 	interface SCNPlane {
 		[Export ("width")]
@@ -1795,18 +1795,18 @@ namespace XamCore.SceneKit {
 		[Static, Export ("planeWithWidth:height:")]
 		SCNPlane Create (nfloat width, nfloat height);
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("cornerRadius")]
 		nfloat CornerRadius { get; set; }
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("cornerSegmentCount")]
 		nint CornerSegmentCount { get; set; }
 	}
 
 	delegate void SCNBufferBindingHandler (ISCNBufferStream buffer, SCNNode node, SCNShadable shadable, SCNRenderer renderer);
 
-	[Mac (10,8), iOS (8,0), NoWatch]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (NSObject))]
 	interface SCNProgram : NSCopying, NSSecureCoding {
 		[NullAllowed]
@@ -1817,17 +1817,17 @@ namespace XamCore.SceneKit {
 		[Export ("fragmentShader", ArgumentSemantic.Copy)]
 		string FragmentShader { get; set;  }
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[NullAllowed]
 		[Export ("vertexFunctionName")]
 		string VertexFunctionName { get; set; }
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[NullAllowed]
 		[Export ("fragmentFunctionName")]
 		string FragmentFunctionName { get; set; }
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("handleBindingOfBufferNamed:frequency:usingBlock:")]
 		void HandleBinding (string name, SCNBufferFrequency frequency, SCNBufferBindingHandler handler);
 
@@ -1846,7 +1846,7 @@ namespace XamCore.SceneKit {
 		void SetSemantic (NSString geometrySourceSemantic, string symbol, [NullAllowed] NSDictionary options);
 
 #if !WATCH
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Wrap ("SetSemantic (geometrySourceSemantic, symbol, options == null ? null : options.Dictionary)")]
 		void SetSemantic (NSString geometrySourceSemantic, string symbol, SCNProgramSemanticOptions options);
 #endif
@@ -1858,40 +1858,40 @@ namespace XamCore.SceneKit {
 		NSString GetSemanticForSymbol (string symbol);
 #endif
 
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Field ("SCNProgramMappingChannelKey")]
 		[EditorBrowsable (EditorBrowsableState.Advanced)]
 		NSString MappingChannelKey { get; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("opaque")]
 		bool Opaque { [Bind ("isOpaque")] get; set; }
 
 #if XAMCORE_2_0
-		[NoWatch]
-		[iOS (9,0)][Mac (10,11)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[NullAllowed]
 		[Export ("library", ArgumentSemantic.Retain)]
 		IMTLLibrary Library { get; set; }
 #endif
 	}
 
-	[Mac (10,8), iOS (8,0), NoWatch]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (NSObject))]
 	[Model, Protocol]
 	interface SCNProgramDelegate {
 #if MONOMAC || !XAMCORE_2_0
 	#if XAMCORE_3_0
-		[Availability (Unavailable = Platform.iOS_Version)]
+		[Obsoleted (PlatformName.iOS)]
 	#endif
-		[Availability (Deprecated = Platform.Mac_10_10)]
+		[Deprecated (PlatformName.MacOSX, 10, 10)]
 		[Export ("program:bindValueForSymbol:atLocation:programID:renderer:")]
 		bool BindValue (SCNProgram program, string symbol, uint /* unsigned int */ location, uint /* unsigned int */ programID, SCNRenderer renderer);
 
 	#if XAMCORE_3_0
-		[Availability (Unavailable = Platform.iOS_Version)]
+		[Obsoleted (PlatformName.iOS)]
 	#endif
-		[Availability (Deprecated = Platform.Mac_10_10)]
+		[Deprecated (PlatformName.MacOSX, 10, 10)]
 		[Export ("program:unbindValueForSymbol:atLocation:programID:renderer:")]
 		void UnbindValue (SCNProgram program, string symbol, uint /* unsigned int */ location, uint /* unsigned int */ programID, SCNRenderer renderer);
 #endif
@@ -1901,17 +1901,17 @@ namespace XamCore.SceneKit {
 
 #if MONOMAC || !XAMCORE_2_0
 	#if XAMCORE_3_0
-		[Availability (Unavailable = Platform.iOS_Version)]
-		[NoTV, NoWatch]
+		[Obsoleted (PlatformName.iOS)]
+		[Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
 	#endif
-		[Availability (Deprecated = Platform.Mac_10_10, Message = "Use the SCNProgram's Opaque property instead.")]
+		[Deprecated (PlatformName.MacOSX, 10, 10, message: "Use the SCNProgram's Opaque property instead.")]
 		[Export ("programIsOpaque:")]
 		bool IsProgramOpaque (SCNProgram program);
 #endif
 	}
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (SCNGeometry))]
 	interface SCNPyramid {
 		[Export ("width")]
@@ -1936,7 +1936,7 @@ namespace XamCore.SceneKit {
 		SCNPyramid Create (nfloat width, nfloat height, nfloat length);
 	}
 
-	[Mac (10,8), iOS (8,0), NoWatch]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (NSObject))]
 #if !MONOMAC || XAMCORE_2_0
 	[DisableDefaultCtor] // NSInvalidArgumentException Reason: -[SCNRenderer init]: unrecognized selector sent to instance 0x7ce85a30
@@ -1950,58 +1950,58 @@ namespace XamCore.SceneKit {
 		[Static, Export ("rendererWithContext:options:")]
 		SCNRenderer FromContext (IntPtr context, [NullAllowed] NSDictionary options);
 
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Static]
 		[Wrap ("FromContext (context.GetHandle (), options)")]
 		// GetHandle will return IntPtr.Zero is context is null
 		// GLContext == CGLContext on macOS and EAGLContext in iOS and tvOS (using on top of file)
 		SCNRenderer FromContext (GLContext context, [NullAllowed] NSDictionary options);
 
-		[NoWatch, NoTV]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
 		[Export ("render")]
-		[Availability (Deprecated = Platform.Mac_10_11 | Platform.iOS_9_0)]
+		[Deprecated (PlatformName.MacOSX, 10, 11), Deprecated (PlatformName.iOS, 9, 0)]
 		void Render ();
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("renderAtTime:")]
 		void Render (double timeInSeconds);
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("snapshotAtTime:withSize:antialiasingMode:")]
 		NSImage GetSnapshot (double time, CGSize size, SCNAntialiasingMode antialiasingMode);
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("nextFrameTime")]
 		double NextFrameTimeInSeconds { get; }
 
 #if XAMCORE_2_0 || !MONOMAC
-		[NoWatch]
-		[iOS (9,0)][Mac (10,11)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Static]
 		[Export ("rendererWithDevice:options:")]
 		SCNRenderer FromDevice ([NullAllowed] IMTLDevice device, [NullAllowed] NSDictionary options);
 
-		[NoWatch]
-		[iOS (9,0)][Mac (10,11)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("renderAtTime:viewport:commandBuffer:passDescriptor:")]
 		void Render (double timeInSeconds, CGRect viewport, IMTLCommandBuffer commandBuffer, MTLRenderPassDescriptor renderPassDescriptor);
 
-		[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("renderWithViewport:commandBuffer:passDescriptor:")]
 		void Render (CGRect viewport, IMTLCommandBuffer commandBuffer, MTLRenderPassDescriptor renderPassDescriptor);
 #endif
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("updateProbes:atTime:")]
 		void Update (SCNNode [] lightProbes, double time);
 
-		[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("updateAtTime:")]
 		void Update (double time);
 	
 	}
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[Static]
 	interface SCNRenderingArguments {
 		[Field ("SCNModelTransform")]
@@ -2023,11 +2023,11 @@ namespace XamCore.SceneKit {
 		NSString ModelViewProjectionTransform { get; }
 	}
 
-	[Mac (10,9), iOS (8,0)]
+	[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0)]
 	delegate void SCNSceneExportProgressHandler (float /* float, not CGFloat */ totalProgress, NSError error, out bool stop);
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	interface SCNScene : NSSecureCoding {
 		[Static]
@@ -2054,58 +2054,58 @@ namespace XamCore.SceneKit {
 
 		
 
-		[Mac (10,9), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SCNSceneExportDestinationURL")]
 		NSString ExportDestinationUrl { get; }
 
-		[Mac (10,10, onlyOn64 : true), iOS (8,0)] // More 32-bit brokenness - 17710842
+		[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 8, 0)] // More 32-bit brokenness - 17710842
 		[Export ("physicsWorld")]
 		SCNPhysicsWorld PhysicsWorld { get; }
 
-		[Mac (10,9), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("background")]
 		SCNMaterialProperty Background { get; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("lightingEnvironment")]
 		SCNMaterialProperty LightingEnvironment { get; }
 
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("fogStartDistance")]
 		nfloat FogStartDistance { get; set; }
 
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("fogEndDistance")]
 		nfloat FogEndDistance { get; set; }
 
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("fogDensityExponent")]
 		nfloat FogDensityExponent { get; set; }
 
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("fogColor", ArgumentSemantic.Retain)]
 		NSObject FogColor { get; set; }
 
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("paused")]
 		bool Paused { [Bind ("isPaused")] get; set; }
 
-		[Mac (10,9), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0)]
 		[Static, Export ("sceneNamed:")]
 		SCNScene FromFile (string name);
 
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Static, Export ("sceneNamed:inDirectory:options:")]
 		[EditorBrowsable (EditorBrowsableState.Advanced)]
 		SCNScene FromFile (string name, [NullAllowed] string directory, [NullAllowed] NSDictionary options);
 
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Static, Wrap ("FromFile (name, directory, options == null ? null : options.Dictionary)")]
 		SCNScene FromFile (string name, string directory, SCNSceneLoadingOptions options);
 
 		// Keeping here the same name WriteToUrl for iOS and friends because it is how it was bound
 		// initialy for macOS and having it named diferently would hurt shared code
-		[TV (10, 0), NoWatch, Mac (10, 9), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("writeToURL:options:delegate:progressHandler:")]
 		[EditorBrowsable (EditorBrowsableState.Advanced)]
 		bool WriteToUrl (NSUrl url,
@@ -2113,25 +2113,25 @@ namespace XamCore.SceneKit {
 			[NullAllowed] ISCNSceneExportDelegate aDelegate,
 			[NullAllowed] SCNSceneExportProgressHandler exportProgressHandler);
 
-		[TV (10, 0), NoWatch, Mac (10, 9), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 10, 0)]
 		[Wrap ("WriteToUrl (url, options == null ? null : options.Dictionary, handler, exportProgressHandler)")]
 		bool WriteToUrl (NSUrl url, SCNSceneLoadingOptions options, ISCNSceneExportDelegate handler, SCNSceneExportProgressHandler exportProgressHandler);
 
 		#region SCNParticleSystemSupport (SCNNode) category
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("particleSystems")]
 		SCNParticleSystem [] ParticleSystems { get; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("addParticleSystem:withTransform:")]
 		void AddParticleSystem (SCNParticleSystem system, SCNMatrix4 transform);
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("removeAllParticleSystems")]
 		void RemoveAllParticleSystems ();
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("removeParticleSystem:")]
 		void RemoveParticleSystem (SCNParticleSystem system);
 
@@ -2146,13 +2146,13 @@ namespace XamCore.SceneKit {
 		[Field ("SCNSceneFrameRateAttributeKey")]
 		NSString FrameRateAttributeKey { get; }
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("SCNSceneUpAxisAttributeKey")]
 		NSString UpAxisAttributeKey { get; }
 
 #if XAMCORE_2_0
-		[NoWatch]
-		[iOS (9,0), Mac(10,11)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Static]
 		[Export ("sceneWithMDLAsset:")]
 		SCNScene FromAsset (MDLAsset asset);
@@ -2161,7 +2161,7 @@ namespace XamCore.SceneKit {
 
 	interface ISCNSceneExportDelegate { }
 
-	[TV (10, 0), NoWatch, Mac (10, 9), iOS (10, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 10, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface SCNSceneExportDelegate {
@@ -2171,8 +2171,8 @@ namespace XamCore.SceneKit {
 		NSUrl WriteImage (NSImage image, NSUrl documentUrl, [NullAllowed] NSUrl originalImageUrl);
 	}
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface SCNSceneSource {
@@ -2239,14 +2239,14 @@ namespace XamCore.SceneKit {
 		NSObject [] IdentifiersOfEntriesWithClass (Class entryClass);
 #endif
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("entriesPassingTest:")]
 		NSObject [] EntriesPassingTest (SCNSceneSourceFilter predicate);		
 	}
 	delegate bool SCNSceneSourceFilter (NSObject entry, NSString identifier, ref bool stop);
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[Static]
 	interface SCNSceneSourceLoading {
 		[Field ("SCNSceneSourceAssetDirectoryURLsKey")]
@@ -2282,45 +2282,45 @@ namespace XamCore.SceneKit {
 		[Field ("SCNSceneSourceUseSafeModeKey")]
 		NSString UseSafeModeKey	 { get; }
 
-		[Mac(10,10)]
-		[iOS (8,0)] // header said NA and docs says "Available in iOS 8.0 through iOS 8.2." but it's back on iOS11
-		[TV (11,0), Watch (4,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
+		[Introduced (PlatformName.iOS, 8, 0)] // header said NA and docs says "Available in iOS 8.0 through iOS 8.2." but it's back on iOS11
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Field ("SCNSceneSourceConvertUnitsToMetersKey")]
 		NSString ConvertUnitsToMetersKey { get; }
 
-		[Mac(10,10)]
-		[iOS (8,0)] // header said NA and docs says "Available in iOS 8.0 through iOS 8.2." but it's back on iOS11
-		[TV (11,0), Watch (4,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
+		[Introduced (PlatformName.iOS, 8, 0)] // header said NA and docs says "Available in iOS 8.0 through iOS 8.2." but it's back on iOS11
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Field ("SCNSceneSourceConvertToYUpKey")]
 		NSString ConvertToYUpKey { get; }
 
-		[Mac(10,10), iOS(8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SCNSceneSourceAnimationImportPolicyKey")]
 		NSString AnimationImportPolicyKey { get; }
 		
-		[Mac(10,10), iOS(8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SCNSceneSourceAnimationImportPolicyPlay")]
 		NSString AnimationImportPolicyPlay { get; }
 		
-		[Mac(10,10), iOS(8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SCNSceneSourceAnimationImportPolicyPlayRepeatedly")]
 		NSString AnimationImportPolicyPlayRepeatedly { get; }
 		
-		[Mac(10,10), iOS(8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SCNSceneSourceAnimationImportPolicyDoNotPlay")]
 		NSString AnimationImportPolicyDoNotPlay { get; }
 		
-		[Mac(10,10), iOS(8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SCNSceneSourceAnimationImportPolicyPlayUsingSceneTimeBase")]
 		NSString AnimationImportPolicyPlayUsingSceneTimeBase { get; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Field ("SCNSceneSourceLoadingOptionPreserveOriginalTopology")]
 		NSString OptionPreserveOriginalTopology { get; }
 	}
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[Static]
 	interface SCNSceneSourceLoadErrors {
 		[Field ("SCNConsistencyElementIDErrorKey")]
@@ -2336,8 +2336,8 @@ namespace XamCore.SceneKit {
 		NSString DetailedErrorsKey { get; }
 	}
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[Static]
 	interface SCNSceneSourceProperties {
 		[Field ("SCNSceneSourceAssetContributorsKey")]
@@ -2370,8 +2370,8 @@ namespace XamCore.SceneKit {
 
 	interface ISCNSceneRenderer {}
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface SCNSceneRenderer {
@@ -2422,7 +2422,7 @@ namespace XamCore.SceneKit {
 		IntPtr Context { get;  }
 
 #if MONOMAC
-		[Availability (Deprecated = Platform.Mac_10_10, Unavailable = Platform.iOS_Version)]
+		[Deprecated (PlatformName.MacOSX, 10, 10), Obsoleted (PlatformName.iOS)]
 		[Export ("currentTime")]
 		double CurrentTime { get; set; }
 #endif
@@ -2438,21 +2438,21 @@ namespace XamCore.SceneKit {
 #if XAMCORE_2_0
 		[Abstract]
 #endif
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("showsStatistics")]
 		bool ShowsStatistics { get; set; }
 
 #if XAMCORE_2_0
 		[Abstract]
 #endif
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("sceneTime")]
 		double SceneTimeInSeconds { get; set; }
 
 #if XAMCORE_2_0
 		[Abstract]
 #endif
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("scene", ArgumentSemantic.Retain)]
 		SCNScene Scene { get; set; }
 
@@ -2460,7 +2460,7 @@ namespace XamCore.SceneKit {
 		[Abstract]
 #endif
 #if XAMCORE_2_0 || !MONOMAC
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("overlaySKScene", ArgumentSemantic.Retain)]
 		SKScene OverlayScene { get; set; }
 #endif
@@ -2468,35 +2468,35 @@ namespace XamCore.SceneKit {
 #if XAMCORE_2_0
 		[Abstract]
 #endif
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("isNodeInsideFrustum:withPointOfView:")]
 		bool IsNodeInsideFrustum (SCNNode node, SCNNode pointOfView);
 
 #if XAMCORE_2_0
 		[Abstract]
 #endif
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("projectPoint:")]
 		SCNVector3 ProjectPoint (SCNVector3 point);
 
 #if XAMCORE_2_0
 		[Abstract]
 #endif
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("unprojectPoint:")]
 		SCNVector3 UnprojectPoint (SCNVector3 point);
 
 #if XAMCORE_2_0
 		[Abstract]
 #endif
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("prepareObject:shouldAbortBlock:")]
 		bool Prepare (NSObject obj, [NullAllowed] Func<bool> abortHandler);
 
 #if XAMCORE_2_0
 		[Abstract]
 #endif
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Async]
 		[Export ("prepareObjects:withCompletionHandler:")]
 		void Prepare (NSObject [] objects, [NullAllowed] Action<bool> completionHandler);
@@ -2505,7 +2505,7 @@ namespace XamCore.SceneKit {
 	#if XAMCORE_4_0
 		[Abstract] // this protocol existed before iOS 9 (or OSX 10.11) and we cannot add abstract members to it (breaking changes)
 	#endif
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)] // SKTransition -> SpriteKit -> only on 64 bits
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)] // SKTransition -> SpriteKit -> only on 64 bits
 		[Async]
 		[Export ("presentScene:withTransition:incomingPointOfView:completionHandler:")]
 		void PresentScene (SCNScene scene, SKTransition transition, [NullAllowed] SCNNode pointOfView, [NullAllowed] Action completionHandler);
@@ -2514,21 +2514,21 @@ namespace XamCore.SceneKit {
 #if XAMCORE_4_0
 		[Abstract] // this protocol existed before iOS 9 (or OSX 10.11) and we cannot add abstract members to it (breaking changes)
 #endif
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("nodesInsideFrustumWithPointOfView:")]
 		SCNNode[] GetNodesInsideFrustum (SCNNode pointOfView);
 
 #if XAMCORE_4_0
 		[Abstract] // this protocol existed before iOS 9 (or OSX 10.11) and we cannot add abstract members to it (breaking changes)
 #endif
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("debugOptions", ArgumentSemantic.Assign)]
 		SCNDebugOptions DebugOptions { get; set; }
 
 #if XAMCORE_4_0
 		[Abstract] // this protocol existed before iOS 9 (or OSX 10.11) and we cannot add abstract members to it (breaking changes)
 #endif
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("renderingAPI")]
 		SCNRenderingApi RenderingApi { get; }
 
@@ -2537,48 +2537,48 @@ namespace XamCore.SceneKit {
 	#if XAMCORE_4_0
 		[Abstract] // this protocol existed before iOS 9 (or OSX 10.11) and we cannot add abstract members to it (breaking changes)
 	#endif
-		[NoWatch]
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)] // IMTLRenderCommandEncoder -> Metal -> only on 64 bits
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)] // IMTLRenderCommandEncoder -> Metal -> only on 64 bits
 		[NullAllowed, Export ("currentRenderCommandEncoder")]
 		IMTLRenderCommandEncoder CurrentRenderCommandEncoder { get; }
 
 	#if XAMCORE_4_0
 		[Abstract] // this protocol existed before iOS 9 (or OSX 10.11) and we cannot add abstract members to it (breaking changes)
 	#endif
-		[NoWatch]
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[NullAllowed, Export ("device")]
 		IMTLDevice Device { get; }
 
 	#if XAMCORE_4_0
 		[Abstract] // this protocol existed before iOS 9 (or OSX 10.11) and we cannot add abstract members to it (breaking changes)
 	#endif
-		[NoWatch]
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Export ("colorPixelFormat")]
 		MTLPixelFormat ColorPixelFormat { get; }
 
 	#if XAMCORE_4_0
 		[Abstract] // this protocol existed before iOS 9 (or OSX 10.11) and we cannot add abstract members to it (breaking changes)
 	#endif
-		[NoWatch]
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Export ("depthPixelFormat")]
 		MTLPixelFormat DepthPixelFormat { get; }
 
 	#if XAMCORE_4_0
 		[Abstract] // this protocol existed before iOS 9 (or OSX 10.11) and we cannot add abstract members to it (breaking changes)
 	#endif
-		[NoWatch]
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Export ("stencilPixelFormat")]
 		MTLPixelFormat StencilPixelFormat { get; }
 
 	#if XAMCORE_4_0
 		[Abstract] // this protocol existed before iOS 9 (or OSX 10.11) and we cannot add abstract members to it (breaking changes)
 	#endif
-		[NoWatch]
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[NullAllowed, Export ("commandQueue")]
 		IMTLCommandQueue CommandQueue { get; }
 #endif
@@ -2586,15 +2586,15 @@ namespace XamCore.SceneKit {
 #if XAMCORE_4_0
 		[Abstract] // this protocol existed before iOS 9 (or OSX 10.11) and we cannot add abstract members to it (breaking changes)
 #endif
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Export ("audioEngine")]
 		AVAudioEngine AudioEngine { get; }
 
 #if XAMCORE_4_0
 		[Abstract] // this protocol existed before iOS 9 (or OSX 10.11) and we cannot add abstract members to it (breaking changes)
 #endif
-		[NoWatch]
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[Export ("audioEnvironmentNode")]
 		[DebuggerBrowsable (DebuggerBrowsableState.Never)]
 		AVAudioEnvironmentNode AudioEnvironmentNode { get; }
@@ -2602,14 +2602,14 @@ namespace XamCore.SceneKit {
 #if XAMCORE_4_0
 		[Abstract] // this protocol existed before iOS 9 (or OSX 10.11) and we cannot add abstract members to it (breaking changes)
 #endif
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[NullAllowed, Export ("audioListener", ArgumentSemantic.Retain)]
 		[DebuggerBrowsable (DebuggerBrowsableState.Never)]
 		SCNNode AudioListener { get; set; }
 	}
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface SCNSceneRendererDelegate {
@@ -2620,26 +2620,26 @@ namespace XamCore.SceneKit {
 		[Export ("renderer:didRenderScene:atTime:")]
 		void DidRenderScene ([Protocolize]SCNSceneRenderer renderer, SCNScene scene, double timeInSeconds);
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("renderer:updateAtTime:")]
 		void Update ([Protocolize]SCNSceneRenderer renderer, double timeInSeconds);
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("renderer:didApplyAnimationsAtTime:")]
 		void DidApplyAnimations ([Protocolize]SCNSceneRenderer renderer, double timeInSeconds);
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("renderer:didSimulatePhysicsAtTime:")]
 		void DidSimulatePhysics ([Protocolize]SCNSceneRenderer renderer, double timeInSeconds);
 
-		[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("renderer:didApplyConstraintsAtTime:")]
 		void DidApplyConstraints ([Protocolize] SCNSceneRenderer renderer, double atTime);
 		
 	}	
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (SCNGeometry))]
 	[DisableDefaultCtor] 
 	interface SCNSphere {
@@ -2657,8 +2657,8 @@ namespace XamCore.SceneKit {
 
 	}
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (SCNGeometry))]
 	[DisableDefaultCtor] 
 	interface SCNText {
@@ -2687,7 +2687,7 @@ namespace XamCore.SceneKit {
 		nfloat ChamferRadius { get; set;  }
 
 #if MONOMAC && !XAMCORE_2_0
-		[Availability (Deprecated = Platform.Mac_10_9)]
+		[Deprecated (PlatformName.MacOSX, 10, 9)]
 		[Export ("chamferSegmentCount")]
 		nint ChamferSegmentCount { get; set;  }
 #endif
@@ -2701,17 +2701,17 @@ namespace XamCore.SceneKit {
 		[Export ("wrapped")]
 		bool Wrapped { [Bind ("isWrapped")] get; set; }
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("chamferProfile", ArgumentSemantic.Copy)]
 		NSBezierPath ChamferProfile { get; set; }
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("flatness")]
 		nfloat Flatness { get; set; }
 	}
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (SCNGeometry))]
 	[DisableDefaultCtor] 
 	interface SCNTorus {
@@ -2731,8 +2731,8 @@ namespace XamCore.SceneKit {
 		SCNTorus Create (nfloat ringRadius, nfloat pipeRadius);
 	}
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	interface SCNTransaction {
 		[Static]
@@ -2772,7 +2772,7 @@ namespace XamCore.SceneKit {
 		double AnimationDuration { get; set; }
 
 		[Static]
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[NullAllowed] // by default this property is null
 		[Export ("animationTimingFunction")]
 		CAMediaTimingFunction AnimationTimingFunction { get; set; }
@@ -2782,8 +2782,8 @@ namespace XamCore.SceneKit {
 		bool DisableActions { get; set; }
 	}
 
-	[Watch (3,0)]
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (SCNGeometry))]
 	interface SCNTube {
 		[Export ("innerRadius")]
@@ -2805,8 +2805,8 @@ namespace XamCore.SceneKit {
 		SCNTube Create (nfloat innerRadius, nfloat outerRadius, nfloat height);
 	}
 
-	[NoWatch]
-	[iOS (9,0)][Mac (10,11)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[Static]
 	[Internal] // we'll make it public if there's a need for them (beside the strong dictionary we provide)
 	interface SCNRenderingOptionsKeys {
@@ -2822,8 +2822,8 @@ namespace XamCore.SceneKit {
 	}
 
 #if !WATCH
-	[NoWatch]
-	[iOS (9,0)][Mac (10,11)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[StrongDictionary ("SCNRenderingOptionsKeys")]
 	interface SCNRenderingOptions
 	{
@@ -2838,7 +2838,7 @@ namespace XamCore.SceneKit {
 	}
 #endif
 
-	[Mac (10,8), iOS (8,0), NoWatch]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (NSView))]
 	[DisableDefaultCtor] 
 	interface SCNView : SCNSceneRenderer, SCNTechniqueSupport {
@@ -2870,7 +2870,7 @@ namespace XamCore.SceneKit {
 #endif
 
 #if !WATCH
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Wrap ("this (frame, options != null ? options.Dictionary : null)")]
 		IntPtr Constructor (CGRect frame, [NullAllowed] SCNRenderingOptions options);
 #endif
@@ -2890,39 +2890,39 @@ namespace XamCore.SceneKit {
 		[Export ("stop:")]
 		void Stop ([NullAllowed] NSObject sender);
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("snapshot")]
 		NSImage Snapshot ();
 
-		[Mac (10,12)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("preferredFramesPerSecond")]
 		nint PreferredFramesPerSecond { get; set; }
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("antialiasingMode")]
 		SCNAntialiasingMode AntialiasingMode { get; set; }
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("cameraControlConfiguration")]
 		ISCNCameraControlConfiguration CameraControlConfiguration { get; }
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("defaultCameraController")]
 		SCNCameraController DefaultCameraController { get; }
 		
 	}
 
 #if WATCH || XAMCORE_4_0
-	[Watch (4,0)]
-	[Mac (10,9), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0)]
 	delegate void SCNAnimationEventHandler (ISCNAnimationProtocol animation, NSObject animatedObject, bool playingBackward);
 #else
-	[Mac (10,9), iOS (8,0)]
+	[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0)]
 	delegate void SCNAnimationEventHandler (CAAnimation animation, NSObject animatedObject, bool playingBackward);
 #endif
 
-	[Watch (4,0)]
-	[Mac (10,9), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface SCNAnimationEvent {
@@ -2930,8 +2930,8 @@ namespace XamCore.SceneKit {
 		SCNAnimationEvent Create (nfloat keyTime, SCNAnimationEventHandler eventHandler);
 	}
 
-	[Watch (3,0)]
-	[Mac (10,9), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (SCNGeometry))]
 	partial interface SCNShape {
 		[NullAllowed] // by default this property is null
@@ -2955,8 +2955,8 @@ namespace XamCore.SceneKit {
 		SCNShape Create (NSBezierPath path, nfloat extrusionDepth);
 	}
 
-	[Watch (3,0)]
-	[Mac (10,9), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	interface SCNMorpher : SCNAnimatable, NSSecureCoding {
 		[NullAllowed] // by default this property is null
@@ -2973,8 +2973,8 @@ namespace XamCore.SceneKit {
 		nfloat GetWeight (nuint targetIndex);
 	}
 
-	[Watch (3,0)]
-	[Mac (10,9), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface SCNSkinner : NSSecureCoding {
@@ -2984,55 +2984,55 @@ namespace XamCore.SceneKit {
 		[Export ("baseGeometry", ArgumentSemantic.Retain)]
 		SCNGeometry BaseGeometry { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("baseGeometryBindTransform")]
 		SCNMatrix4 BaseGeometryBindTransform { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Internal, Export ("boneInverseBindTransforms")]
 		NSArray _BoneInverseBindTransforms { get; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("bones")]
 		SCNNode [] Bones { get; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("boneWeights")]
 		SCNGeometrySource BoneWeights { get; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("boneIndices")]
 		SCNGeometrySource BoneIndices { get; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Static, Internal, Export ("skinnerWithBaseGeometry:bones:boneInverseBindTransforms:boneWeights:boneIndices:")]
 		SCNSkinner _Create (SCNGeometry baseGeometry, SCNNode [] bones, NSArray boneInverseBindTransforms,
 			SCNGeometrySource boneWeights, SCNGeometrySource boneIndices);
 	}
 
-	[Watch (3,0)]
-	[Mac (10,9), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[Abstract]
 	[DisableDefaultCtor]
 	interface SCNConstraint : SCNAnimatable, NSCopying, NSSecureCoding {
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("influenceFactor")]
 		nfloat InfluenceFactor { get; set; }
 
-		[Mac (10, 10), iOS (8,0)]
-		[TV (11,0)][Watch (4,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
+		[Introduced (PlatformName.TvOS, 11, 0)][Introduced (PlatformName.WatchOS, 4, 0)]
 		[Export ("enabled")]
 		bool Enabled { [Bind ("isEnabled")] get; set; }
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("incremental")]
 		bool Incremental { [Bind ("isIncremental")] get; set; }
 		
 	}
 
-	[Watch (3,0)]
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (SCNConstraint))]
 	[DisableDefaultCtor]
 	interface SCNIKConstraint {
@@ -3052,21 +3052,21 @@ namespace XamCore.SceneKit {
 		[Export ("maxAllowedRotationAngleForJoint:")]
 		nfloat GetMaxAllowedRotationAngle (SCNNode node);
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("initWithChainRootNode:")]
 		IntPtr Constructor (SCNNode chainRootNode);
 		
 	}
 
-	[Watch (3,0)]
-	[Mac (10,9), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (SCNConstraint))]
 #if !MONOMAC || XAMCORE_2_0
 	[DisableDefaultCtor]
 #endif
 	interface SCNLookAtConstraint {
 		[Export ("target", ArgumentSemantic.Retain), NullAllowed]
-		SCNNode Target { get; [Mac (10, 12), iOS (10, 0), TV (10, 0)] set; }
+		SCNNode Target { get; [Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)] set; }
 
 		[Export ("gimbalLockEnabled")]
 		bool GimbalLockEnabled { get; set; }
@@ -3074,44 +3074,44 @@ namespace XamCore.SceneKit {
 		[Static, Export ("lookAtConstraintWithTarget:")]
 		SCNLookAtConstraint Create ([NullAllowed] SCNNode target);
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("targetOffset", ArgumentSemantic.Assign)]
 		SCNVector3 TargetOffset { get; set; }
 	
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("localFront", ArgumentSemantic.Assign)]
 		SCNVector3 LocalFront { get; set; }
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("worldUp", ArgumentSemantic.Assign)]
 		SCNVector3 WorldUp { get; set; }
 	}
 
-	[Mac (10,9), iOS (8,0)]
+	[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0)]
 	delegate SCNMatrix4 SCNTransformConstraintHandler (SCNNode node, SCNMatrix4 transform);
 
-	[Watch (3,0)]
-	[Mac (10,9), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (SCNConstraint))]
 	[DisableDefaultCtor]
 	interface SCNTransformConstraint {
 		[Static, Export ("transformConstraintInWorldSpace:withBlock:")]
 		SCNTransformConstraint Create (bool inWorldSpace, SCNTransformConstraintHandler transformHandler);
 
-		[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Static]
 		[Export ("positionConstraintInWorldSpace:withBlock:")]
 		SCNTransformConstraint CreatePositionConstraint (bool inWorldSpace, Func<SCNNode, SCNVector3, SCNVector3> transformHandler);
 	
-		[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Static]
 		[Export ("orientationConstraintInWorldSpace:withBlock:")]
 		SCNTransformConstraint CreateOrientationConstraint (bool inWorldSpace, Func<SCNNode, SCNQuaternion, SCNQuaternion> transformHandler);
 		
 	}
 
-	[Watch (3,0)]
-	[Mac (10,9), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface SCNLevelOfDetail : NSCopying, NSSecureCoding {
@@ -3131,8 +3131,8 @@ namespace XamCore.SceneKit {
 		SCNLevelOfDetail CreateWithWorldSpaceDistance ([NullAllowed] SCNGeometry geometry, nfloat worldSpaceDistance);
 	}
 
-	[Watch (3,0)]
-	[Mac (10,9), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0)]
 	[Static]
 	interface _SCNShaderModifiers {
 		[Internal, Field ("SCNShaderModifierEntryPointGeometry")]
@@ -3149,8 +3149,8 @@ namespace XamCore.SceneKit {
 	}
 
 
-	[Watch (3,0)]
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface SCNActionable {
@@ -3205,16 +3205,16 @@ namespace XamCore.SceneKit {
 #if XAMCORE_4_0
 		[Abstract]
 #endif
-		[iOS (8,0), Mac(10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("actionKeys")]
 		string [] ActionKeys { get; }
 	}
 
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	delegate void SCNActionNodeWithElapsedTimeHandler (SCNNode node, nfloat elapsedTime);
 
-	[Watch (3,0)]
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	interface SCNAction : NSCopying, NSSecureCoding {
 
@@ -3308,23 +3308,23 @@ namespace XamCore.SceneKit {
 		[Static, Export ("customActionWithDuration:actionBlock:")]
 		SCNAction CustomAction (double seconds, SCNActionNodeWithElapsedTimeHandler handler);
 
-		[Mac (10,11), iOS (9,0)]
+		[Introduced (PlatformName.MacOSX, 10, 11), Introduced (PlatformName.iOS, 9, 0)]
 		[Static, Export ("hide")]
 		SCNAction Hide ();
 
-		[Mac (10,11), iOS (9,0)]
+		[Introduced (PlatformName.MacOSX, 10, 11), Introduced (PlatformName.iOS, 9, 0)]
 		[Static, Export ("unhide")]
 		SCNAction Unhide ();
 
-		[Mac (10,11), iOS (9,0)]
+		[Introduced (PlatformName.MacOSX, 10, 11), Introduced (PlatformName.iOS, 9, 0)]
 		[Static, Export ("playAudioSource:waitForCompletion:")]
 		SCNAction PlayAudioSource (SCNAudioSource source, bool wait);
 	}
 
-	[Mac (10,8), iOS (8,0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]
 	delegate void SCNBindingHandler (uint /* unsigned int */ programId, uint /* unsigned int */ location, SCNNode renderedNode, SCNRenderer renderer);
 
-	[Watch (3,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[StrongDictionary ("_SCNShaderModifiers")]
 	interface SCNShaderModifiers {
 		string EntryPointGeometry { get; set; }
@@ -3333,37 +3333,37 @@ namespace XamCore.SceneKit {
 		string EntryPointFragment { get; set; }
 	}
 	
-	[Watch (3,0)]
-	[Mac (10,9), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 8, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface SCNShadable {
 
-		[Mac (10,9, onlyOn64 : true)] // Not marked, but crashes 32-bit - 17695192
+		[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)] // Not marked, but crashes 32-bit - 17695192
 		[NullAllowed] // by default this property is null
 		[Export ("shaderModifiers", ArgumentSemantic.Copy)]
 		NSDictionary WeakShaderModifiers { get; set; }
 
-		[Mac (10,9, onlyOn64 : true)] // Not marked, but crashes 32-bit - 17695192
+		[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)] // Not marked, but crashes 32-bit - 17695192
 		[Wrap ("WeakShaderModifiers")]
 		SCNShaderModifiers ShaderModifiers { get; set; }
 
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[NullAllowed] // by default this property is null
 		[Export ("program", ArgumentSemantic.Retain)]
 		SCNProgram Program { get; set; }
 
-		[Mac (10,9), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 9), Unavailable (PlatformName.WatchOS)]
 		[Export ("handleBindingOfSymbol:usingBlock:")]
 		void HandleBinding (string symbol, SCNBindingHandler handler);
 
-		[Mac (10,9), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 9), Unavailable (PlatformName.WatchOS)]
 		[Export ("handleUnbindingOfSymbol:usingBlock:")]
 		void HandleUnbinding (string symbol, SCNBindingHandler handler);
 	}
 
-	[Watch (3,0)]
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface SCNTechnique : SCNAnimatable, NSCopying, NSSecureCoding {
@@ -3382,33 +3382,33 @@ namespace XamCore.SceneKit {
 		[Static, Export ("techniqueBySequencingTechniques:")]
 		SCNTechnique Create (SCNTechnique [] techniques);
 
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Export ("handleBindingOfSymbol:usingBlock:")]
 		void HandleBinding (string symbol, [NullAllowed] SCNBindingHandler handler);
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Internal, Export ("objectForKeyedSubscript:")]
 		[return: NullAllowed]
 		NSObject _GetObject (NSObject key);
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Internal, Export ("setObject:forKeyedSubscript:")]
 		void _SetObject ([NullAllowed] NSObject obj, INSCopying key);
 	}
 
-	[Watch (3,0)]
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface SCNTechniqueSupport {
 		[Abstract]
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("technique", ArgumentSemantic.Copy)]
 		SCNTechnique Technique { get; [NullAllowed] set; }
 	}
 
-	[Watch (3,0)]
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[Static]
 	interface SCNPhysicsTestKeys {
 
@@ -3422,8 +3422,8 @@ namespace XamCore.SceneKit {
 		NSString BackfaceCullingKey { get; }
 	}
 
-	[Watch (3,0)]
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[Static]
 	interface SCNPhysicsTestSearchModeKeys {
 
@@ -3437,8 +3437,8 @@ namespace XamCore.SceneKit {
 		NSString All { get; }
 	}
 
-	[Watch (3,0)]
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface SCNPhysicsBody : NSCopying, NSSecureCoding {
@@ -3521,29 +3521,29 @@ namespace XamCore.SceneKit {
 		[Export ("resetTransform")]
 		void ResetTransform ();
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("momentOfInertia", ArgumentSemantic.Assign)]
 		SCNVector3 MomentOfInertia { get; set; }
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("usesDefaultMomentOfInertia")]
 		bool UsesDefaultMomentOfInertia { get; set; }
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("contactTestBitMask", ArgumentSemantic.Assign)]
 		nuint ContactTestBitMask { get; set; }		
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("affectedByGravity")]
 		bool AffectedByGravity { [Bind ("isAffectedByGravity")] get; set; }
 		
 	}
 
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	delegate SCNVector3 SCNFieldForceEvaluator (SCNVector3 position, SCNVector3 velocity, float /* float, not CGFloat */ mass, float /* float, not CGFloat */ charge, double timeInSeconds);
 
-	[Watch (3,0)]
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface SCNPhysicsField : NSCopying, NSSecureCoding {
@@ -3612,7 +3612,7 @@ namespace XamCore.SceneKit {
 		nuint CategoryBitMask { get; set; }
 	}
 
-	[Watch (3,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[StrongDictionary ("SCNPhysicsTestKeys")]
 	interface SCNPhysicsTest {
 		nuint CollisionBitMask { get; set; }
@@ -3623,8 +3623,8 @@ namespace XamCore.SceneKit {
 		NSString _SearchMode { get; set; }
 	}
 	
-	[Watch (3,0)]
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject),
 		Delegates = new [] { "WeakContactDelegate" },
 		Events = new [] { typeof (SCNPhysicsContactDelegate) }
@@ -3693,8 +3693,8 @@ namespace XamCore.SceneKit {
 		void UpdateCollisionPairs ();
 	}
 
-	[Watch (3,0)]
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface SCNPhysicsShape : NSCopying, NSSecureCoding {
@@ -3710,21 +3710,21 @@ namespace XamCore.SceneKit {
 		[EditorBrowsable (EditorBrowsableState.Advanced)]
 		SCNPhysicsShape Create (SCNNode node, [NullAllowed] NSDictionary options);
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[NullAllowed, Export ("options"), Internal]
 		NSDictionary _Options { get; }
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("sourceObject")]
 		NSObject SourceObject { get; }
 
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[NullAllowed, Export ("transforms")]
 		NSValue[] Transforms { get; }		
 	}
 
-	[Watch (3,0)]
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[Static]
 	[EditorBrowsable (EditorBrowsableState.Advanced)]
 	interface SCNPhysicsShapeOptionsKeys {
@@ -3732,7 +3732,7 @@ namespace XamCore.SceneKit {
 		[Field ("SCNPhysicsShapeScaleKey")]
 		NSString Scale { get; }
 
-		[TV (10, 0), Mac (10, 12), iOS (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.iOS, 10, 0)]
 		[Field ("SCNPhysicsShapeOptionCollisionMargin")]
 		NSString CollisionMargin { get; }
 
@@ -3743,8 +3743,8 @@ namespace XamCore.SceneKit {
 		NSString Type { get; }
 	}
 
-	[Watch (3,0)]
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[Static]
 	[EditorBrowsable (EditorBrowsableState.Advanced)]
 	interface SCNPhysicsShapeOptionsTypes {
@@ -3759,8 +3759,8 @@ namespace XamCore.SceneKit {
 		NSString ConcavePolyhedron { get; }
 	}
 
-	[Watch (3,0)]
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface SCNPhysicsContact {
@@ -3784,8 +3784,8 @@ namespace XamCore.SceneKit {
 		nfloat PenetrationDistance { get; }
 	}
 
-	[Watch (3,0)]
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface SCNPhysicsContactDelegate {
@@ -3800,8 +3800,8 @@ namespace XamCore.SceneKit {
 		void DidEndContact (SCNPhysicsWorld world, SCNPhysicsContact contact);
 	}
 
-	[Watch (3,0)]
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[Abstract]
 	[DisableDefaultCtor]
@@ -3809,8 +3809,8 @@ namespace XamCore.SceneKit {
 
 	}
 
-	[Watch (3,0)]
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (SCNPhysicsBehavior))]
 	[DisableDefaultCtor]
 	interface SCNPhysicsHingeJoint {
@@ -3841,8 +3841,8 @@ namespace XamCore.SceneKit {
 		SCNVector3 AnchorB { get; set; }
 	}
 
-	[Watch (3,0)]
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (SCNPhysicsBehavior))]
 	[DisableDefaultCtor]
 	interface SCNPhysicsBallSocketJoint {
@@ -3866,8 +3866,8 @@ namespace XamCore.SceneKit {
 		SCNVector3 AnchorB { get; set; }
 	}
 
-	[Watch (3,0)]
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (SCNPhysicsBehavior))]
 	[DisableDefaultCtor]
 	interface SCNPhysicsSliderJoint {
@@ -3922,8 +3922,8 @@ namespace XamCore.SceneKit {
 		nfloat MotorMaximumTorque { get; set; }
 	}
 
-	[Watch (3,0)]
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (SCNPhysicsBehavior))]
 	[DisableDefaultCtor]
 	interface SCNPhysicsVehicle {
@@ -3950,8 +3950,8 @@ namespace XamCore.SceneKit {
 		void ApplyBrakingForce (nfloat value, nint index);
 	}
 
-	[Watch (3,0)]
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface SCNPhysicsVehicleWheel : NSCopying, NSSecureCoding {
@@ -3996,8 +3996,8 @@ namespace XamCore.SceneKit {
 		nfloat SuspensionRestLength { get; set; }
 	}
 
-	[Watch (3,0)]
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface SCNParticleSystem : NSCopying, NSSecureCoding, SCNAnimatable {
@@ -4206,91 +4206,91 @@ namespace XamCore.SceneKit {
 		
 	}
 
-	[Watch (3,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[Static]
 	interface SCNParticleProperty {
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SCNParticlePropertyPosition")]
 		NSString Position { get; }
 		
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SCNParticlePropertyAngle")]
 		NSString Angle { get; }
 		
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SCNParticlePropertyRotationAxis")]
 		NSString RotationAxis { get; }
 		
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SCNParticlePropertyVelocity")]
 		NSString Velocity { get; }
 		
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SCNParticlePropertyAngularVelocity")]
 		NSString AngularVelocity { get; }
 		
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SCNParticlePropertyLife")]
 		NSString Life { get; }
 		
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SCNParticlePropertyColor")]
 		NSString Color { get; }
 		
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SCNParticlePropertyOpacity")]
 		NSString Opacity { get; }
 		
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SCNParticlePropertySize")]
 		NSString Size { get; }
 		
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SCNParticlePropertyFrame")]
 		NSString Frame { get; }
 		
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SCNParticlePropertyFrameRate")]
 		NSString FrameRate { get; }
 		
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SCNParticlePropertyBounce")]
 		NSString Bounce { get; }
 		
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SCNParticlePropertyCharge")]
 		NSString Charge { get; }
 		
-		[Mac (10,10), iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SCNParticlePropertyFriction")]
 		NSString Friction { get; }
 
-		[Mac (10, 10), iOS (8, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SCNParticlePropertyContactPoint")]
 		NSString ContactPoint { get; }
 
-		[Mac (10, 10), iOS (8, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 		[Field ("SCNParticlePropertyContactNormal")]
 		NSString ContactNormal { get; }
 	}
 	
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	delegate void SCNParticleEventHandler (IntPtr data, IntPtr dataStride, IntPtr indices, nint count);
 
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	delegate void SCNParticleModifierHandler (IntPtr data, IntPtr dataStride, nint start, nint end, float /* float, not CGFloat */ deltaTime);
 
-	[Watch (3,0)]
-	[Mac (10,10), iOS (8,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface SCNParticlePropertyController : NSSecureCoding, NSCopying {
 
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Static, Export ("controllerWithAnimation:")]
 		SCNParticlePropertyController Create (CAAnimation animation);
 
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Export ("animation", ArgumentSemantic.Retain)]
 		CAAnimation Animation { get; set; }
 
@@ -4310,8 +4310,8 @@ namespace XamCore.SceneKit {
 		NSString InputProperty { get; set; }
 	}
 
-	[Watch (3,0)]
-	[iOS (9,0)][Mac (10,11)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[BaseType (typeof (SCNConstraint))]
 	interface SCNBillboardConstraint {
 		[Static]
@@ -4322,8 +4322,8 @@ namespace XamCore.SceneKit {
 		SCNBillboardAxis FreeAxes { get; set; }
 	}
 
-	[Watch (3,0)]
-	[iOS (9,0)][Mac (10,11)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[BaseType (typeof (SCNNode))]
 	[DisableDefaultCtor]
 	interface SCNReferenceNode : NSCoding {
@@ -4353,8 +4353,8 @@ namespace XamCore.SceneKit {
 
 	interface ISCNBufferStream { }
 
-	[Watch (3,0)]
-	[iOS (9,0)][Mac (10,11)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[Protocol]
 	interface SCNBufferStream {
 		[Abstract]
@@ -4362,28 +4362,28 @@ namespace XamCore.SceneKit {
 		unsafe void Length (IntPtr bytes, nuint length);
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	interface SCNTimingFunction : NSSecureCoding
 	{
 		[Static]
 		[Export ("functionWithTimingMode:")]
 		SCNTimingFunction Create (SCNActionTimingMode timingMode);
 	
-		[Static, NoWatch]
+		[Static, Unavailable (PlatformName.WatchOS)]
 		[Export ("functionWithCAMediaTimingFunction:")]
 		SCNTimingFunction Create (CAMediaTimingFunction caTimingFunction);
 	}
 
 	// Use the Swift name SCNAnimationProtocol since it conflicts with the type name
-	[Protocol (Name="SCNAnimation")]
+	[Protocol (Name = "SCNAnimation")]
 	interface SCNAnimationProtocol {
 	}
 
 	interface ISCNAnimationProtocol {}
 
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	interface SCNAnimation : SCNAnimationProtocol, NSCopying, NSSecureCoding
 	{
 		[Static]
@@ -4394,7 +4394,7 @@ namespace XamCore.SceneKit {
 		[Export ("animationNamed:")]
 		SCNAnimation FromName (string animationName);
 	
-		[Static, NoWatch]
+		[Static, Unavailable (PlatformName.WatchOS)]
 		[Export ("animationWithCAAnimation:")]
 		SCNAnimation FromCAAnimation (CAAnimation caAnimation);
 	
@@ -4456,8 +4456,8 @@ namespace XamCore.SceneKit {
 		bool Cumulative { [Bind ("isCumulative")] get; set; }
 	}
 	
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	interface SCNAnimationPlayer : SCNAnimatable, NSCopying, NSSecureCoding
 	{
 		[Static]

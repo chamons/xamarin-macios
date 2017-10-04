@@ -1,4 +1,4 @@
-﻿// 
+// 
 // AVPlayerLayer.cs: AVPlayerLayer class
 //
 // Authors:
@@ -14,7 +14,7 @@ using XamCore.CoreVideo;
 
 namespace XamCore.AVFoundation {
 	public partial class AVPlayerLayer {
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		public CVPixelBufferAttributes PixelBufferAttributes { 
 			get {
 				if (WeakPixelBufferAttributes != null) {

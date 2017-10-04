@@ -100,7 +100,7 @@ namespace OpenTK.Graphics.OpenGL
         /// Constructs a new Color4 structure from the specified System.Drawing.Color.
         /// </summary>
         /// <param name="color">The System.Drawing.Color containing the component values.</param>
-        [Obsolete("Use new Color4(r, g, b, a) instead.")]
+        [Obsolete ("Use new Color4(r, g, b, a) instead.")]
         public Color4(System.Drawing.Color color)
             : this(color.R, color.G, color.B, color.A)
         { }

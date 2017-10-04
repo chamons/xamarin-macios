@@ -31,12 +31,7 @@ using System;
 
 namespace XamCore.Foundation
 {
-	[AttributeUsage (AttributeTargets.Class | AttributeTargets.Struct |
-		AttributeTargets.Enum | AttributeTargets.Constructor |
-		AttributeTargets.Method | AttributeTargets.Property |
-		AttributeTargets.Field | AttributeTargets.Event |
-		AttributeTargets.Interface | AttributeTargets.Delegate,
-		Inherited=false)]
+	[AttributeUsage (AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Enum | AttributeTargets.Constructor | AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Event | AttributeTargets.Interface | AttributeTargets.Delegate, Inherited = false)]
 	public sealed class AdviceAttribute : Attribute
 	{
 		public AdviceAttribute (string message)

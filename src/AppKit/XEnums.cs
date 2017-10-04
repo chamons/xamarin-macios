@@ -11,15 +11,15 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.AppKit {
 
-	[Lion]
+	[Introduced (PlatformName.MacOSX, 10, 7)]
 	[Native]
-	public enum NSTextLayoutOrientation : nint {
+	public enum NSTextLayoutOrientation : long {
 		Horizontal,
 		Vertical
 	}
 
 #if !XAMCORE_2_0
-	[Lion, Flags]
+	[Introduced (PlatformName.MacOSX, 10, 7), Flags]
 	[Native]
 	public enum NSTableViewAnimationOptions : nuint_compat_int {
 		EffectFade = 0x1,
@@ -33,24 +33,24 @@ namespace XamCore.AppKit {
 	}
 #endif
 
-	[Lion]
+	[Introduced (PlatformName.MacOSX, 10, 7)]
 	[Native]
-	public enum NSPrintRenderingQuality : nint {
+	public enum NSPrintRenderingQuality : long {
 		Best,
 		Responsive
 	}
 
-	[Lion]
+	[Introduced (PlatformName.MacOSX, 10, 7)]
 	[Native]
-	public enum NSCorrectionIndicatorType : nint {
+	public enum NSCorrectionIndicatorType : long {
 		Default = 0,
 		Reversion,
 		Guesses
 	}
 
-	[Lion]
+	[Introduced (PlatformName.MacOSX, 10, 7)]
 	[Native]
-	public enum NSCorrectionResponse : nint {
+	public enum NSCorrectionResponse : long {
 		None,
 		Accepted,
 		Rejected,
@@ -59,9 +59,9 @@ namespace XamCore.AppKit {
 		Reverted
 	}
 
-	[Lion]
+	[Introduced (PlatformName.MacOSX, 10, 7)]
 	[Native]
-	public enum NSTextFinderMatchingType : nint {
+	public enum NSTextFinderMatchingType : long {
 		Contains = 0,
 		StartsWith = 1,
 		FullWord = 2,
@@ -93,7 +93,7 @@ namespace XamCore.AppKit {
 	[Flags]
 	public enum NSSpellingState :
 #if XAMCORE_4_0
-		nint
+		long
 #else
 		int
 #endif

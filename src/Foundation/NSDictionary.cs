@@ -46,7 +46,7 @@ namespace XamCore.Foundation {
 			int al = args.Length;
 			if ((al % 2) != 0)
 				throw new ArgumentException ("The arguments to NSDictionary should be a multiple of two", "args");
-			var ret = new NSObject [1+al/2];
+			var ret = new NSObject [1 + al / 2];
 			ret [0] = f;
 			for (int i = 0, target = 1; i < al; i += 2)
 				ret [target++] = args [i];
@@ -55,7 +55,7 @@ namespace XamCore.Foundation {
 
 		internal static NSArray PickOdd (NSObject f, NSObject [] args)
 		{
-			var ret = new NSObject [1+args.Length/2];
+			var ret = new NSObject [1 + args.Length / 2];
 			ret [0] = f;
 			for (int i = 1, target = 1; i < args.Length; i += 2)
 				ret [target++] = args [i];
@@ -67,7 +67,7 @@ namespace XamCore.Foundation {
 			int al = args.Length;
 			if ((al % 2) != 0)
 				throw new ArgumentException ("The arguments to NSDictionary should be a multiple of two", "args");
-			var ret = new object [1+al/2];
+			var ret = new object [1 + al / 2];
 			ret [0] = f;
 			for (int i = 0, target = 1; i < al; i += 2)
 				ret [target++] = args [i];
@@ -76,7 +76,7 @@ namespace XamCore.Foundation {
 
 		internal static NSArray PickOdd (object f, object [] args)
 		{
-			var ret = new object [1+args.Length/2];
+			var ret = new object [1 + args.Length / 2];
 			ret [0] = f;
 			for (int i = 1, target = 1; i < args.Length; i += 2)
 				ret [target++] = args [i];

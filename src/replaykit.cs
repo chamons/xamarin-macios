@@ -1,4 +1,4 @@
-﻿//
+//
 // ReplayKit bindings
 //
 // Authors:
@@ -16,8 +16,8 @@ using XamCore.UIKit;
 
 namespace XamCore.ReplayKit {
 
-	[iOS (9,0)]
-	[TV (10,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
 	[BaseType (typeof (UIViewController))]
 	interface RPPreviewViewController {
 		[Export ("initWithNibName:bundle:")]
@@ -27,15 +27,15 @@ namespace XamCore.ReplayKit {
 		[Export ("previewControllerDelegate", ArgumentSemantic.Weak)][NullAllowed]
 		IRPPreviewViewControllerDelegate PreviewControllerDelegate { get; set; }
 
-		[TV (10, 0), NoiOS]
+		[Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.iOS)]
 		[Export ("mode", ArgumentSemantic.Assign)]
 		RPPreviewViewControllerMode Mode { get; set; }
 	}
 
 	interface IRPPreviewViewControllerDelegate { }
 
-	[iOS (9,0)]
-	[TV (10,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface RPPreviewViewControllerDelegate {
@@ -43,13 +43,13 @@ namespace XamCore.ReplayKit {
 		[Export ("previewControllerDidFinish:")]
 		void DidFinish (RPPreviewViewController previewController);
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("previewController:didFinishWithActivityTypes:")]
 		void DidFinish (RPPreviewViewController previewController, NSSet<NSString> activityTypes);
 	}
 
-	[iOS (9,0)]
-	[TV (10,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 #if XAMCORE_4_0
@@ -61,12 +61,12 @@ namespace XamCore.ReplayKit {
 		[Export ("sharedRecorder")]
 		RPScreenRecorder SharedRecorder { get; }
 
-		[Availability (Deprecated = Platform.iOS_10_0, Message = "Use 'StartRecording (Action<NSError>)' instead.")]
+		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'StartRecording (Action<NSError>)' instead.")]
 		[Async]
 		[Export ("startRecordingWithMicrophoneEnabled:handler:")]
 		void StartRecording (bool microphoneEnabled, [NullAllowed] Action<NSError> handler);
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Async]
 		[Export ("startRecordingWithHandler:")]
 		void StartRecording ([NullAllowed] Action<NSError> handler);
@@ -85,34 +85,34 @@ namespace XamCore.ReplayKit {
 		[Export ("recording", ArgumentSemantic.Assign)]
 		bool Recording { [Bind ("isRecording")] get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("microphoneEnabled", ArgumentSemantic.Assign)]
 		bool MicrophoneEnabled {
 			[Bind ("isMicrophoneEnabled")] get;
-			[iOS (10,0)] set;
+			[Introduced (PlatformName.iOS, 10, 0)] set;
 		}
 
 		[Export ("available", ArgumentSemantic.Assign)]
 		bool Available { [Bind ("isAvailable")] get; }
 
-		[NoTV, iOS (10,0)]
+		[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("cameraEnabled")]
 		bool CameraEnabled { [Bind ("isCameraEnabled")] get; set; }
 
-		[NoTV, iOS (10,0)]
+		[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 0)]
 		[NullAllowed, Export ("cameraPreviewView")]
 		UIView CameraPreviewView { get; }
 
-		[NoTV][iOS (11,0)]
+		[Unavailable (PlatformName.TvOS)][Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("cameraPosition", ArgumentSemantic.Assign)]
 		RPCameraPosition CameraPosition { get; set; }
 
-		[TV (11,0)][iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0)][Introduced (PlatformName.iOS, 11, 0)]
 		[Async]
 		[Export ("startCaptureWithHandler:completionHandler:")]
 		void StartCapture ([NullAllowed] Action<CMSampleBuffer, RPSampleBufferType, NSError> captureHandler, [NullAllowed] Action<NSError> completionHandler);
 
-		[TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Async]
 		[Export ("stopCaptureWithHandler:")]
 		void StopCapture ([NullAllowed] Action<NSError> handler);
@@ -120,18 +120,18 @@ namespace XamCore.ReplayKit {
 
 	interface IRPScreenRecorderDelegate { }
 
-	[iOS (9,0)]
-	[TV (10,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface RPScreenRecorderDelegate {
 
-		[Deprecated (PlatformName.TvOS, 11,0, message: "Use 'DidStopRecording(RPScreenRecorder,RPPreviewViewController,NSError)' instead.")]
-		[Deprecated (PlatformName.iOS, 11,0, message: "Use 'DidStopRecording(RPScreenRecorder,RPPreviewViewController,NSError)' instead.")]
+		[Deprecated (PlatformName.TvOS, 11, 0, message: "Use 'DidStopRecording(RPScreenRecorder,RPPreviewViewController,NSError)' instead.")]
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'DidStopRecording(RPScreenRecorder,RPPreviewViewController,NSError)' instead.")]
 		[Export ("screenRecorder:didStopRecordingWithError:previewViewController:")]
 		void DidStopRecording (RPScreenRecorder screenRecorder, NSError error, [NullAllowed] RPPreviewViewController previewViewController);
 
-		[TV (11,0)][iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0)][Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("screenRecorder:didStopRecordingWithPreviewViewController:error:")]
 		void DidStopRecording (RPScreenRecorder screenRecorder, [NullAllowed] RPPreviewViewController previewViewController, [NullAllowed] NSError error);
 
@@ -139,8 +139,8 @@ namespace XamCore.ReplayKit {
 		void DidChangeAvailability (RPScreenRecorder screenRecorder);
 	}
 
-	[iOS (10,0)]
-	[TV (10,0)]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
 	[BaseType (typeof (UIViewController))]
 	interface RPBroadcastActivityViewController {
 		// inlined
@@ -156,8 +156,8 @@ namespace XamCore.ReplayKit {
 		[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
 		IRPBroadcastActivityViewControllerDelegate Delegate { get; set; }
 
-		[iOS (11,0)]
-		[NoTV]
+		[Introduced (PlatformName.iOS, 11, 0)]
+		[Unavailable (PlatformName.TvOS)]
 		[Static]
 		[Async]
 		[Export ("loadBroadcastActivityViewControllerWithPreferredExtension:handler:")]
@@ -166,8 +166,8 @@ namespace XamCore.ReplayKit {
 
 	interface IRPBroadcastActivityViewControllerDelegate {}
 
-	[iOS (10,0)]
-	[TV (10,0)]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface RPBroadcastActivityViewControllerDelegate {
@@ -176,8 +176,8 @@ namespace XamCore.ReplayKit {
 		void DidFinish (RPBroadcastActivityViewController broadcastActivityViewController, [NullAllowed] RPBroadcastController broadcastController, [NullAllowed] NSError error);
 	}
 
-	[iOS (10,0)]
-	[TV (10,0)]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
 	[BaseType (typeof (NSObject))]
 	interface RPBroadcastController {
 		[Export ("broadcasting")]
@@ -195,8 +195,8 @@ namespace XamCore.ReplayKit {
 		[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
 		IRPBroadcastControllerDelegate Delegate { get; set; }
 
-		[Deprecated (PlatformName.TvOS, 11,0)]
-		[Deprecated (PlatformName.iOS, 11,0)]
+		[Deprecated (PlatformName.TvOS, 11, 0)]
+		[Deprecated (PlatformName.iOS, 11, 0)]
 		[Export ("broadcastExtensionBundleID")]
 		string BroadcastExtensionBundleID { get; }
 
@@ -217,10 +217,10 @@ namespace XamCore.ReplayKit {
 
 	interface IRPBroadcastControllerDelegate {}
 
-	[iOS (10,0)]
-	[TV (10,0)]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface RPBroadcastControllerDelegate {
 		[Export ("broadcastController:didFinishWithError:")]
 		void DidFinish (RPBroadcastController broadcastController, [NullAllowed] NSError error);
@@ -228,15 +228,15 @@ namespace XamCore.ReplayKit {
 		[Export ("broadcastController:didUpdateServiceInfo:")]
 		void DidUpdateServiceInfo (RPBroadcastController broadcastController, NSDictionary<NSString, INSCoding> serviceInfo);
 
-		[TV (11,0), iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("broadcastController:didUpdateBroadcastURL:")]
 		void DidUpdateBroadcastUrl (RPBroadcastController broadcastController, NSUrl broadcastUrl);
 	}
 
-	[iOS (10,0)]
-	[TV (10,0)]
-	[Deprecated (PlatformName.TvOS, 11,0)]
-	[Deprecated (PlatformName.iOS, 11,0)]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Deprecated (PlatformName.TvOS, 11, 0)]
+	[Deprecated (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	interface RPBroadcastConfiguration : NSCoding, NSSecureCoding {
 		[Export ("clipDuration")]
@@ -248,26 +248,26 @@ namespace XamCore.ReplayKit {
 
 	delegate void LoadBroadcastingHandler (string bundleID, string displayName, UIImage appIcon);
 
-	[iOS (10,0)]
-	[TV (10,0)]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
 	[Category]
 	[BaseType (typeof (NSExtensionContext))]
 	interface NSExtensionContext_RPBroadcastExtension {
 		[Export ("loadBroadcastingApplicationInfoWithCompletion:")]
 		void LoadBroadcastingApplicationInfo (LoadBroadcastingHandler handler);
 
-		[Deprecated (PlatformName.TvOS, 11,0, message: "Use 'CompleteRequest(NSUrl,NSDictionary<NSString,INSCoding>)' instead.")]
-		[Deprecated (PlatformName.iOS, 11,0, message: "Use 'CompleteRequest(NSUrl,NSDictionary<NSString,INSCoding>)' instead.")]
+		[Deprecated (PlatformName.TvOS, 11, 0, message: "Use 'CompleteRequest(NSUrl,NSDictionary<NSString,INSCoding>)' instead.")]
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'CompleteRequest(NSUrl,NSDictionary<NSString,INSCoding>)' instead.")]
 		[Export ("completeRequestWithBroadcastURL:broadcastConfiguration:setupInfo:")]
 		void CompleteRequest (NSUrl broadcastURL, RPBroadcastConfiguration broadcastConfiguration, [NullAllowed] NSDictionary<NSString, INSCoding> setupInfo);
 
-		[TV (11,0)][iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0)][Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("completeRequestWithBroadcastURL:setupInfo:")]
 		void CompleteRequest (NSUrl broadcastURL, [NullAllowed] NSDictionary<NSString, INSCoding> setupInfo);
 	}
 
-	[iOS (10,0)]
-	[TV (10,0)]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
 	[BaseType (typeof (NSObject))]
 	interface RPBroadcastHandler : NSExtensionRequestHandling {
 		[Export ("updateServiceInfo:")]
@@ -280,10 +280,10 @@ namespace XamCore.ReplayKit {
 		//void UpdateBroadcastUrl (NSUrl broadcastUrl);
 	}
 
-	[iOS (10,0)]
-	[TV (10,0)]
-	[Deprecated (PlatformName.TvOS, 11,0, message: "Use 'RPBroadcastSampleHandler' instead.")]
-	[Deprecated (PlatformName.iOS, 11,0, message: "Use 'RPBroadcastSampleHandler' instead.")]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Deprecated (PlatformName.TvOS, 11, 0, message: "Use 'RPBroadcastSampleHandler' instead.")]
+	[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'RPBroadcastSampleHandler' instead.")]
 	[BaseType (typeof (RPBroadcastHandler))]
 	interface RPBroadcastMP4ClipHandler {
 		[Export ("processMP4ClipWithURL:setupInfo:finished:")]
@@ -293,8 +293,8 @@ namespace XamCore.ReplayKit {
 		void FinishedProcessingMP4Clip ([NullAllowed] RPBroadcastConfiguration broadcastConfiguration, [NullAllowed] NSError error);
 	}
 
-	[iOS (10,0)]
-	[TV (10,0)]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
 	[BaseType (typeof (RPBroadcastHandler))]
 	interface RPBroadcastSampleHandler {
 		[Export ("broadcastStartedWithSetupInfo:")]
@@ -312,7 +312,7 @@ namespace XamCore.ReplayKit {
 		[Export ("processSampleBuffer:withType:")]
 		void ProcessSampleBuffer (CMSampleBuffer sampleBuffer, RPSampleBufferType sampleBufferType);
 
-		[iOS (10,2)][TV (10,1)]
+		[Introduced (PlatformName.iOS, 10, 2)][Introduced (PlatformName.TvOS, 10, 1)]
 		[Export ("finishBroadcastWithError:")]
 		void FinishBroadcast (NSError error);
 	}

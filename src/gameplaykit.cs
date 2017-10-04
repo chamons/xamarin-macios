@@ -1,4 +1,4 @@
-﻿//
+//
 // GameplayKit bindings
 //
 // Authors:
@@ -30,16 +30,16 @@ namespace XamCore.GameplayKit {
 
 	[Native]
 	[Flags]
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
-	public enum GKMeshGraphTriangulationMode : nuint {
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	public enum GKMeshGraphTriangulationMode : ulong {
 		Vertices = 1 << 0,
 		Centers = 1 << 1,
 		EdgeMidpoints = 1 << 2
 	}
 
 	[Native]
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
-	public enum GKRTreeSplitStrategy : nint {
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	public enum GKRTreeSplitStrategy : long {
 		Halve = 0,
 		Linear = 1,
 		Quadratic = 2,
@@ -48,7 +48,7 @@ namespace XamCore.GameplayKit {
 
 	interface IGKAgentDelegate { }
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Protocol]
 	[Model][BaseType (typeof (NSObject))]
 	interface GKAgentDelegate {
@@ -60,7 +60,7 @@ namespace XamCore.GameplayKit {
 		void AgentDidUpdate (GKAgent agent);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (GKComponent))]
 	interface GKAgent : NSCoding {
 		
@@ -78,7 +78,7 @@ namespace XamCore.GameplayKit {
 		float Radius { get; set; }
 
 		[Export ("speed")]
-		float Speed { get; [iOS (10,0), TV(10,0), Mac (10,12, onlyOn64: true)] set; }
+		float Speed { get; [Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)] set; }
 
 		[Export ("maxAcceleration")]
 		float MaxAcceleration { get; set; }
@@ -87,7 +87,7 @@ namespace XamCore.GameplayKit {
 		float MaxSpeed { get; set; }
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (GKAgent))]
 	interface GKAgent2D : NSCoding {
 		
@@ -112,7 +112,7 @@ namespace XamCore.GameplayKit {
 		void Update (double deltaTimeInSeconds);
 	}
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (GKAgent))]
 	interface GKAgent3D {
 
@@ -164,7 +164,7 @@ namespace XamCore.GameplayKit {
 	// FIXME: @interface GKBehavior : NSObject <NSFastEnumeration>
 	// Fix when we have NSFastEnumerator to IEnumerable support
 	// https://bugzilla.xamarin.com/show_bug.cgi?id=4391
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface GKBehavior : NSCopying {
 		
@@ -212,7 +212,7 @@ namespace XamCore.GameplayKit {
 		NSNumber ObjectForKeyedSubscript (GKGoal goal);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[Abstract]
 	interface GKComponent : NSCopying, NSCoding {
@@ -224,17 +224,17 @@ namespace XamCore.GameplayKit {
 		[Export ("updateWithDeltaTime:")]
 		void Update (double deltaTimeInSeconds);
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("didAddToEntity")]
 		void DidAddToEntity ();
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("willRemoveFromEntity")]
 		void WillRemoveFromEntity ();
 	}
 
 #if XAMCORE_2_0 // GKComponentSystem is a generic type, which we only support in Unified (for now at least)
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // We have a manual default ctor.
 	/* using 'TComponent' for the generic argument, since we have an additional member 'ComponentType' which clashes with Objective-C's generic argument 'ComponentType' */
@@ -273,17 +273,17 @@ namespace XamCore.GameplayKit {
 		void Update (double deltaTimeInSeconds);
 
 		[EditorBrowsable (EditorBrowsableState.Advanced)]
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("classForGenericArgumentAtIndex:")]
 		Class GetClassForGenericArgument (nuint index);
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Wrap ("Class.Lookup (GetClassForGenericArgument (index))")]
 		Type GetTypeForGenericArgument (nuint index);
 	}
 #endif // XAMCORE_2_0
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (GKBehavior))]
 	interface GKCompositeBehavior {
 
@@ -323,7 +323,7 @@ namespace XamCore.GameplayKit {
 		NSNumber ObjectForKeyedSubscript (GKBehavior behavior);
 	}
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
 	interface GKDecisionNode {
@@ -338,7 +338,7 @@ namespace XamCore.GameplayKit {
 		GKDecisionNode CreateBranch (nint weight, NSObject attribute);
 	}
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
 	interface GKDecisionTree : NSSecureCoding {
@@ -363,7 +363,7 @@ namespace XamCore.GameplayKit {
 		NSObject FindAction (NSDictionary<NSObject, NSObject> answers);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface GKEntity : NSCopying, NSCoding {
 		
@@ -392,7 +392,7 @@ namespace XamCore.GameplayKit {
 
 	interface IGKGameModelUpdate { }
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Protocol]
 	interface GKGameModelUpdate {
 
@@ -403,7 +403,7 @@ namespace XamCore.GameplayKit {
 
 	interface IGKGameModelPlayer { }
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Protocol]
 	interface GKGameModelPlayer {
 
@@ -421,7 +421,7 @@ namespace XamCore.GameplayKit {
 
 	interface IGKGameModel { }
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Protocol]
 	interface GKGameModel : NSCopying {
 
@@ -461,13 +461,13 @@ namespace XamCore.GameplayKit {
 		[Export ("isLossForPlayer:")]
 		bool IsLoss (IGKGameModelPlayer player);
 
-		[NoMac] // not yet
-		[iOS (9,1)][TV (9,0)]
+		[Unavailable (PlatformName.MacOSX)] // not yet
+		[Introduced (PlatformName.iOS, 9, 1)][Introduced (PlatformName.TvOS, 9, 0)]
 		[Export ("unapplyGameModelUpdate:")]
 		void UnapplyGameModelUpdate (IGKGameModelUpdate gameModelUpdate);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface GKGoal : NSCopying {
 		
@@ -520,7 +520,7 @@ namespace XamCore.GameplayKit {
 		GKGoal GetGoalToStayOnPath (GKPath path, double maxPredictionTime);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface GKGraph : NSCopying, NSCoding {
 		
@@ -550,7 +550,7 @@ namespace XamCore.GameplayKit {
 
 	interface GKObstacleGraph<NodeType> : GKObstacleGraph { }
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (GKGraph))]
 	interface GKObstacleGraph {
 		
@@ -568,13 +568,13 @@ namespace XamCore.GameplayKit {
 		IntPtr Constructor (GKPolygonObstacle [] obstacles, float bufferRadius);
 
 		[Internal]
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Static]
 		[Export ("graphWithObstacles:bufferRadius:nodeClass:")]
 		IntPtr GraphWithObstacles (GKPolygonObstacle [] obstacles, float bufferRadius, Class nodeClass);
 
 		[Internal]
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("initWithObstacles:bufferRadius:nodeClass:")]
 		IntPtr Constructor (GKPolygonObstacle [] obstacles, float bufferRadius, Class nodeClass);
 
@@ -610,11 +610,11 @@ namespace XamCore.GameplayKit {
 		bool IsConnectionLocked (GKGraphNode2D startNode, GKGraphNode2D endNode);
 
 		[EditorBrowsable (EditorBrowsableState.Advanced)]
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("classForGenericArgumentAtIndex:")]
 		Class GetClassForGenericArgument (nuint index);
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Wrap ("Class.Lookup (GetClassForGenericArgument (index))")]
 		Type GetTypeForGenericArgument (nuint index);
 	}
@@ -624,7 +624,7 @@ namespace XamCore.GameplayKit {
 	// but we are not doing it since there is not much value to do it right now
 	// due to it is only used in the return type of GetNodeAt which in docs says
 	// it returns a GKGridGraphNode and we avoid a breaking change. Added a generic GetNodeAt.
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (GKGraph))]
 	interface GKGridGraph {
 
@@ -652,23 +652,23 @@ namespace XamCore.GameplayKit {
 		[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")]
 		IntPtr Constructor (Vector2i position, int width, int height, bool diagonalsAllowed);
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Static]
 		[Export ("graphFromGridStartingAt:width:height:diagonalsAllowed:nodeClass:")]
 		[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")]
 		GKGridGraph FromGridStartingAt (Vector2i position, int width, int height, bool diagonalsAllowed, Class aClass);
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Static]
 		[Wrap ("FromGridStartingAt (position, width, height, diagonalsAllowed, new Class (type))")]
 		GKGridGraph FromGridStartingAt (Vector2i position, int width, int height, bool diagonalsAllowed, Type type);
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("initFromGridStartingAt:width:height:diagonalsAllowed:nodeClass:")]
 		[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")]
 		IntPtr Constructor (Vector2i position, int width, int height, bool diagonalsAllowed, Class aClass);
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Wrap ("this (position, width, height, diagonalsAllowed, new Class (nodeType))")]
 		IntPtr Constructor (Vector2i position, int width, int height, bool diagonalsAllowed, Type nodeType);
 
@@ -682,17 +682,17 @@ namespace XamCore.GameplayKit {
 		void ConnectNodeToAdjacentNodes (GKGridGraphNode node);
 
 		[EditorBrowsable (EditorBrowsableState.Advanced)]
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("classForGenericArgumentAtIndex:")]
 		Class GetClassForGenericArgument (nuint index);
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Wrap ("Class.Lookup (GetClassForGenericArgument (index))")]
 		Type GetTypeForGenericArgument (nuint index);
 	}
 
 #if XAMCORE_2_0
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (GKGraph))]
 	interface GKMeshGraph<NodeType> where NodeType : GKGraphNode2D {
 
@@ -758,7 +758,7 @@ namespace XamCore.GameplayKit {
 	}
 #endif
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface GKGraphNode : NSCoding {
 		
@@ -784,7 +784,7 @@ namespace XamCore.GameplayKit {
 		GKGraphNode [] FindPathFrom (GKGraphNode startNode);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (GKGraphNode))]
 	interface GKGraphNode2D {
@@ -807,7 +807,7 @@ namespace XamCore.GameplayKit {
 		IntPtr Constructor (Vector2 point);
 	}
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (GKGraphNode))]
 	interface GKGraphNode3D {
@@ -831,7 +831,7 @@ namespace XamCore.GameplayKit {
 	}
 
 	[DisableDefaultCtor]
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (GKGraphNode))]
 	interface GKGridGraphNode {
 
@@ -859,7 +859,7 @@ namespace XamCore.GameplayKit {
 		IntPtr Constructor (Vector2i gridPosition);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject), Name = "GKMinmaxStrategist")]
 	interface GKMinMaxStrategist : GKStrategist {
 		[Export ("maxLookAheadDepth", ArgumentSemantic.Assign)]
@@ -874,13 +874,13 @@ namespace XamCore.GameplayKit {
 		IGKGameModelUpdate GetRandomMove (IGKGameModelPlayer player, nint numMovesToConsider);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[Abstract]
 	interface GKObstacle {
 	}
 		
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (GKObstacle))]
 	interface GKCircleObstacle {
@@ -905,7 +905,7 @@ namespace XamCore.GameplayKit {
 		IntPtr Constructor (float radius);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (GKObstacle))]
 	interface GKPolygonObstacle : NSCoding {
@@ -927,7 +927,7 @@ namespace XamCore.GameplayKit {
 		Vector2 GetVertex (nuint index);
 	}
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (GKObstacle))]
 	interface GKSphereObstacle {
@@ -952,7 +952,7 @@ namespace XamCore.GameplayKit {
 		IntPtr Constructor (float radius);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
 	interface GKPath {
@@ -974,12 +974,12 @@ namespace XamCore.GameplayKit {
 		[Export ("initWithPoints:count:radius:cyclical:")]
 		IntPtr InitWithPoints (IntPtr points, nuint count, float radius, bool cyclical);
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Static, Internal]
 		[Export ("pathWithFloat3Points:count:radius:cyclical:")]
 		GKPath FromFloat3Points (IntPtr points, nuint count, float radius, bool cyclical);
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Internal]
 		[Export ("initWithFloat3Points:count:radius:cyclical:")]
 		IntPtr InitWithFloat3Points (IntPtr points, nuint count, float radius, bool cyclical);
@@ -1005,18 +1005,18 @@ namespace XamCore.GameplayKit {
 		[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")]
 		Vector2 GetPoint (nuint index);
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("float2AtIndex:")]
 		[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")]
 		Vector2 GetVector2Point (nuint index);
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("float3AtIndex:")]
 		[MarshalDirective (NativePrefix = "xamarin_simd__", Library = "__Internal")]
 		Vector3 GetVector3Point (nuint index);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
 	interface GKRandomDistribution : GKRandom {
@@ -1064,7 +1064,7 @@ namespace XamCore.GameplayKit {
 		GKRandomDistribution GetD20 ();
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (GKRandomDistribution))]
 	interface GKGaussianDistribution {
@@ -1084,7 +1084,7 @@ namespace XamCore.GameplayKit {
 		IntPtr Constructor (IGKRandom source, float mean, float deviation);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (GKRandomDistribution))]
 	interface GKShuffledDistribution {
@@ -1097,7 +1097,7 @@ namespace XamCore.GameplayKit {
 
 	interface IGKRandom { }
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Protocol]
 	interface GKRandom {
 		
@@ -1118,7 +1118,7 @@ namespace XamCore.GameplayKit {
 		bool GetNextBool ();
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface GKRandomSource : GKRandom, NSSecureCoding, NSCopying {
 		
@@ -1130,7 +1130,7 @@ namespace XamCore.GameplayKit {
 		NSObject [] ShuffleObjects (NSObject [] array);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (GKRandomSource))]
 	interface GKARC4RandomSource {
 		
@@ -1145,7 +1145,7 @@ namespace XamCore.GameplayKit {
 		void DropValues (nuint count);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (GKRandomSource))]
 	interface GKLinearCongruentialRandomSource {
 		
@@ -1157,7 +1157,7 @@ namespace XamCore.GameplayKit {
 		IntPtr Constructor (ulong seed);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (GKRandomSource))]
 	interface GKMersenneTwisterRandomSource {
 		
@@ -1169,7 +1169,7 @@ namespace XamCore.GameplayKit {
 		IntPtr Constructor (ulong seed);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface GKRuleSystem {
 		
@@ -1225,7 +1225,7 @@ namespace XamCore.GameplayKit {
 		void Reset ();
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface GKRule {
 
@@ -1251,7 +1251,7 @@ namespace XamCore.GameplayKit {
 		GKRule FromPredicate (Func<GKRuleSystem, bool> predicate, Action<GKRuleSystem> action);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (GKRule))]
 	interface GKNSPredicateRule {
 		
@@ -1265,7 +1265,7 @@ namespace XamCore.GameplayKit {
 		bool EvaluatePredicate (GKRuleSystem system);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[Abstract]
 	interface GKState {
@@ -1293,7 +1293,7 @@ namespace XamCore.GameplayKit {
 		void WillExit (GKState nextState);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
 	interface GKStateMachine {
@@ -1327,8 +1327,8 @@ namespace XamCore.GameplayKit {
 		bool EnterState (Class stateClass);
 	}
 
-	[NoMac]
-	[iOS (9,1)][TV (9,0)]
+	[Unavailable (PlatformName.MacOSX)]
+	[Introduced (PlatformName.iOS, 9, 1)][Introduced (PlatformName.TvOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	interface GKHybridStrategist : GKStrategist {
 		[Export ("budget")]
@@ -1341,7 +1341,7 @@ namespace XamCore.GameplayKit {
 		nuint MaxLookAheadDepth { get; set; }
 	}
 
-	[iOS (9,1)][TV (9,0)]
+	[Introduced (PlatformName.iOS, 9, 1)][Introduced (PlatformName.TvOS, 9, 0)]
 	[Protocol]
 	interface GKStrategist {
 		[Abstract]
@@ -1357,7 +1357,7 @@ namespace XamCore.GameplayKit {
 		IGKGameModelUpdate GetBestMoveForActivePlayer ();
 	}
 
-	[iOS (9,1), TV (9,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 1), Introduced (PlatformName.TvOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface GKMonteCarloStrategist : GKStrategist {
 		[Export ("budget")]
@@ -1367,7 +1367,7 @@ namespace XamCore.GameplayKit {
 		nuint ExplorationParameter { get; set; }
 	}
 
-	[iOS (10,0), TV (10, 0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface GKNoise {
 
@@ -1453,7 +1453,7 @@ namespace XamCore.GameplayKit {
 		void DisplaceX (GKNoise xDisplacementNoise, GKNoise yDisplacementNoise, GKNoise zDisplacementNoise);
 	}
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface GKNoiseMap {
 
@@ -1508,7 +1508,7 @@ namespace XamCore.GameplayKit {
 		void SetValue (float value, Vector2i position);
 	}
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
 	[Abstract]
 	[BaseType (typeof (NSObject))]
@@ -1516,7 +1516,7 @@ namespace XamCore.GameplayKit {
 
 	}
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Abstract]
 	[BaseType (typeof (GKNoiseSource))]
 	interface GKCoherentNoiseSource {
@@ -1534,7 +1534,7 @@ namespace XamCore.GameplayKit {
 		int Seed { get; set; }
 	}
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (GKCoherentNoiseSource))]
 	interface GKPerlinNoiseSource {
@@ -1551,7 +1551,7 @@ namespace XamCore.GameplayKit {
 		IntPtr Constructor (double frequency, nint octaveCount, double persistence, double lacunarity, int seed);
 	}
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (GKCoherentNoiseSource))]
 	interface GKBillowNoiseSource {
@@ -1568,7 +1568,7 @@ namespace XamCore.GameplayKit {
 		IntPtr Constructor (double frequency, nint octaveCount, double persistence, double lacunarity, int seed);
 	}
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (GKCoherentNoiseSource))]
 	interface GKRidgedNoiseSource {
@@ -1582,7 +1582,7 @@ namespace XamCore.GameplayKit {
 		IntPtr Constructor (double frequency, nint octaveCount, double lacunarity, int seed);
 	}
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (GKNoiseSource))]
 	interface GKVoronoiNoiseSource {
@@ -1608,7 +1608,7 @@ namespace XamCore.GameplayKit {
 		IntPtr Constructor (double frequency, double displacement, bool distanceEnabled, int seed);
 	}
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (GKNoiseSource))]
 	interface GKConstantNoiseSource {
@@ -1625,7 +1625,7 @@ namespace XamCore.GameplayKit {
 		IntPtr Constructor (double value);
 	}
 
-	[iOS (10, 0), TV (10, 0), Mac (10, 12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (GKNoiseSource))]
 	interface GKCylindersNoiseSource {
@@ -1642,7 +1642,7 @@ namespace XamCore.GameplayKit {
 		IntPtr Constructor (double frequency);
 	}
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (GKNoiseSource))]
 	interface GKSpheresNoiseSource {
@@ -1659,7 +1659,7 @@ namespace XamCore.GameplayKit {
 		IntPtr Constructor (double frequency);
 	}
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (GKNoiseSource))]
 	interface GKCheckerboardNoiseSource {
@@ -1676,7 +1676,7 @@ namespace XamCore.GameplayKit {
 		IntPtr Constructor (double squareSize);
 	}
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
 	interface GKOctreeNode {
@@ -1689,7 +1689,7 @@ namespace XamCore.GameplayKit {
 	}
 
 #if XAMCORE_2_0
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface GKOctree <ElementType> where ElementType : NSObject {
 
@@ -1725,7 +1725,7 @@ namespace XamCore.GameplayKit {
 		bool RemoveElement (ElementType element, GKOctreeNode node);
 	}
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface GKRTree<ElementType> where ElementType : NSObject {
@@ -1755,7 +1755,7 @@ namespace XamCore.GameplayKit {
 	}
 #endif
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (GKComponent))]
 	interface GKSKNodeComponent : GKAgentDelegate {
 
@@ -1772,12 +1772,12 @@ namespace XamCore.GameplayKit {
 
 	interface IGKSceneRootNodeType { }
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Protocol]
 	interface GKSceneRootNodeType {
 	}
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface GKScene : NSCopying, NSCoding {
 
@@ -1808,7 +1808,7 @@ namespace XamCore.GameplayKit {
 		void RemoveGraph (string name);
 	}
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Category]
 	[BaseType (typeof (SKNode))]
 	interface SKNode_GameplayKit {
@@ -1833,7 +1833,7 @@ namespace XamCore.GameplayKit {
 		void SetEntity (GKEntity entity);
 	}
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject), Name = "GKQuadtreeNode")] // Renamed to GKQuadtreeNode (lower case t) in Xcode8
 	[DisableDefaultCtor] // <quote>Used as a hint for faster removal via [GKQuadTree removeData:WithNode:]</quote>
 	interface GKQuadTreeNode {
@@ -1845,7 +1845,7 @@ namespace XamCore.GameplayKit {
 		}
 	}
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject), Name = "GKQuadtree")] // Renamed to GKQuadtree (lower case t) in xcode8
 	[DisableDefaultCtor] // crash (endless recursion)
 	interface GKQuadTree {

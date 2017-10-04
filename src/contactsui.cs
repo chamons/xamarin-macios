@@ -1,4 +1,4 @@
-﻿//
+//
 // Contacts bindings
 //
 // Authors:
@@ -22,7 +22,7 @@ namespace XamCore.ContactsUI {
 
 #if XAMCORE_2_0 // The Contacts framework uses generics heavily, which is only supported in Unified (for now at least)
 #if !MONOMAC
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (UIViewController))]
 	interface CNContactPickerViewController {
 		[Export ("initWithNibName:bundle:")]
@@ -53,9 +53,9 @@ namespace XamCore.ContactsUI {
 	interface ICNContactPickerDelegate {}
 
 #if MONOMAC
-	[Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface CNContactPickerDelegate
 	{
 		[Export ("contactPicker:didSelectContact:")]
@@ -71,7 +71,7 @@ namespace XamCore.ContactsUI {
 		void DidClose (CNContactPicker picker);
 	}
 #else
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface CNContactPickerDelegate {
@@ -94,8 +94,8 @@ namespace XamCore.ContactsUI {
 #endif // MONOMAC
 
 #if MONOMAC
-	[Mac (10,11, onlyOn64: true)]
-	[BaseType (typeof(NSViewController))]
+	[Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSViewController))]
 	interface CNContactViewController
 	{
 		[Static]
@@ -106,7 +106,7 @@ namespace XamCore.ContactsUI {
 		CNContact Contact { get; set; }
 	}
 #else
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[BaseType (typeof (UIViewController))]
 	interface CNContactViewController {
 		[Export ("initWithNibName:bundle:")]
@@ -175,8 +175,8 @@ namespace XamCore.ContactsUI {
 
 	interface ICNContactViewControllerDelegate {}
 
-	[iOS (9,0)]
-	[NoMac]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[Unavailable (PlatformName.MacOSX)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface CNContactViewControllerDelegate {
@@ -189,7 +189,7 @@ namespace XamCore.ContactsUI {
 	}
 
 #if MONOMAC
-	[Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface CNContactPicker
 	{

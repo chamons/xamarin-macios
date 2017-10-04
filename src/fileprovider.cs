@@ -1,4 +1,4 @@
-﻿﻿﻿//
+﻿﻿//
 // FileProvider C# bindings
 //
 // Authors:
@@ -16,10 +16,10 @@ using XamCore.Foundation;
 
 namespace XamCore.FileProvider {
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[ErrorDomain ("NSFileProviderErrorDomain")]
 	[Native]
-	enum NSFileProviderError : nint {
+	enum NSFileProviderError : long {
 		NotAuthenticated = -1000,
 		FilenameCollision = -1001,
 		SyncAnchorExpired = -1002,
@@ -29,7 +29,7 @@ namespace XamCore.FileProvider {
 		NoSuchItem = -1005,
 	}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Static]
 	interface NSFileProviderErrorKeys {
 
@@ -40,7 +40,7 @@ namespace XamCore.FileProvider {
 		NSString NonExistentItemIdentifierKey { get; }
 	}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Static]
 	interface NSFileProviderFavoriteRank {
 
@@ -48,7 +48,7 @@ namespace XamCore.FileProvider {
 		ulong Unranked { get; }
 	}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Static]
 	interface NSFileProviderItemIdentifier {
 
@@ -59,10 +59,10 @@ namespace XamCore.FileProvider {
 		NSString WorkingSetContainer { get; }
 	}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	[Flags]
-	enum NSFileProviderItemCapabilities : nuint {
+	enum NSFileProviderItemCapabilities : ulong {
 		Reading = 1 << 0,
 		Writing = 1 << 1,
 		Reparenting = 1 << 2,
@@ -74,7 +74,7 @@ namespace XamCore.FileProvider {
 		All = Reading | Writing | Reparenting | Renaming | Trashing | Deleting,
 	}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Static]
 	interface NSFileProviderPage {
 
@@ -95,7 +95,7 @@ namespace XamCore.FileProvider {
 		NSData InitialPageSortedByDate { get; }
 	}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
 	interface NSFileProviderDomain {
@@ -115,7 +115,7 @@ namespace XamCore.FileProvider {
 
 	interface INSFileProviderEnumerationObserver { }
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface NSFileProviderEnumerationObserver {
 
@@ -134,7 +134,7 @@ namespace XamCore.FileProvider {
 
 	interface INSFileProviderChangeObserver { }
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface NSFileProviderChangeObserver {
 
@@ -157,7 +157,7 @@ namespace XamCore.FileProvider {
 
 	interface INSFileProviderEnumerator { }
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface NSFileProviderEnumerator {
 
@@ -178,7 +178,7 @@ namespace XamCore.FileProvider {
 
 	interface INSFileProviderItem { }
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface NSFileProviderItem {
 
@@ -278,7 +278,7 @@ namespace XamCore.FileProvider {
 		NSDictionary GetUserInfo ();
 	}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface NSFileProviderManager {
@@ -337,7 +337,7 @@ namespace XamCore.FileProvider {
 
 	interface INSFileProviderServiceSource {}
 
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface NSFileProviderServiceSource {
 

@@ -1,4 +1,4 @@
-﻿//
+//
 // GKPrimitives.cs
 //
 // Authors:
@@ -18,21 +18,21 @@ using Vector3 = global::OpenTK.Vector3;
 
 namespace XamCore.GameplayKit {
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[StructLayout (LayoutKind.Sequential)]
 	public struct GKBox {
 		public Vector3 Min;
 		public Vector3 Max;
 	}
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[StructLayout (LayoutKind.Sequential)]
 	public struct GKQuad {
 		public Vector2 Min;
 		public Vector2 Max;
 	}
 
-	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[StructLayout (LayoutKind.Sequential)]
 	public struct GKTriangle {
 		[MarshalAs (UnmanagedType.ByValArray, SizeConst = 3)]

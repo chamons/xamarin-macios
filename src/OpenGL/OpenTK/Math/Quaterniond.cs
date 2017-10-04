@@ -33,7 +33,7 @@ namespace OpenTK
     /// Represents a double-precision Quaternion.
     /// </summary>
     [Serializable]
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     public struct Quaterniond : IEquatable<Quaterniond>
     {
         #region Fields
@@ -76,9 +76,9 @@ namespace OpenTK
         /// <summary>
         /// Gets or sets an OpenTK.Vector3d with the X, Y and Z components of this instance.
         /// </summary>
-        [Obsolete("Use Xyz property instead.")]
-        [CLSCompliant(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete ("Use Xyz property instead.")]
+        [CLSCompliant (false)]
+        [EditorBrowsable (EditorBrowsableState.Never)]
         [XmlIgnore]
         public Vector3d XYZ { get { return Xyz; } set { Xyz = value; } }
 
@@ -296,7 +296,7 @@ namespace OpenTK
         /// <param name="left">The first instance.</param>
         /// <param name="right">The second instance.</param>
         /// <returns>A new instance containing the result of the calculation.</returns>
-        [Obsolete("Use Multiply instead.")]
+        [Obsolete ("Use Multiply instead.")]
         public static Quaterniond Mult(Quaterniond left, Quaterniond right)
         {
             return new Quaterniond(
@@ -310,7 +310,7 @@ namespace OpenTK
         /// <param name="left">The first instance.</param>
         /// <param name="right">The second instance.</param>
         /// <param name="result">A new instance containing the result of the calculation.</param>
-        [Obsolete("Use Multiply instead.")]
+        [Obsolete ("Use Multiply instead.")]
         public static void Mult(ref Quaterniond left, ref Quaterniond right, out Quaterniond result)
         {
             result = new Quaterniond(
@@ -763,9 +763,9 @@ namespace OpenTK
             X = System.Math.Sqrt(System.Math.Max(0, scale + matrix[0, 0] - matrix[1, 1] - matrix[2, 2])) / 2;
             Y = System.Math.Sqrt(System.Math.Max(0, scale - matrix[0, 0] + matrix[1, 1] - matrix[2, 2])) / 2;
             Z = System.Math.Sqrt(System.Math.Max(0, scale - matrix[0, 0] - matrix[1, 1] + matrix[2, 2])) / 2; 
-            if( matrix[2,1] - matrix[1,2] < 0 ) X = -X;
-            if( matrix[0,2] - matrix[2,0] < 0 ) Y = -Y;
-            if( matrix[1,0] - matrix[0,1] < 0 ) Z = -Z;
+            if( matrix[2, 1] - matrix[1, 2] < 0 ) X = -X;
+            if( matrix[0, 2] - matrix[2, 0] < 0 ) Y = -Y;
+            if( matrix[1, 0] - matrix[0, 1] < 0 ) Z = -Z;
         }
 
         public Quaterniond(ref Matrix3d matrix)

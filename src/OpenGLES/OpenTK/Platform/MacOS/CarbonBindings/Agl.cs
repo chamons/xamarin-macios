@@ -282,7 +282,7 @@ namespace OpenTK.Platform.MacOS
         /*
          ** Pixel format functions
          */
-        [DllImport(agl)] internal static extern AGLPixelFormat aglChoosePixelFormat(ref AGLDevice gdevs, int ndev, int []attribs);
+        [DllImport (agl)] internal static extern AGLPixelFormat aglChoosePixelFormat(ref AGLDevice gdevs, int ndev, int []attribs);
         /// <summary>
         /// Use this overload only with IntPtr.Zero for the first argument.
         /// </summary>
@@ -294,40 +294,40 @@ namespace OpenTK.Platform.MacOS
         /// </param>
         /// <returns>
         /// </returns>
-        [DllImport(agl)] internal static extern AGLPixelFormat aglChoosePixelFormat(IntPtr gdevs, int ndev, int []attribs);
-        [DllImport(agl)] internal static extern void aglDestroyPixelFormat(AGLPixelFormat pix);
-        [DllImport(agl)] internal static extern AGLPixelFormat aglNextPixelFormat(AGLPixelFormat pix);
-        [DllImport(agl)] static extern byte aglDescribePixelFormat(AGLPixelFormat pix, int attrib, out int value);
-        [Obsolete("Use aglDisplaysOfPixelFormat instead.")]
-        [DllImport(agl)] static extern AGLDevice *aglDevicesOfPixelFormat(AGLPixelFormat pix, int *ndevs);
+        [DllImport (agl)] internal static extern AGLPixelFormat aglChoosePixelFormat(IntPtr gdevs, int ndev, int []attribs);
+        [DllImport (agl)] internal static extern void aglDestroyPixelFormat(AGLPixelFormat pix);
+        [DllImport (agl)] internal static extern AGLPixelFormat aglNextPixelFormat(AGLPixelFormat pix);
+        [DllImport (agl)] static extern byte aglDescribePixelFormat(AGLPixelFormat pix, int attrib, out int value);
+        [Obsolete ("Use aglDisplaysOfPixelFormat instead.")]
+        [DllImport (agl)] static extern AGLDevice *aglDevicesOfPixelFormat(AGLPixelFormat pix, int *ndevs);
         
         /*
          ** Renderer information functions
          */
-        [DllImport(agl)] static extern AGLRendererInfo aglQueryRendererInfo(AGLDevice[] gdevs, int ndev);
-        [DllImport(agl)] static extern void aglDestroyRendererInfo(AGLRendererInfo rend);
-        [DllImport(agl)] static extern AGLRendererInfo aglNextRendererInfo(AGLRendererInfo rend);
-        [DllImport(agl)] static extern byte aglDescribeRenderer(AGLRendererInfo rend, int prop, out int value);
+        [DllImport (agl)] static extern AGLRendererInfo aglQueryRendererInfo(AGLDevice[] gdevs, int ndev);
+        [DllImport (agl)] static extern void aglDestroyRendererInfo(AGLRendererInfo rend);
+        [DllImport (agl)] static extern AGLRendererInfo aglNextRendererInfo(AGLRendererInfo rend);
+        [DllImport (agl)] static extern byte aglDescribeRenderer(AGLRendererInfo rend, int prop, out int value);
         
         /*
          ** Context functions
          */
-        [DllImport(agl)] internal static extern AGLContext aglCreateContext(AGLPixelFormat pix, AGLContext share);
-        [DllImport(agl,EntryPoint="aglDestroyContext")] static extern byte _aglDestroyContext(AGLContext ctx);
+        [DllImport (agl)] internal static extern AGLContext aglCreateContext(AGLPixelFormat pix, AGLContext share);
+        [DllImport (agl, EntryPoint = "aglDestroyContext")] static extern byte _aglDestroyContext(AGLContext ctx);
         internal static bool aglDestroyContext(AGLContext context)
         {
             return (_aglDestroyContext(context) != 0) ? true : false;
         }
 
-        [DllImport(agl)] static extern byte aglCopyContext(AGLContext src, AGLContext dst, uint mask);
-        [DllImport(agl)] internal static extern byte aglUpdateContext(AGLContext ctx);
+        [DllImport (agl)] static extern byte aglCopyContext(AGLContext src, AGLContext dst, uint mask);
+        [DllImport (agl)] internal static extern byte aglUpdateContext(AGLContext ctx);
 
         /*
          ** Current state functions
          */
         #region --- aglSetCurrentContext ---
 
-        [DllImport(agl,EntryPoint="aglSetCurrentContext")] static extern byte _aglSetCurrentContext(AGLContext ctx);
+        [DllImport (agl, EntryPoint = "aglSetCurrentContext")] static extern byte _aglSetCurrentContext(AGLContext ctx);
         internal static bool aglSetCurrentContext(IntPtr context)
         {
             byte retval = _aglSetCurrentContext(context);
@@ -340,13 +340,13 @@ namespace OpenTK.Platform.MacOS
 
         #endregion
 
-        [DllImport(agl)] internal static extern AGLContext aglGetCurrentContext();
+        [DllImport (agl)] internal static extern AGLContext aglGetCurrentContext();
         
         
         /*
          ** Drawable Functions
          */
-        [DllImport(agl,EntryPoint="aglSetDrawable")] 
+        [DllImport (agl, EntryPoint = "aglSetDrawable")] 
         static extern byte _aglSetDrawable(AGLContext ctx, AGLDrawable draw);
 
         internal static void aglSetDrawable(AGLContext ctx, AGLDrawable draw)
@@ -360,10 +360,10 @@ namespace OpenTK.Platform.MacOS
                 throw new MacOSException(err, ErrorString(err));
             }
         }
-        [DllImport(agl)] static extern byte aglSetOffScreen(AGLContext ctx, int width, int height, int rowbytes, IntPtr baseaddr);
-        [DllImport(agl)] static extern AGLDrawable aglGetDrawable(AGLContext ctx);
+        [DllImport (agl)] static extern byte aglSetOffScreen(AGLContext ctx, int width, int height, int rowbytes, IntPtr baseaddr);
+        [DllImport (agl)] static extern AGLDrawable aglGetDrawable(AGLContext ctx);
 
-        [DllImport(agl, EntryPoint = "aglSetFullScreen")]
+        [DllImport (agl, EntryPoint = "aglSetFullScreen")]
         static extern byte _aglSetFullScreen(AGLContext ctx, int width, int height, int freq, int device);
         internal static void aglSetFullScreen(AGLContext ctx, int width, int height, int freq, int device)
         {
@@ -383,48 +383,48 @@ namespace OpenTK.Platform.MacOS
         /*
          ** Virtual screen functions
          */
-        [DllImport(agl)] static extern byte aglSetVirtualScreen(AGLContext ctx, int screen);
-        [DllImport(agl)] static extern int aglGetVirtualScreen(AGLContext ctx);
+        [DllImport (agl)] static extern byte aglSetVirtualScreen(AGLContext ctx, int screen);
+        [DllImport (agl)] static extern int aglGetVirtualScreen(AGLContext ctx);
         
         /*
          ** Obtain version numbers
          */
-        [DllImport(agl)] static extern void aglGetVersion(int *major, int *minor);
+        [DllImport (agl)] static extern void aglGetVersion(int *major, int *minor);
         
         /*
          ** Global library options
          */
-        [DllImport(agl)] static extern byte aglConfigure(GLenum pname, uint param);
+        [DllImport (agl)] static extern byte aglConfigure(GLenum pname, uint param);
         
         /*
          ** Swap functions
          */
-        [DllImport(agl)] internal static extern void aglSwapBuffers(AGLContext ctx);
+        [DllImport (agl)] internal static extern void aglSwapBuffers(AGLContext ctx);
         
         /*
          ** Per context options
          */
-        [DllImport(agl)] internal static extern byte aglEnable(AGLContext ctx, ParameterNames pname);
-        [DllImport(agl)] internal static extern byte aglDisable(AGLContext ctx, ParameterNames pname);
-        [DllImport(agl)] static extern byte aglIsEnabled(AGLContext ctx, GLenum pname);
-        [DllImport(agl)]
+        [DllImport (agl)] internal static extern byte aglEnable(AGLContext ctx, ParameterNames pname);
+        [DllImport (agl)] internal static extern byte aglDisable(AGLContext ctx, ParameterNames pname);
+        [DllImport (agl)] static extern byte aglIsEnabled(AGLContext ctx, GLenum pname);
+        [DllImport (agl)]
         internal static extern byte aglSetInteger(AGLContext ctx, ParameterNames pname, ref int @params);
-        [DllImport(agl)]
+        [DllImport (agl)]
         internal static extern byte aglSetInteger(AGLContext ctx, ParameterNames pname, int []@params);
-        [DllImport(agl)]
+        [DllImport (agl)]
         static extern byte aglGetInteger(AGLContext ctx, GLenum pname, int* @params);
 
         /*
          ** Font function
          */
          // TODO: face parameter should be of type StyleParameter in QuickDraw.
-        [DllImport(agl)] static extern byte aglUseFont(AGLContext ctx, int fontID, int face, int size, int first, int count, int @base);
+        [DllImport (agl)] static extern byte aglUseFont(AGLContext ctx, int fontID, int face, int size, int first, int count, int @base);
 
         /*
          ** Error functions
          */
-        [DllImport(agl,EntryPoint="aglGetError")] internal static extern AglError GetError();
-        [DllImport(agl,EntryPoint="aglErrorString")] static extern IntPtr _aglErrorString(AglError code);
+        [DllImport (agl, EntryPoint = "aglGetError")] internal static extern AglError GetError();
+        [DllImport (agl, EntryPoint = "aglErrorString")] static extern IntPtr _aglErrorString(AglError code);
         internal static string ErrorString(AglError code)
         {
             return Marshal.PtrToStringAnsi(_aglErrorString(code));
@@ -433,32 +433,32 @@ namespace OpenTK.Platform.MacOS
         /*
          ** Soft reset function
          */
-        [DllImport(agl)] static extern void aglResetLibrary();
+        [DllImport (agl)] static extern void aglResetLibrary();
         
         /*
          ** Surface texture function
          */
-        [DllImport(agl)] static extern void aglSurfaceTexture (AGLContext context, GLenum target, GLenum internalformat, AGLContext surfacecontext) ;
+        [DllImport (agl)] static extern void aglSurfaceTexture (AGLContext context, GLenum target, GLenum internalformat, AGLContext surfacecontext) ;
         
         /*
          ** PBuffer functions
          */
-        [DllImport(agl)] static extern byte aglCreatePBuffer (int width, int height, GLenum target, GLenum internalFormat, long max_level, AGLPbuffer *pbuffer); 
-        [DllImport(agl)] static extern byte aglDestroyPBuffer (AGLPbuffer pbuffer);
-        [DllImport(agl)] static extern byte aglDescribePBuffer (AGLPbuffer pbuffer, int *width, int *height, GLenum *target, GLenum *internalFormat, int *max_level);
-        [DllImport(agl)] static extern byte aglTexImagePBuffer (AGLContext ctx, AGLPbuffer pbuffer, int source);
+        [DllImport (agl)] static extern byte aglCreatePBuffer (int width, int height, GLenum target, GLenum internalFormat, long max_level, AGLPbuffer *pbuffer); 
+        [DllImport (agl)] static extern byte aglDestroyPBuffer (AGLPbuffer pbuffer);
+        [DllImport (agl)] static extern byte aglDescribePBuffer (AGLPbuffer pbuffer, int *width, int *height, GLenum *target, GLenum *internalFormat, int *max_level);
+        [DllImport (agl)] static extern byte aglTexImagePBuffer (AGLContext ctx, AGLPbuffer pbuffer, int source);
         
         /*
          ** Pbuffer Drawable Functions
          */
-        [DllImport(agl)] static extern byte aglSetPBuffer (AGLContext ctx, AGLPbuffer pbuffer, int face, int level, int screen)    ;
-        [DllImport(agl)] static extern byte aglGetPBuffer (AGLContext ctx, AGLPbuffer *pbuffer, int *face, int *level, int *screen)  ;
+        [DllImport (agl)] static extern byte aglSetPBuffer (AGLContext ctx, AGLPbuffer pbuffer, int face, int level, int screen)    ;
+        [DllImport (agl)] static extern byte aglGetPBuffer (AGLContext ctx, AGLPbuffer *pbuffer, int *face, int *level, int *screen)  ;
         
         /*
          ** CGL functions
          */
-        [DllImport(agl)] static extern byte aglGetCGLContext(AGLContext ctx, void **cgl_ctx) ;
-        [DllImport(agl)] static extern byte aglGetCGLPixelFormat(AGLPixelFormat pix, void **cgl_pix);
+        [DllImport (agl)] static extern byte aglGetCGLContext(AGLContext ctx, void **cgl_ctx) ;
+        [DllImport (agl)] static extern byte aglGetCGLPixelFormat(AGLPixelFormat pix, void **cgl_pix);
 
         #pragma warning restore 0169
     }

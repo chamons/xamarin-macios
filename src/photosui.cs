@@ -11,9 +11,9 @@ using XamCore.Photos;
 using System;
 
 namespace XamCore.PhotosUI {
-	[NoTV]
-	[iOS (8, 0)]
-	[Mac (10, 13, onlyOn64: true)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[Protocol]
 #if !XAMCORE_4_0 && !TVOS && !MONOMAC
 	// According to documentation you're supposed to implement this protocol in a UIViewController subclass,
@@ -45,8 +45,8 @@ namespace XamCore.PhotosUI {
 	}
 
 #if !MONOMAC
-	[TV (10,0)]
-	[iOS (9,1)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 9, 1)]
 	[BaseType (typeof (UIView))]
 	interface PHLivePhotoView {
 
@@ -82,8 +82,8 @@ namespace XamCore.PhotosUI {
 		void StopPlayback ();
 	}
 
-	[TV (10,0)]
-	[iOS (9,1)][NoMac]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 9, 1)][Unavailable (PlatformName.MacOSX)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface PHLivePhotoViewDelegate {
@@ -95,15 +95,15 @@ namespace XamCore.PhotosUI {
 	}
 #endif
 
-	[Mac (10,13, onlyOn64: true)][NoiOS][NoTV][NoWatch]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)][Unavailable (PlatformName.iOS)][Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 	[Static]
 	interface PHProjectType {
 		[Field ("PHProjectTypeUndefined")]
 		NSString Undefined { get; }
 	}
 
-	[Mac (10,13, onlyOn64 : true)]
-	[NoiOS][NoTV]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
+	[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.TvOS)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSExtensionContext))]
 	interface PHProjectExtensionContext : NSSecureCoding, NSCopying {
@@ -115,8 +115,8 @@ namespace XamCore.PhotosUI {
 		PHProject Project { get; }
 	}
 
-	[Mac (10,13, onlyOn64 : true)]
-	[NoiOS][NoTV]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
+	[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.TvOS)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (PHProjectElement))]
 	interface PHProjectJournalEntryElement : NSSecureCoding {
@@ -131,8 +131,8 @@ namespace XamCore.PhotosUI {
 		PHProjectTextElement TextElement { get; }
 	}
 
-	[Mac (10,13, onlyOn64 : true)]
-	[NoiOS][NoTV]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
+	[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.TvOS)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (PHProjectElement))]
 	interface PHProjectTextElement : NSSecureCoding {
@@ -147,8 +147,8 @@ namespace XamCore.PhotosUI {
 		PHProjectTextElementType TextElementType { get; }
 	}
 
-	[Mac (10,13, onlyOn64 : true)]
-	[NoiOS][NoTV]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
+	[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.TvOS)]
 	[Protocol]
 	interface PHProjectExtensionController {
 
@@ -168,8 +168,8 @@ namespace XamCore.PhotosUI {
 		void FinishProject (Action completion);
 	}
 
-	[Mac (10,13, onlyOn64 : true)]
-	[NoiOS][NoTV]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
+	[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface PHProjectTypeDescription : NSSecureCoding {
@@ -197,8 +197,8 @@ namespace XamCore.PhotosUI {
 		IntPtr Constructor (NSString projectType, string localizedTitle, [NullAllowed] string localizedDescription, [NullAllowed] UIImage image);
 	}
 
-	[Mac (10,13, onlyOn64 : true)]
-	[NoiOS][NoTV]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
+	[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface PHProjectRegionOfInterest : NSSecureCoding {
@@ -213,8 +213,8 @@ namespace XamCore.PhotosUI {
 		string Identifier { get; }
 	}
 
-	[Mac (10,13, onlyOn64 : true)]
-	[NoiOS][NoTV]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
+	[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface PHProjectElement : NSSecureCoding {
@@ -226,8 +226,8 @@ namespace XamCore.PhotosUI {
 		CGRect Placement { get; }
 	}
 
-	[Mac (10,13, onlyOn64 : true)]
-	[NoiOS][NoTV]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
+	[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.TvOS)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (PHProjectElement))]
 	interface PHProjectAssetElement : NSSecureCoding {
@@ -245,8 +245,8 @@ namespace XamCore.PhotosUI {
 		PHProjectRegionOfInterest[] RegionsOfInterest { get; }
 	}
 
-	[Mac (10,13, onlyOn64 : true)]
-	[NoiOS][NoTV]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
+	[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface PHProjectInfo : NSSecureCoding {
@@ -261,8 +261,8 @@ namespace XamCore.PhotosUI {
 		PHProjectSection[] Sections { get; }
 	}
 
-	[Mac (10,13, onlyOn64 : true)]
-	[NoiOS][NoTV]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
+	[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface PHProjectSection : NSSecureCoding {
@@ -277,8 +277,8 @@ namespace XamCore.PhotosUI {
 		string Title { get; }
 	}
 
-	[Mac (10,13, onlyOn64 : true)]
-	[NoiOS][NoTV]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
+	[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface PHProjectSectionContent : NSSecureCoding {

@@ -5,7 +5,7 @@ using XamCore.CoreGraphics;
 
 namespace XamCore.AppKit {
 
-	[DebuggerTypeProxy (typeof(NSEvent.NSEventDebuggerProxy))]
+	[DebuggerTypeProxy (typeof (NSEvent.NSEventDebuggerProxy))]
 	public partial class NSEvent {
 		
 		class NSEventDebuggerProxy {

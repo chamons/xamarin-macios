@@ -17,7 +17,7 @@ using XamCore.Foundation;
 namespace XamCore.ImageIO {
 
 	// CGImageMetadata.h
-	[iOS (7,0), Mac (10,8)]
+	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 	public class CGImageMetadataTag : INativeObject, IDisposable {
 
 		// note: CGImageMetadataType is always an int (4 bytes) so it's ok to use in the pinvoke declaration
@@ -31,7 +31,7 @@ namespace XamCore.ImageIO {
 		{
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal CGImageMetadataTag (IntPtr handle, bool owns)
 		{
 			if (handle == IntPtr.Zero)
@@ -95,7 +95,7 @@ namespace XamCore.ImageIO {
 			}
 		}
 
-		[DllImport (Constants.ImageIOLibrary, EntryPoint="CGImageMetadataTagGetTypeID")]
+		[DllImport (Constants.ImageIOLibrary, EntryPoint = "CGImageMetadataTagGetTypeID")]
 		public extern static nint GetTypeID ();
 
 

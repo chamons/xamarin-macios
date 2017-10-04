@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 //
 // The Open Toolkit Library License
 //
@@ -187,7 +187,7 @@ namespace OpenTK
         /// Checks whether type is a blittable value type.
         /// </summary>
         /// <param name="type">An instance of the type to check.</param>
-        [CLSCompliant(false)]
+        [CLSCompliant (false)]
         public static bool Check<T>(T[][] type) where T : struct
         {
             return BlittableValueType<T>.Check();

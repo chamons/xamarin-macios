@@ -384,11 +384,11 @@ namespace OpenTK.Platform.MacOS
 
          private const string Library = "libdl.dylib";
 
-        [DllImport(Library, EntryPoint = "NSIsSymbolNameDefined")]
+        [DllImport (Library, EntryPoint = "NSIsSymbolNameDefined")]
         private static extern bool NSIsSymbolNameDefined(string s);
-        [DllImport(Library, EntryPoint = "NSLookupAndBindSymbol")]
+        [DllImport (Library, EntryPoint = "NSLookupAndBindSymbol")]
         private static extern IntPtr NSLookupAndBindSymbol(string s);
-        [DllImport(Library, EntryPoint = "NSAddressOfSymbol")]
+        [DllImport (Library, EntryPoint = "NSAddressOfSymbol")]
         private static extern IntPtr NSAddressOfSymbol(IntPtr symbol);
 
         public override IntPtr GetAddress(string function)

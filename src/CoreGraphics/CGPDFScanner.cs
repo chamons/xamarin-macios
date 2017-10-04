@@ -48,7 +48,7 @@ namespace XamCore.CoreGraphics {
 			Handle = handle;
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal CGPDFScanner (IntPtr handle, bool owns)
 		{
 			if (!owns)

@@ -19,7 +19,7 @@ namespace XamCore.VideoSubscriberAccount {
 	[Introduced (PlatformName.TvOS, 10, 0)]
 	[Unavailable (PlatformName.WatchOS)]
 	[ErrorDomain ("VSErrorDomain")]
-	public enum VSErrorCode : nint {
+	public enum VSErrorCode : long {
 		AccessNotGranted = 0,
 		UnsupportedProvider = 1,
 		UserCancelled = 2,
@@ -32,7 +32,7 @@ namespace XamCore.VideoSubscriberAccount {
 	[Introduced (PlatformName.iOS, 10, 0)]
 	[Introduced (PlatformName.TvOS, 10, 0)]
 	[Unavailable (PlatformName.WatchOS)]
-	public enum VSAccountAccessStatus : nint {
+	public enum VSAccountAccessStatus : long {
 		NotDetermined = 0,
 		Restricted = 1,
 		Denied = 2,
@@ -55,7 +55,7 @@ namespace XamCore.VideoSubscriberAccount {
 		[Field ("VSErrorInfoKeyUnsupportedProviderIdentifier")]
 		NSString UnsupportedProviderIdentifierKey { get; }
 
-		[TV (10,1)][iOS (10,2)]
+		[Introduced (PlatformName.TvOS, 10, 1)][Introduced (PlatformName.iOS, 10, 2)]
 		[Field ("VSErrorInfoKeyAccountProviderResponse")]
 		NSString AccountProviderResponseKey { get; }
 	}
@@ -72,7 +72,7 @@ namespace XamCore.VideoSubscriberAccount {
 
 		string UnsupportedProviderIdentifier { get; }
 
-		[TV (10,1)][iOS (10,2)]
+		[Introduced (PlatformName.TvOS, 10, 1)][Introduced (PlatformName.iOS, 10, 2)]
 		string AccountProviderResponse { get; }
 	}
 
@@ -93,7 +93,7 @@ namespace XamCore.VideoSubscriberAccount {
 		[Export ("accountManager:dismissViewController:")]
 		void DismissViewController (VSAccountManager accountManager, UIViewController viewController);
 
-		[iOS (11,0)][TV (11,0)]
+		[Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("accountManager:shouldAuthenticateAccountProviderWithIdentifier:")]
 		bool ShouldAuthenticateAccountProvider (VSAccountManager accountManager, string accountProviderIdentifier);
 	}
@@ -166,7 +166,7 @@ namespace XamCore.VideoSubscriberAccount {
 		[NullAllowed, Export ("SAMLAttributeQueryResponse")]
 		string SamlAttributeQueryResponse { get; }
 
-		[TV (10,1)][iOS (10,2)]
+		[Introduced (PlatformName.TvOS, 10, 1)][Introduced (PlatformName.iOS, 10, 2)]
 		[NullAllowed, Export ("accountProviderResponse", ArgumentSemantic.Strong)]
 		VSAccountProviderResponse AccountProviderResponse { get; }
 	}
@@ -183,7 +183,7 @@ namespace XamCore.VideoSubscriberAccount {
 		[Export ("supportedAccountProviderIdentifiers", ArgumentSemantic.Copy)]
 		string [] SupportedAccountProviderIdentifiers { get; set; }
 
-		[TV (11,0)][iOS (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0)][Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("featuredAccountProviderIdentifiers", ArgumentSemantic.Copy)]
 		string[] FeaturedAccountProviderIdentifiers { get; set; }
 
@@ -209,13 +209,13 @@ namespace XamCore.VideoSubscriberAccount {
 		string [] AttributeNames { get; set; }
 
 		[Protected]
-		[TV (10,1)][iOS (10,2)]
+		[Introduced (PlatformName.TvOS, 10, 1)][Introduced (PlatformName.iOS, 10, 2)]
 		[Export ("supportedAuthenticationSchemes", ArgumentSemantic.Copy)]
 		NSString[] SupportedAuthenticationSchemesString { get; set; }
 	}
 
-	[iOS (10,2)]
-	[TV (10,1)]
+	[Introduced (PlatformName.iOS, 10, 2)]
+	[Introduced (PlatformName.TvOS, 10, 1)]
 	[BaseType (typeof (NSObject))]
 	interface VSAccountProviderResponse {
 
@@ -233,22 +233,22 @@ namespace XamCore.VideoSubscriberAccount {
 		string Body { get; }
 	}
 
-	[iOS (10,2)]
-	[TV (10,1)]
+	[Introduced (PlatformName.iOS, 10, 2)]
+	[Introduced (PlatformName.TvOS, 10, 1)]
 	enum VSAccountProviderAuthenticationScheme {
 		[Field ("VSAccountProviderAuthenticationSchemeSAML")]
 		Saml,
 	}
 
-	[TV (11,0)][iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0)][Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum VSSubscriptionAccessLevel : nint {
+	public enum VSSubscriptionAccessLevel : long {
 		Unknown,
 		FreeWithAccount,
 		Paid,
 	}
 
-	[TV (11,0)][iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0)][Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	interface VSSubscription {
 		[Export ("expirationDate", ArgumentSemantic.Copy)]
@@ -261,7 +261,7 @@ namespace XamCore.VideoSubscriberAccount {
 		string[] TierIdentifiers { get; set; }
 	}
 
-	[TV (11,0)][iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0)][Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface VSSubscriptionRegistrationCenter {

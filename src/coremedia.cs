@@ -13,13 +13,13 @@ namespace XamCore.CoreMedia {
 	[Partial]
 	interface CMMemoryPool {
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[Internal][Field ("kCMMemoryPoolOption_AgeOutPeriod")]
 		IntPtr AgeOutPeriodSelector { get; }
 	}
 
 	[Static][Internal]
-	[Mavericks, Since (6,0)]
+	[Introduced (PlatformName.MacOSX, 10, 9), Introduced (PlatformName.iOS, 6, 0)]
 	interface CMTextMarkupAttributesKeys {
 		[Internal][Field ("kCMTextMarkupAttribute_ForegroundColorARGB")]
 		NSString ForegroundColorARGB { get; }
@@ -121,27 +121,27 @@ namespace XamCore.CoreMedia {
 		NSString GradualDecoderRefresh { get; }
 
 #if !MONOMAC
-		[iOS (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("kCMSampleBufferAttachmentKey_DroppedFrameReason")]
 		NSString DroppedFrameReason { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("kCMSampleBufferAttachmentKey_StillImageLensStabilizationInfo")]
 		NSString StillImageLensStabilizationInfo { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("kCMSampleBufferLensStabilizationInfo_Active")]
 		NSString BufferLensStabilizationInfo_Active { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("kCMSampleBufferLensStabilizationInfo_OutOfRange")]
 		NSString BufferLensStabilizationInfo_OutOfRange { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("kCMSampleBufferLensStabilizationInfo_Unavailable")]
 		NSString BufferLensStabilizationInfo_Unavailable { get; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Field ("kCMSampleBufferLensStabilizationInfo_Off")]
 		NSString BufferLensStabilizationInfo_Off { get; }
 #endif

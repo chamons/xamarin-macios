@@ -16,7 +16,7 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.Foundation {
 	internal class NSFastEnumerator {
-		[DllImport (Messaging.LIBOBJC_DYLIB, EntryPoint="objc_msgSend")]
+		[DllImport (Messaging.LIBOBJC_DYLIB, EntryPoint = "objc_msgSend")]
 		public extern static nuint objc_msgSend (IntPtr receiver, IntPtr selector, ref NSFastEnumerationState arg1, IntPtr[] arg2, nuint arg3);
 	}
 

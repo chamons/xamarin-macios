@@ -147,7 +147,7 @@ namespace XamCore.AudioUnit
 #if !XAMCORE_2_0
 		// callback funtion should be static method and be attatched a MonoPInvokeCallback attribute.        
 #pragma warning disable 612
-		[MonoPInvokeCallback(typeof(AudioUnit.AURenderCallback))]
+		[MonoPInvokeCallback (typeof (AudioUnit.AURenderCallback))]
 		static int oldRenderCallback(IntPtr inRefCon,
 					  ref AudioUnitRenderActionFlags _ioActionFlags,
 					  ref AudioTimeStamp _inTimeStamp,
@@ -206,7 +206,7 @@ namespace XamCore.AudioUnit
 
 		HashSet<RenderDelegate> graphUserCallbacks = new HashSet<RenderDelegate> ();
 
-		[MonoPInvokeCallback(typeof(CallbackShared))]
+		[MonoPInvokeCallback (typeof (CallbackShared))]
 		static AudioUnitStatus renderCallback(IntPtr inRefCon,
 					ref AudioUnitRenderActionFlags _ioActionFlags,
 					ref AudioTimeStamp _inTimeStamp,
@@ -460,102 +460,102 @@ namespace XamCore.AudioUnit
 			Dispose (false);
 		}
 			
-		[DllImport(Constants.AudioToolboxLibrary, EntryPoint = "NewAUGraph")]
+		[DllImport (Constants.AudioToolboxLibrary, EntryPoint = "NewAUGraph")]
 		static extern int /* OSStatus */ NewAUGraph(ref IntPtr outGraph);
 
-		[DllImport(Constants.AudioToolboxLibrary, EntryPoint = "AUGraphOpen")]
+		[DllImport (Constants.AudioToolboxLibrary, EntryPoint = "AUGraphOpen")]
 		static extern int /* OSStatus */ AUGraphOpen(IntPtr inGraph);
 
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 #if XAMCORE_2_0
 		static extern AUGraphError AUGraphAddNode(IntPtr inGraph, ref AudioComponentDescription inDescription, out int /* AUNode = SInt32* */ outNode);
 #else
 		static extern AUGraphError AUGraphAddNode(IntPtr inGraph, AudioComponentDescription inDescription, out int /* AUNode = SInt32* */ outNode);
 #endif
 
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern AUGraphError AUGraphRemoveNode (IntPtr inGraph, int /* AUNode = SInt32 */ inNode);
 
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern AUGraphError AUGraphGetNodeCount (IntPtr inGraph, out int /* UInt32* */ outNumberOfNodes);
 
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern AUGraphError AUGraphGetIndNode (IntPtr inGraph, uint /* UInt32 */ inIndex, out int /* AUNode = SInt32* */ outNode);
 	
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern AUGraphError AUGraphNodeInfo(IntPtr inGraph, int /* AUNode = SInt32 */ inNode, IntPtr outDescription, out IntPtr outAudioUnit);
 
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern AUGraphError AUGraphNodeInfo(IntPtr inGraph, int /* AUNode = SInt32 */ inNode, out AudioComponentDescription outDescription, out IntPtr outAudioUnit);
 
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern AUGraphError AUGraphClearConnections (IntPtr inGraph);
 	
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern AUGraphError AUGraphConnectNodeInput (IntPtr inGraph, int /* AUNode = SInt32 */ inSourceNode, uint /* UInt32 */ inSourceOutputNumber, int /* AUNode = SInt32 */ inDestNode, uint /* UInt32 */ inDestInputNumber);
 
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern AUGraphError AUGraphDisconnectNodeInput (IntPtr inGraph, int /* AUNode = SInt32 */ inDestNode, uint /* UInt32 */ inDestInputNumber);
 
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern AUGraphError AUGraphGetNumberOfInteractions (IntPtr inGraph, out uint /* UInt32* */ outNumInteractions);
 
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern AUGraphError AUGraphCountNodeInteractions (IntPtr inGraph, int /* AUNode = SInt32 */ inNode, out uint /* UInt32* */ outNumInteractions);
 	
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern AUGraphError AUGraphInitialize (IntPtr inGraph);
 
 #if !XAMCORE_2_0
 #pragma warning disable 612
-		[DllImport(Constants.AudioToolboxLibrary, EntryPoint = "AUGraphAddRenderNotify")]
+		[DllImport (Constants.AudioToolboxLibrary, EntryPoint = "AUGraphAddRenderNotify")]
 		static extern int AUGraphAddRenderNotify (IntPtr inGraph, AudioUnit.AURenderCallback inCallback, IntPtr inRefCon );
 #pragma warning restore 612
 #endif
 
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern int AUGraphAddRenderNotify (IntPtr inGraph, CallbackShared inCallback, IntPtr inRefCon );
 
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern int AUGraphRemoveRenderNotify (IntPtr inGraph, CallbackShared inCallback, IntPtr inRefCon );
 
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern AUGraphError AUGraphStart (IntPtr inGraph);
 
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern AUGraphError AUGraphStop (IntPtr inGraph);
 
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern AUGraphError AUGraphUninitialize (IntPtr inGraph);
 
-		[DllImport(Constants.AudioToolboxLibrary, EntryPoint = "AUGraphClose")]
+		[DllImport (Constants.AudioToolboxLibrary, EntryPoint = "AUGraphClose")]
 		static extern int /* OSStatus */ AUGraphClose(IntPtr inGraph);
 	
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern int /* OSStatus */ DisposeAUGraph(IntPtr inGraph);
 
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern AUGraphError AUGraphIsOpen (IntPtr inGraph, out bool outIsOpen);
 
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern AUGraphError AUGraphIsInitialized (IntPtr inGraph, out bool outIsInitialized);
 
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern AUGraphError AUGraphIsRunning (IntPtr inGraph, out bool outIsRunning);
 
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern AUGraphError AUGraphGetCPULoad (IntPtr inGraph, out float /* Float32* */ outAverageCPULoad);
 
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern AUGraphError AUGraphGetMaxCPULoad (IntPtr inGraph, out float /* Float32* */ outMaxLoad);
 
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern AUGraphError AUGraphSetNodeInputCallback (IntPtr inGraph, int /* AUNode = SInt32 */ inDestNode, uint /* UInt32 */ inDestInputNumber, ref AURenderCallbackStruct inInputCallback);
 
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern AUGraphError AUGraphUpdate (IntPtr inGraph, out bool outIsUpdated);
 
-		[DllImport(Constants.AudioToolboxLibrary)]
+		[DllImport (Constants.AudioToolboxLibrary)]
 		static extern void CAShow (IntPtr handle);
 	}
 }

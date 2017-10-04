@@ -15,7 +15,7 @@ using XamCore.ObjCRuntime;
 using XamCore.Foundation;
 
 namespace XamCore.ObjCRuntime {
-	[AttributeUsage (AttributeTargets.Parameter, AllowMultiple=false)]
+	[AttributeUsage (AttributeTargets.Parameter, AllowMultiple = false)]
 #if XAMCORE_2_0
 	sealed
 #endif
@@ -24,7 +24,7 @@ namespace XamCore.ObjCRuntime {
 		public Type Type { get; set; }
 	}
 
-	[AttributeUsage (AttributeTargets.ReturnValue, AllowMultiple=false)]
+	[AttributeUsage (AttributeTargets.ReturnValue, AllowMultiple = false)]
 	public sealed class DelegateProxyAttribute : Attribute {
 		public DelegateProxyAttribute (Type delegateType)
 		{

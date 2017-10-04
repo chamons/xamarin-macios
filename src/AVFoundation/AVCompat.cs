@@ -134,7 +134,7 @@ namespace XamCore.AVFoundation {
 			throw new NotImplementedException ();
 		}
 
-		public virtual void DidReceiveChallenge (NSUrlSession session, NSUrlSessionTask task, NSUrlAuthenticationChallenge challenge, [BlockProxy (typeof(Trampolines.NIDActionArity2V0))] Action<NSUrlSessionAuthChallengeDisposition, NSUrlCredential> completionHandler)
+		public virtual void DidReceiveChallenge (NSUrlSession session, NSUrlSessionTask task, NSUrlAuthenticationChallenge challenge, [BlockProxy (typeof (Trampolines.NIDActionArity2V0))] Action<NSUrlSessionAuthChallengeDisposition, NSUrlCredential> completionHandler)
 		{
 			throw new NotImplementedException ();
 		}
@@ -149,12 +149,12 @@ namespace XamCore.AVFoundation {
 			throw new NotImplementedException ();
 		}
 
-		public virtual void NeedNewBodyStream (NSUrlSession session, NSUrlSessionTask task, [BlockProxy (typeof(Trampolines.NIDActionArity1V0))] Action<NSInputStream> completionHandler)
+		public virtual void NeedNewBodyStream (NSUrlSession session, NSUrlSessionTask task, [BlockProxy (typeof (Trampolines.NIDActionArity1V0))] Action<NSInputStream> completionHandler)
 		{
 			throw new NotImplementedException ();
 		}
 
-		public virtual void WillPerformHttpRedirection (NSUrlSession session, NSUrlSessionTask task, NSHttpUrlResponse response, NSUrlRequest newRequest, [BlockProxy (typeof(Trampolines.NIDActionArity1V1))] Action<NSUrlRequest> completionHandler)
+		public virtual void WillPerformHttpRedirection (NSUrlSession session, NSUrlSessionTask task, NSHttpUrlResponse response, NSUrlRequest newRequest, [BlockProxy (typeof (Trampolines.NIDActionArity1V1))] Action<NSUrlRequest> completionHandler)
 		{
 			throw new NotImplementedException ();
 		}
@@ -237,7 +237,7 @@ namespace XamCore.AVFoundation {
 			}
 		}
 
-		[EditorBrowsable (EditorBrowsableState.Advanced),]
+		[EditorBrowsable (EditorBrowsableState.Advanced)]
 		protected AVAssetDownloadTask (NSObjectFlag t)
 		{
 			throw new NotImplementedException ();

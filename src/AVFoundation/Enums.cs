@@ -32,7 +32,7 @@ namespace XamCore.AVFoundation {
 
 	[Native]
 	// NSInteger - AVAudioSettings.h
-	public enum AVAudioQuality : nint {
+	public enum AVAudioQuality : long {
 		Min = 0,
 		Low = 0x20,
 		Medium = 0x40,
@@ -40,11 +40,11 @@ namespace XamCore.AVFoundation {
 		Max = 0x7F
 	}
 
-	[NoWatch]
-	[iOS (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Native]
 	// NSInteger - AVAssetExportSession.h
-	public enum AVAssetExportSessionStatus : nint {
+	public enum AVAssetExportSessionStatus : long {
 		Unknown,
 		Waiting,
 		Exporting,
@@ -53,11 +53,11 @@ namespace XamCore.AVFoundation {
 		Cancelled
 	}
 
-	[NoWatch]
-	[iOS (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Native]
 	// NSInteger - AVAssetReader.h
-	public enum AVAssetReaderStatus : nint {
+	public enum AVAssetReaderStatus : long {
 		Unknown = 0,
 		Reading,
 		Completed,
@@ -65,11 +65,11 @@ namespace XamCore.AVFoundation {
 		Cancelled,
 	}
 
-	[NoWatch]
-	[iOS (4,1)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 1)]
 	[Native]
 	// NSInteger - AVAssetWriter.h
-	public enum AVAssetWriterStatus : nint {
+	public enum AVAssetWriterStatus : long {
 		Unknown = 0,
 		Writing,
 		Completed,
@@ -77,41 +77,41 @@ namespace XamCore.AVFoundation {
 		Cancelled,
 	}
 
-	[NoTV, NoWatch]
-	[iOS (4,0)]
+	[Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Native]
 	// NSInteger - AVCaptureSession.h
-	public enum AVCaptureVideoOrientation : nint {
+	public enum AVCaptureVideoOrientation : long {
 		Portrait = 1,
 		PortraitUpsideDown,
 		LandscapeRight,
 		LandscapeLeft,
 	}
 
-	[NoWatch]
-	[NoTV]
-	[iOS (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Native]
 	// NSInteger - AVCaptureDevice.h
-	public enum AVCaptureFlashMode : nint {
+	public enum AVCaptureFlashMode : long {
 		Off, On, Auto
 	}
 
-	[NoWatch]
-	[NoTV]
-	[iOS (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Native]
 	// NSInteger - AVCaptureDevice.h
-	public enum AVCaptureTorchMode : nint {
+	public enum AVCaptureTorchMode : long {
 		Off, On, Auto
 	}
 
-	[NoWatch]
-	[NoTV]
-	[iOS (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Native]
 	// NSInteger - AVCaptureDevice.h
-	public enum AVCaptureFocusMode : nint {
+	public enum AVCaptureFocusMode : long {
 		Locked, AutoFocus, ContinuousAutoFocus,
 
 #if !XAMCORE_2_0
@@ -127,41 +127,41 @@ namespace XamCore.AVFoundation {
 #endif
 	}
 
-	[NoWatch]
-	[NoTV]
-	[iOS (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Native]
 	// NSInteger - AVCaptureDevice.h
-	public enum AVCaptureDevicePosition : nint {
+	public enum AVCaptureDevicePosition : long {
 		Unspecified = 0,
 		Back = 1,
 		Front = 2
 	}
 
-	[NoWatch]
-	[NoTV]
-	[iOS (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Native]
 	// NSInteger - AVCaptureDevice.h
-	public enum AVCaptureExposureMode : nint {
-		Locked, AutoExpose, ContinuousAutoExposure, [iOS (8,0)] Custom
+	public enum AVCaptureExposureMode : long {
+		Locked, AutoExpose, ContinuousAutoExposure, [Introduced (PlatformName.iOS, 8, 0)] Custom
 	}
 
-	[NoWatch]
-	[NoTV]
-	[iOS (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Native]
 	// NSInteger - AVCaptureDevice.h
-	public enum AVCaptureWhiteBalanceMode : nint {
+	public enum AVCaptureWhiteBalanceMode : long {
 		Locked, AutoWhiteBalance, ContinuousAutoWhiteBalance
 	}
 
 #if !MONOMAC || !XAMCORE_4_0
 	[Flags]
-	[NoTV]
-	[iOS (4,0)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Native]
-	[Availability (Deprecated = Platform.iOS_6_0)]
+	[Deprecated (PlatformName.iOS, 6, 0)]
 	// NSUInteger - AVAudioSession.h
 	public enum AVAudioSessionInterruptionFlags : nuint_compat_int {
 		ShouldResume = 1
@@ -170,9 +170,9 @@ namespace XamCore.AVFoundation {
 
 	// Populated in NSError.Code, an NSInteger
 	// anonymous enum - AVError.h
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Native]
-	public enum AVError : nint {
+	public enum AVError : long {
 		Unknown = -11800,
 		OutOfMemory = -11801,
 		SessionNotRunning = -11803,
@@ -232,68 +232,68 @@ namespace XamCore.AVFoundation {
 		AirPlayControllerRequiresInternet = -11856,
 		AirPlayReceiverRequiresInternet = -11857,
 
-		[iOS (9,0), Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		VideoCompositorFailed = -11858,
 
 #if !MONOMAC
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		RecordingAlreadyInProgress = -11859,
 #endif
-		[NoWatch, iOS (10,0), TV (10,0), Mac (10,12)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		UnsupportedOutputSettings = -11861,
-		[NoWatch, iOS (10,0), TV (10,0), Mac (10,12)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 		OperationNotAllowed = -11862,
 	}
 
-	[NoWatch]
-	[iOS (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Native]
 	// NSInteger - AVPlayer.h
-	public enum AVPlayerActionAtItemEnd : nint {
+	public enum AVPlayerActionAtItemEnd : long {
 		Advance,
 		Pause,
 		None
 	}
 
-	[NoWatch]
-	[iOS (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Native]
 	// NSInteger - AVPlayerItem.h
-	public enum AVPlayerItemStatus : nint {
+	public enum AVPlayerItemStatus : long {
 		Unknown, ReadyToPlay, Failed
 	}
 
 #if !MONOMAC || !XAMCORE_4_0
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[Flags]
-	[iOS (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Native]
-	[Availability (Deprecated = Platform.iOS_6_0)]
+	[Deprecated (PlatformName.iOS, 6, 0)]
 	// declared as AVAudioSessionSetActiveOptions (NSUInteger) - AVAudioSession.h
 	public enum AVAudioSessionFlags : nuint_compat_int {
 		NotifyOthersOnDeactivation = 1
 	}
 #endif
 
-	[NoWatch]
-	[iOS (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Native]
 	// NSInteger - AVAsynchronousKeyValueLoading.h
-	public enum AVKeyValueStatus : nint {
+	public enum AVKeyValueStatus : long {
 		Unknown, Loading, Loaded, Failed, Cancelled
 	}
 
-	[NoWatch]
-	[iOS (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Native]
 	// NSInteger - AVPlayer.h
-	public enum AVPlayerStatus : nint {
+	public enum AVPlayerStatus : long {
 		Unknown,
 		ReadyToPlay,
 		Failed
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Native]
 	// NSUInteger - AVAsset.h
 	public enum AVAssetReferenceRestrictions : nuint_compat_int {
@@ -305,27 +305,27 @@ namespace XamCore.AVFoundation {
 		ForbidAll = 0xFFFF,
 	}
 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Native]
 	// NSInteger - AVAssetImageGenerator.h
-	public enum AVAssetImageGeneratorResult : nint {
+	public enum AVAssetImageGeneratorResult : long {
 		Succeeded, Failed, Cancelled
 	}
 
 #if !XAMCORE_3_0 || MONOMAC
-	[NoTV]
-	[Mac (10,7)] // N/A in iOS
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.MacOSX, 10, 7)] // N/A in iOS
 	[Native]
 	// NSInteger - AVCaptureDevice.h
-	public enum AVCaptureDeviceTransportControlsPlaybackMode : nint {
+	public enum AVCaptureDeviceTransportControlsPlaybackMode : long {
 		NotPlaying, Playing
 	}
 
-	[NoTV, NoWatch]
-	[Mac (10,7)] // N/A in iOS
+	[Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.MacOSX, 10, 7)] // N/A in iOS
 	[Native]
 	// NSInteger - AVCaptureSession.h
-	public enum AVVideoFieldMode : nint {
+	public enum AVVideoFieldMode : long {
 		Both, TopOnly, BottomOnly, Deinterlace
 	}
 #endif
@@ -349,7 +349,7 @@ namespace XamCore.AVFoundation {
 	// NSUInteger - AVAudioSession.h
 	public enum AVAudioSessionPortOverride : nuint_compat_int {
 		None = 0,
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		Speaker = 0x73706b72 // 'spkr'
 	}
 
@@ -372,16 +372,16 @@ namespace XamCore.AVFoundation {
 	public enum AVAudioSessionCategoryOptions : nuint_compat_int {
 		MixWithOthers = 1,
 		DuckOthers = 2,
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		AllowBluetooth = 4,
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		DefaultToSpeaker = 8,
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		InterruptSpokenAudioAndMixWithOthers = 17,
-		[NoWatch, iOS (10,0), TV (10,0)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		AllowBluetoothA2DP = 32,
-		[NoWatch, iOS (10,0), TV (10,0)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		AllowAirPlay = 64,
 	}
 
@@ -393,7 +393,7 @@ namespace XamCore.AVFoundation {
 
 	[Native]
 	// NSInteger - AVAudioSession.h
-	public enum AVAudioSessionErrorCode : nint {
+	public enum AVAudioSessionErrorCode : long {
 		None = 0,
 		MediaServicesFailed = 0x6D737276,
 		IsBusy = 0x21616374,
@@ -402,21 +402,21 @@ namespace XamCore.AVFoundation {
 		MissingEntitlement = 0x656e743f,
 		SiriIsRecording = 0x73697269,
 		CannotStartPlaying = 0x21706c61,
-		[Availability (Introduced = Platform.iOS_7_0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		CannotStartRecording = 0x21726563,
 		BadParam = -50,
 		Unspecified = 0x77686174,
 		InsufficientPriority = 0x21707269,
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		CodeResourceNotAvailable = 0x21726573
 	}
 #endif
 
-	[NoWatch]
-	[NoTV]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
 	[Native]
 	// NSInteger - AVCaptureDevice.h
-	public enum AVCaptureAutoFocusRangeRestriction : nint {
+	public enum AVCaptureAutoFocusRangeRestriction : long {
 		None = 0,
 		Near = 1,
 		Far = 2
@@ -436,27 +436,27 @@ namespace XamCore.AVFoundation {
 		Mastering
 	}
 
-	[NoWatch]
-	[NoTV]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
 	[Native]
 	// NSInteger - AVCaptureDevice.h
-	public enum AVAuthorizationStatus : nint {
+	public enum AVAuthorizationStatus : long {
 		NotDetermined, Restricted, Denied, Authorized
 	}
 
 #if !MONOMAC || !XAMCORE_4_0
-	[iOS (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[Native]
 	// NSInteger - AVSpeechSynthesis.h
-	public enum AVSpeechBoundary : nint {
+	public enum AVSpeechBoundary : long {
 		Immediate,
 		Word
 	}
 #endif
 
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum AVAudioCommonFormat : nuint {
+	public enum AVAudioCommonFormat : ulong {
 		Other = 0,
 		PCMFloat32 = 1,
 		PCMFloat64 = 2,
@@ -465,7 +465,7 @@ namespace XamCore.AVFoundation {
 	}
 
 	[Native]
-	public enum AVAudio3DMixingRenderingAlgorithm : nint {
+	public enum AVAudio3DMixingRenderingAlgorithm : long {
 		EqualPowerPanning = 0,
 		SphericalHead = 1,
 		HRTF = 2,
@@ -474,16 +474,16 @@ namespace XamCore.AVFoundation {
 	}
 
 #if !MONOMAC || !XAMCORE_4_0
-	[NoTV, NoWatch]
+	[Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
 	[Native]
-	public enum AVAudioSessionRecordPermission : nuint {
+	public enum AVAudioSessionRecordPermission : ulong {
 		Undetermined = 1970168948 /*'undt'*/,
 		Denied = 1684369017 /*'deny'*/,
 		Granted = 1735552628 /*'grnt'*/
 	}
 
 	[Native]
-	public enum AVAudioSessionSilenceSecondaryAudioHintType : nuint {
+	public enum AVAudioSessionSilenceSecondaryAudioHintType : ulong {
 		Begin = 1,
 		End = 0
 	}
@@ -491,14 +491,14 @@ namespace XamCore.AVFoundation {
 
 	[Flags]
 	[Native]
-	public enum AVAudioPlayerNodeBufferOptions : nuint {
+	public enum AVAudioPlayerNodeBufferOptions : ulong {
 		Loops            = 0x01,
 		Interrupts       = 0x02,
 		InterruptsAtLoop = 0x04
 	}
 
 	[Native]
-	public enum AVAudioUnitEQFilterType : nint {
+	public enum AVAudioUnitEQFilterType : long {
 		Parametric = 0,
 		LowPass = 1,
 		HighPass = 2,
@@ -513,7 +513,7 @@ namespace XamCore.AVFoundation {
 	}
 	
 	[Native]
-	public enum AVAudioUnitReverbPreset : nint {
+	public enum AVAudioUnitReverbPreset : long {
 		SmallRoom = 0,
 		MediumRoom = 1,
 		LargeRoom = 2,
@@ -530,7 +530,7 @@ namespace XamCore.AVFoundation {
 	}
 
 	[Native]
-	public enum AVAudioUnitDistortionPreset : nint {
+	public enum AVAudioUnitDistortionPreset : long {
 		DrumsBitBrush = 0,
 		DrumsBufferBeats = 1,
 		DrumsLoFi = 2,
@@ -556,31 +556,31 @@ namespace XamCore.AVFoundation {
 	}
 
 	[Native]
-	public enum AVAudioEnvironmentDistanceAttenuationModel : nint {
+	public enum AVAudioEnvironmentDistanceAttenuationModel : long {
 		Exponential = 1,
 		Inverse = 2,
 		Linear = 3
 	}
 
-	[TV (10,2), NoWatch]
+	[Introduced (PlatformName.TvOS, 10, 2), Unavailable (PlatformName.WatchOS)]
 	[Native]
-	public enum AVQueuedSampleBufferRenderingStatus : nint {
+	public enum AVQueuedSampleBufferRenderingStatus : long {
 		Unknown, Rendering, Failed
 	}
 
-	[NoWatch]
-	[NoTV]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
 	[Native]
-	public enum AVCaptureVideoStabilizationMode : nint {
+	public enum AVCaptureVideoStabilizationMode : long {
 		Off, Standard, Cinematic, Auto = -1
 	}
 
 #if XAMCORE_4_0
-	[NoMac]
+	[Unavailable (PlatformName.MacOSX)]
 #endif
-	[NoTV, NoWatch, iOS (8,0)]
+	[Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum AVCaptureAutoFocusSystem : nint {
+	public enum AVCaptureAutoFocusSystem : long {
 		None,
 		ContrastDetection,
 		PhaseDetection
@@ -588,116 +588,116 @@ namespace XamCore.AVFoundation {
 
 	// Convience enum
 	[Flags]
-	[iOS (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	public enum AVMetadataObjectType : ulong {
 		None = 0,
 
-		[iOS (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		Face = 1 << 0,
 
-		[iOS(7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		AztecCode = 1 << 1,
 
-		[iOS(7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		Code128Code = 1 << 2,
 
-		[iOS(7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		Code39Code = 1 << 3,
 
-		[iOS(7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		Code39Mod43Code = 1 << 4,
 
-		[iOS(7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		Code93Code = 1 << 5,
 
-		[iOS(7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		EAN13Code = 1 << 6,
 
-		[iOS(7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		EAN8Code = 1 << 7,
 
-		[iOS(7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		PDF417Code = 1 << 8,
 
-		[iOS(7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		QRCode = 1 << 9,
 
-		[iOS(7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		UPCECode = 1 << 10,
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		Interleaved2of5Code = 1 << 11,
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		ITF14Code = 1 << 12,
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		DataMatrixCode = 1 << 13,
 	}
 
 #if !MONOMAC
-	[NoTV, NoWatch]
-	[iOS (9,0)]
+	[Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Native]
-	public enum AVCaptureSessionInterruptionReason : nint {
+	public enum AVCaptureSessionInterruptionReason : long {
 		VideoDeviceNotAvailableInBackground = 1,
 		AudioDeviceInUseByAnotherClient = 2,
 		VideoDeviceInUseByAnotherClient = 3,
 		VideoDeviceNotAvailableWithMultipleForegroundApps = 4
 	}
 
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Native]
-	public enum AVSpeechSynthesisVoiceQuality : nint {
+	public enum AVSpeechSynthesisVoiceQuality : long {
 		Default = 1,
 		Enhanced
 	}
 #endif
 
-	[iOS (9,0), Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
-	public enum AVAudioConverterPrimeMethod : nint {
+	public enum AVAudioConverterPrimeMethod : long {
 		Pre = 0,
 		Normal = 1,
 		None = 2
 	}
 
-	[iOS (9,0), Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
-	public enum AVAudioConverterInputStatus : nint {
+	public enum AVAudioConverterInputStatus : long {
 		HaveData = 0,
 		NoDataNow = 1,
 		EndOfStream = 2
 	}
 
-	[iOS (9,0), Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
-	public enum AVAudioConverterOutputStatus : nint {
+	public enum AVAudioConverterOutputStatus : long {
 		HaveData = 0,
 		InputRanDry = 1,
 		EndOfStream = 2,
 		Error = 3
 	}
 
-	[iOS (9,0), Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
-	public enum AVMusicSequenceLoadOptions : nuint {
+	public enum AVMusicSequenceLoadOptions : ulong {
 		PreserveTracks = 0,
 		ChannelsToTracks = (1 << 0)
 	}
 			
 #if MONOMAC
-	[Mac (10,11)]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
-	public enum AVMovieWritingOptions : nuint
+	public enum AVMovieWritingOptions : ulong
 	{
 		AddMovieHeaderToDestination = 0,
 		TruncateDestinationToMovieHeaderOnly = (1 << 0)
 	}
 
-	[Mac (10,10)]
+	[Introduced (PlatformName.MacOSX, 10, 10)]
 	[Native]
-	public enum AVContentAuthorizationStatus : nint {
+	public enum AVContentAuthorizationStatus : long {
 		Unknown,
 		Completed,
 		Cancelled,
@@ -707,81 +707,81 @@ namespace XamCore.AVFoundation {
 		NotPossible,
 	}
 
-	[Mac (10,10)]
+	[Introduced (PlatformName.MacOSX, 10, 10)]
 	[Native]
-	public enum AVSampleBufferRequestDirection : nint {
+	public enum AVSampleBufferRequestDirection : long {
 		Forward = 1,
 		None = 0,
 		Reverse = -1,
 	}
 
-	[Mac (10,10)]
+	[Introduced (PlatformName.MacOSX, 10, 10)]
 	[Native]
-	public enum AVSampleBufferRequestMode : nint {
+	public enum AVSampleBufferRequestMode : long {
 		Immediate,
 		Scheduled,
 	}
 #endif
 
-	[NoTV, NoWatch, NoMac, iOS (10,0)]
+	[Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
-	public enum AVCaptureColorSpace : nint
+	public enum AVCaptureColorSpace : long
 	{
 		Srgb = 0,
 		P3D65 = 1
 	}
 
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
-	public enum AVMusicTrackLoopCount : nint
+	public enum AVMusicTrackLoopCount : long
 	{
 		Forever = -1
 	}
 
-	[NoWatch, iOS (10,0), TV (10,0), Mac (10,12)]
+	[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
-	public enum AVPlayerTimeControlStatus : nint
+	public enum AVPlayerTimeControlStatus : long
 	{
 		Paused,
 		WaitingToPlayAtSpecifiedRate,
 		Playing
 	}
 
-	[NoWatch, NoTV, iOS (10,0), NoMac]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 0), Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum AVAudioSessionIOType : nint
+	public enum AVAudioSessionIOType : long
 	{
 		NotSpecified = 0,
 		Aggregated = 1,
 	}
 
-	[NoWatch, iOS (10,0), TV (10,0), Mac (10,12)]
+	[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
-	public enum AVPlayerLooperStatus : nint {
+	public enum AVPlayerLooperStatus : long {
 		Unknown,
 		Ready,
 		Failed,
 		Cancelled
 	}
 	
-	[NoiOS, TV (10,0), NoWatch, NoMac]
+	[Unavailable (PlatformName.iOS), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum AVContentProposalAction : nint {
+	public enum AVContentProposalAction : long {
 		Accept,
 		Reject,
 		Defer
 	}
 
-	[NoiOS, TV (10,0), NoWatch, NoMac]
+	[Unavailable (PlatformName.iOS), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 	[Native]
-	public enum AVPlayerViewControllerSkippingBehavior : nint {
+	public enum AVPlayerViewControllerSkippingBehavior : long {
 		Default = 0,
 		SkipItem
 	}
 
-	[TV (10,2), Mac (10,12,4), iOS (10,3), NoWatch]
+	[Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 4), Introduced (PlatformName.iOS, 10, 3), Unavailable (PlatformName.WatchOS)]
 	[Native]
-	public enum AVContentKeyRequestStatus : nint {
+	public enum AVContentKeyRequestStatus : long {
 		Requesting,
 		Received,
 		Renewed,
@@ -790,7 +790,7 @@ namespace XamCore.AVFoundation {
 		Failed
 	}
 
-	[TV (10, 2), Mac (10, 12, 4), iOS (10, 3), NoWatch]
+	[Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 4), Introduced (PlatformName.iOS, 10, 3), Unavailable (PlatformName.WatchOS)]
 	public enum AVContentKeyRequestRetryReason {
 		[Field ("AVContentKeyRequestRetryReasonTimedOut")]
 		TimedOut,
@@ -800,26 +800,26 @@ namespace XamCore.AVFoundation {
 		ReceivedObsoleteContentKey,
 	}
 
-	[TV (10, 2), Mac (10, 12, 4), iOS (10, 3), NoWatch]
+	[Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.MacOSX, 10, 12, 4), Introduced (PlatformName.iOS, 10, 3), Unavailable (PlatformName.WatchOS)]
 	public enum AVContentKeySystem {
 		[Field ("AVContentKeySystemFairPlayStreaming")]
 		FairPlayStreaming = 0,
 
-		[TV (11, 0), NoWatch, Mac (10, 13), iOS (11, 0)]
+		[Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Field ("AVContentKeySystemClearKey")]
 		AVContentKeySystemClearKey = 1,
 	}
 
 	// Convience enum for native string values 
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum AVAssetExportSessionPreset {
-		[Mac(10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVAssetExportPresetLowQuality")]
 		LowQuality = 0, // AVAssetExportPresetLowQuality
-		[Mac(10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVAssetExportPresetMediumQuality")]
 		MediumQuality = 1, // AVAssetExportPresetMediumQuality
-		[Mac(10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("AVAssetExportPresetHighestQuality")]
 		HighestQuality = 2, // AVAssetExportPresetHighestQuality
 		[Field ("AVAssetExportPreset640x480")]
@@ -831,8 +831,8 @@ namespace XamCore.AVFoundation {
 		[Field ("AVAssetExportPreset1920x1080")]
 		Preset1920x1080 = 6, // AVAssetExportPreset1920x1080
 
-		[iOS (9,0)]
-		[Mac (10,10)]
+		[Introduced (PlatformName.iOS, 9, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("AVAssetExportPreset3840x2160")]
 		Preset3840x2160 = 7, // AVAssetExportPreset3840x2160
 
@@ -841,55 +841,55 @@ namespace XamCore.AVFoundation {
 		[Field ("AVAssetExportPresetPassthrough")]
 		Passthrough = 9, // AVAssetExportPresetPassthrough
 
-		[iOS (11, 0), Mac (10, 13)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13)]
 		[Field ("AVOutputSettingsPresetHEVC1920x1080")]
 		PresetHevc1920x1080 = 11, 
 
-		[iOS (11, 0), Mac (10, 13)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13)]
 		[Field ("AVOutputSettingsPresetHEVC3840x2160")]
 		PresetHevc3840x2160 = 12,
 	}
 
-	[TV (11,0), NoWatch, iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum AVDepthDataAccuracy : nint {
+	public enum AVDepthDataAccuracy : long {
 		Relative = 0,
 		Absolute = 1,
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum AVAudioEngineManualRenderingMode : nint {
+	public enum AVAudioEngineManualRenderingMode : long {
 		Offline = 0,
 		Realtime = 1
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum AVAudioEngineManualRenderingStatus : nint {
+	public enum AVAudioEngineManualRenderingStatus : long {
 		Error = -1,
 		Success = 0,
 		InsufficientDataFromInputNode = 1,
 		CannotDoInCurrentContext = 2
 	}
 
-	[TV (11,0), NoWatch, NoMac, iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum AVAudioSessionRouteSharingPolicy : nuint {
+	public enum AVAudioSessionRouteSharingPolicy : ulong {
 		Default = 0,
 		LongForm = 1,
 		Independent = 2
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum AVAudioPlayerNodeCompletionCallbackType : nint {
+	public enum AVAudioPlayerNodeCompletionCallbackType : long {
 		Consumed = 0,
 		Rendered = 1,
 		PlayedBack = 2
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	public enum AVAudioEngineManualRenderingError
 	{
 		InvalidMode = -80800,
@@ -897,10 +897,10 @@ namespace XamCore.AVFoundation {
 		NotRunning = -80802,
 	}
 
-	[NoTV, iOS (11,0)]
-	[NoWatch]
+	[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
+	[Unavailable (PlatformName.WatchOS)]
 	[Native]
-	public enum AVCaptureLensStabilizationStatus : nint
+	public enum AVCaptureLensStabilizationStatus : long
 	{
 		Unsupported = 0,
 		Off = 1,
@@ -909,9 +909,9 @@ namespace XamCore.AVFoundation {
 		Unavailable = 4
 	}
 
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum AVCaptureOutputDataDroppedReason : nint
+	public enum AVCaptureOutputDataDroppedReason : long
 	{
 		None = 0,
 		LateData = 1,
@@ -919,7 +919,7 @@ namespace XamCore.AVFoundation {
 		Discontinuity = 3,
 	}
 
-	[TV (11, 0), NoWatch, Mac (10, 13), iOS (11, 0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	public enum AVVideoApertureMode {
 		[Field ("AVVideoApertureModeCleanAperture")]
 		CleanAperture = 0,
@@ -943,7 +943,7 @@ namespace XamCore.AVFoundation {
 	}
 	*/
 
-	[NoWatch, iOS (11, 0), TV (11,0), Mac (10,13)]
+	[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13)]
 	public enum AVAssetWriterInputMediaDataLocation {
 		[Field ("AVAssetWriterInputMediaDataLocationInterleavedWithMainMediaData")]
 		InterleavedWithMainMediaData = 0,
@@ -952,7 +952,7 @@ namespace XamCore.AVFoundation {
 		BeforeMainMediaDataNotInterleaved = 1,
 	}
 
-	[TV (11, 0), NoWatch, Mac (10, 13), iOS (11, 0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	public enum AVVideoCodecType {
 		[Field ("AVVideoCodecTypeH264")]
 		H264 = 0,
@@ -971,9 +971,9 @@ namespace XamCore.AVFoundation {
 
 	}
 
-	[TV (11,0), NoWatch, iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum AVDepthDataQuality : nint {
+	public enum AVDepthDataQuality : long {
 		Low = 0,
 		High = 1
 	}

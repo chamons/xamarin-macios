@@ -4,9 +4,9 @@ using XamCore.ObjCRuntime;
 namespace XamCore.AssetsLibrary {
 
 	// NSInteger -> ALAssetsLibrary.h
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Photos' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Photos' API instead.")]
 	[Native]
-	public enum ALAssetOrientation : nint {
+	public enum ALAssetOrientation : long {
 		Up,
 		Down,
 		Left,
@@ -18,10 +18,10 @@ namespace XamCore.AssetsLibrary {
 	}
 
 	// NSUInteger -> ALAssetsLibrary.h
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Photos' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Photos' API instead.")]
 	[Native]
 	[Flags]
-	public enum ALAssetsGroupType : nuint {
+	public enum ALAssetsGroupType : ulong {
 		Library        = (1 << 0),
 		Album          = (1 << 1),
 		Event          = (1 << 2),
@@ -32,7 +32,7 @@ namespace XamCore.AssetsLibrary {
 	}
 
 	// untyped enum -> ALAssetsLibrary.h
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Photos' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Photos' API instead.")]
 	[ErrorDomain ("ALAssetsLibraryErrorDomain")]
 	public enum ALAssetsError {
 		UnknownError = -1,
@@ -48,9 +48,9 @@ namespace XamCore.AssetsLibrary {
 	}
 
 	// NSInteger -> ALAssetsLibrary.h
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Photos' API instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Photos' API instead.")]
 	[Native]
-	public enum ALAuthorizationStatus : nint {
+	public enum ALAuthorizationStatus : long {
 		NotDetermined,
 		Restricted,
 		Denied,

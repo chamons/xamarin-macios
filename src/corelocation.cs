@@ -23,29 +23,29 @@ using System;
 
 namespace XamCore.CoreLocation {
 
-	[NoTV][NoWatch]
-	[iOS (7,0)]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[Native] // NSInteger -> CLRegion.h
-	public enum CLRegionState : nint {
+	public enum CLRegionState : long {
 		Unknown,
 		Inside,
 		Outside
 	}
 
-	[NoTV][NoWatch]
-	[iOS (7,0)]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[Native] // NSInteger -> CLRegion.h
-	public enum CLProximity : nint {
+	public enum CLProximity : long {
 		Unknown,
 		Immediate,
 		Near,
 		Far
 	}
 
-	[NoWatch][NoTV]
+	[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // will crash, see CoreLocation.cs for compatibility stubs
-	[Mac (10,7)]
+	[Introduced (PlatformName.MacOSX, 10, 7)]
 	partial interface CLHeading : NSSecureCoding, NSCopying {
 		[Export ("magneticHeading")]
 		double MagneticHeading { get;  }
@@ -83,13 +83,13 @@ namespace XamCore.CoreLocation {
 		[Export ("verticalAccuracy")]
 		double VerticalAccuracy { get;  }
 	
-		[NoTV]
-		[Watch (3,0)] // __WATCHOS_PROHIBITED removed in Xcode 8 beta 3
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.WatchOS, 3, 0)] // __WATCHOS_PROHIBITED removed in Xcode 8 beta 3
 		[Export ("course")]
 		double Course { get;  }
 	
-		[NoTV]
-		[Watch (3,0)] // __WATCHOS_PROHIBITED removed in Xcode 8 beta 3
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.WatchOS, 3, 0)] // __WATCHOS_PROHIBITED removed in Xcode 8 beta 3
 		[Export ("speed")]
 		double Speed { get;  }
 
@@ -104,22 +104,22 @@ namespace XamCore.CoreLocation {
 
 #if !XAMCORE_2_0
 		[Export ("getDistanceFrom:")]
-		[Availability (Deprecated = Platform.iOS_3_2, Message = "Use 'DistanceFrom' instead.")]
+		[Deprecated (PlatformName.iOS, 3, 2, message: "Use 'DistanceFrom' instead.")]
 		double Distancefrom (CLLocation  location);
 #endif
 
-		[Since (3,2)]
+		[Introduced (PlatformName.iOS, 3, 2)]
 		[Export ("distanceFromLocation:")]
 		double DistanceFrom (CLLocation location);
 
-		[Since (4,2)]
+		[Introduced (PlatformName.iOS, 4, 2)]
 		[Export ("initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:speed:timestamp:")]
 		IntPtr Constructor (CLLocationCoordinate2D coordinate, double altitude, double hAccuracy, double vAccuracy, double course, double speed, NSDate timestamp);
 
 		// Apple keep changing the 'introduction' of this field (5.0->8.0->5.0) but it was not available in 6.1
 		// nor in 7.0 - but it works on my iPad3 running iOS 7.1
-		[NoTV][NoWatch]
-		[iOS (7,1)][MountainLion]
+		[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 7, 1)][Introduced (PlatformName.MacOSX, 10, 8)]
 		[Field ("kCLErrorUserInfoAlternateRegionKey")]
 		NSString ErrorUserInfoAlternateRegionKey { get; }
 
@@ -144,15 +144,15 @@ namespace XamCore.CoreLocation {
 #endif
 
 #if !MONOMAC
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("floor", ArgumentSemantic.Copy)]
 		CLFloor Floor { get; }
 #endif        
 	}
 
 #if !MONOMAC
-	[iOS (8,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[BaseType (typeof (NSObject))]
 	partial interface CLFloor : NSSecureCoding, NSCopying {
 	        [Export ("level")]
 	        nint Level { get; }
@@ -178,225 +178,225 @@ namespace XamCore.CoreLocation {
 		CLLocation Location { get;  }
 	
 		 // __WATCHOS_PROHIBITED removed in Xcode 8.0 beta 2, assuming it's valid for 3.0+
-		[Watch (3,0)]
-		[NoTV]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("startUpdatingLocation")]
 		void StartUpdatingLocation ();
 	
 		[Export ("stopUpdatingLocation")]
 		void StopUpdatingLocation ();
 
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("locationServicesEnabled"), Static]
 		bool LocationServicesEnabled { get; }
 
 #if !MONOMAC
-		[NoWatch][NoTV]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 		[Export ("headingFilter", ArgumentSemantic.Assign)]
 		double HeadingFilter { get; set;  }
 	
-		[NoWatch][NoTV]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 		[Export ("startUpdatingHeading")]
 		void StartUpdatingHeading ();
 	
-		[NoWatch][NoTV]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 		[Export ("stopUpdatingHeading")]
 		void StopUpdatingHeading ();
 	
-		[NoWatch][NoTV]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 		[Export ("dismissHeadingCalibrationDisplay")]
 		void DismissHeadingCalibrationDisplay ();
 #endif
 	
-		[NoWatch][NoTV]
-		[Since (3,2)]
-		[Mac (10,7)]
-		[Availability (Introduced = Platform.iOS_3_2, Deprecated = Platform.iOS_6_0)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 3, 2)]
+		[Introduced (PlatformName.MacOSX, 10, 7)]
+		[Introduced (PlatformName.iOS, 3, 2), Deprecated (PlatformName.iOS, 6, 0)]
 		// Default property value is null but it cannot be set to that value
 		// it crash when a null is provided
 		[Export ("purpose")]
 		string Purpose { get; set; }
 
-		[NoWatch][NoTV]
-		[Since (4,0)]
-		[Mac (10,7)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 4, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 7)]
 		[Export ("headingAvailable"), Static]
 		bool HeadingAvailable { get; }
 
-		[NoWatch][NoTV]
-		[Since (4,0)]
-		[Mac (10,7)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 4, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 7)]
 		[Export ("significantLocationChangeMonitoringAvailable"), Static]
 		bool SignificantLocationChangeMonitoringAvailable { get; }
 
-		[NoWatch][NoTV]
-		[Availability (Introduced = Platform.iOS_4_0 | Platform.Mac_10_8, Deprecated = Platform.iOS_7_0 | Platform.Mac_10_10, Message = "Use 'IsMonitoringAvailable' instead.")]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 4, 0, message: "Use 'IsMonitoringAvailable' instead."), Introduced (PlatformName.MacOSX, 10, 8, message: "Use 'IsMonitoringAvailable' instead."), Deprecated (PlatformName.iOS, 7, 0, message: "Use 'IsMonitoringAvailable' instead."), Deprecated (PlatformName.MacOSX, 10, 10, message: "Use 'IsMonitoringAvailable' instead.")]
 		[Export ("regionMonitoringAvailable"), Static]
 		bool RegionMonitoringAvailable { get; }
 
-		[NoWatch][NoTV]
-		[Since (4,0)]
-		[Availability (Introduced = Platform.iOS_4_0 | Platform.Mac_10_8, Deprecated = Platform.iOS_6_0 | Platform.Mac_10_10, Message = "Use 'IsMonitoringAvailable' and 'AuthorizationStatus' instead.")]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 4, 0)]
+		[Introduced (PlatformName.iOS, 4, 0, message: "Use 'IsMonitoringAvailable' and 'AuthorizationStatus' instead."), Introduced (PlatformName.MacOSX, 10, 8, message: "Use 'IsMonitoringAvailable' and 'AuthorizationStatus' instead."), Deprecated (PlatformName.iOS, 6, 0, message: "Use 'IsMonitoringAvailable' and 'AuthorizationStatus' instead."), Deprecated (PlatformName.MacOSX, 10, 10, message: "Use 'IsMonitoringAvailable' and 'AuthorizationStatus' instead.")]
 		[Export ("regionMonitoringEnabled"), Static]
 		bool RegionMonitoringEnabled { get; }
 
 #if !MONOMAC
-		[NoWatch][NoTV]
-		[Since (4,0)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Export ("headingOrientation", ArgumentSemantic.Assign)]
 		CLDeviceOrientation HeadingOrientation { get; set; }
 
-		[NoWatch][NoTV]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 		[Export ("heading", ArgumentSemantic.Copy)]
-		[Since (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		CLHeading Heading { get; }
 #endif
 
-		[NoWatch][NoTV]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 		[Export ("maximumRegionMonitoringDistance")]
-		[Since (4,0)]
-		[Mac (10,8)]
+		[Introduced (PlatformName.iOS, 4, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		double MaximumRegionMonitoringDistance { get; }
 
-		[NoWatch][NoTV]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 		[Export ("monitoredRegions", ArgumentSemantic.Copy)]
-		[Since (4,0)]
-		[Mac (10,8)]
+		[Introduced (PlatformName.iOS, 4, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		NSSet MonitoredRegions { get; }
 
-		[NoWatch][NoTV]
-		[Since (4,0)]
-		[Mac (10,7)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 4, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 7)]
 		[Export ("startMonitoringSignificantLocationChanges")]
 		void StartMonitoringSignificantLocationChanges ();
 
-		[NoWatch][NoTV]
-		[Since (4,0)]
-		[Mac (10,7)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 4, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 7)]
 		[Export ("stopMonitoringSignificantLocationChanges")]
 		void StopMonitoringSignificantLocationChanges ();
 
 #if !MONOMAC
-		[NoWatch][NoTV]
-		[Since (4,0)]
-		[Availability (Introduced = Platform.iOS_4_0, Deprecated = Platform.iOS_6_0)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 4, 0)]
+		[Introduced (PlatformName.iOS, 4, 0), Deprecated (PlatformName.iOS, 6, 0)]
 		[Export ("startMonitoringForRegion:desiredAccuracy:")]
 		void StartMonitoring (CLRegion region, double desiredAccuracy);
 #endif
 
-		[NoWatch][NoTV]
-		[Since (4,0)]
-		[Mac (10,8)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 4, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[Export ("stopMonitoringForRegion:")]
 		void StopMonitoring (CLRegion region);
 
-		[Since (4,2)]
-		[Mac (10,7)]
+		[Introduced (PlatformName.iOS, 4, 2)]
+		[Introduced (PlatformName.MacOSX, 10, 7)]
 		[Export ("authorizationStatus")][Static]
 		CLAuthorizationStatus Status { get; }
 
-		[NoWatch][NoTV]
-		[Since (5,0)]
-		[Mac (10,8)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[Export ("startMonitoringForRegion:")]
 		void StartMonitoring (CLRegion region);
 
 #if !MONOMAC
-		[NoTV]
-		[Watch (4,0)]
-		[Since (6,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.WatchOS, 4, 0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("activityType", ArgumentSemantic.Assign)]
 		CLActivityType ActivityType  { get; set; }
 
-		[NoWatch][NoTV]
-		[Since (6,0)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("pausesLocationUpdatesAutomatically", ArgumentSemantic.Assign)]
 		bool PausesLocationUpdatesAutomatically { get; set; }
 
-		[NoWatch][NoTV]
-		[Since (6,0)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("allowDeferredLocationUpdatesUntilTraveled:timeout:")]
 		void AllowDeferredLocationUpdatesUntil (double distance, double timeout);
 
-		[NoWatch][NoTV]
-		[Since (6,0)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("disallowDeferredLocationUpdates")]
 		void DisallowDeferredLocationUpdates ();
 #endif
 
-		[NoWatch][NoTV]
-		[Since (6,0)]
-		[Mac (10,9)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Static]
 		[Export ("deferredLocationUpdatesAvailable")]
 		bool DeferredLocationUpdatesAvailable { get; }
 
 #if !MONOMAC
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Field ("CLTimeIntervalMax")]
 		double MaxTimeInterval { get; }
 #endif
 
-		[NoWatch][NoTV]
-		[Mac (10,10)]
-		[Since (7,0), Static, Export ("isMonitoringAvailableForClass:")]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
+		[Introduced (PlatformName.iOS, 7, 0), Static, Export ("isMonitoringAvailableForClass:")]
 		bool IsMonitoringAvailable (Class regionClass);
 
 #if !MONOMAC
-		[NoWatch][NoTV]
-		[Since (7,0), Export ("rangedRegions", ArgumentSemantic.Copy)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("rangedRegions", ArgumentSemantic.Copy)]
 		NSSet RangedRegions { get; }
 #endif
 
-		[Mac (10,10)]
-		[NoWatch][NoTV]
-		[Since (7,0), Export ("requestStateForRegion:")]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("requestStateForRegion:")]
 		void RequestState (CLRegion region);
 
 #if !MONOMAC
-		[NoWatch][NoTV]
-		[Since (7,0), Export ("startRangingBeaconsInRegion:")]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("startRangingBeaconsInRegion:")]
 		void StartRangingBeacons (CLBeaconRegion region);
 
-		[NoWatch][NoTV]
-		[Since (7,0), Export ("stopRangingBeaconsInRegion:")]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("stopRangingBeaconsInRegion:")]
 		void StopRangingBeacons (CLBeaconRegion region);
 
-		[NoWatch][NoTV]
-		[iOS (7,0)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Static]
 		[Export ("isRangingAvailable")]
 		bool IsRangingAvailable { get; }
 		
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("requestWhenInUseAuthorization")]
 		void RequestWhenInUseAuthorization ();
 
-		[NoTV]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("requestAlwaysAuthorization")]
 		void RequestAlwaysAuthorization ();
 
-		[NoWatch][NoTV]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("startMonitoringVisits")]
 		void StartMonitoringVisits ();
 
-		[NoWatch][NoTV]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("stopMonitoringVisits")]
 		void StopMonitoringVisits ();
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("requestLocation")]
 		void RequestLocation ();
 
-		[NoTV]
-		[iOS (9,0), Watch (4,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Export ("allowsBackgroundLocationUpdates")]
 		bool AllowsBackgroundLocationUpdates { get; set; }
 
-		[NoWatch, NoTV, NoMac, iOS (11,0)]
+		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("showsBackgroundLocationIndicator")]
 		bool ShowsBackgroundLocationIndicator { get; set; }
 #endif
@@ -407,88 +407,88 @@ namespace XamCore.CoreLocation {
 	[Protocol]
 	partial interface CLLocationManagerDelegate
 	{
-		[NoWatch][NoTV]
-		[Availability (Deprecated = Platform.iOS_6_0)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Deprecated (PlatformName.iOS, 6, 0)]
 		[Export ("locationManager:didUpdateToLocation:fromLocation:"), EventArgs ("CLLocationUpdated")]
 		void UpdatedLocation (CLLocationManager  manager, CLLocation newLocation, CLLocation oldLocation);
 	
 #if !MONOMAC
-		[NoWatch][NoTV]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 		[Export ("locationManager:didUpdateHeading:"), EventArgs ("CLHeadingUpdated")]
 		void UpdatedHeading (CLLocationManager  manager, CLHeading newHeading);
 #endif
 	
-		[NoWatch][NoTV]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 		[Export ("locationManagerShouldDisplayHeadingCalibration:"), DelegateName ("CLLocationManagerEventArgs"), DefaultValue (true)]
 		bool ShouldDisplayHeadingCalibration (CLLocationManager manager);
 	
 		[Export ("locationManager:didFailWithError:"), EventArgs ("NSError", true)]
 		void Failed (CLLocationManager manager, NSError error);
 
-		[NoWatch][NoTV]
-		[Since (4,0)]
-		[Mac (10,8)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 4, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[Export ("locationManager:didEnterRegion:"), EventArgs ("CLRegion")]
 		void RegionEntered (CLLocationManager manager, CLRegion region);
 
-		[NoWatch][NoTV]
-		[Since (4,0)]
-		[Mac (10,8)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 4, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[Export ("locationManager:didExitRegion:"), EventArgs ("CLRegion")]
 		void RegionLeft (CLLocationManager manager, CLRegion region);
 
-		[NoWatch][NoTV]
-		[Since (4,0)]
-		[Mac (10,8)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 4, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[Export ("locationManager:monitoringDidFailForRegion:withError:"), EventArgs ("CLRegionError")]
 		void MonitoringFailed (CLLocationManager manager, CLRegion region, NSError error);
 
-		[NoWatch][NoTV]
-		[Since(5,0)]
-		[Mac (10,8)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 5, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[Export ("locationManager:didStartMonitoringForRegion:"), EventArgs ("CLRegion")]
 		void DidStartMonitoringForRegion (CLLocationManager manager, CLRegion region);
 
-		[NoWatch][NoTV]
-		[Mac (10,10)]
-		[Since (7,0), Export ("locationManager:didDetermineState:forRegion:"), EventArgs ("CLRegionStateDetermined")]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("locationManager:didDetermineState:forRegion:"), EventArgs ("CLRegionStateDetermined")]
 		void DidDetermineState (CLLocationManager manager, CLRegionState state, CLRegion region);
 
 #if !MONOMAC
-		[NoWatch][NoTV]
-		[Since (7,0), Export ("locationManager:didRangeBeacons:inRegion:"), EventArgs ("CLRegionBeaconsRanged")]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("locationManager:didRangeBeacons:inRegion:"), EventArgs ("CLRegionBeaconsRanged")]
 		void DidRangeBeacons (CLLocationManager manager, CLBeacon [] beacons, CLBeaconRegion region);
 
-		[NoWatch][NoTV]
-		[Since (7,0), Export ("locationManager:rangingBeaconsDidFailForRegion:withError:"), EventArgs ("CLRegionBeaconsFailed")]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("locationManager:rangingBeaconsDidFailForRegion:withError:"), EventArgs ("CLRegionBeaconsFailed")]
 		void RangingBeaconsDidFailForRegion (CLLocationManager manager, CLBeaconRegion region, NSError error);
 
-		[NoWatch][NoTV]
-		[iOS (8,0)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[Export ("locationManager:didVisit:"), EventArgs ("CLVisited")]
 		void DidVisit (CLLocationManager manager, CLVisit visit);
 #endif
 
-		[Since (4,2)]
+		[Introduced (PlatformName.iOS, 4, 2)]
 		[Export ("locationManager:didChangeAuthorizationStatus:"), EventArgs ("CLAuthorizationChanged")]
 		void AuthorizationChanged (CLLocationManager manager, CLAuthorizationStatus status);
 
-		[Since (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("locationManager:didUpdateLocations:"), EventArgs ("CLLocationsUpdated")]
 		void LocationsUpdated (CLLocationManager manager, CLLocation[] locations);
 
-		[NoWatch][NoTV]
-		[Since (6,0)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("locationManagerDidPauseLocationUpdates:"), EventArgs ("")]
 		void LocationUpdatesPaused (CLLocationManager manager);
 
-		[NoWatch][NoTV]
-		[Since (6,0)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("locationManagerDidResumeLocationUpdates:"), EventArgs ("")]
 		void LocationUpdatesResumed (CLLocationManager manager);
 
-		[NoWatch][NoTV]
-		[Since (6,0)]
+		[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("locationManager:didFinishDeferredUpdatesWithError:"), EventArgs ("NSError", true)]
 		void DeferredUpdatesFinished (CLLocationManager manager, NSError error);
 	}
@@ -496,8 +496,8 @@ namespace XamCore.CoreLocation {
 	[Static]
 	partial interface CLLocationDistance {
 
-		[Since (6,0)]
-		[Mac (10,9)]
+		[Introduced (PlatformName.iOS, 6, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("CLLocationDistanceMax")]
 		double MaxDistance { get; }
 
@@ -505,76 +505,76 @@ namespace XamCore.CoreLocation {
 		double FilterNone { get; }
 	}
 		
-	[Since (4,0)]
-	[Mac (10,7)]
+	[Introduced (PlatformName.iOS, 4, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 7)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // will crash, see CoreLocation.cs for compatibility stubs
 	partial interface CLRegion : NSSecureCoding, NSCopying {
-		[NoTV]
-		[Availability (Deprecated = Platform.iOS_7_0 | Platform.Mac_10_10, Message = "Use 'CLCircularRegion' instead.")]
+		[Unavailable (PlatformName.TvOS)]
+		[Deprecated (PlatformName.iOS, 7, 0, message: "Use 'CLCircularRegion' instead."), Deprecated (PlatformName.MacOSX, 10, 10, message: "Use 'CLCircularRegion' instead.")]
 		[Export ("center")]
 		CLLocationCoordinate2D Center { get;  }
 
-		[NoTV]
-		[Availability (Deprecated = Platform.iOS_7_0 | Platform.Mac_10_10, Message = "Use 'CLCircularRegion' instead.")]
+		[Unavailable (PlatformName.TvOS)]
+		[Deprecated (PlatformName.iOS, 7, 0, message: "Use 'CLCircularRegion' instead."), Deprecated (PlatformName.MacOSX, 10, 10, message: "Use 'CLCircularRegion' instead.")]
 		[Export ("radius")]
 		double Radius { get;  }
 
 		[Export ("identifier")]
 		string Identifier { get;  }
 
-		[NoTV]
-		[Availability (Deprecated = Platform.iOS_7_0 | Platform.Mac_10_10, Message = "Use 'CLCircularRegion' instead.")]
+		[Unavailable (PlatformName.TvOS)]
+		[Deprecated (PlatformName.iOS, 7, 0, message: "Use 'CLCircularRegion' instead."), Deprecated (PlatformName.MacOSX, 10, 10, message: "Use 'CLCircularRegion' instead.")]
 		[Export ("initCircularRegionWithCenter:radius:identifier:")]
 		IntPtr Constructor (CLLocationCoordinate2D center, double radius, string identifier);
 
-		[NoTV]
-		[Availability (Deprecated = Platform.iOS_7_0 | Platform.Mac_10_10, Message = "Use 'CLCircularRegion' instead.")]
+		[Unavailable (PlatformName.TvOS)]
+		[Deprecated (PlatformName.iOS, 7, 0, message: "Use 'CLCircularRegion' instead."), Deprecated (PlatformName.MacOSX, 10, 10, message: "Use 'CLCircularRegion' instead.")]
 		[Export ("containsCoordinate:")]
 		bool Contains (CLLocationCoordinate2D coordinate);
 
-		[Since (7,0), Export ("notifyOnEntry", ArgumentSemantic.Assign)]
-		[Mac (10,10)]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("notifyOnEntry", ArgumentSemantic.Assign)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		bool NotifyOnEntry { get; set; }
 
-		[Since (7,0), Export ("notifyOnExit", ArgumentSemantic.Assign)]
-		[Mac (10,10)]
+		[Introduced (PlatformName.iOS, 7, 0), Export ("notifyOnExit", ArgumentSemantic.Assign)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		bool NotifyOnExit { get; set; }
 	}
 
-	[Since (5,0)]
-	[Mac (10,8)]
+	[Introduced (PlatformName.iOS, 5, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 8)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // will crash, see CoreLocation.cs for compatibility stubs
 	interface CLPlacemark : NSSecureCoding, NSCopying {
 		[Deprecated (PlatformName.WatchOS, 4, 0, message: "Use 'CLPlacemark' properties to access data.")]
 		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'CLPlacemark' properties to access data.")]
 		[Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'CLPlacemark' properties to access data.")]
-		[Export("addressDictionary", ArgumentSemantic.Copy)]
+		[Export ("addressDictionary", ArgumentSemantic.Copy)]
 		NSDictionary AddressDictionary { get; }
 
-		[Export("administrativeArea")]
+		[Export ("administrativeArea")]
 		string AdministrativeArea { get; }
 
-		[Export("subAdministrativeArea")]
+		[Export ("subAdministrativeArea")]
 		string SubAdministrativeArea { get; }
 
-		[Export("subLocality")]
+		[Export ("subLocality")]
 		string SubLocality { get; }
 
-		[Export("locality")]
+		[Export ("locality")]
 		string Locality { get; }
 
-		[Export("country")]
+		[Export ("country")]
 		string Country { get; }
 	
-		[Export("postalCode")]
+		[Export ("postalCode")]
 		string PostalCode { get; }
 
-		[Export("thoroughfare")]
+		[Export ("thoroughfare")]
 		string Thoroughfare { get; }
 
-		[Export("subThoroughfare")]
+		[Export ("subThoroughfare")]
 		string SubThoroughfare { get; }
 
 		[Export ("ISOcountryCode")]
@@ -602,18 +602,18 @@ namespace XamCore.CoreLocation {
 		CLRegion Region { get; }
 
 		[Export ("timeZone")]
-		[iOS (9,0), Mac(10,11)]
+		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		NSTimeZone TimeZone { get; }
 #if XAMCORE_2_0 && !TVOS
 		// From CLPlacemark (ContactsAdditions) category.
-		[Watch (4,0), NoTV, Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("postalAddress")]
 		CNPostalAddress PostalAddress { get; }
 #endif
 	}
 
-	[Mac (10,10)]
-	[Since (7,0), BaseType (typeof (CLRegion))]
+	[Introduced (PlatformName.MacOSX, 10, 10)]
+	[Introduced (PlatformName.iOS, 7, 0), BaseType (typeof (CLRegion))]
 #if MONOMAC
 	[DisableDefaultCtor]
 #endif
@@ -633,8 +633,8 @@ namespace XamCore.CoreLocation {
 	}
 
 #if !MONOMAC
-	[NoWatch][NoMac][NoTV]
-	[Since (7,0), BaseType (typeof (CLRegion))]
+	[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.MacOSX)][Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 7, 0), BaseType (typeof (CLRegion))]
 	[DisableDefaultCtor] // nil-Handle on iOS8 if 'init' is used
 	partial interface CLBeaconRegion {
 
@@ -663,8 +663,8 @@ namespace XamCore.CoreLocation {
 		bool NotifyEntryStateOnDisplay { get; set; }
 	}
 
-	[NoWatch][NoMac][NoTV]
-	[Since (7,0), BaseType (typeof (NSObject))]
+	[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.MacOSX)][Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 7, 0), BaseType (typeof (NSObject))]
 	partial interface CLBeacon : NSCopying, NSSecureCoding {
 
 		[Export ("proximityUUID", ArgumentSemantic.Copy)]
@@ -690,8 +690,8 @@ namespace XamCore.CoreLocation {
 
 	delegate void CLGeocodeCompletionHandler (CLPlacemark [] placemarks, NSError error);
 
-	[Mac (10,8)]
-	[Since (5,0)]
+	[Introduced (PlatformName.MacOSX, 10, 8)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	[BaseType (typeof (NSObject))]
 	interface CLGeocoder {
 		[Export ("isGeocoding")]
@@ -701,7 +701,7 @@ namespace XamCore.CoreLocation {
 		[Async]
 		void ReverseGeocodeLocation (CLLocation location, CLGeocodeCompletionHandler completionHandler);
 
-		[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("reverseGeocodeLocation:preferredLocale:completionHandler:")]
 		[Async]
 		void ReverseGeocodeLocation (CLLocation location, [NullAllowed] NSLocale locale, CLGeocodeCompletionHandler completionHandler);
@@ -721,7 +721,7 @@ namespace XamCore.CoreLocation {
 		[Async]
 		void GeocodeAddress (string addressString, CLRegion region, CLGeocodeCompletionHandler completionHandler);
 
-		[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Async]
 		[Export ("geocodeAddressString:inRegion:preferredLocale:completionHandler:")]
 		void GeocodeAddress (string addressString, [NullAllowed] CLRegion region, [NullAllowed] NSLocale locale, CLGeocodeCompletionHandler completionHandler);
@@ -730,12 +730,12 @@ namespace XamCore.CoreLocation {
 		void CancelGeocode ();
 
 #if XAMCORE_2_0 && !TVOS
-		[Watch (4,0), NoTV, Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("geocodePostalAddress:completionHandler:")]
 		[Async]
 		void GeocodePostalAddress (CNPostalAddress postalAddress, CLGeocodeCompletionHandler completionHandler);
 
-		[Watch (4,0), NoTV, Mac (10,13), iOS (11,0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("geocodePostalAddress:preferredLocale:completionHandler:")]
 		[Async]
 		void GeocodePostalAddress (CNPostalAddress postalAddress, [NullAllowed] NSLocale locale, CLGeocodeCompletionHandler completionHandler);
@@ -743,8 +743,8 @@ namespace XamCore.CoreLocation {
 	}
 
 #if !MONOMAC
-	[NoWatch][NoTV]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]
 	interface CLVisit : NSSecureCoding, NSCopying {
 

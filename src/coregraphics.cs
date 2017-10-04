@@ -75,7 +75,7 @@ namespace XamCore.CoreGraphics {
 	}
 
 	[Static]
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	interface CGColorSpaceNames {
 		[Field ("kCGColorSpaceGenericGray")]
 		NSString GenericGray { get; }
@@ -86,8 +86,8 @@ namespace XamCore.CoreGraphics {
 		[Field ("kCGColorSpaceGenericCMYK")]
 		NSString GenericCmyk { get; }
 
-		[iOS (9,3)][Mac(10,11,2)]
-		[TV (9,2)]
+		[Introduced (PlatformName.iOS, 9, 3)][Introduced (PlatformName.MacOSX, 10, 11, 2)]
+		[Introduced (PlatformName.TvOS, 9, 2)]
 		[Field ("kCGColorSpaceDisplayP3")]
 		NSString DisplayP3 { get; }
 
@@ -103,65 +103,65 @@ namespace XamCore.CoreGraphics {
 		[Field ("kCGColorSpaceGenericGrayGamma2_2")]
 		NSString GenericGrayGamma2_2 { get; }
 
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("kCGColorSpaceGenericXYZ")]
 		NSString GenericXyz { get; }
 
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("kCGColorSpaceACESCGLinear")]
 		NSString AcesCGLinear { get; }
 
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("kCGColorSpaceITUR_709")]
 		NSString ItuR_709 { get; }
 
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("kCGColorSpaceITUR_2020")]
 		NSString ItuR_2020 { get; }
 
-		[iOS (9,3)][Mac (10,11)]
-		[TV (9,2)]
+		[Introduced (PlatformName.iOS, 9, 3)][Introduced (PlatformName.MacOSX, 10, 11)]
+		[Introduced (PlatformName.TvOS, 9, 2)]
 		[Field ("kCGColorSpaceROMMRGB")]
 		NSString RommRgb { get; }
 
-		[iOS (9,3)][Mac (10,11)]
-		[TV (9,2)]
+		[Introduced (PlatformName.iOS, 9, 3)][Introduced (PlatformName.MacOSX, 10, 11)]
+		[Introduced (PlatformName.TvOS, 9, 2)]
 		[Field ("kCGColorSpaceDCIP3")]
 		NSString Dcip3 { get; }
 
-		[iOS (10,0)][Mac (10,12)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGColorSpaceExtendedSRGB")]
 		NSString ExtendedSrgb { get; }
 
-		[iOS (10,0)][Mac (10,12)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGColorSpaceLinearSRGB")]
 		NSString LinearSrgb { get; }
 
-		[iOS (10,0)][Mac (10,12)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGColorSpaceExtendedLinearSRGB")]
 		NSString ExtendedLinearSrgb { get; }
 
-		[iOS (10,0)][Mac (10,12)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGColorSpaceExtendedGray")]
 		NSString ExtendedGray { get; }
 
-		[iOS (10,0)][Mac (10,12)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGColorSpaceLinearGray")]
 		NSString LinearGray { get; }
 
-		[iOS (10,0)][Mac (10,12)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGColorSpaceExtendedLinearGray")]
 		NSString ExtendedLinearGray { get; }
 
@@ -196,7 +196,7 @@ namespace XamCore.CoreGraphics {
 		NSString BlackPointCompensationKey { get; }
 	}
 
-	[iOS (10,0)][TV (10,0)][Watch (3,0)][Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 	[StrongDictionary ("CGColorConversionInfo")]
 	interface CGColorConversionOptions {
 		bool BlackPointCompensation { get; set; }

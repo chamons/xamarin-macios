@@ -9,7 +9,7 @@ using XamCore.UIKit;
 
 namespace XamCore.HealthKitUI {
 
-	[iOS (9,3), Watch (2,2)]
+	[Introduced (PlatformName.iOS, 9, 3), Introduced (PlatformName.WatchOS, 2, 2)]
 	[BaseType (typeof (UIView))]
 	[DisableDefaultCtor] // nil handle (introspection)
 	interface HKActivityRingView {

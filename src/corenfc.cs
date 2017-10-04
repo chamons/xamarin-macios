@@ -1,4 +1,4 @@
-﻿//
+//
 // CoreNFC C# bindings
 //
 // Authors:
@@ -22,10 +22,10 @@ namespace XamCore.CoreNFC {
 	// this changes in a future beta and will just be enabled in iOS for now.
 
 	//[iOS (11, 0), TV (11, 0), NoWatch, NoMac]
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[ErrorDomain ("NFCErrorDomain")]
 	[Native]
-	public enum NFCReaderError : nint {
+	public enum NFCReaderError : long {
 		UnsupportedFeature = 1,
 		SecurityViolation,
 		ReaderTransceiveErrorTagConnectionLost = 100,
@@ -40,14 +40,14 @@ namespace XamCore.CoreNFC {
 	}
 
 	//[iOS (11,0), NoTV, NoWatch, NoMac]
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum NFCTagType : nuint {
+	public enum NFCTagType : ulong {
 		Iso15693 = 1,
 	}
 
 	//[iOS (11,0), NoTV, NoWatch, NoMac]
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	public enum NFCTypeNameFormat : byte { // uint8_t
 		Empty = 0x00,
 		NFCWellKnown = 0x01,
@@ -59,7 +59,7 @@ namespace XamCore.CoreNFC {
 	}
 
 	//[iOS (11,0), NoTV, NoWatch, NoMac]
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NFCReaderSession), Name = "NFCISO15693ReaderSession")]
 	[DisableDefaultCtor]
 	interface NFCIso15693ReaderSession {
@@ -80,7 +80,7 @@ namespace XamCore.CoreNFC {
 	}
 
 	//[iOS (11,0), NoTV, NoWatch, NoMac]
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NFCTagCommandConfiguration), Name = "NFCISO15693CustomCommandConfiguration")]
 	interface NFCIso15693CustomCommandConfiguration {
 
@@ -101,7 +101,7 @@ namespace XamCore.CoreNFC {
 	}
 
 	//[iOS (11,0), NoTV, NoWatch, NoMac]
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NFCTagCommandConfiguration), Name = "NFCISO15693ReadMultipleBlocksConfiguration")]
 	interface NFCIso15693ReadMultipleBlocksConfiguration {
 
@@ -121,7 +121,7 @@ namespace XamCore.CoreNFC {
 	interface INFCIso15693Tag { }
 
 	//[iOS (11,0), NoTV, NoWatch, NoMac]
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol (Name = "NFCISO15693Tag")]
 	interface NFCIso15693Tag : NFCTag {
 
@@ -147,7 +147,7 @@ namespace XamCore.CoreNFC {
 	}
 
 	//[iOS (11,0), NoTV, NoWatch, NoMac]
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject), Name = "NFCNDEFPayload")]
 	[DisableDefaultCtor]
 	interface NFCNdefPayload : NSSecureCoding {
@@ -166,7 +166,7 @@ namespace XamCore.CoreNFC {
 	}
 
 	//[iOS (11,0), NoTV, NoWatch, NoMac]
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject), Name = "NFCNDEFMessage")]
 	[DisableDefaultCtor]
 	interface NFCNdefMessage : NSSecureCoding {
@@ -178,7 +178,7 @@ namespace XamCore.CoreNFC {
 	interface INFCNdefReaderSessionDelegate { }
 
 	//[iOS (11,0), NoTV, NoWatch, NoMac]
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject), Name = "NFCNDEFReaderSessionDelegate")]
 	interface NFCNdefReaderSessionDelegate {
@@ -193,7 +193,7 @@ namespace XamCore.CoreNFC {
 	}
 
 	//[iOS (11,0), NoTV, NoWatch, NoMac]
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NFCReaderSession), Name = "NFCNDEFReaderSession")]
 	[DisableDefaultCtor]
 	interface NFCNdefReaderSession {
@@ -208,7 +208,7 @@ namespace XamCore.CoreNFC {
 	}
 
 	//[iOS (11,0), NoTV, NoWatch, NoMac]
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface NFCReaderSession : NFCReaderSessionContract {
@@ -223,7 +223,7 @@ namespace XamCore.CoreNFC {
 	interface INFCReaderSessionContract { }
 
 	//[iOS (11,0), NoTV, NoWatch, NoMac]
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol (Name = "NFCReaderSession")]
 	interface NFCReaderSessionContract {
 
@@ -247,7 +247,7 @@ namespace XamCore.CoreNFC {
 	interface INFCReaderSessionDelegate { }
 
 	//[iOS (11,0), NoTV, NoWatch, NoMac]
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface NFCReaderSessionDelegate {
@@ -268,7 +268,7 @@ namespace XamCore.CoreNFC {
 	interface INFCTag { }
 
 	//[iOS (11,0), NoTV, NoWatch, NoMac]
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol]
 	interface NFCTag : NSSecureCoding, NSCopying {
 
@@ -286,7 +286,7 @@ namespace XamCore.CoreNFC {
 	}
 
 	//[iOS (11,0), NoTV, NoWatch, NoMac]
-	[iOS (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (NSObject))]
 	interface NFCTagCommandConfiguration : NSCopying {
 

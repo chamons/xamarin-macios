@@ -99,7 +99,7 @@ namespace XamCore.AppKit {
 			}
 		}
 
-		[DllImport (Constants.AppKitLibrary, EntryPoint="NSRectFill")]
+		[DllImport (Constants.AppKitLibrary, EntryPoint = "NSRectFill")]
 		public extern static void RectFill (CGRect rect);
 
 		[DllImport (Constants.AppKitLibrary)]
@@ -109,7 +109,7 @@ namespace XamCore.AppKit {
 			NSRectFillUsingOperation (rect, (nuint)(ulong)op);
 		}
 
-		[DllImport (Constants.AppKitLibrary, EntryPoint="NSRectFillList")]
+		[DllImport (Constants.AppKitLibrary, EntryPoint = "NSRectFillList")]
 		unsafe extern static void RectFillList (CGRect *rects, nint count);
 
 		public static void RectFill (CGRect [] rects)
@@ -122,17 +122,17 @@ namespace XamCore.AppKit {
 			}
 		}
 
-		[DllImport (Constants.AppKitLibrary, EntryPoint="NSRectClip")]
+		[DllImport (Constants.AppKitLibrary, EntryPoint = "NSRectClip")]
 		public extern static void RectClip (CGRect rect);
 		
-		[DllImport (Constants.AppKitLibrary, EntryPoint="NSFrameRect")]
+		[DllImport (Constants.AppKitLibrary, EntryPoint = "NSFrameRect")]
 		public extern static void FrameRect (CGRect rect);		
 
-		[DllImport (Constants.AppKitLibrary, EntryPoint="NSFrameRectWithWidth")]
+		[DllImport (Constants.AppKitLibrary, EntryPoint = "NSFrameRectWithWidth")]
 		public extern static void FrameRect (CGRect rect, nfloat frameWidth);		
 
 		// Bad naming, added the overload above
-		[DllImport (Constants.AppKitLibrary, EntryPoint="NSFrameRectWithWidth")]
+		[DllImport (Constants.AppKitLibrary, EntryPoint = "NSFrameRectWithWidth")]
 		public extern static void FrameRectWithWidth (CGRect rect, nfloat frameWidth);		
 
 		[DllImport (Constants.AppKitLibrary)]
@@ -142,7 +142,7 @@ namespace XamCore.AppKit {
 			NSFrameRectWithWidthUsingOperation (rect, frameWidth, (nuint)(ulong)operation);
 		}
 
-		[DllImport (Constants.AppKitLibrary, EntryPoint="NSShowAnimationEffect")]
+		[DllImport (Constants.AppKitLibrary, EntryPoint = "NSShowAnimationEffect")]
 		extern static void NSShowAnimationEffect (nuint animationEffect, CGPoint centerLocation, CGSize size, NSObject animationDelegate, Selector didEndSelector, IntPtr contextInfo);
 
 		public static void ShowAnimationEffect (NSAnimationEffect animationEffect, CGPoint centerLocation, CGSize size, NSObject animationDelegate, Selector didEndSelector, IntPtr contextInfo)
@@ -162,25 +162,25 @@ namespace XamCore.AppKit {
 			SetFocusRingStyle ((nuint)(ulong)placement);
 		}
 
-		[DllImport (Constants.AppKitLibrary, EntryPoint="NSSetFocusRingStyle")]
+		[DllImport (Constants.AppKitLibrary, EntryPoint = "NSSetFocusRingStyle")]
 		extern static void SetFocusRingStyle (nuint placement);
 
-		[DllImport (Constants.AppKitLibrary, EntryPoint="NSDrawWhiteBezel")]
+		[DllImport (Constants.AppKitLibrary, EntryPoint = "NSDrawWhiteBezel")]
 		public extern static void DrawWhiteBezel (CGRect aRect, CGRect clipRect);
 
-		[DllImport (Constants.AppKitLibrary, EntryPoint="NSDrawLightBezel")]
+		[DllImport (Constants.AppKitLibrary, EntryPoint = "NSDrawLightBezel")]
 		public extern static void DrawLightBezel (CGRect aRect, CGRect clipRect);
 
-		[DllImport (Constants.AppKitLibrary, EntryPoint="NSDrawGrayBezel")]
+		[DllImport (Constants.AppKitLibrary, EntryPoint = "NSDrawGrayBezel")]
 		public extern static void DrawGrayBezel (CGRect aRect, CGRect clipRect);
 
-		[DllImport (Constants.AppKitLibrary, EntryPoint="NSDrawDarkBezel")]
+		[DllImport (Constants.AppKitLibrary, EntryPoint = "NSDrawDarkBezel")]
 		public extern static void DrawDarkBezel (CGRect aRect, CGRect clipRect);
 
-		[DllImport (Constants.AppKitLibrary, EntryPoint="NSDrawGroove")]
+		[DllImport (Constants.AppKitLibrary, EntryPoint = "NSDrawGroove")]
 		public extern static void DrawGroove (CGRect aRect, CGRect clipRect);
 
-		[DllImport (Constants.AppKitLibrary, EntryPoint="NSDrawTiledRects")]
+		[DllImport (Constants.AppKitLibrary, EntryPoint = "NSDrawTiledRects")]
 		unsafe extern static CGRect DrawTiledRects (CGRect aRect, CGRect clipRect, NSRectEdge* sides, nfloat* grays, nint count);
 
 		public static CGRect DrawTiledRects (CGRect aRect, CGRect clipRect, NSRectEdge[] sides, nfloat[] grays)
@@ -198,13 +198,13 @@ namespace XamCore.AppKit {
 			}
 		}
 
-		[DllImport (Constants.AppKitLibrary, EntryPoint="NSDrawWindowBackground")]
+		[DllImport (Constants.AppKitLibrary, EntryPoint = "NSDrawWindowBackground")]
 		public extern static void DrawWindowBackground (CGRect aRect);
 		
-		[DllImport (Constants.AppKitLibrary, EntryPoint="NSDisableScreenUpdates")]
+		[DllImport (Constants.AppKitLibrary, EntryPoint = "NSDisableScreenUpdates")]
 		public extern static void DisableScreenUpdates ();
 		
-		[DllImport (Constants.AppKitLibrary, EntryPoint="NSEnableScreenUpdates")]
+		[DllImport (Constants.AppKitLibrary, EntryPoint = "NSEnableScreenUpdates")]
 		public extern static void EnableScreenUpdates ();
 		
 	}

@@ -1147,7 +1147,7 @@ namespace XamCore.ObjCRuntime {
 			return obj;
 		}
 
-		[DllImport (Messaging.LIBOBJC_DYLIB, EntryPoint="objc_msgSend")]
+		[DllImport (Messaging.LIBOBJC_DYLIB, EntryPoint = "objc_msgSend")]
 		extern static bool bool_objc_msgSend_IntPtr (System.IntPtr receiver, System.IntPtr selector, System.IntPtr arg1);
 
 		//

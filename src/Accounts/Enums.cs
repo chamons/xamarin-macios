@@ -41,7 +41,7 @@ namespace XamCore.Accounts {
 
 	// NSInteger -> ACAccountStore.h
 	[Native]
-	public enum ACAccountCredentialRenewResult : nint {
+	public enum ACAccountCredentialRenewResult : long {
 		Renewed, Rejected, Failed
 	}
 }

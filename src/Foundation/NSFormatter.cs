@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace XamCore.Foundation {
 	public partial class NSFormatter {

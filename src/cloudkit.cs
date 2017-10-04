@@ -8,8 +8,8 @@ using XamCore.Contacts;
 
 namespace XamCore.CloudKit {
 
-	[Watch (3,0)]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor] // NSInvalidArgumentException Reason: You must call -[CKAsset initWithFileURL:] or -[CKAsset initWithData:]
 	[BaseType (typeof (NSObject))]
 	interface CKAsset : NSCoding, NSSecureCoding {
@@ -21,8 +21,8 @@ namespace XamCore.CloudKit {
 		NSUrl FileUrl { get; }
 	}
 	
-	[iOS (10,0), Watch (3,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface CKUserIdentityLookupInfo : NSSecureCoding, NSCopying
 	{
@@ -57,8 +57,8 @@ namespace XamCore.CloudKit {
 		CKRecordID UserRecordID { get; }
 	}
 
-	[iOS (10,0), Watch (3,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface CKUserIdentity : NSSecureCoding, NSCopying
 	{
@@ -74,13 +74,13 @@ namespace XamCore.CloudKit {
 		[Export ("hasiCloudAccount")]
 		bool HasICloudAccount { get; }
 
-		[Watch (4, 0), NoTV, Mac (10, 13, onlyOn64 : true), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("contactIdentifiers", ArgumentSemantic.Copy)]
 		string[] ContactIdentifiers { get; }
 	}
 
-	[iOS (10,0), Watch (3,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface CKShareMetadata : NSCopying, NSSecureCoding
 	{
 		[Export ("containerIdentifier")]
@@ -108,8 +108,8 @@ namespace XamCore.CloudKit {
 		CKRecord RootRecord { get; }
 	}
 	
-	[iOS (10,0), Watch (3,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
-	[BaseType (typeof(CKRecord))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (CKRecord))]
 	[DisableDefaultCtor]
 	interface CKShare
 	{
@@ -144,7 +144,7 @@ namespace XamCore.CloudKit {
 	}
 
 	[Static]
-	[iOS (10,0), Watch (3,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	partial interface CKShareKeys {
 		
 		[Field ("CKShareTitleKey")]
@@ -157,8 +157,8 @@ namespace XamCore.CloudKit {
 		NSString Type { get; }
 	}
 	
-	[iOS (10,0), Watch (3,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface CKShareParticipant : NSSecureCoding, NSCopying
 	{
@@ -175,18 +175,18 @@ namespace XamCore.CloudKit {
 		CKShareParticipantPermission Permission { get; set; }
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor] // NSInternalInconsistencyException Reason: Use +[CKContainer privateCloudDatabase] or +[CKContainer publicCloudDatabase] instead of creating your own
 	[BaseType (typeof (NSObject))]
 	interface CKContainer {
 
-		[NoWatch]
-		[Availability (Introduced = Platform.iOS_8_0 | Platform.Mac_10_10 , Deprecated = Platform.iOS_10_0 | Platform.Mac_10_12, Message = "Use 'CurrentUserDefaultName' instead.")]
+		[Unavailable (PlatformName.WatchOS)]
+		[Introduced (PlatformName.iOS, 8, 0, message: "Use 'CurrentUserDefaultName' instead."), Introduced (PlatformName.MacOSX, 10, 10, message: "Use 'CurrentUserDefaultName' instead."), Deprecated (PlatformName.iOS, 10, 0, message: "Use 'CurrentUserDefaultName' instead."), Deprecated (PlatformName.MacOSX, 10, 12, message: "Use 'CurrentUserDefaultName' instead.")]
 		[Field ("CKOwnerDefaultName")]
 		NSString OwnerDefaultName { get; }
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Field ("CKCurrentUserDefaultName")]
 		NSString CurrentUserDefaultName { get; }
 
@@ -210,11 +210,11 @@ namespace XamCore.CloudKit {
 		[Export ("publicCloudDatabase")]
 		CKDatabase PublicCloudDatabase { get; }
 
-		[iOS (10, 0)][Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("sharedCloudDatabase")]
 		CKDatabase SharedCloudDatabase { get; }
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("databaseWithDatabaseScope:")]
 		CKDatabase GetDatabase (CKDatabaseScope databaseScope);
 
@@ -234,84 +234,84 @@ namespace XamCore.CloudKit {
 		[Async]
 		void FetchUserRecordId (Action<CKRecordID, NSError> completionHandler);
 
-		[iOS (10,0)][Mac (10,12)]
-		[NoTV]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("discoverAllIdentitiesWithCompletionHandler:")]
 		[Async]
 		void DiscoverAllIdentities (Action<CKUserIdentity[], NSError> completionHandler);
 		
-		[Availability (Introduced = Platform.iOS_8_0 | Platform.Mac_10_10 , Deprecated = Platform.iOS_10_0 | Platform.Mac_10_12, Message = "Use 'DiscoverAllIdentities' instead.")]
-		[NoWatch]
-		[NoTV]
+		[Introduced (PlatformName.iOS, 8, 0, message: "Use 'DiscoverAllIdentities' instead."), Introduced (PlatformName.MacOSX, 10, 10, message: "Use 'DiscoverAllIdentities' instead."), Deprecated (PlatformName.iOS, 10, 0, message: "Use 'DiscoverAllIdentities' instead."), Deprecated (PlatformName.MacOSX, 10, 12, message: "Use 'DiscoverAllIdentities' instead.")]
+		[Unavailable (PlatformName.WatchOS)]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("discoverAllContactUserInfosWithCompletionHandler:")]
 		[Async]
 		void DiscoverAllContactUserInfos (Action<CKDiscoveredUserInfo[], NSError> completionHandler);
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("discoverUserIdentityWithEmailAddress:completionHandler:")]
 		[Async]
 		void DiscoverUserIdentityWithEmailAddress (string email, Action<CKUserIdentity, NSError> completionHandler);
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("discoverUserIdentityWithPhoneNumber:completionHandler:")]
 		[Async]
 		void DiscoverUserIdentityWithPhoneNumber (string phoneNumber, Action<CKUserIdentity, NSError> completionHandler);
 		
-		[Availability (Introduced = Platform.iOS_8_0 | Platform.Mac_10_10 , Deprecated = Platform.iOS_10_0 | Platform.Mac_10_12, Message = "Use 'DiscoverUserIdentityWithEmailAddress' instead.")]
-		[NoWatch]
+		[Introduced (PlatformName.iOS, 8, 0, message: "Use 'DiscoverUserIdentityWithEmailAddress' instead."), Introduced (PlatformName.MacOSX, 10, 10, message: "Use 'DiscoverUserIdentityWithEmailAddress' instead."), Deprecated (PlatformName.iOS, 10, 0, message: "Use 'DiscoverUserIdentityWithEmailAddress' instead."), Deprecated (PlatformName.MacOSX, 10, 12, message: "Use 'DiscoverUserIdentityWithEmailAddress' instead.")]
+		[Unavailable (PlatformName.WatchOS)]
 		[Export ("discoverUserInfoWithEmailAddress:completionHandler:")]
 		[Async]
 		void DiscoverUserInfo (string email, Action<CKDiscoveredUserInfo, NSError> completionHandler);
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("discoverUserIdentityWithUserRecordID:completionHandler:")]
 		[Async]
 		void DiscoverUserIdentity (CKRecordID userRecordID, Action<CKUserIdentity, NSError> completionHandler);
 	
-		[Availability (Introduced = Platform.iOS_8_0 | Platform.Mac_10_10 , Deprecated = Platform.iOS_10_0 | Platform.Mac_10_12, Message = "Use 'DiscoverUserIdentity' instead.")]
-		[NoWatch]
+		[Introduced (PlatformName.iOS, 8, 0, message: "Use 'DiscoverUserIdentity' instead."), Introduced (PlatformName.MacOSX, 10, 10, message: "Use 'DiscoverUserIdentity' instead."), Deprecated (PlatformName.iOS, 10, 0, message: "Use 'DiscoverUserIdentity' instead."), Deprecated (PlatformName.MacOSX, 10, 12, message: "Use 'DiscoverUserIdentity' instead.")]
+		[Unavailable (PlatformName.WatchOS)]
 		[Export ("discoverUserInfoWithUserRecordID:completionHandler:")]
 		[Async]
 		void DiscoverUserInfo (CKRecordID userRecordId, Action<CKDiscoveredUserInfo, NSError> completionHandler);
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("CKAccountChangedNotification")]
 		[Notification]
 		NSString AccountChangedNotification { get; }
 
-		[iOS (9,3)][Mac (10,11,4)]
-		[NoTV] // does not answer on devices
+		[Introduced (PlatformName.iOS, 9, 3)][Introduced (PlatformName.MacOSX, 10, 11, 4)]
+		[Unavailable (PlatformName.TvOS)] // does not answer on devices
 		[Export ("fetchAllLongLivedOperationIDsWithCompletionHandler:")]
 		[Async]
 		void FetchAllLongLivedOperationIDs (Action<NSDictionary<NSString,NSOperation>, NSError> completionHandler);
 
-		[iOS (9,3)][Mac (10,11,4)]
-		[NoTV] // does not answer on devices
+		[Introduced (PlatformName.iOS, 9, 3)][Introduced (PlatformName.MacOSX, 10, 11, 4)]
+		[Unavailable (PlatformName.TvOS)] // does not answer on devices
 		[Export ("fetchLongLivedOperationWithID:completionHandler:")]
 		[Async]
 		void FetchLongLivedOperation (string[] operationID, Action<NSDictionary<NSString,NSOperation>, NSError> completionHandler);
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("fetchShareParticipantWithEmailAddress:completionHandler:")]
 		[Async]
 		void FetchShareParticipantWithEmailAddress (string emailAddress, Action<CKShareParticipant, NSError> completionHandler);
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("fetchShareParticipantWithPhoneNumber:completionHandler:")]
 		[Async]
 		void FetchShareParticipantWithPhoneNumber (string phoneNumber, Action<CKShareParticipant, NSError> completionHandler);
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("fetchShareParticipantWithUserRecordID:completionHandler:")]
 		[Async]
 		void FetchShareParticipant (CKRecordID userRecordID, Action<CKShareParticipant, NSError> completionHandler);
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("fetchShareMetadataWithURL:completionHandler:")]
 		[Async]
 		void FetchShareMetadata (NSUrl url, Action<CKShareMetadata, NSError> completionHandler);
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("acceptShareMetadata:completionHandler:")]
 		[Async]
 		void AcceptShareMetadata (CKShareMetadata metadata, Action<CKShare, NSError> completionHandler);
@@ -319,15 +319,15 @@ namespace XamCore.CloudKit {
 
 	delegate void CKDatabaseDeleteSubscriptionHandler (string subscriptionId, NSError error);
 
-	[Watch (3,0)]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor] // *** Assertion failure in -[CKDatabase init]
 	[BaseType (typeof (NSObject))]
 	interface CKDatabase {
 		[Export ("addOperation:")]
 		void AddOperation (CKDatabaseOperation operation);
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("databaseScope", ArgumentSemantic.Assign)]
 		CKDatabaseScope DatabaseScope { get; }
 
@@ -364,28 +364,28 @@ namespace XamCore.CloudKit {
 		void DeleteRecordZone (CKRecordZoneID zoneId, Action<CKRecordZoneID, NSError> completionHandler);
 
 		[Export ("fetchSubscriptionWithID:completionHandler:")]
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		void FetchSubscription (string subscriptionId, Action<CKSubscription, NSError> completionHandler);
 
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Export ("fetchAllSubscriptionsWithCompletionHandler:")]
 		[Async]
 		void FetchAllSubscriptions (Action<CKSubscription[], NSError> completionHandler);
 
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Export ("saveSubscription:completionHandler:")]
 		[Async]
 		void SaveSubscription (CKSubscription subscription, Action<CKSubscription, NSError> completionHandler);
 
 		[Export ("deleteSubscriptionWithID:completionHandler:")]
-		[NoWatch]
+		[Unavailable (PlatformName.WatchOS)]
 		[Async]
 		void DeleteSubscription (string subscriptionID, CKDatabaseDeleteSubscriptionHandler completionHandler);
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (CKOperation))]
 	[DisableDefaultCtor]
 #if XAMCORE_4_0 || WATCH
@@ -397,10 +397,10 @@ namespace XamCore.CloudKit {
 		CKDatabase Database { get; set; }
 	}
 
-	[NoWatch]
-	[NoTV]
-	[Availability (Introduced = Platform.iOS_8_0 | Platform.Mac_10_10 , Deprecated = Platform.iOS_10_0 | Platform.Mac_10_12, Message = "Use 'CKDiscoverAllUserIdentitiesOperation' instead.")]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 8, 0, message: "Use 'CKDiscoverAllUserIdentitiesOperation' instead."), Introduced (PlatformName.MacOSX, 10, 10, message: "Use 'CKDiscoverAllUserIdentitiesOperation' instead."), Deprecated (PlatformName.iOS, 10, 0, message: "Use 'CKDiscoverAllUserIdentitiesOperation' instead."), Deprecated (PlatformName.MacOSX, 10, 12, message: "Use 'CKDiscoverAllUserIdentitiesOperation' instead.")]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (CKOperation))]
 	interface CKDiscoverAllContactsOperation {
 		[NullAllowed] // by default this property is null
@@ -408,40 +408,40 @@ namespace XamCore.CloudKit {
 		Action<CKDiscoveredUserInfo[], NSError> DiscoverAllContactsHandler { get; set; }
 	}
 
-	[Availability (Introduced = Platform.iOS_8_0 | Platform.Mac_10_10 , Deprecated = Platform.iOS_10_0 | Platform.Mac_10_12, Message = "Use 'CKUserIdentity' instead.")]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
-	[NoWatch]
+	[Introduced (PlatformName.iOS, 8, 0, message: "Use 'CKUserIdentity' instead."), Introduced (PlatformName.MacOSX, 10, 10, message: "Use 'CKUserIdentity' instead."), Deprecated (PlatformName.iOS, 10, 0, message: "Use 'CKUserIdentity' instead."), Deprecated (PlatformName.MacOSX, 10, 12, message: "Use 'CKUserIdentity' instead.")]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
+	[Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (NSObject))]
 	interface CKDiscoveredUserInfo : NSCoding, NSCopying, NSSecureCoding {
 
 		[Export ("userRecordID", ArgumentSemantic.Copy)]
 		CKRecordID UserRecordId { get; }
 
-		[Availability (Introduced = Platform.Mac_10_10 | Platform.iOS_8_0, Deprecated = Platform.Mac_10_11 | Platform.iOS_9_0, Message = "Use 'DisplayContact.GivenName'.")]
+		[Introduced (PlatformName.MacOSX, 10, 10, message: "Use 'DisplayContact.GivenName'."), Introduced (PlatformName.iOS, 8, 0, message: "Use 'DisplayContact.GivenName'."), Deprecated (PlatformName.MacOSX, 10, 11, message: "Use 'DisplayContact.GivenName'."), Deprecated (PlatformName.iOS, 9, 0, message: "Use 'DisplayContact.GivenName'.")]
 		[Export ("firstName", ArgumentSemantic.Copy)]
 		string FirstName { get; }
 
-		[Availability (Introduced = Platform.Mac_10_10 | Platform.iOS_8_0, Deprecated = Platform.Mac_10_11 | Platform.iOS_9_0, Message = "Use 'DisplayContact.FamilyName'.")]
+		[Introduced (PlatformName.MacOSX, 10, 10, message: "Use 'DisplayContact.FamilyName'."), Introduced (PlatformName.iOS, 8, 0, message: "Use 'DisplayContact.FamilyName'."), Deprecated (PlatformName.MacOSX, 10, 11, message: "Use 'DisplayContact.FamilyName'."), Deprecated (PlatformName.iOS, 9, 0, message: "Use 'DisplayContact.FamilyName'.")]
 		[Export ("lastName", ArgumentSemantic.Copy)]
 		string LastName { get; }
 
 
 #if XAMCORE_2_0 // The Contacts framework (CNContact) uses generics heavily, which is only supported in Unified (for now at least)
 #if MONOMAC || IOS
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[NullAllowed, Export ("displayContact", ArgumentSemantic.Copy)]
 		CNContact DisplayContact { get; }
 #endif // MONOMAC || IOS
 #endif // XAMCORE_2_0
 	}
 
-	[NoWatch]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	delegate void CKDiscoverUserInfosCompletionHandler (NSDictionary emailsToUserInfos, NSDictionary userRecordIdsToUserInfos, NSError operationError);
 
-	[Availability (Introduced = Platform.iOS_8_0 | Platform.Mac_10_10 , Deprecated = Platform.iOS_10_0 | Platform.Mac_10_12, Message = "Use 'CKDiscoverUserIdentitiesOperation' instead.")]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
-	[NoWatch]
+	[Introduced (PlatformName.iOS, 8, 0, message: "Use 'CKDiscoverUserIdentitiesOperation' instead."), Introduced (PlatformName.MacOSX, 10, 10, message: "Use 'CKDiscoverUserIdentitiesOperation' instead."), Deprecated (PlatformName.iOS, 10, 0, message: "Use 'CKDiscoverUserIdentitiesOperation' instead."), Deprecated (PlatformName.MacOSX, 10, 12, message: "Use 'CKDiscoverUserIdentitiesOperation' instead.")]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
+	[Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (CKOperation))]
 	interface CKDiscoverUserInfosOperation {
 
@@ -465,8 +465,8 @@ namespace XamCore.CloudKit {
 	}
 
 	// CKError.h Fields
-	[Watch (3,0)]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[Static]
 	interface CKErrorFields {
 #if !XAMCORE_3_0
@@ -491,10 +491,9 @@ namespace XamCore.CloudKit {
 		NSString ErrorRetryAfterKey { get; }
 	}
 
-	[iOS (8,0), Watch (3,0), TV (10,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (CKOperation))]
-	[Availability (Deprecated = Platform.iOS_11_0 | Platform.Mac_10_13 | Platform.Watch_4_0 | Platform.TV_11_0, 
-		Message = "Use 'CKDatabaseSubscription', 'CKFetchDatabaseChangesOperation' and 'CKFetchRecordZoneChangesOperation' instead.")]
+	[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'CKDatabaseSubscription', 'CKFetchDatabaseChangesOperation' and 'CKFetchRecordZoneChangesOperation' instead."), Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'CKDatabaseSubscription', 'CKFetchDatabaseChangesOperation' and 'CKFetchRecordZoneChangesOperation' instead.")]
 	interface CKFetchNotificationChangesOperation {
 		[Export ("initWithPreviousServerChangeToken:")]
 		IntPtr Constructor ([NullAllowed] CKServerChangeToken previousServerChangeToken);
@@ -524,21 +523,21 @@ namespace XamCore.CloudKit {
 		}
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor] // Objective-C exception thrown.  Name: CKException Reason: You can't call init on CKServerChangeToken
 	[BaseType (typeof (NSObject))]
 	interface CKServerChangeToken : NSCopying, NSSecureCoding {
 	
 	}
 
-	[NoWatch]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	delegate void CKFetchRecordChangesHandler (CKServerChangeToken serverChangeToken, NSData clientChangeTokenData, NSError operationError);
 
-	[Availability (Introduced = Platform.iOS_8_0 | Platform.Mac_10_10 , Deprecated = Platform.iOS_10_0 | Platform.Mac_10_12, Message = "Use 'CKFetchRecordZoneChangesOperation' instead.")]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
-	[NoWatch]
+	[Introduced (PlatformName.iOS, 8, 0, message: "Use 'CKFetchRecordZoneChangesOperation' instead."), Introduced (PlatformName.MacOSX, 10, 10, message: "Use 'CKFetchRecordZoneChangesOperation' instead."), Deprecated (PlatformName.iOS, 10, 0, message: "Use 'CKFetchRecordZoneChangesOperation' instead."), Deprecated (PlatformName.MacOSX, 10, 12, message: "Use 'CKFetchRecordZoneChangesOperation' instead.")]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
+	[Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (CKDatabaseOperation))]
 	interface CKFetchRecordChangesOperation {
 
@@ -584,17 +583,17 @@ namespace XamCore.CloudKit {
 		}
 	}
 
-	[iOS (10,0), Watch (3,0), TV (10,0), Mac (10, 12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	delegate void CKFetchRecordZoneChangesWithIDWasDeletedHandler (CKRecordID recordID, NSString recordType);
 
-	[iOS (10,0), Watch (3,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	delegate void CKFetchRecordZoneChangesTokensUpdatedHandler (CKRecordZoneID recordZoneID, CKServerChangeToken serverChangeToken, NSData clientChangeTokenData);
 
-	[iOS (10,0), Watch (3,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	delegate void CKFetchRecordZoneChangesFetchCompletedHandler (CKRecordZoneID recordZoneID, CKServerChangeToken serverChangeToken, NSData clientChangeTokenData, bool moreComing, NSError recordZoneError);
 
-	[iOS (10,0), Watch (3,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
-	[BaseType (typeof(CKDatabaseOperation))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (CKDatabaseOperation))]
 	interface CKFetchRecordZoneChangesOperation
 	{
 		[Export ("initWithRecordZoneIDs:optionsByRecordZoneID:")]
@@ -626,8 +625,8 @@ namespace XamCore.CloudKit {
 		Action<NSError> ChangesCompleted { get; set; }
 	}
 	
-	[iOS (10,0), Watch (3,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (NSObject))]
 	interface CKFetchRecordZoneChangesOptions : NSSecureCoding, NSCopying
 	{
 		[NullAllowed, Export ("previousServerChangeToken", ArgumentSemantic.Copy)]
@@ -640,10 +639,10 @@ namespace XamCore.CloudKit {
 		string[] DesiredKeys { get; set; }
 	}
 
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	delegate void CKFetchRecordsCompletedHandler (NSDictionary recordsByRecordId, NSError error);
 
-	[iOS (8,0), Watch (3,0), TV (10,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 #if XAMCORE_4_0 || WATCH // does not work on watchOS, existiong init* does not allow null to be used to fake it
 	[DisableDefaultCtor]
 #endif
@@ -687,10 +686,10 @@ namespace XamCore.CloudKit {
 		CKFetchRecordsOperation FetchCurrentUserRecordOperation ();
 	}
 
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	delegate void CKRecordZoneCompleteHandler (NSDictionary recordZonesByZoneId, NSError operationError);
 
-	[iOS (8,0), Watch (3,0), TV (10,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 #if XAMCORE_4_0 || WATCH // does not work on watchOS, existiong init* does not allow null to be used to fake it
 	[DisableDefaultCtor]
 #endif
@@ -715,12 +714,12 @@ namespace XamCore.CloudKit {
 		CKFetchRecordZonesOperation FetchAllRecordZonesOperation ();
 	}
 
-	[NoWatch]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	delegate void CKFetchSubscriptionsCompleteHandler (NSDictionary subscriptionsBySubscriptionId, NSError operationError);
 
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
-	[NoWatch]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
+	[Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (CKDatabaseOperation))]
 	interface CKFetchSubscriptionsOperation {
 
@@ -743,7 +742,7 @@ namespace XamCore.CloudKit {
 		CKFetchSubscriptionsOperation FetchAllSubscriptionsOperation ();
 	}
 
-	[iOS (8,0), Watch (3,0), TV (10,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 #if XAMCORE_4_0 || WATCH // does not work on watchOS, existiong init* does not allow null to be used to fake it
 	[DisableDefaultCtor]
 #endif
@@ -757,15 +756,14 @@ namespace XamCore.CloudKit {
 		CLLocation RelativeLocation { get; }
 	}
 
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	delegate void CKMarkNotificationsReadHandler (CKNotificationID[] notificationIDsMarkedRead, NSError operationError);
 
-	[Watch (3,0)]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (CKOperation))]
 	[DisableDefaultCtor] // NSInvalidArgumentException Reason: You must call -[CKMarkNotificationsReadOperation initWithNotificationIDsToMarkRead:]
-	[Availability (Deprecated = Platform.iOS_11_0 | Platform.Mac_10_13 | Platform.Watch_4_0 | Platform.TV_11_0, 
-		Message = "Use 'CKDatabaseSubscription', 'CKFetchDatabaseChangesOperation' and 'CKFetchRecordZoneChangesOperation' instead.")]
+	[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'CKDatabaseSubscription', 'CKFetchDatabaseChangesOperation' and 'CKFetchRecordZoneChangesOperation' instead."), Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'CKDatabaseSubscription', 'CKFetchDatabaseChangesOperation' and 'CKFetchRecordZoneChangesOperation' instead.")]
 	interface CKMarkNotificationsReadOperation {
 
 		[DesignatedInitializer]
@@ -783,10 +781,10 @@ namespace XamCore.CloudKit {
 		}
 	}
 
-	[iOS (8,0), Watch (3,0), TV (10,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor] // does not work on watchOS, working stub provided to ease source compatibility
 	[BaseType (typeof (CKOperation))]
-	[Availability (Deprecated = Platform.iOS_11_0 | Platform.Mac_10_13 | Platform.Watch_4_0 | Platform.TV_11_0)]
+	[Deprecated (PlatformName.iOS, 11, 0), Deprecated (PlatformName.MacOSX, 10, 13)]
 	interface CKModifyBadgeOperation {
 
 		[Export ("initWithBadgeValue:")]
@@ -803,10 +801,10 @@ namespace XamCore.CloudKit {
 		}
 	}
 
-	[iOS (8,0), Mac (10,10, onlyOn64 : true), Watch (3,0)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64), Introduced (PlatformName.WatchOS, 3, 0)]
 	delegate void CKModifyRecordsOperationHandler (CKRecord [] savedRecords, CKRecordID [] deletedRecordIds, NSError operationError);
 
-	[iOS (8,0), Watch (3,0), TV (10,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor] // does not work on watchOS, working stub provided to ease source compatibility
 	[BaseType (typeof (CKDatabaseOperation))]
 	interface CKModifyRecordsOperation {
@@ -855,10 +853,10 @@ namespace XamCore.CloudKit {
 		
 	}
 
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	delegate void CKModifyRecordZonesHandler (CKRecordZone [] savedRecordZones, CKRecordZoneID [] deletedRecordZoneIds, NSError operationError);
 
-	[iOS (8,0), Watch (3,0), TV (10,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor] // does not work on watchOS, working stub provided to ease source compatibility
 	[BaseType (typeof (CKDatabaseOperation))]
 	interface CKModifyRecordZonesOperation {
@@ -882,11 +880,11 @@ namespace XamCore.CloudKit {
 		}
 	}
 
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	delegate void CKModifySubscriptionsHandler (CKSubscription [] savedSubscriptions, string [] deletedSubscriptionIds, NSError operationError);
 
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
-	[NoWatch]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
+	[Unavailable (PlatformName.WatchOS)]
 	[BaseType (typeof (CKDatabaseOperation))]
 	interface CKModifySubscriptionsOperation {
 
@@ -909,15 +907,15 @@ namespace XamCore.CloudKit {
 		}
 	}
 
-	[iOS (8,0), Watch (3,0), TV (10,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor] // doc: <quote>You do not create notification IDs directly.</quote>
 	[BaseType (typeof (NSObject))]
 	interface CKNotificationID : NSCopying, NSSecureCoding, NSCoding {
 
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor] // NSInvalidArgumentException Reason: CKNotification is not meant for direct instantiation
 	[BaseType (typeof (NSObject))]
 #if XAMCORE_4_0 || WATCH
@@ -937,31 +935,31 @@ namespace XamCore.CloudKit {
 		[Export ("isPruned", ArgumentSemantic.UnsafeUnretained)]
 		bool IsPruned { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[NullAllowed, Export ("alertBody")]
 		string AlertBody { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[NullAllowed, Export ("alertLocalizationKey")]
 		string AlertLocalizationKey { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[NullAllowed, Export ("alertLocalizationArgs", ArgumentSemantic.Copy)]
 		string [] AlertLocalizationArgs { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[NullAllowed, Export ("alertActionLocalizationKey")]
 		string AlertActionLocalizationKey { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[NullAllowed, Export ("alertLaunchImage")]
 		string AlertLaunchImage { get; }
 
-		[TV (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[NullAllowed, Export ("badge", ArgumentSemantic.Copy)]
 		NSNumber Badge { get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[NullAllowed, Export ("soundName")]
 		string SoundName { get; }
 
@@ -969,42 +967,42 @@ namespace XamCore.CloudKit {
 		[Export ("notificationFromRemoteNotificationDictionary:")]
 		CKNotification FromRemoteNotificationDictionary (NSDictionary notificationDictionary);
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[NullAllowed, Export ("subscriptionID")]
 		string SubscriptionID { get; }
 
-		[NoTV]
-		[iOS (9,0)][Mac (10,11)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[NullAllowed, Export ("category")]
 		string Category { get; }
 
-		[Watch (4, 0), NoTV, Mac (10, 13, onlyOn64 : true), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("title")]
 		string Title { get; }
 
-		[Watch (4, 0), NoTV, Mac (10, 13, onlyOn64 : true), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("titleLocalizationKey")]
 		string TitleLocalizationKey { get; }
 
-		[Watch (4, 0), NoTV, Mac (10, 13, onlyOn64 : true), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("titleLocalizationArgs", ArgumentSemantic.Copy)]
 		string[] TitleLocalizationArgs { get; }
 
-		[Watch (4, 0), NoTV, Mac (10, 13, onlyOn64 : true), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("subtitle")]
 		string Subtitle { get; }
 
-		[Watch (4, 0), NoTV, Mac (10, 13, onlyOn64 : true), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("subtitleLocalizationKey")]
 		string SubtitleLocalizationKey { get; }
 
-		[Watch (4, 0), NoTV, Mac (10, 13, onlyOn64 : true), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("subtitleLocalizationArgs", ArgumentSemantic.Copy)]
 		string[] SubtitleLocalizationArgs { get; }
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor] // NSInvalidArgumentException Reason: CKQueryNotification is not meant for direct instantiation
 	[BaseType (typeof (CKNotification))]
 	interface CKQueryNotification : NSCoding, NSSecureCoding {
@@ -1022,17 +1020,17 @@ namespace XamCore.CloudKit {
 		[NullAllowed, Export ("recordID", ArgumentSemantic.Copy)]
 		CKRecordID RecordId { get; }
 
-		[Availability (Introduced = Platform.iOS_8_0 | Platform.Mac_10_10 , Deprecated = Platform.iOS_10_0 | Platform.Mac_10_12, Message = "Use 'DatabaseScope' instead.")]
+		[Introduced (PlatformName.iOS, 8, 0, message: "Use 'DatabaseScope' instead."), Introduced (PlatformName.MacOSX, 10, 10, message: "Use 'DatabaseScope' instead."), Deprecated (PlatformName.iOS, 10, 0, message: "Use 'DatabaseScope' instead."), Deprecated (PlatformName.MacOSX, 10, 12, message: "Use 'DatabaseScope' instead.")]
 		[Export ("isPublicDatabase", ArgumentSemantic.UnsafeUnretained)]
 		bool IsPublicDatabase { get; }
 		
-		[iOS (10,0), Watch (3,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("databaseScope", ArgumentSemantic.Assign)]
 		CKDatabaseScope DatabaseScope { get; }
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor] // objc_exception_throw on CKNotification init
 	[BaseType (typeof (CKNotification))]
 	interface CKRecordZoneNotification : NSCoding, NSSecureCoding {
@@ -1040,22 +1038,22 @@ namespace XamCore.CloudKit {
 		[Export ("recordZoneID", ArgumentSemantic.Copy)]
 		CKRecordZoneID RecordZoneId { get; }
 
-		[iOS (10,0), Watch (3,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("databaseScope", ArgumentSemantic.Assign)]
 		CKDatabaseScope DatabaseScope { get; }
 	}
 
-	[iOS (10,0), Watch (3,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor] // objc_exception_throw on CKNotification init
-	[BaseType (typeof(CKNotification))]
+	[BaseType (typeof (CKNotification))]
 	interface CKDatabaseNotification
 	{
 		[Export ("databaseScope", ArgumentSemantic.Assign)]
 		CKDatabaseScope DatabaseScope { get; }
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13, onlyOn64 : true), iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	interface CKOperationConfiguration : NSSecureCoding, NSCopying {
 		[NullAllowed, Export ("container", ArgumentSemantic.Strong)]
 		CKContainer Container { get; set; }
@@ -1076,8 +1074,8 @@ namespace XamCore.CloudKit {
 		double TimeoutIntervalForResource { get; set; }
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSOperation))]
 	[DisableDefaultCtor] // Assertion failure in -[CKOperation init], /SourceCache/CloudKit/CloudKit-175.3/Framework/Operations/CKOperation.m:65
 #if XAMCORE_4_0 || WATCH
@@ -1090,63 +1088,58 @@ namespace XamCore.CloudKit {
 		// [Export ("activityStart")]
 		// ulong ActivityStart ();
 
-		[Availability (Deprecated = Platform.iOS_11_0 | Platform.Mac_10_13 | Platform.Watch_4_0 | Platform.TV_11_0, 
-			Message = "Use 'CKOperationConfiguration' instead.")]
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'CKOperationConfiguration' instead."), Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'CKOperationConfiguration' instead.")]
 		[NullAllowed, Export ("container", ArgumentSemantic.Retain)]
 		CKContainer Container { get; set; }
 
-		[NoWatch]
-		[Deprecated (PlatformName.iOS, 9,0, message: "Use 'QualityOfService' property.")]
-		[Deprecated (PlatformName.MacOSX, 10,11, message: "Use 'QualityOfService' property.")]
+		[Unavailable (PlatformName.WatchOS)]
+		[Deprecated (PlatformName.iOS, 9, 0, message: "Use 'QualityOfService' property.")]
+		[Deprecated (PlatformName.MacOSX, 10, 11, message: "Use 'QualityOfService' property.")]
 		[Export ("usesBackgroundSession", ArgumentSemantic.UnsafeUnretained)]
 		bool UsesBackgroundSession { get; set; }
 
-		[Availability (Deprecated = Platform.iOS_11_0 | Platform.Mac_10_13 | Platform.Watch_4_0 | Platform.TV_11_0, 
-			Message = "Use 'CKOperationConfiguration' instead.")]
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'CKOperationConfiguration' instead."), Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'CKOperationConfiguration' instead.")]
 		[Export ("allowsCellularAccess", ArgumentSemantic.UnsafeUnretained)]
 		bool AllowsCellularAccess { get; set; }
 
-		[iOS (9,3)][Mac (10,11,4)]
-		[TV (9,2)]
+		[Introduced (PlatformName.iOS, 9, 3)][Introduced (PlatformName.MacOSX, 10, 11, 4)]
+		[Introduced (PlatformName.TvOS, 9, 2)]
 		[Export ("operationID")]
 		string OperationID { get; }
 
-		[iOS (9,3)][Mac (10,11,4)]
-		[TV (9,2)]
+		[Introduced (PlatformName.iOS, 9, 3)][Introduced (PlatformName.MacOSX, 10, 11, 4)]
+		[Introduced (PlatformName.TvOS, 9, 2)]
 		[Export ("longLived")]
-		[Availability (Deprecated = Platform.iOS_11_0 | Platform.Mac_10_13 | Platform.Watch_4_0 | Platform.TV_11_0, 
-			Message = "Use 'CKOperationConfiguration' instead.")]
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'CKOperationConfiguration' instead."), Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'CKOperationConfiguration' instead.")]
 		bool LongLived { [Bind ("isLongLived")] get; set; }
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("timeoutIntervalForRequest")]
-		[Availability (Deprecated = Platform.iOS_11_0 | Platform.Mac_10_13 | Platform.Watch_4_0 | Platform.TV_11_0, 
-			Message = "Use 'CKOperationConfiguration' instead.")]
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'CKOperationConfiguration' instead."), Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'CKOperationConfiguration' instead.")]
 		double TimeoutIntervalForRequest { get; set; }
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("timeoutIntervalForResource")]
-		[Availability (Deprecated = Platform.iOS_11_0 | Platform.Mac_10_13 | Platform.Watch_4_0 | Platform.TV_11_0, 
-			Message = "Use 'CKOperationConfiguration' instead.")]
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'CKOperationConfiguration' instead."), Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'CKOperationConfiguration' instead.")]
 		double TimeoutIntervalForResource { get; set; }
 
-		[iOS (9,3)][Mac (10,11,4)]
-		[TV (9,2)]
+		[Introduced (PlatformName.iOS, 9, 3)][Introduced (PlatformName.MacOSX, 10, 11, 4)]
+		[Introduced (PlatformName.TvOS, 9, 2)]
 		[NullAllowed]
 		[Export ("longLivedOperationWasPersistedBlock", ArgumentSemantic.Strong)]
 		Action LongLivedOperationWasPersistedCallback { get; set; }		
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13, onlyOn64 : true), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("configuration", ArgumentSemantic.Copy)]
 		CKOperationConfiguration Configuration { get; set; }
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13, onlyOn64 : true), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("group", ArgumentSemantic.Strong)]
 		CKOperationGroup Group { get; set; }
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13, onlyOn64 : true), iOS (11,0)]
-	[BaseType (typeof(NSObject))]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] 
 	interface CKOperationGroup : NSSecureCoding {
 
@@ -1169,8 +1162,8 @@ namespace XamCore.CloudKit {
 		CKOperationGroupTransferSize ExpectedReceiveSize { get; set; }
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor] // NSInvalidArgumentException Reason: You must call -[CKQuery initWithRecordType:predicate:sortDescriptors:]
 	[BaseType (typeof (NSObject))]
 	interface CKQuery : NSSecureCoding, NSCopying {
@@ -1189,7 +1182,7 @@ namespace XamCore.CloudKit {
 		NSSortDescriptor [] SortDescriptors { get; set; }
 	}
 
-	[iOS (8,0), Watch (3,0), TV (10,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 #if XAMCORE_4_0 || WATCH // does not work on watchOS, existiong init* does not allow null to be used to fake it
 	[DisableDefaultCtor]
 #endif
@@ -1238,8 +1231,8 @@ namespace XamCore.CloudKit {
 		}
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
@@ -1247,8 +1240,8 @@ namespace XamCore.CloudKit {
 
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor] // Crashes [CKRecord init] objc_exception_throw
 	[BaseType (typeof (NSObject))]
 	interface CKRecord : NSSecureCoding, NSCopying {
@@ -1256,15 +1249,15 @@ namespace XamCore.CloudKit {
 		[Field ("CKRecordTypeUserRecord")]
 		NSString TypeUserRecord { get; }
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Field ("CKRecordParentKey")]
 		NSString ParentKey { get; }
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Field ("CKRecordShareKey")]
 		NSString ShareKey { get; }
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Field ("CKRecordTypeShare")]
 		NSString TypeShare { get; }
 
@@ -1328,25 +1321,25 @@ namespace XamCore.CloudKit {
 		[Export ("encodeSystemFieldsWithCoder:")]
 		void EncodeSystemFields (NSCoder coder);
 		
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[NullAllowed, Export ("share", ArgumentSemantic.Copy)]
 		CKReference Share { get; }
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[NullAllowed, Export ("parent", ArgumentSemantic.Copy)]
 		CKReference Parent { get; set; }
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("setParentReferenceFromRecord:")]
 		void SetParent ([NullAllowed] CKRecord parentRecord);
 
-		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		[Export ("setParentReferenceFromRecordID:")]
 		void SetParent ([NullAllowed] CKRecordID parentRecordID);
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // NSInvalidArgumentException You must call -[CKRecordID initWithRecordName:] or -[CKRecordID initWithRecordName:zoneID:]
 	interface CKRecordID : NSSecureCoding, NSCopying {
@@ -1365,8 +1358,8 @@ namespace XamCore.CloudKit {
 		CKRecordZoneID ZoneId { get; }
 	}
 
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
-	[Watch (3,0)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
 #if XAMCORE_4_0 || WATCH // does not work on watchOS, existiong init* does not allow null to be used to fake it
 	[DisableDefaultCtor]
 #endif
@@ -1393,8 +1386,8 @@ namespace XamCore.CloudKit {
 		CKRecordZone DefaultRecordZone ();
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // NSInvalidArgumentException You must call -[CKRecordZoneID initWithZoneName:ownerName:]
 	interface CKRecordZoneID : NSSecureCoding, NSCopying {
@@ -1410,8 +1403,8 @@ namespace XamCore.CloudKit {
 		string OwnerName { get; }
 	}
 
-	[Watch (3,0)]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor] // NSInvalidArgumentException Reason: You must call -[CKReference initWithRecordID:] or -[CKReference initWithRecord:] or -[CKReference initWithAsset:]
 	[BaseType (typeof (NSObject))]
 	interface CKReference : NSSecureCoding, NSCopying {
@@ -1430,10 +1423,10 @@ namespace XamCore.CloudKit {
 		CKRecordID RecordId { get; }
 	}
 
-	[NoWatch]
-	[iOS (10,0)][TV (10,0), Mac (10,12, onlyOn64 : true)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
-	[BaseType (typeof(CKSubscription))]
+	[BaseType (typeof (CKSubscription))]
 	interface CKQuerySubscription : NSSecureCoding, NSCopying
 	{
 		[Export ("initWithRecordType:predicate:options:")]
@@ -1456,10 +1449,10 @@ namespace XamCore.CloudKit {
 		CKQuerySubscriptionOptions SubscriptionOptions { get; }
 	}
 
-	[NoWatch]
-	[iOS (10,0)][TV (10,0), Mac (10,12, onlyOn64 : true)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
-	[BaseType (typeof(CKSubscription))]
+	[BaseType (typeof (CKSubscription))]
 	interface CKRecordZoneSubscription : NSSecureCoding, NSCopying
 	{
 		[Export ("initWithZoneID:")]
@@ -1477,10 +1470,10 @@ namespace XamCore.CloudKit {
 		string RecordType { get; set; }
 	}
 
-	[NoWatch]
-	[iOS (10,0)][TV (10,0), Mac (10,12, onlyOn64 : true)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor]
-	[BaseType (typeof(CKSubscription))]
+	[BaseType (typeof (CKSubscription))]
 	interface CKDatabaseSubscription : NSSecureCoding, NSCopying
 	{
 		[Export ("initWithSubscriptionID:")]
@@ -1491,30 +1484,30 @@ namespace XamCore.CloudKit {
 		string RecordType { get; set; }
 	}
 
-	[NoWatch]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor] // objc_exception_throw on [CKSubscription init]
 	[BaseType (typeof (NSObject))]
 	interface CKSubscription : NSSecureCoding, NSCopying {
 
-		[Deprecated (PlatformName.iOS, 10,0, message: "Use 'CKQuerySubscription'.")]
-		[Deprecated (PlatformName.MacOSX, 10,12, message: "Use 'CKQuerySubscription'.")]
+		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'CKQuerySubscription'.")]
+		[Deprecated (PlatformName.MacOSX, 10, 12, message: "Use 'CKQuerySubscription'.")]
 		[Export ("initWithRecordType:predicate:options:")]
 		IntPtr Constructor (string recordType, NSPredicate predicate, CKSubscriptionOptions subscriptionOptions);
 
-		[Deprecated (PlatformName.iOS, 10,0, message: "Use 'CKQuerySubscription'.")]
-		[Deprecated (PlatformName.MacOSX, 10,12, message: "Use 'CKQuerySubscription'.")]
+		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'CKQuerySubscription'.")]
+		[Deprecated (PlatformName.MacOSX, 10, 12, message: "Use 'CKQuerySubscription'.")]
 		[DesignatedInitializer]
 		[Export ("initWithRecordType:predicate:subscriptionID:options:")]
 		IntPtr Constructor (string recordType, NSPredicate predicate, string subscriptionId, CKSubscriptionOptions subscriptionOptions);
 
-		[Deprecated (PlatformName.iOS, 10,0, message: "Use 'CKRecordZoneSubscription'.")]
-		[Deprecated (PlatformName.MacOSX, 10,12, message: "Use 'CKRecordZoneSubscription'.")]
+		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'CKRecordZoneSubscription'.")]
+		[Deprecated (PlatformName.MacOSX, 10, 12, message: "Use 'CKRecordZoneSubscription'.")]
 		[Export ("initWithZoneID:options:")]
 		IntPtr Constructor (CKRecordZoneID zoneId, CKSubscriptionOptions subscriptionOptions);
 
-		[Deprecated (PlatformName.iOS, 10,0, message: "Use 'CKRecordZoneSubscription'.")]
-		[Deprecated (PlatformName.MacOSX, 10,12, message: "Use 'CKRecordZoneSubscription'.")]
+		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'CKRecordZoneSubscription'.")]
+		[Deprecated (PlatformName.MacOSX, 10, 12, message: "Use 'CKRecordZoneSubscription'.")]
 		[DesignatedInitializer]
 		[Export ("initWithZoneID:subscriptionID:options:")]
 		IntPtr Constructor (CKRecordZoneID zoneId, string subscriptionId, CKSubscriptionOptions subscriptionOptions);
@@ -1525,62 +1518,62 @@ namespace XamCore.CloudKit {
 		[Export ("subscriptionType", ArgumentSemantic.UnsafeUnretained)]
 		CKSubscriptionType SubscriptionType { get; }
 
-		[Deprecated (PlatformName.iOS, 10,0, message: "Use 'CKQuerySubscription'.")]
-		[Deprecated (PlatformName.MacOSX, 10,12, message: "Use 'CKQuerySubscription'.")]
+		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'CKQuerySubscription'.")]
+		[Deprecated (PlatformName.MacOSX, 10, 12, message: "Use 'CKQuerySubscription'.")]
 		[Export ("recordType")]
 		string RecordType { get; }
 
-		[Deprecated (PlatformName.iOS, 10,0, message: "Use 'CKQuerySubscription'.")]
-		[Deprecated (PlatformName.MacOSX, 10,12, message: "Use 'CKQuerySubscription'.")]
+		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'CKQuerySubscription'.")]
+		[Deprecated (PlatformName.MacOSX, 10, 12, message: "Use 'CKQuerySubscription'.")]
 		[Export ("predicate", ArgumentSemantic.Copy)]
 		NSPredicate Predicate { get; }
 
-		[Deprecated (PlatformName.iOS, 10,0, message: "Use 'CKQuerySubscriptionOptions'.")]
-		[Deprecated (PlatformName.MacOSX, 10,12, message: "Use 'CKQuerySubscriptionOptions'.")]
+		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'CKQuerySubscriptionOptions'.")]
+		[Deprecated (PlatformName.MacOSX, 10, 12, message: "Use 'CKQuerySubscriptionOptions'.")]
 		[Export ("subscriptionOptions", ArgumentSemantic.UnsafeUnretained)]
 		CKSubscriptionOptions SubscriptionOptions { get; }
 
-		[TV (10,0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("notificationInfo", ArgumentSemantic.Copy)]
 		CKNotificationInfo NotificationInfo { get; set; }
 
-		[Deprecated (PlatformName.iOS, 10,0, message: "Use 'CKRecordZoneSubscription'.")]
-		[Deprecated (PlatformName.MacOSX, 10,12, message: "Use 'CKRecordZoneSubscription'.")]
+		[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'CKRecordZoneSubscription'.")]
+		[Deprecated (PlatformName.MacOSX, 10, 12, message: "Use 'CKRecordZoneSubscription'.")]
 		[Export ("zoneID", ArgumentSemantic.Copy)]
 		CKRecordZoneID ZoneID { get; set; }
 	}
 
-	[NoWatch]
-	[iOS (8,0)][TV (10,0), Mac (10,10, onlyOn64 : true)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface CKNotificationInfo : NSSecureCoding, NSCopying, NSCoding {
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[NullAllowed] // by default this property is null
 		[Export ("alertBody")]
 		string AlertBody { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[NullAllowed] // by default this property is null
 		[Export ("alertLocalizationKey")]
 		string AlertLocalizationKey { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[NullAllowed] // by default this property is null
 		[Export ("alertLocalizationArgs", ArgumentSemantic.Copy)]
 		string [] AlertLocalizationArgs { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[NullAllowed] // by default this property is null
 		[Export ("alertActionLocalizationKey")]
 		string AlertActionLocalizationKey { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[NullAllowed] // by default this property is null
 		[Export ("alertLaunchImage")]
 		string AlertLaunchImage { get; set; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[NullAllowed] // by default this property is null
 		[Export ("soundName")]
 		string SoundName { get; set; }
@@ -1589,53 +1582,53 @@ namespace XamCore.CloudKit {
 		[Export ("desiredKeys", ArgumentSemantic.Copy)]
 		string [] DesiredKeys { get; set; }
 
-		[TV (10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Export ("shouldBadge", ArgumentSemantic.UnsafeUnretained)]
 		bool ShouldBadge { get; set; }
 
 		[Export ("shouldSendContentAvailable")]
 		bool ShouldSendContentAvailable { get; set; }
 
-		[NoTV]
-		[iOS (9,0)][Mac (10,11)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[NullAllowed, Export ("category")]
 		string Category { get; set; }
 
-		[NoTV, Mac (10, 13, onlyOn64 : true), iOS (11, 0)]
+		[Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("title")]
 		string Title { get; set; }
 
-		[NoTV, Mac (10, 13, onlyOn64 : true), iOS (11, 0)]
+		[Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("titleLocalizationKey")]
 		string TitleLocalizationKey { get; set; }
 
-		[NoTV, Mac (10, 13, onlyOn64 : true), iOS (11, 0)]
+		[Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("titleLocalizationArgs", ArgumentSemantic.Copy)]
 		string[] TitleLocalizationArgs { get; set; }
 
-		[NoTV, Mac (10, 13, onlyOn64 : true), iOS (11, 0)]
+		[Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("subtitle")]
 		string Subtitle { get; set; }
 
-		[NoTV, Mac (10, 13, onlyOn64 : true), iOS (11, 0)]
+		[Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("subtitleLocalizationKey")]
 		string SubtitleLocalizationKey { get; set; }
 
-		[NoTV, Mac (10, 13, onlyOn64 : true), iOS (11, 0)]
+		[Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("subtitleLocalizationArgs", ArgumentSemantic.Copy)]
 		string[] SubtitleLocalizationArgs { get; set; }
 
-		[Mac (10, 13, onlyOn64 : true), iOS (11, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[Export ("shouldSendMutableContent")]
 		bool ShouldSendMutableContent { get; set; }
 
-		[Mac (10, 13, onlyOn64 : true), iOS (11, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("collapseIDKey")]
 		string CollapseIdKey { get; set; }
 	}
 	
-	[Watch (3,0)]
-	[iOS (8,0), Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[DisableDefaultCtor] // Name: CKException Reason: You can't call init on CKQueryCursor
 	[BaseType (typeof (NSObject))]
 	interface CKQueryCursor : NSCopying, NSSecureCoding {
@@ -1644,9 +1637,9 @@ namespace XamCore.CloudKit {
 
 	delegate void CKFetchWebAuthTokenOperationHandler (string webAuthToken, NSError operationError);
 
-	[iOS (9,2), Mac (10,11,2, onlyOn64 : true)]
-	[TV (9,1)]
-	[Watch (3,0)]
+	[Introduced (PlatformName.iOS, 9, 2), Introduced (PlatformName.MacOSX, 10, 11, 2, PlatformArchitecture.Arch64)]
+	[Introduced (PlatformName.TvOS, 9, 1)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[BaseType (typeof (CKDatabaseOperation))]
 	interface CKFetchWebAuthTokenOperation {
 
@@ -1662,8 +1655,8 @@ namespace XamCore.CloudKit {
 		CKFetchWebAuthTokenOperationHandler Completed { get; set; }
 	}
 
-	[iOS (10,0), TV (10,0), Watch (3,0), Mac (10,12, onlyOn64 : true)]
-	[BaseType (typeof(CKOperation))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (CKOperation))]
 	interface CKDiscoverUserIdentitiesOperation
 	{
 		[Export ("initWithUserIdentityLookupInfos:")]
@@ -1679,8 +1672,8 @@ namespace XamCore.CloudKit {
 		Action<NSError> Completed { get; set; }
 	}
 
-	[NoTV, iOS (10,0), Watch (3,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
-	[BaseType (typeof(CKOperation))]
+	[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (CKOperation))]
 	interface CKDiscoverAllUserIdentitiesOperation
 	{
 		[NullAllowed, Export ("userIdentityDiscoveredBlock", ArgumentSemantic.Copy)]
@@ -1690,8 +1683,8 @@ namespace XamCore.CloudKit {
 		Action<NSError> Completed { get; set; }
 	}
 
-	[iOS (10,0), Watch (3,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
-	[BaseType (typeof(CKOperation))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (CKOperation))]
 	interface CKFetchShareParticipantsOperation
 	{
 		[Export ("initWithUserIdentityLookupInfos:")]
@@ -1708,11 +1701,11 @@ namespace XamCore.CloudKit {
 		Action<NSError> Completed { get; set; }
 	}
 
-	[iOS (10,0), Watch (3,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	delegate void CKAcceptPerShareCompletionHandler (CKShareMetadata shareMetadata, CKShare acceptedShare, NSError error);
 
-	[iOS (10,0), Watch (3,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
-	[BaseType (typeof(CKOperation))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (CKOperation))]
 	interface CKAcceptSharesOperation
 	{
 		[Export ("initWithShareMetadatas:")]
@@ -1729,11 +1722,11 @@ namespace XamCore.CloudKit {
 		Action<NSError> AcceptSharesCompleted { get; set; }
 	}
 
-	[iOS (10,0), Watch (3,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	delegate void CKFetchPerShareMetadataHandler (NSUrl shareURL, CKShareMetadata shareMetadata, NSError error);
 
-	[iOS (10,0), Watch (3,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
-	[BaseType (typeof(CKOperation))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (CKOperation))]
 	interface CKFetchShareMetadataOperation
 	{
 		[Export ("initWithShareURLs:")]
@@ -1756,11 +1749,11 @@ namespace XamCore.CloudKit {
 		Action<NSError> FetchShareMetadataCompleted { get; set; }
 	}
 
-	[iOS (10,0), Watch (3,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	delegate void CKFetchDatabaseChangesCompletionHandler (CKServerChangeToken serverChangeToken, bool moreComing, NSError operationError);
 
-	[iOS (10,0), Watch (3,0), TV (10,0), Mac (10,12, onlyOn64 : true)]
-	[BaseType (typeof(CKDatabaseOperation))]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[BaseType (typeof (CKDatabaseOperation))]
 	interface CKFetchDatabaseChangesOperation
 	{
 		[Export ("initWithPreviousServerChangeToken:")]
@@ -1785,7 +1778,7 @@ namespace XamCore.CloudKit {
 		[NullAllowed, Export ("changeTokenUpdatedBlock", ArgumentSemantic.Copy)]
 		Action<CKServerChangeToken> ChangeTokenUpdated { get; set; }
 
-		[Watch (4, 0), TV (11, 0), Mac (10, 13, onlyOn64 : true), iOS (11, 0)]
+		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 		[NullAllowed, Export ("recordZoneWithIDWasPurgedBlock", ArgumentSemantic.Copy)]
 		Action<CKRecordZoneID> WasPurged { get; set; }
 

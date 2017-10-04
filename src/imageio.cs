@@ -34,7 +34,7 @@ using System;
 
 namespace XamCore.ImageIO {
 
-	[Since (4,0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	[Static]
 	// Bad name should end with Keys
 	interface CGImageProperties {
@@ -171,7 +171,7 @@ namespace XamCore.ImageIO {
 		NSString ExifSubsecTime { get; }
 		[Field ("kCGImagePropertyExifSubsecTimeOrginal")]
 		NSString ExifSubsecTimeOrginal { get; }
-		[iOS (10,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("kCGImagePropertyExifSubsecTimeOriginal")]
 		NSString ExifSubsecTimeOriginal { get; }
 		[Field ("kCGImagePropertyExifSubsecTimeDigitized")]
@@ -239,28 +239,28 @@ namespace XamCore.ImageIO {
 
 		// misdocumented (first 4.3, then 5.0) but the constants were not present until 6.x
 
-		[iOS (6,0)][Field ("kCGImagePropertyExifCameraOwnerName")]
-		[Mac (10,9)] // Really introduced in 10.8 (according to header), but as a private symbol in the framework (nm shows it as 's'), so we can't access it.
+		[Introduced (PlatformName.iOS, 6, 0)][Field ("kCGImagePropertyExifCameraOwnerName")]
+		[Introduced (PlatformName.MacOSX, 10, 9)] // Really introduced in 10.8 (according to header), but as a private symbol in the framework (nm shows it as 's'), so we can't access it.
 		NSString ExifCameraOwnerName { get; }
 
-		[iOS (6,0)][Field ("kCGImagePropertyExifBodySerialNumber")]
-		[Mac (10,9)] // Really introduced in 10.8 (according to header), but as a private symbol in the framework (nm shows it as 's'), so we can't access it.
+		[Introduced (PlatformName.iOS, 6, 0)][Field ("kCGImagePropertyExifBodySerialNumber")]
+		[Introduced (PlatformName.MacOSX, 10, 9)] // Really introduced in 10.8 (according to header), but as a private symbol in the framework (nm shows it as 's'), so we can't access it.
 		NSString ExifBodySerialNumber { get; }
 
-		[iOS (6,0)][Field ("kCGImagePropertyExifLensSpecification")]
-		[Mac (10,9)] // Really introduced in 10.8 (according to header), but as a private symbol in the framework (nm shows it as 's'), so we can't access it.
+		[Introduced (PlatformName.iOS, 6, 0)][Field ("kCGImagePropertyExifLensSpecification")]
+		[Introduced (PlatformName.MacOSX, 10, 9)] // Really introduced in 10.8 (according to header), but as a private symbol in the framework (nm shows it as 's'), so we can't access it.
 		NSString ExifLensSpecification { get; }
 
-		[iOS (6,0)][Field ("kCGImagePropertyExifLensMake")]
-		[Mac (10,9)] // Really introduced in 10.8 (according to header), but as a private symbol in the framework (nm shows it as 's'), so we can't access it.
+		[Introduced (PlatformName.iOS, 6, 0)][Field ("kCGImagePropertyExifLensMake")]
+		[Introduced (PlatformName.MacOSX, 10, 9)] // Really introduced in 10.8 (according to header), but as a private symbol in the framework (nm shows it as 's'), so we can't access it.
 		NSString ExifLensMake { get; }
 
-		[iOS (6,0)][Field ("kCGImagePropertyExifLensModel")]
-		[Mac (10,9)] // Really introduced in 10.8 (according to header), but as a private symbol in the framework (nm shows it as 's'), so we can't access it.
+		[Introduced (PlatformName.iOS, 6, 0)][Field ("kCGImagePropertyExifLensModel")]
+		[Introduced (PlatformName.MacOSX, 10, 9)] // Really introduced in 10.8 (according to header), but as a private symbol in the framework (nm shows it as 's'), so we can't access it.
 		NSString ExifLensModel { get; }
 
-		[iOS (6,0)][Field ("kCGImagePropertyExifLensSerialNumber")]
-		[Mac (10,9)] // Really introduced in 10.8 (according to header), but as a private symbol in the framework (nm shows it as 's'), so we can't access it.
+		[Introduced (PlatformName.iOS, 6, 0)][Field ("kCGImagePropertyExifLensSerialNumber")]
+		[Introduced (PlatformName.MacOSX, 10, 9)] // Really introduced in 10.8 (according to header), but as a private symbol in the framework (nm shows it as 's'), so we can't access it.
 		NSString ExifLensSerialNumber { get; }
 
 		// EXIF Auxiliary Dictionary Keys
@@ -360,7 +360,7 @@ namespace XamCore.ImageIO {
 		[Field ("kCGImagePropertyGPSDifferental")]
 		NSString GPSDifferental { get; }
 
-		[iOS (8,0), Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("kCGImagePropertyGPSHPositioningError")]
 		NSString GPSHPositioningError { get; }
 
@@ -515,34 +515,34 @@ namespace XamCore.ImageIO {
 		NSString PNGsRGBIntent { get; }
 		[Field ("kCGImagePropertyPNGChromaticities")]
 		NSString PNGChromaticities { get; }
-		[Since (5,0)][Field ("kCGImagePropertyPNGAuthor")]
+		[Introduced (PlatformName.iOS, 5, 0)][Field ("kCGImagePropertyPNGAuthor")]
 		NSString PNGAuthor { get; }
-		[Since (5,0)][Field ("kCGImagePropertyPNGCopyright")]
+		[Introduced (PlatformName.iOS, 5, 0)][Field ("kCGImagePropertyPNGCopyright")]
 		NSString PNGCopyright { get; }
-		[Since (5,0)][Field ("kCGImagePropertyPNGCreationTime")]
+		[Introduced (PlatformName.iOS, 5, 0)][Field ("kCGImagePropertyPNGCreationTime")]
 		NSString PNGCreationTime { get; }
-		[Since (5,0)][Field ("kCGImagePropertyPNGDescription")]
+		[Introduced (PlatformName.iOS, 5, 0)][Field ("kCGImagePropertyPNGDescription")]
 		NSString PNGDescription { get; }
-		[Since (5,0)][Field ("kCGImagePropertyPNGModificationTime")]
+		[Introduced (PlatformName.iOS, 5, 0)][Field ("kCGImagePropertyPNGModificationTime")]
 		NSString PNGModificationTime { get; }
-		[Since (5,0)][Field ("kCGImagePropertyPNGSoftware")]
+		[Introduced (PlatformName.iOS, 5, 0)][Field ("kCGImagePropertyPNGSoftware")]
 		NSString PNGSoftware { get; }
-		[Since (5,0)][Field ("kCGImagePropertyPNGTitle")]
+		[Introduced (PlatformName.iOS, 5, 0)][Field ("kCGImagePropertyPNGTitle")]
 		NSString PNGTitle { get; }
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("kCGImagePropertyPNGCompressionFilter")]
 		NSString PNGCompressionFilter { get; }
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("kCGImagePropertyAPNGLoopCount")]
 		NSString PNGLoopCount { get; }
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("kCGImagePropertyAPNGDelayTime")]
 		NSString PNGDelayTime { get; }
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("kCGImagePropertyAPNGUnclampedDelayTime")]
 		NSString PNGUnclampedDelayTime { get; }
 
@@ -583,10 +583,10 @@ namespace XamCore.ImageIO {
 		[Field ("kCGImagePropertyTIFFPrimaryChromaticities")]
 		NSString TIFFPrimaryChromaticities { get; }
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("kCGImagePropertyTIFFTileLength")]
 		NSString TIFFTileLength { get; }
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Field ("kCGImagePropertyTIFFTileWidth")]
 		NSString TIFFTileWidth { get; }
 
@@ -605,123 +605,123 @@ namespace XamCore.ImageIO {
 		[Field ("kCGImagePropertyDNGLensInfo")]
 		NSString DNGLensInfo { get; }
 
-		[iOS (10,0)][Mac (12,0)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 12, 0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGImagePropertyDNGBlackLevel")]
 		NSString DNGBlackLevel { get; }
 
-		[iOS (10,0)][Mac (12,0)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 12, 0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGImagePropertyDNGWhiteLevel")]
 		NSString DNGWhiteLevel { get; }
 
-		[iOS (10,0)][Mac (12,0)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 12, 0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGImagePropertyDNGCalibrationIlluminant1")]
 		NSString DNGCalibrationIlluminant1 { get; }
 
-		[iOS (10,0)][Mac (12,0)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 12, 0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGImagePropertyDNGCalibrationIlluminant2")]
 		NSString DNGCalibrationIlluminant2 { get; }
 
-		[iOS (10,0)][Mac (12,0)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 12, 0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGImagePropertyDNGColorMatrix1")]
 		NSString DNGColorMatrix1 { get; }
 
-		[iOS (10,0)][Mac (12,0)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 12, 0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGImagePropertyDNGColorMatrix2")]
 		NSString DNGColorMatrix2 { get; }
 
-		[iOS (10,0)][Mac (12,0)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 12, 0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGImagePropertyDNGCameraCalibration1")]
 		NSString DNGCameraCalibration1 { get; }
 
-		[iOS (10,0)][Mac (12,0)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 12, 0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGImagePropertyDNGCameraCalibration2")]
 		NSString DNGCameraCalibration2 { get; }
 
-		[iOS (10,0)][Mac (12,0)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 12, 0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGImagePropertyDNGAsShotNeutral")]
 		NSString DNGAsShotNeutral { get; }
 
-		[iOS (10,0)][Mac (12,0)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 12, 0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGImagePropertyDNGAsShotWhiteXY")]
 		NSString DNGAsShotWhiteXY { get; }
 
-		[iOS (10,0)][Mac (12,0)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 12, 0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGImagePropertyDNGBaselineExposure")]
 		NSString DNGBaselineExposure { get; }
 
-		[iOS (10,0)][Mac (12,0)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 12, 0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGImagePropertyDNGBaselineNoise")]
 		NSString DNGBaselineNoise { get; }
 
-		[iOS (10,0)][Mac (12,0)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 12, 0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGImagePropertyDNGBaselineSharpness")]
 		NSString DNGBaselineSharpness { get; }
 
-		[iOS (10,0)][Mac (12,0)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 12, 0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGImagePropertyDNGPrivateData")]
 		NSString DNGPrivateData { get; }
 
-		[iOS (10,0)][Mac (12,0)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 12, 0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGImagePropertyDNGCameraCalibrationSignature")]
 		NSString DNGCameraCalibrationSignature { get; }
 
-		[iOS (10,0)][Mac (12,0)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 12, 0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGImagePropertyDNGProfileCalibrationSignature")]
 		NSString DNGProfileCalibrationSignature { get; }
 
-		[iOS (10,0)][Mac (12,0)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 12, 0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGImagePropertyDNGNoiseProfile")]
 		NSString DNGNoiseProfile { get; }
 
-		[iOS (10,0)][Mac (12,0)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 12, 0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGImagePropertyDNGWarpRectilinear")]
 		NSString DNGWarpRectilinear { get; }
 
-		[iOS (10,0)][Mac (12,0)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 12, 0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGImagePropertyDNGWarpFisheye")]
 		NSString DNGWarpFisheye { get; }
 
-		[iOS (10,0)][Mac (12,0)]
-		[Watch (3,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 12, 0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[Field ("kCGImagePropertyDNGFixVignetteRadial")]
 		NSString DNGFixVignetteRadial { get; }
 
@@ -833,84 +833,84 @@ namespace XamCore.ImageIO {
 		[Field ("kCGImagePropertyMakerCanonAspectRatioInfo")]
 		NSString MakerCanonAspectRatioInfo { get; }
 
-		[Since(7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("kCGImagePropertyExifISOSpeed")]
 		NSString ExifISOSpeed { get; }
-		[Since(7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("kCGImagePropertyExifISOSpeedLatitudeyyy")]
 		NSString ExifISOSpeedLatitudeYyy { get; }
-		[Since(7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("kCGImagePropertyExifISOSpeedLatitudezzz")]
 		NSString ExifISOSpeedLatitudeZzz { get; }
-		[Since(7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("kCGImagePropertyExifRecommendedExposureIndex")]
 		NSString ExifRecommendedExposureIndex { get; }
-		[Since(7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("kCGImagePropertyExifSensitivityType")]
 		NSString ExifSensitivityType { get; }
-		[Since(7,0), Mavericks]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Field ("kCGImagePropertyExifStandardOutputSensitivity")]
 		NSString ExifStandardOutputSensitivity { get; }
 
 #if !MONOMAC
-		[Since(7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[Field ("kCGImagePropertyMakerAppleDictionary")]
 		NSString MakerAppleDictionary { get; }
 #endif
 
-		[Mac (10, 13), iOS (11,0), TV (11,0), Watch (4,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Field ("kCGImagePropertyImageCount")]
 		NSString ImageCount { get; }
 
-		[Mac (10, 13), iOS (11,0), TV (11,0), Watch (4,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Field ("kCGImagePropertyWidth")]
 		NSString Width { get; }
 
-		[Mac (10, 13), iOS (11,0), TV (11,0), Watch (4,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Field ("kCGImagePropertyHeight")]
 		NSString Height { get; }
 
-		[Mac (10, 13), iOS (11,0), TV (11,0), Watch (4,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Field ("kCGImagePropertyBytesPerRow")]
 		NSString BytesPerRow { get; }
 
-		[Mac (10, 13), iOS (11,0), TV (11,0), Watch (4,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Field ("kCGImagePropertyNamedColorSpace")]
 		NSString NamedColorSpace { get; }
 
-		[Mac (10, 13), iOS (11,0), TV (11,0), Watch (4,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Field ("kCGImagePropertyPixelFormat")]
 		NSString PixelFormat { get; }
 
-		[Mac (10, 13), iOS (11,0), TV (11,0), Watch (4,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Field ("kCGImagePropertyImages")]
 		NSString Images { get; }
 
-		[Mac (10, 13), iOS (11,0), TV (11,0), Watch (4,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Field ("kCGImagePropertyThumbnailImages")]
 		NSString ThumbnailImages { get; }
 
-		[Mac (10, 13), iOS (11,0), TV (11,0), Watch (4,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Field ("kCGImagePropertyAuxiliaryData")]
 		NSString AuxiliaryData { get; }
 
-		[Mac (10, 13), iOS (11,0), TV (11,0), Watch (4,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Field ("kCGImagePropertyAuxiliaryDataType")]
 		NSString AuxiliaryDataType { get; }
 
-		[Mac (10, 13), iOS (11,0), TV (11,0), Watch (4,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		[Field ("kCGImagePropertyFileContentsDictionary")]
 		NSString FileContentsDictionary { get; }
 	}
 
-	[Since (7,0), MountainLion]
+	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 	[Static]
 	interface CGImageMetadataTagNamespaces {
 		[Field ("kCGImageMetadataNamespaceExif")]
 		NSString Exif { get; }
 		[Field ("kCGImageMetadataNamespaceExifAux")]
 		NSString ExifAux { get; }
-		[Mavericks, Field ("kCGImageMetadataNamespaceExifEX")]
+		[Introduced (PlatformName.MacOSX, 10, 9), Field ("kCGImageMetadataNamespaceExifEX")]
 		NSString ExifEx { get; }
 		[Field ("kCGImageMetadataNamespaceDublinCore")]
 		NSString DublinCore { get; }
@@ -926,14 +926,14 @@ namespace XamCore.ImageIO {
 		NSString XMPRights { get; }
 	}
 
-	[Since (7,0), MountainLion]
+	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 	[Static]
 	interface CGImageMetadataTagPrefixes {
 		[Field ("kCGImageMetadataPrefixExif")]
 		NSString Exif { get; }
 		[Field ("kCGImageMetadataPrefixExifAux")]
 		NSString ExifAux { get; }
-		[Mavericks, Field ("kCGImageMetadataPrefixExifEX")]
+		[Introduced (PlatformName.MacOSX, 10, 9), Field ("kCGImageMetadataPrefixExifEX")]
 		NSString ExifEx { get; }
 		[Field ("kCGImageMetadataPrefixDublinCore")]
 		NSString DublinCore { get; }
@@ -949,7 +949,7 @@ namespace XamCore.ImageIO {
 		NSString XMPRights { get; }
 	}
 
-	[Since (7,0), MountainLion]
+	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 	interface CGImageMetadata {
 		[Field ("kCFErrorDomainCGImageMetadata")]
 		NSString ErrorDomain { get; }
@@ -963,8 +963,8 @@ namespace XamCore.ImageIO {
 		[Internal][Field ("kCGImageSourceShouldCache")]
 		IntPtr kShouldCache { get; }
 
-		[iOS (7,0)]
-		[Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Internal][Field ("kCGImageSourceShouldCacheImmediately")]
 		IntPtr kShouldCacheImmediately { get; }
 
@@ -986,7 +986,7 @@ namespace XamCore.ImageIO {
 		[Internal][Field ("kCGImageSourceCreateThumbnailWithTransform")]
 		IntPtr kCreateThumbnailWithTransform { get; }
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[Internal][Field ("kCGImageSourceSubsampleFactor")]
 		IntPtr kCGImageSourceSubsampleFactor { get; }
 	}
@@ -1006,40 +1006,40 @@ namespace XamCore.ImageIO {
 		[Internal][Field ("kCGImageDestinationBackgroundColor")]
 		IntPtr kBackgroundColor { get; }
 
-		[Since (7,0), MountainLion]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		[Internal][Field ("kCGImageDestinationDateTime")]
 		IntPtr kDateTime { get; }
 
-		[Since (7,0), MountainLion]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		[Internal][Field ("kCGImageDestinationMergeMetadata")]
 		IntPtr kMergeMetadata { get; }
 
-		[Since (7,0), MountainLion]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		[Internal][Field ("kCGImageDestinationMetadata")]
 		IntPtr kMetadata { get; }
 
-		[Since (7,0), MountainLion]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		[Internal][Field ("kCGImageDestinationOrientation")]
 		IntPtr kOrientation { get; }
 
-		[Since (7,0), MountainLion]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		[Internal][Field ("kCGImageMetadataShouldExcludeXMP")]
 		IntPtr kShouldExcludeXMP { get; }
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Internal][Field ("kCGImageDestinationImageMaxPixelSize")]
 		IntPtr kImageMaxPixelSize { get; }
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Internal][Field ("kCGImageDestinationEmbedThumbnail")]
 		IntPtr kEmbedThumbnail { get; }
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Internal][Field ("kCGImageMetadataShouldExcludeGPS")]
 		IntPtr kShouldExcludeGPS { get; }
 
-		[iOS (9,3)][Mac (10,12)]
-		[TV (9,2)]
+		[Introduced (PlatformName.iOS, 9, 3)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 9, 2)]
 		[Internal][Field ("kCGImageDestinationOptimizeColorForSharing")]
 		IntPtr kOptimizeColorForSharing { get; }
 	}
@@ -1059,15 +1059,15 @@ namespace XamCore.ImageIO {
 		[Export ("LossyCompressionQuality")]
 		float LossyCompressionQuality { get; set; }
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("ImageMaxPixelSize")]
 		int ImageMaxPixelSize { get; set; }
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("EmbedThumbnail")]
 		bool EmbedThumbnail { get; set; }
 
-		[iOS (9,3)][Mac (10,12)]
+		[Introduced (PlatformName.iOS, 9, 3)][Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("OptimizeColorForSharing")]
 		bool OptimizeColorForSharing { get; set; }
 
@@ -1123,16 +1123,16 @@ namespace XamCore.ImageIO {
 		[Field ("kCGImageDestinationBackgroundColor")]
 		NSString BackgroundColor { get; }
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("kCGImageDestinationImageMaxPixelSize")]
 		NSString ImageMaxPixelSize { get; }
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Field ("kCGImageDestinationEmbedThumbnail")]
 		NSString EmbedThumbnail { get; }
 
-		[iOS (9,3)][Mac (10,12)]
-		[TV (9,2)]
+		[Introduced (PlatformName.iOS, 9, 3)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 9, 2)]
 		[Field ("kCGImageDestinationOptimizeColorForSharing")]
 		NSString OptimizeColorForSharing { get; }
 
@@ -1188,33 +1188,33 @@ namespace XamCore.ImageIO {
 	[Partial]
 	interface CGCopyImageSourceOptions {
 
-		[Since (7,0), MountainLion]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		[Internal][Field ("kCGImageDestinationMetadata")]
 		IntPtr kMetadata { get; }
 
-		[Since (7,0), MountainLion]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		[Internal][Field ("kCGImageDestinationMergeMetadata")]
 		IntPtr kMergeMetadata { get; }
 
-		[Since (7,0), MountainLion]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		[Internal][Field ("kCGImageMetadataShouldExcludeXMP")]
 		IntPtr kShouldExcludeXMP { get; }
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Internal][Field ("kCGImageMetadataShouldExcludeGPS")]
 		IntPtr kShouldExcludeGPS { get; }
 
-		[Since (7,0), MountainLion]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		[Internal][Field ("kCGImageDestinationDateTime")]
 		IntPtr kDateTime { get; }
 
-		[Since (7,0), MountainLion]
+		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 		[Internal][Field ("kCGImageDestinationOrientation")]
 		IntPtr kOrientation { get; }
 	}
 #endif
 
-	[Mac (10, 13), iOS (11,0), TV (11,0), Watch (4,0)]
+	[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 	enum CGImageAuxiliaryDataType {
 		[Field ("kCGImageAuxiliaryDataTypeDepth")]
 		Depth,
@@ -1223,7 +1223,7 @@ namespace XamCore.ImageIO {
 		Disparity,
 	}
 
-	[Mac (10,13), iOS (11,0), TV (11,0), Watch (4,0)]
+	[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 	[Static]
 	[Internal]
 	interface CGImageAuxiliaryDataInfoKeys {
@@ -1237,7 +1237,7 @@ namespace XamCore.ImageIO {
 		NSString MetadataKey { get; }
 	}
 
-	[Mac (10,13), iOS (11,0), TV (11,0), Watch (4,0)]
+	[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 	[StrongDictionary ("CGImageAuxiliaryDataInfoKeys")]
 	interface CGImageAuxiliaryDataInfo {
 

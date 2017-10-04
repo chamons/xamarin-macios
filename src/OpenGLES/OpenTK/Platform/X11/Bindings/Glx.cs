@@ -259,13 +259,13 @@ namespace OpenTK.Platform.X11
     {
         #region GLX functions
 
-        [DllImport(Library, EntryPoint = "glXIsDirect")]
+        [DllImport (Library, EntryPoint = "glXIsDirect")]
         public static extern bool IsDirect(IntPtr dpy, IntPtr context);
         
-        [DllImport(Library, EntryPoint = "glXQueryExtension")]
+        [DllImport (Library, EntryPoint = "glXQueryExtension")]
         public static extern bool QueryExtension(IntPtr dpy, ref int errorBase, ref int eventBase);
 
-        [DllImport(Library, EntryPoint = "glXQueryExtensionsString")]
+        [DllImport (Library, EntryPoint = "glXQueryExtensionsString")]
         static extern IntPtr QueryExtensionsStringInternal(IntPtr dpy, int screen);
 
         public static string QueryExtensionsString(IntPtr dpy, int screen)
@@ -273,42 +273,42 @@ namespace OpenTK.Platform.X11
             return Marshal.PtrToStringAnsi(QueryExtensionsStringInternal(dpy, screen));
         }
 
-        [DllImport(Library, EntryPoint = "glXCreateContext")]
+        [DllImport (Library, EntryPoint = "glXCreateContext")]
         public static extern IntPtr CreateContext(IntPtr dpy, IntPtr vis, IntPtr shareList, bool direct);
 
-        [DllImport(Library, EntryPoint = "glXCreateContext")]
+        [DllImport (Library, EntryPoint = "glXCreateContext")]
         public static extern IntPtr CreateContext(IntPtr dpy, ref XVisualInfo vis, IntPtr shareList, bool direct);
     
-        [DllImport(Library, EntryPoint = "glXDestroyContext")]
+        [DllImport (Library, EntryPoint = "glXDestroyContext")]
         public static extern void DestroyContext(IntPtr dpy, IntPtr context);
 
-        [DllImport(Library, EntryPoint = "glXDestroyContext")]
+        [DllImport (Library, EntryPoint = "glXDestroyContext")]
         public static extern void DestroyContext(IntPtr dpy, ContextHandle context);
 
-        [DllImport(Library, EntryPoint = "glXGetCurrentContext")]
+        [DllImport (Library, EntryPoint = "glXGetCurrentContext")]
         public static extern IntPtr GetCurrentContext();
 
-        [DllImport(Library, EntryPoint = "glXMakeCurrent")]
+        [DllImport (Library, EntryPoint = "glXMakeCurrent")]
         public static extern bool MakeCurrent(IntPtr display, IntPtr drawable, IntPtr context);
 
-        [DllImport(Library, EntryPoint = "glXMakeCurrent")]
+        [DllImport (Library, EntryPoint = "glXMakeCurrent")]
         public static extern bool MakeCurrent(IntPtr display, IntPtr drawable, ContextHandle context);
 
-        [DllImport(Library, EntryPoint = "glXSwapBuffers")]
+        [DllImport (Library, EntryPoint = "glXSwapBuffers")]
         public static extern void SwapBuffers(IntPtr display, IntPtr drawable);
 
-        [DllImport(Library, EntryPoint = "glXGetProcAddress")]
-        public static extern IntPtr GetProcAddress([MarshalAs(UnmanagedType.LPTStr)] string procName);
+        [DllImport (Library, EntryPoint = "glXGetProcAddress")]
+        public static extern IntPtr GetProcAddress([MarshalAs (UnmanagedType.LPTStr)] string procName);
 
-        [DllImport(Library, EntryPoint = "glXGetConfig")]
+        [DllImport (Library, EntryPoint = "glXGetConfig")]
         public static extern int GetConfig(IntPtr dpy, ref XVisualInfo vis, GLXAttribute attrib, out int value);
 
         #region glXChooseVisual
 
-        [DllImport(Library, EntryPoint = "glXChooseVisual")]
+        [DllImport (Library, EntryPoint = "glXChooseVisual")]
         public extern static IntPtr ChooseVisual(IntPtr dpy, int screen, IntPtr attriblist);
 
-        [DllImport(Library, EntryPoint = "glXChooseVisual")]
+        [DllImport (Library, EntryPoint = "glXChooseVisual")]
         public extern static IntPtr ChooseVisual(IntPtr dpy, int screen, ref int attriblist);
 
         public static IntPtr ChooseVisual(IntPtr dpy, int screen, int[] attriblist)
@@ -323,11 +323,11 @@ namespace OpenTK.Platform.X11
         }
 
         // Returns an array of GLXFBConfig structures.
-        [DllImport(Library, EntryPoint = "glXChooseFBConfig")]
+        [DllImport (Library, EntryPoint = "glXChooseFBConfig")]
         unsafe public extern static IntPtr* ChooseFBConfig(IntPtr dpy, int screen, int[] attriblist, out int fbount);
 
         // Returns a pointer to an XVisualInfo structure.
-        [DllImport(Library, EntryPoint = "glXGetVisualFromFBConfig")]
+        [DllImport (Library, EntryPoint = "glXGetVisualFromFBConfig")]
         public unsafe extern static IntPtr GetVisualFromFBConfig(IntPtr dpy, IntPtr fbconfig);
 
         #endregion

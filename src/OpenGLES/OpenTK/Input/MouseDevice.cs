@@ -1,4 +1,4 @@
-﻿#define COMPAT_REV1519 // Keeps compatibility with revision 1519
+#define COMPAT_REV1519 // Keeps compatibility with revision 1519
 
  #region License
  //
@@ -291,7 +291,7 @@ namespace OpenTK.Input
         /// <summary>
         /// Gets an integer representing the relative wheel movement.
         /// </summary>
-        [Obsolete("WheelDelta is only defined for a single WheelChanged event.  Use the OpenTK.Input.MouseWheelEventArgs::Delta property with the OpenTK.Input.MouseDevice::WheelChanged event.", false)]
+        [Obsolete ("WheelDelta is only defined for a single WheelChanged event.  Use the OpenTK.Input.MouseWheelEventArgs::Delta property with the OpenTK.Input.MouseDevice::WheelChanged event.", false)]
         public int WheelDelta
         {
             get
@@ -309,7 +309,7 @@ namespace OpenTK.Input
         /// <summary>
         /// Gets an integer representing the relative x movement of the pointer, in pixel coordinates.
         /// </summary>
-        [Obsolete("XDelta is only defined for a single Move event.  Use the OpenTK.Input.MouseMoveEventArgs::Delta property with the OpenTK.Input.MouseDevice::Move event.", false)]
+        [Obsolete ("XDelta is only defined for a single Move event.  Use the OpenTK.Input.MouseMoveEventArgs::Delta property with the OpenTK.Input.MouseDevice::Move event.", false)]
         public int XDelta
         {
             get
@@ -327,7 +327,7 @@ namespace OpenTK.Input
         /// <summary>
         /// Gets an integer representing the relative y movement of the pointer, in pixel coordinates.
         /// </summary>
-        [Obsolete("YDelta is only defined for a single Move event.  Use the OpenTK.Input.MouseMoveEventArgs::Delta property with the OpenTK.Input.MouseDevice::Move event.", false)]
+        [Obsolete ("YDelta is only defined for a single Move event.  Use the OpenTK.Input.MouseMoveEventArgs::Delta property with the OpenTK.Input.MouseDevice::Move event.", false)]
         public int YDelta
         {
             get

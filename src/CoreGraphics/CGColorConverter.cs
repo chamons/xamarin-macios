@@ -21,8 +21,8 @@ using XamCore.Foundation;
 namespace XamCore.CoreGraphics {
 
 	// uint32_t enum -> CGColorConverter.h
-	[TV (9,2)][Obsoleted (PlatformName.TvOS, 10,0, message: "Replaced by 'CGColorConversionInfoTransformType'.")]
-	[iOS (9,3)][Obsoleted (PlatformName.iOS, 10,0, message: "Replaced by 'CGColorConversionInfoTransformType'.")]
+	[Introduced (PlatformName.TvOS, 9, 2)][Obsoleted (PlatformName.TvOS, 10, 0, message: "Replaced by 'CGColorConversionInfoTransformType'.")]
+	[Introduced (PlatformName.iOS, 9, 3)][Obsoleted (PlatformName.iOS, 10, 0, message: "Replaced by 'CGColorConversionInfoTransformType'.")]
 	[Obsolete ("Use 'CGColorConversionInfoTransformType'.")]
 	public enum CGColorConverterTransformType : uint {
 		FromSpace,
@@ -30,8 +30,8 @@ namespace XamCore.CoreGraphics {
 		ApplySpace
 	}
 
-	[TV (9,2)][Obsoleted (PlatformName.TvOS, 10,0, message: "Replaced by 'GColorConversionInfoTriple'.")]
-	[iOS (9,3)][Obsoleted (PlatformName.iOS, 10,0, message: "Replaced by 'GColorConversionInfoTriple'.")]
+	[Introduced (PlatformName.TvOS, 9, 2)][Obsoleted (PlatformName.TvOS, 10, 0, message: "Replaced by 'GColorConversionInfoTriple'.")]
+	[Introduced (PlatformName.iOS, 9, 3)][Obsoleted (PlatformName.iOS, 10, 0, message: "Replaced by 'GColorConversionInfoTriple'.")]
 	[StructLayout (LayoutKind.Sequential)]
 	public struct CGColorConverterTriple {
 		public CGColorSpace Space;
@@ -40,8 +40,8 @@ namespace XamCore.CoreGraphics {
 	}
 
 	// CGColorConverter.h
-	[TV (9,2)][Obsoleted (PlatformName.TvOS, 10,0, message: "Replaced by 'CGColorConversionInfo'.")]
-	[iOS (9,3)][Obsoleted (PlatformName.iOS, 10,0, message: "Replaced by 'CGColorConversionInfo'.")]
+	[Introduced (PlatformName.TvOS, 9, 2)][Obsoleted (PlatformName.TvOS, 10, 0, message: "Replaced by 'CGColorConversionInfo'.")]
+	[Introduced (PlatformName.iOS, 9, 3)][Obsoleted (PlatformName.iOS, 10, 0, message: "Replaced by 'CGColorConversionInfo'.")]
 	public class CGColorConverter : INativeObject, IDisposable
 	{
 		/* invoked by marshallers */
@@ -49,7 +49,7 @@ namespace XamCore.CoreGraphics {
 		{
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal CGColorConverter (IntPtr handle, bool owns)
 		{
 		}

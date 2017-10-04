@@ -178,7 +178,7 @@ namespace XamCore.CoreFoundation {
 
 		delegate void ScheduleCallback (IntPtr info, IntPtr runLoop, IntPtr mode);
 
-		[MonoPInvokeCallback (typeof(ScheduleCallback))]
+		[MonoPInvokeCallback (typeof (ScheduleCallback))]
 		static void Schedule (IntPtr info, IntPtr runLoop, IntPtr mode)
 		{
 			var source = GCHandle.FromIntPtr (info).Target as CFRunLoopSourceCustom;
@@ -201,7 +201,7 @@ namespace XamCore.CoreFoundation {
 
 		delegate void CancelCallback (IntPtr info, IntPtr runLoop, IntPtr mode);
 
-		[MonoPInvokeCallback (typeof(CancelCallback))]
+		[MonoPInvokeCallback (typeof (CancelCallback))]
 		static void Cancel (IntPtr info, IntPtr runLoop, IntPtr mode)
 		{
 			var source = GCHandle.FromIntPtr (info).Target as CFRunLoopSourceCustom;
@@ -224,7 +224,7 @@ namespace XamCore.CoreFoundation {
 
 		delegate void PerformCallback (IntPtr info);
 
-		[MonoPInvokeCallback (typeof(PerformCallback))]
+		[MonoPInvokeCallback (typeof (PerformCallback))]
 		static void Perform (IntPtr info)
 		{
 			var source = GCHandle.FromIntPtr (info).Target as CFRunLoopSourceCustom;

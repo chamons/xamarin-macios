@@ -35,7 +35,7 @@ namespace XamCore.AudioToolbox
 {
 #if !XAMCORE_2_0
 	[Obsolete ("Use AudioBuffers")]
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout (LayoutKind.Sequential)]
 	public class AudioBufferList {
 		// Preserve is support, but Conditional is not, on fields and will mark the type (not optimal)
 		// we can workaround this by pmaking sure the field can't be linked out if the type is marked
@@ -43,7 +43,7 @@ namespace XamCore.AudioToolbox
 		// [Preserve (Conditional=true)]
 		internal int bufferCount;
 		// mBuffers array size is variable. But here we uses fixed size of 2, because iPhone phone terminal two (L/R) channels.        
-		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
+		[MarshalAs (UnmanagedType.ByValArray, SizeConst = 2)]
 		internal AudioBuffer [] buffers;
 		
 		public int BufferCount { get { return bufferCount; }}

@@ -40,7 +40,7 @@ namespace XamCore.UIKit {
 #if !WATCH
 		// We link with __Internal here so that this function is interposable from third-party native libraries.
 		// See: https://github.com/xamarin/MicrosoftInTune/issues/3 for an example.
-		[DllImport (/*Constants.UIKitLibrary*/ "__Internal")]
+		[DllImport ("__Internal")]
 		extern static int UIApplicationMain (int argc, /* char[]* */ string [] argv, /* NSString* */ IntPtr principalClassName, /* NSString* */ IntPtr delegateClassName);
 #endif
 

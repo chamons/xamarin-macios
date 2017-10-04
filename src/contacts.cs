@@ -19,13 +19,13 @@ namespace XamCore.Contacts {
 
 	interface ICNKeyDescriptor {}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Protocol]
 	// Headers say "This protocol is reserved for Contacts framework usage.", so don't create a model
 	interface CNKeyDescriptor : NSObjectProtocol, NSSecureCoding, NSCopying {
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface CNContact : NSCopying, NSMutableCopying, NSSecureCoding, NSItemProviderReading, NSItemProviderWriting {
 
@@ -65,8 +65,8 @@ namespace XamCore.Contacts {
 		[Export ("phoneticFamilyName")]
 		string PhoneticFamilyName { get; }
 
-		[iOS (10,0)][Mac (10,12, onlyOn64: true)]
-		[Watch (3,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
 		[Export ("phoneticOrganizationName")]
 		string PhoneticOrganizationName { get; }
 
@@ -90,7 +90,7 @@ namespace XamCore.Contacts {
 		[Export ("thumbnailImageData", ArgumentSemantic.Copy)]
 		NSData ThumbnailImageData { get; }
 
-		[Mac (10,12)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
 		[Export ("imageDataAvailable")]
 		bool ImageDataAvailable { get; }
 
@@ -180,7 +180,7 @@ namespace XamCore.Contacts {
 		NSPredicate GetPredicateForContactsInContainer (string containerIdentifier);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Static]
 	[EditorBrowsable (EditorBrowsableState.Advanced)]
 	interface CNContactKey {
@@ -218,8 +218,8 @@ namespace XamCore.Contacts {
 		[Field ("CNContactPhoneticFamilyNameKey")]
 		NSString PhoneticFamilyName { get; }
 
-		[iOS (10,0)][Mac (10,12, onlyOn64: true)]
-		[Watch (3,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
 		[Field ("CNContactPhoneticOrganizationNameKey")]
 		NSString PhoneticOrganizationName { get; }
 
@@ -244,7 +244,7 @@ namespace XamCore.Contacts {
 		[Field ("CNContactImageDataKey")]
 		NSString ImageData { get; }
 
-		[Mac (10,12)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
 		[Field ("CNContactImageDataAvailableKey")]
 		NSString ImageDataAvailable { get; }
 
@@ -279,7 +279,7 @@ namespace XamCore.Contacts {
 		NSString InstantMessageAddresses { get; }
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // using init raises an exception according to docs
 	interface CNContactFetchRequest : NSSecureCoding {
@@ -298,7 +298,7 @@ namespace XamCore.Contacts {
 		// cannot be exposed as NSString since they could be internalized types, like CNAggregateKeyDescriptor
 		NSArray KeysToFetch { get; set; }
 
-		[iOS (10,0)][Mac (10,12)] // API existed previously ? maybe it was not working before now ?
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)] // API existed previously ? maybe it was not working before now ?
 		[Export ("mutableObjects")]
 		bool MutableObjects { get; set; }
 
@@ -309,7 +309,7 @@ namespace XamCore.Contacts {
 		CNContactSortOrder SortOrder { get; set; }
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSFormatter))]
 	interface CNContactFormatter {
 
@@ -346,7 +346,7 @@ namespace XamCore.Contacts {
 		NSString ContactPropertyAttribute { get; }
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface CNContactProperty : NSCopying, NSSecureCoding {
 
@@ -369,7 +369,7 @@ namespace XamCore.Contacts {
 		string Label { get; }
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface CNContactRelation : NSCopying, NSSecureCoding, INSCopying, INSSecureCoding {
 
@@ -384,7 +384,7 @@ namespace XamCore.Contacts {
 		string Name { get; }
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Static]
 	[EditorBrowsable (EditorBrowsableState.Advanced)]
 	interface CNLabelContactRelationKey {
@@ -422,11 +422,11 @@ namespace XamCore.Contacts {
 		[Field ("CNLabelContactRelationManager")]
 		NSString Manager { get; }
 
-		[iOS (11,0), Mac (10,13, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 		[Field ("CNLabelContactRelationSon")]
 		NSString Son { get; }
 
-		[iOS (11,0), Mac (10,13, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 		[Field ("CNLabelContactRelationDaughter")]
 		NSString Daughter { get; }
 	}
@@ -437,7 +437,7 @@ namespace XamCore.Contacts {
 #endif
 	delegate void CNContactStoreListContactsHandler (CNContact contact, ref bool stop);
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface CNContactStore {
 
@@ -457,7 +457,7 @@ namespace XamCore.Contacts {
 		[Protected] // we cannot use ICNKeyDescriptor as Apple (and others) can adopt it from categories
 		CNContact GetUnifiedContact (string identifier, NSArray keys, out NSError error);
 
-		[NoiOS, NoWatch]
+		[Unavailable (PlatformName.iOS), Unavailable (PlatformName.WatchOS)]
 		[Export ("unifiedMeContactWithKeysToFetch:error:")]
 		[Protected] // we cannot use ICNKeyDescriptor as Apple (and others) can adopt it from categories
 		NSObject GetUnifiedMeContact (NSArray keys, out NSError error);
@@ -492,7 +492,7 @@ namespace XamCore.Contacts {
 		NSString NotificationDidChange { get; }
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[ThreadSafe (false)]
 	interface CNContactsUserDefaults {
@@ -508,7 +508,7 @@ namespace XamCore.Contacts {
 		string CountryCode { get; }
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface CNContactVCardSerialization {
 
@@ -526,7 +526,7 @@ namespace XamCore.Contacts {
 	}
 
 #if !XAMCORE_4_0
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Category (allowStaticMembers: true)]
 	[BaseType (typeof (CNContainer))]
 	interface CNContainer_PredicatesExtension {
@@ -548,7 +548,7 @@ namespace XamCore.Contacts {
 	}
 #endif
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface CNContainer : NSCopying, NSSecureCoding {
 
@@ -588,7 +588,7 @@ namespace XamCore.Contacts {
 #endregion
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Static]
 	[EditorBrowsable (EditorBrowsableState.Advanced)]
 	interface CNContainerKey { // Can be used in KVO
@@ -603,7 +603,7 @@ namespace XamCore.Contacts {
 		NSString Type { get; }
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Static]
 	[EditorBrowsable (EditorBrowsableState.Advanced)]
 	interface CNErrorUserInfoKey {
@@ -622,7 +622,7 @@ namespace XamCore.Contacts {
 	}
 
 #if !XAMCORE_4_0
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Category (allowStaticMembers: true)]
 	[BaseType (typeof (CNGroup))]
 	interface CNGroup_PredicatesExtension {
@@ -633,7 +633,7 @@ namespace XamCore.Contacts {
 		NSPredicate GetPredicateForGroups (string [] identifiers);
 
 		[Obsolete ("Use 'CNGroup.CreatePredicateForSubgroupsInGroup' instead.")]
-		[NoiOS][NoWatch]
+		[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.WatchOS)]
 		[Static]
 		[Export ("predicateForSubgroupsInGroupWithIdentifier:")]
 		NSPredicate GetPredicateForSubgroupsInGroup (string parentGroupIdentifier);
@@ -645,7 +645,7 @@ namespace XamCore.Contacts {
 	}
 #endif
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface CNGroup : NSCopying, NSMutableCopying, NSSecureCoding {
 
@@ -664,7 +664,7 @@ namespace XamCore.Contacts {
 #endif
 		NSPredicate CreatePredicateForGroups (string [] identifiers);
 
-		[NoiOS][NoWatch]
+		[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.WatchOS)]
 		[Static]
 #if XAMCORE_4_0
 		[Export ("predicateForSubgroupsInGroupWithIdentifier:")]
@@ -683,7 +683,7 @@ namespace XamCore.Contacts {
 #endregion
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Static]
 	[EditorBrowsable (EditorBrowsableState.Advanced)]
 	interface CNGroupKey { // Can be used in KVO
@@ -695,7 +695,7 @@ namespace XamCore.Contacts {
 		NSString Name { get; }
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface CNInstantMessageAddress : NSCopying, NSSecureCoding, INSCopying, INSSecureCoding {
 
@@ -717,7 +717,7 @@ namespace XamCore.Contacts {
 		string LocalizeService (NSString service);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Static]
 	[EditorBrowsable (EditorBrowsableState.Advanced)]
 	interface CNInstantMessageAddressKey { // Can be used in KVO
@@ -729,7 +729,7 @@ namespace XamCore.Contacts {
 		NSString Service { get; }
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Static]
 	[EditorBrowsable (EditorBrowsableState.Advanced)]
 	interface CNInstantMessageServiceKey {
@@ -765,7 +765,7 @@ namespace XamCore.Contacts {
 		NSString Yahoo { get; }
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface CNLabeledValue<ValueType> : NSCopying, NSSecureCoding
 		where ValueType : INSCopying, INSSecureCoding
@@ -803,7 +803,7 @@ namespace XamCore.Contacts {
 		string LocalizeLabel (NSString labelKey);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Static]
 	[EditorBrowsable (EditorBrowsableState.Advanced)]
 	interface CNLabelKey {
@@ -827,7 +827,7 @@ namespace XamCore.Contacts {
 		NSString DateAnniversary { get; }
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (CNContact))]
 	interface CNMutableContact {
 
@@ -875,8 +875,8 @@ namespace XamCore.Contacts {
 		[Export ("phoneticFamilyName")]
 		string PhoneticFamilyName { get; set; }
 
-		[iOS (10,0)][Mac (10,12, onlyOn64: true)]
-		[Watch (3,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
 		[New]
 		[Export ("phoneticOrganizationName")]
 		string PhoneticOrganizationName { get; set; }
@@ -945,7 +945,7 @@ namespace XamCore.Contacts {
 		CNLabeledValue<NSDateComponents> [] Dates { get; set; }
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (CNGroup))]
 	interface CNMutableGroup {
 
@@ -954,7 +954,7 @@ namespace XamCore.Contacts {
 		string Name { get; set; }
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (CNPostalAddress))]
 	interface CNMutablePostalAddress {
 
@@ -962,7 +962,7 @@ namespace XamCore.Contacts {
 		[Export ("street")]
 		string Street { get; set; }
 
-		[iOS (10,3), Mac (10,12,4, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.MacOSX, 10, 12, 4, PlatformArchitecture.Arch64)]
 		[New]
 		[Export ("subLocality")]
 		string SubLocality { get; set; }
@@ -971,7 +971,7 @@ namespace XamCore.Contacts {
 		[Export ("city")]
 		string City { get; set; }
 
-		[iOS (10,3), Mac (10,12,4, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.MacOSX, 10, 12, 4, PlatformArchitecture.Arch64)]
 		[New]
 		[Export ("subAdministrativeArea")]
 		string SubAdministrativeArea { get; set; }
@@ -993,7 +993,7 @@ namespace XamCore.Contacts {
 		string IsoCountryCode { get; set; }
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // Apple doc: no handle (nil) if no string (or nil string) is given
 	interface CNPhoneNumber : NSCopying, NSSecureCoding, INSCopying, INSSecureCoding {
@@ -1009,7 +1009,7 @@ namespace XamCore.Contacts {
 		string StringValue { get; }
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Static]
 	[EditorBrowsable (EditorBrowsableState.Advanced)]
 	interface CNLabelPhoneNumberKey {
@@ -1036,21 +1036,21 @@ namespace XamCore.Contacts {
 		NSString Pager { get; }
 	}
 
-	[iOS (9,0)] [Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0)] [Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface CNPostalAddress : NSCopying, NSMutableCopying, NSSecureCoding, INSCopying, INSSecureCoding {
 
 		[Export ("street")]
 		string Street { get; }
 
-		[iOS (10,3)] [Mac (10,12,4, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 3)] [Introduced (PlatformName.MacOSX, 10, 12, 4, PlatformArchitecture.Arch64)]
 		[Export ("subLocality")]
 		string SubLocality { get; }
 
 		[Export ("city")]
 		string City { get; }
 
-		[iOS (10,3)] [Mac (10,12,4, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 3)] [Introduced (PlatformName.MacOSX, 10, 12, 4, PlatformArchitecture.Arch64)]
 		[Export ("subAdministrativeArea")]
 		string SubAdministrativeArea { get; }
 
@@ -1076,7 +1076,7 @@ namespace XamCore.Contacts {
 	}
 
 #if !XAMCORE_4_0
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Static]
 	[EditorBrowsable (EditorBrowsableState.Advanced)]
 	interface CNPostalAddressKey { // Can be used in KVO
@@ -1084,14 +1084,14 @@ namespace XamCore.Contacts {
 		[Field ("CNPostalAddressStreetKey")]
 		NSString Street { get; }
 
-		[iOS (10,3)] [Mac (10,12,4, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 3)] [Introduced (PlatformName.MacOSX, 10, 12, 4, PlatformArchitecture.Arch64)]
 		[Field ("CNPostalAddressSubLocalityKey")]
 		NSString SubLocality { get; }
 
 		[Field ("CNPostalAddressCityKey")]
 		NSString City { get; }
 
-		[iOS (10,3)] [Mac (10,12,4, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 3)] [Introduced (PlatformName.MacOSX, 10, 12, 4, PlatformArchitecture.Arch64)]
 		[Field ("CNPostalAddressSubAdministrativeAreaKey")]
 		NSString SubAdministrativeArea { get; }
 
@@ -1109,7 +1109,7 @@ namespace XamCore.Contacts {
 	}
 #endif
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	public enum CNPostalAddressKeyOption {
 		[Field ("CNPostalAddressStreetKey")]
 		Street,
@@ -1124,16 +1124,16 @@ namespace XamCore.Contacts {
 		[Field ("CNPostalAddressISOCountryCodeKey")]
 		IsoCountryCode,
 
-		[iOS (10,3)] [Mac (10,12,4, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 3)] [Introduced (PlatformName.MacOSX, 10, 12, 4, PlatformArchitecture.Arch64)]
 		[Field ("CNPostalAddressSubLocalityKey")]
 		SubLocality,
 
-		[iOS (10,3)] [Mac (10,12,4, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 3)] [Introduced (PlatformName.MacOSX, 10, 12, 4, PlatformArchitecture.Arch64)]
 		[Field ("CNPostalAddressSubAdministrativeAreaKey")]
 		SubAdministrativeArea,
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSFormatter))]
 	interface CNPostalAddressFormatter {
 
@@ -1162,7 +1162,7 @@ namespace XamCore.Contacts {
 	}
 
 #if !WATCH
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface CNSaveRequest {
 
@@ -1184,11 +1184,11 @@ namespace XamCore.Contacts {
 		[Export ("deleteGroup:")]
 		void DeleteGroup (CNMutableGroup group);
 
-		[NoiOS]
+		[Unavailable (PlatformName.iOS)]
 		[Export ("addSubgroup:toGroup:")]
 		void AddSubgroup (CNGroup subgroup, CNGroup group);
 
-		[NoiOS]
+		[Unavailable (PlatformName.iOS)]
 		[Export ("removeSubgroup:fromGroup:")]
 		void RemoveSubgroup (CNGroup subgroup, CNGroup group);
 
@@ -1200,7 +1200,7 @@ namespace XamCore.Contacts {
 	}
 #endif // !WATCH
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface CNSocialProfile : NSCopying, NSSecureCoding, INSCopying, INSSecureCoding {
 
@@ -1233,7 +1233,7 @@ namespace XamCore.Contacts {
 		string LocalizeService (NSString service);
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Static]
 	[EditorBrowsable (EditorBrowsableState.Advanced)]
 	interface CNSocialProfileKey { // Can be used in KVO
@@ -1251,7 +1251,7 @@ namespace XamCore.Contacts {
 		NSString Service { get; }
 	}
 
-	[iOS (9,0), Mac (10,11, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Static]
 	[EditorBrowsable (EditorBrowsableState.Advanced)]
 	interface CNSocialProfileServiceKey {

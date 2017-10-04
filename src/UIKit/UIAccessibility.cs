@@ -31,7 +31,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIAccessibilityZoom.h
 	[Native]
-	public enum UIAccessibilityZoomType : nint {
+	public enum UIAccessibilityZoomType : long {
 		InsertionPoint,
 	}
 
@@ -50,7 +50,7 @@ namespace XamCore.UIKit {
 		[DllImport (Constants.UIKitLibrary)]
 		extern static /* BOOL */ bool UIAccessibilityIsMonoAudioEnabled ();
 
-		[iOS (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		static public bool IsMonoAudioEnabled {
 			get {
 				return UIAccessibilityIsMonoAudioEnabled ();
@@ -59,11 +59,11 @@ namespace XamCore.UIKit {
 
 		
 		// UIAccessibility.h
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[DllImport (Constants.UIKitLibrary)]
 		extern static /* NSObject */ IntPtr UIAccessibilityFocusedElement (IntPtr assistiveTechnologyIdentifier);
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		public static NSObject FocusedElement (string assistiveTechnologyIdentifier)
 		{
 			using (var s = new NSString (assistiveTechnologyIdentifier))
@@ -71,11 +71,11 @@ namespace XamCore.UIKit {
 		}
 
 		// UIAccessibility.h
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[DllImport (Constants.UIKitLibrary)]
 		extern static /* BOOL */ bool UIAccessibilityIsShakeToUndoEnabled ();
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		public static bool IsShakeToUndoEnabled {
 			get {
 				return UIAccessibilityIsShakeToUndoEnabled ();
@@ -86,7 +86,7 @@ namespace XamCore.UIKit {
 		[DllImport (Constants.UIKitLibrary)]
 		extern static /* BOOL */ bool UIAccessibilityIsClosedCaptioningEnabled ();
 
-		[iOS (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		static public bool IsClosedCaptioningEnabled {
 			get {
 				return UIAccessibilityIsClosedCaptioningEnabled ();
@@ -94,11 +94,11 @@ namespace XamCore.UIKit {
 		}
 		
 		// UIAccessibility.h
-		[iOS (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[DllImport (Constants.UIKitLibrary)]
 		extern static /* BOOL */ bool UIAccessibilityIsInvertColorsEnabled ();
 
-		[iOS (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		static public bool IsInvertColorsEnabled {
 			get {
 				return UIAccessibilityIsInvertColorsEnabled ();
@@ -106,11 +106,11 @@ namespace XamCore.UIKit {
 		}
 		
 		// UIAccessibility.h
-		[iOS (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[DllImport (Constants.UIKitLibrary)]
 		extern static /* BOOL */ bool UIAccessibilityIsGuidedAccessEnabled ();
 
-		[iOS (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		static public bool IsGuidedAccessEnabled {
 			get {
 				return UIAccessibilityIsGuidedAccessEnabled ();
@@ -153,23 +153,23 @@ namespace XamCore.UIKit {
 		[DllImport (Constants.UIKitLibrary)]
 		extern static void UIAccessibilityZoomFocusChanged (/* UIAccessibilityZoomType */ IntPtr type, CGRect frame, IntPtr view);
 
-		[iOS (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		public static void ZoomFocusChanged (UIAccessibilityZoomType type, CGRect frame, UIView view)
 		{
 			UIAccessibilityZoomFocusChanged ((IntPtr) type, frame, view != null ? view.Handle : IntPtr.Zero);
 		}
 
 		// UIAccessibilityZoom.h
-		[iOS (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[DllImport (Constants.UIKitLibrary, EntryPoint = "UIAccessibilityRegisterGestureConflictWithZoom")]
 		extern public static void RegisterGestureConflictWithZoom ();
 
 		// UIAccessibility.h
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[DllImport (Constants.UIKitLibrary)]
 		extern static /* UIBezierPath* */ IntPtr UIAccessibilityConvertPathToScreenCoordinates (/* UIBezierPath* */ IntPtr path, /* UIView* */ IntPtr view);
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		public static UIBezierPath ConvertPathToScreenCoordinates (UIBezierPath path, UIView view)
 		{
 			if (path == null)
@@ -181,11 +181,11 @@ namespace XamCore.UIKit {
 		}
 
 		// UIAccessibility.h
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[DllImport (Constants.UIKitLibrary)]
 		extern static CGRect UIAccessibilityConvertFrameToScreenCoordinates (CGRect rect, /* UIView* */ IntPtr view);
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		public static CGRect ConvertFrameToScreenCoordinates (CGRect rect, UIView view)
 		{
 			if (view == null)
@@ -195,11 +195,11 @@ namespace XamCore.UIKit {
 		}
 
 		// UIAccessibility.h
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[DllImport (Constants.UIKitLibrary)]
 		extern static void UIAccessibilityRequestGuidedAccessSession (/* BOOL */ bool enable, /* void(^completionHandler)(BOOL didSucceed) */ Action<bool> completionHandler);
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		public static void RequestGuidedAccessSession (bool enable, Action<bool> completionHandler)
 		{
 			callback = completionHandler;
@@ -209,7 +209,7 @@ namespace XamCore.UIKit {
 				UIAccessibilityRequestGuidedAccessSession (enable, RequestGuidedAccessSessionBridge);
 		}
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		public static Task<bool> RequestGuidedAccessSessionAsync (bool enable)
 		{
 			var tcs = new TaskCompletionSource<bool> ();
@@ -231,96 +231,96 @@ namespace XamCore.UIKit {
 		}
 
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[DllImport (Constants.UIKitLibrary)]
 		static extern bool UIAccessibilityDarkerSystemColorsEnabled ();
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		public static bool DarkerSystemColosEnabled {
 			get {
 				return UIAccessibilityDarkerSystemColorsEnabled ();
 			}
 		}
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[DllImport (Constants.UIKitLibrary)]
 		static extern bool UIAccessibilityIsBoldTextEnabled ();
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		public static bool IsBoldTextEnabled {
 			get {
 				return UIAccessibilityIsBoldTextEnabled ();	
 			}
 		}
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[DllImport (Constants.UIKitLibrary)]
 		static extern bool UIAccessibilityIsGrayscaleEnabled ();
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		static public bool IsGrayscaleEnabled {
 			get {
 				return UIAccessibilityIsGrayscaleEnabled ();
 			}
 		}
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[DllImport (Constants.UIKitLibrary)]
 		static extern bool UIAccessibilityIsReduceMotionEnabled ();
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		static public bool IsReduceMotionEnabled {
 			get {
 				return UIAccessibilityIsReduceMotionEnabled ();
 			}
 		}
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[DllImport (Constants.UIKitLibrary)]
 		static extern bool UIAccessibilityIsReduceTransparencyEnabled ();
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		static public bool IsReduceTransparencyEnabled {
 			get {
 				return UIAccessibilityIsReduceTransparencyEnabled ();
 			}
 		}
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[DllImport (Constants.UIKitLibrary)]
 		static extern bool UIAccessibilityIsSwitchControlRunning ();
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		static public bool IsSwitchControlRunning {
 			get {
 				return UIAccessibilityIsSwitchControlRunning ();
 			}
 		}
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[DllImport (Constants.UIKitLibrary)]
 		static extern bool UIAccessibilityIsSpeakSelectionEnabled ();
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		static public bool IsSpeakSelectionEnabled {
 			get {
 				return UIAccessibilityIsSpeakSelectionEnabled ();
 			}
 		}
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		[DllImport (Constants.UIKitLibrary)]
 		static extern bool UIAccessibilityIsSpeakScreenEnabled ();
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		static public bool IsSpeakScreenEnabled {
 			get {
 				return UIAccessibilityIsSpeakScreenEnabled ();
 			}
 		}
 
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		[DllImport (Constants.UIKitLibrary)]
 		static extern bool UIAccessibilityIsAssistiveTouchRunning ();
-		[iOS (10,0), TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0)]
 		public static bool IsAssistiveTouchRunning {
 			get {
 				return UIAccessibilityIsAssistiveTouchRunning ();
@@ -328,11 +328,11 @@ namespace XamCore.UIKit {
 		}
 
 #if !TVOS
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[DllImport (Constants.UIKitLibrary)]
 		static extern nuint UIAccessibilityHearingDevicePairedEar ();
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		public static UIAccessibilityHearingDeviceEar HearingDevicePairedEar {
 			get {
 				return (UIAccessibilityHearingDeviceEar)(ulong) UIAccessibilityHearingDevicePairedEar ();

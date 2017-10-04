@@ -1,4 +1,4 @@
-﻿#if XAMCORE_2_0 && MONOMAC
+#if XAMCORE_2_0 && MONOMAC
 using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
@@ -8,14 +8,14 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.Metal {
 	public static class IMTLRenderCommandEncoder_Extensions {
-		[Mac (10,13, onlyOn64: true), NoiOS, NoTV, NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
 		public unsafe static void SetViewports (this IMTLRenderCommandEncoder This, MTLViewport [] viewports)
 		{
 			fixed (void* handle = viewports)
 				This.SetViewports ((IntPtr)handle, (nuint)(viewports?.Length ?? 0));
 		}
 
-		[Mac (10,13, onlyOn64: true), NoiOS, NoTV, NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
 		public unsafe static void SetScissorRects (this IMTLRenderCommandEncoder This, MTLScissorRect [] scissorRects)
 		{
 			fixed (void* handle = scissorRects)
@@ -23,14 +23,14 @@ namespace XamCore.Metal {
 		}
 
 #if IOS
-		[iOS (11,0), NoTV, NoMac, NoWatch]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX), Unavailable (PlatformName.WatchOS)]
 		public unsafe static void SetTileBuffers (this IMTLRenderCommandEncoder This, IMTLBuffer[] buffers, nuint[] offsets, NSRange range)
 		{
 			fixed (void* handle = offsets)
 				This.SetTileBuffers (buffers, (IntPtr)handle, range);
 		}
 
-		[iOS (11,0), NoTV, NoMac, NoWatch]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX), Unavailable (PlatformName.WatchOS)]
 		public unsafe static void SetTileSamplerStates (this IMTLRenderCommandEncoder This, IMTLSamplerState[] samplers, float[] lodMinClamps, float[] lodMaxClamps, NSRange range)
 		{
 			fixed (void* minHandle = lodMinClamps) {

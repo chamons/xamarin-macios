@@ -50,7 +50,7 @@ namespace XamCore.CoreFoundation {
 
 	// defined as CFIndex (long [long] = nint) - System/Library/Frameworks/CoreFoundation.framework/Headers/CFSocket.h
 	[Native]
-	public enum CFSocketError : nint {
+	public enum CFSocketError : long {
 		Success = 0,
 		Error = -1,
 		Timeout = -2
@@ -242,7 +242,7 @@ namespace XamCore.CoreFoundation {
 
 		delegate void CFSocketCallBack (IntPtr s, nuint type, IntPtr address, IntPtr data, IntPtr info);
 
-		[MonoPInvokeCallback (typeof(CFSocketCallBack))]
+		[MonoPInvokeCallback (typeof (CFSocketCallBack))]
 		static void OnCallback (IntPtr s, nuint type, IntPtr address, IntPtr data, IntPtr info)
 		{
 			var socket = GCHandle.FromIntPtr (info).Target as CFSocket;

@@ -44,7 +44,7 @@ namespace XamCore.CoreGraphics {
 			this.handle = handle;
 		}
 
-		[Preserve (Conditional=true)]
+		[Preserve (Conditional = true)]
 		internal CGDataConsumer (IntPtr handle, bool owns)
 		{
 			this.handle = handle;

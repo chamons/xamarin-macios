@@ -1,4 +1,4 @@
-﻿// 
+// 
 // VTDecompressionProperties.cs: Strongly Typed dictionary for VTDecompressionPropertyKey 
 //
 // Authors: Alex Soto (alex.soto@xamarin.com)

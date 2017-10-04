@@ -39,7 +39,7 @@ namespace XamCore.CoreServices {
 		}
 
 
-		[DllImport (Constants.CFNetworkLibrary, EntryPoint="CFHTTPMessageGetTypeID")]
+		[DllImport (Constants.CFNetworkLibrary, EntryPoint = "CFHTTPMessageGetTypeID")]
 		public extern static /* CFTypeID */ nint GetTypeID ();
 
 		~CFHTTPMessage ()

@@ -34,7 +34,7 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.Foundation {
 	[Native]
-	public enum NSStringEncoding : nuint {
+	public enum NSStringEncoding : ulong {
 		ASCIIStringEncoding = 1,
 		NEXTSTEP = 2,
 		JapaneseEUC = 3,
@@ -60,7 +60,7 @@ namespace XamCore.Foundation {
 	};
 	
 	[Native]
-	public enum NSStringCompareOptions : nuint {
+	public enum NSStringCompareOptions : ulong {
 		CaseInsensitiveSearch = 1,
 		LiteralSearch = 2,
 		BackwardsSearch = 4,
@@ -129,7 +129,7 @@ namespace XamCore.Foundation {
 			return CreateWithCharacters (handle, str, autorelease);
 		}
 
-		[DllImport ("/usr/lib/libobjc.dylib", EntryPoint="objc_msgSend")]
+		[DllImport ("/usr/lib/libobjc.dylib", EntryPoint = "objc_msgSend")]
 		extern static IntPtr IntPtr_objc_msgSend_IntPtr_nint (IntPtr receiver, IntPtr selector, IntPtr arg1, nint arg2);
 
 		public static void ReleaseNative (IntPtr handle)

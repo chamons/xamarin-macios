@@ -19,9 +19,9 @@ using XamCore.AppKit;
 
 namespace XamCore.AVKit {
 #if !MONOMAC
-	[NoTV]
-	[iOS (9,0)]
-	[BaseType (typeof(NSObject))]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 #if XAMCORE_4_0
 	[Sealed] // Apple docs: Do not subclass AVPictureInPictureController. Overriding this class’s methods is unsupported and results in undefined behavior.
@@ -72,9 +72,9 @@ namespace XamCore.AVKit {
 		UIImage CreateStopButton ([NullAllowed] UITraitCollection traitCollection);
 	}
 
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface AVPictureInPictureControllerDelegate
 	{
 		[Export ("pictureInPictureControllerWillStartPictureInPicture:")]
@@ -97,7 +97,7 @@ namespace XamCore.AVKit {
 	}
 	
 
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (UIViewController))]
 	interface AVPlayerViewController {
 		[Export ("initWithNibName:bundle:")]
@@ -117,35 +117,35 @@ namespace XamCore.AVKit {
 		[Export ("readyForDisplay")]
 		bool ReadyForDisplay { [Bind ("isReadyForDisplay")] get; }
 
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("videoBounds")]
 		CGRect VideoBounds { get; }
 
 		[Export ("contentOverlayView")]
 		UIView ContentOverlayView { get; }
 
-		[TV (11,0)]
-		[NoiOS]
+		[Introduced (PlatformName.TvOS, 11, 0)]
+		[Unavailable (PlatformName.iOS)]
 		[NullAllowed, Export ("unobscuredContentGuide")]
 		UILayoutGuide UnobscuredContentGuide { get; }
 
-		[NoTV]
-		[iOS (9,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("allowsPictureInPicturePlayback")]
 		bool AllowsPictureInPicturePlayback { get; set; }
 
-		[NoTV]
-		[iOS (10,0)]
+		[Unavailable (PlatformName.TvOS)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		[Export ("updatesNowPlayingInfoCenter")]
 		bool UpdatesNowPlayingInfoCenter { get; set; }
 
-		[iOS (11,0)]
-		[NoTV]
+		[Introduced (PlatformName.iOS, 11, 0)]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("entersFullScreenWhenPlaybackBegins")]
 		bool EntersFullScreenWhenPlaybackBegins { get; set; }
 
-		[iOS (11,0)]
-		[NoTV]
+		[Introduced (PlatformName.iOS, 11, 0)]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("exitsFullScreenWhenPlaybackEnds")]
 		bool ExitsFullScreenWhenPlaybackEnds { get; set; }
 
@@ -154,162 +154,162 @@ namespace XamCore.AVKit {
 		[Protocolize]
 		AVPlayerViewControllerDelegate Delegate { get; set; }
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
 		NSObject WeakDelegate { get; set; }
 
-		[NoiOS][NoMac]
-		[TV (9,0)]
+		[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.MacOSX)]
+		[Introduced (PlatformName.TvOS, 9, 0)]
 		[Export ("requiresLinearPlayback")]
 		bool RequiresLinearPlayback { get; set; }
 
 #region AVPlayerViewControllerSubtitleOptions
-		[NoiOS][NoMac]
-		[TV (9,0)]
+		[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.MacOSX)]
+		[Introduced (PlatformName.TvOS, 9, 0)]
 		[NullAllowed, Export ("allowedSubtitleOptionLanguages", ArgumentSemantic.Copy)]
 		string[] AllowedSubtitleOptionLanguages { get; set; }
 
-		[NoiOS][NoMac]
-		[TV (9,0)]
+		[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.MacOSX)]
+		[Introduced (PlatformName.TvOS, 9, 0)]
 		[Export ("requiresFullSubtitles")]
 		bool RequiresFullSubtitles { get; set; }
 #endregion
 #if !MONOMAC
-		[NoiOS, TV (10, 0), NoWatch, NoMac]
+		[Unavailable (PlatformName.iOS), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		[Export ("contentProposalViewController", ArgumentSemantic.Assign)]
 		AVContentProposalViewController ContentProposalViewController { get; set; }
 #endif
-		[NoiOS, TV (10, 0), NoWatch, NoMac]
+		[Unavailable (PlatformName.iOS), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		[Export ("skippingBehavior", ArgumentSemantic.Assign)]
 		AVPlayerViewControllerSkippingBehavior SkippingBehavior { get; set; }
 
-		[NoiOS, TV (10, 0), NoWatch, NoMac]
+		[Unavailable (PlatformName.iOS), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		[Export ("skipForwardEnabled")]
 		bool SkipForwardEnabled { [Bind ("isSkipForwardEnabled")] get; set; }
 
-		[NoiOS, TV (10, 0), NoWatch, NoMac]
+		[Unavailable (PlatformName.iOS), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		[Export ("skipBackwardEnabled")]
 		bool SkipBackwardEnabled { [Bind ("isSkipBackwardEnabled")] get; set; }
 
 		// From AVPlayerViewControllerControls category
 
-		[NoiOS, TV (11, 0), NoWatch, NoMac]
+		[Unavailable (PlatformName.iOS), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		[Export ("playbackControlsIncludeTransportBar")]
 		bool PlaybackControlsIncludeTransportBar { get; set; }
 
-		[NoiOS, TV (11, 0), NoWatch, NoMac]
+		[Unavailable (PlatformName.iOS), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		[Export ("playbackControlsIncludeInfoViews")]
 		bool PlaybackControlsIncludeInfoViews { get; set; }
 
-		[NoiOS, TV (11, 0), NoWatch, NoMac]
+		[Unavailable (PlatformName.iOS), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		[Export ("customInfoViewController", ArgumentSemantic.Assign)]
 		UIViewController CustomInfoViewController { get; set; }
 	}
 
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	interface AVPlayerViewControllerDelegate
 	{
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("playerViewControllerWillStartPictureInPicture:")]
 		void WillStartPictureInPicture (AVPlayerViewController playerViewController);
 	
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("playerViewControllerDidStartPictureInPicture:")]
 		void DidStartPictureInPicture (AVPlayerViewController playerViewController);
 	
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("playerViewController:failedToStartPictureInPictureWithError:")]
 		void FailedToStartPictureInPicture (AVPlayerViewController playerViewController, NSError error);
 	
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("playerViewControllerWillStopPictureInPicture:")]
 		void WillStopPictureInPicture (AVPlayerViewController playerViewController);
 	
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("playerViewControllerDidStopPictureInPicture:")]
 		void DidStopPictureInPicture (AVPlayerViewController playerViewController);
 	
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("playerViewControllerShouldAutomaticallyDismissAtPictureInPictureStart:")]
 		bool ShouldAutomaticallyDismissAtPictureInPictureStart (AVPlayerViewController playerViewController);
 	
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		[Export ("playerViewController:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:")]
 		void RestoreUserInterfaceForPictureInPicture (AVPlayerViewController playerViewController, Action<bool> completionHandler);
 
-		[NoiOS][NoMac]
-		[TV (9,0)]
+		[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.MacOSX)]
+		[Introduced (PlatformName.TvOS, 9, 0)]
 		[Export ("playerViewController:didPresentInterstitialTimeRange:")]
 		void DidPresentInterstitialTimeRange (AVPlayerViewController playerViewController, AVInterstitialTimeRange interstitial);
 
-		[NoiOS][NoMac]
-		[TV (11,0)]
+		[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.MacOSX)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("playerViewControllerShouldDismiss:")]
 		bool ShouldDismiss ([NullAllowed] AVPlayerViewController playerViewController);
 
-		[NoiOS][NoMac]
-		[TV (11,0)]
+		[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.MacOSX)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("playerViewControllerWillBeginDismissalTransition:")]
 		void WillBeginDismissalTransition ([NullAllowed] AVPlayerViewController playerViewController);
 
-		[NoiOS][NoMac]
-		[TV (11,0)]
+		[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.MacOSX)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("playerViewControllerDidEndDismissalTransition:")]
 		void DidEndDismissalTransition ([NullAllowed] AVPlayerViewController playerViewController);
 
-		[NoiOS][NoMac]
-		[TV (9,0)]
+		[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.MacOSX)]
+		[Introduced (PlatformName.TvOS, 9, 0)]
 		[Export ("playerViewController:willPresentInterstitialTimeRange:")]
 		void WillPresentInterstitialTimeRange (AVPlayerViewController playerViewController, AVInterstitialTimeRange interstitial);
 
-		[NoiOS][NoMac]
-		[TV (9,0)]
+		[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.MacOSX)]
+		[Introduced (PlatformName.TvOS, 9, 0)]
 		[Export ("playerViewController:willResumePlaybackAfterUserNavigatedFromTime:toTime:")]
 		void WillResumePlaybackAfterUserNavigatedFromTime (AVPlayerViewController playerViewController, CMTime oldTime, CMTime targetTime);
 
-		[NoiOS][NoMac]
-		[TV (9,0)]
+		[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.MacOSX)]
+		[Introduced (PlatformName.TvOS, 9, 0)]
 		[Export ("playerViewController:didSelectMediaSelectionOption:inMediaSelectionGroup:")]
 		void DidSelectMediaSelectionOption (AVPlayerViewController playerViewController, [NullAllowed] AVMediaSelectionOption mediaSelectionOption, AVMediaSelectionGroup mediaSelectionGroup);
 
-		[NoiOS][NoMac]
-		[TV (9,0)]
+		[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.MacOSX)]
+		[Introduced (PlatformName.TvOS, 9, 0)]
 		[Export ("playerViewController:didSelectExternalSubtitleOptionLanguage:")]
 		void DidSelectExternalSubtitleOptionLanguage (AVPlayerViewController playerViewController, string language);
 
-		[NoiOS, TV (10,0), NoWatch, NoMac]
+		[Unavailable (PlatformName.iOS), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		[Export ("playerViewController:timeToSeekAfterUserNavigatedFromTime:toTime:")]
 		CMTime GetTimeToSeekAfterUserNavigated (AVPlayerViewController playerViewController, CMTime oldTime, CMTime targetTime);
 
-		[NoiOS, TV (10,0), NoWatch, NoMac]
+		[Unavailable (PlatformName.iOS), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		[Export ("skipToNextItemForPlayerViewController:")]
 		void SkipToNextItem (AVPlayerViewController playerViewController);
 
-		[NoiOS, TV (10,0), NoWatch, NoMac]
+		[Unavailable (PlatformName.iOS), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		[Export ("skipToPreviousItemForPlayerViewController:")]
 		void SkipToPreviousItem (AVPlayerViewController playerViewController);
 
-		[NoiOS, TV (10,0), NoWatch, NoMac]
+		[Unavailable (PlatformName.iOS), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		[Export ("playerViewController:shouldPresentContentProposal:")]
 		bool ShouldPresentContentProposal (AVPlayerViewController playerViewController, AVContentProposal proposal);
 
-		[NoiOS, TV (10,0), NoWatch, NoMac]
+		[Unavailable (PlatformName.iOS), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		[Export ("playerViewController:didAcceptContentProposal:")]
 		void DidAcceptContentProposal (AVPlayerViewController playerViewController, AVContentProposal proposal);
 
-		[NoiOS, TV (10,0), NoWatch, NoMac]
+		[Unavailable (PlatformName.iOS), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		[Export ("playerViewController:didRejectContentProposal:")]
 		void DidRejectContentProposal (AVPlayerViewController playerViewController, AVContentProposal proposal);
 
-		[NoiOS, TV (11,0), NoWatch, NoMac]
+		[Unavailable (PlatformName.iOS), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		[Export ("playerViewController:willTransitionToVisibilityOfTransportBar:withAnimationCoordinator:")]
 		void WillTransitionToVisibilityOfTransportBar ([NullAllowed] AVPlayerViewController playerViewController, bool visible, [NullAllowed] IAVPlayerViewControllerAnimationCoordinator coordinator);
 	}
 
 	interface IAVPlayerViewControllerAnimationCoordinator { }
 
-	[NoiOS, TV (11,0), NoWatch, NoMac]
+	[Unavailable (PlatformName.iOS), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 	[Protocol]
 	interface AVPlayerViewControllerAnimationCoordinator {
 
@@ -320,7 +320,7 @@ namespace XamCore.AVKit {
 
 #else
 
-	[Mac (10,9, onlyOn64 : true)]
+	[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSView))]
 	interface AVPlayerView {
 
@@ -330,56 +330,56 @@ namespace XamCore.AVKit {
 		[Export ("controlsStyle")]
 		AVPlayerViewControlsStyle ControlsStyle { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("videoGravity")]
 		string VideoGravity { get; set; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("readyForDisplay")]
 		bool ReadyForDisplay { [Bind ("isReadyForDisplay")] get; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("videoBounds")]
 		CGRect VideoBounds { get; }
 
-		[Mac (10,10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("contentOverlayView")]
 		NSView ContentOverlayView { get; }
 
-		[Mac (10,13)]
+		[Introduced (PlatformName.MacOSX, 10, 13)]
 		[Export ("updatesNowPlayingInfoCenter")]
 		bool UpdatesNowPlayingInfoCenter { get; set; }
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("actionPopUpButtonMenu")]
 		NSMenu ActionPopUpButtonMenu { get; set; }
 
-		[Mac (10,9)] // No async
+		[Introduced (PlatformName.MacOSX, 10, 9)] // No async
 		[Export ("beginTrimmingWithCompletionHandler:")]
 		void BeginTrimming (Action<AVPlayerViewTrimResult> handler);
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("canBeginTrimming")]
 		bool CanBeginTrimming { get; }
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("flashChapterNumber:chapterTitle:")]
 		void FlashChapter (nuint chapterNumber, string chapterTitle);
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("showsFrameSteppingButtons")]
 		bool ShowsFrameSteppingButtons { get; set; }
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("showsFullScreenToggleButton")]
 		bool ShowsFullScreenToggleButton { get; set; }
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("showsSharingServiceButton")]
 		bool ShowsSharingServiceButton { get; set; }
 	}
 
-	[Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSView))]
 	interface AVCaptureView {
 
@@ -406,7 +406,7 @@ namespace XamCore.AVKit {
 	interface IAVCaptureViewDelegate { }
 
 	[Protocol, Model]
-	[Mac (10,10, onlyOn64 : true)]
+	[Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]
 	interface AVCaptureViewDelegate {
 		[Abstract]
@@ -415,8 +415,8 @@ namespace XamCore.AVKit {
 	}
 #endif
 
-	[NoiOS][NoMac]
-	[TV (9,0)]
+	[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.MacOSX)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	interface AVInterstitialTimeRange : NSCopying, NSSecureCoding {
 		[Export ("initWithTimeRange:")]
@@ -427,8 +427,8 @@ namespace XamCore.AVKit {
 		CMTimeRange TimeRange { get; }
 	}
 
-	[NoiOS][NoMac]
-	[TV (9,0)]
+	[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.MacOSX)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject))]
 	interface AVNavigationMarkersGroup {
@@ -451,8 +451,8 @@ namespace XamCore.AVKit {
 	}
 	
 #if !MONOMAC
-	[NoiOS, TV (10,0), NoWatch]
-	[BaseType (typeof(UIViewController))]
+	[Unavailable (PlatformName.iOS), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS)]
+	[BaseType (typeof (UIViewController))]
 	interface AVContentProposalViewController
 	{
 		[Export ("initWithNibName:bundle:")]
@@ -479,7 +479,7 @@ namespace XamCore.AVKit {
 	}
 
 	[Static]
-	[NoiOS, TV (10,1), NoWatch]
+	[Unavailable (PlatformName.iOS), Introduced (PlatformName.TvOS, 10, 1), Unavailable (PlatformName.WatchOS)]
 	interface AVKitMetadataIdentifier {
 
 		[Field ("AVKitMetadataIdentifierExternalContentIdentifier")]
@@ -489,28 +489,28 @@ namespace XamCore.AVKit {
 		[Field ("AVKitMetadataIdentifierPlaybackProgress")]
 		NSString PlaybackProgress { get; }
 
-		[TV (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		[Field ("AVKitMetadataIdentifierExactStartDate")]
 		NSString ExactStartDate { get; }
 
-		[TV (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		[Field ("AVKitMetadataIdentifierApproximateStartDate")]
 		NSString ApproximateStartDate { get; }
 
-		[TV (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		[Field ("AVKitMetadataIdentifierExactEndDate")]
 		NSString ExactEndDate { get; }
 
-		[TV (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		[Field ("AVKitMetadataIdentifierApproximateEndDate")]
 		NSString ApproximateEndDate { get; }
 
-		[TV (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		[Field ("AVKitMetadataIdentifierServiceIdentifier")]
 		NSString ServiceIdentifier { get; }
 	}
 
-	[TV (11,0), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 	[BaseType (typeof (UIView))]
 	interface AVRoutePickerView {
 
@@ -523,14 +523,14 @@ namespace XamCore.AVKit {
 		[Export ("activeTintColor", ArgumentSemantic.Assign), NullAllowed]
 		UIColor ActiveTintColor { get; set; }
 
-		[NoiOS]
+		[Unavailable (PlatformName.iOS)]
 		[Export ("routePickerButtonStyle", ArgumentSemantic.Assign)]
 		AVRoutePickerViewButtonStyle RoutePickerButtonStyle { get; set; }
 	}
 
-	[TV (11,0), NoiOS]
+	[Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.iOS)]
 	[Native]
-	public enum AVRoutePickerViewButtonStyle : nint {
+	public enum AVRoutePickerViewButtonStyle : long {
 		System,
 		Plain,
 		Custom,
@@ -538,7 +538,7 @@ namespace XamCore.AVKit {
 
 	interface IAVRoutePickerViewDelegate { }
 
-	[TV (11,0), iOS (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
 	interface AVRoutePickerViewDelegate {

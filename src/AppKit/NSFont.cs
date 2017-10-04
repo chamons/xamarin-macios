@@ -19,7 +19,7 @@ namespace XamCore.AppKit {
 			return new NSFont (font.Handle);
 		}
 
-		[Mac (10,13)]
+		[Introduced (PlatformName.MacOSX, 10, 13)]
 		public unsafe CGRect [] GetBoundingRects (CGGlyph [] glyphs)
 		{
 			if (glyphs == null)
@@ -36,7 +36,7 @@ namespace XamCore.AppKit {
 			return bounds;
 		}
 
-		[Mac (10,13)]
+		[Introduced (PlatformName.MacOSX, 10, 13)]
 		public unsafe CGSize [] GetAdvancements (CGGlyph [] glyphs)
 		{
 			if (glyphs == null)

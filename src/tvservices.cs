@@ -6,7 +6,7 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.TVServices {
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface TVContentIdentifier : NSCopying, NSSecureCoding {
@@ -21,7 +21,7 @@ namespace XamCore.TVServices {
 		IntPtr Constructor (string identifier, [NullAllowed] TVContentIdentifier container);
 	}
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface TVContentItem : NSCopying, NSSecureCoding {
@@ -72,17 +72,17 @@ namespace XamCore.TVServices {
 		[DesignatedInitializer]
 		IntPtr Constructor (TVContentIdentifier ident);
 
-		[TV (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("imageURLForTraits:")]
 		[return: NullAllowed]
 		NSUrl GetImageUrl (TVContentItemImageTrait traits);
 
-		[TV (11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		[Export ("setImageURL:forTraits:")]
 		void SetImageUrl ([NullAllowed] NSUrl aUrl, TVContentItemImageTrait traits);
 	}
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[Protocol]
 	interface TVTopShelfProvider {
 		[Abstract]
@@ -94,7 +94,7 @@ namespace XamCore.TVServices {
 		TVContentItem[] TopShelfItems { get; }
 	}
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[Static]
 	interface TVTopShelfItems {
 		[Notification]

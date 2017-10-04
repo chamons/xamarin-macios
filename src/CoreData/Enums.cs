@@ -28,7 +28,7 @@ namespace XamCore.CoreData {
 
 	// NUInteger -> NSEntityMapping.h
 	[Native]
-	public enum NSEntityMappingType : nuint {
+	public enum NSEntityMappingType : ulong {
 		Undefined = 0x00,
 		Custom = 0x01,
 		Add = 0x02,
@@ -39,7 +39,7 @@ namespace XamCore.CoreData {
 
 	// NUInteger -> NSAttributeDescription.h
 	[Native]
-	public enum NSAttributeType : nuint {
+	public enum NSAttributeType : ulong {
 		Undefined = 0,
 		Integer16 = 100,
 		Integer32 = 200,
@@ -51,9 +51,9 @@ namespace XamCore.CoreData {
 		Boolean = 800,
 		Date = 900,
 		Binary = 1000,
-		[iOS (11,0), TV (11,0), Mac (10,13), Watch (4,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.WatchOS, 4, 0)]
 		Uuid = 1100,
-		[iOS (11,0), TV (11,0), Mac (10,13), Watch (4,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.WatchOS, 4, 0)]
 		Uri = 1200,
 		Transformable = 1800,
 		ObjectID = 2000
@@ -62,19 +62,19 @@ namespace XamCore.CoreData {
 	// NUInteger -> NSFetchRequest.h
 	[Flags]
 	[Native]
-	public enum NSFetchRequestResultType : nuint {
+	public enum NSFetchRequestResultType : ulong {
 		ManagedObject = 0x00,
 		ManagedObjectID = 0x01,
-		[Availability (Introduced = Platform.iOS_3_0 | Platform.Mac_10_6)]
+		[Introduced (PlatformName.iOS, 3, 0), Introduced (PlatformName.MacOSX, 10, 6)]
 		DictionaryResultType = 0x02,
-		[Availability (Introduced = Platform.iOS_3_0 | Platform.Mac_10_6)]
+		[Introduced (PlatformName.iOS, 3, 0), Introduced (PlatformName.MacOSX, 10, 6)]
 		NSCountResultType = 0x04
 	}
 
 #if !XAMCORE_2_0
 	// NUInteger -> NSKeyValueObserving.h in Foundation.framework (and it already exists there)
 	[Native]
-	public enum NSKeyValueSetMutationKind : nuint {
+	public enum NSKeyValueSetMutationKind : ulong {
 		Union = 1,
 		Minus = 2,
 		Intersect = 3,
@@ -84,7 +84,7 @@ namespace XamCore.CoreData {
 
 	// NUInteger -> NSRelationshipDescription.h
 	[Native]
-	public enum NSDeleteRule : nuint {
+	public enum NSDeleteRule : ulong {
 		NoAction,
 		Nullify,
 		Cascade,
@@ -122,22 +122,22 @@ namespace XamCore.CoreData {
 	}
 
 	[Native]
-	public enum NSBatchUpdateRequestResultType : nuint {
+	public enum NSBatchUpdateRequestResultType : ulong {
 		StatusOnly = 0,
 		UpdatedObjectIDs = 1,
 		UpdatedObjectsCount = 2
 	}
 
-	[iOS (9,0), Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
-	public enum NSBatchDeleteRequestResultType : nuint {
+	public enum NSBatchDeleteRequestResultType : ulong {
 		StatusOnly = 0,
 		ObjectIDs = 1,
 		Count = 2
 	}
 
 	[Native]
-	public enum ValidationErrorType : nuint {
+	public enum ValidationErrorType : ulong {
 		ManagedObjectValidation = 1550,
 		MultipleErrors = 1560,
 		MissingMandatoryProperty = 1570,
@@ -152,12 +152,12 @@ namespace XamCore.CoreData {
 		StringTooLong = 1660,
 		StringTooShort = 1670,
 		StringPatternMatching = 1680,
-		[iOS (11,0), TV (11,0), Mac (10,13), Watch (4,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.WatchOS, 4, 0)]
 		InvalidUri = 1690,
 	}
 
 	[Native]
-	public enum ObjectGraphManagementErrorType : nuint {
+	public enum ObjectGraphManagementErrorType : ulong {
 		ManagedObjectContextLocking = 132000,
 		PersistentStoreCoordinatorLocking = 132010,
 		ManagedObjectReferentialIntegrity = 133000,
@@ -166,7 +166,7 @@ namespace XamCore.CoreData {
 	}
 
 	[Native]
-	public enum PersistentStoreErrorType : nuint {
+	public enum PersistentStoreErrorType : ulong {
 		InvalidType = 134000,
 		TypeMismatch = 134010,
 		IncompatibleSchema = 134020,
@@ -190,30 +190,30 @@ namespace XamCore.CoreData {
 		EntityMigrationPolicy = 134170,
 		InferredMappingModel = 134190,
 		ExternalRecordImport = 134200,
-		[iOS (11,0), TV (11,0), Mac (10,3), Watch (4,0)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 3), Introduced (PlatformName.WatchOS, 4, 0)]
 		HistoryTokenExpired = 134301,
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum NSFetchIndexElementType : nuint
+	public enum NSFetchIndexElementType : ulong
 	{
 		Binary,
 		RTree
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum NSPersistentHistoryChangeType : nint
+	public enum NSPersistentHistoryChangeType : long
 	{
 		Insert,
 		Update,
 		Delete
 	}
 
-	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
-	public enum NSPersistentHistoryResultType : nint
+	public enum NSPersistentHistoryResultType : long
 	{
 		StatusOnly = 0,
 		ObjectIds = 1,

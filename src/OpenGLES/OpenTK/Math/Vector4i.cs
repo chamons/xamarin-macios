@@ -1,4 +1,4 @@
-﻿#region --- License ---
+#region --- License ---
 /*
 Copyright (c) 2006 - 2008 The Open Toolkit library.
 
@@ -32,7 +32,7 @@ namespace OpenTK
     /// The Vector4i structure is suitable for interoperation with unmanaged code requiring four consecutive int32_t.
     /// </remarks>
     [Serializable]
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout (LayoutKind.Sequential)]
     public struct Vector4i : IEquatable<Vector4i>
     {
         #region Fields

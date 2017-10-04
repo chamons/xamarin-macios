@@ -42,7 +42,7 @@ namespace XamCore.Accounts {
 		OnlyMe
 	}
 
-	[iOS (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	public class AccountStoreOptions : DictionaryContainer
 	{
 #if !COREBUILD
