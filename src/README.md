@@ -23,8 +23,8 @@ code too complicated, all the attributes are also compiled into the generator
 executable, and then instantiated as mock-objects of the real attributes.
 
 The solution generator.sln can be used to debug the generator. There are
-multiple run configurations (`ios-classic`, `ios-unified`, `tvos`, `watchos`,
-`mac-classic`, `mac-unified`, `mac-full`), each configured to execute the
+multiple run configurations (`ios-unified`, `tvos`, `watchos`,
+`mac-unified`, `mac-full`), each configured to execute the
 generator with the options for the corresponding profile.
 
 Conditional compilation
@@ -50,19 +50,19 @@ the core Xamarin.Mac assembly are produced:
 
 ### Xamarin.iOS ###
 
-* A 32-bit Classic assembly (uses `System.Int32` in place of `NSInteger`, etc.)
+* A 32-bit Classic assembly (Copied from d15-4 binary, no longer built)
 * A 32-bit Unified assembly (uses `System.nint` in place of `NSInteger`, etc.)
 * A 64-bit Unified assembly (same as 32-bit Unified)
 
 ### Xamarin.Mac ###
 
-* A 32-bit Classic assembly (uses `System.Int32` in place of `NSInteger`, etc.)
+* A 32-bit Classic assembly (Copied from d15-4 binary, no longer built)
 * A 32-bit Unified assembly (uses `System.nint` in place of `NSInteger`, etc.)
 * A 64-bit Unified assembly (same as 32-bit Unified)
 * A 32-bit Full assembly (uses `System.nint` in place of `NSInteger`, and references the v4.5 BCL)
 * A 64-bit Full assembly (same as 32-bit Full)
 
-The Classic assembly will exist in order to not break customer code. Customers
+The Classic assembly will exist, but are no longer built, in order to not break customer code. Customers
 can choose to continue using this assembly, but we will encourage customers to
 move to our Unified assemblies.
 
@@ -98,11 +98,7 @@ are backed by 32/64-bit `System.nfloat` type.
 When binding APIs, it is important to use the *new* types (`nint`, `CGRect`,
 etc), *even though they do not exist in the Classic assembly*.
 
-Before compilation, all source code is preprocessed by `pmcs`, an internal
-tool for performing C#-aware preprocessing.
-
-For the Classic assembly, instances of the new types are translated to the
-legacy types. For the Unified assemblies, these types are not translated,
+For the Unified assemblies, these types are not translated,
 and the native types are included in the build.
 
 #### Enums ####
@@ -169,17 +165,6 @@ public partial class Fooable {
 	}
 }
 ```
-
-### pmcs ###
-
-`pmcs` is a wrapper around a regular `mcs` invocation. In addition to any
-regular arguments passed to `mcs`, `pmcs` accepts instructions on how to
-translate some tokens from one value to another. This is used to translate
-instances of native types in source code to legacy types for the 32-bit
-Classic assembly.
-
-`pmcs` lives in the `xamarin-macios` repository and is used for both Xamarin.Mac
-and Xamarin.iOS. [Explore pmcs documentation](https://github.com/xamarin/xamarin-macios/blob/master/tools/pmcs/README.md).
 
 ### `#define` ###
 
