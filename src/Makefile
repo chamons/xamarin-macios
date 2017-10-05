@@ -95,8 +95,7 @@ IOS_VARIANTS_TARGETS =
 #
 # Template Arguments:
 #
-#   - $(1) -> pmcs profile name (compat | native-32 | native-64)
-#             defines which pmcs profile to use (found in pmcs-profiles/)
+#   - $(1) -> pmcs profile name (now unused)
 #             and where all build output should go
 #             (e.g. build/ios/compat/monotouch.dll)
 #   - $(3) -> Product assembly name (monotouch.dll | Xamarin.iOS.dll)
