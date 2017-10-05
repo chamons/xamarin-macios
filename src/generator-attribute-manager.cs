@@ -35,9 +35,7 @@ public static class AttributeManager
 			var prefix = BindingTouch.NamespacePlatformPrefix;
 			var n = type.FullName;
 			if (!string.IsNullOrEmpty (prefix) && type.Namespace.StartsWith (prefix, System.StringComparison.Ordinal)) {
-				n = "XamCore." + n.Substring (prefix.Length + 1);
-			} else {
-				n = "XamCore." + n;
+				n = n.Substring (prefix.Length + 1);
 			}
 			rv = typeof (TypeManager).Assembly.GetType (n);
 		} else {

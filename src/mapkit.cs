@@ -872,7 +872,7 @@ namespace MapKit {
 
 #if IOS
 	// This requires the AddressBook framework, which afaict isn't bound on Mac, tvOS and watchOS yet
-	[StrongDictionary ("global::XamCore.AddressBook.ABPersonAddressKey")]
+	[StrongDictionary ("global::AddressBook.ABPersonAddressKey")]
 	interface MKPlacemarkAddress {
 		[Export ("City")]
 		string City { get; set; }

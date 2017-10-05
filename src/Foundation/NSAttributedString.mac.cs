@@ -12,7 +12,7 @@ using System;
 
 using AppKit;
 using WebKit;
-//using XamCore.CoreText;
+//using CoreText;
 
 namespace Foundation 
 {

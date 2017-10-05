@@ -31,7 +31,6 @@ using AppKit;
 using Foundation;
 using ObjCRuntime;
 using CoreImage;
-//using XamCore.ImageCaptureCore;
 using CoreGraphics;
 using CoreAnimation;
 
