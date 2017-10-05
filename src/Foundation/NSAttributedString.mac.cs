@@ -10,11 +10,11 @@
 
 using System;
 
-using XamCore.AppKit;
-using XamCore.WebKit;
+using AppKit;
+using WebKit;
 //using XamCore.CoreText;
 
-namespace XamCore.Foundation 
+namespace Foundation 
 {
 	public partial class NSAttributedString
 	{

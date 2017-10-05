@@ -9,9 +9,9 @@
 //
 
 using System;
-using XamCore.ObjCRuntime;
+using ObjCRuntime;
 
-namespace XamCore.CoreBluetooth {
+namespace CoreBluetooth {
 
 	[Introduced (PlatformName.MacOSX, 10, 13)]
 	[Introduced (PlatformName.WatchOS, 4, 0)]
@@ -81,7 +81,7 @@ namespace XamCore.CoreBluetooth {
 	[Introduced (PlatformName.WatchOS, 4, 0)]
 	[Flags]
 	[Native]
-	public enum CBCharacteristicProperties : nuint_compat_int {
+	public enum CBCharacteristicProperties : ulong {
 		Broadcast = 1,
 		Read = 2,
 		WriteWithoutResponse = 4,
@@ -156,7 +156,7 @@ namespace XamCore.CoreBluetooth {
 	[Introduced (PlatformName.WatchOS, 4, 0)]
 	[Flags]
 	[Native]
-	public enum CBAttributePermissions : nuint_compat_int {
+	public enum CBAttributePermissions : ulong {
 		Readable	= 1,
 		Writeable	= 1 << 1,
 		ReadEncryptionRequired	= 1 << 2,

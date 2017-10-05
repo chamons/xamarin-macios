@@ -28,7 +28,7 @@
 //
 using System;
 
-namespace XamCore.CoreImage {
+namespace CoreImage {
 	public partial class CIVector {
 		nfloat this [nint index] {
 			get {

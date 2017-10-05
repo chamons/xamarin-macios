@@ -8,10 +8,10 @@
 //
 
 using System;
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
+using ObjCRuntime;
+using Foundation;
 
-namespace XamCore.WatchConnectivity {
+namespace WatchConnectivity {
 
 	// NSInteger -> WCError.h
 	[Introduced (PlatformName.iOS, 9, 0)]

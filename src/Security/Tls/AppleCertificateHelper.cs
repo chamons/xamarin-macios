@@ -16,12 +16,12 @@ using System.Security.Cryptography.X509Certificates;
 using Mono.Security.Interface;
 using MX = Mono.Security.X509;
 
-using XamCore.Foundation;
-using XamCore.CoreFoundation;
-using XamCore.ObjCRuntime;
-using XamCore.Security;
+using Foundation;
+using CoreFoundation;
+using ObjCRuntime;
+using Security;
 
-namespace XamCore.Security.Tls
+namespace Security.Tls
 {
 	static class AppleCertificateHelper
 	{

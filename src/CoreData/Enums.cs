@@ -22,9 +22,9 @@
 
 using System;
 
-using XamCore.ObjCRuntime;
+using ObjCRuntime;
 
-namespace XamCore.CoreData {
+namespace CoreData {
 
 	// NUInteger -> NSEntityMapping.h
 	[Native]
@@ -93,7 +93,7 @@ namespace XamCore.CoreData {
 
 	// NUInteger -> NSPersistentStoreRequest.h
 	[Native]
-	public enum NSPersistentStoreRequestType : nuint_compat_int {
+	public enum NSPersistentStoreRequestType : ulong {
 		Fetch = 1,
 		Save,
 		BatchUpdate = 6,
@@ -102,19 +102,19 @@ namespace XamCore.CoreData {
 
 	// NUInteger -> NSManagedObjectContext.h
 	[Native]
-	public enum NSManagedObjectContextConcurrencyType : nuint_compat_int {
+	public enum NSManagedObjectContextConcurrencyType : ulong {
 		Confinement, PrivateQueue, MainQueue
 	}
 
 	// NUInteger -> NSManagedObjectContext.h
 	[Native]
-	public enum NSMergePolicyType : nuint_compat_int {
+	public enum NSMergePolicyType : ulong {
 		Error, PropertyStoreTrump, PropertyObjectTrump, Overwrite, RollbackMerge
 	}
 
 	// NUInteger -> NSFetchedResultsController.h
 	[Native]
-	public enum NSFetchedResultsChangeType : nuint_compat_int {
+	public enum NSFetchedResultsChangeType : ulong {
 		Insert = 1,
 		Delete = 2,
 		Move = 3,

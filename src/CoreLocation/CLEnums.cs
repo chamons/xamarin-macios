@@ -30,9 +30,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 using System;
-using XamCore.ObjCRuntime;
+using ObjCRuntime;
 
-namespace XamCore.CoreLocation {
+namespace CoreLocation {
 
 	// NSInteger -> CLError.h
 	[Native]
@@ -71,7 +71,7 @@ namespace XamCore.CoreLocation {
 	}
 
 	// untyped enum -> CLLocationManager.h
-	public enum CLDeviceOrientation : uint_compat_int {
+	public enum CLDeviceOrientation : uint {
 		Unknown,
 		Portrait,
 		PortraitUpsideDown,
@@ -82,7 +82,7 @@ namespace XamCore.CoreLocation {
 	} 
 
 	// untyped enum -> CLLocationManager.h
-	public enum CLAuthorizationStatus : uint_compat_int {
+	public enum CLAuthorizationStatus : uint {
 		NotDetermined = 0,
 		Restricted,
 		Denied,

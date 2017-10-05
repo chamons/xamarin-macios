@@ -1,9 +1,9 @@
-using XamCore.CoreFoundation;
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
+using CoreFoundation;
+using ObjCRuntime;
+using Foundation;
 using System;
 
-namespace XamCore.CloudKit
+namespace CloudKit
 {
 	// NSInteger -> CKContainer.h
 	[Introduced (PlatformName.WatchOS, 3, 0)]

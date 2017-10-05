@@ -1,12 +1,12 @@
 using System;
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
-using XamCore.CoreLocation;
+using ObjCRuntime;
+using Foundation;
+using CoreLocation;
 #if !TVOS
-using XamCore.Contacts;
+using Contacts;
 #endif
 
-namespace XamCore.CloudKit {
+namespace CloudKit {
 
 	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]

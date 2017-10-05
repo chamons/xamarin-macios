@@ -27,11 +27,11 @@
 //
 #if XAMCORE_2_0 || !MONOMAC
 using System;
-using XamCore.Foundation;
-using XamCore.ObjCRuntime;
-using XamCore.CoreGraphics;
-using XamCore.CoreFoundation;
-using XamCore.ModelIO;
+using Foundation;
+using ObjCRuntime;
+using CoreGraphics;
+using CoreFoundation;
+using ModelIO;
 
 using Vector2 = global::OpenTK.Vector2;
 using Vector3 = global::OpenTK.Vector3;
@@ -45,12 +45,12 @@ using MathHelper = global::OpenTK.MathHelper;
 #if MONOMAC
 using pfloat = System.nfloat;
 #else
-using XamCore.OpenGLES;
-using XamCore.UIKit;
+using OpenGLES;
+using UIKit;
 using pfloat = System.Single;
 #endif
 
-namespace XamCore.GLKit {
+namespace GLKit {
 
 	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[Static]

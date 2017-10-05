@@ -26,12 +26,12 @@ using MX = Mono.Security.X509;
 using Mono.Security.Interface;
 using Mono.Net.Security;
 
-using XamCore.Security;
-using XamCore.Foundation;
-using XamCore.CoreFoundation;
-using XamCore.ObjCRuntime;
+using Security;
+using Foundation;
+using CoreFoundation;
+using ObjCRuntime;
 
-namespace XamCore.Security.Tls
+namespace Security.Tls
 {
 	class AppleTlsContext : MobileTlsContext
 	{

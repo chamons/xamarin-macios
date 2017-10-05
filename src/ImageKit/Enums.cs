@@ -28,9 +28,9 @@
 //
 using System;
 
-using XamCore.ObjCRuntime;
+using ObjCRuntime;
 
-namespace XamCore.ImageKit {
+namespace ImageKit {
 
 	[Native]
 	public enum IKCameraDeviceViewDisplayMode : long {
@@ -94,7 +94,7 @@ namespace XamCore.ImageKit {
 	};
 
 	[Flags]
-	public enum IKFilterBrowserPanelStyleMask : uint_compat_int {
+	public enum IKFilterBrowserPanelStyleMask : uint {
 		Normal   = 0,
 		Textured = 1 << 8
 		// Other NSWindow Style Mask bit settings do not apply to this panel

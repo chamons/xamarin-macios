@@ -1,12 +1,12 @@
 // Copyright 2014-2015 Xamarin Inc. All rights reserved.
 #if XAMCORE_2_0 || !MONOMAC
 using System;
-using XamCore.CoreFoundation;
-using XamCore.Foundation;
-using XamCore.ObjCRuntime;
-using XamCore.Security;
+using CoreFoundation;
+using Foundation;
+using ObjCRuntime;
+using Security;
 
-namespace XamCore.NetworkExtension {
+namespace NetworkExtension {
 
 	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]

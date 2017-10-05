@@ -31,28 +31,28 @@
 //
 //
 #define DOUBLE_BLOCKS
-using XamCore.ObjCRuntime;
-using XamCore.CoreFoundation;
-using XamCore.Foundation;
-using XamCore.CoreGraphics;
+using ObjCRuntime;
+using CoreFoundation;
+using Foundation;
+using CoreGraphics;
 #if !WATCH
-using XamCore.CoreMedia;
-using XamCore.CloudKit;
+using CoreMedia;
+using CloudKit;
 #endif
-using XamCore.SceneKit;
-using XamCore.Security;
+using SceneKit;
+using Security;
 #if IOS
-using XamCore.CoreSpotlight;
+using CoreSpotlight;
 #if XAMCORE_2_0
-using XamCore.FileProvider;
+using FileProvider;
 #endif
 #endif
 
 #if MONOMAC
-using XamCore.AppKit;
+using AppKit;
 #else
-using XamCore.CoreLocation;
-using XamCore.UIKit;
+using CoreLocation;
+using UIKit;
 #endif
 
 using System;
@@ -73,14 +73,14 @@ using NSTimeInterval = System.Double;
 // to not break backwards compatibility (once the btouch bug was fixed), we need to make sure the delegate
 // stays in UIKit for Xamarin.iOS/Classic (the delegate was always in the right namespace for Xamarin.Mac).
 #if XAMCORE_2_0 || MONOMAC
-namespace XamCore.Foundation {
+namespace Foundation {
 #else
-namespace XamCore.UIKit {
+namespace UIKit {
 #endif
 	delegate void NSFilePresenterReacquirer ([BlockCallback] Action reacquirer);
 }
 
-namespace XamCore.Foundation
+namespace Foundation
 {
 #if XAMCORE_2_0
 	delegate NSComparisonResult NSComparator (NSObject obj1, NSObject obj2);
@@ -6369,7 +6369,7 @@ namespace XamCore.Foundation
 		// Extension from iOS5, NewsstandKit
 		[Introduced (PlatformName.iOS, 5, 0)]
 		[Export ("newsstandAssetDownload", ArgumentSemantic.Weak)]
-		XamCore.NewsstandKit.NKAssetDownload NewsstandAssetDownload { get; }
+		NewsstandKit.NKAssetDownload NewsstandAssetDownload { get; }
 #endif
 	}
 
@@ -6670,11 +6670,11 @@ namespace XamCore.Foundation
 	
 		[Export ("resetWithCompletionHandler:")]
 		[Async]
-		void Reset (NSAction completionHandler);
+		void Reset (global::System.Action completionHandler);
 	
 		[Export ("flushWithCompletionHandler:")]
 		[Async]
-		void Flush (NSAction completionHandler);
+		void Flush (global::System.Action completionHandler);
 	
 #if !XAMCORE_3_0
 		// broken version that we must keep for XAMCORE_2_0 binary compatibility
@@ -8620,10 +8620,10 @@ namespace XamCore.Foundation
 	interface NSBlockOperation {
 		[Static]
 		[Export ("blockOperationWithBlock:")]
-		NSBlockOperation Create (/* non null */ NSAction method);
+		NSBlockOperation Create (/* non null */ global::System.Action method);
 
 		[Export ("addExecutionBlock:")]
-		void AddExecutionBlock (/* non null */ NSAction method);
+		void AddExecutionBlock (/* non null */ global::System.Action method);
 
 		[Export ("executionBlocks")]
 		NSObject [] ExecutionBlocks { get; }
@@ -8639,7 +8639,7 @@ namespace XamCore.Foundation
 		void AddOperations ([NullAllowed] NSOperation [] operations, bool waitUntilFinished);
 
 		[Export ("addOperationWithBlock:")][PostGet ("Operations")]
-		void AddOperation (/* non null */ NSAction operation);
+		void AddOperation (/* non null */ global::System.Action operation);
 
 		[Export ("operations")]
 		NSOperation [] Operations { get; }
@@ -10370,11 +10370,11 @@ namespace XamCore.Foundation
 #if XAMCORE_2_0
 		[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)] // The header doesn't say, but the rest of the API from the same file (MKGeometry.h) was introduced in 10.9
 		[Static, Export ("valueWithMKCoordinate:")]
-		NSValue FromMKCoordinate (XamCore.CoreLocation.CLLocationCoordinate2D coordinate);
+		NSValue FromMKCoordinate (CoreLocation.CLLocationCoordinate2D coordinate);
 
 		[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)] // The header doesn't say, but the rest of the API from the same file (MKGeometry.h) was introduced in 10.9
 		[Static, Export ("valueWithMKCoordinateSpan:")]
-		NSValue FromMKCoordinateSpan (XamCore.MapKit.MKCoordinateSpan coordinateSpan);
+		NSValue FromMKCoordinateSpan (MapKit.MKCoordinateSpan coordinateSpan);
 #endif
 #else
 #if !WATCH
@@ -10398,7 +10398,7 @@ namespace XamCore.Foundation
 #endif
 		
 		[Export ("CGAffineTransformValue")]
-		XamCore.CoreGraphics.CGAffineTransform CGAffineTransformValue { get; }
+		CoreGraphics.CGAffineTransform CGAffineTransformValue { get; }
 		
 		[Export ("UIEdgeInsetsValue")]
 		UIKit.UIEdgeInsets UIEdgeInsetsValue { get; }
@@ -10408,7 +10408,7 @@ namespace XamCore.Foundation
 		NSDirectionalEdgeInsets DirectionalEdgeInsetsValue { get; }
 
 		[Export ("valueWithCGAffineTransform:")][Static]
-		NSValue FromCGAffineTransform (XamCore.CoreGraphics.CGAffineTransform tran);
+		NSValue FromCGAffineTransform (CoreGraphics.CGAffineTransform tran);
 
 		[Export ("valueWithUIEdgeInsets:")][Static]
 		NSValue FromUIEdgeInsets (UIKit.UIEdgeInsets insets);
@@ -10460,30 +10460,30 @@ namespace XamCore.Foundation
 		[Introduced (PlatformName.TvOS, 9, 2)]
 		[Introduced (PlatformName.iOS, 6, 0)]
 		[Static, Export ("valueWithMKCoordinate:")]
-		NSValue FromMKCoordinate (XamCore.CoreLocation.CLLocationCoordinate2D coordinate);
+		NSValue FromMKCoordinate (CoreLocation.CLLocationCoordinate2D coordinate);
 
 		[Introduced (PlatformName.TvOS, 9, 2)]
 		[Introduced (PlatformName.iOS, 6, 0)]
 		[Static, Export ("valueWithMKCoordinateSpan:")]
-		NSValue FromMKCoordinateSpan (XamCore.MapKit.MKCoordinateSpan coordinateSpan);
+		NSValue FromMKCoordinateSpan (MapKit.MKCoordinateSpan coordinateSpan);
 
 		[Introduced (PlatformName.TvOS, 9, 2)]
 		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("MKCoordinateValue")]
-		XamCore.CoreLocation.CLLocationCoordinate2D CoordinateValue { get; }
+		CoreLocation.CLLocationCoordinate2D CoordinateValue { get; }
 
 		[Introduced (PlatformName.TvOS, 9, 2)]
 		[Introduced (PlatformName.iOS, 6, 0)]
 		[Export ("MKCoordinateSpanValue")]
-		XamCore.MapKit.MKCoordinateSpan CoordinateSpanValue { get; }
+		MapKit.MKCoordinateSpan CoordinateSpanValue { get; }
 #endif
 
 #if !WATCH
 		[Export ("valueWithCATransform3D:")][Static]
-		NSValue FromCATransform3D (XamCore.CoreAnimation.CATransform3D transform);
+		NSValue FromCATransform3D (CoreAnimation.CATransform3D transform);
 
 		[Export ("CATransform3DValue")]
-		XamCore.CoreAnimation.CATransform3D CATransform3DValue { get; }
+		CoreAnimation.CATransform3D CATransform3DValue { get; }
 #endif
 
 		#region SceneKit Additions
@@ -11336,7 +11336,7 @@ namespace XamCore.Foundation
 
 		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
 		[Export ("performActivityWithOptions:reason:usingBlock:")]
-		void PerformActivity (NSActivityOptions options, string reason, NSAction runCode);
+		void PerformActivity (NSActivityOptions options, string reason, global::System.Action runCode);
 
 		[Introduced (PlatformName.MacOSX, 10, 10)]
 		[Introduced (PlatformName.iOS, 8, 0)]
@@ -11463,14 +11463,14 @@ namespace XamCore.Foundation
 		bool Paused { [Bind ("isPaused")] get; }
 	
 		[Export ("setCancellationHandler:")]
-		void SetCancellationHandler (NSAction handler);
+		void SetCancellationHandler (global::System.Action handler);
 	
 		[Export ("setPausingHandler:")]
-		void SetPauseHandler (NSAction handler);
+		void SetPauseHandler (global::System.Action handler);
 
 		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Export ("setResumingHandler:")]
-		void SetResumingHandler (NSAction handler);
+		void SetResumingHandler (global::System.Action handler);
 	
 		[Export ("setUserInfoObject:forKey:")]
 		void SetUserInfo ([NullAllowed] NSObject obj, NSString key);
@@ -11693,7 +11693,7 @@ namespace XamCore.Foundation
 		void CoordinateWriteWrite (NSUrl writingURL, NSFileCoordinatorWritingOptions writingOptions, NSUrl writingURL2, NSFileCoordinatorWritingOptions writingOptions2, out NSError error, /* non null */ NSFileCoordinatorWorkerRW writeWriteWorker);
 
 		[Export ("prepareForReadingItemsAtURLs:options:writingItemsAtURLs:options:error:byAccessor:")]
-		void CoordinateBatc (NSUrl [] readingURLs, NSFileCoordinatorReadingOptions readingOptions, NSUrl [] writingURLs, NSFileCoordinatorWritingOptions writingOptions, out NSError error, /* non null */ NSAction batchHandler);
+		void CoordinateBatc (NSUrl [] readingURLs, NSFileCoordinatorReadingOptions readingOptions, NSUrl [] writingURLs, NSFileCoordinatorWritingOptions writingOptions, out NSError error, /* non null */ global::System.Action batchHandler);
 
 		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("coordinateAccessWithIntents:queue:byAccessor:")]

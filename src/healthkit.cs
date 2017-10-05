@@ -8,13 +8,13 @@
 // Copyright 2014-2015 Xamarin Inc.
 //
 
-using XamCore.CoreFoundation;
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
+using CoreFoundation;
+using ObjCRuntime;
+using Foundation;
 using System;
 using System.ComponentModel;
 
-namespace XamCore.HealthKit {
+namespace HealthKit {
 
 	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.iOS, 10, 0)]
 	public enum HKDocumentTypeIdentifier {

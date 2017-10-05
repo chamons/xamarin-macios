@@ -10,12 +10,12 @@
 using System;
 using System.Runtime.InteropServices;
 
-using XamCore.CoreFoundation;
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
-using XamCore.CoreMedia;
+using CoreFoundation;
+using ObjCRuntime;
+using Foundation;
+using CoreMedia;
 
-namespace XamCore.VideoToolbox {
+namespace VideoToolbox {
 	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	public class VTFrameSilo : INativeObject, IDisposable {
 		IntPtr handle;

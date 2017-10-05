@@ -7,14 +7,14 @@
 using System;
 using System.Runtime.InteropServices;
 
-using XamCore.ObjCRuntime;
+using ObjCRuntime;
 
 #if !COREBUILD
-using XamCore.CoreFoundation;
-using XamCore.Foundation;
+using CoreFoundation;
+using Foundation;
 #endif
 
-namespace XamCore.CoreGraphics {
+namespace CoreGraphics {
 
 	// uint32_t enum -> CGColorConversionInfo.h
 	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.MacOSX, 10, 12)]

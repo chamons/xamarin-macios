@@ -11,15 +11,14 @@ include $(TOP)/src/touch-unit.sources
 export MD_MTOUCH_SDK_ROOT=$(IOS_DESTDIR)/$(MONOTOUCH_PREFIX)
 export XamarinMacFrameworkRoot=$(MAC_DESTDIR)/Library/Frameworks/Xamarin.Mac.framework/Versions/Current
 
+MCS=/Library/Frameworks/Mono.framework/Versions/Current/bin/mcs
+
 MAC_BUILD_DIR=build/mac
 IOS_BUILD_DIR=build/ios
 WATCH_BUILD_DIR=build/watch
 TVOS_BUILD_DIR=build/tvos
 
-PMCS_EXE=$(TOP)/src/build/common/pmcs.exe
-
 include $(TOP)/opentk/Makefile.include
-include $(TOP)/tools/pmcs/Makefile.frag
 
 #
 # Specific warnings that we want reported as errors by generator
@@ -67,7 +66,6 @@ IOS_SOURCES += $(IOS_EXTRA_SOURCES)
 IOS_GENERATOR_FLAGS = -inline-selectors -d:IOS -process-enums -warnaserror:$(IOS_GENERATOR_WARNASERROR)
 IOS_DEFINES = -define:IPHONE -define:IOS -define:MONOTOUCH -d:NET_2_0 -d:__IOS__ $(APPLETLS_DEFINES)
 IOS_LIBDIR = $(IOS_DESTDIR)$(MONOTOUCH_PREFIX)/lib/mono/2.1
-IOS_PMCS = $(IOS_BUILD_DIR)/pmcs
 IOS_BMONO = MONO_PATH=$(IOS_LIBDIR) $(IOS_DESTDIR)$(MONOTOUCH_PREFIX)/bin/btouch-mono
 IOS_GENERATOR=build/common/bgen.exe
 IOS_GENERATE=$(SYSTEM_MONO) --debug $(IOS_GENERATOR)
@@ -89,10 +87,6 @@ $(IOS_BUILD_DIR)/AssemblyInfo.cs: $(TOP)/src/AssemblyInfo.cs.in
 $(IOS_DESTDIR)$(MONOTOUCH_PREFIX)/Version: Version.in $(TOP)/Make.config
 	$(Q) sed "s/@VERSION@/$(IOS_PACKAGE_VERSION)/g" Version.in > $@
 
-$(IOS_PMCS): pmcs.in $(PMCS_EXE) | $(IOS_BUILD_DIR)
-	$(call Q_PROF_GEN,ios) sed -e 's|@MCS@|$(SYSTEM_MCS) -lib:$(IOS_LIBDIR) -nostdlib -r:mscorlib.dll|g' -e 's|@PMCS@|$(abspath $(PMCS_EXE))|g' < $< > $@
-	$(Q) chmod +x $@
-
 # filled by TARGETS_template below
 IOS_VARIANTS_TARGETS =
 
@@ -113,17 +107,17 @@ IOS_VARIANTS_TARGETS =
 
 define IOS_GENERATOR_template
 # core.dll
-$(IOS_BUILD_DIR)/$(1)/core.dll: $$(IOS_PMCS) $$(IOS_CORE_SOURCES) frameworks.sources
+$(IOS_BUILD_DIR)/$(1)/core.dll: $$(IOS_CORE_SOURCES) frameworks.sources
 	@mkdir -p $(IOS_BUILD_DIR)/$(1)
-	$$(call Q_PROF_PMCS,ios/$(1)) PMCS_PROFILE=$(3) $$(IOS_PMCS) -out:$$@ -target:library -debug -unsafe \
+	$$(call Q_MCS,ios/$(1)) $$(MCS) -out:$$@ -target:library -debug -unsafe \
 		-r:$(IOS_LIBDIR)/Mono.Security.dll \
 		-nowarn:219,618,114,414,1635,3021,$$(IOS_WARNINGS_THAT_YOU_SHOULD_FIX) \
-		-define:COREBUILD $$(IOS_DEFINES) \
+		-define:COREBUILD -define:XAMCORE_2_0 -define:__UNIFIED__ $$(IOS_DEFINES) \
 		$$(IOS_CORE_SOURCES)
 
 # generator.exe
 $(IOS_BUILD_DIR)/$(1)/generator.exe: $$(GENERATOR_SOURCES) $(IOS_BUILD_DIR)/$(1)/core.dll
-	$$(call Q_PROF_PMCS,ios/$(1)) PMCS_PROFILE=$(3) $$(IOS_PMCS) -out:$$@ -debug -unsafe \
+	$$(call Q_MCS,ios/$(1)) $$(MCS) -out:$$@ -debug -unsafe \
 		-r:$(IOS_BUILD_DIR)/$(1)/core.dll \
 		$$(GENERATOR_DEFINES)             \
 		$$(GENERATOR_SOURCES)
@@ -133,15 +127,14 @@ $(IOS_BUILD_DIR)/$(1)/generator.exe: $$(GENERATOR_SOURCES) $(IOS_BUILD_DIR)/$(1)
 # mono (tools64) to be able to load 2.1 mscorlib (mscorlib internal version must match runtime version)
 
 # We can't pass the --target-framework values as parameters to the templates, because the commas interfere with Make's parameter parsing.
-xi_compat_profile=--target-framework=MonoTouch,v1.0
 xi_native_profile=--target-framework=Xamarin.iOS,v1.0
 
-$(IOS_BUILD_DIR)/$(1)/generated_sources: $$(IOS_$(1)_GENERATOR) $$(IOS_APIS) $(IOS_BUILD_DIR)/$(1)/core.dll $(IOS_PMCS) $(IOS_BUILD_DIR)/native/$(4)
-	$$(call Q_PROF_GEN,ios/$(1)) PMCS_PROFILE=$(3) $$(IOS_$(1)_GENERATE) \
+$(IOS_BUILD_DIR)/$(1)/generated_sources: $$(IOS_$(1)_GENERATOR) $$(IOS_APIS) $(IOS_BUILD_DIR)/$(1)/core.dll $(IOS_BUILD_DIR)/native/$(4)
+	$$(call Q_PROF_GEN,ios/$(1)) $$(IOS_$(1)_GENERATE) \
 		$$(IOS_GENERATOR_FLAGS) \
 		-core \
 		-sourceonly=$$@ \
-		-compiler=$$(IOS_PMCS) \
+		-compiler=$$(MCS) \
 		-nostdlib -noconfig \
 		-no-mono-path \
 		-tmpdir=$(IOS_BUILD_DIR)/$(1) \
@@ -154,7 +147,6 @@ $(IOS_BUILD_DIR)/$(1)/generated_sources: $$(IOS_$(1)_GENERATOR) $$(IOS_APIS) $(I
 		$$(xi_$(1)_profile) \
 		$$(IOS_APIS)
 endef
-$(eval $(call IOS_GENERATOR_template,compat,--ns=MonoTouch.ObjCRuntime -p,compat-ios,monotouch.BindingAttributes.dll))
 $(eval $(call IOS_GENERATOR_template,native,--ns=ObjCRuntime,native,Xamarin.iOS.BindingAttributes.dll))
 
 define IOS_TARGETS_template
@@ -163,7 +155,7 @@ IOS_VARIANTS_TARGETS += $(IOS_BUILD_DIR)/$(1)/$(3)
 # monotouch.dll | Xamarin.iOS.dll
 $(IOS_BUILD_DIR)/$(1)/$(3): $$(IOS_SOURCES) $(IOS_BUILD_DIR)/$(4)/generated_sources $(PRODUCT_KEY_PATH)
 	@mkdir -p $(IOS_BUILD_DIR)/$(1)
-	$$(call Q_PROF_PMCS,ios/$(1)) PMCS_PROFILE=$(5) $$(IOS_PMCS) -out:$$@ -target:library -debug -unsafe -optimize \
+	$$(call Q_MCS,ios/$(1)) $$(MCS) -out:$$@ -target:library -debug -unsafe -optimize \
 		-r:$(IOS_LIBDIR)/Mono.Security.dll \
 		-keyfile:$(PRODUCT_KEY_PATH) $$(IOS_DEFINES) \
 		-nowarn:219,618,114,414,1635,3021,$$(IOS_WARNINGS_THAT_YOU_SHOULD_FIX) \
@@ -212,7 +204,6 @@ $(IOS_BUILD_DIR)/$(1)/System.Drawing.dll: $$(IOS_SYSTEM_DRAWING_SOURCES) monotou
 		$$(IOS_SYSTEM_DRAWING_SOURCES)
 endef
 
-$(eval $(call IOS_LIBS_template,compat,--ns=MonoTouch.ObjCRuntime,monotouch.dll,MonoTouch.Dialog-1.dll,MonoTouch.NUnitLite.dll))
 $(eval $(call IOS_LIBS_template,reference,--ns=ObjCRuntime,Xamarin.iOS.dll,MonoTouch.Dialog-1.dll,MonoTouch.NUnitLite.dll,-define:XAMCORE_2_0 -define:__UNIFIED__))
 
 $(IOS_BUILD_DIR)/reference/Xamarin.iOS.dll: $(IOS_BUILD_DIR)/native-64/Xamarin.iOS.dll
@@ -328,7 +319,6 @@ IOS_TARGETS += \
 	MonoTouch.NUnitLite.csproj                                                     \
 	MonoTouch.Dialog-1.csproj                                                      \
 	$(IOS_DESTDIR)$(MONOTOUCH_PREFIX)/Version                                      \
-	$(PMCS_MONOTOUCH_INSTALL_TARGETS)                                              \
 	$(IOS_DESTDIR)$(MONOTOUCH_PREFIX)/lib/mono/2.1/System.Net.Http.dll             \
 	$(IOS_DESTDIR)$(MONOTOUCH_PREFIX)/lib/mono/2.1/System.Net.Http.pdb             \
 	$(IOS_DESTDIR)$(MONOTOUCH_PREFIX)/lib/mono/2.1/monotouch.dll                   \
@@ -509,29 +499,25 @@ MAC_mobile_GENERATOR=$(MAC_GENERATOR)
 MAC_mobile_GENERATE=$(MAC_GENERATE)
 
 define MAC_GENERATOR_template
-$(MAC_BUILD_DIR)/$(1)/pmcs: pmcs.in $(PMCS_EXE) Makefile | $(MAC_BUILD_DIR)/$(1)
-	$$(call Q_PROF_GEN,mac/$(1)) sed -e 's|@MCS@|$(SYSTEM_MCS) $(4)|g' -e 's|@PMCS@|$(abspath $(PMCS_EXE))|g' < $$< > $$@
-	$(Q) chmod +x $$@
-
-$(MAC_BUILD_DIR)/$(1)/core.dll: $(MAC_BUILD_DIR)/$(1)/pmcs $(MAC_CORE_SOURCES) frameworks.sources
-	$$(call Q_PROF_PMCS,mac/$(1)) PMCS_PROFILE=$(6) $(MAC_BUILD_DIR)/$(1)/pmcs \
+$(MAC_BUILD_DIR)/$(1)/core.dll: $(MAC_CORE_SOURCES) frameworks.sources
+	$$(call Q_MCS,mac/$(1)) $$(MCS) \
 		-out:$$@ -target:library -debug -unsafe -nowarn:3021,612,618,1635 \
 		$$(MAC_BOOTSTRAP_DEFINES) \
 		$(3) \
 		$$(MAC_CORE_SOURCES)
 
 $(MAC_BUILD_DIR)/$(1)/_bmac.exe: $(MAC_BUILD_DIR)/$(1)/core.dll $(MAC_APIS) $(GENERATOR_SOURCES)
-	$$(call Q_PROF_PMCS,mac/$(1)) PMCS_PROFILE=$(6) $(MAC_BUILD_DIR)/$(1)/pmcs \
+	$$(call Q_MCS,mac/$(1)) $$(MCS) \
 		-out:$$@ -debug -unsafe \
 		$(GENERATOR_DEFINES) \
 		-r:$$(@D)/core.dll \
 		$(GENERATOR_SOURCES)
 
-$(MAC_BUILD_DIR)/$(1)/generated-sources: $$(MAC_$(1)_GENERATOR) $(MAC_APIS) $(MAC_BUILD_DIR)/$(1)/core.dll $(MAC_BUILD_DIR)/$(1)/pmcs $(MAC_BUILD_DIR)/$(7)
-	$$(call Q_PROF_GEN,mac/$(1)) PMCS_PROFILE=$(6) $$(MAC_$(1)_GENERATE) \
+$(MAC_BUILD_DIR)/$(1)/generated-sources: $$(MAC_$(1)_GENERATOR) $(MAC_APIS) $(MAC_BUILD_DIR)/$(1)/core.dll $(MAC_BUILD_DIR)/$(7)
+	$$(call Q_PROF_GEN,mac/$(1)) $$(MAC_$(1)_GENERATE) \
 		-d:MONOMAC \
 		-d:XAMARIN_MAC \
-		-compiler:$(MAC_BUILD_DIR)/$(1)/pmcs \
+		-compiler:$(MCS) \
 		-process-enums \
 		-warnaserror:$(MAC_GENERATOR_WARNASERROR) \
 		-native-exception-marshalling \
@@ -554,7 +540,7 @@ $(eval $(call MAC_GENERATOR_template,mobile,--ns=ObjCRuntime,$(SHARED_SYSTEM_DRA
 define MAC_TARGETS_template
 $(MAC_BUILD_DIR)/$(1)/$(2): $(MAC_BUILD_DIR)/$(3)/generated-sources $(MAC_SOURCES) $(MAC_CFNETWORK_SOURCES) $(MAC_CLASSIC_SOURCES) $(SN_KEY)
 	@mkdir -p $(MAC_BUILD_DIR)/$(1)
-	$$(call Q_PROF_PMCS,mac/$(1)) PMCS_PROFILE=$(5) $(MAC_BUILD_DIR)/$(3)/pmcs \
+	$$(call Q_MCS,mac/$(1)) $$(MCS) \
 		-out:$$@ -target:library -debug -unsafe \
 		$$(MAC_COMMON_DEFINES),OBJECT_REF_TRACKING \
 		-r:Mono.Security.dll \
@@ -706,15 +692,6 @@ $(MAC_DESTDIR)$(MAC_FRAMEWORK_CURRENT_DIR)/lib/mono/Xamarin.Mac/Xamarin.Mac.dll 
 
 $(MAC_DESTDIR)$(MAC_FRAMEWORK_CURRENT_DIR)/lib/mono/4.5/Xamarin.Mac.dll $(MAC_DESTDIR)$(MAC_FRAMEWORK_CURRENT_DIR)/lib/mono/4.5/Xamarin.Mac.dll.mdb: | $(MAC_DESTDIR)$(MAC_FRAMEWORK_CURRENT_DIR)/lib/mono/4.5
 	$(Q) ln -sF ../../reference/full/$(@F) $@
-
-$(MAC_DESTDIR)$(MAC_FRAMEWORK_CURRENT_DIR)/bin/pmcs: $(TOP)/tools/pmcs/pmcs | $(MAC_DESTDIR)$(MAC_FRAMEWORK_CURRENT_DIR)/bin
-	$(Q) install -m 0755 $< $@
-
-$(MAC_DESTDIR)$(MAC_FRAMEWORK_CURRENT_DIR)/lib/pmcs/pmcs.exe: $(PMCS_EXE) | $(MAC_DESTDIR)$(MAC_FRAMEWORK_CURRENT_DIR)/lib/pmcs
-	$(Q) install -m 0644 $< $@
-
-$(MAC_DESTDIR)$(MAC_FRAMEWORK_CURRENT_DIR)/lib/pmcs/profiles/%: $(TOP)/tools/pmcs/profiles/% | $(MAC_DESTDIR)$(MAC_FRAMEWORK_CURRENT_DIR)/lib/pmcs/profiles
-	$(Q) install -m 0644 $< $@
 
 $(MAC_DESTDIR)$(MAC_FRAMEWORK_CURRENT_DIR)/Version: $(TOP)/Make.config
 	$(Q) echo $(MAC_PACKAGE_VERSION) > $@

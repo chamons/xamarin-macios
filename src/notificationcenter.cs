@@ -1,16 +1,16 @@
 using System;
 using System.ComponentModel;
-using XamCore.CoreGraphics;
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
+using CoreGraphics;
+using ObjCRuntime;
+using Foundation;
 
 #if !MONOMAC
-using XamCore.UIKit;
+using UIKit;
 #else
-using XamCore.AppKit;
+using AppKit;
 #endif
 
-namespace XamCore.NotificationCenter {
+namespace NotificationCenter {
 #if XAMCORE_2_0 || !MONOMAC
 	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10, PlatformArchitecture.Arch64)]
 	[BaseType (typeof (NSObject))]

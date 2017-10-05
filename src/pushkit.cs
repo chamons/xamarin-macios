@@ -1,9 +1,9 @@
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
-using XamCore.CoreFoundation;
+using ObjCRuntime;
+using Foundation;
+using CoreFoundation;
 using System;
 
-namespace XamCore.PushKit 
+namespace PushKit 
 {
 	[Introduced (PlatformName.iOS, 8, 0)]
 	[BaseType (typeof (NSObject))]

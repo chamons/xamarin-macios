@@ -1,9 +1,9 @@
 using System;
 using System.Threading.Tasks;
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
+using ObjCRuntime;
+using Foundation;
 
-namespace XamCore.HomeKit {
+namespace HomeKit {
 
 	[Introduced (PlatformName.TvOS, 10, 0)]
 	[Introduced (PlatformName.iOS, 8, 0)]

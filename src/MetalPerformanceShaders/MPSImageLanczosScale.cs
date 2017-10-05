@@ -4,11 +4,11 @@
 
 using System;
 using System.Runtime.InteropServices;
-using XamCore.Foundation;
-using XamCore.Metal;
-using XamCore.ObjCRuntime;
+using Foundation;
+using Metal;
+using ObjCRuntime;
 
-namespace XamCore.MetalPerformanceShaders {
+namespace MetalPerformanceShaders {
 
 	public partial class MPSImageLanczosScale {
 

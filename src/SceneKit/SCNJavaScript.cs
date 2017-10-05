@@ -12,10 +12,10 @@
 using System;
 using System.Runtime.InteropServices;
 
-using XamCore.ObjCRuntime;
-using XamCore.JavaScriptCore;
+using ObjCRuntime;
+using JavaScriptCore;
 
-namespace XamCore.SceneKit
+namespace SceneKit
 {
 	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
 	public static class SCNJavaScript

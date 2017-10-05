@@ -1,7 +1,7 @@
 using System;
-using XamCore.ObjCRuntime;
+using ObjCRuntime;
 
-namespace XamCore.PhotosUI {
+namespace PhotosUI {
 #if !MONOMAC
 	[Introduced (PlatformName.TvOS, 10, 0)]
 	[Introduced (PlatformName.iOS, 9, 1)]

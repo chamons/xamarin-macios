@@ -9,10 +9,10 @@
 //
 
 using System;
-using XamCore.Foundation;
-using XamCore.ObjCRuntime;
+using Foundation;
+using ObjCRuntime;
 
-namespace XamCore.MediaPlayer {
+namespace MediaPlayer {
 #if XAMCORE_2_0 || !MONOMAC
 	// NSInteger -> MPMoviePlayerController.h
 	[Native]
@@ -101,7 +101,7 @@ namespace XamCore.MediaPlayer {
 	// NSUInteger -> MPMediaItem.h
 	[Native]
 	[Flags]
-	public enum MPMediaType : nuint_compat_int {
+	public enum MPMediaType : ulong {
 #if !XAMCORE_2_0
 		[Obsolete ("Use Shorter name Music")]
 		MPMediaTypeMusic        = 1 << 0,
@@ -286,7 +286,7 @@ namespace XamCore.MediaPlayer {
 	[Native]
 	[Introduced (PlatformName.MacOSX, 10, 12, 2)]
 	[Introduced (PlatformName.iOS, 7, 1)]
-	public enum MPSeekCommandEventType : nuint_compat_int {
+	public enum MPSeekCommandEventType : ulong {
 		BeginSeeking,
 		EndSeeking
 	}

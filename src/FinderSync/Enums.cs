@@ -1,7 +1,7 @@
 using System;
-using XamCore.ObjCRuntime;
+using ObjCRuntime;
 
-namespace XamCore.FinderSync {
+namespace FinderSync {
 	[Native]
 	public enum FIMenuKind : ulong
 	{

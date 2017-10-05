@@ -29,49 +29,49 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 
-using XamCore.AVFoundation;
-using XamCore.CoreFoundation;
-using XamCore.Foundation;
-using XamCore.ObjCRuntime;
+using AVFoundation;
+using CoreFoundation;
+using Foundation;
+using ObjCRuntime;
 
 #if !WATCH
-using XamCore.CoreAnimation;
-using XamCore.CoreImage;
+using CoreAnimation;
+using CoreImage;
 #endif
 
-using XamCore.CoreGraphics;
-using XamCore.SpriteKit;
+using CoreGraphics;
+using SpriteKit;
 // MonoMac (classic) does not support those 64bits only frameworks
 #if (XAMCORE_2_0 || !MONOMAC) && !WATCH
-using XamCore.ModelIO;
-using XamCore.Metal;
+using ModelIO;
+using Metal;
 #endif
 
 #if MONOMAC
-using XamCore.AppKit;
+using AppKit;
 using OpenTK;
 
-using GLContext = global::XamCore.OpenGL.CGLContext;
+using GLContext = global::OpenGL.CGLContext;
 #else
-using XamCore.UIKit;
+using UIKit;
 
 #if WATCH
-using GLContext = global::XamCore.Foundation.NSObject; // won't be used -> [NoWatch] but must compile
-using NSView = global::XamCore.Foundation.NSObject; // won't be used -> [NoWatch] but must compile
+using GLContext = global::Foundation.NSObject; // won't be used -> [NoWatch] but must compile
+using NSView = global::Foundation.NSObject; // won't be used -> [NoWatch] but must compile
 #else
-using XamCore.OpenGLES;
+using OpenGLES;
 
-using GLContext = global::XamCore.OpenGLES.EAGLContext;
-using NSView = global::XamCore.UIKit.UIView;
+using GLContext = global::OpenGLES.EAGLContext;
+using NSView = global::UIKit.UIView;
 #endif
 
-using NSColor = global::XamCore.UIKit.UIColor;
-using NSFont = global::XamCore.UIKit.UIFont;
-using NSImage = global::XamCore.UIKit.UIImage;
-using NSBezierPath = global::XamCore.UIKit.UIBezierPath;
+using NSColor = global::UIKit.UIColor;
+using NSFont = global::UIKit.UIFont;
+using NSImage = global::UIKit.UIImage;
+using NSBezierPath = global::UIKit.UIBezierPath;
 #endif
 
-namespace XamCore.SceneKit {
+namespace SceneKit {
 
 #if WATCH
 	// stubs to limit the number of preprocessor directives in the source file
@@ -2757,7 +2757,7 @@ namespace XamCore.SceneKit {
 
 		[Static]
 		[Export ("setCompletionBlock:")]
-		void SetCompletionBlock ([NullAllowed] NSAction completion);
+		void SetCompletionBlock ([NullAllowed] global::System.Action completion);
 
 		[Export ("valueForKey:")]
 		NSObject ValueForKey (NSString key);

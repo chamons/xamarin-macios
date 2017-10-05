@@ -12,11 +12,11 @@
 
 using System;
 using System.Collections;
-using XamCore.Foundation; 
-using XamCore.ObjCRuntime;
-using XamCore.CoreGraphics;
+using Foundation; 
+using ObjCRuntime;
+using CoreGraphics;
 
-namespace XamCore.UIKit {
+namespace UIKit {
 	public partial class UIGestureRecognizer {
 		object recognizers;
 		const string tsel = "target";
@@ -26,7 +26,7 @@ namespace XamCore.UIKit {
 		public static Selector ParametrizedSelector = new Selector ("target:");
 #endif
 		[DesignatedInitializer]
-		public UIGestureRecognizer (NSAction action) : this (Selector.GetHandle (tsel), new ParameterlessDispatch (action))
+		public UIGestureRecognizer (global::System.Action action) : this (Selector.GetHandle (tsel), new ParameterlessDispatch (action))
 		{
 		}
 
@@ -57,9 +57,9 @@ namespace XamCore.UIKit {
 		[Register ("__UIGestureRecognizerParameterlessToken")]
 		[Preserve (Conditional = true)]
 		public class ParameterlessDispatch : Token {
-			NSAction action;
+			global::System.Action action;
 			
-			internal ParameterlessDispatch (NSAction action)
+			internal ParameterlessDispatch (global::System.Action action)
 			{
 				this.action = action;
 			}
@@ -90,7 +90,7 @@ namespace XamCore.UIKit {
 			}
 		}
 		
-		public Token AddTarget (NSAction action)
+		public Token AddTarget (global::System.Action action)
 		{
 			if (action == null)
 				throw new ArgumentNullException ("action");
@@ -144,7 +144,7 @@ namespace XamCore.UIKit {
 
 #if !TVOS
 	public partial class UIRotationGestureRecognizer : UIGestureRecognizer {
-		public UIRotationGestureRecognizer (NSAction action) : base (action) {}
+		public UIRotationGestureRecognizer (global::System.Action action) : base (action) {}
 		public UIRotationGestureRecognizer (Action<UIRotationGestureRecognizer> action) : base (Selector.GetHandle (UIGestureRecognizer.parametrized_selector), new Callback (action)) {}
 
 		[Register ("__UIRotationGestureRecognizer")]
@@ -168,7 +168,7 @@ namespace XamCore.UIKit {
 #endif
 
 	public partial class UILongPressGestureRecognizer : UIGestureRecognizer {
-		public UILongPressGestureRecognizer (NSAction action) : base (action) {}
+		public UILongPressGestureRecognizer (global::System.Action action) : base (action) {}
 		public UILongPressGestureRecognizer (Action<UILongPressGestureRecognizer> action) : base (Selector.GetHandle (UIGestureRecognizer.parametrized_selector), new Callback (action)) {}
 
 		[Register ("__UILongPressGestureRecognizer")]
@@ -191,7 +191,7 @@ namespace XamCore.UIKit {
 	}
 
 	public partial class UITapGestureRecognizer : UIGestureRecognizer {
-		public UITapGestureRecognizer (NSAction action) : base (action) {}
+		public UITapGestureRecognizer (global::System.Action action) : base (action) {}
 		public UITapGestureRecognizer (Action<UITapGestureRecognizer> action) : base (Selector.GetHandle (UIGestureRecognizer.parametrized_selector), new Callback (action)) {}
 
 		[Register ("__UITapGestureRecognizer")]
@@ -214,7 +214,7 @@ namespace XamCore.UIKit {
 	}
 
 	public partial class UIPanGestureRecognizer : UIGestureRecognizer {
-		public UIPanGestureRecognizer (NSAction action) : base (action) {}
+		public UIPanGestureRecognizer (global::System.Action action) : base (action) {}
 		public UIPanGestureRecognizer (Action<UIPanGestureRecognizer> action) : base (Selector.GetHandle (UIGestureRecognizer.parametrized_selector), new Callback (action)) {}
 
 		internal UIPanGestureRecognizer (IntPtr sel, Token token) : base (token, sel) {}
@@ -240,7 +240,7 @@ namespace XamCore.UIKit {
 
 #if !TVOS
 	public partial class UIPinchGestureRecognizer : UIGestureRecognizer {
-		public UIPinchGestureRecognizer (NSAction action) : base (action) {}
+		public UIPinchGestureRecognizer (global::System.Action action) : base (action) {}
 		public UIPinchGestureRecognizer (Action<UIPinchGestureRecognizer> action) : base (Selector.GetHandle (UIGestureRecognizer.parametrized_selector), new Callback (action)) {}
 
 		[Register ("__UIPinchGestureRecognizer")]
@@ -264,7 +264,7 @@ namespace XamCore.UIKit {
 #endif
 
 	public partial class UISwipeGestureRecognizer : UIGestureRecognizer {
-		public UISwipeGestureRecognizer (NSAction action) : base (action) {}
+		public UISwipeGestureRecognizer (global::System.Action action) : base (action) {}
 		public UISwipeGestureRecognizer (Action<UISwipeGestureRecognizer> action) : base (Selector.GetHandle (UIGestureRecognizer.parametrized_selector), new Callback (action)) {}
 
 		[Register ("__UISwipeGestureRecognizer")]
@@ -288,7 +288,7 @@ namespace XamCore.UIKit {
 
 #if !TVOS
 	public partial class UIScreenEdgePanGestureRecognizer : UIPanGestureRecognizer {
-		public UIScreenEdgePanGestureRecognizer (NSAction action) : base (action) {}
+		public UIScreenEdgePanGestureRecognizer (global::System.Action action) : base (action) {}
 		public UIScreenEdgePanGestureRecognizer (Action<UIScreenEdgePanGestureRecognizer> action) : base (Selector.GetHandle (UIGestureRecognizer.parametrized_selector), new Callback (action)) {}
 
 		[Register ("__UIScreenEdgePanGestureRecognizer")]

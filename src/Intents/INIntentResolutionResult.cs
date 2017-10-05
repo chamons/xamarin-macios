@@ -9,10 +9,10 @@
 
 #if XAMCORE_2_0
 using System;
-using XamCore.Foundation;
-using XamCore.ObjCRuntime;
+using Foundation;
+using ObjCRuntime;
 
-namespace XamCore.Intents {
+namespace Intents {
 	[Introduced (PlatformName.iOS, 10, 0)]
 	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Introduced (PlatformName.WatchOS, 3, 2)]

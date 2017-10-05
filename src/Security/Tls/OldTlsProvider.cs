@@ -17,9 +17,9 @@ using Mono.Security.Interface;
 using MNS = Mono.Net.Security;
 
 #if XAMARIN_NO_TLS
-namespace XamCore.Security.NoTls
+namespace Security.NoTls
 #else
-namespace XamCore.Security.Tls
+namespace Security.Tls
 #endif
 {
 	class OldTlsProvider : MNS.LegacyTlsProvider

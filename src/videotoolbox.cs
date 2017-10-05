@@ -7,12 +7,12 @@
 // Copyright 2014 Xamarin Inc
 //
 using System;
-using XamCore.Foundation;
-using XamCore.ObjCRuntime;
-using XamCore.CoreMedia;
-using XamCore.AVFoundation;
+using Foundation;
+using ObjCRuntime;
+using CoreMedia;
+using AVFoundation;
 
-namespace XamCore.VideoToolbox {
+namespace VideoToolbox {
 
 	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	[Static]

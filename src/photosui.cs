@@ -1,16 +1,16 @@
-using XamCore.CoreGraphics;
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
+using CoreGraphics;
+using ObjCRuntime;
+using Foundation;
 #if !MONOMAC
-using XamCore.UIKit;
+using UIKit;
 #else
-using XamCore.AppKit;
-using UIImage = XamCore.AppKit.NSImage;
+using AppKit;
+using UIImage = AppKit.NSImage;
 #endif
-using XamCore.Photos;
+using Photos;
 using System;
 
-namespace XamCore.PhotosUI {
+namespace PhotosUI {
 	[Unavailable (PlatformName.TvOS)]
 	[Introduced (PlatformName.iOS, 8, 0)]
 	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]

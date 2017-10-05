@@ -1,8 +1,8 @@
 using System;
-using XamCore.CoreGraphics;
-using XamCore.ObjCRuntime;
+using CoreGraphics;
+using ObjCRuntime;
 
-namespace XamCore.AppKit
+namespace AppKit
 {
 	public partial class NSTextContainer
 	{

@@ -3,10 +3,10 @@ using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 
-using XamCore.Foundation;
-using XamCore.ObjCRuntime;
+using Foundation;
+using ObjCRuntime;
 
-namespace XamCore.Metal {
+namespace Metal {
 	public static class IMTLRenderCommandEncoder_Extensions {
 		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
 		public unsafe static void SetViewports (this IMTLRenderCommandEncoder This, MTLViewport [] viewports)

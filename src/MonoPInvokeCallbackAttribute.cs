@@ -25,7 +25,7 @@ using System;
 #if XAMCORE_2_0
 namespace ObjCRuntime {
 #else
-namespace XamCore {
+namespace  {
 #endif
 
 	[AttributeUsage (AttributeTargets.Method)]

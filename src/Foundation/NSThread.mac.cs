@@ -10,15 +10,15 @@
 
 using System;
 
-namespace XamCore.Foundation 
+namespace Foundation 
 {
 	public partial class NSThread
 	{
 		class ActionThread : NSThread
 		{
-			NSAction action;
+			global::System.Action action;
 		
-			public ActionThread (NSAction action)
+			public ActionThread (global::System.Action action)
 			{
 				this.action = action;
 			}
@@ -29,7 +29,7 @@ namespace XamCore.Foundation
 			}
 		}
 
-		public static NSThread Start (NSAction action)
+		public static NSThread Start (global::System.Action action)
 		{
 			if (action == null) {
 				throw new ArgumentNullException ("action");

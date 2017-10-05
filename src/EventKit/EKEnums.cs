@@ -1,14 +1,14 @@
 using System;
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
-using XamCore.CoreGraphics;
-using XamCore.CoreLocation;
+using ObjCRuntime;
+using Foundation;
+using CoreGraphics;
+using CoreLocation;
 
 #if !MONOMAC
-using XamCore.UIKit;
+using UIKit;
 #endif
 
-namespace XamCore.EventKit {
+namespace EventKit {
 
 	// untyped enum -> EKTypes.h
 	// iOS 9 promoted this to an NSInteger - which breaks compatibility
@@ -129,7 +129,7 @@ namespace XamCore.EventKit {
 	// NSUInteger -> EKTypes.h
 	[Native]
 	[Flags]
-	public enum EKCalendarEventAvailability : nuint_compat_int {
+	public enum EKCalendarEventAvailability : ulong {
 		None = 0,
 		Busy = 1,
 		Free = 2,
@@ -168,14 +168,14 @@ namespace XamCore.EventKit {
 	// NSUInteger -> EKTypes.h
 	[Native]
 	[Flags]
-	public enum EKEntityMask : nuint_compat_int {
+	public enum EKEntityMask : ulong {
 		Event = 1 << (int) EKEntityType.Event,
 		Reminder = 1 << (int) EKEntityType.Reminder
 	}
 
 	// NSUInteger -> EKTypes.h
 	[Native]
-	public enum EKEntityType : nuint_compat_int {
+	public enum EKEntityType : ulong {
 		Event,
 		Reminder
 	}

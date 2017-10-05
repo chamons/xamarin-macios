@@ -8,11 +8,11 @@
 //
 #if XAMCORE_2_0 || !MONOMAC
 using System;
-using XamCore.Foundation;
-using XamCore.Metal;
-using XamCore.ObjCRuntime;
+using Foundation;
+using Metal;
+using ObjCRuntime;
 
-namespace XamCore.MetalKit {
+namespace MetalKit {
 #if !COREBUILD
 	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	public partial class MTKTextureLoaderOptions : DictionaryContainer {

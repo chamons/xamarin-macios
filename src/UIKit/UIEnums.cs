@@ -9,10 +9,10 @@
 //
 
 using System;
-using XamCore.Foundation;
-using XamCore.ObjCRuntime;
+using Foundation;
+using ObjCRuntime;
 
-namespace XamCore.UIKit {
+namespace UIKit {
 	// NSInteger -> UIImagePickerController.h
 	[Native]
 	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
@@ -220,7 +220,7 @@ namespace XamCore.UIKit {
 	[Native]
 	[Flags]
 	[Unavailable (PlatformName.WatchOS)]
-	public enum UIViewAutoresizing : nuint_compat_int {
+	public enum UIViewAutoresizing : ulong {
 		None                 = 0,
 		FlexibleLeftMargin   = 1 << 0,
 		FlexibleWidth        = 1 << 1,
@@ -379,7 +379,7 @@ namespace XamCore.UIKit {
 	[Flags]
 	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 	[Introduced (PlatformName.iOS, 5, 0)]
-	public enum UIDocumentState : nuint_compat_int {
+	public enum UIDocumentState : ulong {
 		Normal = 0,
 		Closed = 1 << 0,
 		InConflict = 1 << 1,
@@ -675,7 +675,7 @@ namespace XamCore.UIKit {
 	[Native]
 	[Flags]
 	[Unavailable (PlatformName.WatchOS)]
-	public enum UITableViewCellState : nuint_compat_int {
+	public enum UITableViewCellState : ulong {
 		DefaultMask                     = 0,
 		ShowingEditControlMask          = 1 << 0,
 		ShowingDeleteConfirmationMask   = 1 << 1
@@ -729,7 +729,7 @@ namespace XamCore.UIKit {
 	[Native]
 	[Flags]
 	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
-	public enum UIInterfaceOrientationMask : nuint_compat_int {
+	public enum UIInterfaceOrientationMask : ulong {
 		Portrait = 1 << (int) UIInterfaceOrientation.Portrait,
 		LandscapeLeft = 1 << (int) UIInterfaceOrientation.LandscapeLeft,
 		LandscapeRight = 1 << (int) UIInterfaceOrientation.LandscapeRight,
@@ -832,7 +832,7 @@ namespace XamCore.UIKit {
 	[Native]
 	[Flags]
 	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
-	public enum UIRemoteNotificationType : nuint_compat_int {
+	public enum UIRemoteNotificationType : ulong {
 		None    = 0,
 		Badge   = 1 << 0,
 		Sound   = 1 << 1,
@@ -893,7 +893,7 @@ namespace XamCore.UIKit {
 	[Native]
 	[Flags]
 	[Unavailable (PlatformName.WatchOS)]
-	public enum UISwipeGestureRecognizerDirection : nuint_compat_int {
+	public enum UISwipeGestureRecognizerDirection : ulong {
 		Right = 1 << 0,
 		Left = 1 << 1,
 		Up = 1 << 2,
@@ -973,7 +973,7 @@ namespace XamCore.UIKit {
 	[Flags]
 	[Unavailable (PlatformName.WatchOS)]
 	[Introduced (PlatformName.iOS, 4, 0)]
-	public enum UIViewAnimationOptions : nuint_compat_int {
+	public enum UIViewAnimationOptions : ulong {
 		LayoutSubviews            = 1 <<  0,
 		AllowUserInteraction      = 1 <<  1,
 		BeginFromCurrentState     = 1 <<  2,
@@ -1234,7 +1234,7 @@ namespace XamCore.UIKit {
 	[Native]
 	[Flags]
 	[Unavailable (PlatformName.WatchOS)]
-	public enum NSLayoutFormatOptions : nuint_compat_int {
+	public enum NSLayoutFormatOptions : ulong {
 		AlignAllLeft = (1 << (int) NSLayoutAttribute.Left),
 		AlignAllRight = (1 << (int) NSLayoutAttribute.Right),
 		AlignAllTop = (1 << (int) NSLayoutAttribute.Top),
@@ -1284,7 +1284,7 @@ namespace XamCore.UIKit {
 	[Native]
 	[Flags]
 	[Unavailable (PlatformName.WatchOS)]
-	public enum UICollectionViewScrollPosition : nuint_compat_int {
+	public enum UICollectionViewScrollPosition : ulong {
 		None,
 		Top = 1 << 0,
 		CenteredVertically = 1 << 1,
@@ -1317,7 +1317,7 @@ namespace XamCore.UIKit {
 	// NSUInteger -> UICollectionViewLayout.h
 	[Native]
 	[Unavailable (PlatformName.WatchOS)]
-	public enum UICollectionElementCategory : nuint_compat_int {
+	public enum UICollectionElementCategory : ulong {
 		Cell, SupplementaryView, DecorationView
 	}
 
@@ -1387,7 +1387,7 @@ namespace XamCore.UIKit {
 	[Native]
 	[Flags]
 	[Unavailable (PlatformName.WatchOS)]
-	public enum NSTextStorageEditActions : nuint_compat_int {
+	public enum NSTextStorageEditActions : ulong {
 		Attributes = 1,
 		Characters = 2
 	}
@@ -1564,13 +1564,13 @@ namespace XamCore.UIKit {
 	// NSUInteger -> UIView.h
 	[Native]
 	[Unavailable (PlatformName.WatchOS)]
-	public enum UISystemAnimation : nuint_compat_int {
+	public enum UISystemAnimation : ulong {
 		Delete
 	}
 
 	// NSUInteger -> UIGeometry.h
 	[Native]
-	public enum UIRectEdge : nuint_compat_int {
+	public enum UIRectEdge : ulong {
 		None = 0,
 		Top = 1 << 0,
 		Left = 1 << 1,

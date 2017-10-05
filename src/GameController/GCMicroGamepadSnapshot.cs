@@ -5,10 +5,10 @@
 using System;
 using System.Runtime.InteropServices;
 
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
+using ObjCRuntime;
+using Foundation;
 
-namespace XamCore.GameController {
+namespace GameController {
 
 	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 9, 0)]
 	// GCMicroGamepadSnapshot.h

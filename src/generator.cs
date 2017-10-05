@@ -50,8 +50,8 @@ using Type = IKVM.Reflection.Type;
 using System.Text;
 using System.ComponentModel;
 
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
+using ObjCRuntime;
+using Foundation;
 
 public static class ReflectionExtensions {
 	public static BaseTypeAttribute GetBaseTypeAttribute (Type type)

@@ -10,19 +10,19 @@
 #if XAMCORE_2_0
 
 using System;
-using XamCore.CoreFoundation;
-using XamCore.CoreGraphics;
-using XamCore.CoreImage;
-using XamCore.CoreML;
-using XamCore.CoreVideo;
-using XamCore.Foundation;
-using XamCore.Metal;
-using XamCore.ObjCRuntime;
-using XamCore.ImageIO;
+using CoreFoundation;
+using CoreGraphics;
+using CoreImage;
+using CoreML;
+using CoreVideo;
+using Foundation;
+using Metal;
+using ObjCRuntime;
+using ImageIO;
 
 using Matrix3 = global::OpenTK.NMatrix3;
 
-namespace XamCore.Vision {
+namespace Vision {
 
 	[ErrorDomain ("VNErrorDomain")]
 	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]

@@ -24,12 +24,12 @@
 
 using System;
 using System.Runtime.InteropServices;
-using XamCore.ObjCRuntime;
+using ObjCRuntime;
 
-namespace XamCore.Foundation {
+namespace Foundation {
 
 #if !XAMCORE_2_0
-	public delegate void NSAction ();
+	public delegate void global::System.Action ();
 #endif
 
 #if !COREBUILD
@@ -39,9 +39,9 @@ namespace XamCore.Foundation {
 		public const string SelectorName = "xamarinApplySelector";
 		public static readonly Selector Selector = new Selector (SelectorName);
 
-		readonly NSAction action;
+		readonly global::System.Action action;
 
-		public NSActionDispatcher (NSAction action)
+		public NSActionDispatcher (global::System.Action action)
 		{
 			if (action == null)
 				throw new ArgumentNullException ("action");
@@ -108,9 +108,9 @@ namespace XamCore.Foundation {
 			action (timer);
 		}
 #else
-		readonly NSAction action;
+		readonly global::System.Action action;
 
-		public NSTimerActionDispatcher (NSAction action)
+		public NSTimerActionDispatcher (global::System.Action action)
 		{
 			if (action == null)
 				throw new ArgumentNullException ("action");
@@ -132,7 +132,7 @@ namespace XamCore.Foundation {
 	[Register ("__MonoMac_NSAsyncActionDispatcher")]
 	internal class NSAsyncActionDispatcher : NSObject {
 		GCHandle gch;
-		NSAction action;
+		global::System.Action action;
 
 #if !MONOTOUCH && !XAMCORE_2_0
 		// This ctor is so that the runtime can create a new instance of this class
@@ -148,7 +148,7 @@ namespace XamCore.Foundation {
 		}
 #endif
 
-		public NSAsyncActionDispatcher (NSAction action)
+		public NSAsyncActionDispatcher (global::System.Action action)
 		{
 			this.action = action;
 			gch = GCHandle.Alloc (this);

@@ -9,13 +9,13 @@
 using System;
 using System.ComponentModel;
 
-using XamCore.AudioUnit;
-using XamCore.CoreFoundation;
-using XamCore.Foundation;
-using XamCore.ObjCRuntime;
-using XamCore.CoreAnimation;
-using XamCore.CoreGraphics;
-using XamCore.SceneKit;
+using AudioUnit;
+using CoreFoundation;
+using Foundation;
+using ObjCRuntime;
+using CoreAnimation;
+using CoreGraphics;
+using SceneKit;
 using Vector2i = global::OpenTK.Vector2i;
 using Vector2 = global::OpenTK.Vector2;
 using Vector3 = global::OpenTK.Vector3;
@@ -37,14 +37,14 @@ using MatrixFloat4x4 = global::OpenTK.NMatrix4;
 using Quaternion = global::OpenTK.Quaternion;
 using MathHelper = global::OpenTK.MathHelper;
 #if MONOMAC
-using XamCore.AppKit;
-using AUViewControllerBase = XamCore.AppKit.NSViewController;
+using AppKit;
+using AUViewControllerBase = AppKit.NSViewController;
 #else
-using XamCore.UIKit;
-using AUViewControllerBase = XamCore.UIKit.UIViewController;
+using UIKit;
+using AUViewControllerBase = UIKit.UIViewController;
 #endif
 
-namespace XamCore.ModelIO {
+namespace ModelIO {
 
 	delegate void MDLObjectHandler (MDLObject mdlObject, ref bool stop);
 

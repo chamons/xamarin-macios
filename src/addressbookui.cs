@@ -8,15 +8,15 @@
 // Copyright 2009, Novell, Inc.
 // Copyright 2014-2015, Xamarin Inc.
 //
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
-using XamCore.CoreGraphics;
-using XamCore.CoreLocation;
-using XamCore.UIKit;
-using XamCore.AddressBook;
+using ObjCRuntime;
+using Foundation;
+using CoreGraphics;
+using CoreLocation;
+using UIKit;
+using AddressBook;
 using System;
 
-namespace XamCore.AddressBookUI {
+namespace AddressBookUI {
 
 	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Contacts' API instead.")]
 	[BaseType (typeof (UIViewController))]

@@ -1,10 +1,10 @@
 using System;
-using XamCore.CoreGraphics;
-using XamCore.Foundation;
-using XamCore.Metal;
-using XamCore.ObjCRuntime;
+using CoreGraphics;
+using Foundation;
+using Metal;
+using ObjCRuntime;
 
-namespace XamCore.MetalPerformanceShaders {
+namespace MetalPerformanceShaders {
 
 	// MPSImageConvolution.h
 

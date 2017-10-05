@@ -1,8 +1,8 @@
 using System;
 
-using XamCore.ObjCRuntime;
+using ObjCRuntime;
 
-namespace XamCore.WebKit {
+namespace WebKit {
 
 	public enum DomCssRuleType : ushort {
 		Unknown = 0,
@@ -58,7 +58,7 @@ namespace XamCore.WebKit {
 	}
 
 	[Native]
-	public enum WebCacheModel : nuint_compat_int {
+	public enum WebCacheModel : ulong {
 		DocumentViewer, DocumentBrowser, PrimaryWebBrowser
 	}
 
@@ -95,7 +95,7 @@ namespace XamCore.WebKit {
 	}
 
 #if !XAMCORE_4_0
-	public enum WebNavigationType : uint_compat_int {
+	public enum WebNavigationType : uint {
 #else
 	[Native]
 	public enum WebNavigationType : long {

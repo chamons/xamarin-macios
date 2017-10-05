@@ -10,11 +10,11 @@
 using System;
 using System.Runtime.InteropServices;
 
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
-using XamCore.CoreFoundation;
+using ObjCRuntime;
+using Foundation;
+using CoreFoundation;
 
-namespace XamCore.ImageIO {
+namespace ImageIO {
 
 	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
 	public partial class CGImageMetadataEnumerateOptions {

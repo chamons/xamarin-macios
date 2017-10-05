@@ -10,19 +10,19 @@ using System;
 using System.ComponentModel;
 
 #if !WATCH
-using XamCore.CoreImage;
-using XamCore.GameplayKit;
+using CoreImage;
+using GameplayKit;
 #endif
 
-using XamCore.AVFoundation;
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
-using XamCore.CoreFoundation;
-using XamCore.CoreGraphics;
-using XamCore.CoreVideo;
-using XamCore.SceneKit;
+using AVFoundation;
+using ObjCRuntime;
+using Foundation;
+using CoreFoundation;
+using CoreGraphics;
+using CoreVideo;
+using SceneKit;
 #if !WATCH
-using XamCore.Metal;
+using Metal;
 #endif
 
 using Vector2 = global::OpenTK.Vector2;
@@ -38,21 +38,21 @@ using Vector4 = global::OpenTK.Vector4;
 using Quaternion = global::OpenTK.Quaternion;
 
 #if MONOMAC
-using XamCore.AppKit;
-using UIColor = global::XamCore.AppKit.NSColor;
-using UIImage = global::XamCore.AppKit.NSImage;
-using UIView = global::XamCore.AppKit.NSView;
+using AppKit;
+using UIColor = global::AppKit.NSColor;
+using UIImage = global::AppKit.NSImage;
+using UIView = global::AppKit.NSView;
 using pfloat = System.nfloat;
 #else
-using XamCore.UIKit;
-using NSLineBreakMode = global::XamCore.UIKit.UILineBreakMode;
+using UIKit;
+using NSLineBreakMode = global::UIKit.UILineBreakMode;
 using pfloat = System.Single;
 #if !WATCH
-using UIView = global::XamCore.UIKit.UIView;
+using UIView = global::UIKit.UIView;
 #endif
 #endif
 
-namespace XamCore.SpriteKit {
+namespace SpriteKit {
 
 #if WATCH
 	// stubs to limit the number of preprocessor directives in the source file
@@ -1617,12 +1617,12 @@ namespace XamCore.SpriteKit {
 		[Export ("preloadTextures:withCompletionHandler:")]
 		[Async]
 		// note: unlike SKTextureAtlas completion can't be null (or it crash)
-		void PreloadTextures (SKTexture [] textures, NSAction completion);
+		void PreloadTextures (SKTexture [] textures, global::System.Action completion);
 
 		[Export ("preloadWithCompletionHandler:")]
 		[Async]
 		// note: unlike SKTextureAtlas completion can't be null (or it crash)
-		void Preload (NSAction completion);
+		void Preload (global::System.Action completion);
 
 		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Export ("textureByGeneratingNormalMap")]
@@ -1698,7 +1698,7 @@ namespace XamCore.SpriteKit {
 		[Export ("preloadTextureAtlases:withCompletionHandler:")]
 		[Async]
 		// Unfortunate name, should have been PreloadTextureAtlases
-		void PreloadTextures (SKTextureAtlas [] textures, [NullAllowed] NSAction completion);
+		void PreloadTextures (SKTextureAtlas [] textures, [NullAllowed] global::System.Action completion);
 
 		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		[Static]
@@ -1708,7 +1708,7 @@ namespace XamCore.SpriteKit {
 
 		[Export ("preloadWithCompletionHandler:")]
 		[Async]
-		void Preload ([NullAllowed] NSAction completion);
+		void Preload ([NullAllowed] global::System.Action completion);
 
 		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		[Static, Export ("atlasWithDictionary:")]

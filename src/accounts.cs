@@ -3,10 +3,10 @@
 //
 #if XAMCORE_2_0 || !MONOMAC
 using System;
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
+using ObjCRuntime;
+using Foundation;
 
-namespace XamCore.Accounts {
+namespace Accounts {
 	
 	[Introduced (PlatformName.iOS, 5, 0)]
 	[Introduced (PlatformName.MacOSX, 10, 8, PlatformArchitecture.Arch64)]

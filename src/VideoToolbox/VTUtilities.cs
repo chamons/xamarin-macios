@@ -10,11 +10,11 @@
 using System;
 using System.Runtime.InteropServices;
 
-using XamCore.ObjCRuntime;
-using XamCore.CoreGraphics;
-using XamCore.CoreVideo;
+using ObjCRuntime;
+using CoreGraphics;
+using CoreVideo;
 
-namespace XamCore.VideoToolbox {
+namespace VideoToolbox {
 	[Introduced (PlatformName.MacOSX, 10, 11), Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	public static class VTUtilities {
 		[DllImport (Constants.VideoToolboxLibrary)]

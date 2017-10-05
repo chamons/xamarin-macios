@@ -10,19 +10,19 @@
 #if XAMCORE_2_0 || !MONOMAC
 using System;
 using System.Runtime.InteropServices;
-using XamCore.CoreGraphics;
-using XamCore.CoreLocation;
-using XamCore.Foundation;
-using XamCore.ObjCRuntime;
+using CoreGraphics;
+using CoreLocation;
+using Foundation;
+using ObjCRuntime;
 
-namespace XamCore.MapKit {
+namespace MapKit {
 
 	// NSUInteger -> MKDirectionsTypes.h
 	[Unavailable (PlatformName.WatchOS)]
 	[Native]
 	[Introduced (PlatformName.TvOS, 9, 2)]
 	[Introduced (PlatformName.iOS, 7, 0)]
-	public enum MKDirectionsTransportType : nuint_compat_int {
+	public enum MKDirectionsTransportType : ulong {
 		Automobile = 1 << 0,
 		Walking    = 1 << 1,
 		Transit    = 1 << 2, 
@@ -33,7 +33,7 @@ namespace XamCore.MapKit {
 	[Introduced (PlatformName.TvOS, 9, 2)]
 	[Unavailable (PlatformName.WatchOS)]
 	[Native]
-	public enum MKMapType : nuint_compat_int {
+	public enum MKMapType : ulong {
 		Standard = 0,
 		Satellite,
 		Hybrid,
@@ -47,7 +47,7 @@ namespace XamCore.MapKit {
 	[Native]
 	[Introduced (PlatformName.TvOS, 9, 2)]
 	[Introduced (PlatformName.iOS, 7, 0)]
-	public enum MKDistanceFormatterUnits : nuint_compat_int {
+	public enum MKDistanceFormatterUnits : ulong {
 		Default,
 		Metric,
 		Imperial,
@@ -58,7 +58,7 @@ namespace XamCore.MapKit {
 	[Native]
 	[Introduced (PlatformName.TvOS, 9, 2)]
 	[Introduced (PlatformName.iOS, 7, 0)]
-	public enum MKDistanceFormatterUnitStyle : nuint_compat_int {
+	public enum MKDistanceFormatterUnitStyle : ulong {
 		Default = 0,
 		Abbreviated,
 		Full,
@@ -79,7 +79,7 @@ namespace XamCore.MapKit {
 	[Unavailable (PlatformName.WatchOS)]
 	[Native]
 	[ErrorDomain ("MKErrorDomain")]
-	public enum MKErrorCode : nuint_compat_int {
+	public enum MKErrorCode : ulong {
 		Unknown = 1,
 		ServerFailure,
 		LoadingThrottled,
@@ -91,7 +91,7 @@ namespace XamCore.MapKit {
 	[Unavailable (PlatformName.TvOS)]
 	[Unavailable (PlatformName.WatchOS)]
 	[Native]
-	public enum MKAnnotationViewDragState : nuint_compat_int {
+	public enum MKAnnotationViewDragState : ulong {
 		None, Starting, Dragging, Canceling, Ending
 	}
 	
@@ -100,7 +100,7 @@ namespace XamCore.MapKit {
 	[Unavailable (PlatformName.WatchOS)]
 	[Native]
 	[Deprecated (PlatformName.iOS, 9, 0, message: "Use 'MKPinAnnotationView.PinTintColor' instead.")]
-	public enum MKPinAnnotationColor : nuint_compat_int {
+	public enum MKPinAnnotationColor : ulong {
 		Red, Green, Purple
 	}
 
@@ -108,7 +108,7 @@ namespace XamCore.MapKit {
 	[Introduced (PlatformName.TvOS, 9, 2)]
 	[Unavailable (PlatformName.WatchOS)]
 	[Native]
-	public enum MKUserTrackingMode : nuint_compat_int {
+	public enum MKUserTrackingMode : ulong {
 		None, Follow, FollowWithHeading
 	}
 

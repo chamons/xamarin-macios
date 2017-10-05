@@ -33,10 +33,10 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Threading;
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
+using ObjCRuntime;
+using Foundation;
 
-namespace XamCore.CoreFoundation {
+namespace CoreFoundation {
 
 	// The native constants are defined in usr/include/dispatch/queue.h, but since they're
 	// not in any enum, they're untyped.
@@ -325,7 +325,7 @@ namespace XamCore.CoreFoundation {
 		static void static_dispatcher_to_managed (IntPtr context)
 		{
 			GCHandle gch = GCHandle.FromIntPtr (context);
-			var obj = gch.Target as Tuple<NSAction, DispatchQueue>;
+			var obj = gch.Target as Tuple<global::System.Action, DispatchQueue>;
 			gch.Free ();
 			if (obj != null) {
 				var sc = SynchronizationContext.Current;
@@ -377,7 +377,7 @@ namespace XamCore.CoreFoundation {
 
 		}
 						     
-		public void DispatchAsync (NSAction action)
+		public void DispatchAsync (global::System.Action action)
 		{
 			if (action == null)
 				throw new ArgumentNullException ("action");
@@ -385,7 +385,7 @@ namespace XamCore.CoreFoundation {
 			dispatch_async_f (handle, (IntPtr) GCHandle.Alloc (Tuple.Create (action, this)), static_dispatch);
 		}
 
-		public void DispatchSync (NSAction action)
+		public void DispatchSync (global::System.Action action)
 		{
 			if (action == null)
 				throw new ArgumentNullException ("action");
@@ -393,7 +393,7 @@ namespace XamCore.CoreFoundation {
 			dispatch_sync_f (handle, (IntPtr) GCHandle.Alloc (Tuple.Create (action, this)), static_dispatch);
 		}
 
-		public void DispatchBarrierAsync (NSAction action)
+		public void DispatchBarrierAsync (global::System.Action action)
 		{
 			if (action == null)
 				throw new ArgumentNullException ("action");
@@ -401,7 +401,7 @@ namespace XamCore.CoreFoundation {
 			dispatch_barrier_async_f (handle, (IntPtr) GCHandle.Alloc (Tuple.Create (action, this)), static_dispatch);
 		}
 		
-		public void DispatchAfter (DispatchTime when, NSAction action)
+		public void DispatchAfter (DispatchTime when, global::System.Action action)
 		{
 			if (action == null)
 				throw new ArgumentNullException ("action");
@@ -555,7 +555,7 @@ namespace XamCore.CoreFoundation {
 			return new DispatchGroup (ptr, true);
 		}
 
-		public void DispatchAsync (DispatchQueue queue, NSAction action)
+		public void DispatchAsync (DispatchQueue queue, global::System.Action action)
 		{
 			if (queue == null)
 				throw new ArgumentNullException ("queue");
@@ -566,7 +566,7 @@ namespace XamCore.CoreFoundation {
 			dispatch_group_async_f (handle, queue.handle, (IntPtr) GCHandle.Alloc (Tuple.Create (action, queue)), DispatchQueue.static_dispatch);
 		}
 
-		public void Notify (DispatchQueue queue, NSAction action)
+		public void Notify (DispatchQueue queue, global::System.Action action)
 		{
 			if (queue == null)
 				throw new ArgumentNullException ("queue");

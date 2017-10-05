@@ -24,9 +24,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 using System;
-using XamCore.ObjCRuntime;
+using ObjCRuntime;
 
-namespace XamCore.Foundation  {
+namespace Foundation  {
 #if COREBUILD
 	[Protocol]
 	public interface INSCopying {}
@@ -37,7 +37,7 @@ namespace XamCore.Foundation  {
 #endif
 
 	[Native]
-	public enum NSUrlCredentialPersistence : nuint_compat_int {
+	public enum NSUrlCredentialPersistence : ulong {
 		None,
 		ForSession,
 		Permanent,
@@ -67,7 +67,7 @@ namespace XamCore.Foundation  {
 	}
 
 	[Native]
-	public enum NSUrlRequestCachePolicy : nuint_compat_int {
+	public enum NSUrlRequestCachePolicy : ulong {
 		UseProtocolCachePolicy = 0,
 		ReloadIgnoringLocalCacheData = 1,
 		ReloadIgnoringLocalAndRemoteCacheData = 4, // Unimplemented
@@ -80,12 +80,12 @@ namespace XamCore.Foundation  {
 	}
 
 	[Native]
-	public enum NSUrlCacheStoragePolicy : nuint_compat_int {
+	public enum NSUrlCacheStoragePolicy : ulong {
 		Allowed, AllowedInMemoryOnly, NotAllowed
 	}
 	
 	[Native]
-	public enum NSStreamStatus : nuint_compat_int {
+	public enum NSStreamStatus : ulong {
 		NotOpen = 0,
 		Opening = 1,
 		Open = 2,
@@ -97,14 +97,14 @@ namespace XamCore.Foundation  {
 	}
 
 	[Native]
-	public enum NSPropertyListFormat : nuint_compat_int {
+	public enum NSPropertyListFormat : ulong {
 		OpenStep = 1,
 		Xml = 100,
 		Binary = 200
 	}
 
 	[Native]
-	public enum NSPropertyListMutabilityOptions : nuint_compat_int {
+	public enum NSPropertyListMutabilityOptions : ulong {
 		Immutable = 0,
 		MutableContainers = 1,
 		MutableContainersAndLeaves = 2
@@ -112,7 +112,7 @@ namespace XamCore.Foundation  {
 
 	// Should mirror NSPropertyListMutabilityOptions
 	[Native]
-	public enum NSPropertyListWriteOptions : nuint_compat_int {
+	public enum NSPropertyListWriteOptions : ulong {
 		Immutable = 0,
 		MutableContainers = 1,
 		MutableContainersAndLeaves = 2
@@ -121,7 +121,7 @@ namespace XamCore.Foundation  {
 	// Should mirror NSPropertyListMutabilityOptions, but currently
 	// not implemented (always use Immutable/0)
 	[Native]
-	public enum NSPropertyListReadOptions : nuint_compat_int {
+	public enum NSPropertyListReadOptions : ulong {
 		Immutable = 0,
 		MutableContainers = 1,
 		MutableContainersAndLeaves = 2
@@ -129,7 +129,7 @@ namespace XamCore.Foundation  {
 
 	[Native]
 	[Flags]
-	public enum NSMachPortRights : nuint_compat_int {
+	public enum NSMachPortRights : ulong {
 		None = 0,
 		SendRight = (1 << 0),
 		ReceiveRight = (1 << 1)
@@ -149,13 +149,13 @@ namespace XamCore.Foundation  {
 
 	[Flags]
 	[Native]
-	public enum NSNetServiceOptions : nuint_compat_int {
+	public enum NSNetServiceOptions : ulong {
 		NoAutoRename = 1 << 0,
 		ListenForConnections = 1 << 1
 	}
 
 	[Native]
-	public enum NSDateFormatterStyle : nuint_compat_int {
+	public enum NSDateFormatterStyle : ulong {
 		None,
 		Short,
 		Medium,
@@ -164,18 +164,18 @@ namespace XamCore.Foundation  {
 	}
 
 	[Native]
-	public enum NSDateFormatterBehavior : nuint_compat_int {
+	public enum NSDateFormatterBehavior : ulong {
 		Default = 0, Mode_10_4 = 1040
 	}
 
 	[Native]
-	public enum NSHttpCookieAcceptPolicy : nuint_compat_int {
+	public enum NSHttpCookieAcceptPolicy : ulong {
 		Always, Never, OnlyFromMainDocumentDomain
 	}
 
 	[Flags]
 	[Native]
-	public enum NSCalendarUnit : nuint_compat_int {
+	public enum NSCalendarUnit : ulong {
 		Era = 2, 
 		Year = 4,
 		Month = 8,
@@ -252,26 +252,26 @@ namespace XamCore.Foundation  {
 
 	[Flags]
 	[Native]
-	public enum NSNotificationCoalescing : nuint_compat_int {
+	public enum NSNotificationCoalescing : ulong {
 		NoCoalescing = 0,
 		CoalescingOnName = 1,
 		CoalescingOnSender = 2
 	}
 
 	[Native]
-	public enum NSPostingStyle : nuint_compat_int {
+	public enum NSPostingStyle : ulong {
 		PostWhenIdle = 1, PostASAP = 2, Now = 3
 	}
 
 	[Flags]
 	[Native]
-	public enum NSDataSearchOptions : nuint_compat_int {
+	public enum NSDataSearchOptions : ulong {
 		SearchBackwards = 1,
 		SearchAnchored = 2
 	}
 
 	[Native]
-	public enum NSExpressionType : nuint_compat_int {
+	public enum NSExpressionType : ulong {
 		ConstantValue = 0, 
 		EvaluatedObject, 
 		Variable, 
@@ -457,30 +457,30 @@ namespace XamCore.Foundation  {
 
 	[Flags]
 	[Native]
-	public enum NSKeyValueObservingOptions : nuint_compat_int {
+	public enum NSKeyValueObservingOptions : ulong {
 		New = 1, Old = 2, OldNew = 3, Initial = 4, Prior = 8, 
 	}
 
 	[Native]
-	public enum NSKeyValueChange : nuint_compat_int {
+	public enum NSKeyValueChange : ulong {
 		Setting = 1, Insertion, Removal, Replacement
 	}
 
 	[Native]
-	public enum NSKeyValueSetMutationKind : nuint_compat_int {
+	public enum NSKeyValueSetMutationKind : ulong {
 		UnionSet = 1, MinusSet, IntersectSet, SetSet
 	}
 
 	[Flags]
 	[Native]
-	public enum NSEnumerationOptions : nuint_compat_int {
+	public enum NSEnumerationOptions : ulong {
 		SortConcurrent = 1,
 		Reverse = 2
 	}
 	
 #if MONOMAC
 	[Native]
-	public enum NSNotificationSuspensionBehavior : nuint_compat_int {
+	public enum NSNotificationSuspensionBehavior : ulong {
 		Drop = 1,
 		Coalesce = 2,
 		Hold = 3,
@@ -489,7 +489,7 @@ namespace XamCore.Foundation  {
     
 	[Flags]
 	[Native]
-	public enum NSNotificationFlags : nuint_compat_int {
+	public enum NSNotificationFlags : ulong {
 		DeliverImmediately = (1 << 0),
 		PostToAllSessions = (1 << 1),
 	}
@@ -507,14 +507,14 @@ namespace XamCore.Foundation  {
 	}
 	
 	[Native]
-	public enum NSComparisonPredicateModifier : nuint_compat_int {
+	public enum NSComparisonPredicateModifier : ulong {
 		Direct,
 		All,
 		Any
 	}
 
 	[Native]
-	public enum NSPredicateOperatorType : nuint_compat_int {
+	public enum NSPredicateOperatorType : ulong {
 		LessThan,
 		LessThanOrEqualTo,
 		GreaterThan,
@@ -533,7 +533,7 @@ namespace XamCore.Foundation  {
 
 	[Flags]
 	[Native]
-	public enum NSComparisonPredicateOptions : nuint_compat_int {
+	public enum NSComparisonPredicateOptions : ulong {
 		None                 = 0x00,
 		CaseInsensitive      = 1<<0,
 		DiacriticInsensitive = 1<<1,
@@ -541,7 +541,7 @@ namespace XamCore.Foundation  {
 	}	
 	
 	[Native]
-	public enum NSCompoundPredicateType : nuint_compat_int {
+	public enum NSCompoundPredicateType : ulong {
 		Not,
 		And,
 		Or
@@ -550,7 +550,7 @@ namespace XamCore.Foundation  {
 	[Introduced (PlatformName.iOS, 4, 0)]
 	[Flags]
 	[Native]
-	public enum NSVolumeEnumerationOptions : nuint_compat_int {
+	public enum NSVolumeEnumerationOptions : ulong {
 		None                     = 0,
 		// skip                  = 1 << 0,
 		SkipHiddenVolumes        = 1 << 1,
@@ -560,7 +560,7 @@ namespace XamCore.Foundation  {
 	[Introduced (PlatformName.iOS, 4, 0)]
 	[Flags]
 	[Native]
-	public enum NSDirectoryEnumerationOptions : nuint_compat_int {
+	public enum NSDirectoryEnumerationOptions : ulong {
 		SkipsNone                    = 0,
 		SkipsSubdirectoryDescendants = 1 << 0,
 		SkipsPackageDescendants      = 1 << 1,
@@ -570,14 +570,14 @@ namespace XamCore.Foundation  {
 	[Introduced (PlatformName.iOS, 4, 0)]
 	[Flags]
 	[Native]
-	public enum NSFileManagerItemReplacementOptions : nuint_compat_int {
+	public enum NSFileManagerItemReplacementOptions : ulong {
 		None                      = 0,
 		UsingNewMetadataOnly      = 1 << 0,
 		WithoutDeletingBackupItem = 1 << 1,
 	}
 
 	[Native]
-	public enum NSSearchPathDirectory : nuint_compat_int {
+	public enum NSSearchPathDirectory : ulong {
 		ApplicationDirectory = 1,
 		DemoApplicationDirectory,
 		DeveloperApplicationDirectory,
@@ -609,7 +609,7 @@ namespace XamCore.Foundation  {
 
 	[Flags]
 	[Native]
-	public enum NSSearchPathDomain : nuint_compat_int {
+	public enum NSSearchPathDomain : ulong {
 		None    = 0,
 		User    = 1 << 0,
 		Local   = 1 << 1,
@@ -619,12 +619,12 @@ namespace XamCore.Foundation  {
 	}
 
 	[Native]
-	public enum NSRoundingMode : nuint_compat_int {
+	public enum NSRoundingMode : ulong {
 		Plain, Down, Up, Bankers
 	}
 
 	[Native]
-	public enum NSCalculationError : nuint_compat_int {
+	public enum NSCalculationError : ulong {
 		None, PrecisionLoss, Underflow, Overflow, DivideByZero
 	}
 	
@@ -640,7 +640,7 @@ namespace XamCore.Foundation  {
 	}		
 
 	[Native]
-	public enum NSNumberFormatterStyle : nuint_compat_int {
+	public enum NSNumberFormatterStyle : ulong {
 		None = 0,
 		Decimal = 1,
 		Currency = 2,
@@ -650,37 +650,37 @@ namespace XamCore.Foundation  {
 	}
 
 	[Native]
-	public enum NSNumberFormatterBehavior : nuint_compat_int {
+	public enum NSNumberFormatterBehavior : ulong {
 		Default = 0,
 		Version_10_0 = 1000,
 		Version_10_4 = 1040
 	}
 
 	[Native]
-	public enum NSNumberFormatterPadPosition : nuint_compat_int {
+	public enum NSNumberFormatterPadPosition : ulong {
 		BeforePrefix, AfterPrefix, BeforeSuffix, AfterSuffix
 	}
 
 	[Native]
-	public enum NSNumberFormatterRoundingMode : nuint_compat_int {
+	public enum NSNumberFormatterRoundingMode : ulong {
 		Ceiling, Floor, Down, Up, HalfEven, HalfDown, HalfUp
 	}
 
 	[Flags]
 	[Native]
-	public enum NSFileVersionReplacingOptions : nuint_compat_int {
+	public enum NSFileVersionReplacingOptions : ulong {
 		ByMoving = 1 << 0
 	}
 
 	[Flags]
 	[Native]
-	public enum NSFileVersionAddingOptions : nuint_compat_int {
+	public enum NSFileVersionAddingOptions : ulong {
 		ByMoving = 1 << 0
 	}
 
 	[Flags]
 	[Native]
-	public enum NSFileCoordinatorReadingOptions : nuint_compat_int {
+	public enum NSFileCoordinatorReadingOptions : ulong {
 		WithoutChanges = 1,
 		ResolvesSymbolicLink = 1 << 1,
 		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
@@ -691,7 +691,7 @@ namespace XamCore.Foundation  {
 
 	[Flags]
 	[Native]
-	public enum NSFileCoordinatorWritingOptions : nuint_compat_int {
+	public enum NSFileCoordinatorWritingOptions : ulong {
 		ForDeleting = 1,
 		ForMoving = 2,
 		ForMerging = 4,
@@ -700,7 +700,7 @@ namespace XamCore.Foundation  {
 
 	[Flags]
 	[Native]
-	public enum NSLinguisticTaggerOptions : nuint_compat_int {
+	public enum NSLinguisticTaggerOptions : ulong {
 		OmitWords = 1,
 		OmitPunctuation = 2,
 		OmitWhitespace = 4,
@@ -715,7 +715,7 @@ namespace XamCore.Foundation  {
 
 	[Flags]
 	[Native]
-	public enum NSJsonReadingOptions : nuint_compat_int {
+	public enum NSJsonReadingOptions : ulong {
 		MutableContainers = 1,
 		MutableLeaves = 2,
 		AllowFragments = 4
@@ -723,14 +723,14 @@ namespace XamCore.Foundation  {
 
 	[Flags]
 	[Native]
-	public enum NSJsonWritingOptions : nuint_compat_int {
+	public enum NSJsonWritingOptions : ulong {
 		PrettyPrinted = 1,
 		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 		SortedKeys = (1 << 1),
 	}
 
 	[Native]
-	public enum NSLocaleLanguageDirection : nuint_compat_int {
+	public enum NSLocaleLanguageDirection : ulong {
 		Unknown, LeftToRight, RightToLeft, TopToBottom, BottomToTop,
 	}
 
@@ -766,21 +766,21 @@ namespace XamCore.Foundation  {
 
 	[Flags]
 	[Native]
-	public enum NSFileWrapperReadingOptions : nuint_compat_int {
+	public enum NSFileWrapperReadingOptions : ulong {
 		Immediate = 1 << 0,
 		WithoutMapping = 1 << 1
 	}
 
 	[Flags]
 	[Native]
-	public enum NSFileWrapperWritingOptions : nuint_compat_int {
+	public enum NSFileWrapperWritingOptions : ulong {
 		Atomic = 1 << 0,
 		WithNameUpdating = 1 << 1
 	}
 
 	[Flags]
 	[Native]
-	public enum NSAttributedStringEnumeration : nuint_compat_int {
+	public enum NSAttributedStringEnumeration : ulong {
 		None = 0,
 		Reverse = 1 << 1,
 		LongestEffectiveRangeNotRequired = 1 << 20
@@ -818,7 +818,7 @@ namespace XamCore.Foundation  {
 
 	[Flags]
 	[Native]
-	public enum NSByteCountFormatterUnits : nuint_compat_int {
+	public enum NSByteCountFormatterUnits : ulong {
 		UseDefault      = 0,
 		UseBytes        = 1 << 0,
 		UseKB           = 1 << 1,
@@ -839,7 +839,7 @@ namespace XamCore.Foundation  {
 
 	[Flags]
 	[Native]
-	public enum NSUrlBookmarkCreationOptions : nuint_compat_int {
+	public enum NSUrlBookmarkCreationOptions : ulong {
 		PreferFileIDResolution = 1 << 8,
 		MinimalBookmark = 1 << 9,
 		SuitableForBookmarkFile = 1 << 10,
@@ -849,7 +849,7 @@ namespace XamCore.Foundation  {
 
 	[Flags]
 	[Native]
-	public enum NSUrlBookmarkResolutionOptions : nuint_compat_int {
+	public enum NSUrlBookmarkResolutionOptions : ulong {
 		WithoutUI = 1 << 8,
 		WithoutMounting = 1 << 9,
 		WithSecurityScope = 1 << 10,
@@ -863,7 +863,7 @@ namespace XamCore.Foundation  {
 #if !XAMCORE_4_0
 	[Flags]
 	[Native]
-	public enum NSDateComponentsWrappingBehavior : nuint_compat_int {
+	public enum NSDateComponentsWrappingBehavior : ulong {
 		None = 0,
 		WrapCalendarComponents = 1 << 0,
 
@@ -873,7 +873,7 @@ namespace XamCore.Foundation  {
 
 	[Flags]
 	[Native]
-	public enum NSCalendarOptions : nuint_compat_int {
+	public enum NSCalendarOptions : ulong {
 		None = 0,
 		WrapCalendarComponents = 1 << 0,
 
@@ -896,7 +896,7 @@ namespace XamCore.Foundation  {
 	}
 	
 	[Native]
-	public enum NSUrlRequestNetworkServiceType : nuint_compat_int {
+	public enum NSUrlRequestNetworkServiceType : ulong {
 		Default,
 		VoIP,
 		Video,
@@ -908,7 +908,7 @@ namespace XamCore.Foundation  {
 
 	[Flags]
 	[Native]
-	public enum NSSortOptions : nuint_compat_int {
+	public enum NSSortOptions : ulong {
 		Concurrent = 1 << 0,
 		Stable = 1 << 4
 	}
@@ -916,7 +916,7 @@ namespace XamCore.Foundation  {
 	[Introduced (PlatformName.iOS, 7, 0)]
 	[Flags]
 	[Native]
-	public enum NSDataBase64DecodingOptions : nuint_compat_int {
+	public enum NSDataBase64DecodingOptions : ulong {
 		None = 0,
 		IgnoreUnknownCharacters = 1
 	}
@@ -924,7 +924,7 @@ namespace XamCore.Foundation  {
 	[Introduced (PlatformName.iOS, 7, 0)]
 	[Flags]
 	[Native]
-	public enum NSDataBase64EncodingOptions : nuint_compat_int {
+	public enum NSDataBase64EncodingOptions : ulong {
 		None = 0,
 		SixtyFourCharacterLineLength = 1,
 		SeventySixCharacterLineLength = 1 << 1,

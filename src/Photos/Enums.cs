@@ -1,8 +1,8 @@
 using System;
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
+using ObjCRuntime;
+using Foundation;
 
-namespace XamCore.Photos
+namespace Photos
 {
 	// NSInteger -> PHImageManager.h
 	[Introduced (PlatformName.iOS, 8, 0)]

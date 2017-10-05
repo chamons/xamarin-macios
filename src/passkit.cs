@@ -9,17 +9,17 @@
 
 using System;
 using System.ComponentModel;
-using XamCore.Contacts;
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
-using XamCore.UIKit;
+using Contacts;
+using ObjCRuntime;
+using Foundation;
+using UIKit;
 #if !WATCH
-using XamCore.AddressBook;
+using AddressBook;
 #else
 interface ABRecord {}
 #endif
 
-namespace XamCore.PassKit {
+namespace PassKit {
 
 	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[Introduced (PlatformName.iOS, 9, 0)]

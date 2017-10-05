@@ -10,11 +10,11 @@
 //
 
 using System;
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
-using XamCore.CoreFoundation;
+using ObjCRuntime;
+using Foundation;
+using CoreFoundation;
 
-namespace XamCore.GameKit {
+namespace GameKit {
 
 #if !MONOMAC
 
@@ -25,7 +25,7 @@ namespace XamCore.GameKit {
 	[Unavailable (PlatformName.WatchOS)]
 	[Native]
 	[Introduced (PlatformName.iOS, 3, 0), Deprecated (PlatformName.iOS, 7, 0)]
-	public enum GKPeerPickerConnectionType : nuint_compat_int {
+	public enum GKPeerPickerConnectionType : ulong {
 		Online = 1 << 0,
 		Nearby = 1 << 1
 	}
@@ -259,7 +259,7 @@ namespace XamCore.GameKit {
 
 	// NSUInteger -> GKMatchmaker.h
 	[Native]
-	public enum GKMatchType : nuint_compat_int
+	public enum GKMatchType : ulong
 	{
 		PeerToPeer,
 		Hosted,

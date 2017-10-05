@@ -9,9 +9,9 @@
 #if XAMCORE_2_0 || !MONOMAC
 using System;
 using System.ComponentModel;
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
-using XamCore.SpriteKit;
+using ObjCRuntime;
+using Foundation;
+using SpriteKit;
 using Vector2 = global::OpenTK.Vector2;
 using Vector2d = global::OpenTK.Vector2d;
 using Vector2i = global::OpenTK.Vector2i;
@@ -21,12 +21,12 @@ using Matrix3 = global::OpenTK.Matrix3;
 using MatrixFloat3x3 = global::OpenTK.NMatrix3;
 
 #if MONOMAC
-using SKColor = XamCore.AppKit.NSColor;
+using SKColor = AppKit.NSColor;
 #else
-using SKColor = XamCore.UIKit.UIColor;
+using SKColor = UIKit.UIColor;
 #endif
 
-namespace XamCore.GameplayKit {
+namespace GameplayKit {
 
 	[Native]
 	[Flags]

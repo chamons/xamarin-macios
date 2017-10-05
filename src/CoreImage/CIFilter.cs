@@ -88,14 +88,14 @@
 //
 using System;
 using System.Diagnostics;
-using XamCore.Foundation;
-using XamCore.ObjCRuntime;
-using XamCore.CoreGraphics;
+using Foundation;
+using ObjCRuntime;
+using CoreGraphics;
 #if !MONOMAC
-using XamCore.UIKit;
+using UIKit;
 #endif
 
-namespace XamCore.CoreImage {
+namespace CoreImage {
 	public partial class CIFilter {
 		[Introduced (PlatformName.iOS, 8, 0)]
 		protected CIFilter () : base ()

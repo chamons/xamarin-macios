@@ -6,7 +6,7 @@ using System.Collections.Generic;
 #if XAMCORE_2_0
 namespace ObjCRuntime {
 #else
-namespace XamCore {
+namespace  {
 #endif
 
 	public class RuntimeException : Exception {

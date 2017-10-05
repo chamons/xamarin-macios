@@ -9,10 +9,10 @@
 
 #if XAMCORE_2_0 || !MONOMAC
 
-using XamCore.Foundation;
-using XamCore.ObjCRuntime;
+using Foundation;
+using ObjCRuntime;
 
-namespace XamCore.MediaPlayer {
+namespace MediaPlayer {
 
 	[Introduced (PlatformName.MacOSX, 10, 12, 2, PlatformArchitecture.Arch64)]
 	public class MPNowPlayingInfo {

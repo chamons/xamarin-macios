@@ -7,9 +7,9 @@
 // Copyright 2012 Xamarin Inc
 
 using System;
-using XamCore.ObjCRuntime;
+using ObjCRuntime;
 
-namespace XamCore.AppKit {
+namespace AppKit {
 
 	[Introduced (PlatformName.MacOSX, 10, 7)]
 	[Native]
@@ -21,7 +21,7 @@ namespace XamCore.AppKit {
 #if !XAMCORE_2_0
 	[Introduced (PlatformName.MacOSX, 10, 7), Flags]
 	[Native]
-	public enum NSTableViewAnimationOptions : nuint_compat_int {
+	public enum NSTableViewAnimationOptions : ulong {
 		EffectFade = 0x1,
 		EffectGap = 0x2,
 
@@ -69,7 +69,7 @@ namespace XamCore.AppKit {
 	}
 
 	[Native]
-	public enum NSCharacterCollection : nuint_compat_int {
+	public enum NSCharacterCollection : ulong {
 		/// <summary>Identity mapping (CID == NSGlyph)</summary>
 		IdentityMapping = 0,
 

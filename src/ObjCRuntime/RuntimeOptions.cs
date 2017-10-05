@@ -24,9 +24,9 @@ using MonoTouch.ObjCRuntime;
 #if !MTOUCH && !MMP && !MMP_TEST
 using Mono.Security.Interface;
 #if XAMARIN_APPLETLS
-using XamCore.Security.Tls;
+using Security.Tls;
 #elif XAMARIN_NO_TLS
-using XamCore.Security.NoTls;
+using Security.NoTls;
 #endif
 #endif
 #endif
@@ -36,7 +36,7 @@ namespace Xamarin.Bundler {
 #elif SYSTEM_NET_HTTP
 namespace System.Net.Http {
 #else
-namespace XamCore.ObjCRuntime {
+namespace ObjCRuntime {
 #endif
 	class RuntimeOptions
 	{

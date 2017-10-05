@@ -9,10 +9,10 @@
 
 #if XAMCORE_2_0
 using System;
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
+using ObjCRuntime;
+using Foundation;
 
-namespace XamCore.DeviceCheck {
+namespace DeviceCheck {
 
 	[Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[ErrorDomain ("DCErrorDomain")]

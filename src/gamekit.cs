@@ -13,16 +13,16 @@
 #pragma warning disable 618
 
 using System;
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
-using XamCore.CoreFoundation;
+using ObjCRuntime;
+using Foundation;
+using CoreFoundation;
 #if MONOMAC
-using XamCore.AppKit;
+using AppKit;
 #else
-using XamCore.UIKit;
+using UIKit;
 #endif
 
-namespace XamCore.GameKit {
+namespace GameKit {
 
 #if !XAMCORE_2_0
 	delegate void GKNotificationHandler ([NullAllowed] NSError error);
@@ -1618,7 +1618,7 @@ namespace XamCore.GameKit {
 	partial interface GKNotificationBanner {
 		[Static, Export ("showBannerWithTitle:message:completionHandler:")]
 		[Async]
-		void Show ([NullAllowed] string title, [NullAllowed] string message, [NullAllowed] NSAction onCompleted);
+		void Show ([NullAllowed] string title, [NullAllowed] string message, [NullAllowed] global::System.Action onCompleted);
 
 		[Introduced (PlatformName.iOS, 6, 0)][Introduced (PlatformName.MacOSX, 10, 8)]
 		[Export ("showBannerWithTitle:message:duration:completionHandler:"), Static]

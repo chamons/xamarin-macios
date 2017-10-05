@@ -10,12 +10,12 @@
 
 using System;
 
-using XamCore.ObjCRuntime;
+using ObjCRuntime;
 
 using Vector3 = global::OpenTK.Vector3;
 using Vector4 = global::OpenTK.Vector4;
 
-namespace XamCore.SceneKit {
+namespace SceneKit {
 
 	[Introduced (PlatformName.WatchOS, 3, 0)]
 	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0)]

@@ -1,9 +1,9 @@
 #if XAMCORE_2_0 || !MONOMAC
 using System;
-using XamCore.ObjCRuntime;
+using ObjCRuntime;
 using Vector2i = global::OpenTK.Vector2i;
 
-namespace XamCore.ModelIO {
+namespace ModelIO {
 
 	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 	public enum  MDLNoiseTextureType {

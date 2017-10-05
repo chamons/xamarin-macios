@@ -10,13 +10,13 @@
 using System;
 using System.Runtime.InteropServices;
 
-using XamCore.CoreFoundation;
-using XamCore.ObjCRuntime;
-using XamCore.Foundation;
-using XamCore.CoreMedia;
-using XamCore.CoreVideo;
+using CoreFoundation;
+using ObjCRuntime;
+using Foundation;
+using CoreMedia;
+using CoreVideo;
 
-namespace XamCore.VideoToolbox {
+namespace VideoToolbox {
 	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	public class VTCompressionSession : VTSession {
 		GCHandle callbackHandle;

@@ -7,9 +7,9 @@
 // Copyright 2013-2014, 2016 Xamarin Inc.
 //
 
-using XamCore.ObjCRuntime;
+using ObjCRuntime;
 
-namespace XamCore.SafariServices {
+namespace SafariServices {
 
 	// NSInteger -> SSReadingList.h
 	[Unavailable (PlatformName.MacOSX)][Introduced (PlatformName.iOS, 7, 0)]

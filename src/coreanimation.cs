@@ -32,23 +32,23 @@
 using System;
 using System.Diagnostics;
 #if MONOMAC
-using XamCore.AppKit;
-using XamCore.CoreVideo;
-using XamCore.OpenGL;
+using AppKit;
+using CoreVideo;
+using OpenGL;
 #else
-using XamCore.OpenGLES;
-using XamCore.UIKit;
+using OpenGLES;
+using UIKit;
 #endif
-using XamCore.Foundation;
-using XamCore.CoreImage;
-using XamCore.CoreGraphics;
-using XamCore.ObjCRuntime;
+using Foundation;
+using CoreImage;
+using CoreGraphics;
+using ObjCRuntime;
 #if XAMCORE_2_0 || !MONOMAC
-using XamCore.Metal;
+using Metal;
 #endif
-using XamCore.SceneKit; // For SCNAnimationEvent
+using SceneKit; // For SCNAnimationEvent
 
-namespace XamCore.CoreAnimation {
+namespace CoreAnimation {
 
 	[BaseType (typeof (NSObject))]
 	[Model]
@@ -1324,7 +1324,7 @@ namespace XamCore.CoreAnimation {
 
 		[Introduced (PlatformName.iOS, 4, 0)]
 		[Static, Export ("completionBlock"), NullAllowed]
-		NSAction CompletionBlock { get; set; }
+		global::System.Action CompletionBlock { get; set; }
 
 		[Field ("kCATransactionAnimationDuration")]
 		NSString AnimationDurationKey { get; }

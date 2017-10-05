@@ -24,11 +24,11 @@
 //
 using System;
 using System.ComponentModel;
-using XamCore.Foundation;
-using XamCore.ObjCRuntime;
+using Foundation;
+using ObjCRuntime;
 using System.Runtime.InteropServices;
 
-namespace XamCore.AVFoundation {
+namespace AVFoundation {
 
 	[Native]
 	// NSInteger - AVAudioSettings.h
@@ -163,7 +163,7 @@ namespace XamCore.AVFoundation {
 	[Native]
 	[Deprecated (PlatformName.iOS, 6, 0)]
 	// NSUInteger - AVAudioSession.h
-	public enum AVAudioSessionInterruptionFlags : nuint_compat_int {
+	public enum AVAudioSessionInterruptionFlags : ulong {
 		ShouldResume = 1
 	}
 #endif
@@ -270,7 +270,7 @@ namespace XamCore.AVFoundation {
 	[Native]
 	[Deprecated (PlatformName.iOS, 6, 0)]
 	// declared as AVAudioSessionSetActiveOptions (NSUInteger) - AVAudioSession.h
-	public enum AVAudioSessionFlags : nuint_compat_int {
+	public enum AVAudioSessionFlags : ulong {
 		NotifyOthersOnDeactivation = 1
 	}
 #endif
@@ -296,7 +296,7 @@ namespace XamCore.AVFoundation {
 	[Unavailable (PlatformName.WatchOS)]
 	[Native]
 	// NSUInteger - AVAsset.h
-	public enum AVAssetReferenceRestrictions : nuint_compat_int {
+	public enum AVAssetReferenceRestrictions : ulong {
 		ForbidNone = 0,
 		ForbidRemoteReferenceToLocal = (1 << 0),
 		ForbidLocalReferenceToRemote = (1 << 1),
@@ -334,20 +334,20 @@ namespace XamCore.AVFoundation {
 	[Flags]
 	[Native]
 	// NSUInteger - AVAudioSession.h
-	public enum AVAudioSessionInterruptionOptions : nuint_compat_int {
+	public enum AVAudioSessionInterruptionOptions : ulong {
 		ShouldResume = 1
 	}
 
 	[Flags]
 	[Native]
 	// NSUInteger - AVAudioSession.h
-	public enum AVAudioSessionSetActiveOptions : nuint_compat_int {
+	public enum AVAudioSessionSetActiveOptions : ulong {
 		NotifyOthersOnDeactivation = 1
 	}
 
 	[Native]
 	// NSUInteger - AVAudioSession.h
-	public enum AVAudioSessionPortOverride : nuint_compat_int {
+	public enum AVAudioSessionPortOverride : ulong {
 		None = 0,
 		[Unavailable (PlatformName.TvOS)]
 		Speaker = 0x73706b72 // 'spkr'
@@ -355,7 +355,7 @@ namespace XamCore.AVFoundation {
 
 	[Native]
 	// NSUInteger - AVAudioSession.h
-	public enum AVAudioSessionRouteChangeReason : nuint_compat_int {
+	public enum AVAudioSessionRouteChangeReason : ulong {
 		Unknown,
 		NewDeviceAvailable,
 		OldDeviceUnavailable,
@@ -369,7 +369,7 @@ namespace XamCore.AVFoundation {
 	[Flags]
 	[Native]
 	// NSUInteger - AVAudioSession.h
-	public enum AVAudioSessionCategoryOptions : nuint_compat_int {
+	public enum AVAudioSessionCategoryOptions : ulong {
 		MixWithOthers = 1,
 		DuckOthers = 2,
 		[Unavailable (PlatformName.TvOS)]
@@ -387,7 +387,7 @@ namespace XamCore.AVFoundation {
 
 	[Native]
 	// NSUInteger - AVAudioSession.h
-	public enum AVAudioSessionInterruptionType : nuint_compat_int  {
+	public enum AVAudioSessionInterruptionType : ulong  {
 		Ended, Began
 	}
 

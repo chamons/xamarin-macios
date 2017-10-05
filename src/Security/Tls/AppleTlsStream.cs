@@ -18,7 +18,7 @@ using System.Security.Cryptography.X509Certificates;
 using Mono.Security.Interface;
 using MNS = Mono.Net.Security;
 
-namespace XamCore.Security.Tls
+namespace Security.Tls
 {
 	class AppleTlsStream : MNS.MobileAuthenticatedStream
 	{

@@ -10,12 +10,12 @@
 #if XAMCORE_2_0
 
 using System;
-using XamCore.ObjCRuntime;
-using XamCore.CoreFoundation;
-using XamCore.CoreVideo;
-using XamCore.Foundation;
+using ObjCRuntime;
+using CoreFoundation;
+using CoreVideo;
+using Foundation;
 
-namespace XamCore.CoreML {
+namespace CoreML {
 
 	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
