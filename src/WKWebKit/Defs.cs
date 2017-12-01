@@ -94,7 +94,7 @@ namespace XamCore.WebKit
 #endif
 	}
 
-	[iOS (10,0)][Mac (10,12, only64: true)]
+	[iOS (10,0)][Mac (10,12, onlyOn64: true)]
 	[Native]
 	[Flags]
 	public enum WKAudiovisualMediaTypes : nuint	{

@@ -28,10 +28,10 @@ namespace Xamarin.Pmcs
 				return;
 
 			switch (target.Value) {
-			case "Mac":
-			case "MacAttribute":
-				VisitShorthandIntroducedAttribute (invocationExpression, "PlatformName.MacOSX");
-				break;
+// 			case "Mac":
+// 			case "MacAttribute":
+// 				VisitShorthandIntroducedAttribute (invocationExpression, "PlatformName.MacOSX");
+// 				break;
 			case "Since":
 			case "SinceAttribute":
 			case "iOS":

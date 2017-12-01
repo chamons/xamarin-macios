@@ -83,8 +83,114 @@ public static class AttributeManager
 		return rv;
 	}
 
+	static object [] HarvestOldAttributeValues (CustomAttributeData attribute)
+	{
+		var constructorArguments = new object [attribute.ConstructorArguments.Count];
+		for (int i = 0 ; i < attribute.ConstructorArguments.Count ; ++i)
+			constructorArguments[i] = attribute.ConstructorArguments [i].Value;
+		
+		Func<string> createErrorMessage = () => {
+			var b = new System.Text.StringBuilder (" Types { ");
+			for (int i = 0 ; i < constructorArguments.Length ; ++i)
+				b.Append (constructorArguments[i].GetType ().ToString () + " ");
+			b.Append ("}");
+			return b.ToString ();
+		};
+
+		switch (attribute.ConstructorArguments.Count)
+		{
+			case 2:
+				if (constructorArguments[0].GetType () == typeof (byte) &&
+				    constructorArguments[1].GetType () == typeof (byte))
+					break;
+				throw new NotImplementedException ($"Unknown format for old style availability attribute {attribute.AttributeType.FullName} {attribute.ConstructorArguments.Count} {createErrorMessage ()}");
+			case 3:
+				if (constructorArguments[0].GetType () == typeof (byte) && 
+				    constructorArguments[1].GetType () == typeof (byte) &&
+				    constructorArguments[2].GetType () == typeof (byte))
+					break;
+				if (constructorArguments[0].GetType () == typeof (byte) && 
+				    constructorArguments[1].GetType () == typeof (byte) &&
+				    constructorArguments[2].GetType () == typeof (bool))
+					break;
+
+				throw new NotImplementedException ($"Unknown format for old style availability attribute {attribute.AttributeType.FullName} {attribute.ConstructorArguments.Count} {createErrorMessage ()}");
+			case 4:
+				if (constructorArguments[0].GetType () == typeof (byte) && 
+				    constructorArguments[1].GetType () == typeof (byte) &&
+				    constructorArguments[2].GetType () == typeof (byte) &&
+				    constructorArguments[3].GetType () == typeof (bool))
+					break;
+
+				throw new NotImplementedException ($"Unknown format for old style availability attribute {attribute.AttributeType.FullName} {attribute.ConstructorArguments.Count} {createErrorMessage ()}");
+default:
+				throw new NotImplementedException ($"Unknown count {attribute.ConstructorArguments.Count} {createErrorMessage ()}");
+		}
+
+		return constructorArguments;
+	}
+
+	static void FormatNewStyleArguments (object [] oldCtorValues, out object [] ctorValues, out System.Type [] ctorTypes)
+	{
+		var platformEnum = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.PlatformName");
+		var platformArch = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.PlatformArchitecture");
+
+		switch (oldCtorValues.Length)
+		{
+		case 2:
+			ctorValues = new object [] { (byte)1, (int)(byte)oldCtorValues[0], (int)(byte)oldCtorValues[1], (byte)0xff, "" };
+			ctorTypes = new System.Type [] { platformEnum, typeof(int), typeof(int), platformArch, typeof (string) };
+			break;
+		case 3:
+			if (oldCtorValues[2].GetType () == typeof (byte)) {
+				ctorValues = new object [] { (byte)1, (int)(byte)oldCtorValues[0], (int)(byte)oldCtorValues[1], (int)(byte)oldCtorValues[2], (byte)0xff, "" };
+				ctorTypes = new System.Type [] { platformEnum, typeof(int), typeof(int), typeof(int), platformArch, typeof (string) };
+			}
+			else {
+				byte arch = (bool)oldCtorValues[2] ? (byte)2 : (byte)0xff; 
+				ctorValues = new object [] { (byte)1, (int)(byte)oldCtorValues[0], (int)(byte)oldCtorValues[1], arch, "" };
+				ctorTypes = new System.Type [] { platformEnum, typeof(int), typeof(int), platformArch, typeof (string) };
+			}
+			break;
+		case 4: {
+			byte arch = (bool)oldCtorValues[3] ? (byte)2 : (byte)0xff; 
+			ctorValues = new object [] { (byte)1, (int)(byte)oldCtorValues[0], (int)(byte)oldCtorValues[1], (int)(byte)oldCtorValues[2], arch, "" };
+			ctorTypes = new System.Type [] { platformEnum, typeof(int), typeof(int), typeof (int), platformArch, typeof (string) };
+			break;
+		}
+		default:
+			throw new NotImplementedException ("FormatNewStyleArguments recieved unexpected arguments");
+		}
+
+	}
+
+	static System.Attribute ConvertOldAttribute (CustomAttributeData attribute)
+	{
+		switch (attribute.AttributeType.FullName) {
+		case "MonoTouch.ObjCRuntime.MacAttribute":
+		case "ObjCRuntime.MacAttribute":
+			var attribType = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.IntroducedAttribute");
+
+			object [] oldCtorValues = HarvestOldAttributeValues (attribute);
+			object [] ctorValues;
+			System.Type [] ctorTypes;
+			FormatNewStyleArguments (oldCtorValues, out ctorValues, out ctorTypes);
+
+			var ctor = attribType.GetConstructor (ctorTypes);
+			if (ctor == null)
+				throw ErrorHelper.CreateError (1058, "Internal error: could not find a constructor for the mock attribute '{0}'. Please file a bug report (https://bugzilla.xamarin.com) with a test case.", attribType.FullName);
+			
+			return (System.Attribute)ctor.Invoke (ctorValues);
+		}
+		return null;
+	}
+
 	static System.Attribute CreateAttributeInstance (CustomAttributeData attribute, ICustomAttributeProvider provider)
 	{
+		System.Attribute convertedAttribute = ConvertOldAttribute (attribute);
+		if (convertedAttribute != null)
+			return convertedAttribute;
+		
 		System.Type attribType = ConvertType (attribute.AttributeType, provider);
 
 		var constructorArguments = new object [attribute.ConstructorArguments.Count];
