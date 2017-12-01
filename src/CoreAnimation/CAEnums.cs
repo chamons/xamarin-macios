@@ -48,8 +48,8 @@ namespace XamCore.CoreAnimation {
 		TopBottomEdges = TopEdge | BottomEdge
 	}
 
-	[NoWatch] // headers not updated
-	[iOS (11,0)][TV (11,0)][Mac (10,13)]
+	[Unavailable (PlatformName.WatchOS)] // headers not updated
+	[Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.TvOS, 11, 0)][Introduced (PlatformName.MacOSX, 10, 13)]
 	[Native][Flags]
 	public enum CACornerMask : nuint {
 		MinXMinYCorner = 1 << 0,

@@ -31,7 +31,7 @@ namespace XamCore.iAd {
 
 	// NSInteger -> ADBannerView.h
 	[Deprecated (PlatformName.iOS, 10, 0)]
-	[iOS (6,0)] 
+	[Introduced (PlatformName.iOS, 6, 0)] 
 	[Native]
 	public enum ADAdType : nint {
 		Banner, MediumRectangle
@@ -46,7 +46,7 @@ namespace XamCore.iAd {
 		Manual,
 	}
 
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Native]
 	[ErrorDomain ("ADClientErrorDomain")]
 	public enum ADClientError : nint {

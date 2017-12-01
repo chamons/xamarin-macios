@@ -51,14 +51,14 @@ namespace XamCore.CoreText {
 		PromptUser = 3,
 	}
 
-	[iOS (4,1)]
+	[Introduced (PlatformName.iOS, 4, 1)]
 	public partial class CTFontManager {
 
 #if MONOMAC
 		[DllImport (Constants.CoreTextLibrary)]
 		static extern bool CTFontManagerIsSupportedFont (IntPtr url);
 
-		[Availability (Deprecated = Platform.Mac_10_6, Unavailable = Platform.iOS_Version)]
+		[Deprecated (PlatformName.MacOSX, 10, 6), Obsoleted (PlatformName.iOS)]
 		public static bool IsFontSupported (NSUrl url)
 		{
 			if (url == null)
@@ -67,7 +67,7 @@ namespace XamCore.CoreText {
 		}
 #elif !XAMCORE_3_0
 		[Obsolete ("API not available on iOS, it will always return false.")]
-		[Availability (Deprecated = Platform.Mac_10_6, Unavailable = Platform.iOS_Version)]
+		[Deprecated (PlatformName.MacOSX, 10, 6), Obsoleted (PlatformName.iOS)]
 		public static bool IsFontSupported (NSUrl url)
 		{
 			if (url == null)
@@ -167,13 +167,13 @@ namespace XamCore.CoreText {
 			}
 		}
 
-		[Mac (10,6)]
-		[iOS (7,0)]
+		[Introduced (PlatformName.MacOSX, 10, 6)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[DllImport (Constants.CoreTextLibrary)]
 		static extern /* CFArrayRef */ IntPtr CTFontManagerCreateFontDescriptorsFromURL (/* CFURLRef */ IntPtr fileURL);
 
-		[Mac (10,6)]
-		[iOS (7,0)]
+		[Introduced (PlatformName.MacOSX, 10, 6)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		public static CTFontDescriptor[] GetFonts (NSUrl url)
 		{
 			if (url == null)
@@ -192,11 +192,11 @@ namespace XamCore.CoreText {
 			}
 		}
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.CoreTextLibrary)]
 		static extern bool CTFontManagerRegisterGraphicsFont (IntPtr cgfont, out IntPtr error);
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		public static bool RegisterGraphicsFont (CGFont font, out NSError error)
 		{
 			if (font == null)
@@ -216,11 +216,11 @@ namespace XamCore.CoreText {
 			return ret;
 		}
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.CoreTextLibrary)]
 		static extern bool CTFontManagerUnregisterGraphicsFont (IntPtr cgfont, out IntPtr error);
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		public static bool UnregisterGraphicsFont (CGFont font, out NSError error)
 		{
 			if (font == null)
@@ -258,7 +258,7 @@ namespace XamCore.CoreText {
 
 		static NSString _RegisteredFontsChangedNotification;
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		static NSString RegisteredFontsChangedNotification {
 			get {
 				if (_RegisteredFontsChangedNotification == null){

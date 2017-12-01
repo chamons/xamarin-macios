@@ -85,13 +85,13 @@ namespace XamCore.CoreMotion {
 		MotionActivityNotAuthorized,
 		MotionActivityNotEntitled,
 		InvalidParameter,
-		[iOS (8,2)]
+		[Introduced (PlatformName.iOS, 8, 2)]
 		InvalidAction,
-		[iOS (8,2)]
+		[Introduced (PlatformName.iOS, 8, 2)]
 		NotAvailable,
-		[iOS (8,2)]
+		[Introduced (PlatformName.iOS, 8, 2)]
 		NotEntitled,
-		[iOS (8,2)]
+		[Introduced (PlatformName.iOS, 8, 2)]
 		NotAuthorized,
 	}
 

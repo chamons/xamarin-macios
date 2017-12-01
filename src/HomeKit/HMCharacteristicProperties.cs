@@ -4,8 +4,8 @@ using XamCore.Foundation;
 
 namespace XamCore.HomeKit {
 
-	[iOS (8,0)]
-	[TV (10,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
 	public class HMCharacteristicProperties {
 
 		public bool SupportsChangeNumber { get; set; }

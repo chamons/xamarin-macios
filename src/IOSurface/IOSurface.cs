@@ -33,9 +33,9 @@ namespace XamCore.IOSurface {
 
 		// kern_return_t
 		// See bug #59201 [iOS (10,0)]
-		[iOS (11, 0)]
-		[Mac (10, 12)]
-		[TV (11, 0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		public int Lock (IOSurfaceLockOptions options, ref int seed)
 		{
 			unsafe {
@@ -47,9 +47,9 @@ namespace XamCore.IOSurface {
 
 		// kern_return_t
 		// See bug #59201 [iOS (10,0)]
-		[iOS (11, 0)]
-		[Mac (10, 12)]
-		[TV (11, 0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		public int Lock (IOSurfaceLockOptions options)
 		{
 			return _Lock (options, IntPtr.Zero);
@@ -57,9 +57,9 @@ namespace XamCore.IOSurface {
 		
 		// kern_return_t
 		// See bug #59201 [iOS (10,0)]
-		[iOS (11, 0)]
-		[Mac (10, 12)]
-		[TV (11, 0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		public int Unlock (IOSurfaceLockOptions options, ref int seed)
 		{
 			unsafe {
@@ -71,9 +71,9 @@ namespace XamCore.IOSurface {
 
 		// kern_return_t
 		// See bug #59201 [iOS (10,0)]
-		[iOS (11, 0)]
-		[Mac (10, 12)]
-		[TV (11, 0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		public int Unlock (IOSurfaceLockOptions options)
 		{
 			return _Unlock (options, IntPtr.Zero);
@@ -81,8 +81,8 @@ namespace XamCore.IOSurface {
 
 #if !MONOMAC
 		// kern_return_t
-		[iOS (11, 0)]
-		[TV (11, 0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		public int SetPurgeable (IOSurfacePurgeabilityState newState, ref IOSurfacePurgeabilityState oldState)
 		{
 			unsafe {
@@ -92,8 +92,8 @@ namespace XamCore.IOSurface {
 			}
 		}
 
-		[iOS (11, 0)]
-		[TV (11, 0)]
+		[Introduced (PlatformName.iOS, 11, 0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
 		public int SetPurgeable (IOSurfacePurgeabilityState newState)
 		{
 			return _SetPurgeable (newState, IntPtr.Zero);

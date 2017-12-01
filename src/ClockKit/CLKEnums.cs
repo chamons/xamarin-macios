@@ -20,9 +20,9 @@ namespace XamCore.ClockKit {
 		UtilitarianLarge,
 		CircularSmall,
 		// nothing has the value of 5
-		[Watch (3,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
 		UtilitarianSmallFlat = 6,
-		[Watch (3,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)]
 		ExtraLarge = 7,
 	}
 

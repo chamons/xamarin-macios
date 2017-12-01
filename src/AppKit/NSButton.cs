@@ -39,7 +39,7 @@ namespace XamCore.AppKit {
 			set { base.Cell = value; }
 		}
 
-		[Mac (10,12)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
 		public static NSButton CreateButton (string title, NSImage image, NSAction action)
 		{
 			var dispatcher = new NSActionDispatcher (action);
@@ -48,7 +48,7 @@ namespace XamCore.AppKit {
 			return control;
 		}
 
-		[Mac (10,12)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
 		public static NSButton CreateButton (string title, NSAction action)
 		{
 			var dispatcher = new NSActionDispatcher (action);
@@ -57,7 +57,7 @@ namespace XamCore.AppKit {
 			return control;
 		}
 
-		[Mac (10,12)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
 		public static NSButton CreateButton (NSImage image, NSAction action)
 		{
 			var dispatcher = new NSActionDispatcher (action);
@@ -66,7 +66,7 @@ namespace XamCore.AppKit {
 			return control;
 		}
 
-		[Mac (10,12)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
 		public static NSButton CreateCheckbox (string title, NSAction action)
 		{
 			var dispatcher = new NSActionDispatcher (action);
@@ -75,7 +75,7 @@ namespace XamCore.AppKit {
 			return control;
 		}
 
-		[Mac (10,12)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
 		public static NSButton CreateRadioButton (string title, NSAction action)
 		{
 			var dispatcher = new NSActionDispatcher (action);

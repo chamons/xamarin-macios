@@ -33,8 +33,8 @@ using XamCore.Foundation;
 
 namespace XamCore.CoreVideo {
 
-	[Watch (4,0)]
-	[iOS (4,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	public static class CVPixelFormatDescription {
 #if !COREBUILD
 		public static readonly NSString NameKey;
@@ -64,18 +64,18 @@ namespace XamCore.CoreVideo {
    
 		public static readonly NSString FillExtendedPixelsCallbackKey;
 
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		public static readonly NSString ContainsRgb;
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		public static readonly NSString ContainsYCbCr;
 
-		[iOS (9,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		public static readonly NSString ComponentRangeKey;
-		[iOS (9,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		public static readonly NSString ComponentRangeFullRangeKey;
-		[iOS (9,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		public static readonly NSString ComponentRangeVideoRangeKey;
-		[iOS (9,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		public static readonly NSString ComponentRangeWideRangeKey;
 
 		static CVPixelFormatDescription ()

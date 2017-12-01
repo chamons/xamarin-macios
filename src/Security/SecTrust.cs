@@ -31,11 +31,11 @@ namespace XamCore.Security {
 			Initialize (certificate.Handle, policy);
 		}
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static SecStatusCode /* OSStatus */ SecTrustCopyPolicies (IntPtr /* SecTrustRef */ trust, ref IntPtr /* CFArrayRef* */ policies);
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		public SecPolicy[] GetPolicies ()
 		{
 			IntPtr p = IntPtr.Zero;
@@ -45,7 +45,7 @@ namespace XamCore.Security {
 			return NSArray.ArrayFromHandle<SecPolicy> (p);
 		}
 
-		[iOS (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static SecStatusCode /* OSStatus */ SecTrustSetPolicies (IntPtr /* SecTrustRef */ trust, IntPtr /* CFTypeRef */ policies);
 
@@ -57,7 +57,7 @@ namespace XamCore.Security {
 				throw new InvalidOperationException (result.ToString ());
 		}
 
-		[iOS (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		public void SetPolicy (SecPolicy policy)
 		{
 			if (policy == null)
@@ -66,7 +66,7 @@ namespace XamCore.Security {
 			SetPolicies (policy.Handle);
 		}
 
-		[iOS (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		public void SetPolicies (IEnumerable<SecPolicy> policies)
 		{
 			if (policies == null)
@@ -76,7 +76,7 @@ namespace XamCore.Security {
 				SetPolicies (array.Handle);
 		}
 
-		[iOS (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		public void SetPolicies (NSArray policies)
 		{
 			if (policies == null)
@@ -85,15 +85,15 @@ namespace XamCore.Security {
 			SetPolicies (policies.Handle);
 		}
 
-		[iOS (7,0)][Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static SecStatusCode /* OSStatus */ SecTrustGetNetworkFetchAllowed (IntPtr /* SecTrustRef */ trust, out bool /* Boolean* */ allowFetch);
 
-		[iOS (7,0)][Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static SecStatusCode /* OSStatus */ SecTrustSetNetworkFetchAllowed (IntPtr /* SecTrustRef */ trust, bool /* Boolean */ allowFetch);
 
-		[iOS (7,0)][Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 		public bool NetworkFetchAllowed {
 			get {
 				bool value;
@@ -109,11 +109,11 @@ namespace XamCore.Security {
 			}
 		}
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static SecStatusCode /* OSStatus */ SecTrustCopyCustomAnchorCertificates (IntPtr /* SecTrustRef */ trust, out IntPtr /* CFArrayRef* */ anchors);
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		public SecCertificate[] GetCustomAnchorCertificates  ()
 		{
 			IntPtr p;
@@ -123,16 +123,16 @@ namespace XamCore.Security {
 			return NSArray.ArrayFromHandle<SecCertificate> (p);
 		}
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static SecStatusCode /* OSStatus */ SecTrustEvaluateAsync (IntPtr /* SecTrustRef */ trust, IntPtr /* dispatch_queue_t */ queue, SecTrustCallback result);
 		// FIXME: no `user data` parameter :( to ease MonoPInvokeCallback use
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static SecStatusCode /* OSStatus */ SecTrustGetTrustResult (IntPtr /* SecTrustRef */ trust, out SecTrustResult /* SecTrustResultType */ result);
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		public SecTrustResult GetTrustResult ()
 		{
 			SecTrustResult trust_result;
@@ -142,22 +142,22 @@ namespace XamCore.Security {
 			return trust_result;
 		}
 
-		[iOS (7,0)][Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static IntPtr /* CFDictionaryRef */ SecTrustCopyResult (IntPtr /* SecTrustRef */ trust);
 
-		[iOS (7,0)][Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 		public NSDictionary GetResult ()
 		{
 			return new NSDictionary (SecTrustCopyResult (handle), true);
 		}
 
-		[iOS (7,0)][Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static SecStatusCode /* OSStatus */ SecTrustSetOCSPResponse (IntPtr /* SecTrustRef */ trust, IntPtr /* CFTypeRef */ responseData);
 
 		// the API accept the handle for a single policy or an array of them
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		void SetOCSPResponse (IntPtr ocsp)
 		{
 			SecStatusCode result = SecTrustSetOCSPResponse (handle, ocsp);
@@ -165,7 +165,7 @@ namespace XamCore.Security {
 				throw new InvalidOperationException (result.ToString ());
 		}
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		public void SetOCSPResponse (NSData ocspResponse)
 		{
 			if (ocspResponse == null)
@@ -174,7 +174,7 @@ namespace XamCore.Security {
 			SetOCSPResponse (ocspResponse.Handle);
 		}
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		public void SetOCSPResponse (IEnumerable<NSData> ocspResponses)
 		{
 			if (ocspResponses == null)
@@ -184,7 +184,7 @@ namespace XamCore.Security {
 				SetOCSPResponse (array.Handle);
 		}
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		public void SetOCSPResponse (NSArray ocspResponses)
 		{
 			if (ocspResponses == null)

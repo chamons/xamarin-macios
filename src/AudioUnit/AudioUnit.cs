@@ -63,9 +63,9 @@ namespace XamCore.AudioUnit
 		Initialized = -10849,
 		InvalidOfflineRender = -10848,
 		Unauthorized = -10847,
-		[iOS (11,0), Mac (10,13, onlyOn64: true), TV (11,0), NoWatch]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		MidiOutputBufferFull = -66753,
-		[iOS (11,0), Mac (10,13, onlyOn64: true), TV (11,0), NoWatch]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		ExtensionNotFound = -66744,
 	}
 
@@ -78,7 +78,7 @@ namespace XamCore.AudioUnit
 		NotPermitted			= -66748,
 		InitializationTimedOut	= -66747,
 		InvalidFormat			= -66746,
-		[iOS (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		RenderTimeout			= -66745,
 	}
 
@@ -322,7 +322,7 @@ namespace XamCore.AudioUnit
 	{
 		CFNameRelease		= (1 << 4),
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		OmitFromPresets		= (1 << 13),
 		PlotHistory			= (1 << 14),
 		MeterReadOnly		= (1 << 15),
@@ -727,7 +727,7 @@ namespace XamCore.AudioUnit
 			return AudioUnitSetProperty (handle, AudioUnitPropertyIDType.SampleRate, scope, 0, ref sampleRate, sizeof (double));
 		}
 
-		[iOS (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		public AudioUnitStatus MusicDeviceMIDIEvent (uint status, uint data1, uint data2, uint offsetSampleFrame = 0)
 		{
 			return MusicDeviceMIDIEvent (handle, status, data1, data2, offsetSampleFrame);
@@ -804,7 +804,7 @@ namespace XamCore.AudioUnit
 		#endregion
 
 #if !MONOMAC
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[DllImport (Constants.AudioUnitLibrary)]
 #if XAMCORE_2_0
 		static extern AudioComponentStatus AudioOutputUnitPublish (AudioComponentDescription inDesc, IntPtr /* CFStringRef */ inName, uint /* UInt32 */ inVersion, IntPtr /* AudioUnit */ inOutputUnit);
@@ -812,7 +812,7 @@ namespace XamCore.AudioUnit
 		static extern AudioComponentStatus AudioOutputUnitPublish (ref AudioComponentDescription inDesc, IntPtr inName, uint inVersion, IntPtr inOutputUnit);
 #endif
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		public AudioComponentStatus AudioOutputUnitPublish (AudioComponentDescription description, string name, uint version = 1)
 		{
 #if !XAMCORE_2_0
@@ -832,11 +832,11 @@ namespace XamCore.AudioUnit
 			}
 		}
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[DllImport (Constants.AudioUnitLibrary)]
 		static extern IntPtr AudioOutputUnitGetHostIcon (IntPtr /* AudioUnit */ au, float /* float */ desiredPointSize);
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		public XamCore.UIKit.UIImage GetHostIcon (float desiredPointSize)
 		{
 			return new XamCore.UIKit.UIImage (AudioOutputUnitGetHostIcon (handle, desiredPointSize));
@@ -1272,19 +1272,19 @@ namespace XamCore.AudioUnit
 		ParameterHistoryInfo = 53,
 		Nickname = 54,
 		OfflineRender = 37,
-		[Availability (Introduced = Platform.iOS_8_0 |Platform.Mac_10_3)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 3)]
 		ParameterIDName = 34,
-		[Availability (Introduced = Platform.iOS_8_0 | Platform.Mac_10_3)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 3)]
 		ParameterStringFromValue = 33,
 		ParameterClumpName = 35,
-		[Availability (Introduced = Platform.iOS_8_0 | Platform.Mac_10_3)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 3)]
 		ParameterValueFromString = 38,
 		ContextName = 25,
 		PresentationLatency = 40,
 		ClassInfoFromDocument = 50,
 		RequestViewController = 56,
 		ParametersForOverview = 57,
-		[iOS (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		SupportsMpe = 58,
 
 #if MONOMAC
@@ -1372,18 +1372,18 @@ namespace XamCore.AudioUnit
 		MatrixLevels = 3006,
 		MatrixDimensions = 3009,
 		MeterClipping = 3011,
-		[iOS (10,0), Mac (10,12, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 		InputAnchorTimeStamp = 3016,
 
 		// SpatialMixer
 		ReverbRoomType = 10,
 		UsesInternalReverb = 1005,
 		SpatializationAlgorithm = 3000,
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_9_0)]
+		[Introduced (PlatformName.iOS, 3, 0), Deprecated (PlatformName.iOS, 9, 0)]
 		DistanceParams = 3010,
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_9_0)]
+		[Introduced (PlatformName.iOS, 3, 0), Deprecated (PlatformName.iOS, 9, 0)]
 		AttenuationCurve = 3013,
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_9_0)]
+		[Introduced (PlatformName.iOS, 3, 0), Deprecated (PlatformName.iOS, 9, 0)]
 		RenderingFlags = 3003,
 
 		// AUScheduledSoundPlayer
@@ -1489,9 +1489,9 @@ namespace XamCore.AudioUnit
 		ReverbFilterFrequency				= 14,
 		ReverbFilterBandwidth				= 15,
 		ReverbFilterGain					= 16,
-		[Availability (Introduced = Platform.iOS_8_0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		ReverbFilterType					= 17,
-		[Availability (Introduced = Platform.iOS_8_0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		ReverbFilterEnable					= 18,
 
 		// AUMultiChannelMixer
@@ -1642,7 +1642,7 @@ namespace XamCore.AudioUnit
 		ObstructionAttenuation = 11
 	}
 
-	[Availability (Introduced = Platform.iOS_8_0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	public enum SpatialMixerAttenuation {
 		Power = 0,
 		Exponential = 1,
@@ -1651,10 +1651,10 @@ namespace XamCore.AudioUnit
 	}
 
 	[Flags]
-	[Availability (Introduced = Platform.iOS_8_0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	public enum SpatialMixerRenderingFlags {
 		InterAuralDelay = (1 << 0),
-		[Availability (Introduced = Platform.iOS_3_0, Deprecated = Platform.iOS_9_0)]
+		[Introduced (PlatformName.iOS, 3, 0), Deprecated (PlatformName.iOS, 9, 0)]
 		DistanceAttenuation = (1 << 2),
 	}
 
@@ -1664,11 +1664,11 @@ namespace XamCore.AudioUnit
 		BeganToRender = 0x02,
 		BeganToRenderLate = 0x04,
 
-		[Availability (Introduced = Platform.iOS_8_0 | Platform.Mac_10_10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		Loop                   = 0x08,
-		[Availability (Introduced = Platform.iOS_8_0 | Platform.Mac_10_10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		Interrupt              = 0x10,
-		[Availability (Introduced = Platform.iOS_8_0 | Platform.Mac_10_10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		InterruptAtLoop        = 0x20
 	}
 
@@ -1913,7 +1913,7 @@ namespace XamCore.AudioUnit
 		MidiSysEx = 9
 	}
 
-	[iOS (9,0), Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 	public enum AudioComponentInstantiationOptions : uint {
 		OutOfProcess = 1,
 		InProcess = 2
@@ -2033,7 +2033,7 @@ namespace XamCore.AudioUnit
 		DistanceAttenuation = (1 << 2)
 	}
 
-	[iOS (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[StructLayout (LayoutKind.Sequential)]
 	public struct AUParameterAutomationEvent {
 		public ulong HostTime;
@@ -2043,7 +2043,7 @@ namespace XamCore.AudioUnit
 		ulong Reserved;
 	}
 
-	[iOS (10,0), Mac (10,12, onlyOn64: true)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	public enum AUParameterAutomationEventType : uint {
 		Value = 0,
 		Touch = 1,

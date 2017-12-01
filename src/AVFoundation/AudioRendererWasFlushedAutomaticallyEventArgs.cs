@@ -5,7 +5,7 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.AVFoundation {
 
-	[TV (11, 0), NoWatch, Mac (10, 13), iOS (11, 0)]
+	[Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
 	public partial class AudioRendererWasFlushedAutomaticallyEventArgs {
 		public CMTime AudioRendererFlushTime { 
 			get {

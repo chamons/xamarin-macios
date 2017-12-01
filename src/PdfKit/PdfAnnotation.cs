@@ -16,7 +16,7 @@ using XamCore.ObjCRuntime;
 namespace XamCore.PdfKit {
 	public partial class PdfAnnotation {
 
-		[Mac (10,12)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
 		public bool SetValue<T> (T value, PdfAnnotationKey key) where T : class, INativeObject
 		{
 			if (value == null)
@@ -25,7 +25,7 @@ namespace XamCore.PdfKit {
 			return _SetValue (value.Handle, key.GetConstant ());
 		}
 
-		[Mac (10,12)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
 		public bool SetValue (string str, PdfAnnotationKey key)
 		{
 			var nstr = NSString.CreateNative (str);
@@ -36,7 +36,7 @@ namespace XamCore.PdfKit {
 			}
 		}
 
-		[Mac (10,12)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
 		public T GetValue<T> (PdfAnnotationKey key) where T : class, INativeObject
 		{
 			return Runtime.GetINativeObject<T> (_GetValue (key.GetConstant ()), true);
@@ -47,7 +47,7 @@ namespace XamCore.PdfKit {
 			set { Type = value.GetConstant (); }
 		}
 
-		[Mac (10,13)]
+		[Introduced (PlatformName.MacOSX, 10, 13)]
 		public CGPoint[] QuadrilateralPoints {
 			get {
 				return NSArray.ArrayFromHandleFunc<CGPoint> (_QuadrilateralPoints, (v) =>

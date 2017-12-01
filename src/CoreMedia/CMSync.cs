@@ -26,7 +26,7 @@ namespace XamCore.CoreMedia {
 	}
 
 	// CMSync.h
-	[iOS (6,0)][Mac (10,8)]
+	[Introduced (PlatformName.iOS, 6, 0)][Introduced (PlatformName.MacOSX, 10, 8)]
 	public class CMClock : CMClockOrTimebase
 	{
 		public CMClock (IntPtr handle) : base (handle)
@@ -65,8 +65,8 @@ namespace XamCore.CoreMedia {
 		}
 #elif !MONOMAC
 		// CMAudioClock.h
-		[Mac (10,10)]
-		[DllImport(Constants.CoreMediaLibrary)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* OSStatus */ CMClockError CMAudioClockCreate (/* CFAllocatorRef */ IntPtr allocator, /* CMClockRef* */ out IntPtr clockOut);
 
 		public static CMClock CreateAudioClock (out CMClockError clockError)
@@ -122,7 +122,7 @@ namespace XamCore.CoreMedia {
 		ReadOnly					= -12757,
 	}
 
-	[iOS (6,0)][Mac (10,8)]
+	[Introduced (PlatformName.iOS, 6, 0)][Introduced (PlatformName.MacOSX, 10, 8)]
 	public class CMTimebase : CMClockOrTimebase
 	{
 		public CMTimebase (IntPtr handle)
@@ -209,10 +209,10 @@ namespace XamCore.CoreMedia {
 			}
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* CMTimebaseRef */ IntPtr CMTimebaseGetMasterTimebase (/* CMTimebaseRef */ IntPtr timebase);
 
-		[Availability (Introduced = Platform.iOS_6_0 | Platform.Mac_10_8, Deprecated = Platform.iOS_9_0 | Platform.Mac_10_11, Message="Use 'CopyMasterTimebase' instead.")]
+		[Introduced (PlatformName.iOS, 6, 0, message: "Use 'CopyMasterTimebase' instead."), Introduced (PlatformName.MacOSX, 10, 8, message: "Use 'CopyMasterTimebase' instead."), Deprecated (PlatformName.iOS, 9, 0, message: "Use 'CopyMasterTimebase' instead."), Deprecated (PlatformName.MacOSX, 10, 11, message: "Use 'CopyMasterTimebase' instead.")]
 		public CMTimebase GetMasterTimebase ()
 		{
 			var ptr = CMTimebaseGetMasterTimebase (Handle);
@@ -222,10 +222,10 @@ namespace XamCore.CoreMedia {
 			return new CMTimebase (ptr, false);			
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* CMClockRef */ IntPtr CMTimebaseGetMasterClock (/* CMTimebaseRef */ IntPtr timebase);
 
-		[Availability (Introduced = Platform.iOS_6_0 | Platform.Mac_10_8, Deprecated = Platform.iOS_9_0 | Platform.Mac_10_11, Message="Use 'CopyMasterClock' instead.")]
+		[Introduced (PlatformName.iOS, 6, 0, message: "Use 'CopyMasterClock' instead."), Introduced (PlatformName.MacOSX, 10, 8, message: "Use 'CopyMasterClock' instead."), Deprecated (PlatformName.iOS, 9, 0, message: "Use 'CopyMasterClock' instead."), Deprecated (PlatformName.MacOSX, 10, 11, message: "Use 'CopyMasterClock' instead.")]
 		public CMClock GetMasterClock ()
 		{
 			var ptr = CMTimebaseGetMasterClock (Handle);
@@ -235,10 +235,10 @@ namespace XamCore.CoreMedia {
 			return new CMClock (ptr, false);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* CMClockOrTimebaseRef */ IntPtr CMTimebaseGetMaster (/* CMTimebaseRef */ IntPtr timebase);
 
-		[Availability (Introduced = Platform.iOS_6_0 | Platform.Mac_10_8, Deprecated = Platform.iOS_9_0 | Platform.Mac_10_11, Message="Use 'CopyMaster' instead.")]
+		[Introduced (PlatformName.iOS, 6, 0, message: "Use 'CopyMaster' instead."), Introduced (PlatformName.MacOSX, 10, 8, message: "Use 'CopyMaster' instead."), Deprecated (PlatformName.iOS, 9, 0, message: "Use 'CopyMaster' instead."), Deprecated (PlatformName.MacOSX, 10, 11, message: "Use 'CopyMaster' instead.")]
 		public CMClockOrTimebase GetMaster ()
 		{
 			var ptr = CMTimebaseGetMaster (Handle);
@@ -248,10 +248,10 @@ namespace XamCore.CoreMedia {
 			return new CMClockOrTimebase (ptr, false);
 		}
 
-		[DllImport(Constants.CoreMediaLibrary)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static /* CMClockRef */ IntPtr CMTimebaseGetUltimateMasterClock (/* CMTimebaseRef */ IntPtr timebase);
 
-		[Availability (Introduced = Platform.iOS_6_0 | Platform.Mac_10_8, Deprecated = Platform.iOS_9_0 | Platform.Mac_10_11, Message="Use 'CopyUltimateMasterClock' instead.")]
+		[Introduced (PlatformName.iOS, 6, 0, message: "Use 'CopyUltimateMasterClock' instead."), Introduced (PlatformName.MacOSX, 10, 8, message: "Use 'CopyUltimateMasterClock' instead."), Deprecated (PlatformName.iOS, 9, 0, message: "Use 'CopyUltimateMasterClock' instead."), Deprecated (PlatformName.MacOSX, 10, 11, message: "Use 'CopyUltimateMasterClock' instead.")]
 		public CMClock GetUltimateMasterClock ()
 		{
 			var ptr  = CMTimebaseGetUltimateMasterClock (Handle);
@@ -431,20 +431,20 @@ namespace XamCore.CoreMedia {
 			return new CMClock (ptr, deprecated);
 		}
 
-		[iOS (9,0)][Mac (10,11)]
-		[DllImport(Constants.CoreMediaLibrary)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		static extern unsafe /* CMTimebaseRef */ IntPtr  CMTimebaseCopyMasterTimebase (/* CMTimebaseRef */ IntPtr timebase);
 
-		[iOS (9,0)][Mac (10,11)]
-		[DllImport(Constants.CoreMediaLibrary)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		static extern unsafe /* CMClockRef */ IntPtr  CMTimebaseCopyMasterClock (/* CMTimebaseRef */ IntPtr timebase);
 
-		[iOS (9,0)][Mac (10,11)]
-		[DllImport(Constants.CoreMediaLibrary)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		static extern unsafe IntPtr /* void* */ CMTimebaseCopyMaster (/* CMTimebaseRef */ IntPtr timebase);
 
-		[iOS (9,0)][Mac (10,11)]
-		[DllImport(Constants.CoreMediaLibrary)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		static extern unsafe /* CMClockRef */ IntPtr CMTimebaseCopyUltimateMasterClock (/* CMTimebaseRef */ IntPtr timebase);
 #endif
 		//
@@ -465,7 +465,7 @@ namespace XamCore.CoreMedia {
 		RateMustBeNonZero			= -12755,
 	}
 
-	[iOS (6,0)][Mac (10,8)]
+	[Introduced (PlatformName.iOS, 6, 0)][Introduced (PlatformName.MacOSX, 10, 8)]
 	public class CMClockOrTimebase : IDisposable, INativeObject
 	{
 		internal IntPtr handle;

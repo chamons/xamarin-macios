@@ -104,7 +104,7 @@ namespace XamCore.Foundation {
 		AdditionalActionClicked = 4
 	}
 
-	[Mac (10,11)]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native][Flags]
 	public enum NSAppleEventSendOptions : nuint
 	{

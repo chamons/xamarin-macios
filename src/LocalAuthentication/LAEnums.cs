@@ -4,17 +4,17 @@ using XamCore.Foundation;
 
 namespace XamCore.LocalAuthentication {
 
-	[iOS (8,0)]
-	[Availability (Platform.Mac_10_10)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10)]
 	[Native]
 	public enum LAPolicy : nint {
-		[Mac (10,12,2)]
+		[Introduced (PlatformName.MacOSX, 10, 12, 2)]
 		DeviceOwnerAuthenticationWithBiometrics = 1,
 		DeviceOwnerAuthentication = 2
 	}
 
-	[iOS (8,0)]
-	[Availability (Platform.Mac_10_10)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 10)]
 	[Native]
 	[ErrorDomain ("LAErrorDomain")]
 	public enum LAStatus : nint {
@@ -30,17 +30,17 @@ namespace XamCore.LocalAuthentication {
 		/// Authentication could not start, because passcode is not set on the device.
 		PasscodeNotSet       = -5,
 		/// Authentication could not start, because Touch ID is not available on the device.
-		[Deprecated (PlatformName.iOS, 11,0, message: "Use 'BiometryNotAvailable' instead.")]
-		[Deprecated (PlatformName.MacOSX, 10,13, message: "Use 'BiometryNotAvailable' instead.")]
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'BiometryNotAvailable' instead.")]
+		[Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'BiometryNotAvailable' instead.")]
 		TouchIDNotAvailable  = -6,	    
 
 		/// Authentication could not start, because Touch ID has no enrolled fingers.
-		[Deprecated (PlatformName.iOS, 11,0, message: "Use 'BiometryNotEnrolled' instead.")]
-		[Deprecated (PlatformName.MacOSX, 10,13, message: "Use 'BiometryNotEnrolled' instead.")]
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'BiometryNotEnrolled' instead.")]
+		[Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'BiometryNotEnrolled' instead.")]
 		TouchIDNotEnrolled   = -7,
 
-		[Deprecated (PlatformName.iOS, 11,0, message: "Use 'BiometryLockout' instead.")]
-		[Deprecated (PlatformName.MacOSX, 10,13, message: "Use 'BiometryLockout' instead.")]
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'BiometryLockout' instead.")]
+		[Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'BiometryLockout' instead.")]
 		TouchIDLockout       = -8,
 		AppCancel            = -9,
 		InvalidContext       = -10,
@@ -52,23 +52,23 @@ namespace XamCore.LocalAuthentication {
 		NotInteractive       = -1004,
 	}
 
-	[iOS (9,0), Mac (10,11), Watch (3,0), TV (11,0)]
+	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 11, 0)]
 	[Native]
 	public enum LACredentialType : nint {
 		ApplicationPassword = 0
 	}
 
-	[iOS (9,0)]
-	[Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	public enum LAAccessControlOperation : nint {
 		CreateItem,
 		UseItem,
 		CreateKey,
 		UseKeySign,
-		[iOS (10,0)][Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 		UseKeyDecrypt,
-		[iOS (10,0)][Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 		UseKeyKeyExchange,
 	}
 }

@@ -116,31 +116,31 @@ namespace XamCore.AppKit {
 		DestinationAtop,
 		XOR,
 		PlusDarker,
-		[Availability (Introduced = Platform.Mac_10_0, Deprecated = Platform.Mac_10_10, Message = "Use NSCompositeSourceOver instead.")]
+		[Introduced (PlatformName.MacOSX, 10, 0, message: "Use NSCompositeSourceOver instead."), Deprecated (PlatformName.MacOSX, 10, 10, message: "Use NSCompositeSourceOver instead.")]
 		Highlight,
 		PlusLighter,
-		[Mac (10,10)] Multiply,
-		[Mac (10,10)] Screen,
-		[Mac (10,10)] Overlay,
-		[Mac (10,10)] Darken,
-		[Mac (10,10)] Lighten,
-		[Mac (10,10)] ColorDodge,
-		[Mac (10,10)] ColorBurn,
-		[Mac (10,10)] SoftLight,
-		[Mac (10,10)] HardLight,
-		[Mac (10,10)] Difference,
-		[Mac (10,10)] Exclusion,
-		[Mac (10,10)] Hue,
-		[Mac (10,10)] Saturation,
-		[Mac (10,10)] Color,
-		[Mac (10,10)] Luminosity
+		[Introduced (PlatformName.MacOSX, 10, 10)] Multiply,
+		[Introduced (PlatformName.MacOSX, 10, 10)] Screen,
+		[Introduced (PlatformName.MacOSX, 10, 10)] Overlay,
+		[Introduced (PlatformName.MacOSX, 10, 10)] Darken,
+		[Introduced (PlatformName.MacOSX, 10, 10)] Lighten,
+		[Introduced (PlatformName.MacOSX, 10, 10)] ColorDodge,
+		[Introduced (PlatformName.MacOSX, 10, 10)] ColorBurn,
+		[Introduced (PlatformName.MacOSX, 10, 10)] SoftLight,
+		[Introduced (PlatformName.MacOSX, 10, 10)] HardLight,
+		[Introduced (PlatformName.MacOSX, 10, 10)] Difference,
+		[Introduced (PlatformName.MacOSX, 10, 10)] Exclusion,
+		[Introduced (PlatformName.MacOSX, 10, 10)] Hue,
+		[Introduced (PlatformName.MacOSX, 10, 10)] Saturation,
+		[Introduced (PlatformName.MacOSX, 10, 10)] Color,
+		[Introduced (PlatformName.MacOSX, 10, 10)] Luminosity
 	}
 
 	[Native]
 	public enum NSBackingStore : nuint_compat_int {
-		[Availability (Introduced = Platform.Mac_10_0, Deprecated = Platform.Mac_10_13, Message = "Use 'Buffered' instead.")]
+		[Introduced (PlatformName.MacOSX, 10, 0, message: "Use 'Buffered' instead."), Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'Buffered' instead.")]
 		Retained, 
-		[Availability (Introduced = Platform.Mac_10_0, Deprecated = Platform.Mac_10_13, Message = "Use 'Buffered' instead.")]
+		[Introduced (PlatformName.MacOSX, 10, 0, message: "Use 'Buffered' instead."), Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'Buffered' instead.")]
 		Nonretained, 
 		Buffered,
 	}
@@ -227,7 +227,7 @@ namespace XamCore.AppKit {
 
 #if !XAMCORE_4_0
 	[Native]
-	[Availability (Introduced = Platform.Mac_10_0, Deprecated = Platform.Mac_10_10, Message = "Use formatters instead.")]
+	[Introduced (PlatformName.MacOSX, 10, 0, message: "Use formatters instead."), Deprecated (PlatformName.MacOSX, 10, 10, message: "Use formatters instead.")]
 	public enum NSType : nuint_compat_int {
 	    Any			= 0,
 	    Int			= 1,
@@ -276,9 +276,9 @@ namespace XamCore.AppKit {
 		ImageBelow,
 		ImageAbove,
 		ImageOverlaps,
-		[Mac (10,12)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
 		ImageLeading,
-		[Mac (10,12)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
 		ImageTrailing,
 	}
 	
@@ -360,7 +360,7 @@ namespace XamCore.AppKit {
 		Never    
 	}
 
-	[Mac (10,10)]
+	[Introduced (PlatformName.MacOSX, 10, 10)]
 	[Native]
 	public enum NSImageResizingMode : nint {
 		Stretch,
@@ -375,7 +375,7 @@ namespace XamCore.AppKit {
 		Warning, Informational, Critical
 	}
 
-	[Mac (10,9)]
+	[Introduced (PlatformName.MacOSX, 10, 9)]
 	[Native]
 	public enum NSModalResponse : nint {
 		OK = 1,
@@ -881,7 +881,7 @@ namespace XamCore.AppKit {
 		UnifiedTitleAndToolbar 				= 1 << 12,
 		Hud		       						= 1 << 13,
 		FullScreenWindow       				= 1 << 14,
-		[Mac (10,10)] FullSizeContentView   = 1 << 15 
+		[Introduced (PlatformName.MacOSX, 10, 10)] FullSizeContentView   = 1 << 15 
 	}
 
 	[Native]
@@ -908,8 +908,8 @@ namespace XamCore.AppKit {
 		FullScreenPrimary = 1 << 7,
 		FullScreenAuxiliary = 1 << 8,
 		FullScreenNone = 1 << 9,
-		[Mac (10, 11)] FullScreenAllowsTiling = 1 << 11,
-		[Mac (10, 11)] FullScreenDisallowsTiling = 1 << 12
+		[Introduced (PlatformName.MacOSX, 10, 11)] FullScreenAllowsTiling = 1 << 11,
+		[Introduced (PlatformName.MacOSX, 10, 11)] FullScreenDisallowsTiling = 1 << 12
 	}
 
 	[Flags]
@@ -933,7 +933,7 @@ namespace XamCore.AppKit {
 	[Native]
 	public enum NSWindowButton : nuint_compat_int {
 		CloseButton, MiniaturizeButton, ZoomButton, ToolbarButton, DocumentIconButton, DocumentVersionsButton = 6, 
-		[Availability (Deprecated = Platform.Mac_10_12, Message = "The standard window button for FullScreenButton is always null; use ZoomButton instead.")]
+		[Deprecated (PlatformName.MacOSX, 10, 12, message: "The standard window button for FullScreenButton is always null; use ZoomButton instead.")]
 		FullScreenButton
 	}
 
@@ -1026,7 +1026,7 @@ namespace XamCore.AppKit {
 	}
 
 	[Native]
-	[Availability (Deprecated = Platform.Mac_10_12, Message = "The GradientType property is unused, and setting it has no effect.")]
+	[Deprecated (PlatformName.MacOSX, 10, 12, message: "The GradientType property is unused, and setting it has no effect.")]
 	public enum NSGradientType : nuint_compat_int {
 		None,
 		ConcaveWeak,
@@ -1062,35 +1062,35 @@ namespace XamCore.AppKit {
 		Highlight,
 		PlusLighter,
 
-		[Mac (10, 10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		Multiply,
-		[Mac (10, 10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		Screen,
-		[Mac (10, 10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		Overlay,
-		[Mac (10, 10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		Darken,
-		[Mac (10, 10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		Lighten,
-		[Mac (10, 10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		ColorDodge,
-		[Mac (10, 10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		ColorBurn,
-		[Mac (10, 10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		SoftLight,
-		[Mac (10, 10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		HardLight,
-		[Mac (10, 10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		Difference,
-		[Mac (10, 10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		Exclusion,
-		[Mac (10, 10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		Hue,
-		[Mac (10, 10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		Saturation,
-		[Mac (10, 10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		Color,
-		[Mac (10, 10)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		Luminosity
 	}
 
@@ -1201,7 +1201,7 @@ namespace XamCore.AppKit {
 #endregion
 
 #region NSGestureRecognizer
-	[Mac (10,10)]
+	[Introduced (PlatformName.MacOSX, 10, 10)]
 	[Native]
 	public enum NSGestureRecognizerState : nint {
 		Possible,
@@ -1238,7 +1238,7 @@ namespace XamCore.AppKit {
 	}
 #endregion
 
-	[Mac (10,11)]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	public enum NSStackViewDistribution : nint
 	{
@@ -1393,12 +1393,12 @@ namespace XamCore.AppKit {
 		CcittFax4 = 4,
 		Lzw = 5,
 
-		[Availability (Deprecated = Platform.Mac_10_7)]
+		[Deprecated (PlatformName.MacOSX, 10, 7)]
 		Jpeg		= 6,
 		Next		= 32766,
 		PackBits	= 32773,
 
-		[Availability (Deprecated = Platform.Mac_10_7)]
+		[Deprecated (PlatformName.MacOSX, 10, 7)]
 		OldJpeg		= 32865
 	}
 
@@ -1448,7 +1448,7 @@ namespace XamCore.AppKit {
 	[Flags]
 #if !XAMCORE_4_0
 	[Native]
-	[Availability (Deprecated = Platform.Mac_10_11, Message = "Use 'NSGlyphProperty' instead.")]
+	[Deprecated (PlatformName.MacOSX, 10, 11, message: "Use 'NSGlyphProperty' instead.")]
 	public enum NSGlyphStorageOptions : nuint_compat_int {
 #else
 	public enum NSGlyphStorageOptions : int
@@ -1459,7 +1459,7 @@ namespace XamCore.AppKit {
 	}
 
 #if !XAMCORE_4_0
-	[Availability (Deprecated = Platform.Mac_10_11, Message = "Use NSTextStorageEditActions instead.")]
+	[Deprecated (PlatformName.MacOSX, 10, 11, message: "Use NSTextStorageEditActions instead.")]
 	[Flags]
 	[Native]
 	public enum NSTextStorageEditedFlags : nuint_compat_int {
@@ -1468,7 +1468,7 @@ namespace XamCore.AppKit {
 	}
 #endif
 
-	[Mac (10,11)]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	[Flags]
 	public enum NSTextStorageEditActions : nuint
@@ -1563,9 +1563,9 @@ namespace XamCore.AppKit {
 		MonoSpaceTrait = (1 << 10),
 		VerticalTrait = (1 << 11), 
 		UIOptimizedTrait = (1 << 12),
-		[Mac (10,13)]
+		[Introduced (PlatformName.MacOSX, 10, 13)]
 		TraitTightLeading = 1 << 15,
-		[Mac (10,13)]
+		[Introduced (PlatformName.MacOSX, 10, 13)]
 		TraitLooseLeading = 1 << 16,
 		UnknownClass = 0 << 28,
 		OldStyleSerifsClass = 1 << 28,
@@ -1616,7 +1616,7 @@ namespace XamCore.AppKit {
 		Default, Regular, Small
 	}
 
-	[Availability (Introduced = Platform.Mac_10_0, Deprecated = Platform.Mac_10_10, Message = "Use NSAlertButtonReturn instead.")]
+	[Introduced (PlatformName.MacOSX, 10, 0, message: "Use NSAlertButtonReturn instead."), Deprecated (PlatformName.MacOSX, 10, 10, message: "Use NSAlertButtonReturn instead.")]
 #if !XAMCORE_4_0
 	[Native]
 	public enum NSAlertType : nint {
@@ -1630,7 +1630,7 @@ namespace XamCore.AppKit {
 	}
 
 #if !XAMCORE_4_0
-	[Availability (Introduced = Platform.Mac_10_0, Deprecated = Platform.Mac_10_10, Message = "Use NSModalResponse instead.")]
+	[Introduced (PlatformName.MacOSX, 10, 0, message: "Use NSModalResponse instead."), Deprecated (PlatformName.MacOSX, 10, 10, message: "Use NSModalResponse instead.")]
 	[Native]
 	public enum NSPanelButtonType : nint {
 		Cancel, Ok
@@ -1728,7 +1728,7 @@ namespace XamCore.AppKit {
 		PaneSplitter = 3
 	}
 
-	[Mac (10,11)]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	public enum NSSplitViewItemBehavior : nint
 	{
@@ -1754,7 +1754,7 @@ namespace XamCore.AppKit {
 		TexturedSquare = 4,
 		Capsule = 5,
 		SmallSquare = 6,
-		[Mac (10,10)] Separated = 8
+		[Introduced (PlatformName.MacOSX, 10, 10)] Separated = 8
 	}
 	
 	[Native]
@@ -1815,12 +1815,12 @@ namespace XamCore.AppKit {
 	public enum NSPathStyle : nint {
 #if XAMCORE_2_0
 		Standard,
-		[Availability (Introduced = Platform.Mac_10_5, Deprecated = Platform.Mac_10_7)]
+		[Introduced (PlatformName.MacOSX, 10, 5), Deprecated (PlatformName.MacOSX, 10, 7)]
 		NavigationBar,
 		PopUp
 #else
 		NSPathStyleStandard,
-		[Availability (Introduced = Platform.Mac_10_5, Deprecated = Platform.Mac_10_7)]
+		[Introduced (PlatformName.MacOSX, 10, 5), Deprecated (PlatformName.MacOSX, 10, 7)]
 		NSPathStyleNavigationBar,
 		NSPathStylePopUp
 #endif
@@ -1866,7 +1866,7 @@ namespace XamCore.AppKit {
 		On = 0, Before = 1
 	}
 
-	[Mac (10,11)]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	public enum NSCollectionViewItemHighlightState : nint
 	{
@@ -1876,7 +1876,7 @@ namespace XamCore.AppKit {
 		AsDropTarget = 3
 	}
 
-	[Mac (10,11)] // Not marked 10.11 in the headers, but doesn't exist in the 10.10 headers
+	[Introduced (PlatformName.MacOSX, 10, 11)] // Not marked 10.11 in the headers, but doesn't exist in the 10.10 headers
 	[Native]
 	[Flags]
 	public enum NSCollectionViewScrollPosition : nuint
@@ -1894,7 +1894,7 @@ namespace XamCore.AppKit {
 		NearestVerticalEdge = 1 << 8
 	}
 
-	[Mac (10,11)]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	public enum NSCollectionElementCategory : nint
 	{
@@ -1904,7 +1904,7 @@ namespace XamCore.AppKit {
 		InterItemGap
 	}
 
-	[Mac (10,11)]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	public enum NSCollectionUpdateAction : nint
 	{
@@ -1915,7 +1915,7 @@ namespace XamCore.AppKit {
 		None
 	}
 
-	[Mac (10,11)]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	public enum NSCollectionViewScrollDirection : nint
 	{
@@ -1949,28 +1949,28 @@ namespace XamCore.AppKit {
 
 	[Native]
 	public enum NSOpenGLContextParameter : nuint_compat_int {
-		[Availability (Deprecated = Platform.Mac_10_7)]
+		[Deprecated (PlatformName.MacOSX, 10, 7)]
 		SwapRectangle = 200,
-		[Availability (Deprecated = Platform.Mac_10_7)]
+		[Deprecated (PlatformName.MacOSX, 10, 7)]
 		SwapRectangleEnable = 201,
-		[Availability (Deprecated = Platform.Mac_10_7)]
+		[Deprecated (PlatformName.MacOSX, 10, 7)]
 		RasterizationEnable = 221,
-		[Availability (Deprecated = Platform.Mac_10_7)]
+		[Deprecated (PlatformName.MacOSX, 10, 7)]
 		StateValidation = 301,
-		[Availability (Deprecated = Platform.Mac_10_7)]
+		[Deprecated (PlatformName.MacOSX, 10, 7)]
 		SurfaceSurfaceVolatile = 306,
 
 		SwapInterval = 222,
 		SurfaceOrder = 235,
 		SurfaceOpacity = 236,
 
-		[Lion] SurfaceBackingSize = 304,
-		[Lion] ReclaimResources = 308,
-		[Lion] CurrentRendererID = 309,
-		[Lion] GpuVertexProcessing = 310,
-		[Lion] GpuFragmentProcessing = 311,
-		[Lion] HasDrawable = 314,
-		[Lion] MpsSwapsInFlight = 315
+		[Introduced (PlatformName.MacOSX, 10, 7)] SurfaceBackingSize = 304,
+		[Introduced (PlatformName.MacOSX, 10, 7)] ReclaimResources = 308,
+		[Introduced (PlatformName.MacOSX, 10, 7)] CurrentRendererID = 309,
+		[Introduced (PlatformName.MacOSX, 10, 7)] GpuVertexProcessing = 310,
+		[Introduced (PlatformName.MacOSX, 10, 7)] GpuFragmentProcessing = 311,
+		[Introduced (PlatformName.MacOSX, 10, 7)] HasDrawable = 314,
+		[Introduced (PlatformName.MacOSX, 10, 7)] MpsSwapsInFlight = 315
 	}
 	
 	public enum NSSurfaceOrder {
@@ -1981,7 +1981,7 @@ namespace XamCore.AppKit {
 	public enum NSOpenGLPixelFormatAttribute : uint_compat_int { // uint32_t NSOpenGLPixelFormatAttribute
 		AllRenderers       =   1,
 		DoubleBuffer       =   5,
-		[Lion] TrippleBuffer = 3,
+		[Introduced (PlatformName.MacOSX, 10, 7)] TrippleBuffer = 3,
 		Stereo             =   6,
 		AuxBuffers         =   7,
 		ColorSize          =   8,
@@ -1991,9 +1991,9 @@ namespace XamCore.AppKit {
 		AccumSize          =  14,
 		MinimumPolicy      =  51,
 		MaximumPolicy      =  52,
-		[Availability (Introduced = Platform.Mac_10_0, Deprecated = Platform.Mac_10_7)]
+		[Introduced (PlatformName.MacOSX, 10, 0), Deprecated (PlatformName.MacOSX, 10, 7)]
 		OffScreen          =  53,
-		[Availability (Introduced = Platform.Mac_10_0, Deprecated = Platform.Mac_10_6)]
+		[Introduced (PlatformName.MacOSX, 10, 0), Deprecated (PlatformName.MacOSX, 10, 6)]
 		FullScreen         =  54,
 		SampleBuffers      =  55,
 		Samples            =  56,
@@ -2003,33 +2003,33 @@ namespace XamCore.AppKit {
 		Supersample        =  60,
 		SampleAlpha        =  61,
 		RendererID         =  70,
-		[Availability (Introduced = Platform.Mac_10_0, Deprecated = Platform.Mac_10_9)]
+		[Introduced (PlatformName.MacOSX, 10, 0), Deprecated (PlatformName.MacOSX, 10, 9)]
 		SingleRenderer     =  71,
 		NoRecovery         =  72,
 		Accelerated        =  73,
 		ClosestPolicy      =  74,
 		BackingStore       =  76,
-		[Availability (Introduced = Platform.Mac_10_0, Deprecated = Platform.Mac_10_9)]
+		[Introduced (PlatformName.MacOSX, 10, 0), Deprecated (PlatformName.MacOSX, 10, 9)]
 		Window             =  80,
-		[Availability (Introduced = Platform.Mac_10_0, Deprecated = Platform.Mac_10_9)]
+		[Introduced (PlatformName.MacOSX, 10, 0), Deprecated (PlatformName.MacOSX, 10, 9)]
 		Compliant          =  83,
 		ScreenMask         =  84,
-		[Availability (Introduced = Platform.Mac_10_0, Deprecated = Platform.Mac_10_7)]
+		[Introduced (PlatformName.MacOSX, 10, 0), Deprecated (PlatformName.MacOSX, 10, 7)]
 		PixelBuffer        =  90,
-		[Availability (Introduced = Platform.Mac_10_3, Deprecated = Platform.Mac_10_7)]
+		[Introduced (PlatformName.MacOSX, 10, 3), Deprecated (PlatformName.MacOSX, 10, 7)]
 		RemotePixelBuffer  =  91,
 		AllowOfflineRenderers = 96,
 		AcceleratedCompute =  97,
 
 		// Specify the profile
-		[Lion] OpenGLProfile = 99,
+		[Introduced (PlatformName.MacOSX, 10, 7)] OpenGLProfile = 99,
 		VirtualScreenCount = 128,
 
-		[Availability (Deprecated = Platform.Mac_10_5)]
+		[Deprecated (PlatformName.MacOSX, 10, 5)]
 		Robust  =  75,
-		[Availability (Deprecated = Platform.Mac_10_5)]
+		[Deprecated (PlatformName.MacOSX, 10, 5)]
 		MPSafe  =  78,
-		[Availability (Deprecated = Platform.Mac_10_5)]
+		[Deprecated (PlatformName.MacOSX, 10, 5)]
 		MultiScreen =  81
 	}
 
@@ -2059,8 +2059,8 @@ namespace XamCore.AppKit {
 		FormatCacheSize = 501,
 		ClearFormatCache = 502,
 		RetainRenderers = 503,
-		[Lion] UseBuildCache = 506,
-		[Availability (Deprecated = Platform.Mac_10_4)]
+		[Introduced (PlatformName.MacOSX, 10, 7)] UseBuildCache = 506,
+		[Deprecated (PlatformName.MacOSX, 10, 4)]
 		ResetLibrary = 504
 	}
 
@@ -2157,7 +2157,7 @@ namespace XamCore.AppKit {
 	}
 
 	[Native]
-	[Availability (Deprecated = Platform.Mac_10_11, Message = "Use 'NSGlyphProperty' instead.")]
+	[Deprecated (PlatformName.MacOSX, 10, 11, message: "Use 'NSGlyphProperty' instead.")]
 	public enum NSGlyphInscription : nuint_compat_int {
 		Base, Below, Above, Overstrike, OverBelow
 	}
@@ -2254,8 +2254,8 @@ namespace XamCore.AppKit {
 		CenterX,
 		CenterY,
 		Baseline,
-		[Mac (10,11)] LastBaseline = Baseline,
-		[Mac (10,11)] FirstBaseline,
+		[Introduced (PlatformName.MacOSX, 10, 11)] LastBaseline = Baseline,
+		[Introduced (PlatformName.MacOSX, 10, 11)] FirstBaseline,
 	}
 
 	[Flags]
@@ -2272,8 +2272,8 @@ namespace XamCore.AppKit {
 		AlignAllCenterX = (1 << (int)NSLayoutAttribute.CenterX),
 		AlignAllCenterY = (1 << (int)NSLayoutAttribute.CenterY),
 		AlignAllBaseline = (1 << (int)NSLayoutAttribute.Baseline),
-		[Mac (10,11)] AlignAllLastBaseline = (int)AlignAllBaseline,
-		[Mac (10,11)] AlignAllFirstBaseline = (1 << (int)NSLayoutAttribute.FirstBaseline),
+		[Introduced (PlatformName.MacOSX, 10, 11)] AlignAllLastBaseline = (int)AlignAllBaseline,
+		[Introduced (PlatformName.MacOSX, 10, 11)] AlignAllFirstBaseline = (1 << (int)NSLayoutAttribute.FirstBaseline),
 		AlignmentMask = 0xFFFF,
 		
 		/* choose only one of these three
@@ -2317,7 +2317,7 @@ namespace XamCore.AppKit {
 		Small, Medium, Large
 	}
 
-	[Mac (10,11)]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	public enum NSTableRowActionEdge : nint
 	{
@@ -2325,7 +2325,7 @@ namespace XamCore.AppKit {
 		Trailing
 	}
 
-	[Mac (10,11)]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	public enum NSTableViewRowActionStyle : nint
 	{
@@ -2362,7 +2362,7 @@ namespace XamCore.AppKit {
 		Default = 0, None = 2, DocumentWindow, UtilityWindow, AlertPanel
 	}
 
-	[Lion]
+	[Introduced (PlatformName.MacOSX, 10, 7)]
 	[Native]
 	public enum NSTextFinderAction : nint {
 		ShowFindInterface = 1,
@@ -2496,15 +2496,15 @@ namespace XamCore.AppKit {
 		Dark,
 		Titlebar,
 		Selection,
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		Menu,
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		Popover,
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		Sidebar,
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		MediumLight,
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		UltraDark,
 	}
 
@@ -2522,7 +2522,7 @@ namespace XamCore.AppKit {
 	}
 #endregion
 
-	[Mac (10,10,3)]
+	[Introduced (PlatformName.MacOSX, 10, 10, 3)]
 	[Native]
 	public enum NSPressureBehavior : nint
 	{
@@ -2535,7 +2535,7 @@ namespace XamCore.AppKit {
 		PrimaryDeepDrag = 6
 	}
 
-	[Mac (10,11)]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	public enum NSHapticFeedbackPattern : nint
 	{
@@ -2544,7 +2544,7 @@ namespace XamCore.AppKit {
 		LevelChange
 	}
 
-	[Mac (10,11)]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	public enum NSHapticFeedbackPerformanceTime : nuint
 	{
@@ -2553,7 +2553,7 @@ namespace XamCore.AppKit {
 		DrawCompleted
 	}
 
-	[Mac (10,11)]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	public enum NSSpringLoadingHighlight : nint
 	{
@@ -2563,7 +2563,7 @@ namespace XamCore.AppKit {
 	}
 
 	[Flags]
-	[Mac (10,11)]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	public enum NSSpringLoadingOptions : nuint
 	{
@@ -2573,7 +2573,7 @@ namespace XamCore.AppKit {
 		NoHover = 1 << 3
 	}
 
-	[Mac (10,11)]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	public enum NSGlyphProperty : nint
 	{
@@ -2584,7 +2584,7 @@ namespace XamCore.AppKit {
 	}
 
 	[Flags]
-	[Mac (10,11)]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	public enum NSControlCharacterAction : nint
 	{
@@ -2597,13 +2597,13 @@ namespace XamCore.AppKit {
 	}
 
 	[Flags]
-	[Mac (10,12)]
+	[Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	public enum NSWindowListOptions : nint {
 		OrderedFrontToBack = (1 << 0)
 	}
 
-	[Mac (10,12)]
+	[Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	public enum NSStatusItemBehavior : nuint
 	{
@@ -2611,7 +2611,7 @@ namespace XamCore.AppKit {
 		TerminationOnRemoval = (1 << 2)
 	}
 
-	[Mac (10,12)]
+	[Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	public enum NSWindowTabbingMode : nint
 	{
@@ -2620,7 +2620,7 @@ namespace XamCore.AppKit {
 		Disallowed
 	}
 
-	[Mac (10,12)]
+	[Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	public enum NSWindowUserTabbingPreference : nint
 	{
@@ -2630,7 +2630,7 @@ namespace XamCore.AppKit {
 	}
 
 
-	[Mac (10, 12)]
+	[Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	public enum NSGridCellPlacement : nint
 	{
@@ -2644,7 +2644,7 @@ namespace XamCore.AppKit {
 		Fill
 	}
 
-	[Mac (10, 12)]
+	[Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	public enum NSGridRowAlignment : nint
 	{
@@ -2654,7 +2654,7 @@ namespace XamCore.AppKit {
 		LastBaseline
 	}
 
-	[Mac (10, 12)]
+	[Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	public enum NSImageLayoutDirection : nint
 	{
@@ -2663,7 +2663,7 @@ namespace XamCore.AppKit {
 		RightToLeft = 3
 	}
 
-	[Mac (10, 12)]
+	[Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native][Flags]
 	public enum NSCloudKitSharingServiceOptions : nuint
 	{
@@ -2674,7 +2674,7 @@ namespace XamCore.AppKit {
 		AllowReadWrite = 1 << 5
 	}
 
-	[Mac (10, 12)]
+	[Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	public enum NSDisplayGamut : nint
 	{
@@ -2682,7 +2682,7 @@ namespace XamCore.AppKit {
 		P3,
 	}
 
-	[Mac (10, 12)]
+	[Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	public enum NSTabPosition : nuint
 	{
@@ -2693,7 +2693,7 @@ namespace XamCore.AppKit {
 		Right,
 	}
 
-	[Mac (10, 12)]
+	[Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	public enum NSTabViewBorderType : nuint
 	{
@@ -2702,7 +2702,7 @@ namespace XamCore.AppKit {
 		Bezel,
 	}
 
-	[Mac (10, 12)]
+	[Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	public enum NSPasteboardContentsOptions : nuint
 	{
@@ -2710,7 +2710,7 @@ namespace XamCore.AppKit {
 	}
 
 
-	[Mac (10,12,2)]
+	[Introduced (PlatformName.MacOSX, 10, 12, 2)]
 	[Native]
 	public enum NSTouchType : nint
 	{
@@ -2718,7 +2718,7 @@ namespace XamCore.AppKit {
 		Indirect
 	}
 
-	[Mac (10,12,2)]
+	[Introduced (PlatformName.MacOSX, 10, 12, 2)]
 	[Native]
 	[Flags]
 	public enum NSTouchTypeMask : nuint
@@ -2727,7 +2727,7 @@ namespace XamCore.AppKit {
 		Indirect = (1 << (int)NSTouchType.Indirect)
 	}
 
-	[Mac (10,12,2)]
+	[Introduced (PlatformName.MacOSX, 10, 12, 2)]
 	[Native]
 	public enum NSScrubberMode : nint
 	{
@@ -2735,7 +2735,7 @@ namespace XamCore.AppKit {
 		Free
 	}
 
-	[Mac (10,12,2)]
+	[Introduced (PlatformName.MacOSX, 10, 12, 2)]
 	[Native]
 	public enum NSScrubberAlignment : nint
 	{
@@ -2745,14 +2745,14 @@ namespace XamCore.AppKit {
 		Center
 	}
 
-	[Mac (10,13)]
+	[Introduced (PlatformName.MacOSX, 10, 13)]
 	public enum NSFontError : int {
 		AssetDownloadError = 66304,
 		ErrorMinimum = 66304,
 		ErrorMaximum = 66335,
 	}
 
-	[Mac (10,13)]
+	[Introduced (PlatformName.MacOSX, 10, 13)]
 	[Native]
 	public enum NSAccessibilityAnnotationPosition : nint {
 		FullRange,
@@ -2760,14 +2760,14 @@ namespace XamCore.AppKit {
 		End,
 	}
 
-	[Mac (10,13)]
+	[Introduced (PlatformName.MacOSX, 10, 13)]
 	[Native]
 	public enum NSAccessibilityCustomRotorSearchDirection : nint {
 		Previous,
 		Next,
 	}
 
-	[Mac (10,13)]
+	[Introduced (PlatformName.MacOSX, 10, 13)]
 	[Native]
 	public enum NSAccessibilityCustomRotorType : nint {
 		Custom = 0,
@@ -2793,7 +2793,7 @@ namespace XamCore.AppKit {
 		VisitedLink,
 	}
 
-	[Mac (10, 13)]
+	[Introduced (PlatformName.MacOSX, 10, 13)]
 	[Native]
 	public enum NSColorType : nint {
 		ComponentBased,
@@ -2801,14 +2801,14 @@ namespace XamCore.AppKit {
 		Catalog,
 	}
 
-	[Mac (10,13)]
+	[Introduced (PlatformName.MacOSX, 10, 13)]
 	[Native]
 	[Flags]
 	public enum NSFontAssetRequestOptions : nuint {
 		UsesStandardUI = 1 << 0,
 	}
 
-	[Mac (10,13)]
+	[Introduced (PlatformName.MacOSX, 10, 13)]
 	[Native]
 	[Flags]
 	public enum NSFontPanelModeMask : nuint {
@@ -2825,7 +2825,7 @@ namespace XamCore.AppKit {
 		AllModes = (nuint)0XFFFFFFFF,
 	}
 
-	[Mac (10,13)]
+	[Introduced (PlatformName.MacOSX, 10, 13)]
 	[Native]
 	public enum NSLevelIndicatorPlaceholderVisibility : nint {
 		Automatic = 0,
@@ -2833,7 +2833,7 @@ namespace XamCore.AppKit {
 		WhileEditing = 2,
 	}
 
-	[Mac (10,13)]
+	[Introduced (PlatformName.MacOSX, 10, 13)]
 	[Native]
 	public enum NSSegmentDistribution : nint {
 		Fit = 0,

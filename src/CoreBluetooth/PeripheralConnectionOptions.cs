@@ -33,7 +33,7 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.CoreBluetooth {
 
-	[Watch (4,0)]
+	[Introduced (PlatformName.WatchOS, 4, 0)]
 	public class PeripheralConnectionOptions : DictionaryContainer
 	{
 #if !COREBUILD
@@ -49,7 +49,7 @@ namespace XamCore.CoreBluetooth {
 
 #if !MONOMAC
 #if !XAMCORE_2_0
-		[iOS (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Obsolete ("Use 'NotifyOnConnection' property instead.")]
 		public bool NotifyOnConnectionKey {
 			set {
@@ -57,7 +57,7 @@ namespace XamCore.CoreBluetooth {
 			}
 		}
 
-		[iOS (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		[Obsolete ("Use 'NotifyOnNotification' property instead.")]
 		public bool NotifyOnNotificationKey {
 			set {
@@ -66,7 +66,7 @@ namespace XamCore.CoreBluetooth {
 		}
 #endif
 	
-		[iOS (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		public bool? NotifyOnConnection {
 			get {
 				return GetBoolValue (CBCentralManager.OptionNotifyOnConnectionKey);
@@ -81,7 +81,7 @@ namespace XamCore.CoreBluetooth {
 			}
 		}
 
-		[iOS (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		public bool? NotifyOnNotification {
 			get {
 				return GetBoolValue (CBCentralManager.OptionNotifyOnNotificationKey);
@@ -100,7 +100,7 @@ namespace XamCore.CoreBluetooth {
 #endif
 
 #if !XAMCORE_2_0
-		[iOS (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		[Obsolete ("Use 'NotifyOnDisconnection' property instead.")]
 		public bool NotifyOnDisconnectionKey {
 			set {
@@ -109,7 +109,7 @@ namespace XamCore.CoreBluetooth {
 		}
 #endif
 
-		[iOS (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		public bool? NotifyOnDisconnection {
 			get {
 				return GetBoolValue (CBCentralManager.OptionNotifyOnDisconnectionKey);

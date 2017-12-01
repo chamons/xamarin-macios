@@ -44,11 +44,11 @@ namespace XamCore.Metal {
 #if !COREBUILD
 	public static class MTLVertexFormatExtensions {
 
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[DllImport (Constants.MetalKitLibrary)]
 		static extern /* MDLVertexFormat */ nuint MTKModelIOVertexFormatFromMetal (/* MTLVertexFormat */ nuint modelIODescriptor);
 
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		public static MDLVertexFormat ToModelVertexFormat (this MTLVertexFormat vertexFormat)
 		{
 			nuint mdlVertexFormat = MTKModelIOVertexFormatFromMetal ((nuint)(ulong)vertexFormat);
@@ -241,7 +241,7 @@ namespace XamCore.Metal {
 		public uint BaseInstance;
 	}
 	
-	[iOS (10,0), TV (10,0), NoWatch, Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 12)]
 	[StructLayout (LayoutKind.Sequential)]
 	public struct MTLSizeAndAlign
 	{
@@ -256,7 +256,7 @@ namespace XamCore.Metal {
 	
 	}
 
-	[iOS (10,0), TV (10,0), NoWatch, Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 12)]
 	[StructLayout (LayoutKind.Sequential)]
 	public struct MTLDrawPatchIndirectArguments
 	{
@@ -275,7 +275,7 @@ namespace XamCore.Metal {
 
 	}
 
-	[iOS (10,0), TV (10,0), NoWatch, Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 12)]
 	[StructLayout (LayoutKind.Sequential)]
 	public struct MTLQuadTessellationFactorsHalf
 	{
@@ -290,7 +290,7 @@ namespace XamCore.Metal {
 	
 	}
 
-	[iOS (10,0), TV (10,0), NoWatch, Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 12)]
 	[StructLayout (LayoutKind.Sequential)]
 	public struct MTLTriangleTessellationFactorsHalf
 	{

@@ -17,14 +17,14 @@ using XamCore.Foundation;
 namespace XamCore.CoreGraphics {
 
 	// uint32_t enum -> CGColorConversionInfo.h
-	[iOS (10,0)][TV (10,0)][Watch (3,0)][Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 	public enum CGColorConversionInfoTransformType : uint {
 		FromSpace = 0,
 		ToSpace,
 		ApplySpace
 	}
 
-	[iOS (10,0)][TV (10,0)][Watch (3,0)][Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 	[StructLayout (LayoutKind.Sequential)]
 	public struct GColorConversionInfoTriple {
 		public CGColorSpace Space;
@@ -33,7 +33,7 @@ namespace XamCore.CoreGraphics {
 	}
 
 	// CGColorConverter.h
-	[iOS (10,0)][TV (10,0)][Watch (3,0)][Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 	public partial class CGColorConversionInfo : INativeObject, IDisposable {
 
 		/* invoked by marshallers */
@@ -111,11 +111,11 @@ namespace XamCore.CoreGraphics {
 				throw new Exception ("Failed to create CGColorConverter");
 		}
 
-		[iOS (10,0)][Mac (10,12)]
-		[DllImport(Constants.CoreGraphicsLibrary)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static IntPtr CGColorConversionInfoCreate (/* cg_nullable CGColorSpaceRef */ IntPtr src, /* cg_nullable CGColorSpaceRef */ IntPtr dst);
 
-		[iOS (10,0)][Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 		public CGColorConversionInfo (CGColorSpace src, CGColorSpace dst)
 		{
 			// API accept null arguments but returns null, which we can't use

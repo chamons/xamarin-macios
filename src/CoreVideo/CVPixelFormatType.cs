@@ -34,7 +34,7 @@ namespace XamCore.CoreVideo {
 	// for which ObjC API uses `int` instead of the enum
 	
 	// untyped enum, some are 4CC -> CVPixelBuffer.h
-	[Watch (3,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)]
 	public enum CVPixelFormatType : uint {
 		// FIXME: These all start with integers; what should we do here?
 		CV1Monochrome    = 0x00000001,

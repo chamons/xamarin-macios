@@ -74,9 +74,9 @@ namespace XamCore.CoreImage {
 		RGf = 22
 	}
 
-	[iOS (11,0)]
-	[Mac (10,13)]
-	[TV (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13)]
+	[Introduced (PlatformName.TvOS, 11, 0)]
 	[Native]
 	public enum CIQRCodeErrorCorrectionLevel : nint {
 		L = 76,
@@ -85,9 +85,9 @@ namespace XamCore.CoreImage {
 		H = 72,
 	}
 
-	[iOS (11,0)]
-	[Mac (10,13)]
-	[TV (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13)]
+	[Introduced (PlatformName.TvOS, 11, 0)]
 	[Native]
 	public enum CIDataMatrixCodeEccVersion : nint {
 		V000 = 0,
@@ -98,9 +98,9 @@ namespace XamCore.CoreImage {
 		V200 = 200,
 	}
 
-	[iOS (11,0)]
-	[Mac (10,13)]
-	[TV (11,0)]
+	[Introduced (PlatformName.iOS, 11, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13)]
+	[Introduced (PlatformName.TvOS, 11, 0)]
 	[Native]
 	public enum CIRenderDestinationAlphaMode : nuint {
 		None = 0,

@@ -239,28 +239,28 @@ namespace XamCore.UIKit {
 			}
 		}
 
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		public static UIFontDescriptor PreferredTitle1 {
 			get {
 				return GetPreferredDescriptorForTextStyle (UIFontTextStyle.Title1);
 			}
 		}
 		
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		public static UIFontDescriptor PreferredTitle2 {
 			get {
 				return GetPreferredDescriptorForTextStyle (UIFontTextStyle.Title2);
 			}
 		}
 		
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		public static UIFontDescriptor PreferredTitle3 {
 			get {
 				return GetPreferredDescriptorForTextStyle (UIFontTextStyle.Title3);
 			}
 		}
 		
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		public static UIFontDescriptor PreferredCallout {
 			get {
 				return GetPreferredDescriptorForTextStyle (UIFontTextStyle.Callout);

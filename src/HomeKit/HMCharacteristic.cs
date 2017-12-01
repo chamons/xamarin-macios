@@ -4,8 +4,8 @@ using XamCore.Foundation;
 
 namespace XamCore.HomeKit {
 
-	[iOS (8,0)]
-	[TV (10,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
 	partial class HMCharacteristic 
 	{
 		public bool SupportsEventNotification {
@@ -38,8 +38,8 @@ namespace XamCore.HomeKit {
 			}
 		}
 
-		[iOS (9,3)][Watch (2,2)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 9, 3)][Introduced (PlatformName.WatchOS, 2, 2)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		public bool Hidden {
 			get {
 				foreach (var p in Properties) {

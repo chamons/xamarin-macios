@@ -108,7 +108,7 @@ namespace XamCore.SpriteKit {
 		DontCare,
 	}
 
-	[iOS (9,0)][Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	public enum SKAttributeType : nint
 	{
@@ -123,7 +123,7 @@ namespace XamCore.SpriteKit {
 		VectorHalfFloat4 = 8,
 	}
 
-	[iOS (10,0)][Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	public enum SKTileDefinitionRotation : nuint
 	{
@@ -133,7 +133,7 @@ namespace XamCore.SpriteKit {
 		Angle270,
 	}
 
-	[iOS (10,0)][Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	public enum SKTileSetType : nuint
 	{
@@ -143,7 +143,7 @@ namespace XamCore.SpriteKit {
 		HexagonalPointy,
 	}
 
-	[iOS (10,0)][Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	public enum SKTileAdjacencyMask : nuint
 	{
@@ -184,9 +184,9 @@ namespace XamCore.SpriteKit {
 		UpperLeftCorner = Up | UpperRight | Right | Down | LowerLeft | Left | UpperLeft,
 	}
 
-	[NoWatch]
-	[NoMac]
-	[TV (11,0), iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.MacOSX)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	public enum SKNodeFocusBehavior : nint {
 		None = 0,

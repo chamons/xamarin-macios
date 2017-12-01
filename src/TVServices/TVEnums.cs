@@ -8,7 +8,7 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.TVServices {
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[Native]
 	public enum TVContentItemImageShape : nint {
 		None = 0,
@@ -20,14 +20,14 @@ namespace XamCore.TVServices {
 		ExtraWide
 	}
 
-	[TV (9,0)]
+	[Introduced (PlatformName.TvOS, 9, 0)]
 	[Native]
 	public enum TVTopShelfContentStyle : nint {
 		Inset = 1,
 		Sectioned = 2
 	}
 
-	[TV (11,0)]
+	[Introduced (PlatformName.TvOS, 11, 0)]
 	[Native]
 	[Flags]
 	public enum TVContentItemImageTrait : nuint {

@@ -57,7 +57,7 @@ namespace XamCore.AVFoundation {
 			}
 		}
 
-		[iOS (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		public AVAssetReferenceRestrictions? ReferenceRestrictions {
 			set {
 				SetNumberValue (AVUrlAsset.ReferenceRestrictionsKey, (nuint?) (ulong?) value);

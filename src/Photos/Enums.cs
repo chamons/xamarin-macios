@@ -5,9 +5,9 @@ using XamCore.Foundation;
 namespace XamCore.Photos
 {
 	// NSInteger -> PHImageManager.h
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Native]
 	public enum PHImageContentMode : nint {
 		AspectFit = 0,
@@ -16,9 +16,9 @@ namespace XamCore.Photos
 	}
 
 	// NSInteger -> PHImageManager.h
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,13, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[Native]
 	public enum PHImageRequestOptionsVersion : nint {
 		Current = 0,
@@ -27,9 +27,9 @@ namespace XamCore.Photos
 	}
 
 	// NSInteger -> PHImageManager.h
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,13, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[Native]
 	public enum PHImageRequestOptionsDeliveryMode : nint {
 		Opportunistic = 0,
@@ -38,9 +38,9 @@ namespace XamCore.Photos
 	}
 
 	// NSInteger -> PHImageManager.h
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,13, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[Native]
 	public enum PHImageRequestOptionsResizeMode : nint {
 		None = 0,
@@ -49,9 +49,9 @@ namespace XamCore.Photos
 	}
 
 	// NSInteger -> PHImageManager.h
-	[iOS (8,0)]
-	[TV (10,0)]
-	[NoMac]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Unavailable (PlatformName.MacOSX)]
 	[Native]
 	public enum PHVideoRequestOptionsVersion : nint {
 		Current = 0,
@@ -59,9 +59,9 @@ namespace XamCore.Photos
 	}
 
 	// NSInteger -> PHImageManager.h
-	[iOS (8,0)]
-	[TV (10,0)]
-	[NoMac]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Unavailable (PlatformName.MacOSX)]
 	[Native]
 	public enum PHVideoRequestOptionsDeliveryMode : nint {
 		Automatic = 0,
@@ -71,9 +71,9 @@ namespace XamCore.Photos
 	}
 
 	// NSInteger -> PhotosTypes.h
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Native]
 	public enum PHCollectionListType : nint {
 		MomentList  = 1,
@@ -81,9 +81,9 @@ namespace XamCore.Photos
 		SmartFolder = 3
 	}
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Native]
 	public enum PHCollectionListSubtype : nint {
 		MomentListCluster = 1,
@@ -109,9 +109,9 @@ namespace XamCore.Photos
 	}
 
 	// NSUInteger -> PhotosTypes.h
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Native]
 	public enum PHCollectionEditOperation : nint {
 		None             = 0,
@@ -125,9 +125,9 @@ namespace XamCore.Photos
 	}
 
 	// NSInteger -> PhotosTypes.h
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Native]
 	public enum PHAssetCollectionType : nint {
 		Album      = 1,
@@ -136,9 +136,9 @@ namespace XamCore.Photos
 	}
 
 	// NSInteger -> PhotosTypes.h
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Native]
 	public enum PHAssetCollectionSubtype : nint {
 		AlbumRegular         = 2,
@@ -158,17 +158,17 @@ namespace XamCore.Photos
 		SmartAlbumBursts        = 207,
 		SmartAlbumSlomoVideos   = 208,
 		SmartAlbumUserLibrary 	= 209,
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		SmartAlbumSelfPortraits = 210,
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		SmartAlbumScreenshots   = 211,
-		[iOS (10,2), TV (10,1)][Mac (10,13, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)][Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 		SmartAlbumDepthEffect   = 212,
-		[iOS (10,3), TV (10,2)][Mac (10,13, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.TvOS, 10, 2)][Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 		SmartAlbumLivePhotos = 213,
-		[iOS (11,0)][TV(11,0)][NoMac]
+		[Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.TvOS, 11, 0)][Unavailable (PlatformName.MacOSX)]
 		SmartAlbumAnimated = 214,
-		[iOS (11,0)][TV(11,0)][NoMac]
+		[Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.TvOS, 11, 0)][Unavailable (PlatformName.MacOSX)]
 		SmartAlbumLongExposures = 215,
 
 #if XAMCORE_2_0
@@ -179,9 +179,9 @@ namespace XamCore.Photos
 	}
 
 	// NSUInteger -> PhotosTypes.h
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Native]
 	public enum PHAssetEditOperation : nint {
 		None       = 0,
@@ -191,9 +191,9 @@ namespace XamCore.Photos
 	}
 
 	// NSInteger -> PhotosTypes.h
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Native]
 	public enum PHAssetMediaType : nint {
 		Unknown = 0,
@@ -203,9 +203,9 @@ namespace XamCore.Photos
 	}
 
 	// NSUInteger -> PhotosTypes.h
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Native]
 	[Flags]
 	public enum PHAssetMediaSubtype : nuint {
@@ -214,7 +214,7 @@ namespace XamCore.Photos
 		PhotoHDR           = (1 << 1),
 		Screenshot         = (1 << 2),
 		PhotoLive          = (1 << 3),
-		[iOS (10,2), TV (10,1)]
+		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
 		PhotoDepthEffect   = (1 << 4),
 		VideoStreamed      = (1 << 16),
 		VideoHighFrameRate = (1 << 17),
@@ -223,9 +223,9 @@ namespace XamCore.Photos
 	}
 
 	// NSUInteger -> PhotosTypes.h
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Native]
 	[Flags]
 	public enum PHAssetBurstSelectionType : nuint {
@@ -234,17 +234,17 @@ namespace XamCore.Photos
 		UserPick = (1 << 1)
 	}
 
-	[iOS (8,0)]
-	[TV (10,0)]
-	[Mac (10,13, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[Native]
 	public enum PHAuthorizationStatus : nint {
 		NotDetermined, Restricted, Denied, Authorized
 	}
 
-	[iOS (9,0)]
-	[Mac (10,12, onlyOn64 : true)]
-	[TV (10,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
 	[Native]
 	public enum PHAssetResourceType : nint
 	{
@@ -259,9 +259,9 @@ namespace XamCore.Photos
 		PairedVideo = 9
 	}
 
-	[iOS (9,0)]
-	[TV (10,0)]
-	[Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 9, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Native]
 	public enum PHAssetSourceType : nuint
 	{
@@ -271,17 +271,17 @@ namespace XamCore.Photos
 		iTunesSynced = (1 << 2)
 	}
 
-	[iOS (10,0)]
-	[TV (10,0)]
-	[Mac (10,12, onlyOn64 : true)]
+	[Introduced (PlatformName.iOS, 10, 0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
 	[Native]
 	public enum PHLivePhotoFrameType : nint {
 		Photo,
 		Video
 	}
 
-	[TV (11,0), iOS (11,0)]
-	[Mac (10,13, onlyOn64 : true)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[Native]
 	public enum PHAssetPlaybackStyle : nint {
 		Unsupported = 0,
@@ -292,8 +292,8 @@ namespace XamCore.Photos
 		VideoLooping = 5,
 	}
 
-	[Mac (10,13, onlyOn64 : true)]
-	[NoiOS][NoTV]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
+	[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.TvOS)]
 	[Native]
 	public enum PHProjectTextElementType : nint {
 		Body = 0,
@@ -301,8 +301,8 @@ namespace XamCore.Photos
 		Subtitle,
 	}
 
-	[Mac (10,13, onlyOn64 : true)]
-	[NoiOS][NoTV]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
+	[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.TvOS)]
 	[Native]
 	public enum PHProjectCreationSource : nint {
 		Undefined = 0,
@@ -319,8 +319,8 @@ namespace XamCore.Photos
 		ProjectExtension = 26,
 	}
 
-	[Mac (10,13, onlyOn64 : true)]
-	[NoiOS][NoTV]
+	[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
+	[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.TvOS)]
 	[Native]
 	public enum PHProjectSectionType : nint {
 		Undefined = 0,

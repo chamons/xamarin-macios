@@ -262,7 +262,7 @@ namespace XamCore.CoreGraphics {
 			}
 		}
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[DllImport (Constants.CoreGraphicsLibrary)]
 		static extern /* CGColorRef __nullable */ IntPtr CGColorCreateCopyByMatchingToColorSpace (
 			/* __nullable CGColorSpaceRef* */ IntPtr space, CGColorRenderingIntent intent,

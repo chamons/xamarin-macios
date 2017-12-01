@@ -13,8 +13,8 @@ using XamCore.MapKit;
 namespace XamCore.MapKit {
 	public partial class MKOverlayView {
 
-		[TV (9,2)]
-		[Mac (10,9, onlyOn64 : true)]
+		[Introduced (PlatformName.TvOS, 9, 2)]
+		[Introduced (PlatformName.MacOSX, 10, 9, PlatformArchitecture.Arch64)]
 		[DllImport (Constants.MapKitLibrary)]
 		public static extern nfloat MKRoadWidthAtZoomScale (/* MKZoomScale */ nfloat zoomScale);
 	}

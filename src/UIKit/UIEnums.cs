@@ -15,25 +15,25 @@ using XamCore.ObjCRuntime;
 namespace XamCore.UIKit {
 	// NSInteger -> UIImagePickerController.h
 	[Native]
-	[NoTV][NoWatch]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 	public enum UIImagePickerControllerQualityType : nint {
 		High,
 		Medium,
 		Low,
 
-		[iOS (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		At640x480,
 
-		[iOS (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		At1280x720,
 
-		[iOS (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		At960x540
 	}
 
 	// NSInteger -> UIActivityIndicatorView.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIActivityIndicatorViewStyle : nint {
 		WhiteLarge,
 		White,
@@ -42,8 +42,8 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIAlertView.h
 	[Native]
-	[NoTV][NoWatch]
-	[iOS (5,0)]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	public enum UIAlertViewStyle : nint {
 		Default,
 		SecureTextInput,
@@ -53,11 +53,11 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIBarButtonItem.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIBarButtonItemStyle : nint {
 		Plain,
 
-		[Availability (Deprecated = Platform.iOS_8_0, Message = "Use 'UIBarButtonItemStyle.Plain' instead.")]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use 'UIBarButtonItemStyle.Plain' instead.")]
 		Bordered,
 			
 		Done,
@@ -65,7 +65,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIBarButtonItem.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIBarButtonSystemItem : nint {
 		Done,
 		Cancel,
@@ -91,7 +91,7 @@ namespace XamCore.UIKit {
 		Undo,
 		Redo,
 
-		[iOS (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		[Deprecated (PlatformName.iOS, 11, 0)]
 		PageCurl
 	} 
@@ -99,7 +99,7 @@ namespace XamCore.UIKit {
 	// NSUInteger -> UIControl.h
 	[Native]
 	[Flags]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIControlEvent : nuint {
 		TouchDown           = 1 <<  0,
 		TouchDownRepeat     = 1 <<  1,
@@ -128,47 +128,47 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIEvent.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIEventType : nint {
 		Touches,
 		Motion,
 		RemoteControl,
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		Presses
 	}
 
 	// NSInteger -> UIEvent.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIEventSubtype : nint {
 		None,
 		MotionShake,
 
-		[iOS (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		RemoteControlPlay                 = 100,
-		[iOS (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		RemoteControlPause                = 101,
-		[iOS (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		RemoteControlStop                 = 102,
-		[iOS (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		RemoteControlTogglePlayPause      = 103,
-		[iOS (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		RemoteControlNextTrack            = 104,
-		[iOS (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		RemoteControlPreviousTrack        = 105,
-		[iOS (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		RemoteControlBeginSeekingBackward = 106,
-		[iOS (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		RemoteControlEndSeekingBackward   = 107,
-		[iOS (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		RemoteControlBeginSeekingForward  = 108,
-		[iOS (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		RemoteControlEndSeekingForward    = 109,
 	}			
 	
 	// NSInteger -> UIControl.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIControlContentVerticalAlignment : nint {
 		Center  = 0,
 		Top     = 1,
@@ -178,7 +178,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIControl.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIControlContentHorizontalAlignment : nint {
 		Center = 0,
 		Left   = 1,
@@ -191,13 +191,13 @@ namespace XamCore.UIKit {
 	// NSUInteger -> UIControl.h
 	[Native]
 	[Flags]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIControlState : nuint {
 		Normal       = 0,
 		Highlighted  = 1 << 0,
 		Disabled     = 1 << 1,
 		Selected     = 1 << 2,
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		Focused      = 1 << 3,
 		Application  = 0x00FF0000,
 		Reserved     = 0xFF000000
@@ -219,7 +219,7 @@ namespace XamCore.UIKit {
 	// NSUInteger -> UIView.h
 	[Native]
 	[Flags]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIViewAutoresizing : nuint_compat_int {
 		None                 = 0,
 		FlexibleLeftMargin   = 1 << 0,
@@ -235,7 +235,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIView.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIViewAnimationCurve : nint {
 		EaseInOut,
 		EaseIn,
@@ -245,7 +245,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIView.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIViewContentMode : nint {
 		ScaleToFill,
 		ScaleAspectFit,
@@ -264,7 +264,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIView.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIViewAnimationTransition : nint {
 		None,
 		FlipFromLeft,
@@ -275,24 +275,24 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIBarCommon.h
 	[Native]
-	[NoWatch]
-	[iOS (5,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	public enum UIBarMetrics : nint {
 		Default,
 		Compact,
 		DefaultPrompt = 101,
 		CompactPrompt,
 
-		[Availability (Introduced = Platform.iOS_5_0, Deprecated = Platform.iOS_8_0, Message = "Use 'UIBarMetrics.Compat' instead.")]
+		[Introduced (PlatformName.iOS, 5, 0, message: "Use 'UIBarMetrics.Compat' instead."), Deprecated (PlatformName.iOS, 8, 0, message: "Use 'UIBarMetrics.Compat' instead.")]
 		LandscapePhone = Compact,
 
-		[Availability (Introduced = Platform.iOS_7_0, Deprecated = Platform.iOS_8_0, Message = "Use 'UIBarMetrics.CompactPrompt' instead.")]
+		[Introduced (PlatformName.iOS, 7, 0, message: "Use 'UIBarMetrics.CompactPrompt' instead."), Deprecated (PlatformName.iOS, 8, 0, message: "Use 'UIBarMetrics.CompactPrompt' instead.")]
 		LandscapePhonePrompt = CompactPrompt
 	}
 
 	// NSInteger -> UIButton.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIButtonType : nint {
 		Custom,
 		RoundedRect,
@@ -318,7 +318,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIStringDrawing.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIBaselineAdjustment : nint {
 		AlignBaselines = 0,
 		AlignCenters,
@@ -327,7 +327,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIDatePicker.h
 	[Native]
-	[NoTV][NoWatch]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 	public enum UIDatePickerMode : nint {
 		Time,         
 		Date,         
@@ -337,7 +337,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIDevice.h
 	[Native]
-	[NoTV][NoWatch]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 	public enum UIDeviceOrientation : nint {
 		Unknown,
 		Portrait,
@@ -350,7 +350,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIDevice.h
 	[Native]
-	[NoTV][NoWatch]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 	public enum UIDeviceBatteryState : nint {
 		Unknown,
 		Unplugged,
@@ -360,16 +360,16 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIDocument.h
 	[Native]
-	[NoTV][NoWatch]
-	[iOS (5,0)]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	public enum UIDocumentChangeKind : nint {
 		Done, Undone, Redone, Cleared
 	}
 
 	// NSInteger -> UIDocument.h
 	[Native]
-	[NoTV][NoWatch]
-	[iOS (5,0)]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	public enum UIDocumentSaveOperation : nint {
 		ForCreating, ForOverwriting
 	}
@@ -377,8 +377,8 @@ namespace XamCore.UIKit {
 	// NSUInteger -> UIDocument.h
 	[Native]
 	[Flags]
-	[NoTV][NoWatch]
-	[iOS (5,0)]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	public enum UIDocumentState : nuint_compat_int {
 		Normal = 0,
 		Closed = 1 << 0,
@@ -390,7 +390,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIImagePickerController.h
 	[Native]
-	[NoWatch][NoTV]
+	[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 	public enum UIImagePickerControllerSourceType : nint {
 		PhotoLibrary,
 		Camera,
@@ -399,14 +399,14 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIImagePickerController.h
 	[Native]
-	[NoWatch][NoTV]
+	[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 	public enum UIImagePickerControllerCameraCaptureMode : nint {
 		Photo, Video
 	}
 
 	// NSInteger -> UIImagePickerController.h
 	[Native]
-	[NoWatch][NoTV]
+	[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 	public enum UIImagePickerControllerCameraDevice : nint {
 		Rear,
 		Front
@@ -414,39 +414,39 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIImagePickerController.h
 	[Native]
-	[NoWatch][NoTV]
+	[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 	public enum UIImagePickerControllerCameraFlashMode : nint {
 		Off = -1, Auto = 0, On = 1
 	}
 
 	// NSInteger -> UIInterface.h
 	[Native]
-	[NoWatch][NoTV]
+	[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 	public enum UIBarStyle : nint {
 		Default,
 		Black,
 
 		// The header doesn't say when it was deprecated, but the earliest headers I have (iOS 5.1) it is already deprecated.
-		[Availability (Deprecated = Platform.iOS_5_1, Message = "Use 'UIBarStyle.Black'.")]
+		[Deprecated (PlatformName.iOS, 5, 1, message: "Use 'UIBarStyle.Black'.")]
 		BlackOpaque      = 1,
 
 		// The header doesn't say when it was deprecated, but the earliest headers I have (iOS 5.1) it is already deprecated.
-		[Availability (Deprecated = Platform.iOS_5_1, Message = "Use 'UIBarStyle.Black' and set the translucency property to true.")]
+		[Deprecated (PlatformName.iOS, 5, 1, message: "Use 'UIBarStyle.Black' and set the translucency property to true.")]
 		BlackTranslucent = 2,
 	}
 
 	// NSInteger -> UIProgressView.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIProgressViewStyle : nint {
 		Default,
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		Bar,
 	}
 	
 	// NSInteger -> UIScrollView.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIScrollViewIndicatorStyle : nint {
 		Default,
 		Black,
@@ -455,7 +455,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UITextInputTraits.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UITextAutocapitalizationType : nint {
 		None,
 		Words,
@@ -465,7 +465,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UITextInputTraits.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UITextAutocorrectionType : nint {
 		Default,
 		No,
@@ -474,7 +474,7 @@ namespace XamCore.UIKit {
 	
 	// NSInteger -> UITextInputTraits.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIKeyboardType : nint {
 		Default,
 		ASCIICapable,
@@ -488,26 +488,26 @@ namespace XamCore.UIKit {
 		DecimalPad,
 		Twitter,
 		WebSearch,
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		AsciiCapableNumberPad
 	} 
 
 	// NSInteger -> UISegmentedControl.h
 	[Native]
-	[NoTV][NoWatch]
-	[Availability (Deprecated = Platform.iOS_7_0, Message = "This no longer has any effect.")]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+	[Deprecated (PlatformName.iOS, 7, 0, message: "This no longer has any effect.")]
 	public enum UISegmentedControlStyle : nint {
 		Plain,
 		Bordered,
 		Bar,
 
-		[iOS (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		Bezeled
 	}
 
 	// NSInteger -> UITabBarItem.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UITabBarSystemItem : nint {
 		More,
 		Favorites,
@@ -525,7 +525,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UITableView.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UITableViewStyle : nint {
 		Plain,
 		Grouped
@@ -533,7 +533,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UITableView.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UITableViewScrollPosition : nint {
 		None,        
 		Top,    
@@ -543,7 +543,7 @@ namespace XamCore.UIKit {
 	
 	// NSInteger -> UITableView.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UITableViewRowAnimation : nint {
 		Fade,
 		Right,
@@ -553,21 +553,21 @@ namespace XamCore.UIKit {
 		None,
 		Middle,
 
-		[iOS (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		Automatic = 100
 	}
 
 	// #defines over UIBarPosition -> NSInteger -> UIBarCommon.h
 	[Native]
-	[NoTV][NoWatch]
-	[iOS (5,0)]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	public enum UIToolbarPosition : nint {
 		Any, Bottom, Top
 	}
 	
 	// NSInteger -> UITouch.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UITouchPhase : nint {
 		Began,
 		Moved,
@@ -576,8 +576,8 @@ namespace XamCore.UIKit {
 		Cancelled,      
 	}
 
-	[NoWatch]
-	[iOS (9,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Native]
 	public enum UITouchType : nint
 	{
@@ -586,8 +586,8 @@ namespace XamCore.UIKit {
 		Stylus
 	}
 
-	[NoWatch]
-	[iOS (9,1)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 1)]
 	[Native]
 	[Flags]
 	public enum UITouchProperties : nint
@@ -612,15 +612,15 @@ namespace XamCore.UIKit {
 		Center,
 		Right, 
 
-		[iOS (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		Justified,
-		[iOS (6,0)]
+		[Introduced (PlatformName.iOS, 6, 0)]
 		Natural	
 	}
 
 	// NSInteger -> UITableViewCell.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UITableViewCellStyle : nint {
 		Default,
 		Value1,	
@@ -630,18 +630,18 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UITableViewCell.h
 	[Native]
-	[NoTV][NoWatch]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 	public enum UITableViewCellSeparatorStyle : nint {
 		None,
 		SingleLine,
-		[Deprecated (PlatformName.iOS, 11, 0, message:"Use 'SingleLine' for a single line separator.")]
+		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'SingleLine' for a single line separator.")]
 		SingleLineEtched,
 		DoubleLineEtched = SingleLineEtched
 	}
 
 	// NSInteger -> UITableViewCell.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UITableViewCellSelectionStyle : nint {
 		None,
 		Blue,
@@ -651,7 +651,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UITableViewCell.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UITableViewCellEditingStyle : nint {
 		None,
 		Delete,
@@ -660,21 +660,21 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UITableViewCell.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UITableViewCellAccessory : nint {
 		None,                
 		DisclosureIndicator,
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		DetailDisclosureButton,
 		Checkmark,
-		[NoTV][iOS (7,0)]
+		[Unavailable (PlatformName.TvOS)][Introduced (PlatformName.iOS, 7, 0)]
 		DetailButton
 	}
 
 	// NSUInteger -> UITableViewCell.h
 	[Native]
 	[Flags]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UITableViewCellState : nuint_compat_int {
 		DefaultMask                     = 0,
 		ShowingEditControlMask          = 1 << 0,
@@ -683,7 +683,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UITextField.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UITextBorderStyle : nint {
 		None,
 		Line,
@@ -693,7 +693,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UITextField.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UITextFieldViewMode : nint {
 		Never,
 		WhileEditing,
@@ -703,21 +703,21 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIViewController.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIModalTransitionStyle : nint {
 		CoverVertical = 0,
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		FlipHorizontal,
 		CrossDissolve,
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		PartialCurl
 	}
 
 	// NSInteger -> UIApplication.h
 	[Native]
-	[NoTV][NoWatch]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 	public enum UIInterfaceOrientation : nint {
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		Unknown            = UIDeviceOrientation.Unknown,
 		Portrait           = UIDeviceOrientation.Portrait,
 		PortraitUpsideDown = UIDeviceOrientation.PortraitUpsideDown,
@@ -728,7 +728,7 @@ namespace XamCore.UIKit {
 	// NSUInteger -> UIApplication.h
 	[Native]
 	[Flags]
-	[NoTV][NoWatch]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 	public enum UIInterfaceOrientationMask : nuint_compat_int {
 		Portrait = 1 << (int) UIInterfaceOrientation.Portrait,
 		LandscapeLeft = 1 << (int) UIInterfaceOrientation.LandscapeLeft,
@@ -742,7 +742,7 @@ namespace XamCore.UIKit {
 	
 	// NSInteger -> UIApplication.h
 	[Native]
-	[NoWatch][NoTV]
+	[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 	public enum UIWebViewNavigationType : nint {
 		LinkClicked,
 		FormSubmitted,
@@ -755,21 +755,21 @@ namespace XamCore.UIKit {
 	// NSUInteger -> UIApplication.h
 	[Native]
 	[Flags]
-	[NoTV][NoWatch]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 	public enum UIDataDetectorType : nuint {
 		PhoneNumber            = 1 << 0,
 		Link                   = 1 << 1,
 
-		[iOS (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		Address                = 1 << 2,
-		[iOS (4,0)]
+		[Introduced (PlatformName.iOS, 4, 0)]
 		CalendarEvent          = 1 << 3,
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		ShipmentTrackingNumber = 1 << 4,
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		FlightNumber           = 1 << 5,
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		LookupSuggestion       = 1 << 6,
 
 		None          = 0,
@@ -782,7 +782,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIActionSheet.h
 	[Native]
-	[NoTV][NoWatch]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 	public enum UIActionSheetStyle : nint {
 		Automatic        = -1,
 		Default          = UIBarStyle.Default,
@@ -792,22 +792,22 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIApplication.h
 	[Native]
-	[NoTV][NoWatch]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 	public enum UIStatusBarStyle : nint {
 		Default,
 
-		[Availability (Deprecated = Platform.iOS_7_0, Message = "Use 'LightContent' instead.")]
+		[Deprecated (PlatformName.iOS, 7, 0, message: "Use 'LightContent' instead.")]
 		BlackTranslucent = 1,
 
 		LightContent = 1,
 
-		[Availability (Deprecated = Platform.iOS_7_0, Message = "Use 'LightContent' instead.")]
+		[Deprecated (PlatformName.iOS, 7, 0, message: "Use 'LightContent' instead.")]
 		BlackOpaque = 2,
 	}
 
 	// NSInteger -> UIApplication.h
 	[Native]
-	[NoTV][NoWatch]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 	public enum UIStatusBarAnimation : nint {
 		None, 
 		Fade,
@@ -816,7 +816,7 @@ namespace XamCore.UIKit {
 	
 	// NSInteger -> UIGestureRecognizer.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIGestureRecognizerState : nint {
 		Possible,
 		Began,
@@ -831,20 +831,20 @@ namespace XamCore.UIKit {
 	// NSUInteger -> UIApplication.h
 	[Native]
 	[Flags]
-	[NoTV][NoWatch]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 	public enum UIRemoteNotificationType : nuint_compat_int {
 		None    = 0,
 		Badge   = 1 << 0,
 		Sound   = 1 << 1,
 		Alert   = 1 << 2,
 
-		[iOS (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		NewsstandContentAvailability = 1 << 3
 	}
 
 	// NSInteger -> UITextInputTraits.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIKeyboardAppearance : nint {
 		Default,
 		Alert,
@@ -854,7 +854,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UITextInputTraits.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIReturnKeyType : nint {
 		Default,
 		Go,
@@ -872,18 +872,18 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIViewController.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIModalPresentationStyle : nint {
 		FullScreen = 0,
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		PageSheet,
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		FormSheet,
 		CurrentContext,
 		Custom,
 		OverFullScreen,
 		OverCurrentContext,
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		Popover,
 		BlurOverFullScreen,
 		None = -1
@@ -892,7 +892,7 @@ namespace XamCore.UIKit {
 	// NSUInteger -> UISwipeGestureRecognizer.h
 	[Native]
 	[Flags]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UISwipeGestureRecognizerDirection : nuint_compat_int {
 		Right = 1 << 0,
 		Left = 1 << 1,
@@ -903,7 +903,7 @@ namespace XamCore.UIKit {
 	// NSUInteger -> UIPopoverController.h
 	[Native]
 	[Flags]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIPopoverArrowDirection : nuint {
 		Up = 1 << 0,
 		Down = 1 << 1,
@@ -919,7 +919,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIMenuController.h
 	[Native]
-	[NoTV][NoWatch]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 	public enum UIMenuControllerArrowDirection : nint {
 		Default,
 		Up,
@@ -941,15 +941,15 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIApplication.h
 	[Native]
-	[NoWatch]
-	[iOS (5,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	public enum UIUserInterfaceLayoutDirection : nint {
 		LeftToRight, RightToLeft
 	}
 	
 	// NSInteger -> UIDevice.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIUserInterfaceIdiom : nint {
 		Unspecified = -1,
 		Phone,
@@ -960,8 +960,8 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIApplication.h
 	[Native]
-	[NoWatch]
-	[iOS (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	public enum UIApplicationState : nint {
 		Active,
 		Inactive,
@@ -971,8 +971,8 @@ namespace XamCore.UIKit {
 	// NSInteger -> UIView.h
 	[Native]
 	[Flags]
-	[NoWatch]
-	[iOS (4,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 0)]
 	public enum UIViewAnimationOptions : nuint_compat_int {
 		LayoutSubviews            = 1 <<  0,
 		AllowUserInteraction      = 1 <<  1,
@@ -999,11 +999,11 @@ namespace XamCore.UIKit {
 		TransitionFlipFromTop     = 6 << 20,
 		TransitionFlipFromBottom  = 7 << 20,
 
-		[iOS (10,3)]
+		[Introduced (PlatformName.iOS, 10, 3)]
 		PreferredFramesPerSecondDefault = 0 << 24,
-		[iOS (10,3)]
+		[Introduced (PlatformName.iOS, 10, 3)]
 		PreferredFramesPerSecond60 = 3 << 24,
-		[iOS (10,3)]
+		[Introduced (PlatformName.iOS, 10, 3)]
 		PreferredFramesPerSecond30 = 7 << 24,
 	}
 
@@ -1013,8 +1013,8 @@ namespace XamCore.UIKit {
 
 	// untyped (and unamed) enum -> UIPrintError.h
 	// note: it looks unused by any API
-	[NoTV][NoWatch]
-	[iOS (4,2)]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 2)]
 	[ErrorDomain ("UIPrintErrorDomain")]
 	public enum UIPrintError {
 		NotAvailable = 1,
@@ -1025,8 +1025,8 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIPrintInfo.h
 	[Native]
-	[NoTV][NoWatch]
-	[iOS (4,2)]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 2)]
 	public enum UIPrintInfoDuplex : nint {
 		None,
 		LongEdge,
@@ -1035,8 +1035,8 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIPrintInfo.h
 	[Native]
-	[NoTV][NoWatch]
-	[iOS (4,2)]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 2)]
 	public enum UIPrintInfoOrientation : nint {
 		Portrait,
 		Landscape,
@@ -1044,8 +1044,8 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIPrintInfo.h
 	[Native]
-	[NoTV][NoWatch]
-	[iOS (4,2)]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 2)]
 	public enum UIPrintInfoOutputType : nint {
 		General,
 		Photo,
@@ -1055,8 +1055,8 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIAccessibility.h
 	[Native]
-	[NoWatch]
-	[iOS (4,2)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 4, 2)]
 	public enum UIAccessibilityScrollDirection : nint {
 		Right = 1,
 		Left,
@@ -1068,8 +1068,8 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIScreen.h
 	[Native]
-	[NoWatch]
-	[iOS (5,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	public enum UIScreenOverscanCompensation : nint {
 		Scale, InsetBounds,
 		None,
@@ -1079,75 +1079,75 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UISegmentedControl.h
 	[Native]
-	[NoWatch]
-	[iOS (5,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	public enum UISegmentedControlSegment : nint {
 		Any, Left, Center, Right, Alone
 	}
 
 	// NSInteger -> UISearchBar.h
 	[Native]
-	[iOS (5,0)]
-	[NoWatch]
+	[Introduced (PlatformName.iOS, 5, 0)]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UISearchBarIcon : nint {
 		Search,
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		Clear,
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		Bookmark,
-		[NoTV]
+		[Unavailable (PlatformName.TvOS)]
 		ResultsList
 	}
 
 	// NSInteger -> UIPageViewController.h
 	[Native]
-	[NoWatch]
-	[iOS (5,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	public enum UIPageViewControllerNavigationOrientation : nint {
 		Horizontal, Vertical
 	}
 
 	// NSInteger -> UIPageViewController.h
 	[Native]
-	[NoWatch]
-	[iOS (5,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	public enum UIPageViewControllerSpineLocation : nint {
 		None, Min, Mid, Max
 	}
 
 	// NSInteger -> UIPageViewController.h
 	[Native]
-	[NoWatch]
-	[iOS (5,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	public enum UIPageViewControllerNavigationDirection : nint {
 		Forward, Reverse
 	}
 
 	// NSInteger -> UIPageViewController.h
 	[Native]
-	[NoWatch]
-	[iOS (5,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 5, 0)]
 	public enum UIPageViewControllerTransitionStyle : nint {
 		PageCurl, Scroll
 	}
 
 	// NSInteger -> UITextInputTraits.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UITextSpellCheckingType : nint {
 		Default, No, Yes, 
 	}
 
 	// NSInteger -> UITextInput.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UITextStorageDirection : nint {
 		Forward, Backward
 	}
 
 	// NSInteger -> UITextInput.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UITextLayoutDirection : nint {
 		Right = 2,
 		Left,
@@ -1158,14 +1158,14 @@ namespace XamCore.UIKit {
 	// Sum of UITextStorageDirection and UITextLayoutDirection 
 	// NSInteger -> UITextInput.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UITextDirection : nint {
 		Forward, Backward, Right, Left, Up, Down
 	}
 	
 	// NSInteger -> UITextInput.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UITextWritingDirection : nint {
 		Natural = -1,
 		LeftToRight,
@@ -1174,7 +1174,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UITextInput.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UITextGranularity : nint {
 		Character,
 		Word,
@@ -1186,7 +1186,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UITextInput.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum NSLayoutRelation : nint {
 		LessThanOrEqual = -1,
 		Equal = 0,
@@ -1195,7 +1195,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> NSLayoutConstraint.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum NSLayoutAttribute : nint {
 		NoAttribute = 0,
 		Left = 1,
@@ -1212,28 +1212,28 @@ namespace XamCore.UIKit {
 		LastBaseline = Baseline,
 		FirstBaseline,
    
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		LeftMargin,
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		RightMargin,
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		TopMargin,
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		BottomMargin,
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		LeadingMargin,
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		TrailingMargin,
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		CenterXWithinMargins,
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		CenterYWithinMargins,
 	}
 
 	// NSUInteger -> NSLayoutConstraint.h
 	[Native]
 	[Flags]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum NSLayoutFormatOptions : nuint_compat_int {
 		AlignAllLeft = (1 << (int) NSLayoutAttribute.Left),
 		AlignAllRight = (1 << (int) NSLayoutAttribute.Right),
@@ -1265,7 +1265,7 @@ namespace XamCore.UIKit {
 	// float (and not even a CGFloat) -> NSLayoutConstraint.h
 	// the API were fixed (a long time ago to use `float`) and the enum
 	// values can still be used (and useful) since they will be casted
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UILayoutPriority {
 		Required = 1000,
 		DefaultHigh = 750,
@@ -1275,7 +1275,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> NSLayoutConstraint.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UICollectionUpdateAction : nint {
 		Insert, Delete, Reload, Move, None
 	}
@@ -1283,7 +1283,7 @@ namespace XamCore.UIKit {
 	// NSUInteger -> UICollectionView.h
 	[Native]
 	[Flags]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UICollectionViewScrollPosition : nuint_compat_int {
 		None,
 		Top = 1 << 0,
@@ -1296,14 +1296,14 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UICollectionViewFlowLayout.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UICollectionViewScrollDirection : nint {
 		Vertical, Horizontal
 	}
 
 	// NSInteger -> UICollectionViewFlowLayout.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UILayoutConstraintAxis : nint {
 		Horizontal, Vertical
 	}
@@ -1316,13 +1316,13 @@ namespace XamCore.UIKit {
 
 	// NSUInteger -> UICollectionViewLayout.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UICollectionElementCategory : nuint_compat_int {
 		Cell, SupplementaryView, DecorationView
 	}
 
 	// that's a convenience enum that maps to UICollectionElementKindSection[Footer|Header] which are NSString
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UICollectionElementKindSection {
 		Header,
 		Footer
@@ -1363,7 +1363,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIMotionEffect.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIInterpolatingMotionEffectType : nint {
 		TiltAlongHorizontalAxis,
 		TiltAlongVerticalAxis
@@ -1371,14 +1371,14 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UINavigationController.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UINavigationControllerOperation : nint {
 		None, Push, Pop
 	}
 
 	// NSInteger -> NSLayoutManager.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum NSTextLayoutOrientation : nint {
 		Horizontal, Vertical
 	}
@@ -1386,7 +1386,7 @@ namespace XamCore.UIKit {
 	// NSUInteger -> NSTextStorage.h
 	[Native]
 	[Flags]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum NSTextStorageEditActions : nuint_compat_int {
 		Attributes = 1,
 		Characters = 2
@@ -1394,21 +1394,21 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIActivity.h
 	[Native]
-	[NoTV][NoWatch]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 	public enum UIActivityCategory : nint {
 		Action, Share
 	}
 
 	// NSInteger -> UIAttachmentBehavior.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIAttachmentBehaviorType : nint {
 		Items, Anchor
 	}
 
 	// NSInteger -> UIBarCommon.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIBarPosition : nint {
 		Any, Bottom, Top, TopAttached, 
 	}
@@ -1416,7 +1416,7 @@ namespace XamCore.UIKit {
 	// NSUInteger -> UICollisionBehavior.h
 	[Native]
 	[Flags]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UICollisionBehaviorMode : nuint  {
 		Items = 1,
 		Boundaries = 2,
@@ -1458,7 +1458,7 @@ namespace XamCore.UIKit {
 	// NSInteger -> UIResponder.h
 	[Native]
 	[Flags]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIKeyModifierFlags : nint {
 		AlphaShift     = 1 << 16,  // This bit indicates CapsLock
 		Shift          = 1 << 17,
@@ -1470,20 +1470,20 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIScrollView.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIScrollViewKeyboardDismissMode : nint {
 		None, OnDrag, Interactive
 	}
 
 	// NSInteger -> UIWebView.h
-	[NoWatch][NoTV]
+	[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 	[Native]
 	public enum UIWebPaginationBreakingMode : nint {
 		Page, Column
 	}
 
 	// NSInteger -> UIWebView.h
-	[NoWatch][NoTV]
+	[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
 	[Native]
 	public enum UIWebPaginationMode : nint {
 		Unpaginated,
@@ -1495,7 +1495,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIPushBehavior.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIPushBehaviorMode : nint {
 		Continuous,
 		Instantaneous
@@ -1503,7 +1503,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> NSLayoutManager.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum NSGlyphProperty : nint {
 		Null = (1 << 0),
 		ControlCharacter = (1 << 1),
@@ -1513,7 +1513,7 @@ namespace XamCore.UIKit {
 	
 	// NSInteger -> NSLayoutManager.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum NSControlCharacterAction : nint {
 		ZeroAdvancementAction = (1 << 0),
 		WhitespaceAction = (1 << 1),
@@ -1525,7 +1525,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UITabBar.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UITabBarItemPositioning : nint {
 		Automatic,
 		Fill,
@@ -1534,8 +1534,8 @@ namespace XamCore.UIKit {
 
 	// NSUInteger -> UIView.h
 	[Native]
-	[iOS (7,0)]
-	[NoWatch]
+	[Introduced (PlatformName.iOS, 7, 0)]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIViewKeyframeAnimationOptions : nuint {
 		LayoutSubviews = UIViewAnimationOptions.LayoutSubviews,
 		AllowUserInteraction = UIViewAnimationOptions.AllowUserInteraction,
@@ -1554,7 +1554,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIView.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UIViewTintAdjustmentMode : nint {
 		Automatic,
 		Normal,
@@ -1563,7 +1563,7 @@ namespace XamCore.UIKit {
 
 	// NSUInteger -> UIView.h
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UISystemAnimation : nuint_compat_int {
 		Delete
 	}
@@ -1590,8 +1590,8 @@ namespace XamCore.UIKit {
 
 	// NSUInteger -> UISearchBar.h
 	[Native]
-	[NoWatch]
-	[iOS (7,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	public enum UISearchBarStyle : nuint {
 		Default,
 		Prominent,
@@ -1600,16 +1600,16 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIInputView.h
 	[Native]
-	[NoWatch]
-	[iOS (7,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	public enum UIInputViewStyle : nint {
 		Default,
 		Keyboard
 	}
 
 	[Native]
-	[NoWatch]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	public enum UIUserInterfaceSizeClass : nint {
 		Unspecified = 0,
 		Compact = 1,
@@ -1617,36 +1617,36 @@ namespace XamCore.UIKit {
 	}
 
 	[Native]
-	[NoWatch]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	public enum UIAlertActionStyle : nint {
 		Default, Cancel, Destructive
 	}
 
 	[Native]
-	[NoWatch]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	public enum UIAlertControllerStyle : nint {
 		ActionSheet,
 		Alert
 	}
 
 	[Native]
-	[NoWatch]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	public enum UIBlurEffectStyle : nint {
 		ExtraLight, Light, Dark,
-		[TV (10,0), NoiOS, NoWatch]
+		[Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.iOS), Unavailable (PlatformName.WatchOS)]
 		ExtraDark,
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		Regular = 4,
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		Prominent = 5,
 	}
 
 	[Native]
-	[NoTV][NoWatch]
-	[iOS (8,0)]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	public enum UIPrinterJobTypes : nint {
 		Unknown = 0,
 		Document = 1 << 0,
@@ -1659,9 +1659,9 @@ namespace XamCore.UIKit {
 		Postcard = 1 << 7
 	}
 
-	[NoTV][NoWatch]
-	[iOS (8,0)]
-	[Deprecated (PlatformName.iOS, 10, 0, message:"Use 'UNAuthorizationOptions' instead.")]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
+	[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UNAuthorizationOptions' instead.")]
 	[Native]
 	[Flags]
 	public enum UIUserNotificationType : nuint {
@@ -1671,8 +1671,8 @@ namespace XamCore.UIKit {
 		Alert      = 1 << 2
 	}
 	
-	[NoTV][NoWatch]
-	[iOS (8, 0)]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UNNotificationActionOptions' instead.")]
 	[Native]
 	public enum UIUserNotificationActivationMode : nuint {
@@ -1680,8 +1680,8 @@ namespace XamCore.UIKit {
 		Background
 	}
 
-	[NoTV][NoWatch]
-	[iOS (8, 0)]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UNNotificationCategory.Actions' instead.")]
 	[Native]
 	public enum UIUserNotificationActionContext : nuint {
@@ -1690,16 +1690,16 @@ namespace XamCore.UIKit {
 	}
 
 	[Deprecated (PlatformName.iOS, 11, 0)]
-	[NoTV][NoWatch]
-	[iOS (8, 0)]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
 	public enum UIDocumentMenuOrder : nuint {
 		First,
 		Last
 	}
 
-	[NoTV][NoWatch]
-	[iOS (8, 0)]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
 	public enum UIDocumentPickerMode : nuint {
 		Import,
@@ -1708,7 +1708,7 @@ namespace XamCore.UIKit {
 		MoveToService
 	}
 
-	[iOS (8, 0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	[Native]
 	public enum UIAccessibilityNavigationStyle : nint {
 
@@ -1718,7 +1718,7 @@ namespace XamCore.UIKit {
 	}
 
 	[Native]
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UISplitViewControllerDisplayMode : nint {
 		Automatic,
 		PrimaryHidden,
@@ -1727,19 +1727,19 @@ namespace XamCore.UIKit {
 	}
 
 	[Native]
-	[NoTV][NoWatch]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 	public enum UITableViewRowActionStyle : nint {
 		Default, Destructive = Default, Normal
 	}
 
 	// Utility enum for UITransitionContext[To|From]ViewKey
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	public enum UITransitionViewControllerKind {
 		ToView, FromView
 	}
 
 	// note [Native] since it maps to UIFontWeightConstants fields (CGFloat)
-	[iOS (8,2)]
+	[Introduced (PlatformName.iOS, 8, 2)]
 	public enum UIFontWeight {
 		UltraLight,
 		Thin,
@@ -1752,8 +1752,8 @@ namespace XamCore.UIKit {
 		Black,
 	}
 
-	[NoWatch]
-	[iOS (9,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Native]
 	public enum UIStackViewDistribution : nint {
 		Fill,
@@ -1763,8 +1763,8 @@ namespace XamCore.UIKit {
 		EqualCentering
 	}
 
-	[NoWatch]
-	[iOS (9,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Native]
 	public enum UIStackViewAlignment : nint {
 		Fill,
@@ -1777,7 +1777,7 @@ namespace XamCore.UIKit {
 		LastBaseline
 	}
 
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Native]
 	[Flags]
 	public enum NSWritingDirectionFormatType : nint {
@@ -1785,8 +1785,8 @@ namespace XamCore.UIKit {
 		Override = 1 << 1
 	}
 
-	[NoTV][NoWatch]
-	[iOS (9,0)]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Native]
 	public enum UIPrinterCutterBehavior : nint
 	{
@@ -1797,8 +1797,8 @@ namespace XamCore.UIKit {
 		CutAfterEachJob
 	}
 
-	[NoTV][NoWatch]
-	[iOS (9,0)]
+	[Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'UNNotificationAction' or 'UNTextInputNotificationAction' instead.")]
 	[Native]
 	public enum UIUserNotificationActionBehavior : nuint
@@ -1807,8 +1807,8 @@ namespace XamCore.UIKit {
 		TextInput
 	}
 
-	[NoWatch]
-	[iOS (9,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Native]
 	public enum UISemanticContentAttribute : nint
 	{
@@ -1819,8 +1819,8 @@ namespace XamCore.UIKit {
 		ForceRightToLeft
 	}
 
-	[NoWatch]
-	[iOS (9,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Native]
 	public enum UIDynamicItemCollisionBoundsType : nuint
 	{
@@ -1830,8 +1830,8 @@ namespace XamCore.UIKit {
 	}
 
 	[Native]
-	[NoWatch]
-	[iOS(9,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	public enum UIForceTouchCapability : nint {
 		Unknown = 0,
 		Unavailable = 1,
@@ -1839,14 +1839,14 @@ namespace XamCore.UIKit {
 	}
 
 	[Native]
-	[NoWatch]
-	[iOS(9,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	public enum UIPreviewActionStyle : nint {
 		Default, Selected, Destructive
 	}
 
-	[NoWatch]
-	[iOS (9,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Native]
 	public enum UIPressPhase : nint {
 		Began,
@@ -1856,8 +1856,8 @@ namespace XamCore.UIKit {
 		Cancelled
 	}
 
-	[NoWatch]
-	[iOS (9,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Native]
 	public enum UIPressType : nint {
 		UpArrow,
@@ -1869,16 +1869,16 @@ namespace XamCore.UIKit {
 		PlayPause
 	}
 
-	[NoWatch]
-	[iOS (9,0)] // introduced in Xcode 7.1 SDK (iOS 9.1 but hidden in 9.0)
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 9, 0)] // introduced in Xcode 7.1 SDK (iOS 9.1 but hidden in 9.0)
 	[Native]
 	public enum UITableViewCellFocusStyle : nint {
 		Default,
 		Custom
 	}
 
-	[NoWatch]
-	[iOS (10,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
 	public enum UIDisplayGamut : nint
 	{
@@ -1887,8 +1887,8 @@ namespace XamCore.UIKit {
 		P3
 	}
 
-	[NoWatch]
-	[iOS (10,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
 	public enum UITraitEnvironmentLayoutDirection : nint
 	{
@@ -1897,7 +1897,7 @@ namespace XamCore.UIKit {
 		RightToLeft = UIUserInterfaceLayoutDirection.RightToLeft
 	}
 
-	[TV (10,0), NoWatch, NoiOS]
+	[Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.iOS)]
 	[Native]
 	public enum UIUserInterfaceStyle : nint
 	{
@@ -1906,8 +1906,8 @@ namespace XamCore.UIKit {
 		Dark
 	}
 
-	[NoWatch]
-	[iOS (10,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
 	public enum UITextItemInteraction : nint
 	{
@@ -1916,8 +1916,8 @@ namespace XamCore.UIKit {
 		Preview
 	}
 
-	[NoWatch]
-	[iOS (10,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
 	public enum UIViewAnimatingState : nint
 	{
@@ -1926,8 +1926,8 @@ namespace XamCore.UIKit {
 		Stopped
 	}
 
-	[NoWatch]
-	[iOS (10,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
 	public enum UIViewAnimatingPosition : nint
 	{
@@ -1936,8 +1936,8 @@ namespace XamCore.UIKit {
 		Current
 	}
 
-	[NoWatch]
-	[iOS (10,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
 	public enum UITimingCurveType : nint
 	{
@@ -1947,9 +1947,9 @@ namespace XamCore.UIKit {
 		Composed
 	}
 
-	[NoWatch]
-	[NoTV]
-	[iOS(10,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
 	public enum UIAccessibilityHearingDeviceEar : nuint {
 		None = 0,
@@ -1958,8 +1958,8 @@ namespace XamCore.UIKit {
 		Both = Left | Right
 	}
 
-	[NoWatch]
-	[iOS(10,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
 	public enum UIAccessibilityCustomRotorDirection : nint
 	{
@@ -1968,12 +1968,12 @@ namespace XamCore.UIKit {
 	}
 
 #if XAMCORE_4_0
-	[NoTV]
+	[Unavailable (PlatformName.TvOS)]
 #else
 	// Xcode 8.2 beta 1 added __TVOS_PROHIBITED but we need to keep it for binary compatibility
-	[TV (10,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
 #endif
-	[iOS (10,0)][NoWatch]
+	[Introduced (PlatformName.iOS, 10, 0)][Unavailable (PlatformName.WatchOS)]
 	[Native]
 	[Flags]
 	public enum UICloudSharingPermissionOptions : nuint {
@@ -1984,24 +1984,24 @@ namespace XamCore.UIKit {
 		AllowReadWrite = 1 << 3
 	}
 
-	[iOS (10,0), TV (10,0), NoWatch]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS)]
 	[Native]
 	public enum UITextFieldDidEndEditingReason : nint {
 		Unknown = -1, // helper value (not in headers)
 		Committed,
-		[NoiOS]
+		[Unavailable (PlatformName.iOS)]
 		Cancelled
 	}
 
-	[iOS (10,3), TV (10,2), NoWatch]
+	[Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.TvOS, 10, 2), Unavailable (PlatformName.WatchOS)]
 	[Native]
 	public enum UIScrollViewIndexDisplayMode : nint {
 		Automatic,
 		AlwaysHidden
 	}
 
-	[NoWatch]
-	[TV (11,0), iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	public enum UIScrollViewContentInsetAdjustmentBehavior : nint
 	{
@@ -2011,7 +2011,7 @@ namespace XamCore.UIKit {
 		Always
 	}
 	
-	[iOS (11,0), TV (11,0), Watch (4,0)]
+	[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
 	[Native]
 	public enum UIAccessibilityContainerType : nint
 	{
@@ -2021,8 +2021,8 @@ namespace XamCore.UIKit {
 		Landmark
 	}
 	
-	[NoWatch]
-	[iOS (11,0), TV (11,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 	[Native]
 	public enum UITextSmartQuotesType : nint
 	{
@@ -2031,8 +2031,8 @@ namespace XamCore.UIKit {
 		Yes
 	}
 	
-	[NoWatch]
-	[iOS (11,0), TV (11,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 	[Native]
 	public enum UITextSmartDashesType : nint
 	{
@@ -2041,8 +2041,8 @@ namespace XamCore.UIKit {
 		Yes
 	}
 	
-	[NoWatch]
-	[iOS (11,0), TV (11,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 	[Native]
 	public enum UITextSmartInsertDeleteType : nint
 	{
@@ -2051,8 +2051,8 @@ namespace XamCore.UIKit {
 		Yes
 	}
 	
-	[NoWatch]
-	[iOS (11,0), TV (11,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 	[Native]
 	public enum UIAccessibilityCustomSystemRotorType : nint
 	{
@@ -2077,7 +2077,7 @@ namespace XamCore.UIKit {
 		Landmark
 	}
 	
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	public enum UIDropOperation : nuint
 	{
@@ -2087,7 +2087,7 @@ namespace XamCore.UIKit {
 		Move = 3
 	}
 
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	[Flags]
 	public enum UITextDragOptions : nint
@@ -2096,7 +2096,7 @@ namespace XamCore.UIKit {
 		StripTextColorFromPreviews = (1 << 0)
 	}
 	
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	public enum UITextDropAction : nuint
 	{
@@ -2105,7 +2105,7 @@ namespace XamCore.UIKit {
 		ReplaceAll
 	}
 	
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	public enum UITextDropProgressMode : nuint
 	{
@@ -2113,7 +2113,7 @@ namespace XamCore.UIKit {
 		Custom
 	}
 	
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	public enum UITextDropEditability : nuint
 	{
@@ -2122,7 +2122,7 @@ namespace XamCore.UIKit {
 		Yes
 	}
 
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	public enum UICollectionViewReorderingCadence : nint
 	{
@@ -2131,7 +2131,7 @@ namespace XamCore.UIKit {
 		Slow
 	}
 
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	public enum UICollectionViewDropIntent : nint
 	{
@@ -2140,7 +2140,7 @@ namespace XamCore.UIKit {
 		InsertIntoDestinationIndexPath
 	}
 	
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	public enum UICollectionViewCellDragState : nint
 	{
@@ -2149,8 +2149,8 @@ namespace XamCore.UIKit {
 		Dragging
 	}
 	
-	[NoWatch]
-	[NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	public enum UIImagePickerControllerImageUrlExportPreset : nint
 	{
@@ -2158,8 +2158,8 @@ namespace XamCore.UIKit {
 		Current
 	}
 	
-	[NoWatch]
-	[NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	public enum UIContextualActionStyle : nint
 	{
@@ -2167,7 +2167,7 @@ namespace XamCore.UIKit {
 		Destructive
 	}
 	
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	public enum UITableViewCellDragState : nint
 	{
@@ -2176,8 +2176,8 @@ namespace XamCore.UIKit {
 		Dragging
 	}
 	
-	[NoWatch]
-	[TV (11,0), iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	public enum UITableViewSeparatorInsetReference : nint
 	{
@@ -2185,7 +2185,7 @@ namespace XamCore.UIKit {
 		AutomaticInsets
 	}
 	
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	public enum UITableViewDropIntent : nint
 	{
@@ -2195,8 +2195,8 @@ namespace XamCore.UIKit {
 		Automatic
 	}
 	
-	[NoWatch]
-	[TV (11,0), iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	public enum UISplitViewControllerPrimaryEdge : nint
 	{
@@ -2204,7 +2204,7 @@ namespace XamCore.UIKit {
 		Trailing
 	}
 	
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	public enum UIDropSessionProgressIndicatorStyle : nuint
 	{
@@ -2212,7 +2212,7 @@ namespace XamCore.UIKit {
 		Default
 	}
 	
-	[NoWatch, NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	public enum UISpringLoadedInteractionEffectState : nint
 	{
@@ -2222,8 +2222,8 @@ namespace XamCore.UIKit {
 		Activated
 	}
 
-	[NoWatch]
-	[NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	public enum UIDocumentBrowserImportMode : nuint
 	{
@@ -2232,8 +2232,8 @@ namespace XamCore.UIKit {
 		Move
 	}
 	
-	[NoWatch]
-	[NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	public enum UIDocumentBrowserUserInterfaceStyle : nuint
 	{
@@ -2242,8 +2242,8 @@ namespace XamCore.UIKit {
 		Dark
 	}
 	
-	[NoWatch]
-	[NoTV, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	[Flags]
 	public enum UIDocumentBrowserActionAvailability : nint
@@ -2252,8 +2252,8 @@ namespace XamCore.UIKit {
 		NavigationBar = 1 << 1
 	}
 
-	[NoWatch, NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	public enum UITextDropPerformer : nuint
 	{
@@ -2261,8 +2261,8 @@ namespace XamCore.UIKit {
 		Delegate,
 	}
 
-	[NoWatch]
-	[iOS (11,0), TV (11,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 	[Native]
 	public enum UINavigationItemLargeTitleDisplayMode : nint
 	{
@@ -2271,8 +2271,8 @@ namespace XamCore.UIKit {
 		Never,
 	}
 
-	[NoWatch]
-	[iOS (11,0), TV (11,0)]
+	[Unavailable (PlatformName.WatchOS)]
+	[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 	[Native]
 	public enum UICollectionViewFlowLayoutSectionInsetReference : nint
 	{
@@ -2281,8 +2281,8 @@ namespace XamCore.UIKit {
 		LayoutMargins,
 	}
 
-	[NoWatch][NoTV]
-	[iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS)][Unavailable (PlatformName.TvOS)]
+	[Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	public enum UIPreferredPresentationStyle : nint
 	{
@@ -2291,7 +2291,7 @@ namespace XamCore.UIKit {
 		Attachment,
 	}
 
-	[NoWatch, NoTV, NoMac, iOS (11,0)]
+	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0)]
 	[Native]
 	[ErrorDomain ("UIDocumentBrowserErrorDomain")]
 	public enum UIDocumentBrowserErrorCode : nint

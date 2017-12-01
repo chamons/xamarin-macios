@@ -13,7 +13,7 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.Contacts {
 #if XAMCORE_2_0 // The Contacts framework uses generics heavily, which is only supported in Unified (for now at least)
-	[iOS (9,0)][Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[Flags]
 	public enum CNContactOptions : long {
 		None						= 0,

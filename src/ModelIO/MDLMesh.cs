@@ -78,13 +78,13 @@ namespace XamCore.ModelIO {
 
 		// Note: we turn these constructors into static constructors because we don't want to lose the shape name. Also, the signatures of these constructors differ so it would not be possible to use an enum to differentiate the shapes.
 
-		[iOS (10,0)][TV (10,0)][Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 		public static MDLMesh CreateBox (Vector3 dimensions, Vector3i segments, MDLGeometryType geometryType, bool inwardNormals, IMDLMeshBufferAllocator allocator)
 		{
 			return CreateBox (dimensions, segments, geometryType, inwardNormals, allocator, MDLMeshVectorType.Dimensions);
 		}
 
-		[iOS (10,0)][TV (10,0)][Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 		public static MDLMesh CreateBox (Vector3 vector, Vector3i segments, MDLGeometryType geometryType, bool inwardNormals, IMDLMeshBufferAllocator allocator, MDLMeshVectorType type = MDLMeshVectorType.Dimensions)
 		{
 			switch (type) {
@@ -97,43 +97,43 @@ namespace XamCore.ModelIO {
 			}
 		}
 
-		[iOS (10,0)][TV (10,0)][Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 		public static MDLMesh CreateSphere (Vector3 dimensions, Vector2i segments, MDLGeometryType geometryType, bool inwardNormals, IMDLMeshBufferAllocator allocator)
 		{
 			return new MDLMesh (dimensions, segments, inwardNormals, geometryType, allocator, null, null, null);
 		}
 
-		[iOS (10,0)][TV (10,0)][Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 		public static MDLMesh CreateHemisphere (Vector3 dimensions, Vector2i segments, MDLGeometryType geometryType, bool inwardNormals, bool cap, IMDLMeshBufferAllocator allocator)
 		{
 			return new MDLMesh (dimensions, segments, inwardNormals, geometryType, allocator, null, cap, false);
 		}
 
-		[iOS (10,0)][TV (10,0)][Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 		public static MDLMesh CreateCylinder (Vector3 extent, Vector2i segments, bool inwardNormals, bool topCap, bool bottomCap, MDLGeometryType geometryType, IMDLMeshBufferAllocator allocator)
 		{
 			return new MDLMesh (extent, segments, inwardNormals, topCap, bottomCap, geometryType, allocator);
 		}
 
-		[iOS (10,0)][TV (10,0)][Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 		public static MDLMesh CreateCapsule (Vector3 dimensions, Vector2i segments, MDLGeometryType geometryType, bool inwardNormals, int hemisphereSegments, IMDLMeshBufferAllocator allocator)
 		{
 			return new MDLMesh (dimensions, segments, inwardNormals, geometryType, allocator, hemisphereSegments, null, null);
 		}
 
-		[iOS (10,0)][TV (10,0)][Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 		public static MDLMesh CreateCone (Vector3 dimensions, Vector2i segments, MDLGeometryType geometryType, bool inwardNormals, bool cap, IMDLMeshBufferAllocator allocator)
 		{
 			return new MDLMesh (dimensions, segments, inwardNormals, geometryType, allocator, null, cap, true);
 		}
 
-		[iOS (10,0)][TV (10,0)][Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 		public static MDLMesh CreatePlane (Vector3 extent, Vector2i segments, MDLGeometryType geometryType, IMDLMeshBufferAllocator allocator)
 		{
 			return new MDLMesh (extent, segments, geometryType, allocator);
 		}
 
-		[iOS (10,0)][TV (10,0)][Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 		public static MDLMesh CreateIcosahedron (Vector3 extent, bool inwardNormals, MDLGeometryType geometryType, IMDLMeshBufferAllocator allocator)
 		{
 			return new MDLMesh (extent, inwardNormals, geometryType, allocator);

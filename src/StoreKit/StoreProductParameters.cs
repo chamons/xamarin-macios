@@ -35,7 +35,7 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.StoreKit {
 
-	[iOS (6,0)]
+	[Introduced (PlatformName.iOS, 6, 0)]
 	public class StoreProductParameters : DictionaryContainer
 	{
 #if !COREBUILD

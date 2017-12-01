@@ -9,7 +9,7 @@ namespace XamCore.UIKit {
 
 	public partial class UIPopoverController {
 
-		[iOS (5,0)]
+		[Introduced (PlatformName.iOS, 5, 0)]
 		// cute helper to avoid using `Class` in the public API
 		public virtual Type PopoverBackgroundViewType {
 			get {

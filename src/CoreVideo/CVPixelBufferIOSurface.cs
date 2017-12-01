@@ -16,13 +16,13 @@ using XamCore.ObjCRuntime;
 namespace XamCore.CoreVideo {
 	public partial class CVPixelBuffer : CVImageBuffer {
 
-		[iOS (11,0), Mac (10,13, onlyOn64:true), TV (11,0), NoWatch]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		[DllImport (Constants.CoreVideoLibrary)]
 		extern static IntPtr /* IOSurfaceRef */ CVPixelBufferGetIOSurface (
 			/* CVPixelBufferRef CV_NULLABLE */ IntPtr pixelBuffer
 		);
 
-		[iOS (11,0), Mac (10,13, onlyOn64:true), TV (11,0), NoWatch]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		public XamCore.IOSurface.IOSurface GetIOSurface ()
 		{
 			if (Handle == IntPtr.Zero)
@@ -35,7 +35,7 @@ namespace XamCore.CoreVideo {
 			return Runtime.GetINativeObject <XamCore.IOSurface.IOSurface> (ret, false);
 		}
 
-		[iOS (11,0), Mac (10,13, onlyOn64:true), TV (11,0), NoWatch]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		[DllImport (Constants.CoreVideoLibrary)]
 		extern static CVReturn /* IOSurfaceRef */ CVPixelBufferCreateWithIOSurface (
 			/* CFAllocatorRef CV_NULLABLE */ IntPtr allocator,
@@ -44,7 +44,7 @@ namespace XamCore.CoreVideo {
 			/* CVPixelBufferRef CV_NULLABLE * CV_NONNULL */ out IntPtr pixelBufferOut
 		);
 
-		[iOS (11,0), Mac (10,13, onlyOn64:true), TV (11,0), NoWatch]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		public static CVPixelBuffer Create (XamCore.IOSurface.IOSurface surface, out CVReturn result, CVPixelBufferAttributes pixelBufferAttributes = null)
 		{
 			if (surface == null)
@@ -64,7 +64,7 @@ namespace XamCore.CoreVideo {
 			return new CVPixelBuffer (pixelBufferPtr, true);
 		}
 
-		[iOS (11,0), Mac (10,13, onlyOn64:true), TV (11,0), NoWatch]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		public static CVPixelBuffer Create (XamCore.IOSurface.IOSurface surface, CVPixelBufferAttributes pixelBufferAttributes = null)
 		{
 			CVReturn result;

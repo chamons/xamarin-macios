@@ -18,10 +18,10 @@ using XamCore.ObjCRuntime;
 namespace XamCore.MapKit {
 
 	// NSUInteger -> MKDirectionsTypes.h
-	[NoWatch]
+	[Unavailable (PlatformName.WatchOS)]
 	[Native]
-	[TV (9,2)]
-	[iOS (7,0)]
+	[Introduced (PlatformName.TvOS, 9, 2)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	public enum MKDirectionsTransportType : nuint_compat_int {
 		Automobile = 1 << 0,
 		Walking    = 1 << 1,
@@ -30,8 +30,8 @@ namespace XamCore.MapKit {
 	}
 
 	// NSUInteger -> MKTypes.h
-	[TV (9,2)]
-	[NoWatch]
+	[Introduced (PlatformName.TvOS, 9, 2)]
+	[Unavailable (PlatformName.WatchOS)]
 	[Native]
 	public enum MKMapType : nuint_compat_int {
 		Standard = 0,
@@ -39,14 +39,14 @@ namespace XamCore.MapKit {
 		Hybrid,
 		SatelliteFlyover,
 		HybridFlyover,
-		[iOS (11,0)][TV (11,0)][Mac (10,13, onlyOn64: true)]
+		[Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.TvOS, 11, 0)][Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 		MutedStandard,
 	}
 
 	// NSUInteger -> MKDistanceFormatter.h
 	[Native]
-	[TV (9,2)]
-	[iOS (7,0)]
+	[Introduced (PlatformName.TvOS, 9, 2)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	public enum MKDistanceFormatterUnits : nuint_compat_int {
 		Default,
 		Metric,
@@ -56,8 +56,8 @@ namespace XamCore.MapKit {
 
 	// NSUInteger -> MKDistanceFormatter.h
 	[Native]
-	[TV (9,2)]
-	[iOS (7,0)]
+	[Introduced (PlatformName.TvOS, 9, 2)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	public enum MKDistanceFormatterUnitStyle : nuint_compat_int {
 		Default = 0,
 		Abbreviated,
@@ -65,18 +65,18 @@ namespace XamCore.MapKit {
 	}
 
 	// NSInteger -> MKMapView.h
-	[TV (9,2)]
-	[NoWatch]
+	[Introduced (PlatformName.TvOS, 9, 2)]
+	[Unavailable (PlatformName.WatchOS)]
 	[Native]
-	[iOS (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	public enum MKOverlayLevel : nint {
 		AboveRoads = 0,
 		AboveLabels,
 	}
 
 	// NSUInteger -> MKTypes.h
-	[TV (9,2)]
-	[NoWatch]
+	[Introduced (PlatformName.TvOS, 9, 2)]
+	[Unavailable (PlatformName.WatchOS)]
 	[Native]
 	[ErrorDomain ("MKErrorDomain")]
 	public enum MKErrorCode : nuint_compat_int {
@@ -88,52 +88,52 @@ namespace XamCore.MapKit {
 	}
 
 	// NSUInteger -> MKTypes.h
-	[NoTV]
-	[NoWatch]
+	[Unavailable (PlatformName.TvOS)]
+	[Unavailable (PlatformName.WatchOS)]
 	[Native]
 	public enum MKAnnotationViewDragState : nuint_compat_int {
 		None, Starting, Dragging, Canceling, Ending
 	}
 	
 	// NSUInteger -> MKTypes.h
-	[NoTV]
-	[NoWatch]
+	[Unavailable (PlatformName.TvOS)]
+	[Unavailable (PlatformName.WatchOS)]
 	[Native]
-	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use 'MKPinAnnotationView.PinTintColor' instead.")]
+	[Deprecated (PlatformName.iOS, 9, 0, message: "Use 'MKPinAnnotationView.PinTintColor' instead.")]
 	public enum MKPinAnnotationColor : nuint_compat_int {
 		Red, Green, Purple
 	}
 
 	// NSUInteger -> MKTypes.h
-	[TV (9,2)]
-	[NoWatch]
+	[Introduced (PlatformName.TvOS, 9, 2)]
+	[Unavailable (PlatformName.WatchOS)]
 	[Native]
 	public enum MKUserTrackingMode : nuint_compat_int {
 		None, Follow, FollowWithHeading
 	}
 
-	[TV (9,2)][NoWatch][iOS (9,3)]
+	[Introduced (PlatformName.TvOS, 9, 2)][Unavailable (PlatformName.WatchOS)][Introduced (PlatformName.iOS, 9, 3)]
 	[Native]
 	public enum MKSearchCompletionFilterType : nint {
 		AndQueries = 0,
 		Only
 	}
 
-	[TV (11,0)][NoWatch][iOS (11,0)][Mac (10,13, onlyOn64: true)]
+	[Introduced (PlatformName.TvOS, 11, 0)][Unavailable (PlatformName.WatchOS)][Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[Native]
 	public enum MKAnnotationViewCollisionMode : nint {
 		Rectangle,
 		Circle,
 	}
 
-	[TV (11,0)][NoWatch][iOS (11,0)][NoMac]
+	[Introduced (PlatformName.TvOS, 11, 0)][Unavailable (PlatformName.WatchOS)][Introduced (PlatformName.iOS, 11, 0)][Unavailable (PlatformName.MacOSX)]
 	[Native]
 	public enum MKScaleViewAlignment : nint {
 		Leading,
 		Trailing,
 	}
 
-	[TV (11,0)][NoWatch][iOS (11,0)][Mac (10,13, onlyOn64: true)]
+	[Introduced (PlatformName.TvOS, 11, 0)][Unavailable (PlatformName.WatchOS)][Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
 	[Native]
 	public enum MKFeatureVisibility : nint {
 		Adaptive,

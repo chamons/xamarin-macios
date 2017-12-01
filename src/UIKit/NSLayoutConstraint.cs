@@ -22,13 +22,13 @@ namespace XamCore.UIKit {
 			return Create ((INativeObject) view1, attribute1, relation, view2, attribute2, multiplier, constant);
 		}
 
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		public NSLayoutAnchor<AnchorType> FirstAnchor<AnchorType> () where AnchorType : NSObject
 		{
 			return Runtime.GetNSObject<NSLayoutAnchor<AnchorType>> (_FirstAnchor ());
 		}
 
-		[iOS (10, 0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		public NSLayoutAnchor<AnchorType> SecondAnchor<AnchorType> () where AnchorType : NSObject
 		{
 			return Runtime.GetNSObject<NSLayoutAnchor<AnchorType>> (_SecondAnchor ());

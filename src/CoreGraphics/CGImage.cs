@@ -428,12 +428,12 @@ namespace XamCore.CoreGraphics {
 			}
 		}
 
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		[DllImport (Constants.CoreGraphicsLibrary)]
 		static extern IntPtr /* CFStringRef */ CGImageGetUTType (/* __nullable CGImageRef* */ IntPtr image);
 
 		// we return an NSString, instead of a string, as all our UTType constants are NSString (see mobilecoreservices.cs)
-		[iOS (9,0)][Mac (10,11)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 		public NSString UTType {
 			get {
 				var h = CGImageGetUTType (handle);

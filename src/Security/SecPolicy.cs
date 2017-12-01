@@ -17,7 +17,7 @@ namespace XamCore.Security {
 
 	// untyped enum in Security.framework/Headers/SecPolicy.h but the API use CFOptionFlags
 	// which is defined as in CFBase.h (do not trust Apple web documentation)
-	[iOS (7,0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[Flags]
 	[Native]
 	public enum SecRevocation : nuint_compat_int {
@@ -32,33 +32,33 @@ namespace XamCore.Security {
 
 	public partial class SecPolicy {
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static IntPtr /* __nullable CFDictionaryRef */ SecPolicyCopyProperties (IntPtr /* SecPolicyRef */ policyRef);
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		public NSDictionary GetProperties ()
 		{
 			var dict = SecPolicyCopyProperties (Handle);
 			return Runtime.GetNSObject<NSDictionary> (dict, true);
 		}
 
-		[Mac (10,9)]
+		[Introduced (PlatformName.MacOSX, 10, 9)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static IntPtr /* __nullable SecPolicyRef */ SecPolicyCreateRevocation (/* CFOptionFlags */ nuint revocationFlags);
 
-		[Mac (10,9)][iOS (7,0)]
+		[Introduced (PlatformName.MacOSX, 10, 9)][Introduced (PlatformName.iOS, 7, 0)]
 		static public SecPolicy CreateRevocationPolicy (SecRevocation revocationFlags)
 		{
 			var policy = SecPolicyCreateRevocation ((nuint)(ulong) revocationFlags);
 			return policy == IntPtr.Zero ? null : new SecPolicy (policy, true);
 		}
 
-		[Mac (10,9)][iOS (7,0)]
+		[Introduced (PlatformName.MacOSX, 10, 9)][Introduced (PlatformName.iOS, 7, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static IntPtr /* __nullable SecPolicyRef */ SecPolicyCreateWithProperties (IntPtr /* CFTypeRef */ policyIdentifier, IntPtr /* CFDictionaryRef */ properties);
 
-		[Mac (10,9)][iOS (7,0)]
+		[Introduced (PlatformName.MacOSX, 10, 9)][Introduced (PlatformName.iOS, 7, 0)]
 		static public SecPolicy CreatePolicy (NSString policyIdentifier, NSDictionary properties)
 		{
 			if (policyIdentifier == null)

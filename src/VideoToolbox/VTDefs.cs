@@ -129,9 +129,9 @@ namespace XamCore.VideoToolbox {
 		H263Profile0Level10,
 		H263Profile0Level45,
 		H263Profile3Level45,
-		[Mac (10,13), iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		HevcMainAutoLevel,
-		[Mac (10,13), iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		HevcMain10AutoLevel,
 	}
 
@@ -235,7 +235,7 @@ namespace XamCore.VideoToolbox {
 		}
 	}
 
-	[Mac (10,8), iOS (9,0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 9, 0)]
 	public enum VTScalingMode {
 		Unset,
 		Normal,
@@ -244,7 +244,7 @@ namespace XamCore.VideoToolbox {
 		Trim
 	}
 
-	[Mac (10,8), iOS (9,0)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 9, 0)]
 	public enum VTDownsamplingMode {
 		Unset,
 		Decimate,

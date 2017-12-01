@@ -20,13 +20,13 @@ namespace XamCore.AppKit
 				Handle = InitWithSize (size);
 		}
 
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		public static NSTextContainer FromSize (CGSize size)
 		{
 			return new NSTextContainer (size, false);
 		}
 
-		[Availability (Deprecated = Platform.Mac_10_11, Message = "Use NSTextContainer.FromSize instead.")]
+		[Deprecated (PlatformName.MacOSX, 10, 11, message: "Use NSTextContainer.FromSize instead.")]
 		public static NSTextContainer FromContainerSize (CGSize containerSize)
 		{
 			return new NSTextContainer (containerSize, true);

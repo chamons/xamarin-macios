@@ -92,7 +92,7 @@ namespace XamCore.Foundation {
 			}
 		}
 		
-		[Mac(10,11),iOS(9,0)]
+		[Introduced (PlatformName.MacOSX, 10, 11), Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("trueExpression")]
 		public virtual NSExpression TrueExpression {
 			get {
@@ -105,7 +105,7 @@ namespace XamCore.Foundation {
 			}
 		}
 
-		[Mac(10,11),iOS(9,0)]
+		[Introduced (PlatformName.MacOSX, 10, 11), Introduced (PlatformName.iOS, 9, 0)]
 		[Export ("falseExpression")]
 		public virtual NSExpression FalseExpression {
 			get {

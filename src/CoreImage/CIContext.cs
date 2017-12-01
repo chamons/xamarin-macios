@@ -81,7 +81,7 @@ namespace XamCore.CoreImage {
 			}
 		}
 
-		[Mac (10,12)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
 		public bool? PriorityRequestLow {
 			get {
 				return GetBoolValue (CIContext.PriorityRequestLow);
@@ -100,7 +100,7 @@ namespace XamCore.CoreImage {
 			}
 		}
 
-		[iOS (7,0)]
+		[Introduced (PlatformName.iOS, 7, 0)]
 		public bool? OutputPremultiplied {
 			get {
 				return GetBoolValue (CIContext.OutputPremultiplied);
@@ -110,7 +110,7 @@ namespace XamCore.CoreImage {
 			}
 		}
 
-		[iOS (10,0)][Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
 		public bool? CacheIntermediates {
 			get {
 				return GetBoolValue (CIContext.CacheIntermediates);
@@ -123,7 +123,7 @@ namespace XamCore.CoreImage {
 	
 	public partial class CIContext {
 
-		[iOS (8,0)]
+		[Introduced (PlatformName.iOS, 8, 0)]
 		public CIContext (CIContextOptions options) :
 			this (options?.Dictionary)
 		{

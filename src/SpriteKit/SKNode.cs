@@ -18,7 +18,7 @@ namespace XamCore.SpriteKit
 #if XAMCORE_2_0 || !MONOMAC
 	public partial class SKNode : IEnumerable, IEnumerable<SKNode>
 	{
-		[iOS (8,0), Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
 		public static T FromFile<T> (string file) where T : SKNode
 		{
 			IntPtr handle;

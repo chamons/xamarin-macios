@@ -112,11 +112,11 @@ namespace XamCore.ModelIO {
 #if !COREBUILD
 	public static class MDLVertexFormatExtensions {
 		
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[DllImport (Constants.MetalKitLibrary)]
 		static extern /* MTLVertexFormat */ nuint MTKMetalVertexFormatFromModelIO (/* MTLVertexFormat */ nuint vertexFormat);
 
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		public static MTLVertexFormat ToMetalVertexFormat (this MDLVertexFormat vertexFormat)
 		{
 			nuint mtlVertexFormat = MTKMetalVertexFormatFromModelIO ((nuint)(ulong)vertexFormat);

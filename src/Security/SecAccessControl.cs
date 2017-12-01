@@ -31,28 +31,28 @@ namespace XamCore.Security {
 #endif
 		UserPresence        = 1 << 0,
 
-		[iOS (9,0)][Mac (10,12,1)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 12, 1)]
 		TouchIDAny          = 1 << 1,
 
-		[iOS (9,0)][Mac (10,12,1)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 12, 1)]
 		TouchIDCurrentSet   = 1 << 3,
 
 		DevicePasscode      = 1 << 4,
 
-		[iOS (9,0)][Mac (10,12,1)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 12, 1)]
 		Or                  = 1 << 14,
 
-		[iOS (9,0)][Mac (10,12,1)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 12, 1)]
 		And                 = 1 << 15,
 
-		[iOS (9,0)][Mac (10,12,1)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 12, 1)]
 		PrivateKeyUsage     = 1 << 30,
 
-		[iOS (9,0)][Mac (10,12,1)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 12, 1)]
 		ApplicationPassword = 1 << 31,
 	}
 	
-	[Mac (10,10)][iOS (8,0)]
+	[Introduced (PlatformName.MacOSX, 10, 10)][Introduced (PlatformName.iOS, 8, 0)]
 	public partial class SecAccessControl : INativeObject, IDisposable {
 
 		private IntPtr handle;
@@ -111,7 +111,7 @@ namespace XamCore.Security {
 		public SecAccessible Accessible { get; private set; }
 		public SecAccessControlCreateFlags Flags { get; private set; }
 
-		[Mac (10,10)][iOS (8,0)]
+		[Introduced (PlatformName.MacOSX, 10, 10)][Introduced (PlatformName.iOS, 8, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static IntPtr SecAccessControlCreateWithFlags (IntPtr allocator, /* CFTypeRef */ IntPtr protection, /* SecAccessControlCreateFlags */ nint flags, out IntPtr error);
 #endif

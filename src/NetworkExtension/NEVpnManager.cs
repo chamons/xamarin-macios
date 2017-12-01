@@ -16,7 +16,7 @@ using XamCore.Security;
 namespace XamCore.NetworkExtension {
 	public partial class NEVpnManager {
 
-		[Mac (10,11)]
+		[Introduced (PlatformName.MacOSX, 10, 11)]
 		public void SetAuthorization (Authorization authorization)
 		{
 			if (authorization == null)

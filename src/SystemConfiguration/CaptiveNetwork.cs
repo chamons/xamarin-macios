@@ -55,13 +55,13 @@ namespace XamCore.SystemConfiguration {
 		}
 
 #endif
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.SystemConfigurationLibrary)]
 		extern static IntPtr /* CFArrayRef __nullable */ CNCopySupportedInterfaces ();
 		
 #if !XAMCORE_2_0
 		[Obsolete ("Replaced by 'TryGetSupportedInterfaces'.")]
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		static public string[] GetSupportedInterfaces ()
 		{
 			string[] result;
@@ -70,7 +70,7 @@ namespace XamCore.SystemConfiguration {
 		}
 #endif
 		
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		static public StatusCode TryGetSupportedInterfaces (out string[] supportedInterfaces)
 		{
 			IntPtr array = CNCopySupportedInterfaces ();
@@ -84,15 +84,15 @@ namespace XamCore.SystemConfiguration {
 			return StatusCode.OK;
 		}
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.SystemConfigurationLibrary)]
 		extern static bool CNMarkPortalOffline (IntPtr /* CFStringRef __nonnull */ interfaceName);
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.SystemConfigurationLibrary)]
 		extern static bool CNMarkPortalOnline (IntPtr /* CFStringRef __nonnull */ interfaceName);
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		static public bool MarkPortalOnline (string iface)
 		{
 			using (var nss = new NSString (iface)) {
@@ -100,7 +100,7 @@ namespace XamCore.SystemConfiguration {
 			}
 		}
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		static public bool MarkPortalOffline (string iface)
 		{
 			using (var nss = new NSString (iface)) {
@@ -108,11 +108,11 @@ namespace XamCore.SystemConfiguration {
 			}
 		}
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		[DllImport (Constants.SystemConfigurationLibrary)]
 		extern static bool CNSetSupportedSSIDs (IntPtr /* CFArrayRef __nonnull */ ssidArray);
 
-		[Mac (10,8)]
+		[Introduced (PlatformName.MacOSX, 10, 8)]
 		static public bool SetSupportedSSIDs (string [] ssids)
 		{
 			using (var arr = NSArray.FromStrings (ssids)) {

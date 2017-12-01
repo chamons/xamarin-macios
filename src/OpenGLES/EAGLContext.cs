@@ -21,15 +21,15 @@ namespace XamCore.OpenGLES
 		}
 #endif
 
-		[iOS (10,0)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		public virtual bool PresentRenderBuffer (nuint target, double presentationTime)
 		{
 			return _PresentRenderbufferAtTime (target, presentationTime);
 		}
 
-		[iOS (10,3)]
-		[TV (10,2)]
+		[Introduced (PlatformName.iOS, 10, 3)]
+		[Introduced (PlatformName.TvOS, 10, 2)]
 		public virtual bool PresentRenderBuffer (nuint target, double presentationTime, PresentationMode mode)
 		{
 			switch (mode) {

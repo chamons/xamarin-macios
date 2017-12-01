@@ -20,7 +20,7 @@ using XamCore.Metal;
 
 namespace XamCore.CoreVideo {
 
-	[iOS (8,0)]
+	[Introduced (PlatformName.iOS, 8, 0)]
 	public class CVMetalTexture : INativeObject, IDisposable {
 
 		internal IntPtr handle;

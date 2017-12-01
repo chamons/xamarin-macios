@@ -236,12 +236,12 @@ namespace XamCore.CoreMedia {
 			return CMTimeMultiplyByFloat64 (time, multiplier);
 		}
 
-		[iOS (7,1)][Mac (10,10)]
-		[DllImport(Constants.CoreMediaLibrary)]
+		[Introduced (PlatformName.iOS, 7, 1)][Introduced (PlatformName.MacOSX, 10, 10)]
+		[DllImport (Constants.CoreMediaLibrary)]
 		extern static CMTime CMTimeMultiplyByRatio (CMTime time, /* int32_t */ int multiplier, /* int32_t */ int divisor);
 
-		[iOS (7,1)]
-		[Availability (Platform.Mac_10_10)]
+		[Introduced (PlatformName.iOS, 7, 1)]
+		[Introduced (PlatformName.MacOSX, 10, 10)]
 		public static CMTime Multiply (CMTime time, int multiplier, int divisor)
 		{
 			return CMTimeMultiplyByRatio (time, multiplier, divisor);

@@ -19,7 +19,7 @@ namespace XamCore.AppKit {
 			set { base.Cell = value; }
 		}
 
-		[Mac (10,12)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
 		public static NSSegmentedControl FromLabels (string[] labels, NSSegmentSwitchTracking trackingMode, NSAction action)
 		{
 			var dispatcher = new NSActionDispatcher (action);
@@ -28,7 +28,7 @@ namespace XamCore.AppKit {
 			return control;
 		}
 
-		[Mac (10,12)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
 		public static NSSegmentedControl FromImages (NSImage[] images, NSSegmentSwitchTracking trackingMode, NSAction action)
 		{
 			var dispatcher = new NSActionDispatcher (action);

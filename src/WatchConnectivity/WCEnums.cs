@@ -14,7 +14,7 @@ using XamCore.Foundation;
 namespace XamCore.WatchConnectivity {
 
 	// NSInteger -> WCError.h
-	[iOS (9,0)]
+	[Introduced (PlatformName.iOS, 9, 0)]
 	[Native]
 	public enum WCErrorCode : nint {
 		GenericError = 7001,
@@ -37,7 +37,7 @@ namespace XamCore.WatchConnectivity {
 		TransferTimedOut = 7017,
 	}
 
-	[Watch (2,2)][iOS (9,3)]
+	[Introduced (PlatformName.WatchOS, 2, 2)][Introduced (PlatformName.iOS, 9, 3)]
 	[Native]
 	public enum WCSessionActivationState : nint {
 		NotActivated = 0,

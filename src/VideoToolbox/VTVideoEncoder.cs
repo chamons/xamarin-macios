@@ -13,7 +13,7 @@ using XamCore.Foundation;
 using XamCore.CoreMedia;
 
 namespace XamCore.VideoToolbox {
-	[Mac (10,8), iOS (8,0), TV (10,2)]
+	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
 	public class VTVideoEncoder {
 
 		[DllImport (Constants.VideoToolboxLibrary)]
@@ -58,7 +58,7 @@ namespace XamCore.VideoToolbox {
 			EncoderName = encoderName;
 		}
 
-		[Mac (10,13), iOS (11,0), TV (11,0)]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 		[DllImport (Constants.VideoToolboxLibrary)]
 		static extern /* OSStatus */ VTStatus VTCopySupportedPropertyDictionaryForEncoder (
 			/* int32_t */ int width,
@@ -93,7 +93,7 @@ namespace XamCore.VideoToolbox {
 		}
 	}
 
-	[Mac (10,13), iOS (11,0), TV (11,0)]
+	[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
 	public class VTSupportedEncoderProperties {
 		public string EncoderId { get; set; }
 		public NSDictionary SupportedProperties { get; set; }

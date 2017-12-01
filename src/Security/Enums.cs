@@ -398,27 +398,27 @@ namespace XamCore.Security {
 		None      = 0,
 		PKCS1     = 1,
 
-		[NoMac][TV (10,0)][Watch (3,0)]
+		[Unavailable (PlatformName.MacOSX)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.WatchOS, 3, 0)]
 		OAEP      = 2,
 
-		[iOS (8,3)]
+		[Introduced (PlatformName.iOS, 8, 3)]
 		Raw       = 0x4000,
 
-		[Obsolete ("Don't use hash algorithm.")][NoTV][NoWatch]
+		[Obsolete ("Don't use hash algorithm.")][Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 		PKCS1MD2  = 0x8000,
 
-		[Obsolete ("Don't use hash algorithm.")][NoTV][NoWatch]
+		[Obsolete ("Don't use hash algorithm.")][Unavailable (PlatformName.TvOS)][Unavailable (PlatformName.WatchOS)]
 		PKCS1MD5  = 0x8001,
 
 		PKCS1SHA1 = 0x8002,
 
-		[NoMac]
+		[Unavailable (PlatformName.MacOSX)]
 		PKCS1SHA224 = 0x8003,
-		[NoMac]
+		[Unavailable (PlatformName.MacOSX)]
 		PKCS1SHA256 = 0x8004,
-		[NoMac]
+		[Unavailable (PlatformName.MacOSX)]
 		PKCS1SHA384 = 0x8005,
-		[NoMac]
+		[Unavailable (PlatformName.MacOSX)]
 		PKCS1SHA512 = 0x8006,
 	}
 
@@ -428,7 +428,7 @@ namespace XamCore.Security {
 		Invalid,
 		Proceed,
 
-		[Availability (Deprecated = Platform.iOS_7_0 | Platform.Mac_10_9)]
+		[Deprecated (PlatformName.iOS, 7, 0), Deprecated (PlatformName.MacOSX, 10, 9)]
 		Confirm,
 		Deny,
 		Unspecified,
@@ -438,7 +438,7 @@ namespace XamCore.Security {
 	}
 
 	// convenience enum mapping to kSecUseAuthenticationUI* fields
-	[iOS (9,0)][Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	public enum SecAuthenticationUI {
 		NotSet = -1,
 
@@ -452,7 +452,7 @@ namespace XamCore.Security {
 		Skip
 	}
 
-	[iOS (9,0)][NoMac]
+	[Introduced (PlatformName.iOS, 9, 0)][Unavailable (PlatformName.MacOSX)]
 	public enum SecTokenID {
 		None = 0,
 
@@ -460,7 +460,7 @@ namespace XamCore.Security {
 		SecureEnclave,
 	}
 
-	[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+	[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 	[Native]
 	public enum SecKeyOperationType : nint {
 		Sign = 0,

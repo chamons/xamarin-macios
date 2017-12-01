@@ -53,11 +53,11 @@ namespace XamCore.AudioToolbox {
 #endif
 	public class SoundBank {
 
-		[iOS (7,0)] // 10.5
+		[Introduced (PlatformName.iOS, 7, 0)] // 10.5
 		[DllImport (Constants.AudioToolboxLibrary)]
 		extern static OSStatus CopyNameFromSoundBank (/* CFURLRef */ IntPtr inURL, /* CFStringRef */ ref IntPtr outName);
 
-		[iOS (7,0)] // 10.5
+		[Introduced (PlatformName.iOS, 7, 0)] // 10.5
 		public static string GetName (NSUrl url)
 		{
 			if (url == null)
@@ -73,11 +73,11 @@ namespace XamCore.AudioToolbox {
 			return (error != 0) ? null : result;
 		}
 
-		[iOS (7,0)][Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 		[DllImport (Constants.AudioToolboxLibrary)]
 		extern static OSStatus CopyInstrumentInfoFromSoundBank (/* CFURLRef */ IntPtr inURL, /* CFSArrayRef */ ref IntPtr outInstrumentInfo);
 
-		[iOS (7,0)][Mac (10,9)]
+		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 		public static InstrumentInfo [] GetInstrumentInfo (NSUrl url)
 		{
 			if (url == null)

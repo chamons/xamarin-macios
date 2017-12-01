@@ -13,7 +13,7 @@ using XamCore.Foundation;
 
 namespace XamCore.GameController {
 
-	[iOS (9,0)][Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	public enum GCControllerPlayerIndex : nint {
 		Unset = -1,

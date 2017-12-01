@@ -19,13 +19,13 @@ namespace XamCore.ModelIO {
 			return Runtime.GetNSObject<MDLVertexDescriptor> (MTKModelIOVertexDescriptorFromMetal (descriptor.Handle));
 		}
 
-		[iOS (10,0)][Mac (10,12, onlyOn64 : true)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		[DllImport (Constants.MetalKitLibrary)]
 		static extern /* MDLVertexDescriptor __nonnull */ IntPtr MTKModelIOVertexDescriptorFromMetalWithError (/* MTLVertexDescriptor __nonnull */ IntPtr metalDescriptor, out /* NSError */ IntPtr error);
 
-		[iOS (10,0)][Mac (10,12, onlyOn64 : true)]
-		[TV (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+		[Introduced (PlatformName.TvOS, 10, 0)]
 		public static MDLVertexDescriptor FromMetal (MTLVertexDescriptor descriptor, out NSError error)
 		{
 			if (descriptor == null)

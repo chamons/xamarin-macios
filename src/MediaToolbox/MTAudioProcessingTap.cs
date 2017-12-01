@@ -53,7 +53,7 @@ using XamCore.CoreMedia;
 
 namespace XamCore.MediaToolbox
 {
-	[Since (6,0)][Mavericks]
+	[Introduced (PlatformName.iOS, 6, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 	public class MTAudioProcessingTap : INativeObject
 #if !COREBUILD
 		, IDisposable

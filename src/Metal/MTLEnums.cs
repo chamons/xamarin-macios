@@ -77,9 +77,9 @@ namespace XamCore.Metal {
 		NotPermitted = 7,
 		OutOfMemory = 8,
 		InvalidResource = 9,
-		[iOS (10,0), TV (10,0), NoWatch, NoMac]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		Memoryless = 10,
-		[Mac (10,13), NoiOS, NoTV, NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
 		DeviceRemoved = 11,
 	}
 
@@ -91,11 +91,11 @@ namespace XamCore.Metal {
 	[Native]
 	public enum MTLStoreAction : nuint {
 		DontCare, Store, MultisampleResolve,
-		[iOS (10,0), TV (10,0), NoWatch, Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 12)]
 		StoreAndMultisampleResolve,
-		[iOS (10,0), TV (10,0), NoWatch, Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 12)]
 		Unknown,
-		[iOS (11,0), TV (11,0), NoWatch, Mac (10,13)]
+		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 13)]
 		CustomSampleDepthStore,
 	}
 
@@ -135,7 +135,7 @@ namespace XamCore.Metal {
 		MirrorRepeat = 3,
 		ClampToZero = 4,
 		
-		[Mac (10,12)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
 		ClampToBorderColor = 5,
 	}
 
@@ -196,31 +196,31 @@ namespace XamCore.Metal {
 		Int1010102Normalized = 40,
 		UInt1010102Normalized = 41,
 
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		UChar4NormalizedBgra = 42,
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		UChar = 45,
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		Char = 46,
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		UCharNormalized = 47,
 
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		CharNormalized = 48,
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		UShort = 49,
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		Short = 50,
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		UShortNormalized = 51,
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		ShortNormalized = 52,
 		
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		Half = 53,
 	}
 
-	[Mac (10,11)]
+	[Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	public enum MTLPixelFormat : nuint {
 		Invalid = 0,
@@ -273,7 +273,7 @@ namespace XamCore.Metal {
 		RGB10A2Uint = 91,
 		RG11B10Float = 92,
 		RGB9E5Float = 93,
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		BGR10A2Unorm = 94,
 		RG32Uint = 103,
 		RG32Sint = 104,
@@ -360,13 +360,13 @@ namespace XamCore.Metal {
 #if MONOMAC
 		Depth24Unorm_Stencil8 = 255,
 #endif
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		Depth32Float_Stencil8 = 260,
 	
-		[NoWatch, iOS (9,0), TV (9,0), Mac (10,11)]
+		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.TvOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
 		X32_Stencil8 = 261,
 #if MONOMAC
-		[Mac (10,12)]
+		[Introduced (PlatformName.MacOSX, 10, 12)]
 		X24_Stencil8 = 262,
 #endif
 	}
@@ -385,9 +385,9 @@ namespace XamCore.Metal {
 		Internal,
 		CompileFailure,
 		CompileWarning,
-		[iOS (10,0), TV (10,0), NoWatch, Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 12)]
 		FunctionNotFound,
-		[iOS (10,0), TV (10,0), NoWatch, Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 12)]
 		FileNotFound,
 	}
 
@@ -473,7 +473,7 @@ namespace XamCore.Metal {
 		DefaultCache, WriteCombined
 	}
 
-	[iOS (9,0)][Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	[Flags]
 	public enum MTLTextureUsage : nuint {
@@ -485,25 +485,25 @@ namespace XamCore.Metal {
 		PixelFormatView = 0x0010,
 	}
 
-	[iOS (8,0)][Mac (10,11)]
+	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	[Flags]
 	public enum MTLResourceOptions : nuint {
 		CpuCacheModeDefault = MTLCpuCacheMode.DefaultCache << 0,
 		CpuCacheModeWriteCombined = MTLCpuCacheMode.WriteCombined << 0,
 		
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		StorageModeShared = MTLStorageMode.Shared << 4,
 #if MONOMAC
 		StorageModeManaged = MTLStorageMode.Managed << 4,
 #endif
-		[iOS (9,0)]
+		[Introduced (PlatformName.iOS, 9, 0)]
 		StorageModePrivate = MTLStorageMode.Private << 4,
 		
-		[iOS (10,0), TV (10,0), NoWatch, NoMac]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		StorageModeMemoryless = MTLStorageMode.Memoryless << 4,
 
-		[iOS (10,0), TV (10,0), NoWatch, Mac (10,13)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 13)]
 		HazardTrackingModeUntracked = 1 << 8,
 	}
 
@@ -511,9 +511,9 @@ namespace XamCore.Metal {
 	[Native]
 	public enum MTLVertexStepFunction : nuint {
 		Constant, PerVertex, PerInstance,
-		[iOS (10,0), TV (10,0), NoWatch, Mac (10,12)]	
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 12)]	
 		PerPatch = 3,
-		[iOS (10,0), TV (10,0), NoWatch, Mac (10,12)]	
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 12)]	
 		PerPatchControlPoint = 4,
 	}
 
@@ -594,26 +594,26 @@ namespace XamCore.Metal {
 		Bool3 = 55,
 		Bool4 = 56,
 
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch] Texture = 58,
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch] Sampler = 59,
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch] Pointer = 60,
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)] Texture = 58,
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)] Sampler = 59,
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)] Pointer = 60,
 
-		[NoMac, iOS (11,0), NoTV, NoWatch] R8Unorm = 62,
-		[NoMac, iOS (11,0), NoTV, NoWatch] R8Snorm = 63,
-		[NoMac, iOS (11,0), NoTV, NoWatch] R16Unorm = 64,
-		[NoMac, iOS (11,0), NoTV, NoWatch] R16Snorm = 65,
-		[NoMac, iOS (11,0), NoTV, NoWatch] Rg8Unorm = 66,
-		[NoMac, iOS (11,0), NoTV, NoWatch] Rg8Snorm = 67,
-		[NoMac, iOS (11,0), NoTV, NoWatch] Rg16Unorm = 68,
-		[NoMac, iOS (11,0), NoTV, NoWatch] Rg16Snorm = 69,
-		[NoMac, iOS (11,0), NoTV, NoWatch] Rgba8Unorm = 70,
-		[NoMac, iOS (11,0), NoTV, NoWatch] Rgba8Unorm_sRgb = 71,
-		[NoMac, iOS (11,0), NoTV, NoWatch] Rgba8Snorm = 72,
-		[NoMac, iOS (11,0), NoTV, NoWatch] Rgba16Unorm = 73,
-		[NoMac, iOS (11,0), NoTV, NoWatch] Rgba16Snorm = 74,
-		[NoMac, iOS (11,0), NoTV, NoWatch] Rgb10A2Unorm = 75,
-		[NoMac, iOS (11,0), NoTV, NoWatch] Rg11B10Float = 76,
-		[NoMac, iOS (11,0), NoTV, NoWatch] Rgb9E5Float = 77,
+		[Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)] R8Unorm = 62,
+		[Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)] R8Snorm = 63,
+		[Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)] R16Unorm = 64,
+		[Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)] R16Snorm = 65,
+		[Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)] Rg8Unorm = 66,
+		[Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)] Rg8Snorm = 67,
+		[Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)] Rg16Unorm = 68,
+		[Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)] Rg16Snorm = 69,
+		[Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)] Rgba8Unorm = 70,
+		[Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)] Rgba8Unorm_sRgb = 71,
+		[Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)] Rgba8Snorm = 72,
+		[Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)] Rgba16Unorm = 73,
+		[Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)] Rgba16Snorm = 74,
+		[Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)] Rgb10A2Unorm = 75,
+		[Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)] Rg11B10Float = 76,
+		[Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)] Rgb9E5Float = 77,
 	}
 
 	[Native]
@@ -623,8 +623,8 @@ namespace XamCore.Metal {
 		Texture = 2,
 		Sampler = 3,
 
-		[NoMac, iOS (11,0), NoTV, NoWatch] ImageblockData = 16,
-		[NoMac, iOS (11,0), NoTV, NoWatch] Imageblock = 17,
+		[Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)] ImageblockData = 16,
+		[Unavailable (PlatformName.MacOSX), Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)] Imageblock = 17,
 	}
 
 	[Native]
@@ -645,71 +645,71 @@ namespace XamCore.Metal {
 		iOS_GPUFamily2_v1 = 1,
 		iOS_GPUFamily2_v2 = 3,
 		iOS_GPUFamily3_v1 = 4,
-		[iOS (10,0), NoTV, NoWatch, NoMac]
+		[Introduced (PlatformName.iOS, 10, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		iOS_GPUFamily1_v3 = 5,
-		[iOS (10,0), NoTV, NoWatch, NoMac]
+		[Introduced (PlatformName.iOS, 10, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		iOS_GPUFamily2_v3 = 6,
-		[iOS (10,0), NoTV, NoWatch, NoMac]
+		[Introduced (PlatformName.iOS, 10, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		iOS_GPUFamily3_v2 = 7,
-		[iOS (11,0), NoTV, NoWatch, NoMac]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		iOS_GPUFamily1_v4 = 8,
-		[iOS (11,0), NoTV, NoWatch, NoMac]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		iOS_GPUFamily2_v4 = 9,
-		[iOS (11,0), NoTV, NoWatch, NoMac]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		iOS_GPUFamily3_v3 = 10,
-		[iOS (11,0), NoTV, NoWatch, NoMac]
+		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		iOS_GPUFamily4_v1 = 11,
 
-		[Mac (10,11), NoiOS, NoTV, NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 11), Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
 		macOS_GPUFamily1_v1 = 10000,
 		
-		[Availability (Introduced = Platform.Mac_10_11, Deprecated = Platform.Mac_10_13, Message="Use 'macOS_GPUFamily1_v1' instead.")]
+		[Introduced (PlatformName.MacOSX, 10, 11, message: "Use 'macOS_GPUFamily1_v1' instead."), Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'macOS_GPUFamily1_v1' instead.")]
 		OSX_GPUFamily1_v1 = macOS_GPUFamily1_v1,
 		
-		[Mac (10,13), NoiOS, NoTV, NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
 		macOS_GPUFamily1_v2 = 10001,
-		[Availability (Introduced = Platform.Mac_10_12, Deprecated = Platform.Mac_10_13, Message="Use 'macOS_GPUFamily1_v2' instead.")]
+		[Introduced (PlatformName.MacOSX, 10, 12, message: "Use 'macOS_GPUFamily1_v2' instead."), Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'macOS_GPUFamily1_v2' instead.")]
 		OSX_GPUFamily1_v2 = macOS_GPUFamily1_v2,
 		
-		[Mac (10,13), NoiOS, NoTV, NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
 		macOS_ReadWriteTextureTier2 = 10002,
-		[Availability (Introduced = Platform.Mac_10_12, Deprecated = Platform.Mac_10_13, Message="Use 'macOS_ReadWriteTextureTier2' instead.")]
+		[Introduced (PlatformName.MacOSX, 10, 12, message: "Use 'macOS_ReadWriteTextureTier2' instead."), Deprecated (PlatformName.MacOSX, 10, 13, message: "Use 'macOS_ReadWriteTextureTier2' instead.")]
 		OSX_ReadWriteTextureTier2 = macOS_ReadWriteTextureTier2,
 		
-		[Mac (10,13), NoiOS, NoTV, NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Unavailable (PlatformName.iOS), Unavailable (PlatformName.TvOS), Unavailable (PlatformName.WatchOS)]
 		macOS_GPUFamily1_v3 = 10003,
 
-		[TV (9,0)]
+		[Introduced (PlatformName.TvOS, 9, 0)]
 		TVOS_GPUFamily1_v1 = 30000,
 
-		[NoiOS, TV (10,0), NoWatch, NoMac]
+		[Unavailable (PlatformName.iOS), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		tvOS_GPUFamily1_v2 = 30001,
 
-		[NoiOS, TV (11,0), NoWatch, NoMac]
+		[Unavailable (PlatformName.iOS), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		tvOS_GPUFamily2_v1 = 30003,
 	}
 
-	[iOS (9,0)][Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	public enum MTLLanguageVersion : nuint {
 #if !MONOMAC
 		v1_0 = (1 << 16),
 #endif
 		v1_1 = (1 << 16) + 1,
-		[iOS (10,0), TV (10,0), NoWatch, Mac (10,12)]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 12)]
 		v1_2 = (1 << 16) + 2,
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		v2_0 = (2 << 16),
 	}
 
-	[iOS (9,0)][Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	public enum MTLDepthClipMode : nuint {
 		Clip = 0,
 		Clamp = 1
 	}
 
-	[iOS (9,0)][Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	[Flags]
 	public enum MTLBlitOption : nuint {
@@ -721,7 +721,7 @@ namespace XamCore.Metal {
 #endif
 	}
 
-	[iOS (9,0)][Mac (10,11)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	public enum MTLStorageMode : nuint {
 		Shared = 0,
@@ -729,7 +729,7 @@ namespace XamCore.Metal {
 		Managed = 1,
 #endif
 		Private = 2,
-		[iOS (10,0), TV (10,0), NoWatch, NoMac]
+		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.MacOSX)]
 		Memoryless = 3,
 	}
 
@@ -739,9 +739,9 @@ namespace XamCore.Metal {
 	}
 
 #if XAMCORE_4_0
-	[NoiOS][NoTV]
+	[Unavailable (PlatformName.iOS)][Unavailable (PlatformName.TvOS)]
 #endif
-	[Mac (10,12)]
+	[Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	public enum MTLSamplerBorderColor : nuint {
 		TransparentBlack = 0,
@@ -749,8 +749,8 @@ namespace XamCore.Metal {
 		OpaqueWhite = 2
 	}
 
-	[NoTV]
-	[NoiOS, Mac (10,11)]
+	[Unavailable (PlatformName.TvOS)]
+	[Unavailable (PlatformName.iOS), Introduced (PlatformName.MacOSX, 10, 11)]
 	[Native]
 	public enum MTLPrimitiveTopologyClass : nuint {
 		Unspecified = 0,
@@ -759,7 +759,7 @@ namespace XamCore.Metal {
 		Triangle = 3
 	}
 
-	[iOS (10,0), TV (10,0), NoWatch, Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	public enum MTLTessellationPartitionMode : nuint {
 		Pow2 = 0,
@@ -768,13 +768,13 @@ namespace XamCore.Metal {
 		FractionalEven = 3
 	}
 
-	[iOS (10,0), TV (10,0), NoWatch, Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	public enum MTLTessellationFactorFormat : nuint {
 		Half = 0
 	}
 
-	[iOS (10,0), TV (10,0), NoWatch, Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	public enum MTLTessellationControlPointIndexType : nuint {
 		None = 0,
@@ -782,7 +782,7 @@ namespace XamCore.Metal {
 		UInt32 = 2
 	}
 
-	[iOS (10,0), TV (10,0), NoWatch, Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	public enum MTLTessellationFactorStepFunction : nuint {
 		Constant = 0,
@@ -791,7 +791,7 @@ namespace XamCore.Metal {
 		PerPatchAndPerInstance = 3
 	}
 	
-	[iOS (10,0), TV (10,0), NoWatch, Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	public enum MTLPatchType : nuint {
 		None = 0,
@@ -799,7 +799,7 @@ namespace XamCore.Metal {
 		Quad = 2
 	}
 	
-	[iOS (10,0), TV (10,0), NoWatch, Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	public enum MTLAttributeFormat : nuint {
 		Invalid = 0,
@@ -844,29 +844,29 @@ namespace XamCore.Metal {
 		UInt4 = 39,
 		Int1010102Normalized = 40,
 		UInt1010102Normalized = 41,
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		UChar4Normalized_Bgra = 42,
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		UChar = 45,
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		Char = 46,
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		UCharNormalized = 47,
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		CharNormalized = 48,
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		UShort = 49,
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		Short = 50,
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		UShortNormalized = 51,
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		ShortNormalized = 52,
-		[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+		[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 		Half = 53,
 	}
 	
-	[iOS (10,0), TV (10,0), NoWatch, Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	public enum MTLStepFunction : nuint {
 		Constant = 0,
@@ -880,14 +880,14 @@ namespace XamCore.Metal {
 		ThreadPositionInGridYIndexed = 8
 	}
 
-	[iOS (10,0), TV (10,0), NoWatch, Mac (10,12)]
+	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Unavailable (PlatformName.WatchOS), Introduced (PlatformName.MacOSX, 10, 12)]
 	[Native]
 	public enum MTLRenderStages : nuint {
 		Vertex = (1 << 0),
 		Fragment = (1 << 1)
 	}
 
-	[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+	[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 	[Native, Flags]
 	public enum MTLResourceUsage : nuint
 	{
@@ -896,7 +896,7 @@ namespace XamCore.Metal {
 		Sample = 1 << 2,
 	}
 
-	[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+	[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 	[Native]
 	public enum MTLMutability : nuint
 	{
@@ -905,7 +905,7 @@ namespace XamCore.Metal {
 		Immutable = 2,
 	}
 
-	[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+	[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 	[Native]
 	public enum MTLReadWriteTextureTier : nuint
 	{
@@ -914,7 +914,7 @@ namespace XamCore.Metal {
 		Two = 2,
 	}
 
-	[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+	[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 	[Native]
 	public enum MTLArgumentBuffersTier : nuint
 	{
@@ -922,7 +922,7 @@ namespace XamCore.Metal {
 		Two = 1,
 	}
 
-	[Mac (10,13), iOS (11,0), TV (11,0), NoWatch]
+	[Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Unavailable (PlatformName.WatchOS)]
 	[Native, Flags]
 	public enum MTLStoreActionOptions : nuint
 	{

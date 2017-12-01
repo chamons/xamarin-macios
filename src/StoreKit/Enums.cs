@@ -10,7 +10,7 @@ namespace XamCore.StoreKit {
 		Purchased,
 		Failed,  
 		Restored,
-		[iOS (8,0)]Deferred
+		[Introduced (PlatformName.iOS, 8, 0)]Deferred
 	}
 
 	// untyped enum and not used in API - so it _could_ be an `int`
@@ -40,7 +40,7 @@ namespace XamCore.StoreKit {
 	}
 
 #if !MONOMAC || !XAMCORE_4_0
-	[iOS (9,3)]
+	[Introduced (PlatformName.iOS, 9, 3)]
 	[Native]
 	public enum SKCloudServiceAuthorizationStatus : nint {
 		NotDetermined,
@@ -49,17 +49,17 @@ namespace XamCore.StoreKit {
 		Authorized
 	}
 
-	[iOS (9,3)]
+	[Introduced (PlatformName.iOS, 9, 3)]
 	[Native]
 	public enum SKCloudServiceCapability : nuint {
 		None = 0,
 		MusicCatalogPlayback = 1 << 0,
-		[NoTV, iOS (10,1)]
+		[Unavailable (PlatformName.TvOS), Introduced (PlatformName.iOS, 10, 1)]
 		MusicCatalogSubscriptionEligible = 1 << 1,
 		AddToCloudMusicLibrary = 1 << 8
 	}
 
-	[iOS (11,0)][TV (11,0)][NoMac]
+	[Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.TvOS, 11, 0)][Unavailable (PlatformName.MacOSX)]
 	[Native]
 	public enum SKProductStorePromotionVisibility : nint {
 		Default,

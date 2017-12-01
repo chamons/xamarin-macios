@@ -18,14 +18,14 @@ using XamCore.Foundation;
 namespace XamCore.MediaAccessibility {
 
 	[Native]
-	[iOS (7,0)][Mac (10,9)]
+	[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 	public enum MACaptionAppearanceDomain : nint {
 		Default = 0,
 		User = 1
 	}
 
 	[Native]
-	[iOS (7,0)][Mac (10,9)]
+	[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 	public enum MACaptionAppearanceDisplayType : nint {
 		ForcedOnly = 0,
 		Automatic = 1,
@@ -33,14 +33,14 @@ namespace XamCore.MediaAccessibility {
 	}
 
 	[Native]
-	[iOS (7,0)][Mac (10,9)]
+	[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 	public enum MACaptionAppearanceBehavior : nint {
 		UseValue = 0,
 		UseContentIfAvailable = 1
 	}
 
 	[Native]
-	[iOS (7,0)][Mac (10,9)]
+	[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 	public enum MACaptionAppearanceFontStyle : nint {
 		Default = 0,
 		MonospacedWithSerif = 1,
@@ -53,7 +53,7 @@ namespace XamCore.MediaAccessibility {
 	}
 
 	[Native]
-	[iOS (7,0)][Mac (10,9)]
+	[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 	public enum MACaptionAppearanceTextEdgeStyle : nint {
 		Undefined = 0,
 		None = 1,
@@ -63,7 +63,7 @@ namespace XamCore.MediaAccessibility {
 		DropShadow = 5
 	}
 
-	[iOS (7,0)][Mac (10,9)]
+	[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
 	public static partial class MACaptionAppearance {
 
 #if !XAMCORE_4_0
@@ -273,7 +273,7 @@ namespace XamCore.MediaAccessibility {
 	}
 
 	static partial class MAAudibleMedia {
-		[iOS (8,0)][Mac (10,10)]
+		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
 		[DllImport (Constants.MediaAccessibilityLibrary)]
 		static extern unsafe IntPtr /* CFArrayRef __nonnull */ MAAudibleMediaCopyPreferredCharacteristics ();
 

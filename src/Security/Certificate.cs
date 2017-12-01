@@ -265,22 +265,22 @@ namespace XamCore.Security {
 			}
 		}
 #else
-		[iOS (10,3)]
+		[Introduced (PlatformName.iOS, 10, 3)]
 		[DllImport (Constants.SecurityLibrary)]
 		static extern /* __nullable SecKeyRef */ IntPtr SecCertificateCopyPublicKey (IntPtr /* SecCertificateRef */ certificate);
 
-		[iOS (10,3)]
+		[Introduced (PlatformName.iOS, 10, 3)]
 		public SecKey GetPublicKey ()
 		{
 			IntPtr data = SecCertificateCopyPublicKey (handle);
 			return (data == IntPtr.Zero) ? null : new SecKey (data, true);
 		}
 #endif
-		[iOS (10,3)] // [Mac (10,5)]
+		[Introduced (PlatformName.iOS, 10, 3)] // [Mac (10,5)]
 		[DllImport (Constants.SecurityLibrary)]
 		static extern /* OSStatus */ int SecCertificateCopyCommonName (IntPtr /* SecCertificateRef */ certificate, out IntPtr /* CFStringRef * __nonnull CF_RETURNS_RETAINED */ commonName);
 
-		[iOS (10,3)]
+		[Introduced (PlatformName.iOS, 10, 3)]
 		public string GetCommonName ()
 		{
 			IntPtr cn;
@@ -289,11 +289,11 @@ namespace XamCore.Security {
 			return null;
 		}
 
-		[iOS (10,3)] // [Mac (10,5)]
+		[Introduced (PlatformName.iOS, 10, 3)] // [Mac (10,5)]
 		[DllImport (Constants.SecurityLibrary)]
 		static extern /* OSStatus */ int SecCertificateCopyEmailAddresses (IntPtr /* SecCertificateRef */ certificate, out IntPtr /* CFArrayRef * __nonnull CF_RETURNS_RETAINED */ emailAddresses);
 
-		[iOS (10,3)]
+		[Introduced (PlatformName.iOS, 10, 3)]
 		public string[] GetEmailAddresses ()
 		{
 			string[] results = null;
@@ -306,26 +306,26 @@ namespace XamCore.Security {
 			return results;
 		}
 
-		[iOS (10,3)]
-		[Mac (10,12,4)]
+		[Introduced (PlatformName.iOS, 10, 3)]
+		[Introduced (PlatformName.MacOSX, 10, 12, 4)]
 		[DllImport (Constants.SecurityLibrary)]
 		static extern /* __nullable CFDataRef */ IntPtr SecCertificateCopyNormalizedIssuerSequence (IntPtr /* SecCertificateRef */ certificate);
 
-		[iOS (10,3)]
-		[Mac (10,12,4)]
+		[Introduced (PlatformName.iOS, 10, 3)]
+		[Introduced (PlatformName.MacOSX, 10, 12, 4)]
 		public NSData GetNormalizedIssuerSequence ()
 		{
 			IntPtr data = SecCertificateCopyNormalizedIssuerSequence (handle);
 			return (data == IntPtr.Zero) ? null : new NSData (data, true);
 		}
 
-		[iOS (10,3)]
-		[Mac (10,12,4)]
+		[Introduced (PlatformName.iOS, 10, 3)]
+		[Introduced (PlatformName.MacOSX, 10, 12, 4)]
 		[DllImport (Constants.SecurityLibrary)]
 		static extern /* __nullable CFDataRef */ IntPtr SecCertificateCopyNormalizedSubjectSequence (IntPtr /* SecCertificateRef */ certificate);
 
-		[iOS (10,3)]
-		[Mac (10,12,4)]
+		[Introduced (PlatformName.iOS, 10, 3)]
+		[Introduced (PlatformName.MacOSX, 10, 12, 4)]
 		public NSData GetNormalizedSubjectSequence ()
 		{
 			IntPtr data = SecCertificateCopyNormalizedSubjectSequence (handle);
@@ -333,16 +333,16 @@ namespace XamCore.Security {
 		}
 
 #if MONOMAC
-		[Mac (10,7)]
+		[Introduced (PlatformName.MacOSX, 10, 7)]
 		[DllImport (Constants.SecurityLibrary)]
 		static extern /* __nullable CFDataRef */ IntPtr SecCertificateCopySerialNumber (IntPtr /* SecCertificateRef */ certificate, IntPtr /* CFErrorRef * */ error);
 #else
-		[iOS (10,3)]
+		[Introduced (PlatformName.iOS, 10, 3)]
 		[DllImport (Constants.SecurityLibrary)]
 		static extern /* __nullable CFDataRef */ IntPtr SecCertificateCopySerialNumber (IntPtr /* SecCertificateRef */ certificate);
 #endif
-		[iOS (10,3)]
-		[Mac (10,7)]
+		[Introduced (PlatformName.iOS, 10, 3)]
+		[Introduced (PlatformName.MacOSX, 10, 7)]
 		public NSData GetSerialNumber ()
 		{
 #if MONOMAC
@@ -710,11 +710,11 @@ namespace XamCore.Security {
 			return _Decrypt (padding, cipherText, ref plainText);
 		}
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		static extern IntPtr /* SecKeyRef _Nullable */ SecKeyCreateRandomKey (IntPtr /* CFDictionaryRef* */ parameters, out IntPtr /* CFErrorRef** */ error);
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		static public SecKey CreateRandomKey (NSDictionary parameters, out NSError error)
 		{
 			if (parameters == null)
@@ -726,7 +726,7 @@ namespace XamCore.Security {
 			return key == IntPtr.Zero ? null : new SecKey (key, true);
 		}
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		static public SecKey CreateRandomKey (SecKeyType keyType, int keySizeInBits, NSDictionary parameters, out NSError error)
 		{
 			using (var ks = new NSNumber (keySizeInBits))
@@ -737,11 +737,11 @@ namespace XamCore.Security {
 			}
 		}
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		static extern IntPtr /* SecKeyRef _Nullable */ SecKeyCreateWithData (IntPtr /* CFDataRef* */ keyData, IntPtr /* CFDictionaryRef* */ attributes, out IntPtr /* CFErrorRef** */ error);
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		static public SecKey Create (NSData keyData, NSDictionary parameters, out NSError error)
 		{
 			if (keyData == null)
@@ -755,7 +755,7 @@ namespace XamCore.Security {
 			return key == IntPtr.Zero ? null : new SecKey (key, true);
 		}
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		static public SecKey Create (NSData keyData, SecKeyType keyType, SecKeyClass keyClass, int keySizeInBits, NSDictionary parameters, out NSError error)
 		{
 			using (var ks = new NSNumber (keySizeInBits))
@@ -767,11 +767,11 @@ namespace XamCore.Security {
 			}
 		}
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		static extern IntPtr /* CFDataRef _Nullable */ SecKeyCopyExternalRepresentation (IntPtr /* SecKeyRef* */ key, out IntPtr /* CFErrorRef** */ error);
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		public NSData GetExternalRepresentation (out NSError error)
 		{
 			IntPtr err;
@@ -780,7 +780,7 @@ namespace XamCore.Security {
 			return Runtime.GetNSObject<NSData> (data, true);
 		}
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		public NSData GetExternalRepresentation ()
 		{
 			IntPtr err;
@@ -788,43 +788,43 @@ namespace XamCore.Security {
 			return Runtime.GetNSObject<NSData> (data, true);
 		}
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		static extern IntPtr /* CFDictionaryRef _Nullable */ SecKeyCopyAttributes (IntPtr /* SecKeyRef* */ key);
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		public NSDictionary GetAttributes ()
 		{
 			var dict = SecKeyCopyAttributes (handle);
 			return Runtime.GetNSObject<NSDictionary> (dict, true);
 		}
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		static extern IntPtr /* SecKeyRef* */ SecKeyCopyPublicKey (IntPtr /* SecKeyRef* */ key);
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		public SecKey GetPublicKey ()
 		{
 			var key = SecKeyCopyPublicKey (handle);
 			return key == IntPtr.Zero ? null : new SecKey (key, true);
 		}
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		static extern bool /* Boolean */ SecKeyIsAlgorithmSupported (IntPtr /* SecKeyRef* */ key, /* SecKeyOperationType */ nint operation, IntPtr /* SecKeyAlgorithm* */ algorithm);
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		public bool IsAlgorithmSupported (SecKeyOperationType operation, SecKeyAlgorithm algorithm)
 		{
 			return SecKeyIsAlgorithmSupported (handle, (int) operation, algorithm.GetConstant ().Handle);
 		}
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		static extern /* CFDataRef _Nullable */ IntPtr SecKeyCreateSignature (/* SecKeyRef */ IntPtr key, /* SecKeyAlgorithm */ IntPtr algorithm, /* CFDataRef */ IntPtr dataToSign, /* CFErrorRef* */ out IntPtr error);
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		public NSData CreateSignature (SecKeyAlgorithm algorithm, NSData dataToSign, out NSError error)
 		{
 			if (dataToSign == null)
@@ -836,11 +836,11 @@ namespace XamCore.Security {
 			return Runtime.GetNSObject<NSData> (data, true);
 		}
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		static extern /* Boolean */ bool SecKeyVerifySignature (/* SecKeyRef */ IntPtr key, /* SecKeyAlgorithm */ IntPtr algorithm, /* CFDataRef */ IntPtr signedData, /* CFDataRef */ IntPtr signature, /* CFErrorRef* */ out IntPtr error);
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		public bool VerifySignature (SecKeyAlgorithm algorithm, NSData signedData, NSData signature, out NSError error)
 		{
 			if (signedData == null)
@@ -854,11 +854,11 @@ namespace XamCore.Security {
 			return result;
 		}
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		static extern /* CFDataRef _Nullable */ IntPtr SecKeyCreateEncryptedData (/* SecKeyRef */ IntPtr key, /* SecKeyAlgorithm */ IntPtr algorithm, /* CFDataRef */ IntPtr plaintext, /* CFErrorRef* */ out IntPtr error);
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		public NSData CreateEncryptedData (SecKeyAlgorithm algorithm, NSData plaintext, out NSError error)
 		{
 			if (plaintext == null)
@@ -870,11 +870,11 @@ namespace XamCore.Security {
 			return Runtime.GetNSObject<NSData> (data, true);
 		}
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		static extern /* CFDataRef _Nullable */ IntPtr SecKeyCreateDecryptedData (/* SecKeyRef */ IntPtr key, /* SecKeyAlgorithm */ IntPtr algorithm, /* CFDataRef */ IntPtr ciphertext, /* CFErrorRef* */ out IntPtr error);
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		public NSData CreateDecryptedData (SecKeyAlgorithm algorithm, NSData ciphertext, out NSError error)
 		{
 			if (ciphertext == null)
@@ -886,11 +886,11 @@ namespace XamCore.Security {
 			return Runtime.GetNSObject<NSData> (data, true);
 		}
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		[DllImport (Constants.SecurityLibrary)]
 		static extern /* CFDataRef _Nullable */ IntPtr SecKeyCopyKeyExchangeResult (/* SecKeyRef */ IntPtr privateKey, /* SecKeyAlgorithm */ IntPtr algorithm, /* SecKeyRef */ IntPtr publicKey, /* CFDictionaryRef */ IntPtr parameters, /* CFErrorRef* */ out IntPtr error);
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		public NSData GetKeyExchangeResult (SecKeyAlgorithm algorithm, SecKey publicKey, NSDictionary parameters, out NSError error)
 		{
 			if (publicKey == null)
@@ -904,7 +904,7 @@ namespace XamCore.Security {
 			return Runtime.GetNSObject<NSData> (data, true);
 		}
 
-		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
+		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
 		public NSData GetKeyExchangeResult (SecKeyAlgorithm algorithm, SecKey publicKey, SecKeyKeyExchangeParameter parameters, out NSError error)
 		{
 			return GetKeyExchangeResult (algorithm, publicKey, parameters?.Dictionary, out error);

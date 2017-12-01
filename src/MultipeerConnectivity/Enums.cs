@@ -13,8 +13,8 @@ using XamCore.ObjCRuntime;
 namespace XamCore.MultipeerConnectivity {
 
 	// NSInteger -> MCSession.h
-	[TV (10,0)]
-	[iOS (7,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[Native]
 	public enum MCSessionSendDataMode : nint {
 		Reliable,
@@ -22,8 +22,8 @@ namespace XamCore.MultipeerConnectivity {
 	}
 
 	// NSInteger -> MCSession.h
-	[TV (10,0)]
-	[iOS (7,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[Native]
 	public enum MCSessionState : nint {
 		NotConnected,
@@ -32,8 +32,8 @@ namespace XamCore.MultipeerConnectivity {
 	}
 
 	// NSInteger -> MCSession.h
-	[TV (10,0)]
-	[iOS (7,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[Native]
 	public enum MCEncryptionPreference : nint {
 		Optional = 0,
@@ -42,8 +42,8 @@ namespace XamCore.MultipeerConnectivity {
 	}
 
 	// NSInteger -> MCError.h
-	[TV (10,0)]
-	[iOS (7,0)]
+	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Introduced (PlatformName.iOS, 7, 0)]
 	[Native]
 	[ErrorDomain ("MCErrorDomain")]
 	public enum MCError : nint {

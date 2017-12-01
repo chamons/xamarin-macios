@@ -123,19 +123,19 @@ namespace XamCore.GLKit {
 	}
 
 	// glVertexAttribPointer structure values, again, problems with definitions being in different namespaces
-	[iOS (9,0)][Mac (10,11)]
-	[StructLayout(LayoutKind.Sequential)]
+	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
+	[StructLayout (LayoutKind.Sequential)]
 	public struct GLKVertexAttributeParameters {
 		public uint Type;
 		public uint Size;
 		public bool Normalized;
 
 #if !COREBUILD
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		[DllImport (Constants.GLKitLibrary, EntryPoint = "GLKVertexAttributeParametersFromModelIO")]
 		extern static GLKVertexAttributeParameters FromVertexFormat_ (nuint vertexFormat);
 
-		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
+		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
 		public static GLKVertexAttributeParameters FromVertexFormat (MDLVertexFormat vertexFormat)
 		{
 			return FromVertexFormat_ ((nuint) (ulong) vertexFormat);

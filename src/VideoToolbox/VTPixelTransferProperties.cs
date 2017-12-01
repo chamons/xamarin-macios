@@ -85,7 +85,7 @@ namespace XamCore.VideoToolbox {
 		}
 
 #if XAMCORE_2_0
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		public VTColorPrimaries DestinationColorPrimaries { 
 			get {
 				var key = GetNSStringValue (VTPixelTransferPropertyKeys.DestinationColorPrimaries);
@@ -124,7 +124,7 @@ namespace XamCore.VideoToolbox {
 		}
 #endif
 
-		[iOS (10,0)]
+		[Introduced (PlatformName.iOS, 10, 0)]
 		public VTTransferFunction DestinationTransferFunction { 
 			get {
 				var key = GetNSStringValue (VTPixelTransferPropertyKeys.DestinationTransferFunction);
