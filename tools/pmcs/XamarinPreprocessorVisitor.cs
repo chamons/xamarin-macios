@@ -32,20 +32,20 @@ namespace Xamarin.Pmcs
 // 			case "MacAttribute":
 // 				VisitShorthandIntroducedAttribute (invocationExpression, "PlatformName.MacOSX");
 // 				break;
-			case "Since":
-			case "SinceAttribute":
-			case "iOS":
-			case "iOSAttribute":
-				VisitShorthandIntroducedAttribute (invocationExpression, "PlatformName.iOS");
-				break;
-			case "Watch":
-			case "WatchAttribute":
-				VisitShorthandIntroducedAttribute (invocationExpression, "PlatformName.WatchOS");
-				break;
-			case "TV":
-			case "TVAttribute":
-				VisitShorthandIntroducedAttribute (invocationExpression, "PlatformName.TvOS");
-				break;
+// 			case "Since":
+// 			case "SinceAttribute":
+// 			case "iOS":
+// 			case "iOSAttribute":
+// 				VisitShorthandIntroducedAttribute (invocationExpression, "PlatformName.iOS");
+// 				break;
+// 			case "Watch":
+// 			case "WatchAttribute":
+// 				VisitShorthandIntroducedAttribute (invocationExpression, "PlatformName.WatchOS");
+// 				break;
+// 			case "TV":
+// 			case "TVAttribute":
+// 				VisitShorthandIntroducedAttribute (invocationExpression, "PlatformName.TvOS");
+// 				break;
 			case "Availability":
 			case "AvailabilityAttribute":
 				VisitAvailabilityAttribute (invocationExpression);

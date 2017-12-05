@@ -130,7 +130,7 @@ default:
 		return constructorArguments;
 	}
 
-	static void FormatNewStyleArguments (object [] oldCtorValues, out object [] ctorValues, out System.Type [] ctorTypes)
+	static void FormatNewStyleArguments (object [] oldCtorValues, byte platformName, out object [] ctorValues, out System.Type [] ctorTypes)
 	{
 		var platformEnum = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.PlatformName");
 		var platformArch = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.PlatformArchitecture");
@@ -138,23 +138,23 @@ default:
 		switch (oldCtorValues.Length)
 		{
 		case 2:
-			ctorValues = new object [] { (byte)1, (int)(byte)oldCtorValues[0], (int)(byte)oldCtorValues[1], (byte)0xff, "" };
+			ctorValues = new object [] { platformName, (int)(byte)oldCtorValues[0], (int)(byte)oldCtorValues[1], (byte)0xff, "" };
 			ctorTypes = new System.Type [] { platformEnum, typeof(int), typeof(int), platformArch, typeof (string) };
 			break;
 		case 3:
 			if (oldCtorValues[2].GetType () == typeof (byte)) {
-				ctorValues = new object [] { (byte)1, (int)(byte)oldCtorValues[0], (int)(byte)oldCtorValues[1], (int)(byte)oldCtorValues[2], (byte)0xff, "" };
+				ctorValues = new object [] { platformName, (int)(byte)oldCtorValues[0], (int)(byte)oldCtorValues[1], (int)(byte)oldCtorValues[2], (byte)0xff, "" };
 				ctorTypes = new System.Type [] { platformEnum, typeof(int), typeof(int), typeof(int), platformArch, typeof (string) };
 			}
 			else {
 				byte arch = (bool)oldCtorValues[2] ? (byte)2 : (byte)0xff; 
-				ctorValues = new object [] { (byte)1, (int)(byte)oldCtorValues[0], (int)(byte)oldCtorValues[1], arch, "" };
+				ctorValues = new object [] { platformName, (int)(byte)oldCtorValues[0], (int)(byte)oldCtorValues[1], arch, "" };
 				ctorTypes = new System.Type [] { platformEnum, typeof(int), typeof(int), platformArch, typeof (string) };
 			}
 			break;
 		case 4: {
 			byte arch = (bool)oldCtorValues[3] ? (byte)2 : (byte)0xff; 
-			ctorValues = new object [] { (byte)1, (int)(byte)oldCtorValues[0], (int)(byte)oldCtorValues[1], (int)(byte)oldCtorValues[2], arch, "" };
+			ctorValues = new object [] { platformName, (int)(byte)oldCtorValues[0], (int)(byte)oldCtorValues[1], (int)(byte)oldCtorValues[2], arch, "" };
 			ctorTypes = new System.Type [] { platformEnum, typeof(int), typeof(int), typeof (int), platformArch, typeof (string) };
 			break;
 		}
@@ -164,23 +164,41 @@ default:
 
 	}
 
+	static System.Attribute CovertPlatformAttribute (CustomAttributeData attribute, byte platformName)
+	{
+		var attribType = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.IntroducedAttribute");
+
+		object [] oldCtorValues = HarvestOldAttributeValues (attribute);
+		object [] ctorValues;
+		System.Type [] ctorTypes;
+		FormatNewStyleArguments (oldCtorValues, platformName, out ctorValues, out ctorTypes);
+
+		var ctor = attribType.GetConstructor (ctorTypes);
+		if (ctor == null)
+			throw ErrorHelper.CreateError (1058, "Internal error: could not find a constructor for the mock attribute '{0}'. Please file a bug report (https://bugzilla.xamarin.com) with a test case.", attribType.FullName);
+		
+		return (System.Attribute)ctor.Invoke (ctorValues);
+	}
+
 	static System.Attribute ConvertOldAttribute (CustomAttributeData attribute)
 	{
 		switch (attribute.AttributeType.FullName) {
+		case "MonoTouch.ObjCRuntime.SinceAttribute":
+		case "ObjCRuntime.SinceAttribute":
+		case "MonoTouch.ObjCRuntime.iOSAttribute":
+		case "ObjCRuntime.iOSAttribute":
+			return CovertPlatformAttribute (attribute, 2 /* PlatformName.iOS */);
 		case "MonoTouch.ObjCRuntime.MacAttribute":
 		case "ObjCRuntime.MacAttribute":
-			var attribType = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.IntroducedAttribute");
+			return CovertPlatformAttribute (attribute, 1 /* PlatformName.MacOSX */);
+		case "MonoTouch.ObjCRuntime.WatchAttribute":
+		case "ObjCRuntime.WatchAttribute":
+			return CovertPlatformAttribute (attribute, 3 /* PlatformName.WatchOS */);
 
-			object [] oldCtorValues = HarvestOldAttributeValues (attribute);
-			object [] ctorValues;
-			System.Type [] ctorTypes;
-			FormatNewStyleArguments (oldCtorValues, out ctorValues, out ctorTypes);
+		case "MonoTouch.ObjCRuntime.TVAttribute":
+		case "ObjCRuntime.TVAttribute":
+			return CovertPlatformAttribute (attribute, 4 /* PlatformName.TvOS */);
 
-			var ctor = attribType.GetConstructor (ctorTypes);
-			if (ctor == null)
-				throw ErrorHelper.CreateError (1058, "Internal error: could not find a constructor for the mock attribute '{0}'. Please file a bug report (https://bugzilla.xamarin.com) with a test case.", attribType.FullName);
-			
-			return (System.Attribute)ctor.Invoke (ctorValues);
 		}
 		return null;
 	}
