@@ -479,7 +479,7 @@ namespace XamCore.AudioToolbox
 			return AudioConverterConvertBuffer (handle, input.Length, input, ref outSize, output);
 		}
 
-		[Introduced (PlatformName.iOS, 5, 0)]
+		[iOS (5,0)]
 		public AudioConverterError ConvertComplexBuffer (int numberPCMFrames, AudioBuffers inputData, AudioBuffers outputData)
 		{
 			if (inputData == null)

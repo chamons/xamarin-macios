@@ -36,7 +36,7 @@ namespace XamCore.CoreMedia {
 		ValueNotAvailable   = -12718,
 	}
 
-	[Introduced (PlatformName.iOS, 4, 0)]
+	[iOS (4,0)]
 	public class CMFormatDescription : INativeObject, IDisposable {
 		internal IntPtr handle;
 
@@ -361,7 +361,7 @@ namespace XamCore.CoreMedia {
 #endif
 	}
 
-	[Introduced (PlatformName.iOS, 4, 0)]
+	[iOS (4,0)]
 	public class CMAudioFormatDescription : CMFormatDescription {
 		
 		internal CMAudioFormatDescription (IntPtr handle)
@@ -377,7 +377,7 @@ namespace XamCore.CoreMedia {
 		// TODO: Move more audio specific methods here
 	}
 
-	[Introduced (PlatformName.iOS, 4, 0)]
+	[iOS (4,0)]
 	public partial class CMVideoFormatDescription : CMFormatDescription {
 		
 		internal CMVideoFormatDescription (IntPtr handle)
@@ -439,7 +439,7 @@ namespace XamCore.CoreMedia {
 			return new CMVideoFormatDescription (desc, true);
 		}
 
-		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
+		[iOS (7,0), Mac (10,9)]
 		[DllImport (Constants.CoreMediaLibrary)]
 		static extern /* OSStatus */ CMFormatDescriptionError CMVideoFormatDescriptionCreateFromH264ParameterSets (
 			/* CFAllocatorRef */ IntPtr allocator, 
@@ -449,7 +449,7 @@ namespace XamCore.CoreMedia {
 			/* int */ int NALUnitHeaderLength,
 			/* CMFormatDescriptionRef* */ out IntPtr formatDescriptionOut);
 
-		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
+		[iOS (7,0), Mac (10,9)]
 		public static CMVideoFormatDescription FromH264ParameterSets (List<byte[]> parameterSets, int nalUnitHeaderLength, out CMFormatDescriptionError error)
 		{
 			if (parameterSets == null)
@@ -486,7 +486,7 @@ namespace XamCore.CoreMedia {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
+		[iOS (7,0), Mac (10,9)]
 		[DllImport (Constants.CoreMediaLibrary)]
 		static extern /* OSStatus */ CMFormatDescriptionError CMVideoFormatDescriptionGetH264ParameterSetAtIndex (
 			/* CMFormatDescriptionRef */ IntPtr videoDesc, 
@@ -496,7 +496,7 @@ namespace XamCore.CoreMedia {
 			/* size_t* */ out nuint parameterSetCountOut,
 			/* int* */ out int nalUnitHeaderLengthOut);
 
-		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 9)]
+		[iOS (7,0), Mac (10,9)]
 		public byte[] GetH264ParameterSet (nuint index, out nuint parameterSetCount, out int nalUnitHeaderLength, out CMFormatDescriptionError error)
 		{
 			if (Handle == IntPtr.Zero)
@@ -539,7 +539,7 @@ namespace XamCore.CoreMedia {
 		}
 #endif
 
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0)]
+		[iOS (11,0), Mac (10,13), TV (11,0)]
 		[DllImport (Constants.CoreMediaLibrary)]
 		static extern /* OSStatus */ CMFormatDescriptionError CMVideoFormatDescriptionCreateFromHEVCParameterSets (
 			/* CFAllocatorRef */ IntPtr allocator, 
@@ -550,7 +550,7 @@ namespace XamCore.CoreMedia {
 			/* CFDictionaryRef */ IntPtr extensions,
 			/* CMFormatDescriptionRef* */ out IntPtr formatDescriptionOut);
 
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0)]
+		[iOS (11,0), Mac (10,13), TV (11,0)]
 		public static CMVideoFormatDescription FromHevcParameterSets (List<byte[]> parameterSets, int nalUnitHeaderLength, NSDictionary extensions, out CMFormatDescriptionError error)
 		{
 			if (parameterSets == null)
@@ -587,7 +587,7 @@ namespace XamCore.CoreMedia {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0)]
+		[iOS (11,0), Mac (10,13), TV (11,0)]
 		[DllImport (Constants.CoreMediaLibrary)]
 		static extern /* OSStatus */ CMFormatDescriptionError CMVideoFormatDescriptionGetHEVCParameterSetAtIndex (
 			/* CMFormatDescriptionRef */ IntPtr videoDesc, 
@@ -597,7 +597,7 @@ namespace XamCore.CoreMedia {
 			/* size_t* */ out nuint parameterSetCountOut,
 			/* int* */ out int nalUnitHeaderLengthOut);
 
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0)]
+		[iOS (11,0), Mac (10,13), TV (11,0)]
 		public byte [] GetHevcParameterSet (nuint index, out nuint parameterSetCount, out int nalUnitHeaderLength, out CMFormatDescriptionError error)
 		{
 			if (Handle == IntPtr.Zero)

@@ -46,7 +46,7 @@ namespace XamCore.AudioToolbox {
 		AIFF = 0x41494646, // AIFF
 		AIFC = 0x41494643, // AIFC
 		WAVE = 0x57415645, // WAVE
-		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0)]
+		[NoWatch, iOS (11,0), Mac(10,13), TV (11,0)]
 		RF64 = 0x52463634, // RF64
 		SoundDesigner2 = 0x53643266, // Sd2f
 		Next = 0x4e655854, // NeXT
@@ -62,7 +62,7 @@ namespace XamCore.AudioToolbox {
 		ThreeGP = 0x33677070, // 3gpp
 		ThreeGP2 = 0x33677032, // 3gp2
 		AMR = 0x616d7266, // amrf
-		[Unavailable (PlatformName.WatchOS), Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0)]
+		[NoWatch, iOS (11,0), Mac(10,13), TV (11,0)]
 		FLAC =  0x666c6163, // flac
 	}
 

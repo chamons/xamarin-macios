@@ -16,11 +16,11 @@ namespace XamCore.WatchKit {
 			get { return WKAccessibilityIsVoiceOverRunning (); }
 		}
 
-		[Introduced (PlatformName.WatchOS, 4, 0)]
+		[Watch (4,0)]
 		[DllImport (Constants.WatchKitLibrary)]
 		static extern bool WKAccessibilityIsReduceMotionEnabled ();
 
-		[Introduced (PlatformName.WatchOS, 4, 0)]
+		[Watch (4,0)]
 		static public bool IsReduceMotionEnabled {
 			get { return WKAccessibilityIsReduceMotionEnabled (); }
 		}

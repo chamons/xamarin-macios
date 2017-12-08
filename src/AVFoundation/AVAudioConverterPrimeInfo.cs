@@ -29,7 +29,7 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.AVFoundation {
 
-	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
+	[iOS (9,0), Mac (10,11)]
 	[StructLayout (LayoutKind.Sequential)]
 	public struct AVAudioConverterPrimeInfo {
 		public uint LeadingFrames;

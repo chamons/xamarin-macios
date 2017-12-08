@@ -17,7 +17,7 @@ namespace XamCore.CoreImage {
 		public FaceDetectorAccuracy? Accuracy { get; set; }
 		public float? MinFeatureSize { get; set; }
 
-		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[iOS (10,0)][Mac (10,12)]
 		public int? MaxFeatureCount { get; set; }
 
 		public bool? TrackingEnabled { get; set; }

@@ -41,7 +41,7 @@ namespace XamCore.AudioUnit
 
 #if !COREBUILD
 	// keys are not constants and had to be found in AudioToolbox.framework/Headers/AudioComponent.h
-	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
+	[NoWatch, NoTV, Mac (10,13), iOS (11,0)]
 	public partial class ResourceUsageInfo : DictionaryContainer {
 		static NSString userClientK = new NSString ("iokit.user-client");
 		static NSString globalNameK = new NSString ("mach-lookup.global-name");
@@ -102,7 +102,7 @@ namespace XamCore.AudioUnit
 	}
 
 	// keys are not constants and had to be found in AudioToolbox.framework/Headers/AudioComponent.h
-	[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
+	[NoWatch, NoTV, Mac (10,13), iOS (11,0)]
 	public partial class AudioComponentInfo : DictionaryContainer {
 		static NSString typeK = new NSString ("type");
 		static NSString subtypeK = new NSString ("subtype");
@@ -363,21 +363,21 @@ namespace XamCore.AudioUnit
 		}
 
 #if !MONOMAC
-		[Introduced (PlatformName.iOS, 7, 0)]
-		[DllImport (Constants.AudioUnitLibrary)]
+		[iOS (7,0)]
+		[DllImport(Constants.AudioUnitLibrary)]
 		static extern IntPtr AudioComponentGetIcon (IntPtr comp, float /* float */ desiredPointSize);
 
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public XamCore.UIKit.UIImage GetIcon (float desiredPointSize)
 		{
 			return new XamCore.UIKit.UIImage (AudioComponentGetIcon (handle, desiredPointSize));
 		}
 
-		[Introduced (PlatformName.iOS, 7, 0)]
-		[DllImport (Constants.AudioUnitLibrary)]
+		[iOS (7,0)]
+		[DllImport(Constants.AudioUnitLibrary)]
 		static extern double AudioComponentGetLastActiveTime (IntPtr comp);
 
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public double LastActiveTime {
 			get {
 				return AudioComponentGetLastActiveTime (handle);
@@ -385,11 +385,11 @@ namespace XamCore.AudioUnit
 		}
 #else
 		// extern NSImage * __nullable AudioComponentGetIcon (AudioComponent __nonnull comp) __attribute__((availability(macosx, introduced=10.11)));
-		[Introduced (PlatformName.MacOSX, 10, 11)]
+		[Mac (10,11)]
 		[DllImport (Constants.AudioUnitLibrary)]
 		static extern IntPtr AudioComponentGetIcon (IntPtr comp);
 
-		[Introduced (PlatformName.MacOSX, 10, 11)]
+		[Mac (10,11)]
 		public XamCore.AppKit.NSImage GetIcon ()
 		{
 			return new XamCore.AppKit.NSImage (AudioComponentGetIcon (handle));
@@ -397,15 +397,15 @@ namespace XamCore.AudioUnit
 #endif
 
 #if IOS || MONOMAC
-		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
+		[NoWatch, NoTV, Mac (10,13, onlyOn64: true), iOS (11,0)]
 		[DllImport (Constants.AudioUnitLibrary)]
 		static extern int /* OSStatus */ AudioUnitExtensionSetComponentList (IntPtr /* CFString */ extensionIdentifier, /* CFArrayRef */ IntPtr audioComponentInfo);
 
-		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Introduced (PlatformName.iOS, 11, 0)]
+		[NoWatch, NoTV, Mac (10,13, onlyOn64: true), iOS (11,0)]
 		[DllImport (Constants.AudioUnitLibrary)]
 		static extern /* CFArrayRef */ IntPtr AudioUnitExtensionCopyComponentList (IntPtr /* CFString */ extensionIdentifier);
 
-		[Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
+		[NoWatch, NoTV, Mac (10,13), iOS (11,0)]
 		public AudioComponentInfo[] ComponentList {
 			get {
 				using (var cfString = new CFString (Name)) {

@@ -50,12 +50,12 @@ namespace XamCore.SceneKit {
 			return nsa;
 		}
 
-		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
+		[Availability (Platform.Mac_10_10 | Platform.iOS_8_0)]
 		public SCNMatrix4 [] BoneInverseBindTransforms {
 			get { return FromNSArray (_BoneInverseBindTransforms); }
 		}
 
-		[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
+		[Availability (Platform.Mac_10_10 | Platform.iOS_8_0)]
 		public static SCNSkinner Create (SCNGeometry baseGeometry,
 			SCNNode [] bones, SCNMatrix4 [] boneInverseBindTransforms,
 			SCNGeometrySource boneWeights, SCNGeometrySource boneIndices)

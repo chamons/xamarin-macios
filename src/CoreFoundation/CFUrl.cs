@@ -151,14 +151,14 @@ namespace XamCore.CoreFoundation {
 		}
 
 #if !MTOUCH
-		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
+		[iOS (7,0)][Mac (10,9)]
 #endif
 		[DllImport (Constants.CoreFoundationLibrary)]
 		[return: MarshalAs (UnmanagedType.I1)]
 		extern static /* Boolean */ bool CFURLIsFileReferenceURL (/* CFURLRef */IntPtr url);
 
 #if !MTOUCH
-		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
+		[iOS (7,0)][Mac (10,9)]
 #endif
 		public bool IsFileReference {
 			get {

@@ -14,7 +14,7 @@ using XamCore.ObjCRuntime;
 namespace XamCore.AVFoundation {
 #if IOS
 	public partial class AVCaptureDeviceDiscoverySession {
-		[Introduced (PlatformName.iOS, 10, 0)]
+		[iOS (10,0)]
 		public static AVCaptureDeviceDiscoverySession Create (AVCaptureDeviceType [] deviceTypes, string mediaType, AVCaptureDevicePosition position)
 		{
 			var arr = new NSMutableArray ();

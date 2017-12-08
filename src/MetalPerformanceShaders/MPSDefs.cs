@@ -8,7 +8,7 @@ using Vector4 = global::OpenTK.Vector4;
 
 namespace XamCore.MetalPerformanceShaders {
 
-	[Introduced (PlatformName.iOS, 9, 0)]
+	[iOS (9,0)]
 	[Native] // NSUInteger
 	[Flags]	// NS_OPTIONS
 	public enum MPSKernelOptions : nuint {
@@ -17,14 +17,14 @@ namespace XamCore.MetalPerformanceShaders {
 		MPSKernelOptionsAllowReducedPrecision	= 1 << 1,
 	}
 
-	[Introduced (PlatformName.iOS, 9, 0)]
+	[iOS (9,0)]
 	[Native] // NSUInteger
 	public enum MPSImageEdgeMode : nuint {
 		Zero,
 		Clamp = 1
 	}
 
-	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (10,0)][TV (10,0)]
 	[Native]
 	public enum MPSAlphaType : nuint {
 		NonPremultiplied = 0,
@@ -32,13 +32,13 @@ namespace XamCore.MetalPerformanceShaders {
 		Premultiplied = 2,
 	}
 	 
-	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (10,0)][TV (10,0)]
 	public enum MPSDataType : uint { // uint32_t
 		FloatBit = 0x10000000,
 		Float32 = FloatBit | 32,
 	}
 
-	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (10,0)][TV (10,0)]
 	[Native]
 	public enum MPSImageFeatureChannelFormat : nuint {
 		Invalid = 0,

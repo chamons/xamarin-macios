@@ -102,7 +102,7 @@ namespace XamCore.UIKit {
 #endif
 	}
 
-	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
+	[Watch (4,0), TV (11,0), iOS (11,0)]
 	[StructLayout (LayoutKind.Sequential)]
 	public struct NSDirectionalEdgeInsets {
 
@@ -180,7 +180,7 @@ namespace XamCore.UIKit {
 	}
 
 #if !WATCH
-	[Introduced (PlatformName.iOS, 9, 0)]
+	[iOS (9,0)]
 	[StructLayout (LayoutKind.Sequential)]
 	public struct UIFloatRange : IEquatable<UIFloatRange> {
 

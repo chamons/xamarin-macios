@@ -17,7 +17,7 @@ namespace XamCore.MapKit {
 	// to replace NSString fields
 	public enum MKDirectionsMode {
 		Driving, Walking, Transit,
-		[Introduced (PlatformName.iOS, 10, 0)][Unavailable (PlatformName.TvOS)][Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[iOS (10,0)][NoTV][Watch (3,0)][Mac (10,12)]
 		Default
 	}
 	
@@ -34,7 +34,7 @@ namespace XamCore.MapKit {
 #endif
 
 #if !WATCH // The corresponding key (MKLaunchOptionsCameraKey) is allowed in WatchOS, but there's no MKMapCamera type.
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public MKMapCamera Camera { get; set; }
 #endif
 

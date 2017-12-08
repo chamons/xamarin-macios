@@ -14,8 +14,8 @@ using XamCore.Foundation;
 
 namespace XamCore.CoreVideo {
 
-	[Introduced (PlatformName.WatchOS, 4, 0)]
-	[Introduced (PlatformName.iOS, 4, 0)]
+	[Watch (4,0)]
+	[iOS (4,0)]
 	public partial class CVPixelBuffer : CVImageBuffer {
 #if !COREBUILD
 		[DllImport (Constants.CoreVideoLibrary, EntryPoint = "CVPixelBufferGetTypeID")]

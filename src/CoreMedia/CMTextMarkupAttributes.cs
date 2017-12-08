@@ -62,7 +62,7 @@ namespace XamCore.CoreMedia {
 		public float Alpha { get; private set; }
 	}
 
-	[Introduced (PlatformName.iOS, 6, 0)]
+	[iOS (6,0)]
 	public class CMTextMarkupAttributes : DictionaryContainer
 	{
 		public CMTextMarkupAttributes ()

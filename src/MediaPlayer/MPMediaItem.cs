@@ -272,28 +272,28 @@ namespace XamCore.MediaPlayer {
 			}
 		}
 		
-		[Introduced (PlatformName.iOS, 9, 2)]
+		[iOS (9,2)]
 		public bool HasProtectedAsset {
 			get {
 				return Int32ForProperty (HasProtectedAssetProperty) != 0;
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 10, 0)]
+		[iOS (10,0)]
 		public bool IsExplicitItem {
 			get {
 				return Int32ForProperty (IsExplicitProperty) != 0;
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 10, 0)]
+		[iOS (10,0)]
 		public NSDate DateAdded {
 			get {
 				return (ValueForProperty (DateAddedProperty) as NSDate);
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 10, 3)]
+		[iOS (10,3)]
 		public NSString PlaybackStoreID {
 			get {
 				return (ValueForProperty (PlaybackStoreIDProperty) as NSString);

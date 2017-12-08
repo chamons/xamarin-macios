@@ -199,7 +199,7 @@ namespace XamCore.CoreText {
 			set {Adapter.SetNativeValue (Dictionary, CTStringAttributeKey.ForegroundColor, value);}
 		}
 
-		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[iOS (10,0)][Mac (10,12)]
 		public CGColor BackgroundColor {
 			get {
 				var h = IntPtr.Zero;
@@ -303,7 +303,7 @@ namespace XamCore.CoreText {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)]
+		[iOS (10,0)][Mac (10,12)][Watch (3,0)][TV (10,0)]
 		public int? HorizontalInVerticalForms {
 			get {
 				var x = CTStringAttributeKey.HorizontalInVerticalForms;
@@ -316,7 +316,7 @@ namespace XamCore.CoreText {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
+		[iOS (11,0), Mac (10,13), TV (11,0), Watch (4,0)]
 		public float? BaselineOffset {
 			get { return Adapter.GetSingleValue (Dictionary, CTStringAttributeKey.BaselineOffset); }
 			set { Adapter.SetValue (Dictionary, CTStringAttributeKey.BaselineOffset, value); }
@@ -343,7 +343,7 @@ namespace XamCore.CoreText {
 			set {Adapter.SetNativeValue (Dictionary, CTStringAttributeKey.RunDelegate, value);}
 		}
 
-		[Introduced (PlatformName.iOS, 6, 0)]
+		[iOS (6,0)]
 		public CTBaselineClass? BaselineClass {
 			get {
 				var value = CFDictionary.GetValue (Dictionary.Handle, CTStringAttributeKey.BaselineClass.Handle);
@@ -355,13 +355,13 @@ namespace XamCore.CoreText {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 6, 0)]
+		[iOS (6, 0)]
 		public void SetBaselineInfo (CTBaselineClass baselineClass, double offset)
 		{
 			SetBaseline (baselineClass, offset, CTStringAttributeKey.BaselineInfo);
 		}
 
-		[Introduced (PlatformName.iOS, 6, 0)]
+		[iOS (6, 0)]
 		public void SetBaselineReferenceInfo (CTBaselineClass baselineClass, double offset)
 		{
 			SetBaseline (baselineClass, offset, CTStringAttributeKey.BaselineReferenceInfo);
@@ -379,7 +379,7 @@ namespace XamCore.CoreText {
 				Adapter.SetNativeValue (Dictionary, infoKey, (INativeObject)dict);
 		}
 
-		[Introduced (PlatformName.iOS, 6, 0)]
+		[iOS (6, 0)]
 		// 'Value must be a CFArray of CFNumberRefs' - System/Library/Frameworks/CoreText.framework/Headers/CTStringAttributes.h
 		public void SetWritingDirection (params CTWritingDirection[] writingDirections)
 		{

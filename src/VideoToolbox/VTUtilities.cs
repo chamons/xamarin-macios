@@ -15,7 +15,7 @@ using XamCore.CoreGraphics;
 using XamCore.CoreVideo;
 
 namespace XamCore.VideoToolbox {
-	[Introduced (PlatformName.MacOSX, 10, 11), Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.TvOS, 10, 2)]
+	[Mac (10,11), iOS (9,0), TV (10,2)]
 	public static class VTUtilities {
 		[DllImport (Constants.VideoToolboxLibrary)]
 		extern static VTStatus VTCreateCGImageFromCVPixelBuffer (

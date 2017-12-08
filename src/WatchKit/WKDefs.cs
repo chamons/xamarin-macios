@@ -12,7 +12,7 @@ using XamCore.Foundation;
 using XamCore.ObjCRuntime;
 
 namespace XamCore.WatchKit {
-	[Introduced (PlatformName.iOS, 8, 2)]
+	[iOS (8,2)]
 	[Native]
 	public enum WKInterfaceMapPinColor : nint {
 		Red,
@@ -20,7 +20,7 @@ namespace XamCore.WatchKit {
 		Purple
 	}
 
-	[Introduced (PlatformName.iOS, 8, 2)]
+	[iOS (8,2)]
 	[Native]
 	public enum WKMenuItemIcon : nint {
 		Accept,
@@ -41,14 +41,14 @@ namespace XamCore.WatchKit {
 		Trash
 	}
 		
-	[Introduced (PlatformName.iOS, 8, 2)]
+	[iOS (8,2)]
 	[Native]
 	public enum WKUserNotificationInterfaceType : nint {
 		Default,
 		Custom
 	}
 
-	[Introduced (PlatformName.iOS, 8, 2)]
+	[iOS (8,2)]
 	[Native]
 	public enum WKTextInputMode : nint {
 		Plain,
@@ -56,7 +56,7 @@ namespace XamCore.WatchKit {
 		AllowAnimatedEmoji
 	}
 
-	[Introduced (PlatformName.iOS, 8, 2)]
+	[iOS (8,2)]
 	[Native]
 	[ErrorDomain ("WatchKitErrorDomain")]
 	public enum WKErrorCode : nint {
@@ -69,7 +69,7 @@ namespace XamCore.WatchKit {
 		RecordingFailedError = 6,
 	}
 
-	[Unavailable (PlatformName.iOS)]
+	[NoiOS]
 	[Native]
 	public enum WKHapticType : nint {
 		Notification,
@@ -83,7 +83,7 @@ namespace XamCore.WatchKit {
 		Click
 	}
 
-	[Unavailable (PlatformName.iOS)]
+	[NoiOS]
 	[Native]
 	public enum WKAudioFilePlayerStatus : nint {
 		Unknown,
@@ -91,7 +91,7 @@ namespace XamCore.WatchKit {
 		Failed
 	}
 
-	[Unavailable (PlatformName.iOS)]
+	[NoiOS]
 	[Native]
 	public enum WKAudioFilePlayerItemStatus : nint {
 		Unknown,
@@ -99,7 +99,7 @@ namespace XamCore.WatchKit {
 		Failed
 	}
 
-	[Introduced (PlatformName.WatchOS, 2, 0), Unavailable (PlatformName.iOS)]
+	[Watch (2,0), NoiOS]
 	[Native]
 	public enum WKAudioRecorderPreset : nint {
 		NarrowBandSpeech,
@@ -107,7 +107,7 @@ namespace XamCore.WatchKit {
 		HighQualityAudio
 	}
 
-	[Unavailable (PlatformName.iOS)]
+	[NoiOS]
 	[Native]
 	public enum WKAlertActionStyle : nint {
 		Default = 0,
@@ -115,7 +115,7 @@ namespace XamCore.WatchKit {
 		Destructive
 	}
 
-	[Introduced (PlatformName.WatchOS, 2, 0), Unavailable (PlatformName.iOS)]
+	[Watch (2,0), NoiOS]
 	[Native]
 	public enum WKAlertControllerStyle : nint {
 		Alert,
@@ -123,7 +123,7 @@ namespace XamCore.WatchKit {
 		ActionSheet
 	}
 
-	[Introduced (PlatformName.WatchOS, 2, 0), Unavailable (PlatformName.iOS)]
+	[Watch (2,0), NoiOS]
 	[Native]
 	public enum WKVideoGravity : nint {
 		Aspect,
@@ -131,7 +131,7 @@ namespace XamCore.WatchKit {
 		Resize
 	}
 
-	[Unavailable (PlatformName.iOS)]
+	[NoiOS]
 	[Native]
 	public enum WKInterfaceObjectHorizontalAlignment : nint {
 		Left,
@@ -139,7 +139,7 @@ namespace XamCore.WatchKit {
 		Right
 	}
 
-	[Unavailable (PlatformName.iOS)]
+	[NoiOS]
 	[Native]
 	public enum WKInterfaceObjectVerticalAlignment : nint {
 		Top,
@@ -147,7 +147,7 @@ namespace XamCore.WatchKit {
 		Bottom
 	}
 
-	[Introduced (PlatformName.WatchOS, 2, 1), Unavailable (PlatformName.iOS)]
+	[Watch (2,1), NoiOS]
 	[Native]
 	public enum WKInterfaceLayoutDirection : nint
 	{
@@ -155,7 +155,7 @@ namespace XamCore.WatchKit {
 		RightToLeft
 	}
 
-	[Introduced (PlatformName.WatchOS, 2, 1), Unavailable (PlatformName.iOS)]
+	[Watch (2,1), NoiOS]
 	[Native]
 	public enum WKInterfaceSemanticContentAttribute : nint
 	{
@@ -166,7 +166,7 @@ namespace XamCore.WatchKit {
 		ForceRightToLeft
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0)][Unavailable (PlatformName.iOS)]
+	[Watch (3,0)][NoiOS]
 	[Native]
 	public enum WKApplicationState : nint {
 		Active,
@@ -174,7 +174,7 @@ namespace XamCore.WatchKit {
 		Background
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0)][Unavailable (PlatformName.iOS)]
+	[Watch (3,0)][NoiOS]
 	[Native]
 	public enum WKGestureRecognizerState : nint {
 		Possible,
@@ -186,7 +186,7 @@ namespace XamCore.WatchKit {
 		Recognized
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0)][Unavailable (PlatformName.iOS)]
+	[Watch (3,0)][NoiOS]
 	[Native]
 	[Flags]
 	public enum WKSwipeGestureRecognizerDirection : nuint {
@@ -196,28 +196,28 @@ namespace XamCore.WatchKit {
 		Down = 1 << 3
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0)][Unavailable (PlatformName.iOS)]
+	[Watch (3,0)][NoiOS]
 	[Native]
 	public enum WKInterfaceDeviceWristLocation : nint {
 		Left,
 		Right
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0)][Unavailable (PlatformName.iOS)]
+	[Watch (3,0)][NoiOS]
 	[Native]
 	public enum WKInterfaceDeviceCrownOrientation : nint {
 		Left,
 		Right
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0)][Unavailable (PlatformName.iOS)]
+	[Watch (3,0)][NoiOS]
 	[Native]
 	public enum WKWaterResistanceRating : nint {
 		Ipx7,
 		Wr50,
 	}
 
-	[Introduced (PlatformName.WatchOS, 4, 0)][Unavailable (PlatformName.iOS)]
+	[Watch (4,0)][NoiOS]
 	[Native]
 	public enum WKSnapshotReason : nint {
 		AppScheduled = 0,
@@ -227,14 +227,14 @@ namespace XamCore.WatchKit {
 		AppBackgrounded,
 	}
 
-	[Introduced (PlatformName.WatchOS, 4, 0)][Unavailable (PlatformName.iOS)]
+	[Watch (4,0)][NoiOS]
 	[Native]
 	public enum WKPageOrientation : nint {
 		Horizontal,
 		Vertical,
 	}
 
-	[Introduced (PlatformName.WatchOS, 4, 0)][Unavailable (PlatformName.iOS)]
+	[Watch (4,0)][NoiOS]
 	[Native]
 	public enum WKInterfaceScrollPosition : nint {
 		Top,
@@ -242,7 +242,7 @@ namespace XamCore.WatchKit {
 		Bottom,
 	}
 
-	[Introduced (PlatformName.WatchOS, 4, 0)][Unavailable (PlatformName.iOS)]
+	[Watch (4,0)][NoiOS]
 	[Native]
 	public enum WKInterfaceDeviceBatteryState : nint {
 		Unknown,

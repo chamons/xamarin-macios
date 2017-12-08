@@ -6,8 +6,8 @@ namespace XamCore.HomeKit {
 
 	partial class HMActionSet {
 
-		[Introduced (PlatformName.iOS, 9, 0)]
-		[Introduced (PlatformName.TvOS, 10, 0)]
+		[iOS (9,0)]
+		[TV (10,0)]
 		public HMActionSetType ActionSetType {
 			get {
 				var s = _ActionSetType;

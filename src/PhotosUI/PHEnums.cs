@@ -3,8 +3,8 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.PhotosUI {
 #if !MONOMAC
-	[Introduced (PlatformName.TvOS, 10, 0)]
-	[Introduced (PlatformName.iOS, 9, 1)]
+	[TV (10,0)]
+	[iOS (9,1)]
 	[Native]
 	public enum PHLivePhotoViewPlaybackStyle : nint
 	{
@@ -13,8 +13,8 @@ namespace XamCore.PhotosUI {
 		Hint
 	}
 
-	[Introduced (PlatformName.TvOS, 10, 0)]
-	[Introduced (PlatformName.iOS, 9, 1)]
+	[TV (10,0)]
+	[iOS (9,1)]
 	[Native]
 	[Flags] // NS_OPTIONS
 	public enum PHLivePhotoBadgeOptions : nuint {

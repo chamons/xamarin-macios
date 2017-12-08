@@ -44,7 +44,7 @@ namespace XamCore.CoreLocation {
 		static double? max_distance;
 		static double? filter_none;
 		
-		[Introduced (PlatformName.iOS, 6, 0)]
+		[Since (6, 0)]
 		public static double MaxDistance {
 			get {
 				if (max_distance == null)

@@ -63,7 +63,7 @@ namespace XamCore.AddressBook {
 		}
 	}
 
-	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Contacts' API instead.")]
+	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Contacts' API instead.")]
 	public class ABGroup : ABRecord, IEnumerable<ABRecord> {
 
 		[DllImport (Constants.AddressBookLibrary)]
@@ -78,7 +78,7 @@ namespace XamCore.AddressBook {
 		[DllImport (Constants.AddressBookLibrary)]
 		extern static IntPtr ABGroupCreateInSource (IntPtr source);
 
-		[Introduced (PlatformName.iOS, 4, 0)]
+		[iOS (4,0)]
 		public ABGroup (ABRecord source)
 			: base (IntPtr.Zero, true)
 		{
@@ -107,7 +107,7 @@ namespace XamCore.AddressBook {
 		[DllImport (Constants.AddressBookLibrary)]
 		extern static IntPtr ABGroupCopySource (IntPtr group);
 
-		[Introduced (PlatformName.iOS, 4, 0)]
+		[iOS (4,0)]
 		public ABRecord Source {
 			get {
 				var h = ABGroupCopySource (Handle);

@@ -85,7 +85,7 @@ namespace XamCore.Foundation {
 			return ret;
 		}
 
-		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
+		[iOS (9,0), Mac(10,11)]
 		public unsafe nuint [] GetIndexes (NSRange range)
 		{
 			var ret = new nuint [range.Length];

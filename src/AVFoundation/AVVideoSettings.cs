@@ -205,7 +205,7 @@ namespace XamCore.AVFoundation {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public double? MaxKeyFrameIntervalDuration {
 			get {
 				return GetDoubleValue (AVVideo.MaxKeyFrameIntervalDurationKey);
@@ -216,7 +216,7 @@ namespace XamCore.AVFoundation {
 		}
 
 #if !MONOMAC
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public bool? AllowFrameReordering {
 			get {
 				return GetBoolValue (AVVideo.AllowFrameReorderingKey);
@@ -226,7 +226,7 @@ namespace XamCore.AVFoundation {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public AVVideoH264EntropyMode? EntropyEncoding {
 			get {
 				var k = GetNSStringValue (AVVideo.H264EntropyModeKey);
@@ -263,7 +263,7 @@ namespace XamCore.AVFoundation {
 			
 		// frame rate can be floating point (29.97 is common for instance)
 #if XAMCORE_2_0
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public float? ExpectedSourceFrameRate {
 			get {
 				return GetFloatValue (AVVideo.ExpectedSourceFrameRateKey);
@@ -273,7 +273,7 @@ namespace XamCore.AVFoundation {
 			}
 		}
 #else
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public int? ExpectedSourceFrameRate {
 			get {
 				return GetInt32Value (AVVideo.ExpectedSourceFrameRateKey);
@@ -286,7 +286,7 @@ namespace XamCore.AVFoundation {
 
 		// frame rate can be floating point (29.97 is common for instance)
 #if XAMCORE_2_0
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public float? AverageNonDroppableFrameRate {
 			get {
 				return GetFloatValue (AVVideo.AverageNonDroppableFrameRateKey);
@@ -296,7 +296,7 @@ namespace XamCore.AVFoundation {
 			}
 		}
 #else
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public int? AverageNonDroppableFrameRate {
 			get {
 				return GetInt32Value (AVVideo.AverageNonDroppableFrameRateKey);

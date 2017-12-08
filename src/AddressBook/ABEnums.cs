@@ -34,7 +34,7 @@ using XamCore.CoreFoundation;
 using XamCore.ObjCRuntime;
 
 namespace XamCore.AddressBook {
-	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Contacts' API instead.")]
+	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Contacts' API instead.")]
 	[Native]
 	[ErrorDomain ("ABAddressBookErrorDomain")]
 	public enum ABAddressBookError : nint {
@@ -42,7 +42,7 @@ namespace XamCore.AddressBook {
 		OperationNotPermittedByUserError
 	}
 
-	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Contacts' API instead.")]
+	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Contacts' API instead.")]
 	[Native]
 	public enum ABAuthorizationStatus : nint {
 		NotDetermined = 0,

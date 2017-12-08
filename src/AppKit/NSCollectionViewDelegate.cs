@@ -8,7 +8,7 @@ namespace XamCore.AppKit
 	public partial class NSCollectionViewDelegate
 	{
 		[Obsolete ("Use 'ValidateDropOperation (NSCollectionView collectionView, NSDraggingInfo draggingInfo, ref NSIndexPath proposedDropIndexPath, ref NSCollectionViewDropOperation proposedDropOperation)' instead.")]
-		[Introduced (PlatformName.MacOSX, 10, 11)]
+		[Mac (10, 11)]
 		public virtual NSDragOperation ValidateDrop (NSCollectionView collectionView, NSDraggingInfo draggingInfo, out NSIndexPath proposedDropIndexPath, out NSCollectionViewDropOperation proposedDropOperation)
 		{
 			proposedDropIndexPath = null;
@@ -20,7 +20,7 @@ namespace XamCore.AppKit
 	public partial class NSCollectionViewDelegateFlowLayout
 	{
 		[Obsolete ("Use 'ValidateDropOperation (NSCollectionView collectionView, NSDraggingInfo draggingInfo, ref NSIndexPath proposedDropIndexPath, ref NSCollectionViewDropOperation proposedDropOperation)' instead.")]
-		[Introduced (PlatformName.MacOSX, 10, 11)]
+		[Mac (10, 11)]
 		public virtual NSDragOperation ValidateDrop (NSCollectionView collectionView, NSDraggingInfo draggingInfo, out NSIndexPath proposedDropIndexPath, out NSCollectionViewDropOperation proposedDropOperation)
 		{
 			proposedDropIndexPath = null;
@@ -32,7 +32,7 @@ namespace XamCore.AppKit
 	public static partial class NSCollectionViewDelegate_Extensions
 	{
 		[Obsolete ("Use 'ValidateDropOperation (NSCollectionView collectionView, NSDraggingInfo draggingInfo, ref NSIndexPath proposedDropIndexPath, ref NSCollectionViewDropOperation proposedDropOperation)' instead.")]
-		[Introduced (PlatformName.MacOSX, 10, 11)]
+		[Mac (10, 11)]
 		public static NSDragOperation ValidateDrop (this INSCollectionViewDelegate This, NSCollectionView collectionView, NSDraggingInfo draggingInfo, out NSIndexPath proposedDropIndexPath, out NSCollectionViewDropOperation proposedDropOperation)
 		{
 			proposedDropIndexPath = null;

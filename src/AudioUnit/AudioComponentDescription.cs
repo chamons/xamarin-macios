@@ -47,17 +47,17 @@ namespace XamCore.AudioUnit
 		Panner=0x6175706e, // 'aupn'
 		OfflineEffect=0x61756f6c, // 'auol'
 		Generator=0x6175676e, // 'augn'
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		MIDIProcessor		= 0x61756d69, // 'aumi'
 
 #if !MONOMAC
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		RemoteEffect		= 0x61757278, // 'aurx',
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		RemoteGenerator		= 0x61757267, // 'aurg',
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		RemoteInstrument	= 0x61757269, // 'auri',
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		RemoteMusicEffect	= 0x6174726d, // 'aurm'
 #endif
 	}
@@ -84,7 +84,7 @@ namespace XamCore.AudioUnit
 #endif
 		Sampler		= 0x73616d70, // 'samp'
 
-		[Introduced (PlatformName.iOS, 8, 0)]
+		[iOS (8,0)]
 		MidiSynth	= 0x6d73796e, // 'msyn'
 	}
 
@@ -117,7 +117,7 @@ namespace XamCore.AudioUnit
 		ParametricEQ=0x706d6571, // 'pmeq'
 		Delay=0x64656c79, // 'dely'
 
-		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 5)]
+		[Availability (Introduced = Platform.iOS_8_0 | Platform.Mac_10_5)]
 		SampleDelay=0x73646c79, // 'sdly'
 		Distortion=0x64697374, // 'dist'
 		BandPassFilter=0x62706173, // 'bpas'
@@ -142,10 +142,10 @@ namespace XamCore.AudioUnit
 		Spacial=0x3364656d, // Same as Embedded3D
 #if MONOMAC
 		Stereo=0x736d7872, // 'smxr'
-		[Deprecated (PlatformName.MacOSX, 10, 10, message: "Use 'Spacial' instead.")]
+		[Availability (Deprecated = Platform.Mac_10_10, Message = "Use 'Spacial' instead.")]
 		ThreeD=0x33646d78, // '3dmx'
 #else
-		[Deprecated (PlatformName.iOS, 8, 0, message: "Use 'Spacial' instead.")]
+		[Availability (Deprecated = Platform.iOS_8_0, Message = "Use 'Spacial' instead.")]
 		Embedded3D=0x3364656d, // '3dem'
 #endif
 	}
@@ -176,7 +176,7 @@ namespace XamCore.AudioUnit
 	public enum AudioComponentFlag // UInt32 in AudioComponentDescription
 	{
 		Unsearchable				= 1,
-		[Introduced (PlatformName.iOS, 6, 0)]
+		[iOS (6,0)]
 		SandboxSafe					= 2,
 		IsV3AudioUnit				= 4,
 		RequiresAsyncInstantiation	= 8,

@@ -179,7 +179,7 @@ namespace XamCore.Foundation {
 			return false;
 		}
 
-		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
+		[iOS (9,0), Mac (10,11)]
 		public NSObject DecodeTopLevelObject (Type type, string key, out NSError error)
 		{
 			if (type == null)
@@ -187,7 +187,7 @@ namespace XamCore.Foundation {
 			return DecodeTopLevelObject (new Class (type), key, out error);
 		}
 
-		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11)]
+		[iOS (9,0), Mac (10,11)]
 		public NSObject DecodeTopLevelObject (Type[] types, string key, out NSError error)
 		{
 #if XAMCORE_2_0

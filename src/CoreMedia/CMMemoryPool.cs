@@ -15,7 +15,7 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.CoreMedia {
 
-	[Introduced (PlatformName.iOS, 6, 0)][Introduced (PlatformName.MacOSX, 10, 8)]
+	[iOS (6,0)][Mac (10,8)]
 	public partial class CMMemoryPool : IDisposable, INativeObject
 	{
 		IntPtr handle;

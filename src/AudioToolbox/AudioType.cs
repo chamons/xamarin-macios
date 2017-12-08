@@ -144,7 +144,7 @@ namespace XamCore.AudioToolbox {
 		const int AudioUnitSampleFractionBits = 24;
 		const AudioFormatFlags AudioFormatFlagIsBigEndian = 0;
 
-		[Deprecated (PlatformName.iOS, 8, 0, message: "Canonical is no longer encouraged, since fixed-point no longer provides a performance advantage over floating point. 'AudioFormatFlagsNativeFloatPacked' is preffered instead."), Deprecated (PlatformName.MacOSX, 10, 10, message: "Canonical is no longer encouraged, since fixed-point no longer provides a performance advantage over floating point. 'AudioFormatFlagsNativeFloatPacked' is preffered instead.")]
+		[Availability (Deprecated = Platform.iOS_8_0 | Platform.Mac_10_10, Message = "Canonical is no longer encouraged, since fixed-point no longer provides a performance advantage over floating point. 'AudioFormatFlagsNativeFloatPacked' is preffered instead.")]
 		public static readonly AudioFormatFlags AudioFormatFlagsAudioUnitCanonical = AudioFormatFlags.IsSignedInteger | (BitConverter.IsLittleEndian ? 0 : AudioFormatFlags.IsBigEndian) |
 			AudioFormatFlags.IsPacked | AudioFormatFlags.IsNonInterleaved | (AudioFormatFlags) (AudioUnitSampleFractionBits << (int)AudioFormatFlags.LinearPCMSampleFractionShift);
 		
@@ -340,7 +340,7 @@ namespace XamCore.AudioToolbox {
 		}
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Watch (3,0)]
 	[Flags]
 	public enum AudioChannelFlags : uint_compat_int { // UInt32 in AudioPanningInfo -- AudioFormat.h
 		AllOff = 0,
@@ -1016,7 +1016,7 @@ namespace XamCore.AudioToolbox {
 		TimeRunning = 1 << 1
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0)]
+	[Watch (3,0)]
 	public enum MPEG4ObjectID { // long
 		AacMain = 1,
 		AacLc = 2,

@@ -14,7 +14,7 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.MediaPlayer {
 
-	[Introduced (PlatformName.MacOSX, 10, 12, 2, PlatformArchitecture.Arch64)]
+	[Mac (10,12,2, onlyOn64: true)]
 	public class MPNowPlayingInfo {
 		public MPNowPlayingInfo ()
 		{
@@ -32,28 +32,28 @@ namespace XamCore.MediaPlayer {
 		public int? DiscNumber;
 		public ulong? PersistentID;
 		public double? PlaybackDuration;
-		[Introduced (PlatformName.iOS, 8, 0)]
+		[iOS (8,0)]
 		public double? DefaultPlaybackRate;
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		public MPNowPlayingInfoLanguageOptionGroup[] AvailableLanguageOptions { get; set; }
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		public MPNowPlayingInfoLanguageOption[] CurrentLanguageOptions { get; set; }
-		[Introduced (PlatformName.iOS, 10, 0)]
+		[iOS (10,0)]
 		public string CollectionIdentifier { get; set; }
-		[Introduced (PlatformName.iOS, 10, 0)]
+		[iOS (10,0)]
 		public string ExternalContentIdentifier { get; set; }
-		[Introduced (PlatformName.iOS, 10, 0)]
+		[iOS (10,0)]
 		public string ExternalUserProfileIdentifier { get; set; }
-		[Introduced (PlatformName.iOS, 10, 0)]
+		[iOS (10,0)]
 		public float? PlaybackProgress { get; set; }
-		[Introduced (PlatformName.iOS, 10, 0)]
+		[iOS (10,0)]
 		public MPNowPlayingInfoMediaType? MediaType { get; set; }
-		[Introduced (PlatformName.iOS, 10, 0)]
+		[iOS (10,0)]
 		public bool? IsLiveStream { get; set; }
-		[Introduced (PlatformName.iOS, 10, 3)]
+		[iOS (10,3)]
 		public NSUrl AssetUrl { get; set; }
-		[Introduced (PlatformName.iOS, 11, 1), Introduced (PlatformName.TvOS, 11, 1), Introduced (PlatformName.MacOSX, 10, 13, 1, PlatformArchitecture.Arch64)]
+		[iOS (11,1), TV (11,1), Mac (10,13,1, onlyOn64: true)]
 		public NSDate CurrentPlaybackDate { get; set; }
 
 		public string AlbumTitle;

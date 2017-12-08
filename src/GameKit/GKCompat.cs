@@ -9,7 +9,7 @@ namespace XamCore.GameKit {
 
 	public partial class GKMatchRequest {
 		
-		[Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.MacOSX, 10, 10)]
+		[iOS (8,0), Mac (10,10)]
 		[Obsolete ("Use 'RecipientResponseHandler' property.")]
 		public virtual void SetRecipientResponseHandler (Action<GKPlayer, GKInviteRecipientResponse> handler)
 		{

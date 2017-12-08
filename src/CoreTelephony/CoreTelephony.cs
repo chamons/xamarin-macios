@@ -6,28 +6,28 @@ namespace XamCore.CoreTelephony {
 
 	public partial class CTCall {
 #if !COREBUILD
-		[Deprecated (PlatformName.iOS, 10, 0, message: "Use CallKit")]
+		[Availability (Deprecated = Platform.iOS_10_0, Message = "Use CallKit")]
 		public string StateDialing {
 			get {
 				return Dlfcn.SlowGetStringConstant (Constants.CoreTelephonyLibrary, "CTCallStateDialing");
 			}
 		}
 
-		[Deprecated (PlatformName.iOS, 10, 0, message: "Use CallKit")]
+		[Availability (Deprecated = Platform.iOS_10_0, Message = "Use CallKit")]
 		public string StateIncoming {
 			get {
 				return Dlfcn.SlowGetStringConstant (Constants.CoreTelephonyLibrary, "CTCallStateIncoming");
 			}
 		}
 
-		[Deprecated (PlatformName.iOS, 10, 0, message: "Use CallKit")]
+		[Availability (Deprecated = Platform.iOS_10_0, Message = "Use CallKit")]
 		public string StateConnected {
 			get {
 				return Dlfcn.SlowGetStringConstant (Constants.CoreTelephonyLibrary, "CTCallStateConnected");
 			}
 		}
 
-		[Deprecated (PlatformName.iOS, 10, 0, message: "Use CallKit")]
+		[Availability (Deprecated = Platform.iOS_10_0, Message = "Use CallKit")]
 		public string StateDisconnected {
 			get {
 				return Dlfcn.SlowGetStringConstant (Constants.CoreTelephonyLibrary, "CTCallStateDisconnected");
@@ -42,7 +42,7 @@ namespace XamCore.CoreTelephony {
 		NoError = 0, Posix = 1, Mach = 2
 	}
 
-	[Introduced (PlatformName.iOS, 9, 0)]
+	[iOS (9,0)]
 	[Native]
 	public enum CTCellularDataRestrictedState : nuint {
 		Unknown,

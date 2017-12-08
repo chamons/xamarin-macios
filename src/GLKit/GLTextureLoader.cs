@@ -189,7 +189,7 @@ namespace XamCore.GLKit {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public bool? SRGB {
 			get {
 				return GetBoolValue (GLKTextureLoader.SRGB);

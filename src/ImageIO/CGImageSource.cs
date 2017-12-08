@@ -58,7 +58,7 @@ namespace XamCore.ImageIO {
 
 		public bool ShouldCache { get; set; }
 
-		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
+		[iOS (7,0)][Mac (10,9)]
 		public bool ShouldCacheImmediately { get; set; }
 
 		public bool ShouldAllowFloat { get; set; }
@@ -87,7 +87,7 @@ namespace XamCore.ImageIO {
 		public int? MaxPixelSize { get; set; }
 		public bool CreateThumbnailWithTransform { get; set; }
 
-		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
+		[iOS (9,0)][Mac (10,11)]
 		public int? SubsampleFactor { get; set; }
 
 		internal override NSMutableDictionary ToDictionary ()
@@ -377,11 +377,11 @@ namespace XamCore.ImageIO {
 			return CGImageSourceGetStatusAtIndex (handle, index);
 		}
 
-		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
+		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
 		[DllImport (Constants.ImageIOLibrary)]
 		static extern IntPtr /* CFDictionaryRef* */ CGImageSourceCopyAuxiliaryDataInfoAtIndex (IntPtr /* CGImageSourceRef* */ isrc, nuint index, IntPtr /* CFStringRef* */ auxiliaryImageDataType);
 
-		[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
+		[Watch (4, 0), TV (11, 0), Mac (10, 13), iOS (11, 0)]
 		public CGImageAuxiliaryDataInfo CopyAuxiliaryDataInfo (nuint index, CGImageAuxiliaryDataType auxiliaryImageDataType)
 		{
 			var ptr = CGImageSourceCopyAuxiliaryDataInfoAtIndex (Handle, index, auxiliaryImageDataType.GetConstant ().GetHandle ());

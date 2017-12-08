@@ -9,11 +9,11 @@ using XamCore.Foundation;
 namespace XamCore.UIKit {
 	static public partial class UIContentSizeCategoryExtensions {
 
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
+		[iOS (11, 0), TV (11, 0)]
 		[DllImport (Constants.UIKitLibrary)]
 		static extern nint /* NSComparisonResult */ UIContentSizeCategoryCompareToCategory (IntPtr /* NSString */ lhs, IntPtr /* NSString */ rhs);
 
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
+		[iOS (11, 0), TV (11, 0)]
 		public static NSComparisonResult Compare (UIContentSizeCategory category1, UIContentSizeCategory category2)
 		{
 			var c1 = category1.GetConstant ();
@@ -27,11 +27,11 @@ namespace XamCore.UIKit {
 			return (NSComparisonResult)(long)UIContentSizeCategoryCompareToCategory (c1.Handle, c2.Handle);
 		}
 
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
+		[iOS (11, 0), TV (11, 0)]
 		[DllImport (Constants.UIKitLibrary)]
 		static extern bool UIContentSizeCategoryIsAccessibilityCategory (IntPtr /* NSString */ category);
 
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0)]
+		[iOS (11, 0), TV (11, 0)]
 		static public bool IsAccessibilityCategory (this UIContentSizeCategory self)
 		{
 			var c1 = self.GetConstant ();

@@ -20,7 +20,7 @@ namespace XamCore.CoreServices {
 #endif
 
 	// all fields constants that this is using are deprecated in Xcode 7
-	[Deprecated (PlatformName.iOS, 9, 0, message: "Use 'NSUrlSession'."), Deprecated (PlatformName.MacOSX, 10, 11, message: "Use 'NSUrlSession'.")]
+	[Availability (Deprecated = Platform.iOS_9_0 | Platform.Mac_10_11, Message = "Use 'NSUrlSession'.")]
 	public partial class CFHTTPStream : CFReadStream {
 
 		internal CFHTTPStream (IntPtr handle)

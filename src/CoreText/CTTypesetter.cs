@@ -39,7 +39,7 @@ namespace XamCore.CoreText {
 #region Typesetter Values
 	public static class CTTypesetterOptionKey {
 
-		[Deprecated (PlatformName.iOS, 6, 0)]
+		[Availability (Deprecated = Platform.iOS_6_0)]
 		public static readonly NSString DisableBidiProcessing;
 		public static readonly NSString ForceEmbeddingLevel;
 
@@ -76,7 +76,7 @@ namespace XamCore.CoreText {
 
 		public NSDictionary Dictionary {get; private set;}
 
-		[Deprecated (PlatformName.iOS, 6, 0)]
+		[Availability (Deprecated = Platform.iOS_6_0)]
 		public bool DisableBidiProcessing {
 			get {
 				return CFDictionary.GetBooleanValue (Dictionary.Handle, 

@@ -37,14 +37,14 @@ namespace XamCore.SceneKit {
 #if MONOMAC && !XAMCORE_4_0
 	partial class SCNScene {
 		[Obsolete ("Use the 'ISCNSceneExportDelegate' overload instead.")]
-		[Introduced (PlatformName.MacOSX, 10, 9)]
+		[Mac (10, 9)]
 		public virtual bool WriteToUrl (NSUrl url, SCNSceneLoadingOptions options, SCNSceneExportDelegate handler, SCNSceneExportProgressHandler exportProgressHandler)
 		{
 			return WriteToUrl (url: url, options: options == null ? null : options.Dictionary, aDelegate: handler, exportProgressHandler: exportProgressHandler);
 		}
 
 		[Obsolete ("Use the 'ISCNSceneExportDelegate' overload instead.")]
-		[Introduced (PlatformName.MacOSX, 10, 9)]
+		[Mac (10, 9)]
 		public virtual bool WriteToUrl (NSUrl url, NSDictionary options, SCNSceneExportDelegate handler, SCNSceneExportProgressHandler exportProgressHandler)
 		{
 			return WriteToUrl (url: url, options: options, aDelegate: handler, exportProgressHandler: exportProgressHandler);

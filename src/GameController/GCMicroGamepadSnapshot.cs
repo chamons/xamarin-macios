@@ -10,7 +10,7 @@ using XamCore.Foundation;
 
 namespace XamCore.GameController {
 
-	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.TvOS, 9, 0)]
+	[iOS (10,0)][TV (9,0)]
 	// GCMicroGamepadSnapshot.h
 	// float_t are 4 bytes (at least for ARM64)
 	[StructLayout (LayoutKind.Sequential, Pack = 1)]

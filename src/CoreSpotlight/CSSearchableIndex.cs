@@ -15,7 +15,7 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.CoreSpotlight {
 
-	[Introduced (PlatformName.iOS, 9, 0)]
+	[iOS (9,0)]
 	public enum CSFileProtection {
 		None,
 		Complete,

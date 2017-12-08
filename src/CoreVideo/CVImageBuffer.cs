@@ -35,8 +35,8 @@ using XamCore.CoreGraphics;
 namespace XamCore.CoreVideo {
 
 	// CVImageBuffer.h
-	[Introduced (PlatformName.iOS, 4, 0)]
-	[Introduced (PlatformName.WatchOS, 4, 0)]
+	[iOS (4,0)]
+	[Watch (4,0)]
 	public partial class CVImageBuffer : CVBuffer {
 #if !COREBUILD
 #if !XAMCORE_2_0
@@ -195,7 +195,7 @@ namespace XamCore.CoreVideo {
 		[DllImport (Constants.CoreVideoLibrary)]
 		extern static /* CGColorSpaceRef */ IntPtr CVImageBufferGetColorSpace (/* CVImageBufferRef */ IntPtr imageBuffer);
 		
-		[Deprecated (PlatformName.MacOSX, 10, 4), Obsoleted (PlatformName.iOS)]
+		[Availability (Deprecated = Platform.Mac_10_4, Unavailable = Platform.iOS_Version)]
 		public CGColorSpace ColorSpace {
 			get {
 				var h = CVImageBufferGetColorSpace (handle);
@@ -203,7 +203,7 @@ namespace XamCore.CoreVideo {
 			}
 		}
 #elif !XAMCORE_3_0
-		[Deprecated (PlatformName.MacOSX, 10, 4), Obsoleted (PlatformName.iOS)]
+		[Availability (Deprecated = Platform.Mac_10_4, Unavailable = Platform.iOS_Version)]
 		public CGColorSpace ColorSpace {
 			get {
 				return null;
@@ -212,7 +212,7 @@ namespace XamCore.CoreVideo {
 #endif
 
 #if MONOMAC 
-		[Introduced (PlatformName.MacOSX, 10, 8)]
+		[MountainLion]
 		[DllImport (Constants.CoreVideoLibrary)]
 		extern static /* CGColorSpaceRef */ IntPtr CVImageBufferCreateColorSpaceFromAttachments (/* CFDictionaryRef */ IntPtr attachments);
 
@@ -228,40 +228,40 @@ namespace XamCore.CoreVideo {
 #if XAMCORE_2_0
 
 		[DllImport (Constants.CoreVideoLibrary)]
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
+		[iOS (11, 0), Mac (10, 13), TV (11, 0), Watch (4, 0)]
 		extern static int CVYCbCrMatrixGetIntegerCodePointForString (IntPtr yCbCrMatrixString);
 
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
+		[iOS (11, 0), Mac (10, 13), TV (11, 0), Watch (4, 0)]
 		public static int GetCodePoint (CVImageBufferYCbCrMatrix yCbCrMatrix)
 		{
 			return CVYCbCrMatrixGetIntegerCodePointForString (yCbCrMatrix.GetConstant ().Handle);
 		}
 
 		[DllImport (Constants.CoreVideoLibrary)]
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
+		[iOS (11, 0), Mac (10, 13), TV (11, 0), Watch (4, 0)]
 		extern static int CVColorPrimariesGetIntegerCodePointForString (IntPtr colorPrimariesString);
 
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
+		[iOS (11, 0), Mac (10, 13), TV (11, 0), Watch (4, 0)]
 		public static int GetCodePoint (CVImageBufferColorPrimaries color)
 		{
 			return CVColorPrimariesGetIntegerCodePointForString (color.GetConstant ().Handle);
 		}
 
 		[DllImport (Constants.CoreVideoLibrary)]
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
+		[iOS (11, 0), Mac (10, 13), TV (11, 0), Watch (4, 0)]
 		extern static int CVTransferFunctionGetIntegerCodePointForString (IntPtr colorPrimariesString);
 
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
+		[iOS (11, 0), Mac (10, 13), TV (11, 0), Watch (4, 0)]
 		public static int GetCodePoint (CVImageBufferTransferFunction function)
 		{
 			return CVTransferFunctionGetIntegerCodePointForString (function.GetConstant ().Handle);
 		}
 
 		[DllImport (Constants.CoreVideoLibrary)]
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
+		[iOS (11, 0), Mac (10, 13), TV (11, 0), Watch (4, 0)]
 		extern static IntPtr CVYCbCrMatrixGetStringForIntegerCodePoint (int yCbCrMatrixCodePoint);
 
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
+		[iOS (11, 0), Mac (10, 13), TV (11, 0), Watch (4, 0)]
 		public static CVImageBufferYCbCrMatrix GetYCbCrMatrixOption (int yCbCrMatrixCodePoint)
 		{
 			var ret = Runtime.GetNSObject<NSString> (CVYCbCrMatrixGetStringForIntegerCodePoint (yCbCrMatrixCodePoint));
@@ -269,10 +269,10 @@ namespace XamCore.CoreVideo {
 		}
 
 		[DllImport (Constants.CoreVideoLibrary)]
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
+		[iOS (11, 0), Mac (10, 13), TV (11, 0), Watch (4, 0)]
 		extern static IntPtr CVColorPrimariesGetStringForIntegerCodePoint (int colorPrimariesCodePoint);
 
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
+		[iOS (11, 0), Mac (10, 13), TV (11, 0), Watch (4, 0)]
 		public static CVImageBufferColorPrimaries GetColorPrimariesOption (int colorPrimariesCodePoint)
 		{
 			var ret = Runtime.GetNSObject<NSString> (CVColorPrimariesGetStringForIntegerCodePoint (colorPrimariesCodePoint));
@@ -280,10 +280,10 @@ namespace XamCore.CoreVideo {
 		}
 
 		[DllImport (Constants.CoreVideoLibrary)]
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
+		[iOS (11, 0), Mac (10, 13), TV (11, 0), Watch (4, 0)]
 		extern static IntPtr CVTransferFunctionGetStringForIntegerCodePoint (int transferFunctionCodePoint);
 
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
+		[iOS (11, 0), Mac (10, 13), TV (11, 0), Watch (4, 0)]
 		public static CVImageBufferTransferFunction GetTransferFunctionOption (int transferFunctionCodePoint)
 		{
 			var ret = Runtime.GetNSObject<NSString> (CVTransferFunctionGetStringForIntegerCodePoint (transferFunctionCodePoint));

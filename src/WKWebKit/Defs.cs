@@ -13,7 +13,7 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.WebKit
 {
-	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
+	[Availability (Platform.Mac_10_10 | Platform.iOS_8_0)]
 	[Native]
 	public enum WKNavigationType : nint {
 		LinkActivated,
@@ -24,28 +24,28 @@ namespace XamCore.WebKit
 		Other = -1
 	}
 
-	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
+	[Availability (Platform.Mac_10_10 | Platform.iOS_8_0)]
 	[Native]
 	public enum WKNavigationActionPolicy : nint {
 		Cancel,
 		Allow
 	}
 
-	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
+	[Availability (Platform.Mac_10_10 | Platform.iOS_8_0)]
 	[Native]
 	public enum WKNavigationResponsePolicy : nint {
 		Cancel,
 		Allow
 	}
 
-	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
+	[Availability (Platform.Mac_10_10 | Platform.iOS_8_0)]
 	[Native]
 	public enum WKUserScriptInjectionTime : nint {
 		AtDocumentStart,
 		AtDocumentEnd
 	}
 
-	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0)]
+	[Availability (Platform.Mac_10_10 | Platform.iOS_8_0)]
 	[Native]
 	[ErrorDomain ("WKErrorDomain")]
 	public enum WKErrorCode : nint {
@@ -54,27 +54,27 @@ namespace XamCore.WebKit
 		WebContentProcessTerminated,
 		WebViewInvalidated,
 		JavaScriptExceptionOccurred,
-		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+		[iOS (9,0)][Mac (10,11, onlyOn64 : true)]
 		JavaScriptResultTypeIsUnsupported,
-		[Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
+		[iOS (11,0)][Mac (10,13, onlyOn64 : true)]
 		ContentRuleListStoreCompileFailed,
-		[Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
+		[iOS (11,0)][Mac (10,13, onlyOn64 : true)]
 		ContentRuleListStoreLookUpFailed,
-		[Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
+		[iOS (11,0)][Mac (10,13, onlyOn64 : true)]
 		ContentRuleListStoreRemoveFailed,
-		[Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
+		[iOS (11,0)][Mac (10,13, onlyOn64 : true)]
 		ContentRuleListStoreVersionMismatch
 	}
 
 #if !MONOMAC || !XAMCORE_4_0
-	[Introduced (PlatformName.iOS, 8, 0)]
+	[Availability (Platform.iOS_8_0)]
 	[Native]
 	public enum WKSelectionGranularity : nint {
 		Dynamic, Character
 	}
 #endif
 
-	[Introduced (PlatformName.iOS, 10, 0)][Unavailable (PlatformName.MacOSX)]
+	[iOS (10,0)][NoMac]
 	[Native]
 	[Flags]
 	public enum WKDataDetectorTypes : nuint {
@@ -94,7 +94,7 @@ namespace XamCore.WebKit
 #endif
 	}
 
-	[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[iOS (10,0)][Mac (10,12, onlyOn64: true)]
 	[Native]
 	[Flags]
 	public enum WKAudiovisualMediaTypes : nuint	{

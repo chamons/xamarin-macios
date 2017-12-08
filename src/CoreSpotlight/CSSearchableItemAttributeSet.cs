@@ -20,7 +20,7 @@ namespace XamCore.CoreSpotlight {
 		}
 
 		// Manually deal with these properties until we get BindAs working
-		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 11)]
+		[iOS (11,0), NoTV, Mac (10, 11)]
 		public bool? IsUserCreated { 
 			get {
 				return _IsUserCreated?.BoolValue;
@@ -29,7 +29,7 @@ namespace XamCore.CoreSpotlight {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 11)]
+		[iOS (11, 0), NoTV, Mac (10, 11)]
 		public bool? IsUserOwned {
 			get {
 				return _IsUserOwned?.BoolValue;
@@ -38,7 +38,7 @@ namespace XamCore.CoreSpotlight {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 11, 0), Unavailable (PlatformName.TvOS), Introduced (PlatformName.MacOSX, 10, 11)]
+		[iOS (11, 0), NoTV, Mac (10, 11)]
 		public bool? IsUserCurated { 
 			get {
 				return _IsUserCurated?.BoolValue;

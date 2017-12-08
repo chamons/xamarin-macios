@@ -25,26 +25,26 @@ namespace XamCore.UIKit {
 		[DllImport (Constants.UIKitLibrary)]
 		extern static void UIGraphicsPopContext ();
 		
-		[DllImport (Constants.UIKitLibrary, EntryPoint = "UIRectFillUsingBlendMode")]
+		[DllImport (Constants.UIKitLibrary,EntryPoint="UIRectFillUsingBlendMode")]
 		public extern static void RectFillUsingBlendMode (CGRect rect, CGBlendMode blendMode);
 		
-		[DllImport (Constants.UIKitLibrary, EntryPoint = "UIRectFill")]
+		[DllImport (Constants.UIKitLibrary,EntryPoint="UIRectFill")]
 		public extern static void RectFill (CGRect rect);
 
-		[DllImport (Constants.UIKitLibrary, EntryPoint = "UIRectFrameUsingBlendMode")]
+		[DllImport (Constants.UIKitLibrary,EntryPoint="UIRectFrameUsingBlendMode")]
 		public extern static void RectFrameUsingBlendMode (CGRect rect, CGBlendMode blendMode);
 
-		[DllImport (Constants.UIKitLibrary, EntryPoint = "UIRectFrame")]
+		[DllImport (Constants.UIKitLibrary, EntryPoint="UIRectFrame")]
 		public extern static void RectFrame (CGRect rect);
 
-		[DllImport (Constants.UIKitLibrary, EntryPoint = "UIRectClip")]
+		[DllImport (Constants.UIKitLibrary, EntryPoint="UIRectClip")]
 		public extern static void RectClip (CGRect rect);
 
-		[DllImport (Constants.UIKitLibrary, EntryPoint = "UIGraphicsBeginImageContext")]
+		[DllImport (Constants.UIKitLibrary, EntryPoint="UIGraphicsBeginImageContext")]
 		public extern static void BeginImageContext (CGSize size);
 
-		[DllImport (Constants.UIKitLibrary, EntryPoint = "UIGraphicsBeginImageContextWithOptions")]
-		[Introduced (PlatformName.iOS, 4, 0)]
+		[DllImport (Constants.UIKitLibrary, EntryPoint="UIGraphicsBeginImageContextWithOptions")]
+		[iOS (4,0)]
 		public extern static void BeginImageContextWithOptions (CGSize size, bool opaque, nfloat scale);
 	
 		[DllImport (Constants.UIKitLibrary)]

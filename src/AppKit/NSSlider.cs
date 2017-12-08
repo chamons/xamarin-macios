@@ -34,7 +34,7 @@ namespace XamCore.AppKit {
 	public partial class NSSlider {
 		NSActionDispatcher dispatcher;
 
-		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Mac (10,12)]
 		public static NSSlider FromTarget (NSAction action)
 		{
 			var dispatcher = new NSActionDispatcher (action);
@@ -43,7 +43,7 @@ namespace XamCore.AppKit {
 			return control;
 		}
 
-		[Introduced (PlatformName.MacOSX, 10, 12)]
+		[Mac (10,12)]
 		public static NSSlider FromValue (double value, double minValue, double maxValue, NSAction action)
 		{
 			var dispatcher = new NSActionDispatcher (action);

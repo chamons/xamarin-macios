@@ -11,7 +11,7 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.AppKit {
 
-	[Introduced (PlatformName.MacOSX, 10, 7)]
+	[Lion]
 	[Native]
 	public enum NSTextLayoutOrientation : nint {
 		Horizontal,
@@ -19,7 +19,7 @@ namespace XamCore.AppKit {
 	}
 
 #if !XAMCORE_2_0
-	[Introduced (PlatformName.MacOSX, 10, 7), Flags]
+	[Lion, Flags]
 	[Native]
 	public enum NSTableViewAnimationOptions : nuint_compat_int {
 		EffectFade = 0x1,
@@ -33,14 +33,14 @@ namespace XamCore.AppKit {
 	}
 #endif
 
-	[Introduced (PlatformName.MacOSX, 10, 7)]
+	[Lion]
 	[Native]
 	public enum NSPrintRenderingQuality : nint {
 		Best,
 		Responsive
 	}
 
-	[Introduced (PlatformName.MacOSX, 10, 7)]
+	[Lion]
 	[Native]
 	public enum NSCorrectionIndicatorType : nint {
 		Default = 0,
@@ -48,7 +48,7 @@ namespace XamCore.AppKit {
 		Guesses
 	}
 
-	[Introduced (PlatformName.MacOSX, 10, 7)]
+	[Lion]
 	[Native]
 	public enum NSCorrectionResponse : nint {
 		None,
@@ -59,7 +59,7 @@ namespace XamCore.AppKit {
 		Reverted
 	}
 
-	[Introduced (PlatformName.MacOSX, 10, 7)]
+	[Lion]
 	[Native]
 	public enum NSTextFinderMatchingType : nint {
 		Contains = 0,

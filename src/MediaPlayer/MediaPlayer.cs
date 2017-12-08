@@ -16,9 +16,9 @@ namespace XamCore.MediaPlayer {
 #if XAMCORE_2_0 || !MONOMAC
 	// NSInteger -> MPMoviePlayerController.h
 	[Native]
-	[Unavailable (PlatformName.MacOSX)]
-	[Unavailable (PlatformName.TvOS)]
-	[Deprecated (PlatformName.iOS, 9, 0)]
+	[NoMac]
+	[NoTV]
+	[Availability (Deprecated = Platform.iOS_9_0)]
 	public enum MPMoviePlaybackState : nint {
 		Stopped,
 		Playing,
@@ -30,9 +30,9 @@ namespace XamCore.MediaPlayer {
 
 	// NSInteger -> MPMoviePlayerController.h
 	[Native]
-	[Unavailable (PlatformName.MacOSX)]
-	[Unavailable (PlatformName.TvOS)]
-	[Deprecated (PlatformName.iOS, 9, 0)]
+	[NoMac]
+	[NoTV]
+	[Availability (Deprecated = Platform.iOS_9_0)]
 	public enum MPMovieLoadState : nint {
 		Unknown        = 0,
 		Playable       = 1 << 0,
@@ -41,9 +41,9 @@ namespace XamCore.MediaPlayer {
 	}
 
 	// NSInteger -> MPMoviePlayerController.h
-	[Unavailable (PlatformName.MacOSX)]
-	[Unavailable (PlatformName.TvOS)]
-	[Deprecated (PlatformName.iOS, 9, 0)]
+	[NoMac]
+	[NoTV]
+	[Availability (Deprecated = Platform.iOS_9_0)]
 	[Native]
 	public enum MPMovieRepeatMode : nint {
 		None, One
@@ -51,26 +51,26 @@ namespace XamCore.MediaPlayer {
 
 	// NSInteger -> MPMoviePlayerController.h
 	[Native]
-	[Unavailable (PlatformName.MacOSX)]
-	[Unavailable (PlatformName.TvOS)]
-	[Deprecated (PlatformName.iOS, 9, 0)]
+	[NoMac]
+	[NoTV]
+	[Availability (Deprecated = Platform.iOS_9_0)]
 	public enum MPMovieControlStyle : nint {
 		None, Embedded, Fullscreen, Default = Embedded
 	}
 
 	// NSInteger -> MPMoviePlayerController.h
-	[Unavailable (PlatformName.MacOSX)]
-	[Unavailable (PlatformName.TvOS)]
-	[Deprecated (PlatformName.iOS, 9, 0)]
+	[NoMac]
+	[NoTV]
+	[Availability (Deprecated = Platform.iOS_9_0)]
 	[Native]
 	public enum MPMovieFinishReason : nint {
 		PlaybackEnded, PlaybackError, UserExited
 	}
 
 	// NSInteger -> MPMoviePlayerController.h
-	[Unavailable (PlatformName.MacOSX)]
-	[Unavailable (PlatformName.TvOS)]
-	[Deprecated (PlatformName.iOS, 9, 0)]
+	[NoMac]
+	[NoTV]
+	[Availability (Deprecated = Platform.iOS_9_0)]
 	[Native]
 	[Flags]
 	public enum MPMovieMediaType : nint {
@@ -80,18 +80,18 @@ namespace XamCore.MediaPlayer {
 	}
 
 	// NSInteger -> MPMoviePlayerController.h
-	[Unavailable (PlatformName.MacOSX)]
-	[Unavailable (PlatformName.TvOS)]
-	[Deprecated (PlatformName.iOS, 9, 0)]
+	[NoMac]
+	[NoTV]
+	[Availability (Deprecated = Platform.iOS_9_0)]
 	[Native]
 	public enum MPMovieSourceType : nint {
 		Unknown, File, Streaming
 	}
 
 	// NSInteger -> MPMoviePlayerController.h
-	[Unavailable (PlatformName.MacOSX)]
-	[Unavailable (PlatformName.TvOS)]
-	[Deprecated (PlatformName.iOS, 9, 0)]
+	[NoMac]
+	[NoTV]
+	[Availability (Deprecated = Platform.iOS_9_0)]
 	[Native]
 	public enum MPMovieTimeOption : nint {
 		NearestKeyFrame,
@@ -118,26 +118,26 @@ namespace XamCore.MediaPlayer {
 		AudioITunesU = 1 << 3,
 		AnyAudio     = 0x00ff,
 		
-		[Introduced (PlatformName.iOS, 5, 0)]
-		[Introduced (PlatformName.MacOSX, 10, 12, 2)]
+		[iOS (5,0)]
+		[Mac (10,12,2)]
 		Movie = 1 << 8,
-		[Introduced (PlatformName.iOS, 5, 0)]
-		[Introduced (PlatformName.MacOSX, 10, 12, 2)]
+		[iOS (5,0)]
+		[Mac (10,12,2)]
 		TVShow = 1 << 9,
-		[Introduced (PlatformName.iOS, 5, 0)]
-		[Introduced (PlatformName.MacOSX, 10, 12, 2)]
+		[iOS (5,0)]
+		[Mac (10,12,2)]
 		VideoPodcast = 1 << 10,
-		[Introduced (PlatformName.iOS, 5, 0)]
-		[Introduced (PlatformName.MacOSX, 10, 12, 2)]
+		[iOS (5,0)]
+		[Mac (10,12,2)]
 		MusicVideo = 1 << 11,
-		[Introduced (PlatformName.iOS, 5, 0)]
-		[Introduced (PlatformName.MacOSX, 10, 12, 2)]
+		[iOS (5,0)]
+		[Mac (10,12,2)]
 		VideoITunesU = 1 << 12,
-		[Introduced (PlatformName.iOS, 7, 0)]
-		[Introduced (PlatformName.MacOSX, 10, 12, 2)]
+		[iOS (7,0)]
+		[Mac (10,12,2)]
 		HomeVideo = 1 << 13,
-		[Introduced (PlatformName.iOS, 5, 0)]
-		[Introduced (PlatformName.MacOSX, 10, 12, 2)]
+		[iOS (5,0)]
+		[Mac (10,12,2)]
 		TypeAnyVideo = 0xff00,
 #if XAMCORE_2_0
 		Any          = 0xFFFFFFFFFFFFFFFF
@@ -147,10 +147,10 @@ namespace XamCore.MediaPlayer {
 	}
 
 	// NSInteger -> MPMediaPlaylist.h
-	[Unavailable (PlatformName.MacOSX)]
+	[NoMac]
 	[Native]
 	[Flags]
-	[Unavailable (PlatformName.TvOS)]
+	[NoTV]
 	public enum MPMediaPlaylistAttribute : nint {
 		None    = 0,
 		OnTheGo = (1 << 0), // if set, the playlist was created on a device rather than synced from iTunes
@@ -160,8 +160,8 @@ namespace XamCore.MediaPlayer {
 			
 	// NSInteger -> MPMediaQuery.h
 	[Native]
-	[Unavailable (PlatformName.MacOSX)]
-	[Unavailable (PlatformName.TvOS)]
+	[NoMac]
+	[NoTV]
 	public enum MPMediaGrouping : nint {
 		Title,
 		Album,
@@ -175,17 +175,17 @@ namespace XamCore.MediaPlayer {
 
 	// NSInteger -> MPMediaQuery.h
 	[Native]
-	[Unavailable (PlatformName.MacOSX)]
-	[Unavailable (PlatformName.TvOS)]
+	[NoMac]
+	[NoTV]
 	public enum MPMediaPredicateComparison : nint {
 		EqualsTo,
 		Contains
 	}
 
 	// NSInteger -> MPMoviePlayerController.h
-	[Unavailable (PlatformName.MacOSX)]
-	[Unavailable (PlatformName.TvOS)]
-	[Deprecated (PlatformName.iOS, 9, 0)]
+	[NoMac]
+	[NoTV]
+	[Availability (Deprecated = Platform.iOS_9_0)]
 	[Native]
 	public enum MPMovieScalingMode : nint {
 		None,
@@ -195,7 +195,7 @@ namespace XamCore.MediaPlayer {
 	}
 	
 	// untyped enum -> MPMoviePlayerController.h
-	[Unavailable (PlatformName.MacOSX)]
+	[NoMac]
 	public enum MPMovieControlMode {
 		Default, 
 		VolumeOnly,
@@ -203,9 +203,9 @@ namespace XamCore.MediaPlayer {
 	}
 
 	// NSInteger -> /MPMusicPlayerController.h
-	[Unavailable (PlatformName.MacOSX)]
-	[Unavailable (PlatformName.TvOS)]
-	[Deprecated (PlatformName.iOS, 9, 0)]
+	[NoMac]
+	[NoTV]
+	[Availability (Deprecated = Platform.iOS_9_0)]
 	[Native]
 	public enum MPMusicPlaybackState : nint {
 		Stopped,
@@ -218,8 +218,8 @@ namespace XamCore.MediaPlayer {
 	
 	// NSInteger -> /MPMusicPlayerController.h
 	[Native]
-	[Unavailable (PlatformName.MacOSX)]
-	[Unavailable (PlatformName.TvOS)]
+	[NoMac]
+	[NoTV]
 	public enum MPMusicRepeatMode : nint {
 		Default,
 		None,
@@ -229,8 +229,8 @@ namespace XamCore.MediaPlayer {
 	
 	// NSInteger -> /MPMusicPlayerController.h
 	[Native]
-	[Unavailable (PlatformName.MacOSX)]
-	[Unavailable (PlatformName.TvOS)]
+	[NoMac]
+	[NoTV]
 	public enum MPMusicShuffleMode : nint {
 		Default,
 		Off,
@@ -240,7 +240,7 @@ namespace XamCore.MediaPlayer {
 
 	public delegate void MPMediaItemEnumerator (string property, NSObject value, ref bool stop);
 
-	[Introduced (PlatformName.MacOSX, 10, 12, 2)]
+	[Mac (10,12,2)]
 	[Native]
 	public enum MPShuffleType : nint
 	{
@@ -249,7 +249,7 @@ namespace XamCore.MediaPlayer {
 		Collections
 	}
 
-	[Introduced (PlatformName.MacOSX, 10, 12, 2)]
+	[Mac (10,12,2)]
 	[Native]
 	public enum MPRepeatType : nint
 	{
@@ -258,8 +258,8 @@ namespace XamCore.MediaPlayer {
 		All
 	}
 
-	[Introduced (PlatformName.MacOSX, 10, 12, 2)]
-	[Introduced (PlatformName.iOS, 10, 0)]
+	[Mac (10,12,2)]
+	[iOS (10,0)]
 	[Native]
 	public enum MPChangeLanguageOptionSetting : nint
 	{
@@ -270,37 +270,37 @@ namespace XamCore.MediaPlayer {
 
 	// NSInteger -> MPRemoteCommand.h
 	[Native]
-	[Introduced (PlatformName.MacOSX, 10, 12, 2)]
-	[Introduced (PlatformName.iOS, 7, 1)]
+	[Mac (10,12,2)]
+	[iOS (7,1)]
 	public enum MPRemoteCommandHandlerStatus : nint {
 		Success = 0,
 		NoSuchContent = 100,
-		[Introduced (PlatformName.iOS, 9, 1)]
+		[iOS (9,1)]
 		NoActionableNowPlayingItem = 110,
-		[Introduced (PlatformName.iOS, 11, 0)][Introduced (PlatformName.TvOS, 11, 0)][Introduced (PlatformName.MacOSX, 10, 13)]
+		[iOS (11,0)][TV (11,0)][Mac (10,13)]
 		DeviceNotFound = 120,
 		CommandFailed = 200
 	}
 
 	// NSUInteger -> MPRemoteCommandEvent.h
 	[Native]
-	[Introduced (PlatformName.MacOSX, 10, 12, 2)]
-	[Introduced (PlatformName.iOS, 7, 1)]
+	[Mac (10,12,2)]
+	[iOS (7,1)]
 	public enum MPSeekCommandEventType : nuint_compat_int {
 		BeginSeeking,
 		EndSeeking
 	}
 
-	[Introduced (PlatformName.MacOSX, 10, 12, 2)]
-	[Introduced (PlatformName.iOS, 9, 0)]
+	[Mac (10,12,2)]
+	[iOS (9,0)]
 	[Native]
 	public enum MPNowPlayingInfoLanguageOptionType : nuint {
 		Audible,
 		Legible
 	}
 
-	[Unavailable (PlatformName.MacOSX)]
-	[Introduced (PlatformName.iOS, 9, 3)]
+	[NoMac]
+	[iOS (9,3)]
 	[Native]
 	[ErrorDomain ("MPErrorDomain")]
 	public enum MPErrorCode : nint {
@@ -310,14 +310,14 @@ namespace XamCore.MediaPlayer {
 		NetworkConnectionFailed,
 		NotFound,
 		NotSupported,
-		[Introduced (PlatformName.iOS, 10, 1)]
+		[iOS (10,1)]
 		Cancelled,
 		RequestTimedOut,
 	}
 
-	[Unavailable (PlatformName.MacOSX)]
-	[Unavailable (PlatformName.TvOS)]
-	[Introduced (PlatformName.iOS, 9, 3)]
+	[NoMac]
+	[NoTV]
+	[iOS (9,3)]
 	[Native]
 	public enum MPMediaLibraryAuthorizationStatus : nint {
 		NotDetermined = 0,
@@ -326,9 +326,9 @@ namespace XamCore.MediaPlayer {
 		Authorized
 	}
 
-	[Introduced (PlatformName.MacOSX, 10, 12, 2)]
-	[Introduced (PlatformName.iOS, 10, 0)]
-	[Introduced (PlatformName.TvOS, 10, 0)]
+	[Mac (10,12,2)]
+	[iOS (10,0)]
+	[TV (10,0)]
 	[Native]
 	public enum MPNowPlayingInfoMediaType : nuint
 	{
@@ -337,9 +337,9 @@ namespace XamCore.MediaPlayer {
 		Video
 	}
 
-	[Introduced (PlatformName.MacOSX, 10, 12, 2)]
-	[Unavailable (PlatformName.iOS)]
-	[Unavailable (PlatformName.TvOS)]
+	[Mac (10,12,2)]
+	[NoiOS]
+	[NoTV]
 	[Native]
 	public enum MPNowPlayingPlaybackState : nuint
 	{

@@ -12,16 +12,16 @@ using XamCore.ObjCRuntime;
 namespace XamCore.SafariServices {
 
 	// NSInteger -> SSReadingList.h
-	[Unavailable (PlatformName.MacOSX)][Introduced (PlatformName.iOS, 7, 0)]
+	[NoMac][iOS (7,0)]
 	[Native]
 	[ErrorDomain ("SSReadingListErrorDomain")]
 	public enum SSReadingListError : nint {
 		UrlSchemeNotAllowed = 1
 	}
 
-	[Unavailable (PlatformName.MacOSX)]
-	[Introduced (PlatformName.iOS, 9, 0)]
-	[Deprecated (PlatformName.iOS, 10, 0, message: "Use 'SFErrorCode' enum.")]
+	[NoMac]
+	[iOS (9,0)]
+	[Deprecated (PlatformName.iOS, 10,0, message: "Use 'SFErrorCode' enum.")]
 	[Native]
 	[ErrorDomain ("SFContentBlockerErrorDomain")]
 	public enum SFContentBlockerErrorCode : nint {
@@ -31,7 +31,7 @@ namespace XamCore.SafariServices {
 		LoadingInterrupted = 3
 	}
 
-	[Introduced (PlatformName.iOS, 10, 0)]
+	[iOS (10,0)]
 	[Native]
 	[ErrorDomain ("SFErrorDomain")]
 	public enum SFErrorCode : nint
@@ -42,8 +42,8 @@ namespace XamCore.SafariServices {
 		LoadingInterrupted = 3
 	}
 
-	[Unavailable (PlatformName.MacOSX)]
-	[Introduced (PlatformName.iOS, 11, 0)]
+	[NoMac]
+	[iOS (11,0)]
 	[Native]
 	public enum SFSafariViewControllerDismissButtonStyle : nint {
 		Done,
@@ -51,21 +51,21 @@ namespace XamCore.SafariServices {
 		Cancel,
 	}
 
-	[Unavailable (PlatformName.MacOSX)]
-	[Introduced (PlatformName.iOS, 11, 0)]
+	[NoMac]
+	[iOS (11,0)]
 	[Native]
 	[ErrorDomain ("SFAuthenticationErrorDomain")]
 	public enum SFAuthenticationError : nint {
 		CanceledLogin = 1,
 	}
 
-	[Unavailable (PlatformName.iOS)]
-	[Introduced (PlatformName.MacOSX, 10, 12, 4, PlatformArchitecture.Arch64)]
+	[NoiOS]
+	[Mac (10,12,4, onlyOn64: true)]
 	[Native]
 	public enum SFSafariServicesVersion : nint {
 		V10_0,
 		V10_1,
-		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64)]
+		[Mac (10,13, onlyOn64: true)]
 		V11_0,
 	}
 }

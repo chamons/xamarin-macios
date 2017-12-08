@@ -4,8 +4,8 @@ using XamCore.Foundation;
 
 namespace XamCore.HomeKit {
 
-	[Introduced (PlatformName.iOS, 8, 0)]
-	[Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (8,0)]
+	[TV (10,0)]
 	[Native]
 	public enum HMError : nint {
 		AlreadyExists                           = 1,
@@ -108,8 +108,8 @@ namespace XamCore.HomeKit {
 
 	
 	// conveniance enum (ObjC uses NSString)
-	[Introduced (PlatformName.iOS, 8, 0)]
-	[Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (8,0)]
+	[TV (10,0)]
 	public enum HMCharacteristicType {
 		None,
 
@@ -227,379 +227,379 @@ namespace XamCore.HomeKit {
 		[Field ("HMCharacteristicTypeLockManagementAutoSecureTimeout")]
 		LockManagementAutoSecureTimeout,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeAirParticulateDensity")]
 		AirParticulateDensity,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeAirParticulateSize")]
 		AirParticulateSize,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeAirQuality")]
 		AirQuality,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeBatteryLevel")]
 		BatteryLevel,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeCarbonDioxideDetected")]
 		CarbonDioxideDetected,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeCarbonDioxideLevel")]
 		CarbonDioxideLevel,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeCarbonDioxidePeakLevel")]
 		CarbonDioxidePeakLevel,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeCarbonMonoxideDetected")]
 		CarbonMonoxideDetected,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeCarbonMonoxideLevel")]
 		CarbonMonoxideLevel,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeCarbonMonoxidePeakLevel")]
 		CarbonMonoxidePeakLevel,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeChargingState")]
 		ChargingState,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeContactState")]
 		ContactState,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeCurrentSecuritySystemState")]
 		CurrentSecuritySystemState,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeCurrentHorizontalTilt")]
 		CurrentHorizontalTilt,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeCurrentLightLevel")]
 		CurrentLightLevel,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeCurrentPosition")]
 		CurrentPosition,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeCurrentVerticalTilt")]
 		CurrentVerticalTilt,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Deprecated (PlatformName.TvOS, 11, 0, message: "Use 'HMAccessory.FirmwareVersion' instead.")]
 		[Deprecated (PlatformName.WatchOS, 4, 0, message: "Use 'HMAccessory.FirmwareVersion' instead.")]
 		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'HMAccessory.FirmwareVersion' instead.")]
 		[Field ("HMCharacteristicTypeFirmwareVersion")]
 		FirmwareVersion,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeHardwareVersion")]
 		HardwareVersion,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeHoldPosition")]
 		HoldPosition,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeInputEvent")]
 		InputEvent,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeLeakDetected")]
 		LeakDetected,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeOccupancyDetected")]
 		OccupancyDetected,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeOutputState")]
 		OutputState,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypePositionState")]
 		PositionState,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeSmokeDetected")]
 		SmokeDetected,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeSoftwareVersion")]
 		SoftwareVersion,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeStatusActive")]
 		StatusActive,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeStatusFault")]
 		StatusFault,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeStatusJammed")]
 		StatusJammed,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeStatusLowBattery")]
 		StatusLowBattery,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeStatusTampered")]
 		StatusTampered,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeTargetSecuritySystemState")]
 		TargetSecuritySystemState,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeTargetHorizontalTilt")]
 		TargetHorizontalTilt,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeTargetPosition")]
 		TargetPosition,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMCharacteristicTypeTargetVerticalTilt")]
 		TargetVerticalTilt,
 
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		[Field ("HMCharacteristicTypeStreamingStatus")]
 		StreamingStatus,
 
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		[Field ("HMCharacteristicTypeSetupStreamEndpoint")]
 		SetupStreamEndpoint,
 
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		[Field ("HMCharacteristicTypeSupportedVideoStreamConfiguration")]
 		SupportedVideoStreamConfiguration,
 
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		[Field ("HMCharacteristicTypeSupportedAudioStreamConfiguration")]
 		SupportedAudioStreamConfiguration,
 
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		[Field ("HMCharacteristicTypeSupportedRTPConfiguration")]
 		SupportedRtpConfiguration,
 
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		[Field ("HMCharacteristicTypeSelectedStreamConfiguration")]
 		SelectedStreamConfiguration,
 
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		[Field ("HMCharacteristicTypeVolume")]
 		Volume,
 
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		[Field ("HMCharacteristicTypeMute")]
 		Mute,
 
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		[Field ("HMCharacteristicTypeNightVision")]
 		NightVision,
 
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		[Field ("HMCharacteristicTypeOpticalZoom")]
 		OpticalZoom,
 
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		[Field ("HMCharacteristicTypeDigitalZoom")]
 		DigitalZoom,
 
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		[Field ("HMCharacteristicTypeImageRotation")]
 		ImageRotation,
 
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		[Field ("HMCharacteristicTypeImageMirroring")]
 		ImageMirroring,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeActive")]
 		Active,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeCurrentAirPurifierState")]
 		CurrentAirPurifierState,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeTargetAirPurifierState")]
 		TargetAirPurifierState,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeCurrentFanState")]
 		CurrentFanState,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeCurrentHeaterCoolerState")]
 		CurrentHeaterCoolerState,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeCurrentHumidifierDehumidifierState")]
 		CurrentHumidifierDehumidifierState,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeCurrentSlatState")]
 		CurrentSlatState,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeWaterLevel")]
 		WaterLevel,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeFilterChangeIndication")]
 		FilterChangeIndication,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeFilterLifeLevel")]
 		FilterLifeLevel,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeFilterResetChangeIndication")]
 		FilterResetChangeIndication,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeLockPhysicalControls")]
 		LockPhysicalControls,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeSwingMode")]
 		SwingMode,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeTargetHeaterCoolerState")]
 		TargetHeaterCoolerState,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeTargetHumidifierDehumidifierState")]
 		TargetHumidifierDehumidifierState,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeTargetFanState")]
 		TargetFanState,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeSlatType")]
 		SlatType,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeCurrentTilt")]
 		CurrentTilt,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeTargetTilt")]
 		TargetTilt,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeOzoneDensity")]
 		OzoneDensity,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeNitrogenDioxideDensity")]
 		NitrogenDioxideDensity,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeSulphurDioxideDensity")]
 		SulphurDioxideDensity,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypePM2_5Density")]
 		PM2_5Density,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypePM10Density")]
 		PM10Density,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeVolatileOrganicCompoundDensity")]
 		VolatileOrganicCompoundDensity,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeDehumidifierThreshold")]
 		DehumidifierThreshold,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMCharacteristicTypeHumidifierThreshold")]
 		HumidifierThreshold,
 
-		[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.WatchOS, 2, 0), Introduced (PlatformName.TvOS, 10, 0)]
+		[iOS (9,0), Watch (2,0), TV (10,0)]
 		[Field ("HMCharacteristicTypeSecuritySystemAlarmType")]
 		SecuritySystemAlarmType,
 
-		[Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.WatchOS, 3, 2), Introduced (PlatformName.TvOS, 10, 2)]
+		[iOS (10,3), Watch (3,2), TV (10,2)]
 		[Field ("HMCharacteristicTypeLabelNamespace")]
 		LabelNamespace,
 
-		[Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.WatchOS, 3, 2), Introduced (PlatformName.TvOS, 10, 2)]
+		[iOS (10,3), Watch (3,2), TV (10,2)]
 		[Field ("HMCharacteristicTypeLabelIndex")]
 		LabelIndex,
 
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0)]
+		[iOS (11,0), Watch (4,0), TV (11,0)]
 		[Field ("HMCharacteristicTypeColorTemperature")]
 		ColorTemperature,
 	}
 
 	// conveniance enum (ObjC uses NSString)
-	[Introduced (PlatformName.iOS, 8, 0)]
-	[Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (8,0)]
+	[TV (10,0)]
 	public enum HMCharacteristicMetadataUnits {
 		None,
 		Celsius,
 		Fahrenheit,
 		Percentage,
 		ArcDegree,
-		[Introduced (PlatformName.iOS, 8, 3)]
+		[iOS (8,3)]
 		Seconds,
-		[Introduced (PlatformName.iOS, 9, 3)][Introduced (PlatformName.WatchOS, 2, 2)]
+		[iOS (9,3)][Watch(2,2)]
 		Lux,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		PartsPerMillion,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		MicrogramsPerCubicMeter,
 	}
 
 	// conveniance enum (ObjC uses NSString)
-	[Introduced (PlatformName.iOS, 8, 0)]
-	[Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (8,0)]
+	[TV (10,0)]
 	[Flags]
 	public enum HMServiceType {
 		None,
@@ -631,136 +631,136 @@ namespace XamCore.HomeKit {
 		[Field ("HMServiceTypeLockManagement")]
 		LockManagement,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMServiceTypeAirQualitySensor")]
 		AirQualitySensor,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMServiceTypeBattery")]
 		Battery,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMServiceTypeCarbonDioxideSensor")]
 		CarbonDioxideSensor,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMServiceTypeCarbonMonoxideSensor")]
 		CarbonMonoxideSensor,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMServiceTypeContactSensor")]
 		ContactSensor,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMServiceTypeDoor")]
 		Door,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMServiceTypeHumiditySensor")]
 		HumiditySensor,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMServiceTypeLeakSensor")]
 		LeakSensor,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMServiceTypeLightSensor")]
 		LightSensor,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMServiceTypeMotionSensor")]
 		MotionSensor,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMServiceTypeOccupancySensor")]
 		OccupancySensor,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMServiceTypeSecuritySystem")]
 		SecuritySystem,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMServiceTypeStatefulProgrammableSwitch")]
 		StatefulProgrammableSwitch,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMServiceTypeStatelessProgrammableSwitch")]
 		StatelessProgrammableSwitch,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMServiceTypeSmokeSensor")]
 		SmokeSensor,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMServiceTypeTemperatureSensor")]
 		TemperatureSensor,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMServiceTypeWindow")]
 		Window,
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		[Field ("HMServiceTypeWindowCovering")]
 		WindowCovering,
 
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		[Field ("HMServiceTypeCameraRTPStreamManagement")]
 		CameraRtpStreamManagement,
 
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		[Field ("HMServiceTypeCameraControl")]
 		CameraControl,
 
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		[Field ("HMServiceTypeMicrophone")]
 		Microphone,
 
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		[Field ("HMServiceTypeSpeaker")]
 		Speaker,
 
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		[Field ("HMServiceTypeDoorbell")]
 		Doorbell,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMServiceTypeAirPurifier")]
 		AirPurifier,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMServiceTypeVentilationFan")]
 		VentilationFan,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMServiceTypeFilterMaintenance")]
 		FilterMaintenance,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMServiceTypeHeaterCooler")]
 		HeaterCooler,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMServiceTypeHumidifierDehumidifier")]
 		HumidifierDehumidifier,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMServiceTypeSlats")]
 		Slats,
 
-		[Introduced (PlatformName.iOS, 10, 3), Introduced (PlatformName.WatchOS, 3, 2), Introduced (PlatformName.TvOS, 10, 2)]
+		[iOS (10,3), Watch (3,2), TV (10,2)]
 		[Field ("HMServiceTypeLabel")]
 		Label,
 	}
 
 	// conveniance enum (ObjC uses NSString)
-	[Introduced (PlatformName.iOS, 8, 0)]
-	[Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (8,0)]
+	[TV (10,0)]
 	public enum HMCharacteristicMetadataFormat {
 		None,
 		Bool,
@@ -777,8 +777,8 @@ namespace XamCore.HomeKit {
 		Tlv8
 	}
 
-	[Introduced (PlatformName.iOS, 8, 0)]
-	[Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (8,0)]
+	[TV (10,0)]
 	[Native]
 	public enum HMCharacteristicValueDoorState : nint {
 		Open = 0,
@@ -788,8 +788,8 @@ namespace XamCore.HomeKit {
 		Stopped
 	}
 
-	[Introduced (PlatformName.iOS, 8, 0)]
-	[Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (8,0)]
+	[TV (10,0)]
 	[Native]
 	public enum HMCharacteristicValueHeatingCooling : nint {
 		Off = 0,
@@ -798,24 +798,24 @@ namespace XamCore.HomeKit {
 		Auto
 	}
 
-	[Introduced (PlatformName.iOS, 8, 0)]
-	[Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (8,0)]
+	[TV (10,0)]
 	[Native]
 	public enum HMCharacteristicValueRotationDirection : nint {
 		Clockwise = 0,
 		CounterClockwise
 	}
 
-	[Introduced (PlatformName.iOS, 8, 0)]
-	[Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (8,0)]
+	[TV (10,0)]
 	[Native]
 	public enum HMCharacteristicValueTemperatureUnit : nint {
 		Celsius = 0,
 		Fahrenheit
 	}
 
-	[Introduced (PlatformName.iOS, 8, 0)]
-	[Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (8,0)]
+	[TV (10,0)]
 	[Native]
 	public enum HMCharacteristicValueLockMechanismState : nint {
 		Unsecured = 0,
@@ -824,8 +824,8 @@ namespace XamCore.HomeKit {
 		Unknown
 	}
 
-	[Introduced (PlatformName.iOS, 8, 0)]
-	[Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (8,0)]
+	[TV (10,0)]
 	[Native]
 	// in iOS 8.3 this was renamed HMCharacteristicValueLockMechanismLastKnownAction but that would be a breaking change for us
 	public enum HMCharacteristicValueLockMechanism : nint {
@@ -842,16 +842,16 @@ namespace XamCore.HomeKit {
 		LastKnownActionUnsecuredUsingPhysicalMovement,
 	}
 
-	[Introduced (PlatformName.iOS, 9, 0)]
-	[Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (9,0)]
+	[TV (10,0)]
 	[Native]
 	public enum HMCharacteristicValueAirParticulate : nint {
 		Size2_5 = 0,
 		Size10
 	}
 
-	[Introduced (PlatformName.iOS, 9, 0)]
-	[Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (9,0)]
+	[TV (10,0)]
 	[Native]
 	public enum HMCharacteristicValueCurrentSecuritySystemState : nint {
 		StayArm = 0,
@@ -861,8 +861,8 @@ namespace XamCore.HomeKit {
 		Triggered
 	}
 
-	[Introduced (PlatformName.iOS, 9, 0)]
-	[Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (9,0)]
+	[TV (10,0)]
 	[Native]
 	public enum HMCharacteristicValuePositionState : nint {
 		Closing = 0,
@@ -870,8 +870,8 @@ namespace XamCore.HomeKit {
 		Stopped
 	}
 
-	[Introduced (PlatformName.iOS, 9, 0)]
-	[Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (9,0)]
+	[TV (10,0)]
 	[Native]
 	public enum HMCharacteristicValueTargetSecuritySystemState : nint {
 		StayArm = 0,
@@ -880,86 +880,86 @@ namespace XamCore.HomeKit {
 		Disarm
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[Watch (3,0), TV (10,0), iOS (10,0)]
 	[Native]
 	public enum HMCharacteristicValueBatteryStatus : nint {
 		Normal = 0,
 		Low
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[Watch (3,0), TV (10,0), iOS (10,0)]
 	[Native]
 	public enum HMCharacteristicValueJammedStatus : nint {
 		None = 0,
 		Jammed
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[Watch (3,0), TV (10,0), iOS (10,0)]
 	[Native]
 	public enum HMCharacteristicValueTamperedStatus : nint {
 		None = 0,
 		Tampered
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[Watch (3,0), TV (10,0), iOS (10,0)]
 	[Native]
 	public enum HMCharacteristicValueLeakStatus : nint {
 		None = 0,
 		Detected
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[Watch (3,0), TV (10,0), iOS (10,0)]
 	[Native]
 	public enum HMCharacteristicValueSmokeDetectionStatus : nint {
 		None = 0,
 		Detected
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[Watch (3,0), TV (10,0), iOS (10,0)]
 	[Native]
 	public enum HMCharacteristicValueChargingState : nint {
 		None = 0,
 		InProgress,
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.WatchOS, 3, 1, 1), Introduced (PlatformName.TvOS, 10, 1)]
+		[iOS (10,2), Watch (3,1,1), TV (10,1)]
 		NotChargeable,
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[Watch (3,0), TV (10,0), iOS (10,0)]
 	[Native]
 	public enum HMCharacteristicValueContactState : nint {
 		Detected = 0,
 		None,
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[Watch (3,0), TV (10,0), iOS (10,0)]
 	[Native]
 	public enum HMCharacteristicValueStatusFault : nint {
 		NoFault = 0,
 		GeneralFault
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[Watch (3,0), TV (10,0), iOS (10,0)]
 	[Native]
 	public enum HMCharacteristicValueCarbonMonoxideDetectionStatus : nint {
 		NotDetected = 0,
 		Detected
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[Watch (3,0), TV (10,0), iOS (10,0)]
 	[Native]
 	public enum HMCharacteristicValueCarbonDioxideDetectionStatus : nint {
 		NotDetected = 0,
 		Detected
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[Watch (3,0), TV (10,0), iOS (10,0)]
 	[Native]
 	public enum HMCharacteristicValueOccupancyStatus : nint {
 		NotOccupied = 0,
 		Occupied
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[Watch (3,0), TV (10,0), iOS (10,0)]
 	[Native]
 	public enum HMCharacteristicValueSecuritySystemAlarmType : nint {
 		NoAlarm = 0,
@@ -967,8 +967,8 @@ namespace XamCore.HomeKit {
 	}
 
 	// conveniance enum (ObjC uses NSString)
-	[Introduced (PlatformName.iOS, 9, 0)]
-	[Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (9,0)]
+	[TV (10,0)]
 	public enum HMActionSetType {
 		Unknown = -1,
 		WakeUp,
@@ -976,12 +976,12 @@ namespace XamCore.HomeKit {
 		HomeDeparture,
 		HomeArrival,
 		UserDefined,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		TriggerOwned,
 	}
 
-	[Introduced (PlatformName.iOS, 9, 0)]
-	[Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (9,0)]
+	[TV (10,0)]
 	// conveniance enum (ObjC uses NSString)
 	public enum HMAccessoryCategoryType {
 		[Field ("HMAccessoryCategoryTypeOther")]
@@ -1034,46 +1034,46 @@ namespace XamCore.HomeKit {
 		[Field ("HMAccessoryCategoryTypeWindowCovering")]
 		WindowCovering,
 
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		[Field ("HMAccessoryCategoryTypeRangeExtender")]
 		RangeExtender,
 
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		[Field ("HMAccessoryCategoryTypeIPCamera")]
 		IPCamera,
 
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		[Field ("HMAccessoryCategoryTypeVideoDoorbell")]
 		VideoDoorbell,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMAccessoryCategoryTypeAirPurifier")]
 		AirPurifier,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMAccessoryCategoryTypeAirHeater")]
 		AirHeater,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMAccessoryCategoryTypeAirConditioner")]
 		AirConditioner,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMAccessoryCategoryTypeAirHumidifier")]
 		AirHumidifier,
 
-		[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-		[Introduced (PlatformName.iOS, 10, 2), Introduced (PlatformName.TvOS, 10, 1)]
+		[Watch (3,1,1)]
+		[iOS (10,2), TV (10,1)]
 		[Field ("HMAccessoryCategoryTypeAirDehumidifier")]
 		AirDehumidifier,
 	}
 
-	[Introduced (PlatformName.iOS, 9, 0)]
-	[Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (9,0)]
+	[TV (10,0)]
 	public enum HMSignificantEvent {
 
 		[Field ("HMSignificantEventSunrise")]
@@ -1083,8 +1083,8 @@ namespace XamCore.HomeKit {
 		Sunset,
 	}
 
-	[Introduced (PlatformName.iOS, 9, 0)]
-	[Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (9,0)]
+	[TV (10,0)]
 	[Native]
 	public enum HMCharacteristicValueAirQuality : nint {
 		Unknown = 0,
@@ -1095,8 +1095,8 @@ namespace XamCore.HomeKit {
 		Poor
 	}
 
-	[Introduced (PlatformName.iOS, 10, 0)]
-	[Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (10,0)]
+	[TV (10,0)]
 	[Native]
 	public enum HMCameraStreamState : nuint
 	{
@@ -1106,8 +1106,8 @@ namespace XamCore.HomeKit {
 		NotStreaming = 4
 	}
 
-	[Introduced (PlatformName.iOS, 10, 0)]
-	[Introduced (PlatformName.TvOS, 10, 0)]
+	[iOS (10,0)]
+	[TV (10,0)]
 	[Native]
 	public enum HMCameraAudioStreamSetting : nuint
 	{
@@ -1116,16 +1116,16 @@ namespace XamCore.HomeKit {
 		BidirectionalAudioAllowed = 3
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-	[Introduced (PlatformName.TvOS, 10, 1), Introduced (PlatformName.iOS, 10, 2)]
+	[Watch (3,1,1)]
+	[TV (10,1), iOS (10,2)]
 	[Native]
 	public enum HMCharacteristicValueLockPhysicalControlsState : nint {
 		NotLocked = 0,
 		Locked,
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-	[Introduced (PlatformName.TvOS, 10, 1), Introduced (PlatformName.iOS, 10, 2)]
+	[Watch (3,1,1)]
+	[TV (10,1), iOS (10,2)]
 	[Native]
 	public enum HMCharacteristicValueCurrentAirPurifierState : nint {
 		Inactive = 0,
@@ -1133,16 +1133,16 @@ namespace XamCore.HomeKit {
 		Active,
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-	[Introduced (PlatformName.TvOS, 10, 1), Introduced (PlatformName.iOS, 10, 2)]
+	[Watch (3,1,1)]
+	[TV (10,1), iOS (10,2)]
 	[Native]
 	public enum HMCharacteristicValueTargetAirPurifierState : nint {
 		Manual = 0,
 		Automatic,
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-	[Introduced (PlatformName.TvOS, 10, 1), Introduced (PlatformName.iOS, 10, 2)]
+	[Watch (3,1,1)]
+	[TV (10,1), iOS (10,2)]
 	[Native]
 	public enum HMCharacteristicValueCurrentSlatState : nint {
 		Stationary = 0,
@@ -1150,24 +1150,24 @@ namespace XamCore.HomeKit {
 		Oscillating,
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-	[Introduced (PlatformName.TvOS, 10, 1), Introduced (PlatformName.iOS, 10, 2)]
+	[Watch (3,1,1)]
+	[TV (10,1), iOS (10,2)]
 	[Native]
 	public enum HMCharacteristicValueSlatType : nint {
 		Horizontal = 0,
 		Vertical,
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-	[Introduced (PlatformName.TvOS, 10, 1), Introduced (PlatformName.iOS, 10, 2)]
+	[Watch (3,1,1)]
+	[TV (10,1), iOS (10,2)]
 	[Native]
 	public enum HMCharacteristicValueFilterChange : nint {
 		NotNeeded = 0,
 		Needed,
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-	[Introduced (PlatformName.TvOS, 10, 1), Introduced (PlatformName.iOS, 10, 2)]
+	[Watch (3,1,1)]
+	[TV (10,1), iOS (10,2)]
 	[Native]
 	public enum HMCharacteristicValueCurrentFanState : nint {
 		Inactive = 0,
@@ -1175,16 +1175,16 @@ namespace XamCore.HomeKit {
 		Active,
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-	[Introduced (PlatformName.TvOS, 10, 1), Introduced (PlatformName.iOS, 10, 2)]
+	[Watch (3,1,1)]
+	[TV (10,1), iOS (10,2)]
 	[Native]
 	public enum HMCharacteristicValueTargetFanState : nint {
 		Manual = 0,
 		Automatic,
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-	[Introduced (PlatformName.TvOS, 10, 1), Introduced (PlatformName.iOS, 10, 2)]
+	[Watch (3,1,1)]
+	[TV (10,1), iOS (10,2)]
 	[Native]
 	public enum HMCharacteristicValueCurrentHeaterCoolerState : nint {
 		Inactive = 0,
@@ -1193,8 +1193,8 @@ namespace XamCore.HomeKit {
 		Cooling,
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-	[Introduced (PlatformName.TvOS, 10, 1), Introduced (PlatformName.iOS, 10, 2)]
+	[Watch (3,1,1)]
+	[TV (10,1), iOS (10,2)]
 	[Native]
 	public enum HMCharacteristicValueTargetHeaterCoolerState : nint {
 		Automatic = 0,
@@ -1202,8 +1202,8 @@ namespace XamCore.HomeKit {
 		Cool,
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-	[Introduced (PlatformName.TvOS, 10, 1), Introduced (PlatformName.iOS, 10, 2)]
+	[Watch (3,1,1)]
+	[TV (10,1), iOS (10,2)]
 	[Native]
 	public enum HMCharacteristicValueCurrentHumidifierDehumidifierState : nint {
 		Inactive = 0,
@@ -1212,8 +1212,8 @@ namespace XamCore.HomeKit {
 		Dehumidifying,
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-	[Introduced (PlatformName.TvOS, 10, 1), Introduced (PlatformName.iOS, 10, 2)]
+	[Watch (3,1,1)]
+	[TV (10,1), iOS (10,2)]
 	[Native]
 	public enum HMCharacteristicValueTargetHumidifierDehumidifierState : nint {
 		Automatic = 0,
@@ -1221,23 +1221,23 @@ namespace XamCore.HomeKit {
 		Dehumidify,
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-	[Introduced (PlatformName.TvOS, 10, 1), Introduced (PlatformName.iOS, 10, 2)]
+	[Watch (3,1,1)]
+	[TV (10,1), iOS (10,2)]
 	[Native]
 	public enum HMCharacteristicValueSwingMode : nint {
 		Disabled = 0,
 		Enabled,
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 1, 1)]
-	[Introduced (PlatformName.TvOS, 10, 1), Introduced (PlatformName.iOS, 10, 2)]
+	[Watch (3,1,1)]
+	[TV (10,1), iOS (10,2)]
 	[Native]
 	public enum HMCharacteristicValueActivationState : nint {
 		Inactive = 0,
 		Active,
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 2), Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.iOS, 10, 3)]
+	[Watch (3,2), TV (10,2), iOS (10,3)]
 	[Native]
 	public enum HMCharacteristicValueInputEvent : nint {
 		SinglePress = 0,
@@ -1245,14 +1245,14 @@ namespace XamCore.HomeKit {
 		LongPress,
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 2), Introduced (PlatformName.TvOS, 10, 2), Introduced (PlatformName.iOS, 10, 3)]
+	[Watch (3,2), TV (10,2), iOS (10,3)]
 	[Native]
 	public enum HMCharacteristicValueLabelNamespace : nint {
 		Dot = 0,
 		Numeral,
 	}
 
-	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
+	[Watch (4,0), TV (11,0), iOS (11,0)]
 	[Native]
 	public enum HMEventTriggerActivationState : nuint {
 		Disabled = 0,
@@ -1262,7 +1262,7 @@ namespace XamCore.HomeKit {
 		Enabled = 4,
 	}
 
-	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
+	[Watch (4,0), TV (11,0), iOS (11,0)]
 	[Native]
 	public enum HMHomeHubState : nuint {
 		NotAvailable = 0,
@@ -1270,7 +1270,7 @@ namespace XamCore.HomeKit {
 		Disconnected,
 	}
 
-	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
+	[Watch (4,0), TV (11,0), iOS (11,0)]
 	[Native]
 	public enum HMPresenceEventType : nuint {
 		EveryEntry = 1,
@@ -1281,7 +1281,7 @@ namespace XamCore.HomeKit {
 		NotAtHome = LastExit,
 	}
 
-	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.iOS, 11, 0)]
+	[Watch (4,0), TV (11,0), iOS (11,0)]
 	[Native]
 	public enum HMPresenceEventUserType : nuint {
 		CurrentUser = 1,

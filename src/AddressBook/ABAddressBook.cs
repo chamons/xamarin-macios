@@ -39,7 +39,7 @@ using XamCore.CoreFoundation;
 using XamCore.ObjCRuntime;
 
 namespace XamCore.AddressBook {
-	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Contacts' API instead.")]
+	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Contacts' API instead.")]
 	public class ExternalChangeEventArgs : EventArgs {
 		public ExternalChangeEventArgs (ABAddressBook addressBook, NSDictionary info)
 		{
@@ -91,7 +91,7 @@ namespace XamCore.AddressBook {
 		}
 	}
 
-	[Deprecated (PlatformName.iOS, 9, 0, message: "Use the 'Contacts' API instead.")]
+	[Availability (Deprecated = Platform.iOS_9_0, Message = "Use the 'Contacts' API instead.")]
 	public class ABAddressBook : INativeObject, IDisposable, IEnumerable<ABRecord> {
 
 		public static readonly NSString ErrorDomain;
@@ -102,7 +102,7 @@ namespace XamCore.AddressBook {
 		[DllImport (Constants.AddressBookLibrary)]
 		internal extern static IntPtr ABAddressBookCreate ();
 
-		[Deprecated (PlatformName.iOS, 6, 0, message: "Use the static Create method instead")]
+		[Availability (Deprecated = Platform.iOS_6_0, Message = "Use the static Create method instead")]
 		public ABAddressBook ()
 		{
 			this.handle = ABAddressBookCreate ();
@@ -110,11 +110,11 @@ namespace XamCore.AddressBook {
 			InitConstants.Init ();
 		}
 
-		[Introduced (PlatformName.iOS, 6, 0)]
+		[iOS (6,0)]
 		[DllImport (Constants.AddressBookLibrary)]
 		internal extern static IntPtr ABAddressBookCreateWithOptions (IntPtr dictionary, out IntPtr cfError);
 
-		[Introduced (PlatformName.iOS, 6, 0)]
+		[iOS (6,0)]
 		public static ABAddressBook Create (out NSError error)
 		{
 			IntPtr e;
@@ -188,11 +188,11 @@ namespace XamCore.AddressBook {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 6, 0)]
+		[iOS (6,0)]
 		[DllImport (Constants.AddressBookLibrary)]
 		extern static nint ABAddressBookGetAuthorizationStatus ();
 
-		[Introduced (PlatformName.iOS, 6, 0)]
+		[iOS (6,0)]
 		public static ABAuthorizationStatus GetAuthorizationStatus ()
 		{
 #if ARCH_32			
@@ -202,11 +202,11 @@ namespace XamCore.AddressBook {
 #endif
 		}
 
-		[Introduced (PlatformName.iOS, 6, 0)]
+		[iOS (6,0)]
 		[DllImport (Constants.AddressBookLibrary)]
 		extern unsafe static void ABAddressBookRequestAccessWithCompletion (IntPtr addressbook, void * completion);
 
-		[Introduced (PlatformName.iOS, 6, 0)]
+		[iOS (6,0)]
 		public void RequestAccess (Action<bool,NSError> onCompleted)
 		{
 			if (onCompleted == null)
@@ -310,7 +310,7 @@ namespace XamCore.AddressBook {
 		[DllImport (Constants.AddressBookLibrary)]
 		extern static IntPtr ABAddressBookCopyArrayOfAllPeopleInSource (IntPtr addressBook, IntPtr source);
 
-		[Introduced (PlatformName.iOS, 4, 0)]
+		[iOS (4,0)]
 		public ABPerson [] GetPeople (ABRecord source)
 		{
 			if (source == null)
@@ -323,7 +323,7 @@ namespace XamCore.AddressBook {
 		[DllImport (Constants.AddressBookLibrary)]
 		extern static IntPtr ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering (IntPtr addressBook, IntPtr source, ABPersonSortBy sortOrdering);
 
-		[Introduced (PlatformName.iOS, 4, 0)]
+		[iOS (4,0)]
 		public ABPerson [] GetPeople (ABRecord source, ABPersonSortBy sortOrdering)
 		{
 			if (source == null)
@@ -354,7 +354,7 @@ namespace XamCore.AddressBook {
 		[DllImport (Constants.AddressBookLibrary)]
 		extern static IntPtr ABAddressBookCopyArrayOfAllGroupsInSource (IntPtr addressBook, IntPtr source);
 
-		[Introduced (PlatformName.iOS, 4, 0)]
+		[iOS (4,0)]
 		public ABGroup[] GetGroups (ABRecord source)
 		{
 			if (source == null)

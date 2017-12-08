@@ -36,7 +36,7 @@ using XamCore.Foundation;
 namespace XamCore.AVFoundation {
 	public partial class AVCaptureConnection {
 
-		[Deprecated (PlatformName.iOS, 7, 0)]
+		[Availability (Deprecated = Platform.iOS_7_0)]
 		public bool SupportsVideoMinFrameDuration {
 			get {
 				if (RespondsToSelector (new Selector ("isVideoMinFrameDurationSupported")))
@@ -45,7 +45,7 @@ namespace XamCore.AVFoundation {
 			}
 		}
 
-		[Deprecated (PlatformName.iOS, 7, 0)]
+		[Availability (Deprecated = Platform.iOS_7_0)]
 		public bool SupportsVideoMaxFrameDuration {
 			get {
 #if !MONOMAC

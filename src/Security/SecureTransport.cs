@@ -88,24 +88,24 @@ namespace XamCore.Security {
 	public enum SslSessionOption {
 		BreakOnServerAuth,
 		BreakOnCertRequested,
-		[Introduced (PlatformName.MacOSX, 10, 8)]
+		[Mac (10,8)]
 		BreakOnClientAuth,
 
-		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
+		[iOS (7,0)][Mac (10,9)]
 		FalseStart,
 
 		SendOneByteRecord,
 
-		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
+		[iOS (9,0)][Mac (10,11)]
 		AllowServerIdentityChange = 5,
 		
-		[Introduced (PlatformName.iOS, 8, 1)][Introduced (PlatformName.MacOSX, 10, 10)]
+		[iOS (8,1)][Mac (10,10)]
 		Fallback = 6,
 
-		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
+		[iOS (9,0)][Mac (10,11)]
 		BreakOnClientHello = 7,
 
-		[Introduced (PlatformName.iOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)]
+		[iOS (10,0)][Mac (10,12)]
 		AllowRenegotiation = 8,
 	}
 

@@ -9,12 +9,12 @@ namespace XamCore.Foundation {
 	}
 
 	public partial class NSUserDefaults {
-		[Introduced (PlatformName.iOS, 2, 0), Introduced (PlatformName.MacOSX, 10, 9), Deprecated (PlatformName.iOS, 7, 0), Deprecated (PlatformName.MacOSX, 10, 10)]
+		[Availability (Introduced = Platform.iOS_2_0 | Platform.Mac_10_9, Deprecated = Platform.iOS_7_0 | Platform.Mac_10_10)]
 		public NSUserDefaults (string name) : this (name, NSUserDefaultsType.UserName)
 		{
 		}
 
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public NSUserDefaults (string name, NSUserDefaultsType type)
 		{
 			// two different `init*` would share the same C# signature

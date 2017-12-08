@@ -70,7 +70,7 @@ namespace XamCore.AudioToolbox {
 		EnqueueDuringReset   = -66632,
 		InvalidOfflineMode   = -66626,
 		BufferEnqueuedTwice  = -66666,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+		[iOS (10,0), Mac (10,12, onlyOn64: true)]
 		CannotStartYet       = -66665,
 		
 		// There is countless of not well documented error codes returned
@@ -1129,7 +1129,7 @@ namespace XamCore.AudioToolbox {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 6, 0)]
+		[iOS (6,0)]
 		public AudioQueueStatus SetChannelAssignments (params AudioQueueChannelAssignment[] channelAssignments)
 		{
 			if (channelAssignments == null)
@@ -1157,7 +1157,7 @@ namespace XamCore.AudioToolbox {
 		}	
 #endif
 
-		[Introduced (PlatformName.iOS, 6, 0)]
+		[iOS (6,0)]
 		[DllImport (Constants.AudioToolboxLibrary)]
 		extern static AudioQueueStatus AudioQueueProcessingTapNew (IntPtr inAQ, AudioQueueProcessingTapCallbackShared inCallback,
 			IntPtr inClientData, AudioQueueProcessingTapFlags inFlags, out uint outMaxFrames,
@@ -1165,7 +1165,7 @@ namespace XamCore.AudioToolbox {
 
 #if !XAMCORE_2_0
 		[Obsolete ("Use 'CreateProcessingTap (AudioQueueProcessingTapDelegate, AudioQueueProcessingTapFlags, out AudioQueueStatus)' instead.", true)]
-		[Introduced (PlatformName.iOS, 6, 0)]
+		[iOS (6,0)]
 		public AudioQueueProcessingTap CreateProcessingTap (AudioQueueProcessingTapCallback processingCallback, AudioQueueProcessingTapFlags flags,
 		                                                    out AudioQueueStatus status)
 		{
@@ -1173,7 +1173,7 @@ namespace XamCore.AudioToolbox {
 		}
 #endif
 
-		[Introduced (PlatformName.iOS, 6, 0)]
+		[iOS (6,0)]
 		public AudioQueueProcessingTap CreateProcessingTap (AudioQueueProcessingTapDelegate processingCallback, AudioQueueProcessingTapFlags flags,
 		                                                    out AudioQueueStatus status)
 		{		
@@ -1212,7 +1212,7 @@ namespace XamCore.AudioToolbox {
 	                                                      ref AudioTimeStamp timeStamp, ref AudioQueueProcessingTapFlags flags,
 	                                                      AudioBuffers data);
 
-	[Introduced (PlatformName.iOS, 6, 0)]
+	[iOS (6,0)]
 	public class AudioQueueProcessingTap : IDisposable
 	{
 		internal static readonly AudioQueueProcessingTapCallbackShared CreateTapCallback = TapCallback;
@@ -1296,11 +1296,11 @@ namespace XamCore.AudioToolbox {
 		                                                  out flags, out parentNumberOfFrames, (IntPtr) data);
 		}
 
-		[Introduced (PlatformName.MacOSX, 10, 8)]
+		[Mac (10,8)]
 		[DllImport (Constants.AudioToolboxLibrary)]
 		extern static AudioQueueStatus AudioQueueProcessingTapGetQueueTime (IntPtr inAQTap, out double outQueueSampleTime, out uint outQueueFrameCount);
 
-		[Introduced (PlatformName.MacOSX, 10, 8)]
+		[Mac (10,8)]
 		public AudioQueueStatus GetQueueTime (out double sampleTime, out uint frameCount)
 		{
 			return AudioQueueProcessingTapGetQueueTime (TapHandle, out sampleTime, out frameCount);

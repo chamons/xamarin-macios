@@ -81,11 +81,11 @@ namespace XamCore.CoreServices
 	{
 		#region Locating an Application
 
-		[Introduced (PlatformName.MacOSX, 10, 10)]
+		[Availability (Introduced = Platform.Mac_10_10)]
 		[DllImport (Constants.CoreServicesLibrary)]
 		static extern IntPtr LSCopyDefaultApplicationURLForURL (IntPtr inUrl, LSRoles inRole, /*out*/ IntPtr outError);
 
-		[Introduced (PlatformName.MacOSX, 10, 10)]
+		[Availability (Introduced = Platform.Mac_10_10)]
 		public static NSUrl GetDefaultApplicationUrlForUrl (NSUrl url, LSRoles roles = LSRoles.All)
 		{
 			if (url == null)
@@ -96,11 +96,11 @@ namespace XamCore.CoreServices
 			);
 		}
 
-		[Introduced (PlatformName.MacOSX, 10, 10)]
+		[Availability (Introduced = Platform.Mac_10_10)]
 		[DllImport (Constants.CoreServicesLibrary)]
 		static extern IntPtr LSCopyDefaultApplicationURLForContentType (IntPtr inContentType, LSRoles inRole, /*out*/ IntPtr outError);
 
-		[Introduced (PlatformName.MacOSX, 10, 10)]
+		[Availability (Introduced = Platform.Mac_10_10)]
 		public static NSUrl GetDefaultApplicationUrlForContentType (string contentType, LSRoles roles = LSRoles.All)
 		{
 			if (contentType == null)
@@ -150,11 +150,11 @@ namespace XamCore.CoreServices
 			return CanUrlAcceptUrl (itemUrl, targetUrl, roles, acceptanceFlags, out result);
 		}
 
-		[Introduced (PlatformName.MacOSX, 10, 10)]
+		[Availability (Introduced = Platform.Mac_10_10)]
 		[DllImport (Constants.CoreServicesLibrary)]
 		static extern IntPtr LSCopyApplicationURLsForBundleIdentifier (IntPtr inBundleIdentifier, /*out*/ IntPtr outError);
 
-		[Introduced (PlatformName.MacOSX, 10, 10)]
+		[Availability (Introduced = Platform.Mac_10_10)]
 		public static NSUrl [] GetApplicationUrlsForBundleIdentifier (string bundleIdentifier)
 		{
 			if (bundleIdentifier == null)

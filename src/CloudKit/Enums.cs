@@ -6,9 +6,9 @@ using System;
 namespace XamCore.CloudKit
 {
 	// NSInteger -> CKContainer.h
-	[Introduced (PlatformName.WatchOS, 3, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
-	[Introduced (PlatformName.MacOSX, 10, 10)]
+	[Watch (3,0)]
+	[iOS (8,0)]
+	[Availability (Platform.Mac_10_10)]
 	[Native]
 	public enum CKAccountStatus : nint {
 		CouldNotDetermine = 0,
@@ -18,9 +18,9 @@ namespace XamCore.CloudKit
 	}
 
 	// NSUInteger -> CKContainer.h
-	[Introduced (PlatformName.WatchOS, 3, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
-	[Introduced (PlatformName.MacOSX, 10, 10)]
+	[Watch (3,0)]
+	[iOS (8,0)]
+	[Availability (Platform.Mac_10_10)]
 	[Native]
 	[Flags]
 	public enum CKApplicationPermissions : nuint {
@@ -28,9 +28,9 @@ namespace XamCore.CloudKit
 	}
 
 	// NSInteger -> CKContainer.h
-	[Introduced (PlatformName.WatchOS, 3, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
-	[Introduced (PlatformName.MacOSX, 10, 10)]
+	[Watch (3,0)]
+	[iOS (8,0)]
+	[Availability (Platform.Mac_10_10)]
 	[Native]
 	public enum CKApplicationPermissionStatus : nint {
 		InitialState = 0,
@@ -40,9 +40,9 @@ namespace XamCore.CloudKit
 	}
 
 	// NSInteger -> CKError.h
-	[Introduced (PlatformName.WatchOS, 3, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
-	[Introduced (PlatformName.MacOSX, 10, 10)]
+	[Watch (3,0)]
+	[iOS (8,0)]
+	[Availability (Platform.Mac_10_10)]
 	[Native]
 	[ErrorDomain ("CKErrorDomain")]
 	public enum CKErrorCode : nint {
@@ -75,18 +75,18 @@ namespace XamCore.CloudKit
 		ZoneNotFound = 26,
 		LimitExceeded  = 27,
 		UserDeletedZone = 28,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)] TooManyParticipants = 29,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)] AlreadyShared = 30,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)] ReferenceViolation = 31,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)] ManagedAccountRestricted = 32,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)] ParticipantMayNeedVerification = 33,
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.WatchOS, 4, 0)] ResponseLost = 34,
+		[iOS (10,0), TV (10,0), Mac (10,12)] TooManyParticipants = 29,
+		[iOS (10,0), TV (10,0), Mac (10,12)] AlreadyShared = 30,
+		[iOS (10,0), TV (10,0), Mac (10,12)] ReferenceViolation = 31,
+		[iOS (10,0), TV (10,0), Mac (10,12)] ManagedAccountRestricted = 32,
+		[iOS (10,0), TV (10,0), Mac (10,12)] ParticipantMayNeedVerification = 33,
+		[iOS (11,0), TV (11,0), Mac (10,13), Watch (4,0)] ResponseLost = 34,
 	}
 
 	// NSInteger -> CKModifyRecordsOperation.h
-	[Introduced (PlatformName.WatchOS, 3, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
-	[Introduced (PlatformName.MacOSX, 10, 10)]
+	[Watch (3,0)]
+	[iOS (8,0)]
+	[Availability (Platform.Mac_10_10)]
 	[Native]
 	public enum CKRecordSavePolicy : nint {
 		SaveIfServerRecordUnchanged = 0,
@@ -95,21 +95,21 @@ namespace XamCore.CloudKit
 	}
 
 	// NSInteger -> CKNotification.h
-	[Introduced (PlatformName.WatchOS, 3, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
-	[Introduced (PlatformName.MacOSX, 10, 10)]
+	[Watch (3,0)]
+	[iOS (8,0)]
+	[Availability (Platform.Mac_10_10)]
 	[Native]
 	public enum CKNotificationType : nint {
 		Query = 1,
 		RecordZone = 2,
 		ReadNotification = 3,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12), Introduced (PlatformName.WatchOS, 3, 0)] Database = 4,
+		[iOS (10,0), TV (10,0), Mac (10,12), Watch (3,0)] Database = 4,
 	}
 
 	// NSInteger -> CKNotification.h
-	[Introduced (PlatformName.WatchOS, 3, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
-	[Introduced (PlatformName.MacOSX, 10, 10)]
+	[Watch (3,0)]
+	[iOS (8,0)]
+	[Availability (Platform.Mac_10_10)]
 	[Native]
 	public enum CKQueryNotificationReason : nint {
 		RecordCreated = 1,
@@ -118,21 +118,21 @@ namespace XamCore.CloudKit
 	}
 
 	// NSUInteger -> CKRecordZone.h
-	[Introduced (PlatformName.WatchOS, 3, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
-	[Introduced (PlatformName.MacOSX, 10, 10)]
+	[Watch (3,0)]
+	[iOS (8,0)]
+	[Availability (Platform.Mac_10_10)]
 	[Flags]
 	[Native]
 	public enum CKRecordZoneCapabilities : nuint {
 		FetchChanges = 1 << 0,
 		Atomic = 1 << 1,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)] Sharing = 1 << 2,
+		[iOS (10,0), Watch (3,0), TV (10,0), Mac (10,12)] Sharing = 1 << 2,
 	}
 
 	// NSUInteger -> CKReference.h
-	[Introduced (PlatformName.WatchOS, 3, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
-	[Introduced (PlatformName.MacOSX, 10, 10)]
+	[Watch (3,0)]
+	[iOS (8,0)]
+	[Availability (Platform.Mac_10_10)]
 	[Native]
 	public enum CKReferenceAction : nuint {
 		None = 0,
@@ -140,20 +140,20 @@ namespace XamCore.CloudKit
 	}
 
 	// NSInteger -> CKSubscription.h
-	[Unavailable (PlatformName.WatchOS)]
-	[Introduced (PlatformName.iOS, 8, 0)]
-	[Introduced (PlatformName.MacOSX, 10, 10)]
+	[NoWatch]
+	[iOS (8,0)]
+	[Availability (Platform.Mac_10_10)]
 	[Native]
 	public enum CKSubscriptionType : nint {
 		Query = 1,
 		RecordZone = 2,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)] Database = 3,
+		[iOS (10,0), TV (10,0), Mac (10,12)] Database = 3,
 	}
 
 	// NSInteger -> CKSubscription.h
 
-	[Unavailable (PlatformName.WatchOS)]
-	[Introduced (PlatformName.iOS, 8, 0, message: "Use 'CKQuerySubscriptionOptions' instead."), Introduced (PlatformName.MacOSX, 10, 10, message: "Use 'CKQuerySubscriptionOptions' instead."), Deprecated (PlatformName.iOS, 10, 0, message: "Use 'CKQuerySubscriptionOptions' instead."), Deprecated (PlatformName.MacOSX, 10, 12, message: "Use 'CKQuerySubscriptionOptions' instead.")]
+	[NoWatch]
+	[Availability (Introduced = Platform.iOS_8_0 | Platform.Mac_10_10 , Deprecated = Platform.iOS_10_0 | Platform.Mac_10_12, Message = "Use 'CKQuerySubscriptionOptions' instead.")]
 	[Flags]
 	[Native]
 	public enum CKSubscriptionOptions : nuint {
@@ -163,8 +163,8 @@ namespace XamCore.CloudKit
 		FiresOnce = 1 << 3,
 	}
 	
-	[Introduced (PlatformName.WatchOS, 3, 0)]
-	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
+	[Watch (3,0)]
+	[iOS (10,0), Mac (10,12)]
 	[Native]
 	public enum CKDatabaseScope : nint
 	{
@@ -173,8 +173,8 @@ namespace XamCore.CloudKit
 		Shared,
 	}
 	
-	[Introduced (PlatformName.WatchOS, 3, 0)]
-	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
+	[Watch (3,0)]
+	[iOS (10,0), Mac (10,12)]
 	[Native]
 	public enum CKShareParticipantAcceptanceStatus : nint
 	{
@@ -184,8 +184,8 @@ namespace XamCore.CloudKit
 		Removed,
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0)]
-	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
+	[Watch (3,0)]
+	[iOS (10,0), Mac (10,12)]
 	[Native]
 	public enum CKShareParticipantPermission : nint
 	{
@@ -195,8 +195,8 @@ namespace XamCore.CloudKit
 		ReadWrite,
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0)]
-	[Introduced (PlatformName.iOS, 10, 10), Introduced (PlatformName.MacOSX, 10, 12)]
+	[Watch (3,0)]
+	[iOS (10,10), Mac (10,12)]
 	[Native]
 	public enum CKShareParticipantType : nint
 	{
@@ -206,8 +206,8 @@ namespace XamCore.CloudKit
 		PublicUser = 4,
 	}
 
-	[Unavailable (PlatformName.WatchOS)]
-	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12)]
+	[NoWatch]
+	[iOS (10,0), Mac(10,12)]
 	[Native]
 	public enum CKQuerySubscriptionOptions : nuint
 	{
@@ -217,7 +217,7 @@ namespace XamCore.CloudKit
 		FiresOnce = 1 << 3,
 	}
 
-	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.iOS, 11, 0)]
+	[Watch (4,0), TV (11,0), Mac (10,13), iOS (11,0)]
 	[Native]
 	public enum CKOperationGroupTransferSize : nint
 	{

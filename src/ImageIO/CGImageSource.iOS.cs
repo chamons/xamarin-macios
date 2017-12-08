@@ -27,7 +27,7 @@ namespace XamCore.ImageIO {
 			/* CFDictionaryRef __nullable */ IntPtr options);
 
 		[EditorBrowsable (EditorBrowsableState.Advanced)]
-		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
+		[iOS (7,0), Mac (10,8)]
 		public CGImageMetadata CopyMetadata (nint index, NSDictionary options)
 		{
 			IntPtr o = options == null ? IntPtr.Zero : options.Handle;
@@ -35,7 +35,7 @@ namespace XamCore.ImageIO {
 			return (result == IntPtr.Zero) ? null : new CGImageMetadata (result);
 		}
 
-		[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
+		[iOS (7,0), Mac (10,8)]
 		public CGImageMetadata CopyMetadata (nint index, CGImageOptions options)
 		{
 			NSDictionary o = null;
@@ -48,12 +48,12 @@ namespace XamCore.ImageIO {
 		}
 
 		// CGImageSource.h
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		[DllImport (Constants.ImageIOLibrary)]
 		extern static void CGImageSourceRemoveCacheAtIndex (/* CGImageSourceRef __nonnull */ IntPtr isrc,
 			/* size_t */ nint index);
 
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public void RemoveCache (nint index)
 		{
 			CGImageSourceRemoveCacheAtIndex (Handle, index);

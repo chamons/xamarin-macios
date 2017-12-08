@@ -39,15 +39,15 @@ namespace XamCore.MediaPlayer {
 		public const string Rating = "rating";
 		public const string LastPlayedDate = "lastPlayedDate";
 
-		[Introduced (PlatformName.iOS, 4, 0)]
+		[iOS (4,0)]
 		public const string BeatsPerMinute = "beatsPerMinute";
-		[Introduced (PlatformName.iOS, 4, 0)]
+		[iOS (4,0)]
 		public const string Comments = "comments";
-		[Introduced (PlatformName.iOS, 4, 0)]
+		[iOS (4,0)]
 		public const string AssetUrl = "assetURL";
-		[Introduced (PlatformName.iOS, 4, 0)]
+		[iOS (4,0)]
 		public const string ReleaseDate = "releaseDate";
-		[Introduced (PlatformName.iOS, 4, 0)]
+		[iOS (4,0)]
 		public const string UserGrouping = "userGrouping";
 	}
 }

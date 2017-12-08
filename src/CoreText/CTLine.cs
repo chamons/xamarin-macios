@@ -179,11 +179,11 @@ namespace XamCore.CoreText {
 			return CTLineGetImageBounds (handle, context.GetHandle ());
 		}
 
-		[Introduced (PlatformName.iOS, 6, 0)][Introduced (PlatformName.MacOSX, 10, 8)]
+		[iOS (6,0)][Mac (10,8)]
 		[DllImport (Constants.CoreTextLibrary)]
 		static extern CGRect CTLineGetBoundsWithOptions (IntPtr line, nuint options);
 
-		[Introduced (PlatformName.iOS, 6, 0)][Introduced (PlatformName.MacOSX, 10, 8)]
+		[iOS (6,0)][Mac (10,8)]
 		public CGRect GetBounds (CTLineBoundsOptions options)
 		{
 			return CTLineGetBoundsWithOptions (handle, (nuint) (ulong) options);
@@ -235,7 +235,7 @@ namespace XamCore.CoreText {
 		public delegate void CaretEdgeEnumerator (double offset, nint charIndex, bool leadingEdge, ref bool stop);
 		unsafe delegate void CaretEdgeEnumeratorProxy (IntPtr block, double offset, nint charIndex, [MarshalAs (UnmanagedType.I1)] bool leadingEdge, [MarshalAs (UnmanagedType.I1)] ref bool stop);
 		
-		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
+		[iOS (9,0)][Mac (10,11)]
 		[DllImport (Constants.CoreTextLibrary)]
 		static unsafe extern void CTLineEnumerateCaretOffsets (IntPtr line, BlockLiteral *blockEnumerator);
 
@@ -250,7 +250,7 @@ namespace XamCore.CoreText {
                                 del (offset, charIndex, leadingEdge, ref stop);
  		}
 		
-		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
+		[iOS (9,0)][Mac (10,11)]
 		public void EnumerateCaretOffsets (CaretEdgeEnumerator enumerator)
 		{
 			if (enumerator == null)

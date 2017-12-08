@@ -5,7 +5,7 @@ using XamCore.ObjCRuntime;
 namespace XamCore.AudioUnit
 {
 #if XAMCORE_2_0 || !MONOMAC
-	[Introduced (PlatformName.iOS, 9, 0), Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64)]
+	[iOS (9,0), Mac(10,11, onlyOn64 : true)]
 	public partial class AUParameter
 	{
 		public string GetString (float? value)

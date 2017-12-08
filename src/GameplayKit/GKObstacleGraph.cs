@@ -27,7 +27,7 @@ namespace XamCore.GameplayKit {
 	}
 
 #if XAMCORE_2_0
-	[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+	[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
 	[Register ("GKObstacleGraph", SkipRegistration = true)]
 	public partial class GKObstacleGraph<NodeType> : GKObstacleGraph where NodeType : GKGraphNode2D {
 

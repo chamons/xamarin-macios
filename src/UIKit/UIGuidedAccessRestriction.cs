@@ -20,7 +20,7 @@ namespace XamCore.UIKit {
 
 	// NSInteger -> UIGuidedAccessRestrictions.h
 	[Native]
-	[Introduced (PlatformName.iOS, 7, 0)]
+	[iOS (7,0)]
 	public enum UIGuidedAccessRestrictionState : nint {
 		Allow,
 		Deny
@@ -28,11 +28,11 @@ namespace XamCore.UIKit {
 
 	public static partial class UIGuidedAccessRestriction {
 #if !COREBUILD
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		[DllImport (Constants.UIKitLibrary)]
 		extern static /* UIGuidedAccessRestrictionState */ nint UIGuidedAccessRestrictionStateForIdentifier (/* NSString */ IntPtr restrictionIdentifier);
 
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public static UIGuidedAccessRestrictionState GetState (string restrictionIdentifier)
 		{
 			IntPtr p = NSString.CreateNative (restrictionIdentifier);

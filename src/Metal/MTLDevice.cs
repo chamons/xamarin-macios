@@ -21,7 +21,7 @@ namespace XamCore.Metal {
 	public delegate void MTLDeviceNotificationHandler (IMTLDevice device, NSString notifyName);
 #endif
 
-	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
+	[iOS (8,0)][Mac (10,11)]
 	public static partial class MTLDevice {
 		[DllImport (Constants.MetalLibrary)]
 		extern static IntPtr MTLCreateSystemDefaultDevice ();
@@ -48,22 +48,22 @@ namespace XamCore.Metal {
 		}
 
 #if MONOMAC
-		[Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64), Unavailable (PlatformName.iOS), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Mac (10,11, onlyOn64: true), NoiOS, NoWatch, NoTV]
 		[DllImport (Constants.MetalLibrary)]
 		unsafe static extern IntPtr MTLCopyAllDevices ();
 
-		[Introduced (PlatformName.MacOSX, 10, 11, PlatformArchitecture.Arch64), Unavailable (PlatformName.iOS), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Mac (10,11, onlyOn64: true), NoiOS, NoWatch, NoTV]
 		public static IMTLDevice [] GetAllDevices ()
 		{
 			var rv = MTLCopyAllDevices ();
 			return NSArray.ArrayFromHandle<IMTLDevice> (rv);
 		}
 
-		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Unavailable (PlatformName.iOS), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Mac (10, 13, onlyOn64: true), NoiOS, NoWatch, NoTV]
 		[DllImport (Constants.MetalLibrary)]
 		unsafe static extern IntPtr MTLCopyAllDevicesWithObserver (ref IntPtr observer, void* handler);
 
-		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Unavailable (PlatformName.iOS), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Mac (10, 13, onlyOn64: true), NoiOS, NoWatch, NoTV]
 		public static IMTLDevice [] GetAllDevices (ref NSObject observer, MTLDeviceNotificationHandler handler)
 		{
 			if (observer == null)
@@ -100,11 +100,11 @@ namespace XamCore.Metal {
 				del ((IMTLDevice) Runtime.GetNSObject (device), (XamCore.Foundation.NSString) Runtime.GetNSObject (notifyName));
 		}
 
-		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Unavailable (PlatformName.iOS), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Mac (10, 13, onlyOn64: true), NoiOS, NoWatch, NoTV]
 		[DllImport (Constants.MetalLibrary)]
 		static extern void MTLRemoveDeviceObserver (IntPtr observer);
 
-		[Introduced (PlatformName.MacOSX, 10, 13, PlatformArchitecture.Arch64), Unavailable (PlatformName.iOS), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+		[Mac (10, 13, onlyOn64: true), NoiOS, NoWatch, NoTV]
 		public static void RemoveObserver (NSObject observer)
 		{
 			if (observer == null)

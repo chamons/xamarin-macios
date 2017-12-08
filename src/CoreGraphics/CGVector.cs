@@ -72,11 +72,11 @@ namespace XamCore.CoreGraphics {
 
 #if MONOTOUCH
 #if !COREBUILD
-		[Introduced (PlatformName.iOS, 8, 0)]
+		[iOS (8,0)]
 		[DllImport (Constants.UIKitLibrary)]
 		extern static IntPtr NSStringFromCGVector (CGVector vector);
 		
-		[Introduced (PlatformName.iOS, 8, 0)]
+		[iOS (8,0)]
 		public override string ToString ()
 		{
 			using (var ns = new NSString (NSStringFromCGVector (this)))
@@ -87,11 +87,11 @@ namespace XamCore.CoreGraphics {
 #endif
 		}
 
-		[Introduced (PlatformName.iOS, 8, 0)]
+		[iOS (8,0)]
 		[DllImport (Constants.UIKitLibrary)]
 		extern static CGVector CGVectorFromString (IntPtr str);
 		
-		[Introduced (PlatformName.iOS, 8, 0)]
+		[iOS (8,0)]
 		static public CGVector FromString (string s)
 		{
 			// note: null is allowed

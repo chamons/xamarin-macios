@@ -16,7 +16,7 @@ using XamCore.Foundation;
 using XamCore.CoreMedia;
 
 namespace XamCore.VideoToolbox {
-	[Introduced (PlatformName.MacOSX, 10, 10), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
+	[Mac (10,10), iOS (8,0), TV (10,2)]
 	public class VTMultiPassStorage : INativeObject, IDisposable {
 		IntPtr handle;
 		bool closed;

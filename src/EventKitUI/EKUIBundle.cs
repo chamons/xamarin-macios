@@ -16,11 +16,11 @@ using XamCore.ObjCRuntime;
 namespace XamCore.EventKitUI {
 	public static class EKUIBundle {
 
-		[Introduced (PlatformName.iOS, 11, 0)]
+		[iOS (11,0)]
 		[DllImport (Constants.EventKitUILibrary)]
 		static extern IntPtr EventKitUIBundle ();
 
-		[Introduced (PlatformName.iOS, 11, 0)]
+		[iOS (11,0)]
 		public static NSBundle UIBundle { get; } = Runtime.GetNSObject<NSBundle> (EventKitUIBundle ());
 	}
 }

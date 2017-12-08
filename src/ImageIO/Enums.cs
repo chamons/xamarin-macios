@@ -14,7 +14,7 @@ namespace XamCore.ImageIO {
 
 	// untyped enum -> CGImageMetadata.h
 	// note: not used in any API
-	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
+	[iOS (7,0), Mac (10,8)]
 	[ErrorDomain ("kCFErrorDomainCGImageMetadata")]
 	public enum CGImageMetadataErrors {
 		Unknown = 0,
@@ -25,7 +25,7 @@ namespace XamCore.ImageIO {
 	}
 
 	// untyped enum -> CGImageMetadata.h
-	[Introduced (PlatformName.iOS, 7, 0), Introduced (PlatformName.MacOSX, 10, 8)]
+	[iOS (7,0), Mac (10,8)]
 	public enum CGImageMetadataType {
 		Invalid = -1,
 		Default = 0,
@@ -50,7 +50,7 @@ namespace XamCore.ImageIO {
 
 	// untyped enum / #defines
 	// used with kCGImagePropertyPNGCompressionFilter
-	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
+	[iOS (9,0)][Mac (10,11)]
 	[Flags]
 	public enum CGImagePropertyPngFilters {
 		No = 0,

@@ -38,15 +38,15 @@ namespace XamCore.MobileCoreServices {
 #endif
 	public partial class UTType {
 
-		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
+		[iOS (8,0)][Mac (10,10)]
 		[DllImport (Constants.CoreServicesLibrary)]
 		extern static int /* Boolean */ UTTypeIsDynamic (IntPtr /* CFStringRef */ handle);
 		
-		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
+		[iOS (8,0)][Mac (10,10)]
 		[DllImport (Constants.CoreServicesLibrary)]
 		extern static int /* Boolean */ UTTypeIsDeclared (IntPtr /* CFStringRef */ handle);
 
-		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
+		[iOS (8,0)][Mac (10,10)]
 		public static bool IsDynamic (string utType)
 		{
 			if (utType == null)
@@ -56,7 +56,7 @@ namespace XamCore.MobileCoreServices {
 				return UTTypeIsDynamic (x.Handle) != 0;
 		}
 
-		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
+		[iOS (8,0)][Mac (10,10)]
 		public static bool IsDeclared (string utType)
 		{
 			if (utType == null)
@@ -104,11 +104,11 @@ namespace XamCore.MobileCoreServices {
 			return ret;
 		}
 		
-		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
+		[iOS (8,0)][Mac (10,10)]
 		[DllImport (Constants.CoreServicesLibrary)]
 		extern static IntPtr /* NSString Array */ UTTypeCopyAllTagsWithClass (IntPtr /* CFStringRef */ utiStr, IntPtr /* CFStringRef */ tagClassStr);
 		
-		[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
+		[iOS (8,0)][Mac (10,10)]
 #if XAMCORE_2_0
 		static
 #endif

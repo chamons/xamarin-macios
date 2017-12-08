@@ -39,7 +39,7 @@ using XamCore.CoreText;
 
 namespace XamCore.UIKit {
 
-	[Introduced (PlatformName.iOS, 6, 0)]
+	[iOS (6,0)]
 	public class UIStringAttributes : DictionaryContainer
 	{
 #if !COREBUILD
@@ -157,7 +157,7 @@ namespace XamCore.UIKit {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public NSString WeakTextEffect {
 			get {
 				return Dictionary [UIStringAttributeKey.TextEffect] as NSString;
@@ -167,7 +167,7 @@ namespace XamCore.UIKit {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public NSTextEffect TextEffect {
 			get {
 				var s = WeakTextEffect;
@@ -187,7 +187,7 @@ namespace XamCore.UIKit {
 		}
 
 #if !WATCH
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public NSTextAttachment TextAttachment {
 			get {
 				return Dictionary [UIStringAttributeKey.Attachment] as NSTextAttachment;
@@ -198,7 +198,7 @@ namespace XamCore.UIKit {
 		}
 #endif // !WATCH
 
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public NSUrl Link {
 			get {
 				return Dictionary [UIStringAttributeKey.Link] as NSUrl;
@@ -208,7 +208,7 @@ namespace XamCore.UIKit {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public float? BaselineOffset {
 			get {
 				return GetFloatValue (UIStringAttributeKey.BaselineOffset);
@@ -218,7 +218,7 @@ namespace XamCore.UIKit {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public UIColor StrikethroughColor {
 			get {
 				return Dictionary [UIStringAttributeKey.StrikethroughColor] as UIColor;
@@ -228,7 +228,7 @@ namespace XamCore.UIKit {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public UIColor UnderlineColor {
 			get {
 				return Dictionary [UIStringAttributeKey.UnderlineColor] as UIColor;
@@ -239,7 +239,7 @@ namespace XamCore.UIKit {
 		}
 		
 
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public float? Obliqueness {
 			get {
 				return GetFloatValue (UIStringAttributeKey.Obliqueness);
@@ -249,7 +249,7 @@ namespace XamCore.UIKit {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public float? Expansion {
 			get {
 				return GetFloatValue (UIStringAttributeKey.Expansion);
@@ -259,7 +259,7 @@ namespace XamCore.UIKit {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public NSNumber [] WritingDirectionInt {
 			get {
 				return GetArray<NSNumber> (UIStringAttributeKey.WritingDirection);

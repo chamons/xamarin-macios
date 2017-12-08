@@ -142,7 +142,7 @@ namespace XamCore.CoreAnimation {
 			}
 		}
 #endif
-		[Introduced (PlatformName.WatchOS, 3, 0)][Introduced (PlatformName.TvOS, 10, 0)][Introduced (PlatformName.MacOSX, 10, 12)][Introduced (PlatformName.iOS, 10, 0)]
+		[Watch (3,0)][TV (10,0)][Mac (10,12)][iOS (10,0)]
 		public CAContentsFormat ContentsFormat {
 			get { return CAContentsFormatExtensions.GetValue (_ContentsFormat); }
 			set { _ContentsFormat = value.GetConstant (); }

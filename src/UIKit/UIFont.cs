@@ -26,70 +26,70 @@ namespace XamCore.UIKit {
 			return String.Format ("{0} {1}", Name, PointSize);
 		}
 
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public static UIFont PreferredHeadline {
 			get {
 				return GetPreferredFontForTextStyle (UIFontTextStyle.Headline);
 			}
 		}
 		
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public static UIFont PreferredBody {
 			get {
 				return GetPreferredFontForTextStyle (UIFontTextStyle.Body);
 			}
 		}
 		
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public static UIFont PreferredSubheadline {
 			get {
 				return GetPreferredFontForTextStyle (UIFontTextStyle.Subheadline);
 			}
 		}
 		
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public static UIFont PreferredFootnote {
 			get {
 				return GetPreferredFontForTextStyle (UIFontTextStyle.Footnote);
 			}
 		}
 		
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public static UIFont PreferredCaption1 {
 			get {
 				return GetPreferredFontForTextStyle (UIFontTextStyle.Caption1);
 			}
 		}
 		
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[iOS (7,0)]
 		public static UIFont PreferredCaption2 {
 			get {
 				return GetPreferredFontForTextStyle (UIFontTextStyle.Caption2);
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		public static UIFont PreferredTitle1 {
 			get {
 				return GetPreferredFontForTextStyle (UIFontTextStyle.Title1);
 			}
 		}
 		
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		public static UIFont PreferredTitle2 {
 			get {
 				return GetPreferredFontForTextStyle (UIFontTextStyle.Title2);
 			}
 		}
 		
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		public static UIFont PreferredTitle3 {
 			get {
 				return GetPreferredFontForTextStyle (UIFontTextStyle.Title3);
 			}
 		}
 		
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		public static UIFont PreferredCallout {
 			get {
 				return GetPreferredFontForTextStyle (UIFontTextStyle.Callout);
@@ -122,20 +122,20 @@ namespace XamCore.UIKit {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 8, 2)]
+		[iOS (8,2)]
 		public static UIFont SystemFontOfSize (nfloat size, UIFontWeight weight)
 		{
 			return SystemFontOfSize (size, GetFontWeight (weight));
 		}
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		public static UIFont MonospacedDigitSystemFontOfSize (nfloat size, nfloat weight)
 		{
 			var ptr = _MonospacedDigitSystemFontOfSize (size, weight);
 			return ptr == IntPtr.Zero ? null : new UIFont (ptr);
 		}
 
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		public static UIFont MonospacedDigitSystemFontOfSize (nfloat fontSize, UIFontWeight weight)
 		{
 			return MonospacedDigitSystemFontOfSize (fontSize, GetFontWeight (weight));
@@ -145,35 +145,35 @@ namespace XamCore.UIKit {
 		// so one can be disposed without affecting others
 		// ref: https://bugzilla.xamarin.com/show_bug.cgi?id=25511
 
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[Availability (Introduced = Platform.iOS_7_0)]
 		public static UIFont GetPreferredFontForTextStyle (NSString uiFontTextStyle)
 		{
 			var ptr = _GetPreferredFontForTextStyle (uiFontTextStyle);
 			return ptr == IntPtr.Zero ? null : new UIFont (ptr);
 		}
 
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[Availability (Introduced = Platform.iOS_7_0)]
 		public static UIFont GetPreferredFontForTextStyle (UIFontTextStyle uiFontTextStyle)
 		{
 			return GetPreferredFontForTextStyle (uiFontTextStyle.GetConstant ());
 		}
 
 #if !WATCH
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[Availability (Introduced = Platform.iOS_7_0)]
 		public static UIFont GetPreferredFontForTextStyle (NSString uiFontTextStyle, UITraitCollection traitCollection)
 		{
 			var ptr = _GetPreferredFontForTextStyle (uiFontTextStyle, traitCollection);
 			return ptr == IntPtr.Zero ? null : new UIFont (ptr);
 		}
 
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[Availability (Introduced = Platform.iOS_7_0)]
 		public static UIFont GetPreferredFontForTextStyle (UIFontTextStyle uiFontTextStyle, UITraitCollection traitCollection)
 		{
 			return GetPreferredFontForTextStyle (uiFontTextStyle.GetConstant (), traitCollection);
 		}
 #endif
 
-		[Introduced (PlatformName.iOS, 7, 0)]
+		[Availability (Introduced = Platform.iOS_7_0)]
 		public static UIFont FromDescriptor (UIFontDescriptor descriptor, nfloat pointSize)
 		{
 			var ptr = _FromDescriptor (descriptor, pointSize);
@@ -192,7 +192,7 @@ namespace XamCore.UIKit {
 			return ptr == IntPtr.Zero ? null : new UIFont (ptr);
 		}
 
-		[Introduced (PlatformName.iOS, 8, 2)]
+		[iOS (8,2)]
 		public static UIFont SystemFontOfSize (nfloat size, nfloat weight)
 		{
 			var ptr = _SystemFontOfSize (size, weight);

@@ -2,7 +2,7 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.NetworkExtension {
 
-	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
+	[iOS (8,0)][Mac (10,10)]
 	[ErrorDomain ("NEVPNErrorDomain")]
 	[Native]
 	public enum NEVpnError : nint {
@@ -14,7 +14,7 @@ namespace XamCore.NetworkExtension {
 		ConfigurationUnknown = 6
 	}
 
-	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
+	[iOS (8,0)][Mac (10,10)]
 	[Native]
 	public enum NEVpnStatus : nint {
 		Invalid = 0,
@@ -25,7 +25,7 @@ namespace XamCore.NetworkExtension {
 		Disconnecting = 5
 	}
 
-	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
+	[iOS (8,0)][Mac (10,10)]
 	[Native]
 	public enum NEVpnIkeAuthenticationMethod : nint {
 		None = 0,
@@ -33,20 +33,20 @@ namespace XamCore.NetworkExtension {
 		SharedSecret = 2
 	}
 
-	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
+	[iOS (8,0)][Mac (10,10)]
 	[Native]
 	public enum NEVpnIke2EncryptionAlgorithm : nint {
 		DES = 1,
 		TripleDES = 2,
 		AES128 = 3,
 		AES256 = 4,
-		[Introduced (PlatformName.iOS, 8, 3)][Introduced (PlatformName.MacOSX, 10, 11)]
+		[iOS (8,3)][Mac (10,11)]
 		AES128GCM = 5,
-		[Introduced (PlatformName.iOS, 8, 3)][Introduced (PlatformName.MacOSX, 10, 11)]
+		[iOS (8,3)][Mac (10,11)]
 		AES256GCM = 6,
 	}
 
-	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
+	[iOS (8,0)][Mac (10,10)]
 	[Native]
 	public enum NEVpnIke2IntegrityAlgorithm : nint {
 		SHA96 = 1,
@@ -56,7 +56,7 @@ namespace XamCore.NetworkExtension {
 		SHA512 = 5
 	}
 
-	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
+	[iOS (8,0)][Mac (10,10)]
 	[Native]
 	public enum NEVpnIke2DeadPeerDetectionRate : nint {
 		None = 0,
@@ -65,7 +65,7 @@ namespace XamCore.NetworkExtension {
 		High = 3
 	}
 
-	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
+	[iOS (8,0)][Mac (10,10)]
 	[Native]
 	public enum NEVpnIke2DiffieHellman : nint {
 		Invalid = 0,
@@ -83,7 +83,7 @@ namespace XamCore.NetworkExtension {
 		Group21 = 21,
 	}
 
-	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
+	[iOS (8,0)][Mac (10,10)]
 	[Native]
 	public enum NEOnDemandRuleAction : nint {
 		Connect = 1,
@@ -92,24 +92,24 @@ namespace XamCore.NetworkExtension {
 		Ignore = 4
 	}
 
-	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
+	[iOS (8,0)][Mac (10,10)]
 	[Native]
 	public enum NEOnDemandRuleInterfaceType : nint {
-		[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
+		[iOS (9,0)][Mac (10,11)]
 		Any = 0,
 		Ethernet = 1,
 		WiFi = 2,
 		Cellular = 3
 	}
 
-	[Introduced (PlatformName.iOS, 8, 0)][Introduced (PlatformName.MacOSX, 10, 10)]
+	[iOS (8,0)][Mac (10,10)]
 	[Native]
 	public enum NEEvaluateConnectionRuleAction : nint {
 		ConnectIfNeeded = 1,
 		NeverConnect = 2
 	}
 
-	[Introduced (PlatformName.iOS, 8, 3)][Introduced (PlatformName.MacOSX, 10, 11)]
+	[iOS (8,3)][Mac (10,11)]
 	[Native] // NSInteger
 	public enum NEVpnIke2CertificateType : nint {
 		RSA = 1,
@@ -119,7 +119,7 @@ namespace XamCore.NetworkExtension {
 	}
 
 	// in Xcode7 SDK but marked as 8.0
-	[Introduced (PlatformName.iOS, 8, 0)]
+	[iOS (8,0)]
 	[ErrorDomain ("NEFilterErrorDomain")]
 	[Native]
 	public enum NEFilterManagerError : nint {
@@ -130,7 +130,7 @@ namespace XamCore.NetworkExtension {
 		CannotBeRemoved = 4
 	}
 
-	[Introduced (PlatformName.iOS, 9, 0)]
+	[iOS (9,0)]
 	[ErrorDomain ("NETunnelProviderErrorDomain")]
 	[Native]
 	public enum NETunnelProviderError : nint {
@@ -140,7 +140,7 @@ namespace XamCore.NetworkExtension {
 		Failed = 3
 	}
 
-	[Introduced (PlatformName.iOS, 9, 0)]
+	[iOS (9,0)]
 	[ErrorDomain ("NEAppProxyErrorDomain")]
 	[Native]
 	public enum NEAppProxyFlowError : nint {
@@ -158,7 +158,7 @@ namespace XamCore.NetworkExtension {
 		ReadAlreadyPending = 10,
 	}
 
-	[Introduced (PlatformName.iOS, 9, 0)]
+	[iOS (9,0)]
 	[Native]
 	public enum NEProviderStopReason : nint
 	{
@@ -179,7 +179,7 @@ namespace XamCore.NetworkExtension {
 		ConnectionFailed = 14
 	}
 
-	[Introduced (PlatformName.iOS, 9, 0)]
+	[iOS (9,0)]
 	[Native]
 	public enum NWPathStatus : nint
 	{
@@ -189,7 +189,7 @@ namespace XamCore.NetworkExtension {
 		Satisfiable = 3
 	}
 	
-	[Introduced (PlatformName.iOS, 9, 0)]
+	[iOS (9,0)]
 	[Native]
 	public enum NWTcpConnectionState : nint
 	{
@@ -201,7 +201,7 @@ namespace XamCore.NetworkExtension {
 		Cancelled = 5
 	}
 
-	[Introduced (PlatformName.iOS, 9, 0)]
+	[iOS (9,0)]
 	[Native]
 	public enum NWUdpSessionState : nint
 	{
@@ -213,7 +213,7 @@ namespace XamCore.NetworkExtension {
 		Cancelled = 5
 	}
 	
-	[Introduced (PlatformName.iOS, 9, 0)][Introduced (PlatformName.MacOSX, 10, 11)]
+	[iOS (9,0)][Mac (10,11)]
 	[Native]
 	public enum NETunnelProviderRoutingMethod : nint {
 		DestinationIP = 1,
@@ -221,7 +221,7 @@ namespace XamCore.NetworkExtension {
 	}
 
 #if !MONOMAC
-	[Introduced (PlatformName.iOS, 9, 0)]
+	[iOS (9,0)]
 	[Native]
 	public enum NEHotspotHelperCommandType : nint {
 		None = 0,
@@ -233,7 +233,7 @@ namespace XamCore.NetworkExtension {
 		Logoff = 6
 	}
 
-	[Introduced (PlatformName.iOS, 9, 0)]
+	[iOS (9,0)]
 	[Native]
 	public enum NEHotspotHelperConfidence : nint {
 		None = 0,
@@ -241,7 +241,7 @@ namespace XamCore.NetworkExtension {
 		High = 2
 	}
 
-	[Introduced (PlatformName.iOS, 9, 0)]
+	[iOS (9,0)]
 	[Native]
 	public enum NEHotspotHelperResult : nint {
 		Success = 0,

@@ -177,11 +177,11 @@ namespace XamCore.Security {
 			return new SecKey (SecTrustCopyPublicKey (handle), true);
 		}
 
-		[Introduced (PlatformName.MacOSX, 10, 9)]
+		[Mac (10,9)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static IntPtr /* CFDataRef */ SecTrustCopyExceptions (IntPtr /* SecTrustRef */ trust);
 
-		[Introduced (PlatformName.MacOSX, 10, 9)]
+		[Mac (10,9)]
 		public NSData GetExceptions ()
 		{
 			if (handle == IntPtr.Zero)
@@ -190,11 +190,11 @@ namespace XamCore.Security {
 			return new NSData (SecTrustCopyExceptions (handle), false); // inverted boolean?
 		}
 
-		[Introduced (PlatformName.MacOSX, 10, 9)]
+		[Mac (10,9)]
 		[DllImport (Constants.SecurityLibrary)]
 		extern static bool SecTrustSetExceptions (IntPtr /* SecTrustRef */ trust, IntPtr /* __nullable CFDataRef */ exceptions);
 
-		[Introduced (PlatformName.MacOSX, 10, 9)]
+		[Mac (10,9)]
 		public bool SetExceptions (NSData data)
 		{
 			if (handle == IntPtr.Zero)

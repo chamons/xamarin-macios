@@ -50,7 +50,7 @@ namespace XamCore.GameplayKit {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
 		public static GKPath FromPoints (Vector3 [] points, float radius, bool cyclical)
 		{
 			if (points == null)
@@ -68,7 +68,7 @@ namespace XamCore.GameplayKit {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.TvOS, 10, 0), Introduced (PlatformName.MacOSX, 10, 12, PlatformArchitecture.Arch64)]
+		[iOS (10,0), TV (10,0), Mac (10,12, onlyOn64: true)]
 		public GKPath (Vector3 [] points, float radius, bool cyclical)
 		{
 			if (points == null)

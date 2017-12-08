@@ -239,12 +239,12 @@ namespace XamCore.CoreFoundation {
 		}
 #if !WATCH
 		// CFHTTPStream.h in CFNetwork.framework (not CoreFoundation)
-		[Deprecated (PlatformName.iOS, 9, 0), Deprecated (PlatformName.MacOSX, 10, 11)]
+		[Availability (Deprecated = Platform.iOS_9_0 | Platform.Mac_10_11)]
 		[DllImport (Constants.CFNetworkLibrary)]
 		internal extern static /* CFReadStreamRef __nonnull */ IntPtr CFReadStreamCreateForHTTPRequest (
 			/* CFAllocatorRef __nullable */ IntPtr alloc, /* CFHTTPMessageRef __nonnull */ IntPtr request);
 
-		[Deprecated (PlatformName.iOS, 9, 0, message: "Use 'NSUrlSession'."), Deprecated (PlatformName.MacOSX, 10, 11, message: "Use 'NSUrlSession'.")]
+		[Availability (Deprecated = Platform.iOS_9_0 | Platform.Mac_10_11, Message = "Use 'NSUrlSession'.")]
 		public static CFHTTPStream CreateForHTTPRequest (CFHTTPMessage request)
 		{
 			if (request == null)
@@ -543,23 +543,23 @@ namespace XamCore.CoreFoundation {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
+		[iOS (7,0)][Mac (10,9)]
 		[DllImport (Constants.CoreFoundationLibrary)]
 		extern static void CFReadStreamSetDispatchQueue (/* CFReadStreamRef */ IntPtr stream, /* dispatch_queue_t */ IntPtr queue);
 		
-		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
+		[iOS (7,0)][Mac (10,9)]
 		[DllImport (Constants.CoreFoundationLibrary)]
 		extern static void CFWriteStreamSetDispatchQueue (/* CFWriteStreamRef */ IntPtr stream, /* dispatch_queue_t */ IntPtr queue);
 
-		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
+		[iOS (7,0)][Mac (10,9)]
 		[DllImport (Constants.CoreFoundationLibrary)]
 		extern static /* dispatch_queue_t */ IntPtr CFReadStreamCopyDispatchQueue (/* CFReadStreamRef */ IntPtr stream);
 
-		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
+		[iOS (7,0)][Mac (10,9)]
 		[DllImport (Constants.CoreFoundationLibrary)]
 		extern static /* dispatch_queue_t */ IntPtr CFWriteStreamCopyDispatchQueue (/* CFWriteStreamRef */ IntPtr stream);
 	
-		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
+		[iOS (7,0)][Mac (10,9)]
 		public DispatchQueue ReadDispatchQueue {
 			get {
 				return new DispatchQueue (CFReadStreamCopyDispatchQueue (handle));
@@ -569,7 +569,7 @@ namespace XamCore.CoreFoundation {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 7, 0)][Introduced (PlatformName.MacOSX, 10, 9)]
+		[iOS (7,0)][Mac (10,9)]
 		public DispatchQueue WriteDispatchQueue {
 			get {
 				return new DispatchQueue (CFWriteStreamCopyDispatchQueue (handle));

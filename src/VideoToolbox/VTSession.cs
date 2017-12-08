@@ -16,7 +16,7 @@ using XamCore.CoreMedia;
 using XamCore.CoreVideo;
 
 namespace XamCore.VideoToolbox {		
-	[Introduced (PlatformName.MacOSX, 10, 8), Introduced (PlatformName.iOS, 8, 0), Introduced (PlatformName.TvOS, 10, 2)]
+	[Mac (10,8), iOS (8,0), TV (10,2)]
 	public class VTSession : INativeObject, IDisposable {
 		IntPtr handle;
 

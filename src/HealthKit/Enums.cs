@@ -6,8 +6,8 @@ using System;
 namespace XamCore.HealthKit
 {
 	// NSInteger -> HKDefines.h
-	[Introduced (PlatformName.WatchOS, 2, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
+	[Watch (2,0)]
+	[iOS (8,0)]
 	[Native]
 	public enum HKUpdateFrequency : nint {
 		Immediate = 1,
@@ -17,8 +17,8 @@ namespace XamCore.HealthKit
 	}
 
 	// NSInteger -> HKDefines.h
-	[Introduced (PlatformName.WatchOS, 2, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
+	[Watch (2,0)]
+	[iOS (8,0)]
 	[Native]
 	public enum HKAuthorizationStatus : nint {
 		NotDetermined = 0,
@@ -27,20 +27,20 @@ namespace XamCore.HealthKit
 	}
 
 	// NSInteger -> HKDefines.h
-	[Introduced (PlatformName.WatchOS, 2, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
+	[Watch (2,0)]
+	[iOS (8,0)]
 	[Native]
 	public enum HKBiologicalSex : nint {
 		NotSet = 0,
 		Female,
 		Male,
-		[Introduced (PlatformName.iOS, 8, 2)]
+		[iOS (8,2)]
 		Other
 	}
 
 	// NSInteger -> HKDefines.h
-	[Introduced (PlatformName.WatchOS, 2, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
+	[Watch (2,0)]
+	[iOS (8,0)]
 	[Native]
 	public enum HKBloodType : nint {
 		NotSet = 0,
@@ -55,8 +55,8 @@ namespace XamCore.HealthKit
 	}
 
 	// NSInteger -> HKMetadata.h
-	[Introduced (PlatformName.WatchOS, 2, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
+	[Watch (2,0)]
+	[iOS (8,0)]
 	[Native]
 	public enum HKBodyTemperatureSensorLocation : nint {
 		Other = 0,
@@ -74,8 +74,8 @@ namespace XamCore.HealthKit
 	}
 
 	// NSInteger -> HKMetadata.h
-	[Introduced (PlatformName.WatchOS, 2, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
+	[Watch (2,0)]
+	[iOS (8,0)]
 	[Native]
 	public enum HKHeartRateSensorLocation : nint {
 		Other = 0,
@@ -88,8 +88,8 @@ namespace XamCore.HealthKit
 	}
 
 	// NSInteger -> HKObjectType.h
-	[Introduced (PlatformName.WatchOS, 2, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
+	[Watch (2,0)]
+	[iOS (8,0)]
 	[Native]
 	public enum HKQuantityAggregationStyle : nint {
 		Cumulative = 0,
@@ -97,19 +97,19 @@ namespace XamCore.HealthKit
 	}
 
 	// NSInteger -> HKObjectType.h
-	[Introduced (PlatformName.WatchOS, 2, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
+	[Watch (2,0)]
+	[iOS (8,0)]
 	[Native]
 	public enum HKCategoryValueSleepAnalysis : nint {
 		InBed,
 		Asleep,
-		[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.iOS, 10, 0)]
+		[Watch (3,0), iOS (10,0)]
 		Awake,
 	}
 
 	// NSUInteger -> HKQuery.h
-	[Introduced (PlatformName.WatchOS, 2, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
+	[Watch (2,0)]
+	[iOS (8,0)]
 	[Native]
 	[Flags]
 	public enum HKQueryOptions : nuint {
@@ -119,8 +119,8 @@ namespace XamCore.HealthKit
 	}
 
 	// NSUInteger -> HKStatistics.h
-	[Introduced (PlatformName.WatchOS, 2, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
+	[Watch (2,0)]
+	[iOS (8,0)]
 	[Native]
 	[Flags]
 	public enum HKStatisticsOptions : nuint {
@@ -133,8 +133,8 @@ namespace XamCore.HealthKit
 	}
 
 	// NSInteger -> HKUnit.h
-	[Introduced (PlatformName.WatchOS, 2, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
+	[Watch (2,0)]
+	[iOS (8,0)]
 	[Native]
 	public enum HKMetricPrefix : nint {
 		None = 0,
@@ -153,8 +153,8 @@ namespace XamCore.HealthKit
 	}
 
 	// Convenience enum, ObjC uses NSString
-	[Introduced (PlatformName.WatchOS, 2, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
+	[Watch (2,0)]
+	[iOS (8,0)]
 	public enum HKQuantityTypeIdentifier {
 		BodyMassIndex,
 		BodyFatPercentage,
@@ -223,73 +223,73 @@ namespace XamCore.HealthKit
 		DietaryChloride,
 		DietaryPotassium,
 		DietaryCaffeine,
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		BasalBodyTemperature,
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		DietaryWater,
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		UVExposure,
 		ElectrodermalActivity,
-		[Introduced (PlatformName.iOS, 9, 3), Introduced (PlatformName.WatchOS, 2, 2)]
+		[iOS (9,3), Watch (2,2)]
 		AppleExerciseTime,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		DistanceWheelchair,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		PushCount,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		DistanceSwimming,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		SwimmingStrokeCount,
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
+		[iOS (11,0), Watch (4,0)]
 		WaistCircumference,
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
+		[iOS (11, 0), Watch (4, 0)]
 		VO2Max,
 	}
 
 	// Convenience enum, ObjC uses NSString
-	[Introduced (PlatformName.WatchOS, 2, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
+	[Watch (2,0)]
+	[iOS (8,0)]
 	public enum HKCategoryTypeIdentifier {
 		SleepAnalysis,
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		AppleStandHour,
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		CervicalMucusQuality,
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		OvulationTestResult,
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		MenstrualFlow,
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		IntermenstrualBleeding,
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		SexualActivity,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		MindfulSession,
 	}
 
 	// Convenience enum, ObjC uses NSString
-	[Introduced (PlatformName.WatchOS, 2, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
+	[Watch (2,0)]
+	[iOS (8,0)]
 	public enum HKCharacteristicTypeIdentifier {
 		BiologicalSex,
 		BloodType,
 		DateOfBirth,
-		[Introduced (PlatformName.iOS, 9, 0)]
+		[iOS (9,0)]
 		FitzpatrickSkinType,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		WheelchairUse,
 	}
 
 	// Convenience enum, ObjC uses NSString
-	[Introduced (PlatformName.WatchOS, 2, 0), Introduced (PlatformName.iOS, 8, 0)]
+	[Watch (2,0), iOS (8,0)]
 	public enum HKCorrelationTypeIdentifier {
 		BloodPressure,
 		Food,
 	}
 
 	[Native]
-	[Introduced (PlatformName.WatchOS, 2, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
+	[Watch (2,0)]
+	[iOS (8,0)]
 	public enum HKWorkoutActivityType : nuint {
 		AmericanFootball = 1,
 		Archery,
@@ -322,7 +322,7 @@ namespace XamCore.HealthKit
 		Lacrosse,
 		MartialArts,
 		MindAndBody,
-		[Deprecated (PlatformName.iOS, 11, 0, message: "Use 'MixedCardio' or 'HighIntensityIntervalTraining' instead.")]
+		[Availability (Deprecated = Platform.iOS_11_0 | Platform.Watch_4_0, Message = "Use 'MixedCardio' or 'HighIntensityIntervalTraining' instead.")]
 		MixedMetabolicCardioTraining,
 		PaddleSports,
 		Play,
@@ -351,73 +351,73 @@ namespace XamCore.HealthKit
 		WaterSports,
 		Wrestling,
 		Yoga,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		Barre,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		CoreTraining,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		CrossCountrySkiing,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		DownhillSkiing,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		Flexibility,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		HighIntensityIntervalTraining,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		JumpRope,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		Kickboxing,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		Pilates,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		Snowboarding,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		Stairs,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		StepTraining,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		WheelchairWalkPace,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		WheelchairRunPace,
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
+		[iOS (11,0), Watch (4,0)]
 		TaiChi,
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
+		[iOS (11, 0), Watch (4, 0)]
 		MixedCardio,
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
+		[iOS (11, 0), Watch (4, 0)]
 		HandCycling,
-		[Introduced (PlatformName.iOS, 8, 2)]
+		[iOS (8,2)]
 		Other = 3000
 	}
 
 	[Native]
-	[Introduced (PlatformName.WatchOS, 2, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
+	[Watch (2,0)]
+	[iOS (8,0)]
 	public enum HKWorkoutEventType : nint {
 		Pause = 1,
 		Resume,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		Lap,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		Marker,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		MotionPaused,
-		[Introduced (PlatformName.iOS, 10, 0), Introduced (PlatformName.WatchOS, 3, 0)]
+		[iOS (10,0), Watch (3,0)]
 		MotionResumed,
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
+		[iOS (11, 0), Watch (4, 0)]
 		Segment,
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
+		[iOS (11, 0), Watch (4, 0)]
 		PauseOrResumeRequest,
 	}
 
-	[Introduced (PlatformName.WatchOS, 2, 0)]
-	[Introduced (PlatformName.iOS, 9, 0)]
+	[Watch (2,0)]
+	[iOS (9,0)]
 	[Native]
 	public enum HKCategoryValue : nint {
 		NotApplicable = 0
 	}
 
-	[Introduced (PlatformName.WatchOS, 2, 0)]
-	[Introduced (PlatformName.iOS, 9, 0)]
+	[Watch (2,0)]
+	[iOS (9,0)]
 	[Native]
 	public enum HKCategoryValueCervicalMucusQuality : nint {
 		NotApplicable = 0,
@@ -428,8 +428,8 @@ namespace XamCore.HealthKit
 		EggWhite
 	}
 
-	[Introduced (PlatformName.WatchOS, 2, 0)]
-	[Introduced (PlatformName.iOS, 9, 0)]
+	[Watch (2,0)]
+	[iOS (9,0)]
 	[Native]
 	public enum HKCategoryValueMenstrualFlow : nint {
 		NotApplicable = 0,
@@ -439,8 +439,8 @@ namespace XamCore.HealthKit
 		Heavy
 	}
 
-	[Introduced (PlatformName.WatchOS, 2, 0)]
-	[Introduced (PlatformName.iOS, 9, 0)]
+	[Watch (2,0)]
+	[iOS (9,0)]
 	[Native]
 	public enum HKCategoryValueOvulationTestResult : nint {
 		NotApplicable = 0,
@@ -449,16 +449,16 @@ namespace XamCore.HealthKit
 		Indeterminate
 	}
 
-	[Introduced (PlatformName.WatchOS, 2, 0)]
-	[Introduced (PlatformName.iOS, 9, 0)]
+	[Watch (2,0)]
+	[iOS (9,0)]
 	[Native]
 	public enum HKCategoryValueAppleStandHour : nint {
 		Stood = 0,
 		Idle
 	}
 
-	[Introduced (PlatformName.WatchOS, 2, 0)]
-	[Introduced (PlatformName.iOS, 9, 0)]
+	[Watch (2,0)]
+	[iOS (9,0)]
 	[Native]
 	public enum HKFitzpatrickSkinType : nint {
 		NotSet = 0,
@@ -470,7 +470,7 @@ namespace XamCore.HealthKit
 		VI
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[Watch (3,0), iOS (10,0)]
 	[Native]
 	public enum HKWheelchairUse : nint {
 		NotSet = 0,
@@ -478,7 +478,7 @@ namespace XamCore.HealthKit
 		Yes,
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[Watch (3,0), iOS (10,0)]
 	[Native]
 	public enum HKWeatherCondition : nint {
 		None = 0,
@@ -511,7 +511,7 @@ namespace XamCore.HealthKit
 		Tornado,
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[Watch (3,0), iOS (10,0)]
 	[Native]
 	public enum HKWorkoutSwimmingLocationType : nint {
 		Unknown = 0,
@@ -519,7 +519,7 @@ namespace XamCore.HealthKit
 		OpenWater,
 	}
 
-	[Introduced (PlatformName.WatchOS, 3, 0), Introduced (PlatformName.iOS, 10, 0)]
+	[Watch (3,0), iOS (10,0)]
 	[Native]
 	public enum HKSwimmingStrokeStyle : nint {
 		Unknown = 0,
@@ -530,21 +530,21 @@ namespace XamCore.HealthKit
 		Butterfly,
 	}
 
-	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
+	[Watch (4, 0), iOS (11, 0)]
 	[Native]
 	public enum HKInsulinDeliveryReason : nint {
 		Asal = 1,
 		Olus,
 	}
 
-	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
+	[Watch (4, 0), iOS (11, 0)]
 	[Native]
 	public enum HKBloodGlucoseMealTime : nint {
 		Reprandial = 1,
 		Ostprandial,
 	}
 
-	[Introduced (PlatformName.WatchOS, 4, 0), Introduced (PlatformName.iOS, 11, 0)]
+	[Watch (4, 0), iOS (11, 0)]
 	[Native]
 	public enum HKVO2MaxTestType : nint {
 		MaxExercise = 1,

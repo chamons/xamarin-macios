@@ -59,7 +59,7 @@ namespace XamCore.CoreBluetooth {
 		}
 
 #if !TVOS && !WATCH
-		[Introduced (PlatformName.iOS, 5, 0, message: "Use 'RetrievePeripheralsWithIdentifiers' instead."), Deprecated (PlatformName.iOS, 7, 0, message: "Use 'RetrievePeripheralsWithIdentifiers' instead."), Obsoleted (PlatformName.iOS, 9, 0, message: "Use 'RetrievePeripheralsWithIdentifiers' instead.")]
+		[Availability (Introduced = Platform.iOS_5_0, Deprecated = Platform.iOS_7_0, Obsoleted = Platform.iOS_9_0, Message = "Use 'RetrievePeripheralsWithIdentifiers' instead.")]
 		public void RetrievePeripherals (CBUUID [] peripheralUuids)
 		{
 			if (peripheralUuids == null)

@@ -32,8 +32,8 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.CoreVideo {
 
-	[Introduced (PlatformName.WatchOS, 4, 0)]
-	[Introduced (PlatformName.iOS, 6, 0)]
+	[Watch (4,0)]
+	[iOS (6,0)]
 	public class CVPixelBufferAttributes : DictionaryContainer
 	{
 #if !COREBUILD
@@ -195,7 +195,7 @@ namespace XamCore.CoreVideo {
 		}
 
 #if !WATCH
-		[Introduced (PlatformName.iOS, 6, 0)]
+		[iOS (6,0)]
 		public bool? OpenGLESCompatibility {
 			set {
 				SetBooleanValue (CVPixelBuffer.OpenGLESCompatibilityKey, value);
@@ -205,7 +205,7 @@ namespace XamCore.CoreVideo {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 8, 0)]
+		[iOS (8,0)]
 		public bool? MetalCompatibility {
 			set {
 				SetBooleanValue (CVPixelBuffer.MetalCompatibilityKey, value);

@@ -254,7 +254,7 @@ namespace XamCore.CoreFoundation {
 		}
 #endif
 		
-		[Introduced (PlatformName.iOS, 4, 0)][Introduced (PlatformName.MacOSX, 10, 7)]
+		[iOS (4,0)][Mac (10,7)]
 		public NSString AutoConfigurationJavaScript {
 			get {
 				if (AutoConfigurationJavaScriptKey == null)

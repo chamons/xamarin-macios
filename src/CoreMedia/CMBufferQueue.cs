@@ -26,7 +26,7 @@ namespace XamCore.CoreMedia {
 	public delegate bool   CMBufferGetBool (INativeObject buffer);
 	public delegate int    CMBufferCompare (INativeObject first, INativeObject second);
 
-	[Introduced (PlatformName.iOS, 7, 1)]
+	[iOS (7,1)]
 	public delegate nint   CMBufferGetSize (INativeObject buffer);
 
 	public class CMBufferQueue : INativeObject
@@ -293,12 +293,12 @@ namespace XamCore.CoreMedia {
 			}
 		}
 		
-		[Introduced (PlatformName.iOS, 7, 1)][Introduced (PlatformName.MacOSX, 10, 10)]
-		[DllImport (Constants.CoreMediaLibrary)]
+		[iOS (7,1)][Mac (10,10)]
+		[DllImport(Constants.CoreMediaLibrary)]
 		extern static /* size_t */ nint CMBufferQueueGetTotalSize (/* CMBufferQueueRef */ IntPtr queue);
 
-		[Introduced (PlatformName.iOS, 7, 1)]
-		[Introduced (PlatformName.MacOSX, 10, 10)]
+		[iOS (7,1)]
+		[Availability (Platform.Mac_10_10)]
 		public nint GetTotalSize ()
 		{
 			return CMBufferQueueGetTotalSize (handle);

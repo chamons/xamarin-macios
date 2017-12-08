@@ -259,7 +259,7 @@ namespace XamCore.AVFoundation {
 		[DllImport (Constants.AVFoundationLibrary)]
 		static extern /* CGRect */ RectangleF AVMakeRectWithAspectRatioInsideRect (/* CGSize */ SizeF aspectRatio, /* CGRect */ RectangleF boundingRect);
 
-		[Introduced (PlatformName.MacOSX, 10, 7)][Introduced (PlatformName.iOS, 4, 0)]
+		[Mac (10,7)][iOS (4,0)]
 		public static RectangleF WithAspectRatio (this RectangleF self, SizeF aspectRatio)
 		{
 			return AVMakeRectWithAspectRatioInsideRect (aspectRatio, self);
@@ -267,7 +267,7 @@ namespace XamCore.AVFoundation {
 	}
 #endif
 
-	[Introduced (PlatformName.MacOSX, 10, 10), Unavailable (PlatformName.iOS), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Mac (10, 10), NoiOS, NoWatch, NoTV]
 	[StructLayout (LayoutKind.Sequential)]
 	public struct AVSampleCursorSyncInfo {
 		[MarshalAs (UnmanagedType.I1)]
@@ -280,7 +280,7 @@ namespace XamCore.AVFoundation {
 		public bool IsDroppable;
 	}
 
-	[Introduced (PlatformName.MacOSX, 10, 10), Unavailable (PlatformName.iOS), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Mac (10, 10), NoiOS, NoWatch, NoTV]
 	[StructLayout (LayoutKind.Sequential)]
 	public struct AVSampleCursorDependencyInfo {
 		[MarshalAs (UnmanagedType.I1)]
@@ -302,14 +302,14 @@ namespace XamCore.AVFoundation {
 		public bool HasRedundantCoding;
 	}
 
-	[Introduced (PlatformName.MacOSX, 10, 10), Unavailable (PlatformName.iOS), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Mac (10, 10), NoiOS, NoWatch, NoTV]
 	[StructLayout (LayoutKind.Sequential)]
 	public struct AVSampleCursorStorageRange {
 		public long Offset;
 		public long Length;
 	}
 
-	[Introduced (PlatformName.MacOSX, 10, 10), Unavailable (PlatformName.iOS), Unavailable (PlatformName.WatchOS), Unavailable (PlatformName.TvOS)]
+	[Mac (10, 10), NoiOS, NoWatch, NoTV]
 	[StructLayout (LayoutKind.Sequential)]
 	public struct AVSampleCursorChunkInfo {
 		public long SampleCount;

@@ -15,7 +15,7 @@ using XamCore.ObjCRuntime;
 namespace XamCore.UIKit {
 
 	// UIGeometry.h
-	[Introduced (PlatformName.iOS, 5, 0)]
+	[iOS (5,0)]
 	public struct UIOffset {
 
 		// API match for UIOffsetZero field/constant

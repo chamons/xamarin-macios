@@ -41,7 +41,7 @@ namespace XamCore.CoreText {
 		RightToLeft = 1
 	}
 
-	[Introduced (PlatformName.iOS, 4, 2)]
+	[iOS (4,2)]
 	public enum CTFramePathFillRule {
 		EvenOdd,
 		WindingNumber
@@ -51,13 +51,13 @@ namespace XamCore.CoreText {
 
 		public static readonly NSString Progression;
 
-		[Introduced (PlatformName.iOS, 4, 2)]
+		[iOS (4,2)]
 		public static readonly NSString PathFillRule;
-		[Introduced (PlatformName.iOS, 4, 2)]
+		[iOS (4,2)]
 		public static readonly NSString PathWidth;
-		[Introduced (PlatformName.iOS, 4, 3)]
+		[iOS (4,3)]
 		public static readonly NSString ClippingPaths;
-		[Introduced (PlatformName.iOS, 4, 3)]
+		[iOS (4,3)]
 		public static readonly NSString PathClippingPath;
 		
 		static CTFrameAttributeKey ()

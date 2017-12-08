@@ -22,7 +22,7 @@ namespace XamCore.UIKit {
 			}
 		}
 
-		[Introduced (PlatformName.iOS, 4, 0)]
+		[iOS (4,0)]
 		public bool IsMultitaskingSupported {
 			get {
 				Selector mtsupported = new Selector ("isMultitaskingSupported");

@@ -70,7 +70,7 @@ namespace XamCore.CoreGraphics {
 	}
 
 	// untyped enum -> CGContext.h
-	[Deprecated (PlatformName.iOS, 7, 0), Deprecated (PlatformName.MacOSX, 10, 9)]
+	[Availability (Deprecated = Platform.iOS_7_0 | Platform.Mac_10_9)]
 	public enum CGTextEncoding {
 		FontSpecific,
 		MacRoman
@@ -579,10 +579,10 @@ namespace XamCore.CoreGraphics {
 		}
 
 		[DllImport (Constants.CoreGraphicsLibrary)]
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
+		[iOS (11,0), Mac(10,13), TV(11,0), Watch(4,0)]
 		extern static void CGContextResetClip (/* CGContextRef */ IntPtr c);
 
-		[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13), Introduced (PlatformName.TvOS, 11, 0), Introduced (PlatformName.WatchOS, 4, 0)]
+		[iOS (11,0), Mac(10,13), TV(11,0), Watch(4,0)]
 		public void ResetClip ()
 		{
 			CGContextResetClip (handle);
@@ -980,7 +980,7 @@ namespace XamCore.CoreGraphics {
 		extern static void CGContextSelectFont (/* CGContextRef */ IntPtr c,
 			/* const char* __nullable */ string name, /* CGFloat */ nfloat size, CGTextEncoding textEncoding);
 
-		[Deprecated (PlatformName.iOS, 7, 0, message: "Use the 'CoreText' API instead."), Deprecated (PlatformName.MacOSX, 10, 9, message: "Use the 'CoreText' API instead.")]
+		[Availability (Deprecated = Platform.iOS_7_0 | Platform.Mac_10_9, Message = "Use the 'CoreText' API instead.")]
 		public void SelectFont (string name, nfloat size, CGTextEncoding textEncoding)
 		{
 			CGContextSelectFont (handle, name, size, textEncoding);
@@ -1012,7 +1012,7 @@ namespace XamCore.CoreGraphics {
 		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static void CGContextShowText (/* CGContextRef */ IntPtr c, /* const char* __nullable */ string s, /* size_t */ nint length);
 
-		[Deprecated (PlatformName.iOS, 7, 0, message: "Use the 'CoreText' API instead."), Deprecated (PlatformName.MacOSX, 10, 9, message: "Use the 'CoreText' API instead.")]
+		[Availability (Deprecated = Platform.iOS_7_0 | Platform.Mac_10_9, Message = "Use the 'CoreText' API instead.")]
 		public void ShowText (string str, int count)
 		{
 			if (str == null)
@@ -1022,7 +1022,7 @@ namespace XamCore.CoreGraphics {
 			CGContextShowText (handle, str, count);
 		}
 
-		[Deprecated (PlatformName.iOS, 7, 0, message: "Use the 'CoreText' API instead."), Deprecated (PlatformName.MacOSX, 10, 9, message: "Use the 'CoreText' API instead.")]
+		[Availability (Deprecated = Platform.iOS_7_0 | Platform.Mac_10_9, Message = "Use the 'CoreText' API instead.")]
 		public void ShowText (string str)
 		{
 			CGContextShowText (handle, str, str == null ? 0 : str.Length);
@@ -1031,7 +1031,7 @@ namespace XamCore.CoreGraphics {
 		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static void CGContextShowText (/* CGContextRef */ IntPtr c, /* const char* __nullable */ byte[] bytes, /* size_t */ nint length);
 
-		[Deprecated (PlatformName.iOS, 7, 0, message: "Use the 'CoreText' API instead."), Deprecated (PlatformName.MacOSX, 10, 9, message: "Use the 'CoreText' API instead.")]
+		[Availability (Deprecated = Platform.iOS_7_0 | Platform.Mac_10_9, Message = "Use the 'CoreText' API instead.")]
 		public void ShowText (byte[] bytes, int count)
 		{
 			if (bytes == null)
@@ -1041,7 +1041,7 @@ namespace XamCore.CoreGraphics {
 			CGContextShowText (handle, bytes, count);
 		}
 		
-		[Deprecated (PlatformName.iOS, 7, 0, message: "Use the 'CoreText' API instead."), Deprecated (PlatformName.MacOSX, 10, 9, message: "Use the 'CoreText' API instead.")]
+		[Availability (Deprecated = Platform.iOS_7_0 | Platform.Mac_10_9, Message = "Use the 'CoreText' API instead.")]
 		public void ShowText (byte[] bytes)
 		{
 			CGContextShowText (handle, bytes, bytes == null ? 0 : bytes.Length);
@@ -1051,13 +1051,13 @@ namespace XamCore.CoreGraphics {
 		extern static void CGContextShowTextAtPoint (/* CGContextRef __nullable */ IntPtr c, /* CGFloat */ nfloat x, 
 			/* CGFloat */ nfloat y, /* const char* __nullable */ string str, /* size_t */ nint length);
 
-		[Deprecated (PlatformName.iOS, 7, 0, message: "Use the 'CoreText' API instead."), Deprecated (PlatformName.MacOSX, 10, 9, message: "Use the 'CoreText' API instead.")]
+		[Availability (Deprecated = Platform.iOS_7_0 | Platform.Mac_10_9, Message = "Use the 'CoreText' API instead.")]
 		public void ShowTextAtPoint (nfloat x, nfloat y, string str, int length)
 		{
 			CGContextShowTextAtPoint (handle, x, y, str, length);
 		}
 
-		[Deprecated (PlatformName.iOS, 7, 0, message: "Use the 'CoreText' API instead."), Deprecated (PlatformName.MacOSX, 10, 9, message: "Use the 'CoreText' API instead.")]
+		[Availability (Deprecated = Platform.iOS_7_0 | Platform.Mac_10_9, Message = "Use the 'CoreText' API instead.")]
 		public void ShowTextAtPoint (nfloat x, nfloat y, string str)
 		{
 			CGContextShowTextAtPoint (handle, x, y, str, str == null ? 0 : str.Length);
@@ -1080,13 +1080,13 @@ namespace XamCore.CoreGraphics {
 		extern static void CGContextShowGlyphs (/* CGContextRef __nullable */ IntPtr c,
 			/* const CGGlyph * __nullable */ ushort [] glyphs, /* size_t */ nint count);
 
-		[Deprecated (PlatformName.iOS, 7, 0, message: "Use the 'CoreText' API instead."), Deprecated (PlatformName.MacOSX, 10, 9, message: "Use the 'CoreText' API instead.")]
+		[Availability (Deprecated = Platform.iOS_7_0 | Platform.Mac_10_9, Message = "Use the 'CoreText' API instead.")]
 		public void ShowGlyphs (ushort [] glyphs)
 		{
 			CGContextShowGlyphs (handle, glyphs, glyphs == null ? 0 : glyphs.Length);
 		}
 
-		[Deprecated (PlatformName.iOS, 7, 0, message: "Use the 'CoreText' API instead."), Deprecated (PlatformName.MacOSX, 10, 9, message: "Use the 'CoreText' API instead.")]
+		[Availability (Deprecated = Platform.iOS_7_0 | Platform.Mac_10_9, Message = "Use the 'CoreText' API instead.")]
 		public void ShowGlyphs (ushort [] glyphs, int count)
 		{
 			if (glyphs == null)
@@ -1100,7 +1100,7 @@ namespace XamCore.CoreGraphics {
 		extern static void CGContextShowGlyphsAtPoint (/* CGContextRef */ IntPtr context, /* CGFloat */ nfloat x,
 			/* CGFloat */ nfloat y, /* const CGGlyph * __nullable */ ushort [] glyphs, /* size_t */ nint count);
 
-		[Deprecated (PlatformName.iOS, 7, 0, message: "Use the 'CoreText' API instead."), Deprecated (PlatformName.MacOSX, 10, 9, message: "Use the 'CoreText' API instead.")]
+		[Availability (Deprecated = Platform.iOS_7_0 | Platform.Mac_10_9, Message = "Use the 'CoreText' API instead.")]
 		public void ShowGlyphsAtPoint (nfloat x, nfloat y, ushort [] glyphs, int count)
 		{
 			if (glyphs == null)
@@ -1110,7 +1110,7 @@ namespace XamCore.CoreGraphics {
 			CGContextShowGlyphsAtPoint (handle, x, y, glyphs, count);
 		}
 
-		[Deprecated (PlatformName.iOS, 7, 0, message: "Use the 'CoreText' API instead."), Deprecated (PlatformName.MacOSX, 10, 9, message: "Use the 'CoreText' API instead.")]
+		[Availability (Deprecated = Platform.iOS_7_0 | Platform.Mac_10_9, Message = "Use the 'CoreText' API instead.")]
 		public void ShowGlyphsAtPoint (nfloat x, nfloat y, ushort [] glyphs)
 		{
 			CGContextShowGlyphsAtPoint (handle, x, y, glyphs, glyphs == null ? 0 : glyphs.Length);
@@ -1121,7 +1121,7 @@ namespace XamCore.CoreGraphics {
 			/* const CGGlyph * __nullable */ ushort [] glyphs,
 			/* const CGSize * __nullable */ CGSize [] advances, /* size_t */ nint count);
 
-		[Deprecated (PlatformName.iOS, 7, 0, message: "Use the 'CoreText' API instead."), Deprecated (PlatformName.MacOSX, 10, 9, message: "Use the 'CoreText' API instead.")]
+		[Availability (Deprecated = Platform.iOS_7_0 | Platform.Mac_10_9, Message = "Use the 'CoreText' API instead.")]
 		public void ShowGlyphsWithAdvances (ushort [] glyphs, CGSize [] advances, int count)
 		{
 			if (glyphs == null)
@@ -1281,7 +1281,7 @@ namespace XamCore.CoreGraphics {
 		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static /* CGPathRef */ IntPtr CGContextCopyPath (/* CGContextRef */ IntPtr context);
 
-		[Introduced (PlatformName.iOS, 4, 0)]
+		[iOS (4,0)]
 		public CGPath CopyPath ()
 		{
 			var r = CGContextCopyPath (handle);
@@ -1291,7 +1291,7 @@ namespace XamCore.CoreGraphics {
 		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static void CGContextSetAllowsFontSmoothing (/* CGContextRef */ IntPtr context, bool shouldSubpixelPositionFonts);
 
-		[Introduced (PlatformName.iOS, 4, 0)]
+		[iOS (4,0)]
 		public void SetAllowsFontSmoothing (bool allows)
 		{
 			CGContextSetAllowsFontSmoothing (handle, allows);
@@ -1300,7 +1300,7 @@ namespace XamCore.CoreGraphics {
 		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static void CGContextSetAllowsFontSubpixelPositioning (/* CGContextRef */ IntPtr context, bool allowsFontSubpixelPositioning);
 
-		[Introduced (PlatformName.iOS, 4, 0)]
+		[iOS (4,0)]
 		public void SetAllowsSubpixelPositioning (bool allows)
 		{
 			CGContextSetAllowsFontSubpixelPositioning (handle, allows);
@@ -1309,7 +1309,7 @@ namespace XamCore.CoreGraphics {
 		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static void CGContextSetAllowsFontSubpixelQuantization (/* CGContextRef */ IntPtr context, bool shouldSubpixelQuantizeFonts);
 
-		[Introduced (PlatformName.iOS, 4, 0)]
+		[iOS (4,0)]
 		public void SetAllowsFontSubpixelQuantization (bool allows)
 		{
 			CGContextSetAllowsFontSubpixelQuantization (handle, allows);
@@ -1318,7 +1318,7 @@ namespace XamCore.CoreGraphics {
 		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static void CGContextSetShouldSubpixelPositionFonts (/* CGContextRef */ IntPtr context, bool shouldSubpixelPositionFonts);
 
-		[Introduced (PlatformName.iOS, 4, 0)]
+		[iOS (4,0)]
 		public void SetShouldSubpixelPositionFonts (bool shouldSubpixelPositionFonts)
 		{
 			CGContextSetShouldSubpixelPositionFonts (handle, shouldSubpixelPositionFonts);
@@ -1327,7 +1327,7 @@ namespace XamCore.CoreGraphics {
 		[DllImport (Constants.CoreGraphicsLibrary)]
 		extern static void CGContextSetShouldSubpixelQuantizeFonts (/* CGContextRef */ IntPtr context, bool shouldSubpixelQuantizeFonts);
 
-		[Introduced (PlatformName.iOS, 4, 0)]
+		[iOS (4,0)]
 		public void ShouldSubpixelQuantizeFonts (bool shouldSubpixelQuantizeFonts)
 		{
 			CGContextSetShouldSubpixelQuantizeFonts (handle, shouldSubpixelQuantizeFonts);
@@ -1378,7 +1378,7 @@ namespace XamCore.CoreGraphics {
 #endif // !COREBUILD
 	}
 
-	[Introduced (PlatformName.iOS, 11, 0), Introduced (PlatformName.MacOSX, 10, 13)]
+	[iOS(11,0), Mac(10,13)]
 	public enum CGPDFAccessPermissions : uint {
 		AllowsLowQualityPrinting    = (1 << 0),
 		AllowsHighQualityPrinting   = (1 << 1),

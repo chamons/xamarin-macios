@@ -16,7 +16,7 @@ namespace XamCore.AVKit {
 #endif
 
 #if MONOMAC
-	[Introduced (PlatformName.MacOSX, 10, 10)]
+	[Mac (10,10)]
 	[Native]
 	public enum AVCaptureViewControlsStyle : nint {
 		Inline,
@@ -25,7 +25,7 @@ namespace XamCore.AVKit {
 		Default = Inline,
 	}
 
-	[Introduced (PlatformName.MacOSX, 10, 9)]
+	[Mac (10,9)]
 	[Native]
 	public enum AVPlayerViewTrimResult : nint {
 		OKButton,
@@ -34,7 +34,7 @@ namespace XamCore.AVKit {
 #endif
 
 #if !TVOS && (!MONOMAC || !XAMCORE_4_0)
-	[Introduced (PlatformName.iOS, 9, 0)]
+	[iOS (9,0)]
 	[Native]
 	[ErrorDomain ("AVKitErrorDomain")]
 	public enum AVKitError : nint {

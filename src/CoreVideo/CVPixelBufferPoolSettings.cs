@@ -33,7 +33,7 @@ using XamCore.ObjCRuntime;
 
 namespace XamCore.CoreVideo {
 
-	[Introduced (PlatformName.WatchOS, 4, 0)]
+	[Watch (4,0)]
 	public class CVPixelBufferPoolSettings : DictionaryContainer
 	{
 #if !COREBUILD
@@ -67,7 +67,7 @@ namespace XamCore.CoreVideo {
 #endif
 	}
 
-	[Introduced (PlatformName.WatchOS, 4, 0)]
+	[Watch (4,0)]
 	public partial class CVPixelBufferPoolAllocationSettings : DictionaryContainer {
 #if !COREBUILD
 		public CVPixelBufferPoolAllocationSettings ()

@@ -4,8 +4,8 @@ using XamCore.Foundation;
 
 namespace XamCore.HomeKit {
 
-	[Introduced (PlatformName.TvOS, 10, 0)]
-	[Introduced (PlatformName.iOS, 8, 0)]
+	[TV (10,0)]
+	[iOS (8,0)]
 	public partial class HMCharacteristicMetadata
 	{
 		public HMCharacteristicMetadataUnits Units {
