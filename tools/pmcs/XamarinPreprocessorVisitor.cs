@@ -46,10 +46,10 @@ namespace Xamarin.Pmcs
 // 			case "TVAttribute":
 // 				VisitShorthandIntroducedAttribute (invocationExpression, "PlatformName.TvOS");
 // 				break;
-			case "Availability":
-			case "AvailabilityAttribute":
-				VisitAvailabilityAttribute (invocationExpression);
-				break;
+ 			case "Availability":
+ 			case "AvailabilityAttribute":
+ 				VisitAvailabilityAttribute (invocationExpression);
+ 				break;
 			default:
 				base.VisitInvocationExpression (invocationExpression);
 				break;

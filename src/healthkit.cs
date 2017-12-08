@@ -1987,7 +1987,7 @@ namespace XamCore.HealthKit {
 		[Export ("type")]
 		HKWorkoutEventType Type { get; }
 
-		[Availability (Deprecated = Platform.iOS_11_0 | Watch_4_0, Message = "Use 'DateInterval' instead.")]
+		[Availability (Deprecated = Platform.iOS_11_0 | Platform.Watch_4_0, Message = "Use 'DateInterval' instead.")]
 		[Export ("date", ArgumentSemantic.Copy)]
 		NSDate Date { get; }
 

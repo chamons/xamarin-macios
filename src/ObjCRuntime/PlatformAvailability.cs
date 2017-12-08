@@ -70,6 +70,12 @@ namespace XamCore.ObjCRuntime
 		iOS_9_1 = 0x0000000000090100,
 		iOS_9_2 = 0x0000000000090200,
 		iOS_9_3 = 0x0000000000090300,
+		iOS_10_0 = 0x000000000000000,
+		iOS_11_0 = 0x000000000000000,
+		Watch_3_0 = 0x000000000000000,
+		Watch_4_0 = 0x000000000000000,
+		TV_9_0 = 0x000000000000000,
+		TV_11_0 = 0x000000000000000,
 
 		// NOTE: Update PlatformHelper.IsValid when adding a version
 
@@ -88,6 +94,7 @@ namespace XamCore.ObjCRuntime
 		Mac_10_11   = 0x000a0b0000000000,
 		Mac_10_11_3 = 0x000a0b0300000000,
 		Mac_10_12   = 0x000a0c0000000000,
+		Mac_10_13   = 0x0000000000000000,
 			
 		// NOTE: Update PlatformHelper.IsValid when adding a version
 
@@ -566,7 +573,59 @@ namespace XamCore.ObjCRuntime
 			: base ((Platform)((ulong)major << 16 | (ulong)minor << 8 | (ulong)subminor))
 		{
 		}
+
+		public iOSAttribute (byte major, byte minor, bool onlyOn64 = false)
+			: this (major, minor, 0, onlyOn64)
+		{
+		}
+
+
+		public iOSAttribute (byte major, byte minor, byte subminor, bool onlyOn64)
+			: base ((Platform)((ulong)major << 48 | (ulong)minor << 40 | (ulong)subminor << 32) | (onlyOn64 ? Platform.iOS_Arch64 : Platform.None))
+		{
+		}
+
 	}
+
+	public sealed class WatchAttribute : AvailabilityAttribute
+	{
+		public WatchAttribute (byte major, byte minor) : base (0, 0, 0)
+		{
+		}
+
+		public WatchAttribute (byte major, byte minor, byte subminor) : base (0, 0, 0)
+		{
+		}
+
+		public WatchAttribute (byte major, byte minor, bool onlyOn64 = false) : base (0, 0, 0)
+		{
+		}
+
+		public WatchAttribute (byte major, byte minor, byte subminor, bool onlyOn64) : base (0, 0, 0)
+		{
+		}
+	}
+
+	public sealed class TVAttribute : AvailabilityAttribute
+	{
+		public TVAttribute (byte major, byte minor) : base (0, 0, 0)
+		{
+		}
+
+		public TVAttribute (byte major, byte minor, byte subminor) : base (0, 0, 0)
+		{
+		}
+
+		public TVAttribute (byte major, byte minor, bool onlyOn64 = false) : base (0, 0, 0)
+		{
+		}
+
+		public TVAttribute (byte major, byte minor, byte subminor, bool onlyOn64) : base (0, 0, 0)
+		{
+		}
+	}
+
+
 
 #if !COREBUILD
 	[Obsolete ("Use [Introduced|Deprecated|Obsoleted|Unavailable] attributes with PlatformName.")]
