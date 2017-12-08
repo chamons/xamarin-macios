@@ -17,6 +17,12 @@ using System.Text;
 using XamCore.CoreFoundation;
 using XamCore.Foundation;
 using XamCore.ObjCRuntime;
+#if !COREBUILD
+using MacAttribute = XamCore.ObjCRuntime.Extensions.MacAttribute;
+using iOSAttribute = XamCore.ObjCRuntime.Extensions.iOSAttribute;
+using TVAttribute = XamCore.ObjCRuntime.Extensions.TVAttribute;
+using WatchAttribute = XamCore.ObjCRuntime.Extensions.WatchAttribute;
+#endif
 
 namespace XamCore.Security {
 	[Mac (10,8)] // SSLCreateContext is 10.8, only constructor

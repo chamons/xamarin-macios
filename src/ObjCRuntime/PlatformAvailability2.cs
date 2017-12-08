@@ -111,7 +111,7 @@ namespace XamCore.ObjCRuntime
 		}
 	}
 
-	public sealed class IntroducedAttribute : AvailabilityBaseAttribute
+	public class IntroducedAttribute : AvailabilityBaseAttribute
 	{
 		public IntroducedAttribute (PlatformName platform,
 			PlatformArchitecture architecture = PlatformArchitecture.None,
@@ -205,4 +205,101 @@ namespace XamCore.ObjCRuntime
 		{
 		}
 	}
+}
+
+namespace XamCore.ObjCRuntime.Extensions
+{
+	public sealed class MacAttribute : IntroducedAttribute
+	{
+		public MacAttribute (byte major, byte minor)
+			: base (PlatformName.MacOSX, (int)major, (int)minor)
+		{
+		}
+
+		public MacAttribute (byte major, byte minor, bool onlyOn64 = false)
+			: base (PlatformName.MacOSX, (int)major, (int)minor, onlyOn64 ? PlatformArchitecture.Arch64 : PlatformArchitecture.All)
+		{
+		}
+
+		public MacAttribute (byte major, byte minor, byte subminor)
+			: base (PlatformName.MacOSX, (int)major, (int)minor, subminor)
+		{
+		}
+
+		public MacAttribute (byte major, byte minor, byte subminor, bool onlyOn64)
+			: base (PlatformName.MacOSX, (int)major, (int)minor, (int)subminor, onlyOn64 ? PlatformArchitecture.Arch64 : PlatformArchitecture.All)
+		{
+		}
+
+	}
+	
+	public sealed class iOSAttribute : IntroducedAttribute
+	{
+		public iOSAttribute (byte major, byte minor)
+			: base (PlatformName.iOS, (int)major, (int)minor)
+		{
+		}
+
+		public iOSAttribute (byte major, byte minor, bool onlyOn64 = false)
+			: base (PlatformName.iOS, (int)major, (int)minor, onlyOn64 ? PlatformArchitecture.Arch64 : PlatformArchitecture.All)
+		{
+		}
+
+		public iOSAttribute (byte major, byte minor, byte subminor)
+			: base (PlatformName.iOS, (int)major, (int)minor, subminor)
+		{
+		}
+
+		public iOSAttribute (byte major, byte minor, byte subminor, bool onlyOn64)
+			: base (PlatformName.iOS, (int)major, (int)minor, (int)subminor, onlyOn64 ? PlatformArchitecture.Arch64 : PlatformArchitecture.All)
+		{
+		}
+	}
+	
+	public sealed class TVAttribute : IntroducedAttribute
+	{
+		public TVAttribute (byte major, byte minor)
+			: base (PlatformName.TvOS, (int)major, (int)minor)
+		{
+		}
+
+		public TVAttribute (byte major, byte minor, bool onlyOn64 = false)
+			: base (PlatformName.TvOS, (int)major, (int)minor, onlyOn64 ? PlatformArchitecture.Arch64 : PlatformArchitecture.All)
+		{
+		}
+
+		public TVAttribute (byte major, byte minor, byte subminor)
+			: base (PlatformName.TvOS, (int)major, (int)minor, subminor)
+		{
+		}
+
+		public TVAttribute (byte major, byte minor, byte subminor, bool onlyOn64)
+			: base (PlatformName.TvOS, (int)major, (int)minor, (int)subminor, onlyOn64 ? PlatformArchitecture.Arch64 : PlatformArchitecture.All)
+		{
+		}
+	}
+	
+	public sealed class WatchAttribute : IntroducedAttribute
+	{
+		public WatchAttribute (byte major, byte minor)
+			: base (PlatformName.WatchOS, (int)major, (int)minor)
+		{
+		}
+
+		public WatchAttribute (byte major, byte minor, bool onlyOn64 = false)
+			: base (PlatformName.WatchOS, (int)major, (int)minor, onlyOn64 ? PlatformArchitecture.Arch64 : PlatformArchitecture.All)
+		{
+		}
+
+		public WatchAttribute (byte major, byte minor, byte subminor)
+			: base (PlatformName.WatchOS, (int)major, (int)minor, subminor)
+		{
+		}
+
+		public WatchAttribute (byte major, byte minor, byte subminor, bool onlyOn64)
+			: base (PlatformName.WatchOS, (int)major, (int)minor, (int)subminor, onlyOn64 ? PlatformArchitecture.Arch64 : PlatformArchitecture.All)
+		{
+		}
+	}
+
 }
