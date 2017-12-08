@@ -164,20 +164,34 @@ default:
 
 	}
 
-	static System.Attribute CovertPlatformAttribute (CustomAttributeData attribute, byte platformName)
+	static System.Attribute ConvertPlatformAttribute (CustomAttributeData attribute, byte platformName)
 	{
-		var attribType = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.IntroducedAttribute");
 
 		object [] oldCtorValues = HarvestOldAttributeValues (attribute);
 		object [] ctorValues;
 		System.Type [] ctorTypes;
 		FormatNewStyleArguments (oldCtorValues, platformName, out ctorValues, out ctorTypes);
+		return CreateNewAttribute (ctorTypes, ctorValues);
+	}
 
+	static System.Attribute CreateNewAttribute (System.Type [] ctorTypes, object [] ctorValues)
+	{
+		var attribType = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.IntroducedAttribute");
 		var ctor = attribType.GetConstructor (ctorTypes);
 		if (ctor == null)
 			throw ErrorHelper.CreateError (1058, "Internal error: could not find a constructor for the mock attribute '{0}'. Please file a bug report (https://bugzilla.xamarin.com) with a test case.", attribType.FullName);
 		
 		return (System.Attribute)ctor.Invoke (ctorValues);
+	}
+
+	static System.Attribute CreateMacOSAttribute (int minor)
+	{
+		var platformEnum = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.PlatformName");
+		var platformArch = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.PlatformArchitecture");
+
+		var ctorValues = new object [] { (byte)1 /* PlatformName.MacOSX */, 10, minor, (byte)0xff, "" };
+		var ctorTypes = new System.Type [] { platformEnum, typeof(int), typeof(int), platformArch, typeof (string) };
+		return CreateNewAttribute (ctorTypes, ctorValues);
 	}
 
 	static System.Attribute ConvertOldAttribute (CustomAttributeData attribute)
@@ -187,18 +201,29 @@ default:
 		case "ObjCRuntime.SinceAttribute":
 		case "MonoTouch.ObjCRuntime.iOSAttribute":
 		case "ObjCRuntime.iOSAttribute":
-			return CovertPlatformAttribute (attribute, 2 /* PlatformName.iOS */);
+			return ConvertPlatformAttribute (attribute, 2 /* PlatformName.iOS */);
 		case "MonoTouch.ObjCRuntime.MacAttribute":
 		case "ObjCRuntime.MacAttribute":
-			return CovertPlatformAttribute (attribute, 1 /* PlatformName.MacOSX */);
+			return ConvertPlatformAttribute (attribute, 1 /* PlatformName.MacOSX */);
 		case "MonoTouch.ObjCRuntime.WatchAttribute":
 		case "ObjCRuntime.WatchAttribute":
-			return CovertPlatformAttribute (attribute, 3 /* PlatformName.WatchOS */);
+			return ConvertPlatformAttribute (attribute, 3 /* PlatformName.WatchOS */);
 
 		case "MonoTouch.ObjCRuntime.TVAttribute":
 		case "ObjCRuntime.TVAttribute":
-			return CovertPlatformAttribute (attribute, 4 /* PlatformName.TvOS */);
+			return ConvertPlatformAttribute (attribute, 4 /* PlatformName.TvOS */);
 
+		case "MonoTouch.ObjCRuntime.LionAttribute":
+		case "ObjCRuntime.LionAttribute":
+			return CreateMacOSAttribute (7);
+
+		case "MonoTouch.ObjCRuntime.MountainLionAttribute":
+		case "ObjCRuntime.MountainLionAttribute":
+			return CreateMacOSAttribute (8);
+
+		case "MonoTouch.ObjCRuntime.MavericksAttribute":
+		case "ObjCRuntime.MavericksAttribute":
+			return CreateMacOSAttribute (9);
 		}
 		return null;
 	}

@@ -301,5 +301,28 @@ namespace XamCore.ObjCRuntime.Extensions
 		{
 		}
 	}
+	
+	public sealed class MavericksAttribute : IntroducedAttribute
+	{
+		public MavericksAttribute ()
+			: base (PlatformName.MacOSX, 10, 9)
+		{
+		}
+	}
 
+	public sealed class MountainLionAttribute : IntroducedAttribute
+	{
+		public MountainLionAttribute ()
+			: base (PlatformName.MacOSX, 10, 8)
+		{
+		}
+	}
+
+	public sealed class LionAttribute : IntroducedAttribute
+	{
+		public LionAttribute ()
+			: base (PlatformName.MacOSX, 10, 7)
+		{
+		}
+	}
 }

@@ -28,24 +28,6 @@ namespace Xamarin.Pmcs
 				return;
 
 			switch (target.Value) {
-// 			case "Mac":
-// 			case "MacAttribute":
-// 				VisitShorthandIntroducedAttribute (invocationExpression, "PlatformName.MacOSX");
-// 				break;
-// 			case "Since":
-// 			case "SinceAttribute":
-// 			case "iOS":
-// 			case "iOSAttribute":
-// 				VisitShorthandIntroducedAttribute (invocationExpression, "PlatformName.iOS");
-// 				break;
-// 			case "Watch":
-// 			case "WatchAttribute":
-// 				VisitShorthandIntroducedAttribute (invocationExpression, "PlatformName.WatchOS");
-// 				break;
-// 			case "TV":
-// 			case "TVAttribute":
-// 				VisitShorthandIntroducedAttribute (invocationExpression, "PlatformName.TvOS");
-// 				break;
  			case "Availability":
  			case "AvailabilityAttribute":
  				VisitAvailabilityAttribute (invocationExpression);
@@ -74,18 +56,6 @@ namespace Xamarin.Pmcs
 			case "NoTV":
 			case "NoTVAttribute":
 				VisitShorthandUnavailableAttribute (literalExpression, "PlatformName.TvOS");
-				break;
-			case "Lion":
-			case "LionAttribute":
-				VisitMacNamedIntroducedAttribute (literalExpression, "7");
-				break;
-			case "MountainLion":
-			case "MountainLionAttribute":
-				VisitMacNamedIntroducedAttribute (literalExpression, "8");
-				break;
-			case "Mavericks":
-			case "MavericksAttribute":
-				VisitMacNamedIntroducedAttribute (literalExpression, "9");
 				break;
 			default:
 				base.VisitLiteralExpression (literalExpression);
