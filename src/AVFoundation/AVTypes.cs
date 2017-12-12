@@ -21,14 +21,6 @@ using MonoTouch.ObjCRuntime;
 #endif
 #endif
 
-#if !COREBUILD
-using MacAttribute = XamCore.ObjCRuntime.Extensions.MacAttribute;
-using iOSAttribute = XamCore.ObjCRuntime.Extensions.iOSAttribute;
-using TVAttribute = XamCore.ObjCRuntime.Extensions.TVAttribute;
-using WatchAttribute = XamCore.ObjCRuntime.Extensions.WatchAttribute;
-using XamCore.ObjCRuntime.Extensions;
-#endif
-
 namespace XamCore.AVFoundation {
 
 	[StructLayout (LayoutKind.Sequential)]
