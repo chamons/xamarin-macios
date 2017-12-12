@@ -363,35 +363,37 @@ namespace XamCore.ObjCRuntime.Extensions
 		None =  0x0,
 		// Processed in generator-attribute-manager.cs
 		//         Type, Major, Minor, Sub
-		//         0xT000000000MMmmss
-		iOS_2_0 =  0x0000000000020000,
-		iOS_2_2 =  0x0000000000020200,
-		iOS_3_0 =  0x0000000000030000,
-		iOS_3_1 =  0x0000000000030100,
-		iOS_3_2 =  0x0000000000030200,
-		iOS_4_0 =  0x0000000000040000,
-		iOS_4_1 =  0x0000000000040100,
-		iOS_4_2 =  0x0000000000040200,
-		iOS_4_3 =  0x0000000000040300,
-		iOS_5_0 =  0x0000000000050000,
-		iOS_5_1 =  0x0000000000050100,
-		iOS_6_0 =  0x0000000000060000,
-		iOS_6_1 =  0x0000000000060100,
-		iOS_7_0 =  0x0000000000070000,
-		iOS_7_1 =  0x0000000000070100,
-		iOS_8_0 =  0x0000000000080000,
-		iOS_8_1 =  0x0000000000080100,
-		iOS_8_2 =  0x0000000000080200,
-		iOS_8_3 =  0x0000000000080300,
-		iOS_8_4 =  0x0000000000080400,
-		iOS_9_0 =  0x0000000000090000,
-		iOS_9_1 =  0x0000000000090100,
-		iOS_9_2 =  0x0000000000090200,
-		iOS_9_3 =  0x0000000000090300,
-		iOS_10_0 = 0x00000000000a0000,
-		iOS_11_0 = 0x00000000000b0000,
+		//          0xT000000000MMmmss
+		iOS_Version = 0x0000000000ffffff,
+		iOS_2_0 =     0x0000000000020000,
+		iOS_2_2 =     0x0000000000020200,
+		iOS_3_0 =     0x0000000000030000,
+		iOS_3_1 =     0x0000000000030100,
+		iOS_3_2 =     0x0000000000030200,
+		iOS_4_0 =     0x0000000000040000,
+		iOS_4_1 =     0x0000000000040100,
+		iOS_4_2 =     0x0000000000040200,
+		iOS_4_3 =     0x0000000000040300,
+		iOS_5_0 =     0x0000000000050000,
+		iOS_5_1 =     0x0000000000050100,
+		iOS_6_0 =     0x0000000000060000,
+		iOS_6_1 =     0x0000000000060100,
+		iOS_7_0 =     0x0000000000070000,
+		iOS_7_1 =     0x0000000000070100,
+		iOS_8_0 =     0x0000000000080000,
+		iOS_8_1 =     0x0000000000080100,
+		iOS_8_2 =     0x0000000000080200,
+		iOS_8_3 =     0x0000000000080300,
+		iOS_8_4 =     0x0000000000080400,
+		iOS_9_0 =     0x0000000000090000,
+		iOS_9_1 =     0x0000000000090100,
+		iOS_9_2 =     0x0000000000090200,
+		iOS_9_3 =     0x0000000000090300,
+		iOS_10_0 =    0x00000000000a0000,
+		iOS_11_0 =    0x00000000000b0000,
 
 		//            0xT000000000MMmmss
+		Mac_Version = 0x1000000000ffffff,
 		Mac_10_0  =   0x1000000000000000,
 		Mac_10_1  =   0x1000000000010000,
 		Mac_10_2  =   0x1000000000020000,
@@ -409,18 +411,21 @@ namespace XamCore.ObjCRuntime.Extensions
 		Mac_10_12   = 0x10000000000c0000,
 		Mac_10_13   = 0x10000000000d0000,
 
-		//            0xT000000000MMmmss
-		Watch_1_0 =   0x2000000000010000,
-		Watch_2_0 =   0x2000000000020000,
-		Watch_3_0 =   0x2000000000030000,
-		Watch_4_0 =   0x2000000000040000,
+		//              0xT000000000MMmmss
+		Watch_Version = 0x2000000000ffffff,
+		Watch_1_0 =     0x2000000000010000,
+		Watch_2_0 =     0x2000000000020000,
+		Watch_3_0 =     0x2000000000030000,
+		Watch_4_0 =     0x2000000000040000,
 
-		//         0xT000000000MMmmss
-		TV_9_0 =   0x3000000000090000,
-		TV_10_0 =  0x30000000000a0000,
-		TV_11_0 =  0x30000000000b0000,
+		//             0xT000000000MMmmss
+		TV_Version =   0x3000000000ffffff,
+		TV_9_0 =       0x3000000000090000,
+		TV_10_0 =      0x30000000000a0000,
+		TV_11_0 =      0x30000000000b0000,
 	}
 	
+	[AttributeUsage (AttributeTargets.All, AllowMultiple = true)]
 	public class AvailabilityAttribute : Attribute
 	{
 		public AvailabilityAttribute () { }
@@ -430,6 +435,20 @@ namespace XamCore.ObjCRuntime.Extensions
 		public Platform Obsoleted;
 		public Platform Unavailable;
 		public string Message;
+
+		public AvailabilityAttribute (
+			Platform introduced,
+			Platform deprecated = Platform.None,
+			Platform obsoleted = Platform.None,
+			Platform unavailable = Platform.None)
+		{
+			Introduced = introduced;
+			Deprecated = deprecated;
+			Obsoleted = obsoleted;
+			Unavailable = unavailable;
+		}
+
+
 	}
 
 }
