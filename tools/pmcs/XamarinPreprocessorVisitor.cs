@@ -38,31 +38,6 @@ namespace Xamarin.Pmcs
 			}
 		}
 
-		public override void VisitLiteralExpression (LiteralExpression literalExpression)
-		{
-			switch (literalExpression.Value) {
-			case "NoMac":
-			case "NoMacAttribute":
-				VisitShorthandUnavailableAttribute (literalExpression, "PlatformName.MacOSX");
-				break;
-			case "NoiOS":
-			case "NoiOSAttribute":
-				VisitShorthandUnavailableAttribute (literalExpression, "PlatformName.iOS");
-				break;
-			case "NoWatch":
-			case "NoWatchAttribute":
-				VisitShorthandUnavailableAttribute (literalExpression, "PlatformName.WatchOS");
-				break;
-			case "NoTV":
-			case "NoTVAttribute":
-				VisitShorthandUnavailableAttribute (literalExpression, "PlatformName.TvOS");
-				break;
-			default:
-				base.VisitLiteralExpression (literalExpression);
-				break;
-			}
-		}
-
 		static void VisitMacNamedIntroducedAttribute (LiteralExpression oldAttr, string macMinorVersion)
 		{
 			var newAttr = new InvocationExpression ("Introduced");
