@@ -26,6 +26,7 @@
 using System;
 using XamCore.ObjCRuntime;
 #if !COREBUILD
+using XamCore.ObjCRuntime.Extensions;
 using MacAttribute = XamCore.ObjCRuntime.Extensions.MacAttribute;
 using iOSAttribute = XamCore.ObjCRuntime.Extensions.iOSAttribute;
 using TVAttribute = XamCore.ObjCRuntime.Extensions.TVAttribute;

@@ -195,7 +195,7 @@ namespace XamCore.ObjCRuntime
 		}
 	}
 
-	public sealed class UnavailableAttribute : AvailabilityBaseAttribute
+	public class UnavailableAttribute : AvailabilityBaseAttribute
 	{
 		public UnavailableAttribute (PlatformName platform,
 			PlatformArchitecture architecture = PlatformArchitecture.All,
@@ -322,6 +322,38 @@ namespace XamCore.ObjCRuntime.Extensions
 	{
 		public LionAttribute ()
 			: base (PlatformName.MacOSX, 10, 7)
+		{
+		}
+	}
+	
+	public sealed class NoMacAttribute : UnavailableAttribute
+	{
+		public NoMacAttribute ()
+			: base (PlatformName.MacOSX)
+		{
+		}
+	}
+
+	public sealed class NoiOSAttribute : UnavailableAttribute
+	{
+		public NoiOSAttribute ()
+			: base (PlatformName.iOS)
+		{
+		}
+	}
+
+	public sealed class NoWatchAttribute : UnavailableAttribute
+	{
+		public NoWatchAttribute ()
+			: base (PlatformName.WatchOS)
+		{
+		}
+	}
+
+	public sealed class NoTVAttribute : UnavailableAttribute
+	{
+		public NoTVAttribute ()
+			: base (PlatformName.TvOS)
 		{
 		}
 	}

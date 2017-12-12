@@ -589,43 +589,24 @@ namespace XamCore.ObjCRuntime
 
 	public sealed class WatchAttribute : AvailabilityAttribute
 	{
-		public WatchAttribute (byte major, byte minor) : base (0, 0, 0)
-		{
-		}
-
-		public WatchAttribute (byte major, byte minor, byte subminor) : base (0, 0, 0)
-		{
-		}
-
-		public WatchAttribute (byte major, byte minor, bool onlyOn64 = false) : base (0, 0, 0)
-		{
-		}
-
-		public WatchAttribute (byte major, byte minor, byte subminor, bool onlyOn64) : base (0, 0, 0)
-		{
-		}
+		public WatchAttribute (byte major, byte minor) : base (0, 0, 0) { }
+		public WatchAttribute (byte major, byte minor, byte subminor) : base (0, 0, 0) { }
+		public WatchAttribute (byte major, byte minor, bool onlyOn64 = false) : base (0, 0, 0) { }
+		public WatchAttribute (byte major, byte minor, byte subminor, bool onlyOn64) : base (0, 0, 0) { }
 	}
 
 	public sealed class TVAttribute : AvailabilityAttribute
 	{
-		public TVAttribute (byte major, byte minor) : base (0, 0, 0)
-		{
-		}
-
-		public TVAttribute (byte major, byte minor, byte subminor) : base (0, 0, 0)
-		{
-		}
-
-		public TVAttribute (byte major, byte minor, bool onlyOn64 = false) : base (0, 0, 0)
-		{
-		}
-
-		public TVAttribute (byte major, byte minor, byte subminor, bool onlyOn64) : base (0, 0, 0)
-		{
-		}
+		public TVAttribute (byte major, byte minor) : base (0, 0, 0) { }
+		public TVAttribute (byte major, byte minor, byte subminor) : base (0, 0, 0) { }
+		public TVAttribute (byte major, byte minor, bool onlyOn64 = false) : base (0, 0, 0) { }
+		public TVAttribute (byte major, byte minor, byte subminor, bool onlyOn64) : base (0, 0, 0) { }
 	}
 
-
+	public sealed class NoiOSAttribute : AvailabilityAttribute { public NoiOSAttribute () : base (0, 0, 0) { } }
+	public sealed class NoTVAttribute : AvailabilityAttribute { public NoTVAttribute () : base (0, 0, 0) { } }
+	public sealed class NoWatchAttribute : AvailabilityAttribute { public NoWatchAttribute () : base (0, 0, 0) { } }
+	public sealed class NoMacAttribute : AvailabilityAttribute { public NoMacAttribute () : base (0, 0, 0) { } }
 
 #if !COREBUILD
 	[Obsolete ("Use [Introduced|Deprecated|Obsoleted|Unavailable] attributes with PlatformName.")]
