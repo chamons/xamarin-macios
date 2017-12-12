@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 using IKVM.Reflection;
 using Type = IKVM.Reflection.Type;
 
@@ -84,7 +84,7 @@ public static class AttributeManager
 	}
 
 
-	static System.Attribute ConvertOldAttribute (CustomAttributeData attribute)
+	static IEnumerable<System.Attribute> ConvertOldAttributes (CustomAttributeData attribute)
 	{
 		switch (attribute.AttributeType.Namespace) {
 		case "MonoTouch.ObjCRuntime":
@@ -93,66 +93,61 @@ public static class AttributeManager
 		case "ObjCRuntime.Extensions":
 			break;
 		default:
-			return null;
+			return Enumerable.Empty<System.Attribute> ();
 		}
 
 		switch (attribute.AttributeType.Name) {
 		case "SinceAttribute":
 		case "iOSAttribute":
-			return AttributeConversionManager.Convert (attribute, 2 /* PlatformName.iOS */);
+			return AttributeConversionManager.ConvertPlatformAttribute (attribute, 2 /* PlatformName.iOS */).Yield ();
 		case "MacAttribute":
-			return AttributeConversionManager.Convert (attribute, 1 /* PlatformName.MacOSX */);
+			return AttributeConversionManager.ConvertPlatformAttribute (attribute, 1 /* PlatformName.MacOSX */).Yield ();
 		case "WatchAttribute":
-			return AttributeConversionManager.Convert (attribute, 3 /* PlatformName.WatchOS */);
-
+			return AttributeConversionManager.ConvertPlatformAttribute (attribute, 3 /* PlatformName.WatchOS */).Yield ();
 		case "TVAttribute":
-			return AttributeConversionManager.Convert (attribute, 4 /* PlatformName.TvOS */);
-
+			return AttributeConversionManager.ConvertPlatformAttribute (attribute, 4 /* PlatformName.TvOS */).Yield ();
 		case "LionAttribute":
-			return AttributeConversionManager.CreateMacOSAttribute (7);
-
+			return AttributeFactory.CreateNewIntroducedAttribute (1 /* PlatformName.MacOSX */, 10, 7).Yield ();
 		case "MountainLionAttribute":
-			return AttributeConversionManager.CreateMacOSAttribute (8);
-
+			return AttributeFactory.CreateNewIntroducedAttribute (1 /* PlatformName.MacOSX */, 10, 8).Yield ();
 		case "MavericksAttribute":
-			return AttributeConversionManager.CreateMacOSAttribute (9);
-
+			return AttributeFactory.CreateNewIntroducedAttribute (1 /* PlatformName.MacOSX */, 10, 9).Yield ();
 		case "NoMacAttribute":
-			return AttributeConversionManager.CreateUnavilableAttribute (1 /* PlatformName.MacOSX */);
+			return AttributeFactory.CreateUnavilableAttribute (1 /* PlatformName.MacOSX */).Yield ();
 		case "NoiOSAttribute":
-			return AttributeConversionManager.CreateUnavilableAttribute (2 /* PlatformName.iOS */);
+			return AttributeFactory.CreateUnavilableAttribute (2 /* PlatformName.iOS */).Yield ();
 		case "NoWatchAttribute":
-			return AttributeConversionManager.CreateUnavilableAttribute (3 /* PlatformName.WatchOS */);
+			return AttributeFactory.CreateUnavilableAttribute (3 /* PlatformName.WatchOS */).Yield ();
 		case "NoTVAttribute":
-			return AttributeConversionManager.CreateUnavilableAttribute (4 /* PlatformName.TvOS */);
+			return AttributeFactory.CreateUnavilableAttribute (4 /* PlatformName.TvOS */).Yield ();
+		case "AvailabilityAttribute":
+			return AttributeConversionManager.ConvertAvailability (attribute);
 		default:
 			var s = attribute.AttributeType.FullName;
-			switch (s)
-			{
-				case "ObjCRuntime.UnavailableAttribute":
-				case "ObjCRuntime.ObsoletedAttribute":
-				case "ObjCRuntime.NativeAttribute":
-				case "ObjCRuntime.IntroducedAttribute":
-				case "ObjCRuntime.DeprecatedAttribute":
-				case "Foundation.FieldAttribute":
-				case "NotificationAttribute":
-				case "Foundation.ExportAttribute":
-				case "NativeAttribute":
-					return null;
-				default:
-					//Console.WriteLine ("!!!!" + s);
-					return null;
+			switch (s) {
+			case "ObjCRuntime.UnavailableAttribute":
+			case "ObjCRuntime.ObsoletedAttribute":
+			case "ObjCRuntime.NativeAttribute":
+			case "ObjCRuntime.IntroducedAttribute":
+			case "ObjCRuntime.DeprecatedAttribute":
+			case "Foundation.FieldAttribute":
+			case "NotificationAttribute":
+			case "Foundation.ExportAttribute":
+			case "NativeAttribute":
+				return Enumerable.Empty<System.Attribute> ();	
+			default:
+				//Console.WriteLine ("!!!!" + s);
+				return Enumerable.Empty<System.Attribute> ();
 			}
 		}
-		return null;
 	}
 
-	static System.Attribute CreateAttributeInstance (CustomAttributeData attribute, ICustomAttributeProvider provider)
+	static IEnumerable<System.Attribute> CreateAttributeInstance (CustomAttributeData attribute, ICustomAttributeProvider provider)
 	{
-		System.Attribute convertedAttribute = ConvertOldAttribute (attribute);
-		if (convertedAttribute != null)
-			return convertedAttribute;
-		
+		var convertedAttributes = ConvertOldAttributes (attribute);
+		if (convertedAttributes.Any ())
+			return convertedAttributes;
+
 		System.Type attribType = ConvertType (attribute.AttributeType, provider);
 
 		var constructorArguments = new object [attribute.ConstructorArguments.Count];
@@ -226,7 +221,7 @@ public static class AttributeManager
 			}
 		}
 
-		return (System.Attribute) instance;
+		return ((System.Attribute) instance).Yield ();
 	}
 
 	static T [] FilterAttributes<T> (IList<CustomAttributeData> attributes, ICustomAttributeProvider provider) where T : System.Attribute
@@ -239,14 +234,14 @@ public static class AttributeManager
 		for (int i = 0; i < attributes.Count; i++) {
 			var attrib = attributes [i];
 
-			var newAttribute = CreateAttributeInstance (attributes [i], provider);
+			foreach (var newAttribute in CreateAttributeInstance (attributes [i], provider)) {
+				if (attrib.AttributeType != type && !IsSubclassOf (type, attrib.AttributeType) && !(newAttribute is T))
+					continue;
 
-			if (attrib.AttributeType != type && !IsSubclassOf (type, attrib.AttributeType) && !(newAttribute is T))	
-				continue;
-
-			if (list == null)
-				list = new List<T> ();
-			list.Add ((T)newAttribute);
+				if (list == null)
+					list = new List<T> ();
+				list.Add ((T) newAttribute);
+			}
 		}
 
 		if (list != null)
@@ -346,45 +341,44 @@ public static class AttributeConversionManager
 	static object [] HarvestOldAttributeValues (CustomAttributeData attribute)
 	{
 		var constructorArguments = new object [attribute.ConstructorArguments.Count];
-		for (int i = 0 ; i < attribute.ConstructorArguments.Count ; ++i)
-			constructorArguments[i] = attribute.ConstructorArguments [i].Value;
-		
+		for (int i = 0; i < attribute.ConstructorArguments.Count; ++i)
+			constructorArguments [i] = attribute.ConstructorArguments [i].Value;
+
 		Func<string> createErrorMessage = () => {
 			var b = new System.Text.StringBuilder (" Types { ");
-			for (int i = 0 ; i < constructorArguments.Length ; ++i)
-				b.Append (constructorArguments[i].GetType ().ToString () + " ");
+			for (int i = 0; i < constructorArguments.Length; ++i)
+				b.Append (constructorArguments [i].GetType ().ToString () + " ");
 			b.Append ("}");
 			return b.ToString ();
 		};
 
-		switch (attribute.ConstructorArguments.Count)
-		{
-			case 2:
-				if (constructorArguments[0].GetType () == typeof (byte) &&
-				    constructorArguments[1].GetType () == typeof (byte))
-					break;
-				throw new NotImplementedException ($"Unknown format for old style availability attribute {attribute.AttributeType.FullName} {attribute.ConstructorArguments.Count} {createErrorMessage ()}");
-			case 3:
-				if (constructorArguments[0].GetType () == typeof (byte) && 
-				    constructorArguments[1].GetType () == typeof (byte) &&
-				    constructorArguments[2].GetType () == typeof (byte))
-					break;
-				if (constructorArguments[0].GetType () == typeof (byte) && 
-				    constructorArguments[1].GetType () == typeof (byte) &&
-				    constructorArguments[2].GetType () == typeof (bool))
-					break;
+		switch (attribute.ConstructorArguments.Count) {
+		case 2:
+			if (constructorArguments [0].GetType () == typeof (byte) &&
+			    constructorArguments [1].GetType () == typeof (byte))
+				break;
+			throw new NotImplementedException ($"Unknown format for old style availability attribute {attribute.AttributeType.FullName} {attribute.ConstructorArguments.Count} {createErrorMessage ()}");
+		case 3:
+			if (constructorArguments [0].GetType () == typeof (byte) &&
+			    constructorArguments [1].GetType () == typeof (byte) &&
+			    constructorArguments [2].GetType () == typeof (byte))
+				break;
+			if (constructorArguments [0].GetType () == typeof (byte) &&
+			    constructorArguments [1].GetType () == typeof (byte) &&
+			    constructorArguments [2].GetType () == typeof (bool))
+				break;
 
-				throw new NotImplementedException ($"Unknown format for old style availability attribute {attribute.AttributeType.FullName} {attribute.ConstructorArguments.Count} {createErrorMessage ()}");
-			case 4:
-				if (constructorArguments[0].GetType () == typeof (byte) && 
-				    constructorArguments[1].GetType () == typeof (byte) &&
-				    constructorArguments[2].GetType () == typeof (byte) &&
-				    constructorArguments[3].GetType () == typeof (bool))
-					break;
+			throw new NotImplementedException ($"Unknown format for old style availability attribute {attribute.AttributeType.FullName} {attribute.ConstructorArguments.Count} {createErrorMessage ()}");
+		case 4:
+			if (constructorArguments [0].GetType () == typeof (byte) &&
+			    constructorArguments [1].GetType () == typeof (byte) &&
+			    constructorArguments [2].GetType () == typeof (byte) &&
+			    constructorArguments [3].GetType () == typeof (bool))
+				break;
 
-				throw new NotImplementedException ($"Unknown format for old style availability attribute {attribute.AttributeType.FullName} {attribute.ConstructorArguments.Count} {createErrorMessage ()}");
-default:
-				throw new NotImplementedException ($"Unknown count {attribute.ConstructorArguments.Count} {createErrorMessage ()}");
+			throw new NotImplementedException ($"Unknown format for old style availability attribute {attribute.AttributeType.FullName} {attribute.ConstructorArguments.Count} {createErrorMessage ()}");
+		default:
+			throw new NotImplementedException ($"Unknown count {attribute.ConstructorArguments.Count} {createErrorMessage ()}");
 		}
 
 		return constructorArguments;
@@ -395,82 +389,116 @@ default:
 		var platformEnum = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.PlatformName");
 		var platformArch = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.PlatformArchitecture");
 
-		switch (oldCtorValues.Length)
-		{
+		switch (oldCtorValues.Length) {
 		case 2:
-			ctorValues = new object [] { platformName, (int)(byte)oldCtorValues[0], (int)(byte)oldCtorValues[1], (byte)0xff, "" };
-			ctorTypes = new System.Type [] { platformEnum, typeof(int), typeof(int), platformArch, typeof (string) };
+			ctorValues = new object [] { platformName, (int) (byte) oldCtorValues [0], (int) (byte) oldCtorValues [1], (byte) 0xff, "" };
+			ctorTypes = new System.Type [] { platformEnum, typeof (int), typeof (int), platformArch, typeof (string) };
 			break;
 		case 3:
-			if (oldCtorValues[2].GetType () == typeof (byte)) {
-				ctorValues = new object [] { platformName, (int)(byte)oldCtorValues[0], (int)(byte)oldCtorValues[1], (int)(byte)oldCtorValues[2], (byte)0xff, "" };
-				ctorTypes = new System.Type [] { platformEnum, typeof(int), typeof(int), typeof(int), platformArch, typeof (string) };
-			}
-			else {
-				byte arch = (bool)oldCtorValues[2] ? (byte)2 : (byte)0xff; 
-				ctorValues = new object [] { platformName, (int)(byte)oldCtorValues[0], (int)(byte)oldCtorValues[1], arch, "" };
-				ctorTypes = new System.Type [] { platformEnum, typeof(int), typeof(int), platformArch, typeof (string) };
+			if (oldCtorValues [2] is byte) {
+				ctorValues = new object [] { platformName, (int) (byte) oldCtorValues [0], (int) (byte) oldCtorValues [1], (int) (byte) oldCtorValues [2], (byte) 0xff, "" };
+				ctorTypes = new System.Type [] { platformEnum, typeof (int), typeof (int), typeof (int), platformArch, typeof (string) };
+			} else {
+				byte arch = (bool) oldCtorValues [2] ? (byte) 2 : (byte) 0xff;
+				ctorValues = new object [] { platformName, (int) (byte) oldCtorValues [0], (int) (byte) oldCtorValues [1], arch, "" };
+				ctorTypes = new System.Type [] { platformEnum, typeof (int), typeof (int), platformArch, typeof (string) };
 			}
 			break;
 		case 4: {
-			byte arch = (bool)oldCtorValues[3] ? (byte)2 : (byte)0xff; 
-			ctorValues = new object [] { platformName, (int)(byte)oldCtorValues[0], (int)(byte)oldCtorValues[1], (int)(byte)oldCtorValues[2], arch, "" };
-			ctorTypes = new System.Type [] { platformEnum, typeof(int), typeof(int), typeof (int), platformArch, typeof (string) };
-			break;
-		}
+				byte arch = (bool) oldCtorValues [3] ? (byte) 2 : (byte) 0xff;
+				ctorValues = new object [] { platformName, (int) (byte) oldCtorValues [0], (int) (byte) oldCtorValues [1], (int) (byte) oldCtorValues [2], arch, "" };
+				ctorTypes = new System.Type [] { platformEnum, typeof (int), typeof (int), typeof (int), platformArch, typeof (string) };
+				break;
+			}
 		default:
 			throw new NotImplementedException ("FormatNewStyleArguments recieved unexpected arguments");
 		}
 
 	}
 
-	public static System.Attribute Convert (CustomAttributeData attribute, byte platformName)
+	public static IEnumerable<System.Attribute> ConvertAvailability (CustomAttributeData attribute)
+	{
+		foreach (var v in attribute.NamedArguments) {
+			switch (v.MemberName) {
+			case "Introduced":
+				return AttributeFactory.CreateNewIntroducedAttribute (1, 10, 10, 0).Yield ();
+			case "Deprecated":
+				return AttributeFactory.CreateNewIntroducedAttribute (1, 10, 10, 0).Yield ();
+			case "Obsoleted":
+				return AttributeFactory.CreateNewIntroducedAttribute (1, 10, 10, 0).Yield ();
+			case "Unavailable":
+				return AttributeFactory.CreateNewIntroducedAttribute (1, 10, 10, 0).Yield ();
+			default:
+				throw new NotImplementedException ($"ConvertAvailability found unknown named argument {v.MemberName}");
+			}
+		}
+		return Enumerable.Empty <System.Attribute> ();
+	}
+
+	public static System.Attribute ConvertPlatformAttribute (CustomAttributeData attribute, byte platformName)
 	{
 		object [] oldCtorValues = HarvestOldAttributeValues (attribute);
 		object [] ctorValues;
 		System.Type [] ctorTypes;
 		FormatNewStyleArguments (oldCtorValues, platformName, out ctorValues, out ctorTypes);
-		return CreateNewIntroducedAttribute (ctorTypes, ctorValues);
+		return AttributeFactory.CreateNewAttribute (AttributeFactory.IntroducedAttributeType, ctorTypes, ctorValues);
 	}
-	
-	static System.Attribute CreateNewAttribute (System.Type attribType, System.Type [] ctorTypes, object [] ctorValues)
+}
+
+
+static class AttributeFactory
+{
+	static System.Type PlatformEnum = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.PlatformName");
+	static System.Type PlatformArch = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.PlatformArchitecture");
+
+	public static System.Type IntroducedAttributeType = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.IntroducedAttribute");
+	public static System.Type UnavailableAttributeType = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.UnavailableAttribute");
+	public static System.Type ObsoletedAttributeType = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.ObsoletedAttribute");
+	public static System.Type DeprecatedAttributeType = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.DeprecatedAttribute");
+
+	public static System.Attribute CreateNewAttribute (System.Type attribType, System.Type [] ctorTypes, object [] ctorValues)
 	{
 		var ctor = attribType.GetConstructor (ctorTypes);
 		if (ctor == null)
 			throw ErrorHelper.CreateError (1058, "Internal error: could not find a constructor for the mock attribute '{0}'. Please file a bug report (https://bugzilla.xamarin.com) with a test case.", attribType.FullName);
-		
-		return (System.Attribute)ctor.Invoke (ctorValues);
+
+		return (System.Attribute) ctor.Invoke (ctorValues);
 	}
 
-	public static System.Attribute CreateMacOSAttribute (int minor)
+	static Attribute CreateMajorMinorAttribute (System.Type type, byte platform, int major, int minor, byte arch, string message)
 	{
-		var platformEnum = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.PlatformName");
-		var platformArch = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.PlatformArchitecture");
-
-		var ctorValues = new object [] { (byte)1 /* PlatformName.MacOSX */, 10, minor, (byte)0xff, "" };
-		var ctorTypes = new System.Type [] { platformEnum, typeof(int), typeof(int), platformArch, typeof (string) };
-		return CreateNewIntroducedAttribute (ctorTypes, ctorValues);
+		var ctorValues = new object [] { platform, major, minor, arch, message };
+		var ctorTypes = new System.Type [] { PlatformEnum, typeof (int), typeof (int), PlatformArch, typeof (string) };
+		return CreateNewAttribute (type, ctorTypes, ctorValues);
 	}
 
-	static System.Attribute CreateNewIntroducedAttribute (System.Type [] ctorTypes, object [] ctorValues)
+	public static System.Attribute CreateNewIntroducedAttribute (byte platform, int major, int minor, byte arch = 0xff, string message = "")
 	{
-		var attribType = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.IntroducedAttribute");
-		return CreateNewAttribute (attribType, ctorTypes, ctorValues);
+		return CreateMajorMinorAttribute (IntroducedAttributeType, platform, major, minor, arch, message);
 	}
 
-	static System.Attribute CreateNewUnavailableAttribute (System.Type [] ctorTypes, object [] ctorValues)
+	public static System.Attribute CreateObsoletedAttribute (byte platform, int major, int minor, byte arch = 0xff, string message = "")
 	{
-		var attribType = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.UnavailableAttribute");
-		return CreateNewAttribute (attribType, ctorTypes, ctorValues);
+		return CreateMajorMinorAttribute (ObsoletedAttributeType, platform, major, minor, arch, message);
 	}
 
-	public static System.Attribute CreateUnavilableAttribute (byte platformName)
+	public static System.Attribute CreateDeprecatedAttribute (byte platform, int major, int minor, byte arch = 0xff, string message = "")
 	{
-		var platformEnum = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.PlatformName");
-		var platformArch = typeof (TypeManager).Assembly.GetType ("XamCore.ObjCRuntime.PlatformArchitecture");
+		return CreateMajorMinorAttribute (DeprecatedAttributeType, platform, major, minor, arch, message);
+	}
 
-		var ctorValues = new object [] { platformName, (byte)0xff, "" };
-		var ctorTypes = new System.Type [] { platformEnum, platformArch, typeof (string) };
-		return CreateNewUnavailableAttribute (ctorTypes, ctorValues);
+	public static System.Attribute CreateUnavilableAttribute (byte platformName, byte arch = 0xff, string message = "")
+	{
+		var ctorValues = new object [] { platformName, arch, message };
+		var ctorTypes = new System.Type [] { PlatformEnum, PlatformArch, typeof (string) };
+		return CreateNewAttribute (UnavailableAttributeType, ctorTypes, ctorValues);
+	}
+}
+
+public static class EnumerableExtensions
+{
+	public static IEnumerable<T> Yield<T> (this T item)
+	{
+		yield return item;
 	}
 }
