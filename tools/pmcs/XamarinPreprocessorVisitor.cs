@@ -38,56 +38,6 @@ namespace Xamarin.Pmcs
 			}
 		}
 
-		static void VisitMacNamedIntroducedAttribute (LiteralExpression oldAttr, string macMinorVersion)
-		{
-			var newAttr = new InvocationExpression ("Introduced");
-			newAttr.AddArgument (new LiteralExpression ("PlatformName.MacOSX"));
-			newAttr.AddArgument (new LiteralExpression ("10"));
-			newAttr.AddArgument (new LiteralExpression (macMinorVersion));
-			oldAttr.Parent.InsertChildBefore (oldAttr, newAttr);
-			oldAttr.Remove ();
-		}
-
-		static void VisitShorthandUnavailableAttribute (LiteralExpression oldAttr, string platformName)
-		{
-			var newAttr = new InvocationExpression ("Unavailable");
-			newAttr.AddArgument (new LiteralExpression (platformName));
-			oldAttr.Parent.InsertChildBefore (oldAttr, newAttr);
-			oldAttr.Remove ();
-		}
-
-		static bool IsNumber (string s)
-		{
-			int n;
-			return int.TryParse (s, out n);
-		}
-
-		static void VisitShorthandIntroducedAttribute (InvocationExpression invocationExpression,
-			string platformName)
-		{
-			bool isTripleVersion = invocationExpression.Arguments.Count () > 2 && invocationExpression.Arguments.Take (3).All (x => x is LiteralExpression && IsNumber(((LiteralExpression)x).Value));
-
-			invocationExpression.Target = new LiteralExpression ("Introduced");
-
-			invocationExpression.Parent.InsertChildBefore (
-				invocationExpression.FirstArgument,
-				new LiteralExpression (platformName),
-				InvocationExpression.ArgumentRole
-			);
-
-			foreach (var onlyOn64 in invocationExpression.Arguments.Skip (isTripleVersion ? 4 : 3).Take (2)) {
-				var onlyOn64BoolValue = onlyOn64 as LiteralExpression;
-				if (onlyOn64 is NamedExpression)
-					onlyOn64BoolValue = onlyOn64.GetChild<Expression> (
-						BinaryExpression.RightOperandRole) as LiteralExpression;
-				if (onlyOn64BoolValue != null && onlyOn64BoolValue.Value == "true")
-					invocationExpression.AddArgument (
-						new LiteralExpression ("PlatformArchitecture.Arch64"));
-				if (onlyOn64BoolValue != null)
-					onlyOn64.Remove ();
-			}
-		}
-
 		void VisitAvailabilityAttribute (InvocationExpression invocationExpression)
 		{
 			new AvailabilityAttributeVisitor ().ProcessAvailabilityAttribute (invocationExpression);
