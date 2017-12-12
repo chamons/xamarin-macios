@@ -29,6 +29,10 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 
 using XamCore.ObjCRuntime;
+#if !COREBUILD
+using MacAttribute = XamCore.ObjCRuntime.Extensions.MacAttribute;
+using iOSAttribute = XamCore.ObjCRuntime.Extensions.iOSAttribute;
+#endif
 using XamCore.Foundation;
 using XamCore.CoreFoundation;
 using XamCore.CoreGraphics;

@@ -15,6 +15,10 @@ using System.Runtime.InteropServices;
 using XamCore.Foundation;
 using XamCore.CoreFoundation;
 using XamCore.ObjCRuntime;
+#if !COREBUILD
+using MacAttribute = XamCore.ObjCRuntime.Extensions.MacAttribute;
+using iOSAttribute = XamCore.ObjCRuntime.Extensions.iOSAttribute;
+#endif
 
 // CFHTTPMessage is in CFNetwork.framework, no idea why it ended up in CoreServices when it was bound.
 #if XAMCORE_4_0

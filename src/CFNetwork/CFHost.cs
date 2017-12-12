@@ -13,6 +13,10 @@ using System.Runtime.InteropServices;
 using XamCore.CoreFoundation;
 using XamCore.Foundation;
 using XamCore.ObjCRuntime;
+#if !COREBUILD
+using MacAttribute = XamCore.ObjCRuntime.Extensions.MacAttribute;
+using iOSAttribute = XamCore.ObjCRuntime.Extensions.iOSAttribute;
+#endif
 
 // CFHost is in CFNetwork.framework, no idea why it ended up in CoreServices when it was bound.
 #if XAMCORE_4_0

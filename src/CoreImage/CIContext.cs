@@ -28,6 +28,10 @@ using XamCore.Foundation;
 using XamCore.CoreGraphics;
 using XamCore.CoreFoundation;
 using XamCore.ObjCRuntime;
+#if !COREBUILD
+using MacAttribute = XamCore.ObjCRuntime.Extensions.MacAttribute;
+using iOSAttribute = XamCore.ObjCRuntime.Extensions.iOSAttribute;
+#endif
 #if !MONOMAC
 using XamCore.Metal;
 using XamCore.OpenGLES;

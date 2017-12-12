@@ -31,6 +31,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 using XamCore.ObjCRuntime;
+#if !COREBUILD
+using MacAttribute = XamCore.ObjCRuntime.Extensions.MacAttribute;
+using iOSAttribute = XamCore.ObjCRuntime.Extensions.iOSAttribute;
+#endif
 
 namespace XamCore.Foundation {
 	[Register ("NSSet", SkipRegistration = true)]

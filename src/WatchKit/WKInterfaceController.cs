@@ -6,6 +6,10 @@ using System;
 using System.Reflection;
 using XamCore.Foundation;
 using XamCore.ObjCRuntime;
+#if !COREBUILD
+using MacAttribute = XamCore.ObjCRuntime.Extensions.MacAttribute;
+using iOSAttribute = XamCore.ObjCRuntime.Extensions.iOSAttribute;
+#endif
 using XamCore.UIKit;
 
 namespace XamCore.WatchKit {

@@ -8,6 +8,10 @@
 // Copyright 2011-2014, Xamarin Inc.
 //
 using XamCore.ObjCRuntime;
+#if !COREBUILD
+using MacAttribute = XamCore.ObjCRuntime.Extensions.MacAttribute;
+using iOSAttribute = XamCore.ObjCRuntime.Extensions.iOSAttribute;
+#endif
 using XamCore.Foundation;
 using XamCore.CoreGraphics;
 using XamCore.CoreLocation;

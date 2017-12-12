@@ -20,6 +20,10 @@
 //
 // Copyright 2011, 2012 Xamarin Inc
 using XamCore.ObjCRuntime;
+#if !COREBUILD
+using MacAttribute = XamCore.ObjCRuntime.Extensions.MacAttribute;
+using iOSAttribute = XamCore.ObjCRuntime.Extensions.iOSAttribute;
+#endif
 using System;
 using System.Net;
 
