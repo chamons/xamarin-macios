@@ -111,7 +111,7 @@ namespace XamCore.ObjCRuntime
 		}
 	}
 
-	public class IntroducedAttribute : AvailabilityBaseAttribute
+	public sealed class IntroducedAttribute : AvailabilityBaseAttribute
 	{
 		public IntroducedAttribute (PlatformName platform,
 			PlatformArchitecture architecture = PlatformArchitecture.None,

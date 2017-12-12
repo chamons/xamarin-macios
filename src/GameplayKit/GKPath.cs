@@ -10,10 +10,6 @@
 using System;
 using XamCore.Foundation;
 using XamCore.ObjCRuntime;
-#if !COREBUILD
-using MacAttribute = XamCore.ObjCRuntime.Extensions.MacAttribute;
-using iOSAttribute = XamCore.ObjCRuntime.Extensions.iOSAttribute;
-#endif
 using Vector2 = global::OpenTK.Vector2;
 using Vector3 = global::OpenTK.Vector3;
 using System.Runtime.InteropServices;

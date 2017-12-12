@@ -12,10 +12,6 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.IO;
 using XamCore.ObjCRuntime;
-#if !COREBUILD
-using MacAttribute = XamCore.ObjCRuntime.Extensions.MacAttribute;
-using iOSAttribute = XamCore.ObjCRuntime.Extensions.iOSAttribute;
-#endif
 using XamCore.Foundation;
 using dispatch_source_type_t=System.IntPtr;
 using dispatch_source_t=System.IntPtr;

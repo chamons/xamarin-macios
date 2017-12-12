@@ -31,10 +31,6 @@ using System.Drawing;
 
 using XamCore.ObjCRuntime;
 #if !COREBUILD
-using MacAttribute = XamCore.ObjCRuntime.Extensions.MacAttribute;
-using iOSAttribute = XamCore.ObjCRuntime.Extensions.iOSAttribute;
-#endif
-#if !COREBUILD
 #if MONOTOUCH
 using XamCore.UIKit;
 #if !WATCH
