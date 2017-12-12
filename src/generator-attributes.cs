@@ -842,4 +842,3 @@ public class DefaultEnumValueAttribute : Attribute {
 	{
 	}
 }
-

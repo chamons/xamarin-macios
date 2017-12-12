@@ -205,6 +205,84 @@ namespace XamCore.ObjCRuntime
 		{
 		}
 	}
+
+	public sealed class TVAttribute : IntroducedAttribute
+	{
+		public TVAttribute (byte major, byte minor)
+			: base (PlatformName.TvOS, (int)major, (int)minor)
+		{
+		}
+
+		public TVAttribute (byte major, byte minor, bool onlyOn64 = false)
+			: base (PlatformName.TvOS, (int)major, (int)minor, onlyOn64 ? PlatformArchitecture.Arch64 : PlatformArchitecture.All)
+		{
+		}
+
+		public TVAttribute (byte major, byte minor, byte subminor)
+			: base (PlatformName.TvOS, (int)major, (int)minor, subminor)
+		{
+		}
+
+		public TVAttribute (byte major, byte minor, byte subminor, bool onlyOn64)
+			: base (PlatformName.TvOS, (int)major, (int)minor, (int)subminor, onlyOn64 ? PlatformArchitecture.Arch64 : PlatformArchitecture.All)
+		{
+		}
+	}
+	
+	public sealed class WatchAttribute : IntroducedAttribute
+	{
+		public WatchAttribute (byte major, byte minor)
+			: base (PlatformName.WatchOS, (int)major, (int)minor)
+		{
+		}
+
+		public WatchAttribute (byte major, byte minor, bool onlyOn64 = false)
+			: base (PlatformName.WatchOS, (int)major, (int)minor, onlyOn64 ? PlatformArchitecture.Arch64 : PlatformArchitecture.All)
+		{
+		}
+
+		public WatchAttribute (byte major, byte minor, byte subminor)
+			: base (PlatformName.WatchOS, (int)major, (int)minor, subminor)
+		{
+		}
+
+		public WatchAttribute (byte major, byte minor, byte subminor, bool onlyOn64)
+			: base (PlatformName.WatchOS, (int)major, (int)minor, (int)subminor, onlyOn64 ? PlatformArchitecture.Arch64 : PlatformArchitecture.All)
+		{
+		}
+	}
+
+	public sealed class NoMacAttribute : UnavailableAttribute
+	{
+		public NoMacAttribute ()
+			: base (PlatformName.MacOSX)
+		{
+		}
+	}
+
+	public sealed class NoiOSAttribute : UnavailableAttribute
+	{
+		public NoiOSAttribute ()
+			: base (PlatformName.iOS)
+		{
+		}
+	}
+
+	public sealed class NoWatchAttribute : UnavailableAttribute
+	{
+		public NoWatchAttribute ()
+			: base (PlatformName.WatchOS)
+		{
+		}
+	}
+
+	public sealed class NoTVAttribute : UnavailableAttribute
+	{
+		public NoTVAttribute ()
+			: base (PlatformName.TvOS)
+		{
+		}
+	}
 }
 
 namespace XamCore.ObjCRuntime.Extensions
@@ -256,52 +334,6 @@ namespace XamCore.ObjCRuntime.Extensions
 		}
 	}
 	
-	public sealed class TVAttribute : IntroducedAttribute
-	{
-		public TVAttribute (byte major, byte minor)
-			: base (PlatformName.TvOS, (int)major, (int)minor)
-		{
-		}
-
-		public TVAttribute (byte major, byte minor, bool onlyOn64 = false)
-			: base (PlatformName.TvOS, (int)major, (int)minor, onlyOn64 ? PlatformArchitecture.Arch64 : PlatformArchitecture.All)
-		{
-		}
-
-		public TVAttribute (byte major, byte minor, byte subminor)
-			: base (PlatformName.TvOS, (int)major, (int)minor, subminor)
-		{
-		}
-
-		public TVAttribute (byte major, byte minor, byte subminor, bool onlyOn64)
-			: base (PlatformName.TvOS, (int)major, (int)minor, (int)subminor, onlyOn64 ? PlatformArchitecture.Arch64 : PlatformArchitecture.All)
-		{
-		}
-	}
-	
-	public sealed class WatchAttribute : IntroducedAttribute
-	{
-		public WatchAttribute (byte major, byte minor)
-			: base (PlatformName.WatchOS, (int)major, (int)minor)
-		{
-		}
-
-		public WatchAttribute (byte major, byte minor, bool onlyOn64 = false)
-			: base (PlatformName.WatchOS, (int)major, (int)minor, onlyOn64 ? PlatformArchitecture.Arch64 : PlatformArchitecture.All)
-		{
-		}
-
-		public WatchAttribute (byte major, byte minor, byte subminor)
-			: base (PlatformName.WatchOS, (int)major, (int)minor, subminor)
-		{
-		}
-
-		public WatchAttribute (byte major, byte minor, byte subminor, bool onlyOn64)
-			: base (PlatformName.WatchOS, (int)major, (int)minor, (int)subminor, onlyOn64 ? PlatformArchitecture.Arch64 : PlatformArchitecture.All)
-		{
-		}
-	}
-	
 	public sealed class MavericksAttribute : IntroducedAttribute
 	{
 		public MavericksAttribute ()
@@ -322,38 +354,6 @@ namespace XamCore.ObjCRuntime.Extensions
 	{
 		public LionAttribute ()
 			: base (PlatformName.MacOSX, 10, 7)
-		{
-		}
-	}
-	
-	public sealed class NoMacAttribute : UnavailableAttribute
-	{
-		public NoMacAttribute ()
-			: base (PlatformName.MacOSX)
-		{
-		}
-	}
-
-	public sealed class NoiOSAttribute : UnavailableAttribute
-	{
-		public NoiOSAttribute ()
-			: base (PlatformName.iOS)
-		{
-		}
-	}
-
-	public sealed class NoWatchAttribute : UnavailableAttribute
-	{
-		public NoWatchAttribute ()
-			: base (PlatformName.WatchOS)
-		{
-		}
-	}
-
-	public sealed class NoTVAttribute : UnavailableAttribute
-	{
-		public NoTVAttribute ()
-			: base (PlatformName.TvOS)
 		{
 		}
 	}
