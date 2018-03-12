@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using Xamarin.Utils;
 
 namespace Xamarin.MMP.Tests
 {
@@ -10,7 +11,7 @@ namespace Xamarin.MMP.Tests
 	{
 		static string BindingName (bool full) => full ? "XM45Binding" : "MobileBinding";
 		
-		static void BuildLinkedTestProjects (string tmpDir, bool full = false, bool removeTFI = false)
+		static Tuple<string, string> BuildLinkedTestProjects (string tmpDir, bool full = false, bool removeTFI = false)
 		{
 			string bindingName = BindingName (full);
 			TI.UnifiedTestConfig test = new TI.UnifiedTestConfig (tmpDir) {
@@ -23,7 +24,7 @@ namespace Xamarin.MMP.Tests
 				test.CustomProjectReplacement = new Tuple<string, string> (@"<TargetFrameworkVersion>v4.5</TargetFrameworkVersion>", "");
 
 			string projectPath = TI.GenerateBindingLibraryProject (test);
-			TI.BuildProject (projectPath, true);
+			string bindingBuildLog = TI.BuildProject (projectPath, true);
 
 			string referenceCode = string.Format (@"<Reference Include=""{0}""><HintPath>{1}</HintPath></Reference>", bindingName, Path.Combine (tmpDir, "bin/Debug", bindingName + ".dll"));
 
@@ -32,7 +33,9 @@ namespace Xamarin.MMP.Tests
 				TestCode = "System.Console.WriteLine (typeof (ExampleBinding.UnifiedWithDepNativeRefLibTestClass));",
 				XM45 = full					
 			};
-			TI.TestUnifiedExecutable (test);
+			string appBuildLog = TI.TestUnifiedExecutable (test).BuildOutput;
+
+			return new Tuple<string, string> (bindingBuildLog, appBuildLog);
 		}
 
 		[Test]
@@ -53,8 +56,26 @@ namespace Xamarin.MMP.Tests
 		[TestCase (true, true)]
 		public void ShouldBuildWithoutErrors_AndLinkCorrectFramework (bool full, bool removeTFI)
 		{
+			// TODO - Build and test BindingProjectWithNoTag.csproj which is Modern without tags
+			// TODO - Abstract this into a helper called by multiple tests
 			MMPTests.RunMMPTest (tmpDir => {
-				BuildLinkedTestProjects (tmpDir, full, removeTFI);
+				var logs = BuildLinkedTestProjects (tmpDir, full, removeTFI);
+
+				var bgenInvocation = logs.Item1.SplitLines ().First (x => x.Contains ("bgen execution started with arguments"));
+				var bgenParts = bgenInvocation.Split (new char[] { ' ' });
+				var mscorlib = bgenParts.First (x => x.Contains ("mscorlib.dll"));
+				var system = bgenParts.First (x => x.Contains ("System.dll"));
+
+				if (full) {
+					Assert.True (mscorlib.EndsWith("lib/mono/4.5/mscorlib.dll", StringComparison.Ordinal), "mscorlib not found in expected Full location: " + mscorlib);
+					Assert.True (system.EndsWith ("lib/mono/4.5/System.dll", StringComparison.Ordinal), "system not found in expected Full location: " + system);
+				} else {
+					Assert.True (mscorlib.EndsWith ("lib/mono/Xamarin.Mac/mscorlib.dll", StringComparison.Ordinal), "mscorlib not found in expected Modern location: " + mscorlib);
+					Assert.True (system.EndsWith ("lib/mono/Xamarin.Mac/System.dll", StringComparison.Ordinal), "system not found in expected Modern location: " + system);
+				}
+
+				Assert.False (logs.Item1.Contains ("CS1685"), "Binding should not contains CS1685 multiple definition warning:\n" + logs.Item1);
+
 
 				string libPath = Path.Combine (tmpDir, $"bin/Debug/{(full ? "XM45Example.app" : "UnifiedExample.app")}/Contents/MonoBundle/{BindingName (full)}.dll");
 				Assert.True (File.Exists (libPath));
