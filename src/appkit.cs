@@ -262,6 +262,11 @@ namespace AppKit {
 		[Mac (10, 7), Export ("runAnimationGroup:completionHandler:")]
 		void RunAnimation (Action<NSAnimationContext> changes, [NullAllowed] Action completionHandler);
 
+		[Static]
+		[Mac (10,12)]
+		[Export ("runAnimationGroup:")]
+		void RunAnimation (Action<NSAnimationContext> changes);
+
 		[Mac (10, 7), Export ("timingFunction", ArgumentSemantic.Strong)]
 		CAMediaTimingFunction TimingFunction { get; set; }
 
@@ -357,7 +362,7 @@ namespace AppKit {
 
 	[Mac (10,9)]
 	[BaseType (typeof (NSObject))]
-	interface NSAppearance : NSCoding {
+	interface NSAppearance : NSSecureCoding {
 		[DesignatedInitializer]
 		[Export ("initWithAppearanceNamed:bundle:")]
 		IntPtr Constructor (string name, [NullAllowed] NSBundle bundle);
@@ -380,6 +385,10 @@ namespace AppKit {
 		[Field ("NSAppearanceNameAqua")]
 		NSString NameAqua { get; }
 
+		[Mac (10, 14, onlyOn64: true)]
+		[Field ("NSAppearanceNameDarkAqua")]
+		NSString NameDarkAqua { get; }
+
 		[Availability (Introduced = Platform.Mac_10_9, Deprecated = Platform.Mac_10_10)]
 		[Field ("NSAppearanceNameLightContent")]
 		NSString NameLightContent { get; }
@@ -391,6 +400,27 @@ namespace AppKit {
 		[Mac (10,10)]
 		[Field ("NSAppearanceNameVibrantLight")]
 		NSString NameVibrantLight { get; }
+
+		[Mac (10, 14, onlyOn64: true)]
+		[Field ("NSAppearanceNameAccessibilityHighContrastAqua")]
+		NSString NameAccessibilityHighContrastAqua { get; }
+
+		[Mac (10, 14, onlyOn64: true)]
+		[Field ("NSAppearanceNameAccessibilityHighContrastDarkAqua")]
+		NSString NameAccessibilityHighContrastDarkAqua { get; }
+
+		[Mac (10, 14, onlyOn64: true)]
+		[Field ("NSAppearanceNameAccessibilityHighContrastVibrantLight")]
+		NSString NameAccessibilityHighContrastVibrantLight { get; }
+
+		[Mac (10, 14, onlyOn64: true)]
+		[Field ("NSAppearanceNameAccessibilityHighContrastVibrantDark")]
+		NSString NameAccessibilityHighContrastVibrantDark { get; }
+
+		[Mac (10,14, onlyOn64: true)]
+		[Export ("bestMatchFromAppearancesWithNames:")]
+		[return: NullAllowed]
+		string FindBestMatch (string[] appearances);
 	}
 
 	[Mac (10,9)]
@@ -24998,6 +25028,7 @@ namespace AppKit {
 		NSObject[] AccessibilitySelectedColumns { get; } 
 
 		[Export ("accessibilityHeaderGroup")]
+		[Availability (Deprecated = Platform.Mac_10_14, Message = "Use AccessibilityHeader instead.")]
 		string AccessibilityHeaderGroup { get; } 
 
 		[Export ("accessibilitySelectedCells")]
