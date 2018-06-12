@@ -440,7 +440,7 @@ namespace AppKit {
 
 	[BaseType (typeof (NSResponder), Delegates=new string [] { "WeakDelegate" }, Events=new Type [] { typeof (NSApplicationDelegate) })]
 	[DisableDefaultCtor] // An uncaught exception was raised: Creating more than one Application
-	interface NSApplication : NSAccessibilityElementProtocol, NSAccessibility {
+	interface NSApplication : NSAccessibilityElementProtocol, NSUserInterfaceValidations, NSMenuItemValidation, NSAccessibility {
 		[Export ("sharedApplication"), Static, ThreadSafe]
 		NSApplication SharedApplication { get; }
 	
@@ -2124,7 +2124,7 @@ namespace AppKit {
 	}
 	
 	[BaseType (typeof (NSControl))]
-	interface NSButton : NSAccessibilityButton, NSUserInterfaceCompression {
+	interface NSButton : NSAccessibilityButton, NSUserInterfaceCompression, NSUserInterfaceValidations {
 		[Export ("initWithFrame:")]
 		IntPtr Constructor (CGRect frameRect);
 
@@ -5357,6 +5357,9 @@ namespace AppKit {
 		[Export ("validateUserInterfaceItem:")]
 		bool ValidateUserInterfaceItem (NSObject /* Must implement NSValidatedUserInterfaceItem */ anItem);
 
+		[Wrap ("ValidateUserInterfaceItem ((NSObject)anItem)")]
+		bool ValidateUserInterfaceItem (INSValidatedUserInterfaceItem anItem);
+
 		//Detected properties
 		[Export ("fileType")]
 		string FileType { get; set; }
@@ -5631,6 +5634,9 @@ namespace AppKit {
 
 		[Export ("validateUserInterfaceItem:")]
 		bool ValidateUserInterfaceItem (NSObject /* must implement NSValidatedUserInterfaceItem */ anItem);
+
+		[Wrap ("ValidateUserInterfaceItem ((NSObject)anItem)")]
+		bool ValidateUserInterfaceItem (INSValidatedUserInterfaceItem anItem);
 
 		//Detected properties
 		[Export ("autosavingDelay")]
@@ -6495,7 +6501,7 @@ namespace AppKit {
 	}
 
 	[BaseType (typeof (NSObject))]
-	interface NSFontManager {
+	interface NSFontManager : NSMenuItemValidation {
 		[Static, Export ("setFontPanelFactory:")]
 		void SetFontPanelFactory (Class factoryId);
 
@@ -9812,7 +9818,7 @@ namespace AppKit {
 	}
 
 	[BaseType (typeof (NSControl))]
-	interface NSImageView : NSAccessibilityImage {
+	interface NSImageView : NSAccessibilityImage, NSMenuItemValidation {
 		[Export ("initWithFrame:")]
 		IntPtr Constructor (CGRect frameRect);
 
@@ -11510,7 +11516,7 @@ namespace AppKit {
 	}
 	
 	[BaseType (typeof (NSActionCell), Events=new Type [] { typeof (NSPathCellDelegate) }, Delegates=new string [] { "WeakDelegate" })]
-	interface NSPathCell {
+	interface NSPathCell : NSMenuItemValidation {
 		[Export ("initTextCell:")]
 		IntPtr Constructor (string aString);
 	
@@ -17805,7 +17811,7 @@ namespace AppKit {
 	}
 
 	[BaseType (typeof (NSControl), Delegates=new string [] { "Delegate" }, Events=new Type [] { typeof (NSTextFieldDelegate)})]
-	partial interface NSTextField : NSAccessibilityNavigableStaticText {
+	partial interface NSTextField : NSAccessibilityNavigableStaticText, NSUserInterfaceValidations {
 		[Export ("initWithFrame:")]
 		IntPtr Constructor (CGRect frameRect);
 		
@@ -18412,7 +18418,7 @@ namespace AppKit {
 	}
 
 	[BaseType (typeof (NSText), Delegates=new string [] { "Delegate" }, Events=new Type [] { typeof (NSTextViewDelegate)})]
-	partial interface NSTextView : NSTextInputClient, NSDraggingSource, NSTextFinderClient, NSAccessibilityNavigableStaticText, NSCandidateListTouchBarItemDelegate, NSTouchBarDelegate {
+	partial interface NSTextView : NSTextInputClient, NSDraggingSource, NSTextFinderClient, NSAccessibilityNavigableStaticText, NSCandidateListTouchBarItemDelegate, NSTouchBarDelegate, NSMenuItemValidation,  NSUserInterfaceValidations {
 		[DesignatedInitializer]
 		[Export ("initWithFrame:textContainer:")]
 		IntPtr Constructor (CGRect frameRect, NSTextContainer container);
@@ -19270,7 +19276,7 @@ namespace AppKit {
 	}
 
 	[BaseType (typeof (NSObject))]
-	interface NSToolbarItem : NSCopying {
+	interface NSToolbarItem : NSCopying, NSMenuItemValidation {
 		[DesignatedInitializer]
 		[Export ("initWithItemIdentifier:")]
 		IntPtr Constructor (string itemIdentifier);
@@ -19681,7 +19687,7 @@ namespace AppKit {
 	
 	[BaseType (typeof (NSResponder), Delegates=new string [] { "Delegate" }, Events=new Type [] { typeof (NSWindowDelegate)})]
 	[DisableDefaultCtor]
-	partial interface NSWindow : NSAnimatablePropertyContainer, NSUserInterfaceItemIdentification, NSAppearanceCustomization, NSAccessibilityElementProtocol, NSAccessibility {
+	partial interface NSWindow : NSAnimatablePropertyContainer, NSUserInterfaceItemIdentification, NSAppearanceCustomization, NSAccessibilityElementProtocol, NSAccessibility, NSMenuItemValidation, NSUserInterfaceValidations {
 		[Static, Export ("frameRectForContentRect:styleMask:")]
 		CGRect FrameRectFor (CGRect contectRect, NSWindowStyle styleMask);
 	
@@ -22499,7 +22505,7 @@ namespace AppKit {
 		bool AllowsExpansionToolTips { get; set; }
 	}
 
-	partial interface NSMatrix {
+	partial interface NSMatrix : NSUserInterfaceValidations {
 
 		[Mac (10, 8), Export ("autorecalculatesCellSize")]
 		bool AutoRecalculatesCellSize { get; set; }
@@ -22544,7 +22550,7 @@ namespace AppKit {
 	delegate void NSDocumentLockCompletionHandler (NSError error);
 	delegate void NSDocumentUnlockCompletionHandler (NSError error);
 
-	partial interface NSDocument {
+	partial interface NSDocument : NSMenuItemValidation, NSUserInterfaceValidations {
 
 		[Mac (10, 8), Export ("draft")]
 		bool IsDraft { [Bind ("isDraft")] get; set; }
@@ -22608,7 +22614,7 @@ namespace AppKit {
 	delegate void NSDocumentControllerOpenPanelWithCompletionHandler (NSArray urlsToOpen);
 	delegate void NSDocumentControllerOpenPanelResultHandler (nint result);
 
-	partial interface NSDocumentController {
+	partial interface NSDocumentController : NSMenuItemValidation, NSUserInterfaceValidations {
 
 		[Mac (10, 8), Export ("beginOpenPanelWithCompletionHandler:")]
 		void BeginOpenPanelWithCompletionHandler (NSDocumentControllerOpenPanelWithCompletionHandler completionHandler);
@@ -22865,7 +22871,7 @@ namespace AppKit {
 		NSString DidEndTrackingNotification { get; }
 	}
 
-	partial interface NSPopUpButtonCell {
+	partial interface NSPopUpButtonCell : NSMenuItemValidation {
 		[Notification, Field ("NSPopUpButtonCellWillPopUpNotification")]
 		NSString WillPopUpNotification { get; }
 	}
@@ -22885,7 +22891,7 @@ namespace AppKit {
 		NSString ColorSpaceDidChangeNotification { get; }
 	}
 
-	partial interface NSTableView {
+	partial interface NSTableView : NSUserInterfaceValidations {
 		[Notification, Field ("NSTableViewSelectionDidChangeNotification")]
 		NSString SelectionDidChangeNotification { get; }
 
@@ -25304,6 +25310,15 @@ namespace AppKit {
 
 	[Protocol (IsInformal=true)]
 	interface NSMenuValidation
+	{
+		[Abstract]
+		[Export ("validateMenuItem:")]
+		bool ValidateMenuItem (NSMenuItem menuItem);
+	}
+
+	[Protocol]
+	[BaseType (typeof(NSObject))]
+	interface NSMenuItemValidation
 	{
 		[Abstract]
 		[Export ("validateMenuItem:")]
