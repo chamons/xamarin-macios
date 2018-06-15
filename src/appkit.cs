@@ -2266,6 +2266,10 @@ namespace AppKit {
 		[Mac (10, 12, 2)]
 		[NullAllowed, Export ("bezelColor", ArgumentSemantic.Copy)]
 		NSColor BezelColor { get; set; }
+
+		[Mac (10, 14, onlyOn64: true)]
+		[NullAllowed, Export ("contentTintColor", ArgumentSemantic.Copy)]
+		NSColor ContentTintColor { get; set; }
 	}
 	
 	[BaseType (typeof (NSImageRep))]
@@ -2411,9 +2415,11 @@ namespace AppKit {
 		[Export ("image", ArgumentSemantic.Retain)]
 		NSImage Image  { get; set; }
 	
+		[Availability (Deprecated = Platform.Mac_10_14, Message = "The controlTint property is not respected on 10.14 and later. For custom cells, use NSColor.ControlAccentColor to respect the user's preferred accent color when drawing.")]
 		[Export ("controlTint")]
 		NSControlTint ControlTint { get; set; }
 
+		[Availability (Deprecated = Platform.Mac_10_14, Message = "Changes to the accent color can be manually observed by implementing ViewDidChangeEffectiveAppearance in a NSView subclass, or by Key-Value Observing the EffectiveAppearance property on NSApplication. Views are automatically redisplayed when the accent color changes")]
 		[Notification, Field ("NSControlTintDidChangeNotification")]
 		NSString ControlTintChangedNotification { get; }
 
@@ -2750,6 +2756,7 @@ namespace AppKit {
 		bool IsFirstResponder { get; } 
 
 		[Export ("newItemForRepresentedObject:")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "Use NSCollectionViewDataSource.GetItem() instead")]
 		[return: Release ()]
 		NSCollectionViewItem NewItemForRepresentedObject (NSObject obj);
 
@@ -2786,18 +2793,23 @@ namespace AppKit {
 		NSIndexSet SelectionIndexes { get; set; }
 
 		[Export ("itemPrototype", ArgumentSemantic.Retain)]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "Use RegisterNib or RegisterClassForItem instead.")]
 		NSCollectionViewItem ItemPrototype { get; set; }
 
 		[Export ("maxNumberOfRows")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "Use NSCollectionViewGridLayout as the receiver's CollectionViewLayout, setting its MaximumNumberOfRows instead")]
 		nint MaxNumberOfRows { get; set; }
 
 		[Export ("maxNumberOfColumns")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "Use NSCollectionViewGridLayout as the receiver's CollectionViewLayout, setting its MaximumNumberOfColumns instead")]
 		nint MaxNumberOfColumns { get; set; }
 
 		[Export ("minItemSize")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "Use NSCollectionViewGridLayout as the receiver's CollectionViewLayout, setting its MinimumItemSize instead")]
 		CGSize MinItemSize { get; set; }
 
 		[Export ("maxItemSize")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "Use NSCollectionViewGridLayout as the receiver's CollectionViewLayout, setting its MaximumItemSize instead")]
 		CGSize MaxItemSize { get; set; }
 
 		[Export ("backgroundColors", ArgumentSemantic.Copy), NullAllowed]
@@ -3662,10 +3674,12 @@ namespace AppKit {
 
 		[Static]
 		[Export ("controlShadowColor")]
+		[Advice ("Use a color that matches the semantics being used, such as `SeparatorColor`")]
 		NSColor ControlShadow { get; }
 
 		[Static]
 		[Export ("controlDarkShadowColor")]
+		[Advice ("Use a color that matches the semantics being used, such as `SeparatorColor`")]
 		NSColor ControlDarkShadow { get; }
 
 		[Static]
@@ -3674,10 +3688,12 @@ namespace AppKit {
 
 		[Static]
 		[Export ("controlHighlightColor")]
+		[Advice ("Use a color that matches the semantics being used, such as `SeparatorColor`")]
 		NSColor ControlHighlight { get; }
 
 		[Static]
 		[Export ("controlLightHighlightColor")]
+		[Advice ("Use a color that matches the semantics being used, such as `SeparatorColor`")]
 		NSColor ControlLightHighlight { get; }
 
 		[Static]
@@ -3734,18 +3750,22 @@ namespace AppKit {
 
 		[Static]
 		[Export ("scrollBarColor")]
+		[Advice ("Use `NSScroller` instead")]
 		NSColor ScrollBar { get; }
 
 		[Static]
 		[Export ("knobColor")]
+		[Advice ("Use `NSScroller` instead")]
 		NSColor Knob { get; }
 
 		[Static]
 		[Export ("selectedKnobColor")]
+		[Advice ("Use `NSScroller` instead")]
 		NSColor SelectedKnob { get; }
 
 		[Static]
 		[Export ("windowFrameColor")]
+		[Advice ("Use `NSVisualEffectMaterial.Title` instead")]
 		NSColor WindowFrame { get; }
 
 		[Static]
@@ -3754,6 +3774,7 @@ namespace AppKit {
 
 		[Static]
 		[Export ("selectedMenuItemColor")]
+		[Advice ("Use `NSVisualEffectMaterial.Selection` instead")]
 		NSColor SelectedMenuItem { get; }
 
 		[Static]
@@ -3770,6 +3791,7 @@ namespace AppKit {
 
 		[Static]
 		[Export ("headerColor")]
+		[Advice ("Use `NSVisualEffectMaterial.HeaderView` instead")]
 		NSColor Header { get; }
 
 		[Static]
@@ -3796,6 +3818,7 @@ namespace AppKit {
 
 		[Static]
 		[Export ("colorForControlTint:")]
+		[Advice ("NSControlTint does not describe the full range of available control accent colors. Use NSColor.ControlAccentColor instead.")]
 		NSColor FromControlTint (NSControlTint controlTint);
 
 		[Static]
@@ -3812,12 +3835,15 @@ namespace AppKit {
 		void SetStroke ();
 
 		[Export ("colorSpaceName")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "Use Type and NSColorType instead")]
 		string ColorSpaceName { get; }
 
 		[Export ("colorUsingColorSpaceName:")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "Use GetColor or UsingColorSpace instead")]
 		NSColor UsingColorSpace ([NullAllowed] string colorSpaceName);
 
 		[Export ("colorUsingColorSpaceName:device:")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "Use GetColor or UsingColorSpace instead")]
 		NSColor UsingColorSpace ([NullAllowed] string colorSpaceName, [NullAllowed] NSDictionary deviceDescription);
 
 		[Export ("colorUsingColorSpace:")]
@@ -4030,6 +4056,45 @@ namespace AppKit {
 		[Static]
 		[Export ("systemGrayColor", ArgumentSemantic.Strong)]
 		NSColor SystemGrayColor { get; }
+
+		[Mac (10, 14, onlyOn64: true)]
+		[Static]
+		[Export ("separatorColor", ArgumentSemantic.Strong)]
+		NSColor SeparatorColor { get; }
+
+		[Mac (10, 14, onlyOn64: true)]
+		[Static]
+		[Export ("selectedContentBackgroundColor", ArgumentSemantic.Strong)]
+		NSColor SelectedContentBackgroundColor { get; }
+
+		[Mac (10, 14, onlyOn64: true)]
+		[Static]
+		[Export ("unemphasizedSelectedContentBackgroundColor", ArgumentSemantic.Strong)]
+		NSColor UnemphasizedSelectedContentBackgroundColor { get; }
+
+		[Mac (10, 14, onlyOn64: true)]
+		[Static]
+		[Export ("alternatingContentBackgroundColors", ArgumentSemantic.Strong)]
+		NSColor[] AlternatingContentBackgroundColors { get; }
+
+		[Mac (10, 14, onlyOn64: true)]
+		[Static]
+		[Export ("unemphasizedSelectedTextBackgroundColor", ArgumentSemantic.Strong)]
+		NSColor UnemphasizedSelectedTextBackgroundColor { get; }
+
+		[Mac (10, 14, onlyOn64: true)]
+		[Static]
+		[Export ("unemphasizedSelectedTextColor", ArgumentSemantic.Strong)]
+		NSColor UnemphasizedSelectedTextColor { get; }
+
+		[Mac (10, 14, onlyOn64: true)]
+		[Static]
+		[Export ("controlAccentColor", ArgumentSemantic.Strong)]
+		NSColor ControlAccentColor { get; }
+
+		[Mac (10,14, onlyOn64: true)]
+		[Export ("colorWithSystemEffect:")]
+		NSColor WithSystemEffect (NSColorSystemEffect systemEffect);
 	}
 
 	[BaseType (typeof (NSObject))]
@@ -4070,6 +4135,7 @@ namespace AppKit {
 		bool IsEditable { get; }
 
 		[Export ("writeToFile:")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "Use WriteToUrl instead")]
 		bool WriteToFile ([NullAllowed] string path);
 
 		[Export ("removeFile")]
@@ -9832,6 +9898,7 @@ namespace AppKit {
 		bool Opaque { [Bind ("isOpaque")]get; set; }
 
 		[Export ("colorSpaceName")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "Use type and NSColorType instead")]
 		string ColorSpaceName { get; set; }
 
 		[Export ("bitsPerSample")]

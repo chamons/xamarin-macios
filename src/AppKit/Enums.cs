@@ -338,7 +338,14 @@ namespace AppKit {
 
 	[Native]
 	public enum NSBackgroundStyle : long {
-		Light, Dark, Raised, Lowered
+		Normal = 0,
+		[Deprecated (PlatformName.MacOSX, 10, 14, message : "In some appearances, Light may refer to a state where the background is actually a dark color. Use Normal instead.")]
+		Light = Normal,
+		[Deprecated (PlatformName.MacOSX, 10, 14, message : "Dark is not a reliable indicator of background states with visually dark or saturated colors. Use Emphasized instead.")]
+		Emphasized,
+		Dark = Emphasized, 
+		Raised, 
+		Lowered
 	}
 #endregion
 
@@ -2517,6 +2524,24 @@ namespace AppKit {
 		MediumLight,
 		[Mac (10,11)]
 		UltraDark,
+		[Mac (10,14)]
+		HeaderView = 10,
+		[Mac (10,14)]
+		Sheet = 11,
+		[Mac (10,14)]
+		WindowBackground = 12,
+		[Mac (10,14)]
+		HUDWindow = 13,
+		[Mac (10,14)]
+		FullScreenUI = 15,
+		[Mac (10,14)]
+		ToolTip = 17,
+		[Mac (10,14)]
+		ContentBackground = 18,
+		[Mac (10,14)]
+		UnderWindowBackground = 21,
+		[Mac (10,14)]
+		UnderPageBackground = 22,
 	}
 
 	[Native]
@@ -2851,5 +2876,15 @@ namespace AppKit {
 		Fill,
 		FillEqually,
 		FillProportionally,
+	}
+
+	[Mac (10,14, onlyOn64: true)]
+	[Native]
+	public enum NSColorSystemEffect : long {
+		None,
+		Pressed,
+		DeepPressed,
+		Disabled,
+		Rollover
 	}
 }
