@@ -23,6 +23,7 @@
 //
 using System;
 using ObjCRuntime;
+using Foundation;
 
 namespace AppKit {
 
@@ -984,8 +985,10 @@ namespace AppKit {
 	[Native]
 	public enum NSBoxType : ulong {
 		NSBoxPrimary,
+		[Advice ("The NSBoxSecondary has been identical to NSBoxPrimary since Mac OS X 10.3. Use NSBoxPrimary instead.")]
 		NSBoxSecondary,
 		NSBoxSeparator,
+		[Advice ("NSBoxOldStyle is discouraged in modern application design. It should be replaced with either NSBoxPrimary or NSBoxCustom.")]
 		NSBoxOldStyle,
 		NSBoxCustom
 	};

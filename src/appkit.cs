@@ -699,6 +699,14 @@ namespace AppKit {
 		[Mac (10, 7), Export ("unregisterForRemoteNotifications")]
 		void UnregisterForRemoteNotifications ();
 
+		[Mac (10,14, onlyOn64: true)]
+		[Export ("registerForRemoteNotifications")]
+		void RegisterForRemoteNotifications ();
+
+		[Mac (10, 14, onlyOn64: true)]
+		[Export ("registeredForRemoteNotifications")]
+		bool IsRegisteredForRemoteNotifications { [Bind ("isRegisteredForRemoteNotifications")] get; }
+
 		[Notification, Field ("NSApplicationDidBecomeActiveNotification")]
 		NSString DidBecomeActiveNotification { get; }
 
@@ -972,6 +980,9 @@ namespace AppKit {
 		[Mac (10,13), EventArgs ("NSApplicationOpenUrls")]
 		[Export ("application:openURLs:")]
 		void OpenUrls (NSApplication application, NSUrl[] urls);
+
+		[Export ("application:delegateHandlesKey:"), DelegateName ("NSApplicationHandlesKey"), NoDefaultValue]
+		bool HandlesKey (NSApplication sender, string key);
 	}
 
 	[Protocol]
@@ -1331,6 +1342,7 @@ namespace AppKit {
 	[DisableDefaultCtor] // An uncaught exception was raised: -[NSBitmapImageRep init]: unrecognized selector sent to instance 0x686880
 	partial interface NSBitmapImageRep : NSSecureCoding {
 		[Export ("initWithFocusedViewRect:")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "Use NSView.CacheDisplay() to snapshot a view.")]
 		IntPtr Constructor (CGRect rect);
 
 		[Export ("initWithBitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bytesPerRow:bitsPerPixel:")]
@@ -1499,6 +1511,7 @@ namespace AppKit {
 		IntPtr Constructor (CGRect frameRect);
 
 		[Export ("borderType")]
+		[Advice ("BorderType is only applicable to NSBoxOldStyle, which is deprecated. To replace a borderType of NSNoBorder, use the `Transparent` property.")]
 		NSBorderType BorderType { get; set; }
 	
 		[Export ("titlePosition")]
@@ -5354,11 +5367,20 @@ namespace AppKit {
 		[Export ("fileNameExtensionForType:saveOperation:")]
 		string FileNameExtensionForSaveOperation (string typeName, NSSaveOperationType saveOperation);
 
+		// Found in NSUserInterfaceValidations protocol with INSValidatedUserInterfaceItem param but bound originally with NSObject
+		// Adding protocol gave warning 0108 which is unfixable without API break 
+#if XAMCORE_4_0
 		[Export ("validateUserInterfaceItem:")]
-		bool ValidateUserInterfaceItem (NSObject /* Must implement NSValidatedUserInterfaceItem */ anItem);
+		bool ValidateUserInterfaceItem (INSValidatedUserInterfaceItem anItem);
+#else
+		[Export ("validateUserInterfaceItem:")]
+		bool ValidateUserInterfaceItem (NSObject /* must implement NSValidatedUserInterfaceItem */ anItem);
 
+#pragma warning disable 0108
 		[Wrap ("ValidateUserInterfaceItem ((NSObject)anItem)")]
 		bool ValidateUserInterfaceItem (INSValidatedUserInterfaceItem anItem);
+#pragma warning restore 0108
+#endif
 
 		//Detected properties
 		[Export ("fileType")]
@@ -5632,11 +5654,20 @@ namespace AppKit {
 		[Export ("displayNameForType:")]
 		string DisplayNameForType (string typeName);
 
+		// Found in NSUserInterfaceValidations protocol with INSValidatedUserInterfaceItem param but bound originally with NSObject
+		// Adding protocol gave warning 0108 which is unfixable without API break 
+#if XAMCORE_4_0
+		[Export ("validateUserInterfaceItem:")]
+		bool ValidateUserInterfaceItem (INSValidatedUserInterfaceItem anItem);
+#else
 		[Export ("validateUserInterfaceItem:")]
 		bool ValidateUserInterfaceItem (NSObject /* must implement NSValidatedUserInterfaceItem */ anItem);
 
+#pragma warning disable 0108
 		[Wrap ("ValidateUserInterfaceItem ((NSObject)anItem)")]
 		bool ValidateUserInterfaceItem (INSValidatedUserInterfaceItem anItem);
+#pragma warning restore 0108
+#endif
 
 		//Detected properties
 		[Export ("autosavingDelay")]
