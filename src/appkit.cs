@@ -5880,6 +5880,7 @@ namespace AppKit {
 		[Abstract]
 #endif
 		[Export ("draggedImage")]
+		[Advice ("Use NSDraggingItem objects instead")]
 		NSImage DraggedImage { get; }
 
 #if XAMCORE_4_0
@@ -6129,6 +6130,17 @@ namespace AppKit {
 		[Export ("drawerWillResizeContents:toSize:"), DelegateName ("DrawerWillResizeContentsDelegate"), DefaultValue (null)]
 		CGSize DrawerWillResizeContents (NSDrawer sender, CGSize toSize);
 
+	}
+
+	[Protocol]
+	[BaseType (typeof(NSObject))]
+	interface NSFontChanging
+	{
+		[Export ("changeFont:")]
+		void ChangeFont ([NullAllowed] NSFontManager sender);
+
+		[Export ("validModesForFontPanel:")]
+		NSFontPanelModeMask ValidModesForFontPanel (NSFontPanel fontPanel);
 	}
 
 	[BaseType (typeof (NSObject))]
@@ -7037,6 +7049,7 @@ namespace AppKit {
 		NSGraphicsContext FromBitmap (NSBitmapImageRep bitmapRep);
 	
 		[Static, Export ("graphicsContextWithGraphicsPort:flipped:")]
+		[Availability (Deprecated = Platform.Mac_10_14, Message = "Use 'FromCGContext' instead.")]
 		NSGraphicsContext FromGraphicsPort (IntPtr graphicsPort, bool initialFlippedState);
 	
 		[Static, Export ("currentContext")]
@@ -7051,7 +7064,7 @@ namespace AppKit {
 		[Static, Export ("restoreGraphicsState")]
 		void GlobalRestoreGraphicsState ();
 	
-		[Availability (Deprecated = Platform.Mac_10_10)]
+		[Availability (Deprecated = Platform.Mac_10_10, Message ="This method has no effect")]
 		[Static, Export ("setGraphicsState:")]
 		void SetGraphicsState (nint gState);
 	
@@ -7072,6 +7085,7 @@ namespace AppKit {
 
 		// keep signature in sync with 'graphicsContextWithGraphicsPort:flipped:'
 		[Export ("graphicsPort")]
+		[Availability (Deprecated = Platform.Mac_10_14, Message = "Use 'CGContext' instead.")]
 		IntPtr GraphicsPortHandle {get; }
 	
 		[Export ("isFlipped")]
@@ -8982,7 +8996,7 @@ namespace AppKit {
 	[BaseType (typeof (NSObject), Delegates=new string [] { "WeakDelegate" }, Events=new Type [] { typeof (NSImageDelegate)})]
 	[Dispose ("__mt_reps_var = null;")]
 	[ThreadSafe]
-	partial interface NSImage : NSCoding, NSCopying, NSSecureCoding, NSPasteboardReading, NSPasteboardWriting {
+	partial interface NSImage : NSCopying, NSSecureCoding, NSPasteboardReading, NSPasteboardWriting {
 		[Static]
 		[Export ("imageNamed:")]
 		NSImage ImageNamed (string name);
@@ -10001,6 +10015,10 @@ namespace AppKit {
 		[Static]
 		[Export ("imageViewWithImage:")]
 		NSImageView FromImage (NSImage image);
+
+		[Mac (10, 14, onlyOn64: true)]
+		[NullAllowed, Export ("contentTintColor", ArgumentSemantic.Copy)]
+		NSColor ContentTintColor { get; set; }
 	}
 
 	[BaseType (typeof (NSControl), Delegates=new string [] { "WeakDelegate" }, Events=new Type [] { typeof (NSMatrixDelegate)})]
@@ -22664,7 +22682,16 @@ namespace AppKit {
 		bool AllowsExpansionToolTips { get; set; }
 	}
 
-	partial interface NSMatrix : NSUserInterfaceValidations {
+	[Protocol]
+	[BaseType (typeof(NSObject))]
+	interface NSViewToolTipOwner
+	{
+		[Abstract]
+		[Export ("view:stringForToolTip:point:userData:")]
+		string StringForToolTip (NSView view, nint tag, CGPoint point, IntPtr data);
+	}
+
+	partial interface NSMatrix : NSUserInterfaceValidations, NSViewToolTipOwner {
 
 		[Mac (10, 8), Export ("autorecalculatesCellSize")]
 		bool AutoRecalculatesCellSize { get; set; }
@@ -22709,7 +22736,7 @@ namespace AppKit {
 	delegate void NSDocumentLockCompletionHandler (NSError error);
 	delegate void NSDocumentUnlockCompletionHandler (NSError error);
 
-	partial interface NSDocument : NSMenuItemValidation, NSUserInterfaceValidations {
+	partial interface NSDocument : NSEditorRegistration, NSFilePresenter, NSMenuItemValidation, NSUserInterfaceValidations {
 
 		[Mac (10, 8), Export ("draft")]
 		bool IsDraft { [Bind ("isDraft")] get; set; }
