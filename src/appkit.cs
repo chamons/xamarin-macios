@@ -11785,6 +11785,7 @@ namespace AppKit {
 		NSPathComponentCell GetPathComponent (CGPoint point, CGRect frame, NSView view);
 
 		[Export ("clickedPathComponentCell")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "Use 'ClickedPathItem' instead.")]
 		NSPathComponentCell ClickedPathComponentCell { get; }
 
 		[Export ("mouseEntered:withFrame:inView:")]
@@ -12649,6 +12650,309 @@ namespace AppKit {
 
 		[Export ("usesThreadedAnimation")]
 		bool UsesThreadedAnimation { get; set; }
+	}
+
+	[Protocol]
+	[BaseType (typeof(NSObject))]
+	interface NSStandardKeyBindingResponding
+	{
+		[Export ("insertText:")]
+		void InsertText (NSObject insertString);
+
+		[Export ("doCommandBySelector:")]
+		void DoCommandBySelector (Selector selector);
+
+		[Export ("moveForward:")]
+		void MoveForward ([NullAllowed] NSObject sender);
+
+		[Export ("moveRight:")]
+		void MoveRight ([NullAllowed] NSObject sender);
+
+		[Export ("moveBackward:")]
+		void MoveBackward ([NullAllowed] NSObject sender);
+
+		[Export ("moveLeft:")]
+		void MoveLeft ([NullAllowed] NSObject sender);
+
+		[Export ("moveUp:")]
+		void MoveUp ([NullAllowed] NSObject sender);
+
+		[Export ("moveDown:")]
+		void MoveDown ([NullAllowed] NSObject sender);
+
+		[Export ("moveWordForward:")]
+		void MoveWordForward ([NullAllowed] NSObject sender);
+
+		[Export ("moveWordBackward:")]
+		void MoveWordBackward ([NullAllowed] NSObject sender);
+
+		[Export ("moveToBeginningOfLine:")]
+		void MoveToBeginningOfLine ([NullAllowed] NSObject sender);
+
+		[Export ("moveToEndOfLine:")]
+		void MoveToEndOfLine ([NullAllowed] NSObject sender);
+
+		[Export ("moveToBeginningOfParagraph:")]
+		void MoveToBeginningOfParagraph ([NullAllowed] NSObject sender);
+
+		[Export ("moveToEndOfParagraph:")]
+		void MoveToEndOfParagraph ([NullAllowed] NSObject sender);
+
+		[Export ("moveToEndOfDocument:")]
+		void MoveToEndOfDocument ([NullAllowed] NSObject sender);
+
+		[Export ("moveToBeginningOfDocument:")]
+		void MoveToBeginningOfDocument ([NullAllowed] NSObject sender);
+
+		[Export ("pageDown:")]
+		void PageDown ([NullAllowed] NSObject sender);
+
+		[Export ("pageUp:")]
+		void PageUp ([NullAllowed] NSObject sender);
+
+		[Export ("centerSelectionInVisibleArea:")]
+		void CenterSelectionInVisibleArea ([NullAllowed] NSObject sender);
+
+		[Export ("moveBackwardAndModifySelection:")]
+		void MoveBackwardAndModifySelection ([NullAllowed] NSObject sender);
+
+		[Export ("moveForwardAndModifySelection:")]
+		void MoveForwardAndModifySelection ([NullAllowed] NSObject sender);
+
+		[Export ("moveWordForwardAndModifySelection:")]
+		void MoveWordForwardAndModifySelection ([NullAllowed] NSObject sender);
+
+		[Export ("moveWordBackwardAndModifySelection:")]
+		void MoveWordBackwardAndModifySelection ([NullAllowed] NSObject sender);
+
+		[Export ("moveUpAndModifySelection:")]
+		void MoveUpAndModifySelection ([NullAllowed] NSObject sender);
+
+		[Export ("moveDownAndModifySelection:")]
+		void MoveDownAndModifySelection ([NullAllowed] NSObject sender);
+
+		[Export ("moveToBeginningOfLineAndModifySelection:")]
+		void MoveToBeginningOfLineAndModifySelection ([NullAllowed] NSObject sender);
+
+		[Export ("moveToEndOfLineAndModifySelection:")]
+		void MoveToEndOfLineAndModifySelection ([NullAllowed] NSObject sender);
+
+		[Export ("moveToBeginningOfParagraphAndModifySelection:")]
+		void MoveToBeginningOfParagraphAndModifySelection ([NullAllowed] NSObject sender);
+
+		[Export ("moveToEndOfParagraphAndModifySelection:")]
+		void MoveToEndOfParagraphAndModifySelection ([NullAllowed] NSObject sender);
+
+		[Export ("moveToEndOfDocumentAndModifySelection:")]
+		void MoveToEndOfDocumentAndModifySelection ([NullAllowed] NSObject sender);
+
+		[Export ("moveToBeginningOfDocumentAndModifySelection:")]
+		void MoveToBeginningOfDocumentAndModifySelection ([NullAllowed] NSObject sender);
+
+		[Export ("pageDownAndModifySelection:")]
+		void PageDownAndModifySelection ([NullAllowed] NSObject sender);
+
+		[Export ("pageUpAndModifySelection:")]
+		void PageUpAndModifySelection ([NullAllowed] NSObject sender);
+
+		[Export ("moveParagraphForwardAndModifySelection:")]
+		void MoveParagraphForwardAndModifySelection ([NullAllowed] NSObject sender);
+
+		[Export ("moveParagraphBackwardAndModifySelection:")]
+		void MoveParagraphBackwardAndModifySelection ([NullAllowed] NSObject sender);
+
+		[Export ("moveWordRight:")]
+		void MoveWordRight ([NullAllowed] NSObject sender);
+
+		[Export ("moveWordLeft:")]
+		void MoveWordLeft ([NullAllowed] NSObject sender);
+
+		[Export ("moveRightAndModifySelection:")]
+		void MoveRightAndModifySelection ([NullAllowed] NSObject sender);
+
+		[Export ("moveLeftAndModifySelection:")]
+		void MoveLeftAndModifySelection ([NullAllowed] NSObject sender);
+
+		[Export ("moveWordRightAndModifySelection:")]
+		void MoveWordRightAndModifySelection ([NullAllowed] NSObject sender);
+
+		[Export ("moveWordLeftAndModifySelection:")]
+		void MoveWordLeftAndModifySelection ([NullAllowed] NSObject sender);
+
+		[Mac (10,6)]
+		[Export ("moveToLeftEndOfLine:")]
+		void MoveToLeftEndOfLine ([NullAllowed] NSObject sender);
+
+		[Mac (10,6)]
+		[Export ("moveToRightEndOfLine:")]
+		void MoveToRightEndOfLine ([NullAllowed] NSObject sender);
+
+		[Mac (10,6)]
+		[Export ("moveToLeftEndOfLineAndModifySelection:")]
+		void MoveToLeftEndOfLineAndModifySelection ([NullAllowed] NSObject sender);
+
+		[Mac (10,6)]
+		[Export ("moveToRightEndOfLineAndModifySelection:")]
+		void MoveToRightEndOfLineAndModifySelection ([NullAllowed] NSObject sender);
+
+		[Export ("scrollPageUp:")]
+		void ScrollPageUp ([NullAllowed] NSObject sender);
+
+		[Export ("scrollPageDown:")]
+		void ScrollPageDown ([NullAllowed] NSObject sender);
+
+		[Export ("scrollLineUp:")]
+		void ScrollLineUp ([NullAllowed] NSObject sender);
+
+		[Export ("scrollLineDown:")]
+		void ScrollLineDown ([NullAllowed] NSObject sender);
+
+		[Export ("scrollToBeginningOfDocument:")]
+		void ScrollToBeginningOfDocument ([NullAllowed] NSObject sender);
+
+		[Export ("scrollToEndOfDocument:")]
+		void ScrollToEndOfDocument ([NullAllowed] NSObject sender);
+
+		[Export ("transpose:")]
+		void Transpose ([NullAllowed] NSObject sender);
+
+		[Export ("transposeWords:")]
+		void TransposeWords ([NullAllowed] NSObject sender);
+
+		[Export ("selectAll:")]
+		void SelectAll ([NullAllowed] NSObject sender);
+
+		[Export ("selectParagraph:")]
+		void SelectParagraph ([NullAllowed] NSObject sender);
+
+		[Export ("selectLine:")]
+		void SelectLine ([NullAllowed] NSObject sender);
+
+		[Export ("selectWord:")]
+		void SelectWord ([NullAllowed] NSObject sender);
+
+		[Export ("indent:")]
+		void Indent ([NullAllowed] NSObject sender);
+
+		[Export ("insertTab:")]
+		void InsertTab ([NullAllowed] NSObject sender);
+
+		[Export ("insertBacktab:")]
+		void InsertBacktab ([NullAllowed] NSObject sender);
+
+		[Export ("insertNewline:")]
+		void InsertNewline ([NullAllowed] NSObject sender);
+
+		[Export ("insertParagraphSeparator:")]
+		void InsertParagraphSeparator ([NullAllowed] NSObject sender);
+
+		[Export ("insertNewlineIgnoringFieldEditor:")]
+		void InsertNewlineIgnoringFieldEditor ([NullAllowed] NSObject sender);
+
+		[Export ("insertTabIgnoringFieldEditor:")]
+		void InsertTabIgnoringFieldEditor ([NullAllowed] NSObject sender);
+
+		[Export ("insertLineBreak:")]
+		void InsertLineBreak ([NullAllowed] NSObject sender);
+
+		[Export ("insertContainerBreak:")]
+		void InsertContainerBreak ([NullAllowed] NSObject sender);
+
+		[Mac (10,5)]
+		[Export ("insertSingleQuoteIgnoringSubstitution:")]
+		void InsertSingleQuoteIgnoringSubstitution ([NullAllowed] NSObject sender);
+
+		[Mac (10,5)]
+		[Export ("insertDoubleQuoteIgnoringSubstitution:")]
+		void InsertDoubleQuoteIgnoringSubstitution ([NullAllowed] NSObject sender);
+
+		[Export ("changeCaseOfLetter:")]
+		void ChangeCaseOfLetter ([NullAllowed] NSObject sender);
+
+		[Export ("uppercaseWord:")]
+		void UppercaseWord ([NullAllowed] NSObject sender);
+
+		[Export ("lowercaseWord:")]
+		void LowercaseWord ([NullAllowed] NSObject sender);
+
+		[Export ("capitalizeWord:")]
+		void CapitalizeWord ([NullAllowed] NSObject sender);
+
+		[Export ("deleteForward:")]
+		void DeleteForward ([NullAllowed] NSObject sender);
+
+		[Export ("deleteBackward:")]
+		void DeleteBackward ([NullAllowed] NSObject sender);
+
+		[Export ("deleteBackwardByDecomposingPreviousCharacter:")]
+		void DeleteBackwardByDecomposingPreviousCharacter ([NullAllowed] NSObject sender);
+
+		[Export ("deleteWordForward:")]
+		void DeleteWordForward ([NullAllowed] NSObject sender);
+
+		[Export ("deleteWordBackward:")]
+		void DeleteWordBackward ([NullAllowed] NSObject sender);
+
+		[Export ("deleteToBeginningOfLine:")]
+		void DeleteToBeginningOfLine ([NullAllowed] NSObject sender);
+
+		[Export ("deleteToEndOfLine:")]
+		void DeleteToEndOfLine ([NullAllowed] NSObject sender);
+
+		[Export ("deleteToBeginningOfParagraph:")]
+		void DeleteToBeginningOfParagraph ([NullAllowed] NSObject sender);
+
+		[Export ("deleteToEndOfParagraph:")]
+		void DeleteToEndOfParagraph ([NullAllowed] NSObject sender);
+
+		[Export ("yank:")]
+		void Yank ([NullAllowed] NSObject sender);
+
+		[Export ("complete:")]
+		void Complete ([NullAllowed] NSObject sender);
+
+		[Export ("setMark:")]
+		void SetMark ([NullAllowed] NSObject sender);
+
+		[Export ("deleteToMark:")]
+		void DeleteToMark ([NullAllowed] NSObject sender);
+
+		[Export ("selectToMark:")]
+		void SelectToMark ([NullAllowed] NSObject sender);
+
+		[Export ("swapWithMark:")]
+		void SwapWithMark ([NullAllowed] NSObject sender);
+
+		[Export ("cancelOperation:")]
+		void CancelOperation ([NullAllowed] NSObject sender);
+
+		[Mac (10,6)]
+		[Export ("makeBaseWritingDirectionNatural:")]
+		void MakeBaseWritingDirectionNatural ([NullAllowed] NSObject sender);
+
+		[Mac (10,6)]
+		[Export ("makeBaseWritingDirectionLeftToRight:")]
+		void MakeBaseWritingDirectionLeftToRight ([NullAllowed] NSObject sender);
+
+		[Mac (10,6)]
+		[Export ("makeBaseWritingDirectionRightToLeft:")]
+		void MakeBaseWritingDirectionRightToLeft ([NullAllowed] NSObject sender);
+
+		[Mac (10,6)]
+		[Export ("makeTextWritingDirectionNatural:")]
+		void MakeTextWritingDirectionNatural ([NullAllowed] NSObject sender);
+
+		[Mac (10,6)]
+		[Export ("makeTextWritingDirectionLeftToRight:")]
+		void MakeTextWritingDirectionLeftToRight ([NullAllowed] NSObject sender);
+
+		[Mac (10,6)]
+		[Export ("makeTextWritingDirectionRightToLeft:")]
+		void MakeTextWritingDirectionRightToLeft ([NullAllowed] NSObject sender);
+
+		[Mac (10,8)]
+		[Export ("quickLookPreviewItems:")]
+		void QuickLookPreviewItems ([NullAllowed] NSObject sender);
 	}
 
 	[DesignatedDefaultCtor]

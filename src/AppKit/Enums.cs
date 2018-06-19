@@ -1497,21 +1497,34 @@ namespace AppKit {
 	}
 
 	[Native]
+	[Deprecated (PlatformName.MacOSX, 10, 14)]	
 	public enum NSScrollArrowPosition : ulong {
 		MaxEnd, MinEnd, DefaultSetting, None
 	}
 
 	[Native]
 	public enum NSUsableScrollerParts : ulong {
-		NoScroller, OnlyArrows, All
+		NoScroller, 
+		[Deprecated (PlatformName.MacOSX, 10, 14)]		
+		OnlyArrows, 
+		All
 	}
 
 	[Native]
 	public enum NSScrollerPart : ulong {
-		None, DecrementPage, Knob, IncrementPage, DecrementLine, IncrementLine, KnobSlot
+		None,
+		DecrementPage,
+		Knob,
+		IncrementPage,
+		[Deprecated (PlatformName.MacOSX, 10, 14)]	
+		DecrementLine,
+		[Deprecated (PlatformName.MacOSX, 10, 14)]	
+		IncrementLine,
+		KnobSlot
 	}
 
 	[Native]
+	[Deprecated (PlatformName.MacOSX, 10, 14)]		
 	public enum NSScrollerArrow : ulong {
 		IncrementArrow, DecrementArrow
 	}
@@ -2111,6 +2124,7 @@ namespace AppKit {
 	}
 
 	[Native]
+	[Deprecated (PlatformName.MacOSX, 10, 14)]
 	public enum NSProgressIndicatorThickness : ulong {
 		Small = 10,
 		Regular = 14,
