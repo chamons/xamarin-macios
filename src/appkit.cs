@@ -4146,6 +4146,15 @@ namespace AppKit {
 		bool WriteToUrl ([NullAllowed] NSUrl url, [NullAllowed] out NSError error);
 	}
 
+	[Protocol]
+	[BaseType (typeof(NSObject))]
+	interface NSColorChanging
+	{
+		[Abstract]
+		[Export ("changeColor:")]
+		void ChangeColor ([NullAllowed] NSColorPanel sender);
+	}
+
 	[BaseType (typeof (NSPanel))]
 	partial interface NSColorPanel {
 		[Static, Export ("sharedColorPanel")]
@@ -4631,7 +4640,7 @@ namespace AppKit {
 		[Export ("sizeToFit")]
 		void SizeToFit ();
 
-		[Availability (Deprecated = Platform.Mac_10_10)]
+		[Availability (Deprecated = Platform.Mac_10_10, Message = "Override Layout instead. This method should never be called")]
 		[Export ("calcSize")]
 		void CalcSize ();
 
@@ -4814,27 +4823,73 @@ namespace AppKit {
 		void EndEditing ([NullAllowed] NSText textObj);
 	}
 
+	[Protocol]
+	[BaseType (typeof(NSObject))]
+	interface NSEditorRegistration
+	{
+		[Export ("objectDidBeginEditing:")]
+		void ObjectDidBeginEditing (NSEditor editor);
+
+		[Export ("objectDidEndEditing:")]
+		void ObjectDidEndEditing (NSEditor editor);
+	}
+
+	[Category]
+	[BaseType (typeof(NSObject))]
+	interface NSObject_NSEditorRegistration
+	{
+		[Export ("objectDidBeginEditing:")]
+		void ObjectDidBeginEditing (NSEditor editor);
+
+		[Export ("objectDidEndEditing:")]
+		void ObjectDidEndEditing (NSEditor editor);
+	}
+
+	[Protocol]
+	[BaseType (typeof(NSObject))]
+	interface NSEditor
+	{
+		[Abstract]
+		[Export ("discardEditing")]
+		void DiscardEditing ();
+
+		[Abstract]
+		[Export ("commitEditing")]
+#if XAMCORE_4_0
+		bool CommitEditing (); 
+#else
+		bool CommitEditing { get; }
+#endif
+
+		[Abstract]
+		[Export ("commitEditingWithDelegate:didCommitSelector:contextInfo:")]
+		void CommitEditingWithDelegate ([NullAllowed] NSObject @delegate, [NullAllowed] Selector didCommitSelector, IntPtr contextInfo);
+
+		[Mac (10,7)]
+		[Abstract]
+		[Export ("commitEditingAndReturnError:")]
+		bool CommitEditingAndReturnError ([NullAllowed] out NSError error);
+	}
+
 	[DesignatedDefaultCtor]
 	[BaseType (typeof (NSObject))]
-	interface NSController : NSCoding {
+	interface NSController : NSCoding, NSEditor, NSEditorRegistration {
+#if XAMCORE_4_0
+		[Export ("objectDidBeginEditing:")]
+		void ObjectDidBeginEditing (NSEditor editor);
+
+		[Export ("objectDidEndEditing:")]
+		void ObjectDidEndEditing (NSEditor editor);
+#else
 		[Export ("objectDidBeginEditing:")]
 		void ObjectDidBeginEditing (NSObject editor);
 
 		[Export ("objectDidEndEditing:")]
 		void ObjectDidEndEditing (NSObject editor);
-
-		[Export ("discardEditing")]
-		void DiscardEditing ();
-
-		[Export ("commitEditing")]
-		bool CommitEditing { get; }
-
-		[Export ("commitEditingWithDelegate:didCommitSelector:contextInfo:")]
-		void CommitEditingWithDelegate (NSObject delegate1, Selector didCommitSelector, IntPtr contextInfo);
+#endif
 
 		[Export ("isEditing")]
 		bool IsEditing { get; }
-
 	}
 
 	[BaseType (typeof (NSObject))]
@@ -11035,6 +11090,15 @@ namespace AppKit {
 
 		[Export ("control:textView:completions:forPartialWordRange:indexOfSelectedItem:"), DelegateName ("NSControlTextCompletion"), DefaultValue (null)]
 		string [] GetCompletions (NSControl control, NSTextView textView, string [] words, NSRange charRange, ref nint index);
+
+		[Export ("controlTextDidBeginEditing:")]
+		void ControlTextDidBeginEditing (NSNotification obj);
+
+		[Export ("controlTextDidEndEditing:")]
+		void ControlTextDidEndEditing (NSNotification obj);
+
+		[Export ("controlTextDidChange:")]
+		void ControlTextDidChange (NSNotification obj);
 	}
 
 	[BaseType (typeof (NSObject))]
@@ -15385,9 +15449,6 @@ namespace AppKit {
 		[Export ("setNeedsDisplayInRect:")]
 		void SetNeedsDisplayInRect (CGRect invalidRect);
 
-		//[Export ("setNeedsDisplay:")]
-		//void SetNeedsDisplay (bool flag);
-		
 		[Export ("lockFocus")]
 		void LockFocus ();
 
