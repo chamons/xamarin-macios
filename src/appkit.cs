@@ -7876,8 +7876,16 @@ namespace AppKit {
 		[PostSnippet ("__mt_items_var = ItemArray();")]
 		void RemoveAllItems ();
 
+#if XAMCORE_4_0
+		[Export ("itemArray", ArgumentSemantic.Copy)]
+		NSMenuItem[] ItemArray { get; set; }
+#else
 		[Export ("itemArray")]
 		NSMenuItem [] ItemArray ();
+
+		[Export ("setItemArray:")]
+		void ItemArray (NSMenuItem [] items);
+#endif
 
 		[Export ("numberOfItems")]
 		nint Count { get; }
@@ -8195,6 +8203,7 @@ namespace AppKit {
 		NSMenuItem MenuItem { get; set; }
 
 		[Export ("menuView")]
+		[NullAllowed]
 		NSMenuView MenuView { get; set; }
 
 		[Export ("needsSizing")]
@@ -8324,21 +8333,22 @@ namespace AppKit {
 	[BaseType (typeof (NSObject))]
 	partial interface NSNib : NSCoding {
 		[Export ("initWithContentsOfURL:")]
+		[Deprecated (PlatformName.MacOSX, 10, 8)]
 		IntPtr Constructor (NSUrl nibFileUrl);
 
 		[Export ("initWithNibNamed:bundle:")]
 		IntPtr Constructor (string nibName, [NullAllowed] NSBundle bundle);
+		
+		[Mac (10, 8), Export ("initWithNibData:bundle:")]
+		IntPtr Constructor (NSData nibData, NSBundle bundle);
 
+		[Deprecated (PlatformName.MacOSX, 10, 8)]
 		[Export ("instantiateNibWithExternalNameTable:")]
 		bool InstantiateNib (NSDictionary externalNameTable);
 
 		[Mac (10,8)]
 		[Export ("instantiateWithOwner:topLevelObjects:")]
 		bool InstantiateNibWithOwner ([NullAllowed] NSObject owner, out NSArray topLevelObjects);
-
-		// This requires an "out NSArray"
-		//[Export ("instantiateNibWithOwner:topLevelObjects:")]
-		//bool InstantiateNib (NSObject owner, NSArray topLevelObjects);
 	}	
 
 	[BaseType (typeof (NSController))]
@@ -11376,6 +11386,18 @@ namespace AppKit {
 		nint NumberOfTouchesRequired { get; set; }
 	}
 
+	[Protocol]
+	[BaseType (typeof(NSObject))]
+	interface NSPasteboardTypeOwner
+	{
+		[Abstract]
+		[Export ("pasteboard:provideDataForType:")]
+		void Pasteboard (NSPasteboard sender, string type);
+
+		[Export ("pasteboardChangedOwner:")]
+		void PasteboardChangedOwner (NSPasteboard sender);
+}
+
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor] // An uncaught exception was raised: +[NSPasteboard alloc]: unrecognized selector sent to class 0xac3dcbf0
 	partial interface NSPasteboard // NSPasteboard does _not_ implement NSPasteboardReading/NSPasteboardWriting
@@ -11457,57 +11479,73 @@ namespace AppKit {
 		// Pasteboard data types
 
 		[Field ("NSStringPboardType")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message : "Use 'NSPasteboardTypeString' instead.")]
 		NSString NSStringType{ get; }
 		
 		[Field ("NSFilenamesPboardType")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message : "Create multiple pasteboard items with NSPasteboardTypeFileURL or UTTypeFileURL instead")]
 		NSString NSFilenamesType{ get; }
 		
 		[Field ("NSPostScriptPboardType")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message : "Use 'com.adobe.encapsulated-postscript' instead.")]
 		NSString NSPostScriptType{ get; }
 
 		[Field ("NSTIFFPboardType")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message : "Use 'NSPasteboardTypeTIFF' instead.")]
 		NSString NSTiffType{ get; }
 		
 		[Field ("NSRTFPboardType")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message : "Use 'NSPasteboardTypeRTF' instead.")]
 		NSString NSRtfType{ get; }
 		
 		[Field ("NSTabularTextPboardType")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message : "Use 'NSPasteboardTypeTabularText' instead.")]
 		NSString NSTabularTextType{ get; }
 		
 		[Field ("NSFontPboardType")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message : "Use 'NSPasteboardTypeFont' instead.")]
 		NSString NSFontType{ get; }
 		
 		[Field ("NSRulerPboardType")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message : "Use 'NSPasteboardTypeRuler' instead.")]
 		NSString NSRulerType{ get; }
 		
 		[Field ("NSFileContentsPboardType")]
 		NSString NSFileContentsType{ get; }
 		
 		[Field ("NSColorPboardType")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message : "Use 'NSPasteboardTypeColor' instead.")]
 		NSString NSColorType{ get; }
 		
 		[Field ("NSRTFDPboardType")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message : "Use 'NSPasteboardTypeRTFD' instead.")]
 		NSString NSRtfdType{ get; }
 		
 		[Field ("NSHTMLPboardType")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message : "Use 'NSPasteboardTypeHTML' instead.")]
 		NSString NSHtmlType{ get; }
 		
 		[Field ("NSPICTPboardType")]
 		NSString NSPictType{ get; }
 		
 		[Field ("NSURLPboardType")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message : "Use 'NSPasteboardTypeURL' instead.")]
 		NSString NSUrlType{ get; }
 		
 		[Field ("NSPDFPboardType")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message : "Use 'NSPasteboardTypePDF' instead.")]
 		NSString NSPdfType{ get; }
 		
 		[Field ("NSVCardPboardType")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message : "Use 'UTTypeVCard' instead.")]
 		NSString NSVCardType{ get; }
 		
 		[Field ("NSFilesPromisePboardType")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message : "Use 'com.apple.pasteboard.promised-file-url' instead.")]
 		NSString NSFilesPromiseType{ get; }
 		
 		[Field ("NSMultipleTextSelectionPboardType")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message : "Use 'NSPasteboardTypeMultipleTextSelection' instead.")]
 		NSString NSMultipleTextSelectionType{ get; }
 
 		// Pasteboard names: for NSPasteboard.FromName()
@@ -11552,6 +11590,14 @@ namespace AppKit {
 		[Field ("NSPasteboardNameDrag")]
 		NSString NSPasteboardNameDrag { get; }
 
+		[Mac (10, 4)]
+		[Field ("kUTTypeFileURL")]
+		NSString UTTypeFileURL { get; }
+
+		[Mac (10, 4)]
+		[Field ("kUTTypeVCard")]
+		NSString UTTypeVCard { get; }
+
 		[Field ("NSPasteboardTypeString")]
 		NSString NSPasteboardTypeString { get; }
 
@@ -11592,7 +11638,11 @@ namespace AppKit {
 		NSString NSPasteboardTypeMultipleTextSelection { get; }
 
 		[Field ("NSPasteboardTypeFindPanelSearchOptions")]
+		[Availability (Deprecated = Platform.Mac_10_14, Message = "Use 'NSPasteboardTypeTextFinderOptions' instead.")]
 		NSString NSPasteboardTypeFindPanelSearchOptions { get; }
+
+		[Mac (10, 7), Field ("NSPasteboardTypeTextFinderOptions")]
+		NSString PasteboardTypeTextFinderOptions { get; }
 
 		[Mac (10, 13)]
 		[Field ("NSPasteboardTypeURL")]
@@ -22508,8 +22558,6 @@ namespace AppKit {
 	}
 
 	partial interface NSPasteboard {
-		[Mac (10, 7), Field ("NSPasteboardTypeTextFinderOptions")]
-		NSString PasteboardTypeTextFinderOptions { get; }
 	}
 
 	delegate void NSSpellCheckerShowCorrectionIndicatorOfTypeHandler (string acceptedString);
@@ -22825,12 +22873,6 @@ namespace AppKit {
 #else
 		NSObject ImageWithSize (CGSize size, bool flipped, NSCustomImageRepDrawingHandler drawingHandler);
 #endif
-	}
-
-	partial interface NSNib {
-
-		[Mac (10, 8), Export ("initWithNibData:bundle:")]
-		IntPtr Constructor (NSData nibData, NSBundle bundle);
 	}
 
 	partial interface NSSplitViewDividerIndexEventArgs {
