@@ -437,7 +437,6 @@ namespace AppKit {
 		NSAppearance EffectiveAppearance { get; }
 	}
 
-
 	[BaseType (typeof (NSResponder), Delegates=new string [] { "WeakDelegate" }, Events=new Type [] { typeof (NSApplicationDelegate) })]
 	[DisableDefaultCtor] // An uncaught exception was raised: Creating more than one Application
 	interface NSApplication : NSAccessibilityElementProtocol, NSUserInterfaceValidations, NSMenuItemValidation, NSAccessibility {
@@ -803,6 +802,14 @@ namespace AppKit {
 		[Mac (10,12)]
 		[Export ("enumerateWindowsWithOptions:usingBlock:")]
 		void EnumerateWindows (NSWindowListOptions options, NSApplicationEnumerateWindowsHandler block);
+
+		[Mac (10, 14, onlyOn64: true)]
+		[NullAllowed, Export ("appearance", ArgumentSemantic.Strong)]
+		NSAppearance Appearance { get; set; }
+
+		[Mac (10, 14, onlyOn64: true)]
+		[Export ("effectiveAppearance", ArgumentSemantic.Strong)]
+		NSAppearance EffectiveAppearance { get; }
 	}
 
 	[Static]
@@ -4855,25 +4862,25 @@ namespace AppKit {
 
 		[Abstract]
 		[Export ("commitEditing")]
-#if XAMCORE_4_0
 		bool CommitEditing (); 
-#else
-		bool CommitEditing { get; }
-#endif
 
 		[Abstract]
 		[Export ("commitEditingWithDelegate:didCommitSelector:contextInfo:")]
-		void CommitEditingWithDelegate ([NullAllowed] NSObject @delegate, [NullAllowed] Selector didCommitSelector, IntPtr contextInfo);
+		void CommitEditing ([NullAllowed] NSObject @delegate, [NullAllowed] Selector didCommitSelector, IntPtr contextInfo);
 
 		[Mac (10,7)]
 		[Abstract]
 		[Export ("commitEditingAndReturnError:")]
-		bool CommitEditingAndReturnError ([NullAllowed] out NSError error);
+		bool CommitEditing ([NullAllowed] out NSError error);
 	}
 
 	[DesignatedDefaultCtor]
 	[BaseType (typeof (NSObject))]
-	interface NSController : NSCoding, NSEditor, NSEditorRegistration {
+	interface NSController : NSCoding, NSEditorRegistration 
+#if XAMCORE_4_0
+	, NSEditor // Conflict over if CommitEditing is a property or a method. NSViewController has it right so can't "fix" NSEditor to match existing API
+#endif
+	{
 #if XAMCORE_4_0
 		[Export ("objectDidBeginEditing:")]
 		void ObjectDidBeginEditing (NSEditor editor);
@@ -4887,6 +4894,9 @@ namespace AppKit {
 		[Export ("objectDidEndEditing:")]
 		void ObjectDidEndEditing (NSObject editor);
 #endif
+
+		[Export ("commitEditing")]
+		bool CommitEditing { get; }
 
 		[Export ("isEditing")]
 		bool IsEditing { get; }
@@ -15826,17 +15836,21 @@ namespace AppKit {
 		CGRect ConvertRectFromBase (CGRect aRect);
 
 		[Export ("canDraw")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "If a view needs display, DrawRect or UpdateLayer will be called automatically when the view is able to draw.  To check whether a view is in a window, call Window.  To check whether a view is hidden, call IsHiddenOrHasHiddenAncestor.")]
 		bool CanDraw ();
 
 		[Export ("setNeedsDisplayInRect:")]
 		void SetNeedsDisplayInRect (CGRect invalidRect);
 
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "To draw, subclass NSView and implement -DrawRect; AppKit's automatic deferred display mechanism will call DrawRect as necessary to display the view.")]
 		[Export ("lockFocus")]
 		void LockFocus ();
 
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "To draw, subclass NSView and implement -DrawRect; AppKit's automatic deferred display mechanism will call DrawRect as necessary to display the view.")]
 		[Export ("unlockFocus")][ThreadSafe]
 		void UnlockFocus ();
 
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "To draw, subclass NSView and implement -DrawRect; AppKit's automatic deferred display mechanism will call DrawRect as necessary to display the view.")]
 		[Export ("lockFocusIfCanDraw")][ThreadSafe]
 		bool LockFocusIfCanDraw ();
 
@@ -15921,6 +15935,7 @@ namespace AppKit {
 		CGRect AdjustScroll (CGRect newVisible);
 
 		[Export ("scrollRect:by:")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "Use NSScrollView to achieve scrolling views.")]
 		void ScrollRect (CGRect aRect, CGSize delta);
 
 		[Export ("translateRectsNeedingDisplayInRect:by:")]
@@ -16538,6 +16553,10 @@ namespace AppKit {
 		[Mac (10,11)]
 		[Export ("layoutGuides", ArgumentSemantic.Copy)]
 		NSLayoutGuide[] LayoutGuides { get; }
+
+		[Mac (10,14, onlyOn64: true)]
+		[Export ("viewDidChangeEffectiveAppearance")]
+		void ViewDidChangeEffectiveAppearance ();
 	}
 
 	[BaseType (typeof (NSAnimation))]
@@ -16593,7 +16612,8 @@ namespace AppKit {
 	}
 
 	[BaseType (typeof (NSResponder))]
-	interface NSViewController : NSUserInterfaceItemIdentification, NSCoding, NSSeguePerforming
+	// Review - NSCoding -> NSEditor seems wrong, since NSEditor has not NSCoding?!?
+	interface NSViewController : NSUserInterfaceItemIdentification, NSEditor, NSSeguePerforming
 #if XAMCORE_2_0
 	, NSExtensionRequestHandling 
 #endif
@@ -16610,15 +16630,6 @@ namespace AppKit {
 
 		[Export ("nibBundle", ArgumentSemantic.Strong)]
 		NSBundle NibBundle { get; }
-
-		[Export ("commitEditingWithDelegate:didCommitSelector:contextInfo:")]
-		void CommitEditing (NSObject delegateObject, Selector didCommitSelector, IntPtr contextInfo);
-
-		[Export ("commitEditing")]
-		bool CommitEditing ();
-
-		[Export ("discardEditing")]
-		void DiscardEditing ();
 
 		//Detected properties
 		[Export ("representedObject", ArgumentSemantic.Strong)]
@@ -19556,6 +19567,30 @@ namespace AppKit {
 		[Mac (10, 12, 2)]
 		[NullAllowed, Export ("candidateListTouchBarItem", ArgumentSemantic.Strong)]
 		NSCandidateListTouchBarItem CandidateListTouchBarItem { get; }
+
+		[Mac (10,14, onlyOn64: true)]
+		[Export ("performValidatedReplacementInRange:withAttributedString:")]
+		bool PerformValidatedReplacementInRange (NSRange range, NSAttributedString attributedString);
+
+		[Mac (10, 14, onlyOn64: true)]
+		[Static]
+		[Export ("scrollableTextView")]
+		NSScrollView CreateScrollableTextView (); 
+
+		[Mac (10,14, onlyOn64: true)]
+		[Static]
+		[Export ("fieldEditor")]
+		NSTextView CreateFieldEditor (); 
+
+		[Mac (10, 14, onlyOn64: true)]
+		[Static]
+		[Export ("scrollableDocumentContentTextView")]
+		NSScrollView CreateScrollableDocumentContentTextView (); 
+
+		[Mac (10, 14, onlyOn64: true)]
+		[Static]
+		[Export ("scrollablePlainDocumentContentTextView")]
+		NSScrollView CreateScrollablePlainDocumentContentTextView (); 
 	}
 
 	[BaseType (typeof (NSObject))]
@@ -19874,6 +19909,10 @@ namespace AppKit {
 		[Mac (10,12)]
 		[Field ("NSToolbarCloudSharingItemIdentifier")]
 		NSString NSToolbarCloudSharingItemIdentifier { get; }
+
+		[Mac (10, 14, onlyOn64: true)]
+		[NullAllowed, Export ("centeredItemIdentifier")]
+		string CenteredItemIdentifier { get; set; }
 	}
 
 	[BaseType (typeof (NSObject))]
@@ -19898,8 +19937,25 @@ namespace AppKit {
 		void DidRemoveItem (NSNotification notification);
 	}
 
+	[Protocol]
+	[BaseType (typeof(NSObject))]
+	interface NSToolbarItemValidation
+	{
+		[Abstract]
+		[Export ("validateToolbarItem:")]
+		bool ValidateToolbarItem (NSToolbarItem item);
+	}
+
+	[Category]
+	[BaseType (typeof(NSObject))]
+	interface NSObject_NSToolbarItemValidation
+	{
+		[Export ("validateToolbarItem:")]
+		bool ValidateToolbarItem (NSToolbarItem item);
+	}
+
 	[BaseType (typeof (NSObject))]
-	interface NSToolbarItem : NSCopying, NSMenuItemValidation {
+	interface NSToolbarItem : NSCopying, NSMenuItemValidation, NSValidatedUserInterfaceItem {
 		[DesignatedInitializer]
 		[Export ("initWithItemIdentifier:")]
 		IntPtr Constructor (string itemIdentifier);
@@ -19929,14 +19985,8 @@ namespace AppKit {
 		[Export ("menuFormRepresentation", ArgumentSemantic.Retain)]
 		NSMenuItem MenuFormRepresentation { get; set; }
 
-		[Export ("tag")]
-		nint Tag { get; set; }
-
 		[Export ("target", ArgumentSemantic.Weak), NullAllowed]
 		NSObject Target { get; set; }
-
-		[Export ("action"), NullAllowed]
-		Selector Action { get; set; }
 
 		[Export ("enabled")]
 		bool Enabled { [Bind ("isEnabled")]get; set; }
@@ -25870,11 +25920,11 @@ namespace AppKit {
 	{
 		[Abstract]
 		[NullAllowed, Export ("action")]
-		Selector Action { get; }
+		Selector Action { get; [NotImplemented] set;}
 
 		[Abstract]
 		[Export ("tag")]
-		nint Tag { get; }
+		nint Tag { get; [NotImplemented] set;}
 	}
 
 #if XAMCORE_2_0

@@ -2163,6 +2163,7 @@ namespace AppKit {
 	[Native]
 	public enum NSWindowLevel : long {
 		Normal = 0,
+		[Deprecated (PlatformName.MacOSX, 10, 13)]
 		Dock = 20,
 		Floating = 3,
 		MainMenu = 24, 
@@ -2523,8 +2524,11 @@ namespace AppKit {
 #region NSVisualEffectView
 	[Native]
 	public enum NSVisualEffectMaterial : long {
+		[Advice ("Use a specific semantic material instead.")]
 		AppearanceBased,
+		[Advice ("Use a semantic material instead.  To force the appearance of a view hierarchy, set the `Appearance` property to an appropriate NSAppearance value.")]
 		Light,
+		[Advice ("Use a semantic material instead.  To force the appearance of a view hierarchy, set the `Appearance` property to an appropriate NSAppearance value.")]
 		Dark,
 		Titlebar,
 		Selection,
@@ -2535,8 +2539,10 @@ namespace AppKit {
 		[Mac (10,11)]
 		Sidebar,
 		[Mac (10,11)]
+		[Advice ("Use a semantic material instead.  To force the appearance of a view hierarchy, set the `Appearance` property to an appropriate NSAppearance value.")]
 		MediumLight,
 		[Mac (10,11)]
+		[Advice ("Use a semantic material instead.  To force the appearance of a view hierarchy, set the `Appearance` property to an appropriate NSAppearance value.")]
 		UltraDark,
 		[Mac (10,14)]
 		HeaderView = 10,
