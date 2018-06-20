@@ -423,6 +423,8 @@ namespace AppKit {
 		string FindBestMatch (string[] appearances);
 	}
 
+	interface INSAppearanceCustomization {} 
+
 	[Mac (10,9)]
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
@@ -20486,18 +20488,23 @@ namespace AppKit {
 		void UseOptimizedDrawing (bool flag);
 	
 		[Export ("disableFlushWindow")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "Use NSAnimationContext.RunAnimation to perform atomic updates across runloop invocations.")]
 		void DisableFlushWindow ();
 	
 		[Export ("enableFlushWindow")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "Use NSAnimationContext.RunAnimation to perform atomic updates across runloop invocations.")]
 		void EnableFlushWindow ();
 	
 		[Export ("isFlushWindowDisabled")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "Use NSAnimationContext.RunAnimation to perform atomic updates across runloop invocations.")]
 		bool FlushWindowDisabled { get; }
 	
 		[Export ("flushWindow")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "Allow AppKit's automatic deferred display mechanism to take care of flushing any graphics contexts as needed.")]
 		void FlushWindow ();
 	
 		[Export ("flushWindowIfNeeded")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "Allow AppKit's automatic deferred display mechanism to take care of flushing any graphics contexts as needed.")]
 		void FlushWindowIfNeeded ();
 	
 		[Export ("viewsNeedDisplay")]
@@ -20510,6 +20517,7 @@ namespace AppKit {
 		void Display ();
 	
 		[Export ("autodisplay")]
+		[Deprecated (PlatformName.MacOSX, 10, 14, message: "Use NSAnimationContext.RunAnimation to temporarily prevent AppKit's automatic deferred display mechanism from drawing.")]
 		bool Autodisplay  { [Bind ("isAutodisplay")] get; set; }
 	
 		[Export ("preservesContentDuringLiveResize")]
@@ -20685,6 +20693,7 @@ namespace AppKit {
 		void SetOneShot (bool flag);
 	
 		[Export ("isOneShot")]
+		[Availability (Deprecated = Platform.Mac_10_14, Message = "This property does not do anything and should not be used")]
 		bool IsOneShot { get; }
 	
 		[Export ("dataWithEPSInsideRect:")]
@@ -20718,7 +20727,8 @@ namespace AppKit {
 		bool AllowsToolTipsWhenApplicationIsInactive  { get; set; }
 	
 		[Export ("backingType")]
-		NSBackingStore BackingType  { get; set; }
+		[Availability (Deprecated = Platform.Mac_10_14, Message = "This property does not do anything and should not be used")]
+		NSBackingStore BackingType { get; set; }
 	
 		[Export ("level")]
 		NSWindowLevel Level  { get; set; }
@@ -20891,6 +20901,7 @@ namespace AppKit {
 		NSWindow ParentWindow { get; set; }
 	
 		[Export ("graphicsContext")]
+		[Availability (Deprecated = Platform.Mac_10_14, Message = "Add instances of NSView to display content in a window.")]
 		NSGraphicsContext GraphicsContext { get; }
 	
 		[Availability (Deprecated = Platform.Mac_10_7)]
@@ -21199,6 +21210,26 @@ namespace AppKit {
 		[Mac (10,12)]
 		[Export ("canRepresentDisplayGamut:")]
 		bool CanRepresentDisplayGamut (NSDisplayGamut displayGamut);
+
+		[Mac (10,12)]
+		[Export ("convertPointToScreen:")]
+		CGPoint ConvertPointToScreen (CGPoint point);
+
+		[Mac (10,12)]
+		[Export ("convertPointFromScreen:")]
+		CGPoint ConvertPointFromScreen (CGPoint point);
+
+		[Mac (10,14, onlyOn64: true)]
+		[Export ("convertPointToBacking:")]
+		CGPoint ConvertPointToBacking (CGPoint point);
+
+		[Mac (10,14, onlyOn64: true)]
+		[Export ("convertPointFromBacking:")]
+		CGPoint ConvertPointFromBacking (CGPoint point);
+
+		[Mac (10, 14, onlyOn64: true)]
+		[Export ("appearanceSource", ArgumentSemantic.Weak)]
+		INSAppearanceCustomization AppearanceSource { get; set; }
 	}
 
 	[Mac (10,10)]
