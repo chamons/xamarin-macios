@@ -18968,11 +18968,14 @@ namespace AppKit {
 		[Export ("insertText:")]
 		void InsertText (NSObject @string);
 
+		// DoCommandBySelector conflicts with NSTextViewDelegate in generated code
+#if XAMCORE_4_0
 		[Introduced (PlatformName.MacOSX, 10, 0)]
 		[Deprecated (PlatformName.MacOSX, 10, 6)]
 		[Abstract]
 		[Export ("doCommandBySelector:")]
 		void DoCommandBySelector (Selector selector);
+#endif
 
 		[Introduced (PlatformName.MacOSX, 10, 0)]
 		[Deprecated (PlatformName.MacOSX, 10, 6)]
@@ -19036,7 +19039,7 @@ namespace AppKit {
 	}
 
 	[BaseType (typeof (NSText), Delegates=new string [] { "Delegate" }, Events=new Type [] { typeof (NSTextViewDelegate)})]
-	partial interface NSTextView : NSTextInputClient, NSTextLayoutOrientationProvider, NSDraggingSource, NSTextFinderClient, NSAccessibilityNavigableStaticText, NSCandidateListTouchBarItemDelegate, NSTouchBarDelegate, NSMenuItemValidation, NSUserInterfaceValidations
+	partial interface NSTextView : NSTextInputClient, NSTextLayoutOrientationProvider, NSDraggingSource, NSTextFinderClient, NSAccessibilityNavigableStaticText, NSCandidateListTouchBarItemDelegate, NSTouchBarDelegate, NSMenuItemValidation, NSUserInterfaceValidations, NSTextInput
 #if XAMCORE_4_0
 		, NSColorChanging, // ChangeColor has the wrong param type
 		NSStandardKeyBindingResponding // DoCommandBySelector conflicts with NSTextViewDelegate in generated code
@@ -19063,9 +19066,6 @@ namespace AppKit {
 
 		[Export ("textStorage")]
 		NSTextStorage TextStorage { get; }
-
-		[Export ("insertText:")]
-		void InsertText (NSObject insertString);
 
 		[Export ("setConstrainedFrameSize:")]
 		void SetConstrainedFrameSize (CGSize desiredSize);
