@@ -12957,7 +12957,7 @@ namespace AppKit {
 
 	[DesignatedDefaultCtor]
 	[BaseType (typeof (NSObject))]
-	partial interface NSResponder : NSCoding, NSTouchBarProvider {
+	partial interface NSResponder : NSCoding, NSTouchBarProvider, NSStandardKeyBindingResponding {
 		[Export ("tryToPerform:with:")]
 		bool TryToPerformwith (Selector anAction, [NullAllowed] NSObject anObject);
 
@@ -13505,7 +13505,7 @@ namespace AppKit {
 		nfloat ScrollerWidthForControlSize (NSControlSize controlSize);
 
 		[Export ("drawParts")]
-		[Availability (Deprecated = Platform.Mac_10_7)]
+		[Availability (Deprecated = Platform.Mac_10_7, Message = "Not invoked on any macOS version")]
 		void DrawParts ();
 
 		[Export ("rectForPart:")]
@@ -13518,6 +13518,7 @@ namespace AppKit {
 		NSUsableScrollerParts UsableParts { get; }
 
 		[Export ("drawArrow:highlight:")]
+		[Availability (Deprecated = Platform.Mac_10_7, Message = "Scrollers don't have arrows as of 10.7")]
 		void DrawArrow (NSScrollerArrow whichArrow, bool highlight);
 
 		[Export ("drawKnob")]
@@ -13527,6 +13528,7 @@ namespace AppKit {
 		void DrawKnobSlot (CGRect slotRect, bool highlight);
 
 		[Export ("highlight:")]
+		[Availability (Deprecated = Platform.Mac_10_14, Message = "Has had no effect since 10.7")]
 		void Highlight (bool flag);
 
 		[Export ("testPart:")]
@@ -13536,6 +13538,7 @@ namespace AppKit {
 		void TrackKnob (NSEvent theEvent);
 
 		[Export ("trackScrollButtons:")]
+		[Availability (Deprecated = Platform.Mac_10_14, Message = "Not invoked since 10.7")]
 		void TrackScrollButtons (NSEvent theEvent);
 
 		[Export ("hitPart")]
@@ -13543,9 +13546,11 @@ namespace AppKit {
 
 		//Detected properties
 		[Export ("arrowsPosition")]
+		[Availability (Deprecated = Platform.Mac_10_14, Message = "Has had no effect since 10.7")]
 		NSScrollArrowPosition ArrowsPosition { get; set; }
 
 		[Export ("controlTint")]
+		[Availability (Deprecated = Platform.Mac_10_14, Message = "Has had no effect since 10.7")]
 		NSControlTint ControlTint { get; set; }
 
 		[Export ("controlSize")]
@@ -14222,18 +14227,23 @@ namespace AppKit {
 		double AltIncrementValue { get; set; }
 
 		[Export ("titleColor")]
+		[Deprecated (PlatformName.MacOSX, 10, 9)]
 		NSColor TitleColor { get; set; }
 
 		[Export ("titleFont")]
+		[Deprecated (PlatformName.MacOSX, 10, 9)]
 		NSFont TitleFont { get; set; }
 
 		[Export ("title")]
+		[Deprecated (PlatformName.MacOSX, 10, 9)]
 		string Title { get; set; }
 
 		[Export ("titleCell")]
+		[Deprecated (PlatformName.MacOSX, 10, 9)]
 		NSObject TitleCell { get; set; }
 
 		[Export ("knobThickness")]
+		[Deprecated (PlatformName.MacOSX, 10, 9)]
 		nfloat KnobThickness { get; set; }
 
 		[Export ("sliderType")]
@@ -15147,11 +15157,11 @@ namespace AppKit {
 		[Export ("sendActionOn:")]
 		nint SendActionOn (NSTouchPhase mask);
 
-		[Availability (Deprecated = Platform.Mac_10_10, Message = "Soft-deprecation, forwards message to button, but will be gone in the future.")]
+		[Availability (Deprecated = Platform.Mac_10_10, Message = "Use the menu property instead")]
 		[Export ("popUpStatusItemMenu:")]
 		void PopUpStatusItemMenu (NSMenu menu);
 
-		[Availability (Deprecated = Platform.Mac_10_10, Message = "Soft-deprecation, forwards message to button, but will be gone in the future.")]
+		[Availability (Deprecated = Platform.Mac_10_10, Message = "Use the standard button instead which handles highlight drawing, making this method obsolete")]
 		[Export ("drawStatusBarBackgroundInRect:withHighlight:")]
 		void DrawStatusBarBackground (CGRect rect, bool highlight);
 
@@ -17805,7 +17815,7 @@ namespace AppKit {
 		NSTabViewType TabViewType { get; set; }
 
 		[Export ("tabViewItems")]
-		NSTabViewItem [] Items { get; }
+		NSTabViewItem [] Items { get; set; }
 
 		[Export ("allowsTruncatedLabels")]
 		bool AllowsTruncatedLabels { get; set; }
@@ -17817,6 +17827,7 @@ namespace AppKit {
 		bool DrawsBackground { get; set; }
 
 		[Export ("controlTint")]
+		[Availability (Deprecated = Platform.Mac_10_14, Message = "The controlTint property is not respected on 10.14 and later")]
 		NSControlTint ControlTint { get; set; }
 
 		[Export ("controlSize")]
@@ -18210,7 +18221,7 @@ namespace AppKit {
 		CGSize CellSize { get; }
 
 		[Export ("cellBaselineOffset")]
-		CGPoint CellBaselineOffset { get; }
+		CGPoint CellBaselineOffset { get; set; }
 
 		[Export ("drawWithFrame:inView:characterIndex:")]
 		void DrawWithFrame (CGRect cellFrame, NSView controlView, nuint charIndex);
@@ -18466,7 +18477,7 @@ namespace AppKit {
 
 
 	[BaseType (typeof (NSTextField))]
-	interface NSSecureTextField {
+	interface NSSecureTextField : NSViewToolTipOwner {
 		[Export ("initWithFrame:")]
 		IntPtr Constructor (CGRect frameRect);
 	}
@@ -18946,6 +18957,82 @@ namespace AppKit {
 		[Static]
 		[Export ("columnTerminatorsForLocale:")]
 		NSCharacterSet GetColumnTerminators ([NullAllowed] NSLocale locale);
+	}
+
+	[Protocol]
+	interface NSTextInput
+	{
+		[Introduced (PlatformName.MacOSX, 10, 0)]
+		[Deprecated (PlatformName.MacOSX, 10, 6)]
+		[Abstract]
+		[Export ("insertText:")]
+		void InsertText (NSObject @string);
+
+		[Introduced (PlatformName.MacOSX, 10, 0)]
+		[Deprecated (PlatformName.MacOSX, 10, 6)]
+		[Abstract]
+		[Export ("doCommandBySelector:")]
+		void DoCommandBySelector (Selector selector);
+
+		[Introduced (PlatformName.MacOSX, 10, 0)]
+		[Deprecated (PlatformName.MacOSX, 10, 6)]
+		[Abstract]
+		[Export ("setMarkedText:selectedRange:")]
+		void SetMarkedText (NSObject @string, NSRange selRange);
+
+		[Introduced (PlatformName.MacOSX, 10, 0)]
+		[Deprecated (PlatformName.MacOSX, 10, 6)]
+		[Abstract]
+		[Export ("unmarkText")]
+		void UnmarkText ();
+
+		[Introduced (PlatformName.MacOSX, 10, 0)]
+		[Deprecated (PlatformName.MacOSX, 10, 6)]
+		[Abstract]
+		[Export ("hasMarkedText")]
+		bool HasMarkedText { get; }
+
+		[Introduced (PlatformName.MacOSX, 10, 0)]
+		[Deprecated (PlatformName.MacOSX, 10, 6)]
+		[Abstract]
+		[Export ("conversationIdentifier")]
+		nint ConversationIdentifier { get; }
+
+		[Introduced (PlatformName.MacOSX, 10, 0)]
+		[Deprecated (PlatformName.MacOSX, 10, 6)]
+		[Abstract]
+		[Export ("attributedSubstringFromRange:")]
+		NSAttributedString AttributedSubstringFromRange (NSRange range);
+
+		[Introduced (PlatformName.MacOSX, 10, 0)]
+		[Deprecated (PlatformName.MacOSX, 10, 6)]
+		[Abstract]
+		[Export ("markedRange")]
+		NSRange MarkedRange { get; }
+
+		[Introduced (PlatformName.MacOSX, 10, 0)]
+		[Deprecated (PlatformName.MacOSX, 10, 6)]
+		[Abstract]
+		[Export ("selectedRange")]
+		NSRange SelectedRange { get; }
+
+		[Introduced (PlatformName.MacOSX, 10, 0)]
+		[Deprecated (PlatformName.MacOSX, 10, 6)]
+		[Abstract]
+		[Export ("firstRectForCharacterRange:")]
+		CGRect FirstRectForCharacterRange (NSRange range);
+
+		[Introduced (PlatformName.MacOSX, 10, 0)]
+		[Deprecated (PlatformName.MacOSX, 10, 6)]
+		[Abstract]
+		[Export ("characterIndexForPoint:")]
+		nuint CharacterIndexForPoint (CGPoint point);
+
+		[Introduced (PlatformName.MacOSX, 10, 0)]
+		[Deprecated (PlatformName.MacOSX, 10, 6)]
+		[Abstract]
+		[Export ("validAttributesForMarkedText")]
+		NSString [] ValidAttributesForMarkedText { get; }
 	}
 
 	[BaseType (typeof (NSText), Delegates=new string [] { "Delegate" }, Events=new Type [] { typeof (NSTextViewDelegate)})]
