@@ -23261,8 +23261,11 @@ namespace AppKit {
 	delegate void NSDocumentLockCompletionHandler (NSError error);
 	delegate void NSDocumentUnlockCompletionHandler (NSError error);
 
-	partial interface NSDocument : NSEditorRegistration, NSFilePresenter, NSMenuItemValidation, NSUserInterfaceValidations {
-
+	partial interface NSDocument : NSEditorRegistration, NSFilePresenter, NSMenuItemValidation
+#if XAMCORE_4_0
+	, NSUserInterfaceValidations // ValidateUserInterfaceItem was bound with NSObject and fix would break API compat  
+#endif
+	{
 		[Mac (10, 8), Export ("draft")]
 		bool IsDraft { [Bind ("isDraft")] get; set; }
 
@@ -23325,7 +23328,11 @@ namespace AppKit {
 	delegate void NSDocumentControllerOpenPanelWithCompletionHandler (NSArray urlsToOpen);
 	delegate void NSDocumentControllerOpenPanelResultHandler (nint result);
 
-	partial interface NSDocumentController : NSMenuItemValidation, NSUserInterfaceValidations {
+	partial interface NSDocumentController : NSMenuItemValidation 
+#if XAMCORE_4_0
+	, NSUserInterfaceValidations // ValidateUserInterfaceItem was bound with NSObject and fix would break API compat  
+#endif
+	{
 
 		[Mac (10, 8), Export ("beginOpenPanelWithCompletionHandler:")]
 		void BeginOpenPanelWithCompletionHandler (NSDocumentControllerOpenPanelWithCompletionHandler completionHandler);
