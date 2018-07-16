@@ -24,6 +24,7 @@ using System;
 
 namespace OpenGL {
 
+	[Deprecated (PlatformName.MacOSX, 10, 14, message : "Use Metal.")]
 	public enum CGLErrorCode : uint
 	{
 		NoError            = 0,		/* no error */
@@ -48,6 +49,7 @@ namespace OpenGL {
 
 	}
 
+	[Deprecated (PlatformName.MacOSX, 10, 14, message : "Use Metal.")]
 	public enum CGLPixelFormatAttribute : uint
 	{
 		AllRenderers = 1,
