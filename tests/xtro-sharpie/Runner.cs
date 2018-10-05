@@ -27,6 +27,7 @@ namespace Extrospection {
 				new SelectorCheck (),
 				new SimdCheck (),
 				new RequiresSuperCheck (),
+				new DeprecatedCheck ()
 //				new ListNative (), // for debug
 			};
 			foreach (var assemblyName in assemblyNames) {
