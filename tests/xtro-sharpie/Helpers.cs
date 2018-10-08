@@ -67,23 +67,20 @@ namespace Extrospection {
 
 		public static Platforms Platform { get; set; }
 
-		public static int PlatformManagedValue
+		public static int GetPlatformManagedValue (Platforms platform)
 		{
-			get 
-			{
-				// None, MacOSX, iOS, WatchOS, TvOS
-				switch (Helpers.Platform) {
-				case Helpers.Platforms.macOS:
-					return 1;
-				case Helpers.Platforms.iOS:
-					return 2;
-				case Helpers.Platforms.watchOS:
-					return 3;
-				case Helpers.Platforms.tvOS:
-					return 4;
-				default:
-					throw new InvalidOperationException ($"Unexpected Platform {Platform} in PlatformManagedValue");
-				}
+			// None, MacOSX, iOS, WatchOS, TvOS
+			switch (platform) {
+			case Platforms.macOS:
+				return 1;
+			case Platforms.iOS:
+				return 2;
+			case Platforms.watchOS:
+				return 3;
+			case Platforms.tvOS:
+				return 4;
+			default:
+				throw new InvalidOperationException ($"Unexpected Platform {Platform} in GetPlatformManagedValue");
 			}
 		}
 
@@ -403,39 +400,57 @@ namespace Extrospection {
 				return (o1, o2);
 		}
 
-		// You can have a [Deprecated] with no version (null) which is different no matching deprecated at all
+		// Returns out Version and bool as you can have a [Deprecated] with no version (null) which is different no matching deprecated at all
 		public static bool FindManagedDeprecatedAttribute (IEnumerable<CustomAttribute> attributes, out Version version)
 		{
 			foreach (var attribute in attributes) {
-				// Consider Obsoleted a super Deprecated for our purposes
-				string attributeName = attribute.Constructor.DeclaringType.Name;
-				if (attributeName == "DeprecatedAttribute" || attributeName == "ObsoletedAttribute") {
-					// None, MacOSX, iOS, WatchOS, TvOS
-					byte platform = (byte)attribute.ConstructorArguments[0].Value;
-					if (platform != PlatformManagedValue)
-						continue;
-
-					// Three different IntroducedAttribute flavors
-					// (PlatformName platform, PlatformArchitecture architecture = PlatformArchitecture.None, string message = null)
-					// (PlatformName platform, int majorVersion, int minorVersion, PlatformArchitecture architecture = PlatformArchitecture.None, string message = null)
-					// (PlatformName platform, int majorVersion, int minorVersion, int subminorVersion, PlatformArchitecture architecture = PlatformArchitecture.None, string message = null)
-					switch (attribute.ConstructorArguments.Count) {
-					case 3:
-						version = null;
-						return true;
-					case 5:
-						version = new Version ((int)attribute.ConstructorArguments[1].Value, (int)attribute.ConstructorArguments[2].Value);
-						return true;
-					case 6:
-						version = new Version ((int)attribute.ConstructorArguments[1].Value, (int)attribute.ConstructorArguments[2].Value, (int)attribute.ConstructorArguments[3].Value);
-						return true;
-					default:
-						throw new InvalidOperationException ("IntroducedAttribute with unexpected number of arguments {attribute.ConstructorArguments.Count}");
-					}
-				}
+				if (HasDeprecatedAttribute (attribute, Platform))
+					return GetDeprecatedVersion (attribute, out version);
 			}
 			version = null;
 			return false;
+		}
+
+		public static bool HasDeprecatedAttribute (IEnumerable<CustomAttribute> attributes, IEnumerable <Platforms> platforms)
+		{
+			foreach (var attribute in attributes) {
+				if (platforms.Any (x => HasDeprecatedAttribute (attribute, x)))
+					return true;
+			}
+			return false;
+		}
+
+		static bool HasDeprecatedAttribute (CustomAttribute attribute, Platforms platform)
+		{
+			string attributeName = attribute.Constructor.DeclaringType.Name;
+			if (attributeName == "DeprecatedAttribute" || attributeName == "ObsoletedAttribute") {
+				// None, MacOSX, iOS, WatchOS, TvOS
+				byte attrPlatform = (byte)attribute.ConstructorArguments[0].Value;
+				if (attrPlatform == GetPlatformManagedValue (platform))
+					return true;
+			}
+			return false;
+		}
+
+		static bool GetDeprecatedVersion (CustomAttribute attribute, out Version version)
+		{
+			// Three different Attribute flavors
+			// (PlatformName platform, PlatformArchitecture architecture = PlatformArchitecture.None, string message = null)
+			// (PlatformName platform, int majorVersion, int minorVersion, PlatformArchitecture architecture = PlatformArchitecture.None, string message = null)
+			// (PlatformName platform, int majorVersion, int minorVersion, int subminorVersion, PlatformArchitecture architecture = PlatformArchitecture.None, string message = null)
+			switch (attribute.ConstructorArguments.Count) {
+			case 3:
+				version = null;
+				return true;
+			case 5:
+				version = new Version ((int)attribute.ConstructorArguments[1].Value, (int)attribute.ConstructorArguments[2].Value);
+				return true;
+			case 6:
+				version = new Version ((int)attribute.ConstructorArguments[1].Value, (int)attribute.ConstructorArguments[2].Value, (int)attribute.ConstructorArguments[3].Value);
+				return true;
+			default:
+				throw new InvalidOperationException ("IntroducedAttribute with unexpected number of arguments {attribute.ConstructorArguments.Count}");
+			}
 		}
 
 		public static bool FindObjcDeprecatedAttribute (IEnumerable<Attr> attrs, out VersionTuple version)
