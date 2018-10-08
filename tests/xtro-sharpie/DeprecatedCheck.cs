@@ -27,11 +27,13 @@ namespace Extrospection
 					if (framework == null)
 						return;
 
-					if (Helpers.FindManagedDeprecatedAttribute (managedType.CustomAttributes, out Version managedVersion)) {
-						if (!Helpers.CompareManagedToObjcVersion (objcVersion, managedVersion))
-							Log.On (framework).Add ($"!deprecated-attribute-wrong! {Helpers.GetName (managedType)} missing has {managedVersion} not {objcVersion} on [Deprecated] attribute");
-					} else {
-						Log.On (framework).Add ($"!deprecated-attribute-missing! {Helpers.GetName (managedType)} missing a [Deprecated] attribute");
+					if (!Helpers.VersionTooOldToCare (objcVersion)) {
+						if (Helpers.FindManagedDeprecatedAttribute (managedType.CustomAttributes, out Version managedVersion)) {
+							if (!Helpers.CompareManagedToObjcVersion (objcVersion, managedVersion))
+								Log.On (framework).Add ($"!deprecated-attribute-wrong! {Helpers.GetName (managedType)} missing has {managedVersion} not {objcVersion} on [Deprecated] attribute");
+						} else {
+							Log.On (framework).Add ($"!deprecated-attribute-missing! {Helpers.GetName (managedType)} missing a [Deprecated] attribute");
+						}
 					}
 				}
 			}
@@ -56,7 +58,7 @@ namespace Extrospection
 					}
 
 					var matchingMethod = managedType.Methods.FirstOrDefault (x => x.GetSelector () == selector);
-					if (matchingMethod != null) {
+					if (matchingMethod != null && !Helpers.VersionTooOldToCare (objcVersion)) {
 						if (Helpers.FindManagedDeprecatedAttribute (matchingMethod.CustomAttributes, out Version managedVersionOnMethod)) {
 							if (!Helpers.CompareManagedToObjcVersion (objcVersion, managedVersionOnMethod))
 								Log.On (framework).Add ($"!deprecated-attribute-wrong! {objcEntry.Key} missing has {managedVersionOnMethod} not {objcVersion} on [Deprecated] attribute");
