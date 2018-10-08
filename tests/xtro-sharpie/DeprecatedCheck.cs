@@ -20,7 +20,7 @@ namespace Extrospection
 				string objcClassName = objcEntry.Key;
 				VersionTuple objcVersion = objcEntry.Value;
 
-				TypeDefinition managedType = ManagedTypes.FirstOrDefault (x => Helpers.GetName (x) == objcClassName);
+				TypeDefinition managedType = ManagedTypes.FirstOrDefault (x => Helpers.GetName (x) == objcClassName && x.IsPublic);
 				if (managedType != null) {
 
 					var framework = Helpers.GetFramework (managedType);
@@ -57,7 +57,7 @@ namespace Extrospection
 						continue;
 					}
 
-					var matchingMethod = managedType.Methods.FirstOrDefault (x => x.GetSelector () == selector);
+					var matchingMethod = managedType.Methods.FirstOrDefault (x => x.GetSelector () == selector && x.IsPublic);
 					if (matchingMethod != null && !Helpers.VersionTooOldToCare (objcVersion)) {
 						if (Helpers.FindManagedDeprecatedAttribute (matchingMethod.CustomAttributes, out Version managedVersionOnMethod)) {
 							if (!Helpers.CompareManagedToObjcVersion (objcVersion, managedVersionOnMethod))

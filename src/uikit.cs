@@ -1712,6 +1712,7 @@ namespace UIKit {
 
 	[NoTV]
 	[BaseType (typeof (UIView), KeepRefUntil="Dismissed", Delegates=new string [] { "WeakDelegate" }, Events=new Type [] {typeof(UIActionSheetDelegate)})]
+	[Deprecated (PlatformName.iOS, 8, 3, message: "Use UIAlertController with 'UIAlertControllerStyle.ActionSheet' instead.")]
 	interface UIActionSheet {
 		[Export ("initWithFrame:")]
 		IntPtr Constructor (CGRect frame);
@@ -1780,6 +1781,7 @@ namespace UIKit {
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
+	[Deprecated (PlatformName.iOS, 8, 3)]
 	interface UIActionSheetDelegate {
 
 		[Export ("actionSheet:clickedButtonAtIndex:"), EventArgs ("UIButton")]
@@ -2109,6 +2111,7 @@ namespace UIKit {
 	[BaseType (typeof (NSObject))]
 	[Model]
 	[Protocol]
+	[Deprecated (PlatformName.iOS, 9, 0)]
 	interface UIAlertViewDelegate {
 		[Export ("alertView:clickedButtonAtIndex:"), EventArgs ("UIButton")]
 		void Clicked (UIAlertView alertview, nint buttonIndex);
@@ -2524,18 +2527,22 @@ namespace UIKit {
 
 		[NoTV]
 		[Export ("statusBarStyle")]
+		[Deprecated (PlatformName.iOS, 9, 0, message: "Use `UIViewController.PreferredStatusBarStyle` instead.")]
 		UIStatusBarStyle StatusBarStyle { get; set; }
 		
 		[NoTV]
+		[Deprecated (PlatformName.iOS, 9, 0, message: "Use `UIViewController.PreferredStatusBarStyle` instead.")]
 		[Export ("setStatusBarStyle:animated:")]
 		void SetStatusBarStyle (UIStatusBarStyle statusBarStyle, bool animated);
 
 		[NoTV]
 		[Export ("statusBarHidden")]
+		[Deprecated (PlatformName.iOS, 9, 0, message: "Use `UIViewController.PrefersStatusBarHidden` instead.")]
 		bool StatusBarHidden { [Bind ("isStatusBarHidden")] get; set; }
 
 		[NoTV]
 		[Export ("setStatusBarHidden:withAnimation:")]
+		[Deprecated (PlatformName.iOS, 9, 0, message: "Use `UIViewController.PrefersStatusBarHidden` instead.")]
 		void SetStatusBarHidden (bool state, UIStatusBarAnimation animation);
 
 		[NoTV]
@@ -2545,10 +2552,12 @@ namespace UIKit {
 
 		[NoTV]
 		[Export ("statusBarOrientation")]
+		[Deprecated (PlatformName.iOS, 9, 0)]
 		UIInterfaceOrientation StatusBarOrientation { get; set; }
 		
 		[NoTV]
 		[Export ("setStatusBarOrientation:animated:")]
+		[Deprecated (PlatformName.iOS, 9, 0)]
 		void SetStatusBarOrientation (UIInterfaceOrientation orientation, bool animated);
 
 		[NoTV]

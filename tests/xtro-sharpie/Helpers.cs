@@ -407,7 +407,9 @@ namespace Extrospection {
 		public static bool FindManagedDeprecatedAttribute (IEnumerable<CustomAttribute> attributes, out Version version)
 		{
 			foreach (var attribute in attributes) {
-				if (attribute.Constructor.DeclaringType.Name == "DeprecatedAttribute") {
+				// Consider Obsoleted a super Deprecated for our purposes
+				string attributeName = attribute.Constructor.DeclaringType.Name;
+				if (attributeName == "DeprecatedAttribute" || attributeName == "ObsoletedAttribute") {
 					// None, MacOSX, iOS, WatchOS, TvOS
 					byte platform = (byte)attribute.ConstructorArguments[0].Value;
 					if (platform != PlatformManagedValue)
