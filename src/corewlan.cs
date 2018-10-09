@@ -275,12 +275,12 @@ namespace CoreWlan {
 		[Export ("supportedInterfaces")]
 		string[] SupportedInterfaces { get; }
 
-		[Availability (Deprecated = Platform.Mac_10_7, Obsoleted = Platform.Mac_10_9)]
+		[Availability (Deprecated = Platform.Mac_10_7, Obsoleted = Platform.Mac_10_10)]
 		[Static]
 		[Export ("interface")]
 		CWInterface MainInterface { get; }
 
-		[Availability (Deprecated = Platform.Mac_10_7, Obsoleted = Platform.Mac_10_9)]
+		[Availability (Deprecated = Platform.Mac_10_7, Obsoleted = Platform.Mac_10_10)]
 		[Static]
 		[Export ("interfaceWithName:")]
 		CWInterface FromName ([NullAllowed]string name);
@@ -376,6 +376,7 @@ namespace CoreWlan {
 		[Internal]
 		NSSet _InterfaceNames { get; }
 		 
+		[Deprecated (PlatformName.MacOSX, 10, 10, message: "Use `CWWiFiClient.FromName` instead.")]
 		[Export ("initWithInterfaceName:")]
 		IntPtr Constructor ([NullAllowed]string name);
 		 

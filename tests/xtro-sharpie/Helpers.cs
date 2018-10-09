@@ -400,30 +400,31 @@ namespace Extrospection {
 				return (o1, o2);
 		}
 
-		// Returns out Version and bool as you can have a [Deprecated] with no version (null) which is different no matching deprecated at all
+		// These both return out Version and bool as you can have an an attribute with no version (null) which is different no matching attribute at all
 		public static bool FindManagedDeprecatedAttribute (IEnumerable<CustomAttribute> attributes, out Version version)
 		{
-			foreach (var attribute in attributes) {
-				if (HasDeprecatedAttribute (attribute, Platform))
-					return GetDeprecatedVersion (attribute, out version);
-			}
+			foreach (var attribute in attributes.Where (x => HasDeprecatedAttribute (x, Platform)))
+					return GetPlatformVersion (attribute, out version);
+
 			version = null;
 			return false;
 		}
 
-		public static bool HasDeprecatedAttribute (IEnumerable<CustomAttribute> attributes, IEnumerable <Platforms> platforms)
+		public static bool FindManagedObsoleteAttribute (IEnumerable<CustomAttribute> attributes, out Version version)
 		{
-			foreach (var attribute in attributes) {
-				if (platforms.Any (x => HasDeprecatedAttribute (attribute, x)))
-					return true;
-			}
+			foreach (var attribute in attributes.Where (x => HasObsoletedAttribute (x, Platform)))
+				return GetPlatformVersion (attribute, out version);
+
+			version = null;
 			return false;
 		}
 
-		static bool HasDeprecatedAttribute (CustomAttribute attribute, Platforms platform)
+		public static bool HasDeprecatedAttribute (CustomAttribute attribute, Platforms platform) => HasMatchingPlatformAttribute ("DeprecatedAttribute", attribute, platform);
+		public static bool HasObsoletedAttribute (CustomAttribute attribute, Platforms platform) => HasMatchingPlatformAttribute ("ObsoletedAttribute", attribute, platform);
+
+		static bool HasMatchingPlatformAttribute (string expectedAttributeName, CustomAttribute attribute, Platforms platform)
 		{
-			string attributeName = attribute.Constructor.DeclaringType.Name;
-			if (attributeName == "DeprecatedAttribute" || attributeName == "ObsoletedAttribute") {
+			if (attribute.Constructor.DeclaringType.Name == expectedAttributeName) {
 				// None, MacOSX, iOS, WatchOS, TvOS
 				byte attrPlatform = (byte)attribute.ConstructorArguments[0].Value;
 				if (attrPlatform == GetPlatformManagedValue (platform))
@@ -432,7 +433,12 @@ namespace Extrospection {
 			return false;
 		}
 
-		static bool GetDeprecatedVersion (CustomAttribute attribute, out Version version)
+		public static bool HasAdvicedAttribute (IEnumerable<CustomAttribute> attributes)
+		{
+			return attributes.Any (x => x.Constructor.DeclaringType.Name == "AdviceAttribute");
+		}
+
+		static bool GetPlatformVersion (CustomAttribute attribute, out Version version)
 		{
 			// Three different Attribute flavors
 			// (PlatformName platform, PlatformArchitecture architecture = PlatformArchitecture.None, string message = null)

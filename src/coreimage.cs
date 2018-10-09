@@ -248,10 +248,12 @@ namespace CoreImage {
 		CIContext Create ();
 
 #if !MONOMAC
+		[Deprecated (PlatformName.iOS, 12, 0)]
 		[Static]
 		[Export ("contextWithEAGLContext:")]
 		CIContext FromContext (EAGLContext eaglContext);
 
+		[Deprecated (PlatformName.iOS, 12, 0)]
 		[Static]
 		[Export ("contextWithEAGLContext:options:")]
 		CIContext FromContext (EAGLContext eaglContext, [NullAllowed] NSDictionary dictionary);
@@ -2079,9 +2081,13 @@ namespace CoreImage {
 		[Static, Export ("kernelsWithString:")]
 		CIKernel [] FromPrograms (string coreImageShaderProgram);
 #endif
+		[Deprecated (PlatformName.iOS, 12, 0)]
+		[Deprecated (PlatformName.MacOSX, 10, 14)]
 		[Static, Export ("kernelsWithString:")]
 		CIKernel [] FromProgramMultiple (string coreImageShaderProgram);
 
+		[Deprecated (PlatformName.iOS, 12, 0)]
+		[Deprecated (PlatformName.MacOSX, 10, 14)]
 		[Static, Export ("kernelWithString:")]
 		CIKernel FromProgramSingle (string coreImageShaderProgram);
 
@@ -2122,6 +2128,8 @@ namespace CoreImage {
 
 		// Note: the API is supported in iOS 8, but with iOS 9, they guarantee
 		// a more derived result
+		[Deprecated (PlatformName.iOS, 12, 0)]
+		[Deprecated (PlatformName.MacOSX, 10, 14)]
 		[New, Static, Export ("kernelWithString:")]
 		CIColorKernel FromProgramSingle (string coreImageShaderProgram);
 	}
@@ -2135,6 +2143,8 @@ namespace CoreImage {
 
 		// Note: the API is supported in iOS 8, but with iOS 9, they guarantee
 		// a more derived result
+		[Deprecated (PlatformName.iOS, 12, 0)]
+		[Deprecated (PlatformName.MacOSX, 10, 14)]
 		[New, Static, Export ("kernelWithString:")]
 		CIWarpKernel FromProgramSingle (string coreImageShaderProgram);
 	}
@@ -5200,6 +5210,8 @@ namespace CoreImage {
 	[DisableDefaultCtor] // Handle is nil for `init`
 	interface CIBlendKernel {
 
+		[Deprecated (PlatformName.iOS, 12, 0)]
+		[Deprecated (PlatformName.MacOSX, 10, 14)]
 		[Static]
 		[Export ("kernelWithString:")]
 		[return: NullAllowed]
