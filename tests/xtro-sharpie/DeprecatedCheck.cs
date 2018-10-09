@@ -27,12 +27,7 @@ namespace Extrospection
 		void ProcessObjcEntry (string objcClassName, VersionTuple objcVersion)
 		{
 			TypeDefinition managedType = ManagedTypes.FirstOrDefault (x => Helpers.GetName (x) == objcClassName && x.IsPublic);
-			if (managedType != null) {
-				
-				// In some cases we've used [Advice] when entire types are deprecated
-				if (Helpers.HasAdvicedAttribute (managedType.CustomAttributes))
-					return;
-
+			if (managedType != null) {					
 				var framework = Helpers.GetFramework (managedType);
 				if (framework != null)
 					ProcessItem (managedType, Helpers.GetName (managedType), objcVersion, framework);
@@ -66,11 +61,20 @@ namespace Extrospection
 		public void ProcessItem (ICustomAttributeProvider item, string itemName, VersionTuple objcVersion, string framework)
 		{
 			if (!Helpers.VersionTooOldToCare (objcVersion)) {
+
+				// In some cases we've used [Advice] when entire types are deprecated
+				if (Helpers.HasAdvicedAttribute (item.CustomAttributes))
+					return;
+
 				if (!HasAnyDeprecationAttribute (item.CustomAttributes))
 				{
 					Log.On (framework).Add ($"!deprecated-attribute-missing! {itemName} missing a [Deprecated] attribute");
 					return;
 				}
+
+				// Don't version check us when Apple does __attribute__((availability(macos, introduced=10.0, deprecated=100000)));
+				if (objcVersion.Major == 100000)
+					return;
 
 				// Some APIs have both a [Deprecated] and [Obsoleted]. Bias towards [Obsoleted].
 				Version managedVersion;
