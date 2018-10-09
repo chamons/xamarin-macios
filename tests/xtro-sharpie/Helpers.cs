@@ -475,8 +475,8 @@ namespace Extrospection {
 		{
 			uint major = version.Major;
 			uint minor = version.Minor.HasValue ? version.Minor.Value : 0;
-			if (version.Build.HasValue)
-				return new Version ((int)major, (int)minor, (int)version.Build.Value);
+			if (version.Subminor.HasValue)
+				return new Version ((int)major, (int)minor, (int)version.Subminor.Value);
 			else
 				return new Version ((int)major, (int)minor);
 		}
