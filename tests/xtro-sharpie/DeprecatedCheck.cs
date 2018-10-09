@@ -70,7 +70,7 @@ namespace Extrospection
 
 				if (Helpers.FindManagedDeprecatedAttribute (item.CustomAttributes, out Version managedVersion)) {
 					if (!Helpers.CompareManagedToObjcVersion (objcVersion, managedVersion))
-						Log.On (framework).Add ($"!deprecated-attribute-wrong! {itemName} missing has {managedVersion} not {objcVersion} on [Deprecated] attribute");
+						Log.On (framework).Add ($"!deprecated-attribute-wrong! {itemName} has {managedVersion} not {objcVersion} on [Deprecated] attribute");
 				}
 			}
 		}

@@ -5430,6 +5430,10 @@ namespace Foundation
 	, QLPreviewItem
 #endif
 	{
+		[Deprecated (PlatformName.iOS, 9, 0, message : "Use `NSUrlComponents` instead.")]
+		[Deprecated (PlatformName.WatchOS, 2, 0, message : "Use `NSUrlComponents` instead.")]
+		[Deprecated (PlatformName.TvOS, 9, 0, message : "Use `NSUrlComponents` instead.")]
+		[Deprecated (PlatformName.MacOSX, 10, 11, message : "Use `NSUrlComponents` instead.")]
 		[Export ("initWithScheme:host:path:")]
 		IntPtr Constructor (string scheme, string host, string path);
 
@@ -6468,6 +6472,9 @@ namespace Foundation
 		[Export ("setDelegateQueue:")]
 		void SetDelegateQueue (NSOperationQueue queue);
 
+		[Deprecated (PlatformName.iOS, 9, 0, message : "Use `NSUrlSession.CreateDataTask` instead.")]
+		[Deprecated (PlatformName.TvOS, 9, 0, message : "Use `NSUrlSession.CreateDataTask` instead.")]
+		[Deprecated (PlatformName.MacOSX, 10, 11, message : "Use `NSUrlSession.CreateDataTask` instead.")]
 		[NoWatch]
 		[Static]
 		[Export ("sendAsynchronousRequest:queue:completionHandler:")]
@@ -8780,6 +8787,10 @@ namespace Foundation
 		void WaitUntilFinished ();
 
 		[Export ("threadPriority")]
+		[Deprecated (PlatformName.iOS, 8, 0)]
+		[Deprecated (PlatformName.WatchOS, 2, 0)]
+		[Deprecated (PlatformName.TvOS, 9, 0)]
+		[Deprecated (PlatformName.MacOSX, 10, 10)]
 		double ThreadPriority { get; set; }
 
 		//Detected properties
