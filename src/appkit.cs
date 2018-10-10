@@ -3831,6 +3831,7 @@ namespace AppKit {
 		NSColor AlternateSelectedControlText { get; }
 
 		[Static]
+		[Advice ("Use `AlternatingContentBackgroundColors instead.")]
 		[Export ("controlAlternatingRowBackgroundColors")]
 		NSColor [] ControlAlternatingRowBackgroundColors ();
 
@@ -11935,6 +11936,7 @@ namespace AppKit {
 		[Export ("pageSizeForPaper:")]
 		CGSize PageSizeForPaper (string paperName); 
 
+		[Deprecated (PlatformName.MacOSX, 10, 9)]
 		[Export ("statusForTable:")]
 		NSPrinterTableStatus StatusForTable (string tableName);
 

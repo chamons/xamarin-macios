@@ -60,35 +60,55 @@ namespace Extrospection
 
 		public void ProcessItem (ICustomAttributeProvider item, string itemName, VersionTuple objcVersion, string framework)
 		{
-			if (!Helpers.VersionTooOldToCare (objcVersion)) {
+			if (Helpers.VersionTooOldToCare (objcVersion))
+				return;
 
-				// In some cases we've used [Advice] when entire types are deprecated
-				if (Helpers.HasAdvicedAttribute (item.CustomAttributes))
-					return;
+			if (HasAnyAdviceAttribute (item))
+				return;
 
-				if (!HasAnyDeprecationAttribute (item.CustomAttributes))
-				{
-					Log.On (framework).Add ($"!deprecated-attribute-missing! {itemName} missing a [Deprecated] attribute");
-					return;
-				}
-
-				// Don't version check us when Apple does __attribute__((availability(macos, introduced=10.0, deprecated=100000)));
-				if (objcVersion.Major == 100000)
-					return;
-
-				// Some APIs have both a [Deprecated] and [Obsoleted]. Bias towards [Obsoleted].
-				Version managedVersion;
-				bool foundObsoleted = Helpers.FindManagedObsoleteAttribute (item.CustomAttributes, out managedVersion);
-				if (foundObsoleted) {
-					if (managedVersion != null && !Helpers.CompareManagedToObjcVersion (objcVersion, managedVersion))
-						Log.On (framework).Add ($"!deprecated-attribute-wrong! {itemName} has {managedVersion} not {objcVersion} on [Obsoleted] attribute");
-					return;
-				}
-
-				bool foundDeprecated = Helpers.FindManagedDeprecatedAttribute (item.CustomAttributes, out managedVersion);
-				if (foundDeprecated && managedVersion != null && !Helpers.CompareManagedToObjcVersion (objcVersion, managedVersion))
-					Log.On (framework).Add ($"!deprecated-attribute-wrong! {itemName} has {managedVersion} not {objcVersion} on [Deprecated] attribute");
+			if (!HasAnyDeprecationAttribute (item.CustomAttributes))
+			{
+				Log.On (framework).Add ($"!deprecated-attribute-missing! {itemName} missing a [Deprecated] attribute");
+				return;
 			}
+
+			// Don't version check us when Apple does __attribute__((availability(macos, introduced=10.0, deprecated=100000)));
+			if (objcVersion.Major == 100000)
+				return;
+
+			// Some APIs have both a [Deprecated] and [Obsoleted]. Bias towards [Obsoleted].
+			Version managedVersion;
+			bool foundObsoleted = Helpers.FindManagedObsoleteAttribute (item.CustomAttributes, out managedVersion);
+			if (foundObsoleted) {
+				if (managedVersion != null && !ManagedBeforeOrEqualToObjcVersion (objcVersion, managedVersion))
+					Log.On (framework).Add ($"!deprecated-attribute-wrong! {itemName} has {managedVersion} not {objcVersion} on [Obsoleted] attribute");
+				return;
+			}
+
+			bool foundDeprecated = Helpers.FindManagedDeprecatedAttribute (item.CustomAttributes, out managedVersion);
+			if (foundDeprecated && managedVersion != null && !ManagedBeforeOrEqualToObjcVersion (objcVersion, managedVersion))
+				Log.On (framework).Add ($"!deprecated-attribute-wrong! {itemName} has {managedVersion} not {objcVersion} on [Deprecated] attribute");
+		}
+
+		public static bool ManagedBeforeOrEqualToObjcVersion (VersionTuple objcVersionTuple, Version managedVersion)
+		{
+			return managedVersion <= ConvertToVersion (objcVersionTuple);
+		}
+
+		// In some cases we've used [Advice] when entire types are deprecated
+		static bool HasAnyAdviceAttribute (ICustomAttributeProvider item)
+		{
+			if (Helpers.HasAdvicedAttribute (item.CustomAttributes))
+				return true;
+
+			// [Advice] does not get generated on the individual property (get\set) methods but on the property itself
+			// And Cecil does not have a link between them, so we have to dig to find the match
+			if (item is MethodDefinition method) {
+				PropertyDefinition property = method.DeclaringType.Properties.FirstOrDefault (p => p.GetMethod == method || p.SetMethod == method);
+				if (property != null && Helpers.HasAdvicedAttribute (property.CustomAttributes))
+					return true;
+			}
+			return false;
 		}
 
 		static bool HasAnyDeprecationAttribute (IEnumerable<CustomAttribute> attributes)

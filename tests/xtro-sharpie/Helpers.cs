@@ -471,12 +471,6 @@ namespace Extrospection {
 			}
 		}
 
-		public static bool CompareManagedToObjcVersion (VersionTuple objcVersionTuple, Version managedVersion)
-		{
-			Version objcVersion = ConvertToVersion (objcVersionTuple);
-			return objcVersion == managedVersion;
-		}
-
 		public static Version ConvertToVersion (VersionTuple version)
 		{
 			uint major = version.Major;
