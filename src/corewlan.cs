@@ -275,12 +275,12 @@ namespace CoreWlan {
 		[Export ("supportedInterfaces")]
 		string[] SupportedInterfaces { get; }
 
-		[Availability (Deprecated = Platform.Mac_10_7, Obsoleted = Platform.Mac_10_10)]
+		[Availability (Deprecated = Platform.Mac_10_7, Obsoleted = Platform.Mac_10_9)]
 		[Static]
 		[Export ("interface")]
 		CWInterface MainInterface { get; }
 
-		[Availability (Deprecated = Platform.Mac_10_7, Obsoleted = Platform.Mac_10_10)]
+		[Availability (Deprecated = Platform.Mac_10_7, Obsoleted = Platform.Mac_10_9)]
 		[Static]
 		[Export ("interfaceWithName:")]
 		CWInterface FromName ([NullAllowed]string name);

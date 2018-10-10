@@ -1895,8 +1895,8 @@ namespace CoreData
 		new void Unlock ();
 
 		[NoTV]
-		[Deprecated (PlatformName.iOS, 8, 0, message: "Use `PerformAndWait` instead")]
-		[Deprecated (PlatformName.MacOSX, 10, 10, message: "Use `PerformAndWait` instead")]
+		[Deprecated (PlatformName.iOS, 8, 0, message: "Use `Perform` instead")]
+		[Deprecated (PlatformName.MacOSX, 10, 10, message: "Use `Perform` instead")]
 		[Export ("tryLock")]
 		bool TryLock { get; }
 #endif // !WATCH && !TVOS
