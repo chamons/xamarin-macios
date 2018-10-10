@@ -34,7 +34,6 @@ namespace Extrospection
 		static bool HasMatchingPlatformAttribute (string expectedAttributeName, CustomAttribute attribute, Platforms platform)
 		{
 			if (attribute.Constructor.DeclaringType.Name == expectedAttributeName) {
-				// None, MacOSX, iOS, WatchOS, TvOS
 				byte attrPlatform = (byte)attribute.ConstructorArguments[0].Value;
 				if (attrPlatform == Helpers.GetPlatformManagedValue (platform))
 					return true;
