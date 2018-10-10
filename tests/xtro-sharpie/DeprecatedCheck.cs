@@ -4,7 +4,6 @@ using System.Linq;
 using Clang;
 using Clang.Ast;
 using Mono.Cecil;
-using static Extrospection.Helpers;
 
 namespace Extrospection
 {
@@ -60,7 +59,7 @@ namespace Extrospection
 
 		public void ProcessItem (ICustomAttributeProvider item, string itemName, VersionTuple objcVersion, string framework)
 		{
-			if (Helpers.VersionTooOldToCare (objcVersion))
+			if (VersionHelpers.VersionTooOldToCare (objcVersion))
 				return;
 
 			if (HasAnyAdviceAttribute (item))
@@ -78,34 +77,34 @@ namespace Extrospection
 
 			// Some APIs have both a [Deprecated] and [Obsoleted]. Bias towards [Obsoleted].
 			Version managedVersion;
-			bool foundObsoleted = Helpers.FindManagedObsoleteAttribute (item.CustomAttributes, out managedVersion);
+			bool foundObsoleted = AttributeHelpers.FindObsolete (item.CustomAttributes, out managedVersion);
 			if (foundObsoleted) {
 				if (managedVersion != null && !ManagedBeforeOrEqualToObjcVersion (objcVersion, managedVersion))
 					Log.On (framework).Add ($"!deprecated-attribute-wrong! {itemName} has {managedVersion} not {objcVersion} on [Obsoleted] attribute");
 				return;
 			}
 
-			bool foundDeprecated = Helpers.FindManagedDeprecatedAttribute (item.CustomAttributes, out managedVersion);
+			bool foundDeprecated = AttributeHelpers.FindDeprecated (item.CustomAttributes, out managedVersion);
 			if (foundDeprecated && managedVersion != null && !ManagedBeforeOrEqualToObjcVersion (objcVersion, managedVersion))
 				Log.On (framework).Add ($"!deprecated-attribute-wrong! {itemName} has {managedVersion} not {objcVersion} on [Deprecated] attribute");
 		}
 
 		public static bool ManagedBeforeOrEqualToObjcVersion (VersionTuple objcVersionTuple, Version managedVersion)
 		{
-			return managedVersion <= ConvertToVersion (objcVersionTuple);
+			return managedVersion <= VersionHelpers.Convert (objcVersionTuple);
 		}
 
 		// In some cases we've used [Advice] when entire types are deprecated
 		static bool HasAnyAdviceAttribute (ICustomAttributeProvider item)
 		{
-			if (Helpers.HasAdvicedAttribute (item.CustomAttributes))
+			if (AttributeHelpers.HasAdviced (item.CustomAttributes))
 				return true;
 
 			// [Advice] does not get generated on the individual property (get\set) methods but on the property itself
 			// And Cecil does not have a link between them, so we have to dig to find the match
 			if (item is MethodDefinition method) {
 				PropertyDefinition property = method.DeclaringType.Properties.FirstOrDefault (p => p.GetMethod == method || p.SetMethod == method);
-				if (property != null && Helpers.HasAdvicedAttribute (property.CustomAttributes))
+				if (property != null && AttributeHelpers.HasAdviced (property.CustomAttributes))
 					return true;
 			}
 			return false;
@@ -117,7 +116,7 @@ namespace Extrospection
 			// Then remove GetRelatedPlatforms and just check Helpers.Platform
 			Platforms[] platforms = GetRelatedPlatforms ();
 			foreach (var attribute in attributes) {
-				if (platforms.Any (x => Helpers.HasDeprecatedAttribute (attribute, x)) || platforms.Any (x => Helpers.HasObsoletedAttribute (attribute, x)))
+				if (platforms.Any (x => AttributeHelpers.HasDeprecated (attribute, x)) || platforms.Any (x => AttributeHelpers.HasObsoleted (attribute, x)))
 					return true;
 			}
 			return false;
@@ -137,7 +136,7 @@ namespace Extrospection
 			case Platforms.watchOS:
 				return new Platforms[] { Platforms.iOS, Platforms.watchOS };
 			default:
-				throw new InvalidOperationException ($"Unknown {Platform} in GetPlatforms");
+				throw new InvalidOperationException ($"Unknown {Helpers.Platform} in GetPlatforms");
 			}
 		}
 
@@ -148,7 +147,7 @@ namespace Extrospection
 
 		void VisitItem (NamedDecl decl, VisitKind visitKind)
 		{
-			if (visitKind == VisitKind.Enter && Helpers.FindObjcDeprecatedAttribute (decl.Attrs, out VersionTuple version))
+			if (visitKind == VisitKind.Enter && AttributeHelpers.FindObjcDeprecated (decl.Attrs, out VersionTuple version))
 				ObjCDeprecatedItems[decl.Name] = version;
 		}
 
@@ -157,7 +156,7 @@ namespace Extrospection
 
 		public override void VisitObjCMethodDecl (ObjCMethodDecl decl, VisitKind visitKind)
 		{
-			if (visitKind == VisitKind.Enter && Helpers.FindObjcDeprecatedAttribute(decl.Attrs, out VersionTuple version))
+			if (visitKind == VisitKind.Enter && AttributeHelpers.FindObjcDeprecated(decl.Attrs, out VersionTuple version))
 				ObjCDeprecatedSelectors[decl.QualifiedName] = version;
 		}
 	}

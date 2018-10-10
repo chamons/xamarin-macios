@@ -6,11 +6,17 @@ using System.Text;
 using Mono.Cecil;
 
 using Clang.Ast;
-using System.Linq;
-using Clang;
 
 namespace Extrospection {
-	
+
+	public enum Platforms
+	{
+		macOS,
+		iOS,
+		watchOS,
+		tvOS,
+	}
+
 	public static partial class Helpers {
 
 		// the original name can be lost and, if not registered (e.g. enums), might not be available
@@ -57,14 +63,6 @@ namespace Extrospection {
 			return index < 0 ? source : source.Substring (0, index) + replace + source.Substring (index + find.Length);
 		}
 
-		public enum Platforms
-		{
-			macOS,
-			iOS,
-			watchOS,
-			tvOS,
-		}
-
 		public static Platforms Platform { get; set; }
 
 		public static int GetPlatformManagedValue (Platforms platform)
@@ -89,13 +87,13 @@ namespace Extrospection {
 		{
 			get {
 				switch (Helpers.Platform) {
-				case Helpers.Platforms.macOS:
+				case Platforms.macOS:
 					return "macos";
-				case Helpers.Platforms.iOS:
+				case Platforms.iOS:
 					return "ios";
-				case Helpers.Platforms.watchOS:
+				case Platforms.watchOS:
 					return "watchos";
-				case Helpers.Platforms.tvOS:
+				case Platforms.tvOS:
 					return "tvos";
 				default:
 					throw new InvalidOperationException ($"Unexpected Platform {Platform} in ClangPlatformName");
@@ -398,103 +396,6 @@ namespace Extrospection {
 				return (o2, o1);
 			else
 				return (o1, o2);
-		}
-
-		// These both return out Version and bool as you can have an an attribute with no version (null) which is different no matching attribute at all
-		public static bool FindManagedDeprecatedAttribute (IEnumerable<CustomAttribute> attributes, out Version version)
-		{
-			foreach (var attribute in attributes.Where (x => HasDeprecatedAttribute (x, Platform)))
-					return GetPlatformVersion (attribute, out version);
-
-			version = null;
-			return false;
-		}
-
-		public static bool FindManagedObsoleteAttribute (IEnumerable<CustomAttribute> attributes, out Version version)
-		{
-			foreach (var attribute in attributes.Where (x => HasObsoletedAttribute (x, Platform)))
-				return GetPlatformVersion (attribute, out version);
-
-			version = null;
-			return false;
-		}
-
-		public static bool HasDeprecatedAttribute (CustomAttribute attribute, Platforms platform) => HasMatchingPlatformAttribute ("DeprecatedAttribute", attribute, platform);
-		public static bool HasObsoletedAttribute (CustomAttribute attribute, Platforms platform) => HasMatchingPlatformAttribute ("ObsoletedAttribute", attribute, platform);
-
-		static bool HasMatchingPlatformAttribute (string expectedAttributeName, CustomAttribute attribute, Platforms platform)
-		{
-			if (attribute.Constructor.DeclaringType.Name == expectedAttributeName) {
-				// None, MacOSX, iOS, WatchOS, TvOS
-				byte attrPlatform = (byte)attribute.ConstructorArguments[0].Value;
-				if (attrPlatform == GetPlatformManagedValue (platform))
-					return true;
-			}
-			return false;
-		}
-
-		public static bool HasAdvicedAttribute (IEnumerable<CustomAttribute> attributes)
-		{
-			return attributes.Any (x => x.Constructor.DeclaringType.Name == "AdviceAttribute");
-		}
-
-		static bool GetPlatformVersion (CustomAttribute attribute, out Version version)
-		{
-			// Three different Attribute flavors
-			// (PlatformName platform, PlatformArchitecture architecture = PlatformArchitecture.None, string message = null)
-			// (PlatformName platform, int majorVersion, int minorVersion, PlatformArchitecture architecture = PlatformArchitecture.None, string message = null)
-			// (PlatformName platform, int majorVersion, int minorVersion, int subminorVersion, PlatformArchitecture architecture = PlatformArchitecture.None, string message = null)
-			switch (attribute.ConstructorArguments.Count) {
-			case 3:
-				version = null;
-				return true;
-			case 5:
-				version = new Version ((int)attribute.ConstructorArguments[1].Value, (int)attribute.ConstructorArguments[2].Value);
-				return true;
-			case 6:
-				version = new Version ((int)attribute.ConstructorArguments[1].Value, (int)attribute.ConstructorArguments[2].Value, (int)attribute.ConstructorArguments[3].Value);
-				return true;
-			default:
-				throw new InvalidOperationException ("IntroducedAttribute with unexpected number of arguments {attribute.ConstructorArguments.Count}");
-			}
-		}
-
-		public static bool FindObjcDeprecatedAttribute (IEnumerable<Attr> attrs, out VersionTuple version)
-		{
-			AvailabilityAttr attr = attrs.OfType<AvailabilityAttr> ().FirstOrDefault (x => !x.Deprecated.IsEmpty && x.Platform.Name == ClangPlatformName);
-			if (attr != null) {
-				version = attr.Deprecated;
-				return true;
-			} else {
-				version = VersionTuple.Empty;
-				return false;
-			}
-		}
-
-		public static Version ConvertToVersion (VersionTuple version)
-		{
-			uint major = version.Major;
-			uint minor = version.Minor.HasValue ? version.Minor.Value : 0;
-			if (version.Subminor.HasValue)
-				return new Version ((int)major, (int)minor, (int)version.Subminor.Value);
-			else
-				return new Version ((int)major, (int)minor);
-		}
-
-		public static bool VersionTooOldToCare (VersionTuple version)
-		{
-			switch (Platform) {
-			case Platforms.iOS:
-				return version.Major < 6;
-			case Platforms.macOS:
-				return version.Minor < 7;
-			case Platforms.tvOS:
-				return version.Major < 9;
-			case Platforms.watchOS:
-				return version.Major < 1;
-			default:
-				throw new InvalidOperationException ($"Unknown platform {Platform} in VersionTooOldToCare");
-			}
 		}
 	}
 }
