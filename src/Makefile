@@ -456,6 +456,7 @@ $(BUILD_DIR)/mac-$(1).rsp: Makefile Makefile.generator frameworks.sources
 		-warnaserror:$(MAC_GENERATOR_WARNASERROR) \
 		-native-exception-marshalling \
 		-core \
+		-default-method-interface \
 		-sourceonly:$(MAC_BUILD_DIR)/$(1)/generated-sources \
 		-tmpdir:$(MAC_BUILD_DIR)/$(1) \
 		-baselib:$(MAC_BUILD_DIR)/$(1)/core.dll \
@@ -476,7 +477,7 @@ $(MAC_BUILD_DIR)/$(1)/$(2): $(MAC_BUILD_DIR)/$(3)/generated-sources $(MAC_SOURCE
 	@mkdir -p $(MAC_BUILD_DIR)/$(1)
 	$$(call Q_PROF_CSC,mac/$(1)) \
 		$$(MAC_$(3)_CSC) -nologo -out:$$@ -target:library -debug -unsafe \
-		-deterministic \
+		-deterministic /langversion:7.1 \
 		$$(MAC_COMMON_DEFINES),OBJECT_REF_TRACKING \
 		-r:Mono.Security.dll \
 		$$(MAC_$(3)_ARGS) \

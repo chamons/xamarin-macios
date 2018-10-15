@@ -962,6 +962,8 @@ public partial class Generator : IMemberGatherer {
 	HashSet<string> generated_files = new HashSet<string> ();
 	public Type CoreNSObject = TypeManager.NSObject;
 	public Type SampleBufferType = TypeManager.CMSampleBuffer;
+	
+	public bool DefaultInterfaceMethods;
 
 	static string CoreImageMap {
 		get {
@@ -5664,6 +5666,33 @@ public partial class Generator : IMemberGatherer {
 			print ("}");
 			print ("");
 		}
+
+		if (DefaultInterfaceMethods) {
+			foreach (var optionalMethod in optionalInstanceMethods) {
+				var minfo = new MemberInformation (this, optionalMethod, type, null);
+				
+				if (AttributeManager.HasAttribute<NoDefaultValueAttribute> (optionalMethod))
+					continue;
+
+				if (minfo.method.ReturnType == TypeManager.System_Void) {
+					print ("[Preserve (Conditional = true)]");
+					PrintMethodAttributes (minfo);
+					PrintPlatformAttributes (optionalMethod);
+					PrintExport (minfo);
+					print ($"virtual {MakeSignature (minfo, true)} {{ Console.WriteLine (\"{minfo.selector}\"); }}");
+				}
+				else {
+				//	throw new NotImplementedException ();
+				}
+			}
+			foreach (var optionalProp in optionalInstanceProperties) {
+				var minfo = new MemberInformation (this, optionalProp, type);
+				//print ("//virtual {0} {{}};", MakeSignature (minfo, true));
+				//throw new NotImplementedException ();
+			}
+
+		}
+
 		indent--;
 		print ("}");
 		print ("");

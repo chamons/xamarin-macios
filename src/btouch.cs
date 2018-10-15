@@ -47,7 +47,7 @@ class BindingTouch {
 
 	static string baselibdll;
 	static string attributedll;
-	static string compiler = "/Library/Frameworks/Mono.framework/Versions/Current/bin/csc";
+	static string compiler = "/Library/Frameworks/Mono.framework/Versions/Current/bin/csc-dim";
 
 	static List<string> libs = new List<string> ();
 
@@ -235,6 +235,7 @@ class BindingTouch {
 		var defines = new List<string> ();
 		string generate_file_list = null;
 		bool process_enums = false;
+		bool default_interface_method = false;
 
 		var os = new OptionSet () {
 			{ "h|?|help", "Displays the help", v => show_help = true },
@@ -313,6 +314,7 @@ class BindingTouch {
 					}
 				}
 			},
+			{ "default-method-interface", "Experimental Default Method Interface Support", l => default_interface_method = true, true },
 			new Mono.Options.ResponseFileSource (),
 		};
 
@@ -552,6 +554,7 @@ class BindingTouch {
 				BaseDir = basedir != null ? basedir : tmpdir,
 				ZeroCopyStrings = zero_copy,
 				InlineSelectors = inline_selectors ?? (Unified && CurrentPlatform != PlatformName.MacOSX),
+				DefaultInterfaceMethods = default_interface_method
 			};
 
 			if (!Unified && !Generator.BindThirdPartyLibrary) {
@@ -574,6 +577,7 @@ class BindingTouch {
 			cargs.Clear ();
 			if (unsafef)
 				cargs.Append ("-unsafe ");
+			cargs.Append ("/langversion:7.1").Append (' ');
 			cargs.Append ("-target:library ");
 			cargs.Append ("-out:").Append (StringUtils.Quote (outfile)).Append (' ');
 			foreach (var def in defines)
