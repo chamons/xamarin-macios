@@ -442,6 +442,7 @@ class BindingTouch {
 			// Keep source files at the end of the command line - csc will create TWO assemblies if any sources preceed the -out parameter
 			var cargs = new StringBuilder ();
 
+			cargs.Append ("/langversion:7.1").Append (' ');
 			cargs.Append ("-debug -unsafe -target:library -nowarn:436").Append (' ');
 			cargs.Append ("-out:").Append (StringUtils.Quote (tmpass)).Append (' ');
 			cargs.Append ("-r:").Append (StringUtils.Quote (GetAttributeLibraryPath ())).Append (' ');
