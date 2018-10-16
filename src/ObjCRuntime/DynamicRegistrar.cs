@@ -221,9 +221,32 @@ namespace Registrar {
 			return type.GetConstructors (BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
 		}
 
+		// Default Interface Methods (DIM) are declared on the interface themself, not the concrete classes
+		// and reflection on the concrete class will not see them. We must walk all interfaces looking for methods
+		// declared there that are not implemented on the concrete class.
+		IEnumerable<MethodBase> CollectDIMMethods (Type type)
+		{
+			List<MethodBase> methods = new List<MethodBase> ();
+
+			// DIM 
+			foreach (var i in type.GetInterfaces ()) {
+				foreach (var m in i.GetMethods ())
+					// This is slow and dumb
+					try {
+						if (type.GetMethod (m.Name) == null)
+							methods.Add (m);
+					}
+					catch (AmbiguousMatchException) { } // Unusure how not to hit this
+			}
+			return methods;
+		}
+
 		protected override IEnumerable<MethodBase> CollectMethods (Type type)
 		{
-			return type.GetMethods (BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
+			List<MethodBase> methods = new List<MethodBase> (); 
+			methods.AddRange (type.GetMethods (BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly));
+			methods.AddRange (CollectDIMMethods (type));
+			return methods;
 		}
 
 		protected override IEnumerable<PropertyInfo> CollectProperties (Type type)
