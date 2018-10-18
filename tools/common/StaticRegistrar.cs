@@ -842,6 +842,15 @@ namespace Registrar {
 		protected override IEnumerable<MethodDefinition> CollectMethods (TypeReference tr)
 		{
 			var type = tr.Resolve ();
+			foreach (var m in CollectMethods (type))
+				yield return m;
+
+			foreach (var m in CollectDIMMethods (type))
+				yield return m;
+		}
+
+		IEnumerable<MethodDefinition> CollectMethods (TypeDefinition type)
+		{
 			if (!type.HasMethods)
 				yield break;
 
@@ -850,6 +859,38 @@ namespace Registrar {
 					continue;
 
 				yield return method;
+			}
+		}
+
+		IEnumerable<MethodDefinition> GetAllTypeMethods (TypeDefinition type)
+		{
+			List<MethodDefinition> methods = new List<MethodDefinition> (type.Methods.Count);
+
+			do {
+				methods.AddRange (type.Methods);
+				type = type.BaseType?.Resolve ();
+			}
+			while (type != null);
+			return methods;
+		}
+
+		IEnumerable<MethodDefinition> CollectDIMMethods (TypeDefinition type)
+		{
+			if (!type.HasInterfaces)
+				yield break;
+
+			var allMethods = GetAllTypeMethods (type);
+
+			foreach (var interfaceImpl in type.Interfaces) {
+				var interfaceType = interfaceImpl.InterfaceType.Resolve ();
+				if (interfaceType == null || !interfaceType.HasMethods)
+					continue;
+
+				foreach (var m in interfaceType.Methods) {
+					// TODO - This is slow and dumb
+					if (!allMethods.Contains (m))
+						yield return m;
+				}
 			}
 		}
 

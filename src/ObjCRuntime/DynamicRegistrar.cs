@@ -228,10 +228,9 @@ namespace Registrar {
 		{
 			List<MethodBase> methods = new List<MethodBase> ();
 
-			// DIM 
 			foreach (var i in type.GetInterfaces ()) {
 				foreach (var m in i.GetMethods ())
-					// This is slow and dumb
+					// TODO - This is slow and dumb
 					try {
 						if (type.GetMethod (m.Name) == null)
 							methods.Add (m);

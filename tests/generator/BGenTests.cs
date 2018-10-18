@@ -561,6 +561,14 @@ namespace GeneratorTests
 			Assert.AreEqual (modelName, attrib.ConstructorArguments [0].Value, "Custom ObjC name");
 		}
 
+		[Test]
+		[TestCase (Profile.macOSFull)]
+		[TestCase (Profile.macOSMobile)]
+		public void DefaultInterfaceMethod (Profile profile)
+		{
+			BuildFile (profile, "default-interface-method.cs");
+		}
+
 		BGenTool BuildFile (Profile profile, params string [] filenames)
 		{
 			return BuildFile (profile, true, false, filenames);
