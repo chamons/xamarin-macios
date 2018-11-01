@@ -48,6 +48,7 @@
     <Compile Include="Generator\MacBindingTemplateEngine.cs" />
     <Compile Include="Generator\MacLibraryTemplateEngine.cs" />
     <Compile Include="Generator\MacSystemMonoTemplateEngine.cs" />
+    <Compile Include="Generator\MacClassicAppTemplateEngine.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

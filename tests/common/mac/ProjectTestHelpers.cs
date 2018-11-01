@@ -393,7 +393,13 @@ namespace Xamarin.MMP.Tests
 		public static OutputText TestClassicExecutable (string tmpDir, string testCode = "", string csprojConfig = "", bool shouldFail = false, bool includeMonoRuntime = false)
 		{
 			Guid guid = Guid.NewGuid ();
-			string csprojTarget = GenerateClassicEXEProject (tmpDir, "ClassicExample.csproj", testCode + GenerateOutputCommand (tmpDir,guid), csprojConfig, includeMonoRuntime: includeMonoRuntime);
+			testCode += GenerateOutputCommand (tmpDir, guid);
+
+			var engine = new MacClassicAppTemplateEngine ();
+			ProjectSubstitutions projectSubstitutions = new ProjectSubstitutions { CSProjConfig = csprojConfig };
+			FileSubstitutions fileSubstitutions = new FileSubstitutions { TestCode = testCode };
+			string csprojTarget = engine.Generate (tmpDir, projectSubstitutions, fileSubstitutions, includeMonoRuntime);
+
 			string buildOutput = BuildProject (csprojTarget, isUnified : false, shouldFail : shouldFail);
 			if (shouldFail)
 				return new OutputText (buildOutput, "");
@@ -420,19 +426,6 @@ namespace Xamarin.MMP.Tests
 			string exePath = Path.Combine (config.TmpDir, "bin", config.Release ? "Release" : "Debug", "SystemMonoExample.app/Contents/MacOS/SystemMonoExample");
 			string runOutput = RunEXEAndVerifyGUID (config.TmpDir, config.guid, exePath);
 			return new OutputText (buildOutput, runOutput);
-		}
-
-		public static string GenerateClassicEXEProject (string tmpDir, string projectName, string testCode, string csprojConfig = "", string references = "", string assemblyName = null, bool includeMonoRuntime = false)
-		{
-			WriteMainFile ("", testCode, false, false, Path.Combine (tmpDir, "Main.cs"));
-
-			string sourceDir = FindSourceDirectory ();
-			File.Copy (Path.Combine (sourceDir, "Info-Classic.plist"), Path.Combine (tmpDir, "Info.plist"), true);
-
-			return CopyFileWithSubstitutions (Path.Combine (sourceDir, projectName), Path.Combine (tmpDir, projectName), text =>
-				{
-					return text.Replace ("%CODE%", csprojConfig).Replace ("%REFERENCES%", references).Replace ("%NAME%", assemblyName ?? Path.GetFileNameWithoutExtension (projectName)).Replace ("%INCLUDE_MONO_RUNTIME%", includeMonoRuntime.ToString ());
-				});
 		}
 
 		static string GetTargetFrameworkValue (UnifiedTestConfig config)
