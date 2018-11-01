@@ -24,7 +24,7 @@ namespace Xamarin.MMP.Tests
 				};
 				TI.AddGUIDTestCode (config);
 
-				string project = TI.GenerateUnifiedExecutableProject (config);
+				string project = TI.GenerateAppProject (config);
 				TI.NugetRestore (project);
 				TI.BuildProject (project, true);
 				TI.RunGeneratedUnifiedExecutable (config);

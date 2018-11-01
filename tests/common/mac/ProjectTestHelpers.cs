@@ -312,22 +312,6 @@ namespace Xamarin.MMP.Tests
 			return output;
 		}
 
-		public static string GenerateEXEProject (UnifiedTestConfig config)
-		{
-			var info = TemplateInfo.FromCustomProject (ProjectType.App, config.FSharp ? ProjectLanguage.FSharp : ProjectLanguage.CSharp, config.ProjectName);
-
-			var engine = new MacAppTemplateEngine (info);
-			var fileSubstitutions = new FileSubstitutions {
-				TestCode = config.TestCode,
-				TestDecl = config.TestDecl,
-			};
-			PListSubstitutions pListSubstitutions = new PListSubstitutions () {
-				Replacements = config.PlistReplaceStrings
-			};
-
-			return engine.Generate (config.TmpDir, CreateDefaultSubstitutions (config), fileSubstitutions, pListSubstitutions);
-		}
-
 		public static string GenerateBindingLibraryProject (UnifiedTestConfig config)
 		{
 			var info = TemplateInfo.FromCustomProject (ProjectType.Binding, ProjectLanguage.CSharp, config.ProjectName);
@@ -355,26 +339,25 @@ namespace Xamarin.MMP.Tests
 			return engine.GenerateLibraryProject (config.TmpDir);
 		}
 
-		public static string GetUnifiedExecutableProjectName (UnifiedTestConfig config)
+		public static string GenerateAppProject (UnifiedTestConfig config)
 		{
-			string projectName;
-			if (config.FSharp)
-				projectName = config.XM45 ? "FSharpXM45Example" : "FSharpUnifiedExample";
-			else
-				projectName = config.XM45 ? "XM45Example" : "UnifiedExample";
-			string projectExtension = config.FSharp ? ".fsproj" : ".csproj";
-			return projectName + projectExtension;
-		}
+			var info = TemplateInfo.FromCustomProject (ProjectType.App, config.FSharp ? ProjectLanguage.FSharp : ProjectLanguage.CSharp, config.ProjectName);
 
-		public static string GenerateUnifiedExecutableProject (UnifiedTestConfig config)
-		{
-			config.ProjectName = GetUnifiedExecutableProjectName (config);
-			return GenerateEXEProject (config);
+			var engine = new MacAppTemplateEngine (info);
+			var fileSubstitutions = new FileSubstitutions {
+				TestCode = config.TestCode,
+				TestDecl = config.TestDecl,
+			};
+			PListSubstitutions pListSubstitutions = new PListSubstitutions () {
+				Replacements = config.PlistReplaceStrings
+			};
+
+			return engine.Generate (config.TmpDir, CreateDefaultSubstitutions (config), fileSubstitutions, pListSubstitutions);
 		}
 
 		public static string GenerateAndBuildUnifiedExecutable (UnifiedTestConfig config, bool shouldFail = false, string[] environment = null)
 		{
-			string csprojTarget = GenerateUnifiedExecutableProject (config);
+			string csprojTarget = GenerateAppProject (config);
 			return BuildProject (csprojTarget, isUnified: true, shouldFail: shouldFail, release: config.Release, environment: environment);
 		}
 

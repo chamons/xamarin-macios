@@ -351,7 +351,9 @@ namespace Xamarin.MMP.Tests
 				{
 					// First build with a Non-existant file to force us to error inside mmp test
 					TI.UnifiedTestConfig test = new TI.UnifiedTestConfig (tmpDir) { CSProjConfig = "<MonoBundlingExtraArgs>--resource=Foo.bar</MonoBundlingExtraArgs>", XM45 = xm45 };
-					TI.GenerateAndBuildUnifiedExecutable (test, shouldFail: true);
+					string csprojTarget = TI.GenerateUnifiedExecutableProject (test);
+
+					TI.BuildProject (csprojTarget, isUnified: true, shouldFail: true);
 
 					// Next, build again without the error MonoBundlingExtraArgs
 					test.CSProjConfig = "";
@@ -359,7 +361,7 @@ namespace Xamarin.MMP.Tests
 
 					// And try again. 
 					// If we fail, we'll likley fail with "did not generate an exe" before returning but let's check anyway
-					string secondBuildOutput = TI.BuildProject (Path.Combine (tmpDir, TI.GetUnifiedExecutableProjectName (test)), true);
+					string secondBuildOutput = TI.BuildProject (csprojTarget, true);
 					Assert.IsTrue (!secondBuildOutput.Contains ("Skipping target \"_CompileToNative"), "Did not skip");
 					Assert.IsTrue (secondBuildOutput.Contains ("Building target \"_CompileToNative\" completely"), "Did need to build");
 				}
