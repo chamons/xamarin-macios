@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using Xamarin.Bundler;
 
 namespace Xamarin.Tests.Templating
 {
@@ -20,10 +19,10 @@ namespace Xamarin.Tests.Templating
 			return new FileTemplateEngine (Path.Combine (sourceDirectory, subDirectory), Path.Combine (outputDirectory, subDirectory));
 		}
 
-		public string CopyFile (string fileName)
+		public string CopyFile (string fileName, string destFileName = null)
 		{
 			string srcPath = Path.Combine (SourceDirectory, fileName);
-			string destPath = Path.Combine (OutputDirectory, fileName);
+			string destPath = Path.Combine (OutputDirectory, destFileName ?? fileName);
 
 			string text = File.ReadAllText (srcPath);
 			File.WriteAllText (destPath, text);

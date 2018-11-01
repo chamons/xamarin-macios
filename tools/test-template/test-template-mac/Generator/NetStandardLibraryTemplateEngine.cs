@@ -3,15 +3,15 @@ using System.IO;
 
 namespace Xamarin.Tests.Templating
 {
-	public class NetStandardTemplateEngine : TemplateEngineBase
+	public class NetStandardLibraryTemplateEngine : TemplateEngineBase
 	{
-		public NetStandardTemplateEngine () : base (TemplateInfo.FromFiles ("NetStandardLib.csproj", "Class1.cs"))
+		public NetStandardLibraryTemplateEngine () : base (TemplateInfo.FromFiles ("NetStandardLib.csproj", "Class1.cs"))
 		{
 		}
 
 		const string NetStandardSubDir = "NetStandard";
 
-		public string GenerateLibraryProject (string outputDirectory)
+		public string Generate (string outputDirectory)
 		{
 			Directory.CreateDirectory (Path.Combine (outputDirectory, NetStandardSubDir));
 

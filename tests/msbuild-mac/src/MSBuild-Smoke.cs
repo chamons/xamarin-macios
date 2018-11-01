@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using NUnit.Framework;
+using Xamarin.Tests.Templating;
 
 namespace Xamarin.MMP.Tests
 {
@@ -135,7 +136,7 @@ namespace Xamarin.MMP.Tests
 				Assert.IsTrue (File.Exists (Path.Combine (tmpDir, "bin/Debug/UnifiedExample.app/Contents/MonoBundle/SimpleClassDylib.dylib")));
 
 				StringBuilder output = new StringBuilder ();
-				Bundler.Invoker.RunCommand ("/usr/bin/otool", "-L " + Path.Combine (tmpDir, "bin/Debug/UnifiedExample.app/Contents/MacOS/UnifiedExample"), null, output);
+				Invoker.RunCommand ("/usr/bin/otool", "-L " + Path.Combine (tmpDir, "bin/Debug/UnifiedExample.app/Contents/MacOS/UnifiedExample"), null, output);
 				Assert.IsTrue (output.ToString ().Contains ("SimpleClassDylib.dylib"));
 			});
 		}

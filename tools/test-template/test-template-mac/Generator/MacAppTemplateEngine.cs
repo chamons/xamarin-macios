@@ -38,14 +38,14 @@ namespace Xamarin.Tests.Templating
 			}
 
 			ReplacementGroup replacements = ReplacementGroup.Create (Replacement.Create ("%CODE%", fileSubstitutions.TestCode), Replacement.Create ("%DECL%", fileSubstitutions.TestDecl));
-			templateEngine.CopyTextWithSubstitutions (GetAppMainSourceText (), TemplateInfo.SourceName, replacements);
+			templateEngine.CopyTextWithSubstitutions (GetAppMainSourceText (TemplateInfo.Language), TemplateInfo.SourceName, replacements);
 
 			templateEngine.CopyFileWithSubstitutions ("Info-Unified.plist", plistReplacements.CreateReplacementAction (), "Info.plist");
 
 			return templateEngine.CopyFileWithSubstitutions (TemplateInfo.ProjectName, GetStandardProjectReplacement (projectSubstitutions));
 		}
 
-		string GetAppMainSourceText ()
+		public static string GetAppMainSourceText (ProjectLanguage language)
 		{
 			const string FSharpMainTemplate = @"
 namespace FSharpUnifiedExample
@@ -79,7 +79,7 @@ namespace TestCase
 	}
 }";
 
-			return TemplateInfo.Language == ProjectLanguage.FSharp ? FSharpMainTemplate : MainTemplate;
+			return language == ProjectLanguage.FSharp ? FSharpMainTemplate : MainTemplate;
 		}
 	}
 }

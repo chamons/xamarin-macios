@@ -10,8 +10,11 @@ using System;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
-
+#if TEST_TEMPLATE
+namespace Xamarin.Tests.Templating {
+#else
 namespace Xamarin.Bundler {
+#endif
 	public static class Invoker {
 
 		public static int RunCommand (string path, string args, string[] env = null, StringBuilder output = null, bool suppressPrintOnErrors = false, int verbose = 0)

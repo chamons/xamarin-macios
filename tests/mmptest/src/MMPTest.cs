@@ -351,13 +351,13 @@ namespace Xamarin.MMP.Tests
 				{
 					// First build with a Non-existant file to force us to error inside mmp test
 					TI.UnifiedTestConfig test = new TI.UnifiedTestConfig (tmpDir) { CSProjConfig = "<MonoBundlingExtraArgs>--resource=Foo.bar</MonoBundlingExtraArgs>", XM45 = xm45 };
-					string csprojTarget = TI.GenerateUnifiedExecutableProject (test);
+					string csprojTarget = TI.GenerateAppProject (test);
 
 					TI.BuildProject (csprojTarget, isUnified: true, shouldFail: true);
 
 					// Next, build again without the error MonoBundlingExtraArgs
 					test.CSProjConfig = "";
-					TI.GenerateUnifiedExecutableProject (test);
+					TI.GenerateAppProject (test);
 
 					// And try again. 
 					// If we fail, we'll likley fail with "did not generate an exe" before returning but let's check anyway
@@ -685,7 +685,7 @@ namespace Xamarin.MMP.Tests
 					AssetIcons = true
 				};
 
-				string project = TI.GenerateUnifiedExecutableProject (test);
+				string project = TI.GenerateAppProject (test);
 
 				string buildOutput = TI.BuildProject (project, true);
 				Assert.True (buildOutput.Contains ("actool execution started with arguments"), $"Initial build should run actool");

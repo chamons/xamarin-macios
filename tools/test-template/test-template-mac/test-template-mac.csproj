@@ -14,7 +14,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>DEBUG;TEST_TEMPLATE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -40,13 +40,14 @@
     <Compile Include="Generator\TemplateEngine.cs" />
     <Compile Include="Generator\TemplateInfo.cs" />
     <Compile Include="Replacements.cs" />
-    <Compile Include="Generator\NetStandardTemplateEngine.cs" />
+    <Compile Include="Generator\NetStandardLibraryTemplateEngine.cs" />
     <Compile Include="..\..\common\Invoker.cs">
       <Link>External\Invoker.cs</Link>
     </Compile>
     <Compile Include="Generator\MacAppTemplateEngine.cs" />
     <Compile Include="Generator\MacBindingTemplateEngine.cs" />
     <Compile Include="Generator\MacLibraryTemplateEngine.cs" />
+    <Compile Include="Generator\MacSystemMonoTemplateEngine.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

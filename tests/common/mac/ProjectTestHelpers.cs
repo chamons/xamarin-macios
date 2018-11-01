@@ -205,7 +205,7 @@ namespace Xamarin.MMP.Tests
 		{
 			StringBuilder output = new StringBuilder ();
 			Environment.SetEnvironmentVariable ("MONO_PATH", null);
-			int compileResult = Bundler.Invoker.RunCommand (exe, args != null ? args.ToString() : string.Empty, environment, output, suppressPrintOnErrors: shouldFail);
+			int compileResult = Invoker.RunCommand (exe, args != null ? args.ToString() : string.Empty, environment, output, suppressPrintOnErrors: shouldFail);
 			if (!shouldFail && compileResult != 0) {
 				// Driver.RunCommand won't print failed output unless verbosity > 0, so let's do it ourselves.
 				Console.WriteLine ($"Execution failed; exit code: {compileResult}");
@@ -335,8 +335,8 @@ namespace Xamarin.MMP.Tests
 
 		public static string GenerateNetStandardProject (UnifiedTestConfig config)
 		{
-			NetStandardTemplateEngine engine = new NetStandardTemplateEngine ();
-			return engine.GenerateLibraryProject (config.TmpDir);
+			NetStandardLibraryTemplateEngine engine = new NetStandardLibraryTemplateEngine ();
+			return engine.Generate (config.TmpDir);
 		}
 
 		public static string GenerateAppProject (UnifiedTestConfig config)
@@ -406,16 +406,18 @@ namespace Xamarin.MMP.Tests
 		public static OutputText TestSystemMonoExecutable (UnifiedTestConfig config, bool shouldFail = false)
 		{
 			config.guid = Guid.NewGuid ();
-			var projectName = "SystemMonoExample";
 			config.TestCode += GenerateOutputCommand (config.TmpDir, config.guid);
-			config.ProjectName = $"{projectName}.csproj";
-			string csprojTarget = GenerateSystemMonoEXEProject (config);
+
+			var engine = new MacSystemMonoTemplateEngine ();
+			ProjectSubstitutions projectSubstitutions = CreateDefaultSubstitutions (config);
+			FileSubstitutions fileSubstitutions = new FileSubstitutions () { TestCode = config.TestCode };
+			string csprojTarget = engine.Generate (config.TmpDir, projectSubstitutions, fileSubstitutions);
 
 			string buildOutput = BuildProject (csprojTarget, isUnified: true, shouldFail: shouldFail, release: config.Release);
 			if (shouldFail)
 				return new OutputText (buildOutput, "");
 
-			string exePath = Path.Combine (config.TmpDir, "bin", config.Release ? "Release" : "Debug",  projectName + ".app", "Contents", "MacOS", projectName);
+			string exePath = Path.Combine (config.TmpDir, "bin", config.Release ? "Release" : "Debug", "SystemMonoExample.app/Contents/MacOS/SystemMonoExample");
 			string runOutput = RunEXEAndVerifyGUID (config.TmpDir, config.guid, exePath);
 			return new OutputText (buildOutput, runOutput);
 		}
@@ -439,19 +441,6 @@ namespace Xamarin.MMP.Tests
 			return string.Format ("<TargetFrameworkVersion>v{0}</TargetFrameworkVersion>", version);
 		}
 
-		public static string GenerateSystemMonoEXEProject (UnifiedTestConfig config)
-		{
-			WriteMainFile (config.TestDecl, config.TestCode, true, false, Path.Combine (config.TmpDir, "Main.cs"));
-
-			string sourceDir = FindSourceDirectory ();
-			File.Copy (Path.Combine (sourceDir, "Info-Unified.plist"), Path.Combine (config.TmpDir, "Info.plist"), true);
-
-			return CopyFileWithSubstitutions (Path.Combine (sourceDir, config.ProjectName), Path.Combine (config.TmpDir, config.ProjectName), text =>
-				{
-					return ProjectTextReplacement (config, text.Replace ("%TARGETFRAMEWORKVERSION%", GetTargetFrameworkValue (config)));
-				});
-		}
-
 		public static string TestDirectory => Path.Combine (FindRootDirectory (), "..", "tests") + "/";
 
 		public static string FindSourceDirectory ()
@@ -465,7 +454,7 @@ namespace Xamarin.MMP.Tests
 
 		public static void CopyDirectory (string src, string target)
 		{
-			Bundler.Invoker.RunCommand ("/bin/cp", $"-r {src} {target}");
+			Invoker.RunCommand ("/bin/cp", $"-r {src} {target}");
 		}
 
 		public static string CopyFileWithSubstitutions (string src, string target, Func<string, string > replacementAction)
