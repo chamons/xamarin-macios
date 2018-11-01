@@ -44,94 +44,6 @@ namespace Xamarin.MMP.Tests
 		}
 	}
 
-	static class FrameworkBuilder
-	{
-		const string PListText = @"<?xml version=""1.0"" encoding=""UTF-8""?>
-<!DOCTYPE plist PUBLIC ""-//Apple//DTD PLIST 1.0//EN"" ""http://www.apple.com/DTDs/PropertyList-1.0.dtd"">
-<plist version=""1.0"">
-<dict>
-	<key>BuildMachineOSBuild</key>
-	<string>16B2657</string>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>Foo</string>
-	<key>CFBundleIdentifier</key>
-	<string>com.test.Foo</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>Foo</string>
-	<key>CFBundlePackageType</key>
-	<string>FMWK</string>
-	<key>CFBundleShortVersionString</key>
-	<string>6.9</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleSupportedPlatforms</key>
-	<array>
-		<string>MacOSX</string>
-	</array>
-	<key>CFBundleVersion</key>
-	<string>1561.40.100</string>
-	<key>DTCompiler</key>
-	<string>com.apple.compilers.llvm.clang.1_0</string>
-	<key>DTPlatformBuild</key>
-	<string>9Q85j</string>
-	<key>DTPlatformVersion</key>
-	<string>GM</string>
-	<key>DTSDKBuild</key>
-	<string>17E138</string>
-	<key>DTSDKName</key>
-	<string>macosx10.13internal</string>
-	<key>DTXcode</key>
-	<string>0930</string>
-	<key>DTXcodeBuild</key>
-	<string>9Q85j</string>
-</dict>
-</plist>";
-		
-		public static string CreateFatFramework (string tmpDir)
-		{
-			Func<string, string> f = x => Path.Combine (tmpDir, x);
-			File.WriteAllText (f ("foo.c"), "int Answer () { return 42; }");
-			File.WriteAllText (f ("Info.plist"), PListText);
-
-			TI.RunAndAssert ($"clang -m32 -c -o {f ("foo_32.o")} {f ("foo.c")}");
-			TI.RunAndAssert ($"clang -m64 -c -o {f ("foo_64.o")} {f ("foo.c")}");
-			TI.RunAndAssert ($"clang -m32 -dynamiclib -o {f ("foo_32.dylib")} {f ("foo_32.o")}");
-			TI.RunAndAssert ($"clang -m64 -dynamiclib -o {f ("foo_64.dylib")} {f ("foo_64.o")}");
-			TI.RunAndAssert ($"lipo -create {f ("foo_32.dylib")} {f ("foo_64.dylib")} -output {f ("Foo")}");
-			TI.RunAndAssert ($"install_name_tool -id @rpath/Foo.framework/Foo {f ("Foo")}");
-			TI.RunAndAssert ($"mkdir -p {f ("Foo.framework/Versions/A/Resources")}");
-			TI.RunAndAssert ($"cp {f ("Foo")} {f ("Foo.framework/Versions/A/Foo")}");
-			TI.RunAndAssert ($"cp {f ("Info.plist")} {f ("Foo.framework/Versions/A/Resources/")}");
-			TI.RunAndAssert ($"ln -s Versions/A/Foo {f ("Foo.framework/Foo")}");
-			TI.RunAndAssert ($"ln -s Versions/A/Resources  {f ("Foo.framework/Resources")}");
-			TI.RunAndAssert ($"ln -s Versions/A  {f ("Foo.framework/Current")}");
-			return f ("Foo.framework");
-		}
-
-		public static string CreateThinFramework (string tmpDir, bool sixtyFourBits = true)
-		{
-			Func<string, string> f = x => Path.Combine (tmpDir, x);
-			File.WriteAllText (f ("foo.c"), "int Answer () { return 42; }");
-			File.WriteAllText (f ("Info.plist"), PListText);
-
-			string bitnessArg = sixtyFourBits ? "-m64" : "-m32";
-			TI.RunAndAssert ($"clang {bitnessArg} -c -o {f ("foo.o")} {f ("foo.c")}");
-			TI.RunAndAssert ($"clang {bitnessArg} -dynamiclib -o {f ("Foo")} {f ("foo.o")}");
-			TI.RunAndAssert ($"install_name_tool -id @rpath/Foo.framework/Foo {f ("Foo")}");
-			TI.RunAndAssert ($"mkdir -p {f ("Foo.framework/Versions/A/Resources")}");
-			TI.RunAndAssert ($"cp {f ("Foo")} {f ("Foo.framework/Versions/A/Foo")}");
-			TI.RunAndAssert ($"cp {f ("Info.plist")} {f ("Foo.framework/Versions/A/Resources/")}");
-			TI.RunAndAssert ($"ln -s Versions/A/Foo {f ("Foo.framework/Foo")}");
-			TI.RunAndAssert ($"ln -s Versions/A/Resources  {f ("Foo.framework/Resources")}");
-			TI.RunAndAssert ($"ln -s Versions/A  {f ("Foo.framework/Current")}");
-			return f ("Foo.framework");
-		}
-	}
-
 	// Hide the hacks and provide a nice interface for writting tests that build / run XM projects
 	static class TI 
 	{
@@ -194,35 +106,17 @@ namespace Xamarin.MMP.Tests
 
 		public static string RunAndAssert (string exe)
 		{
-			var parts = exe.Split (new char [] { ' ' }, 2);
-			if (parts.Length == 1)
-				return RunAndAssert (exe, "", "Command: " + exe);
-			else
-				return RunAndAssert (parts[0], parts[1], "Command: " + exe);
+			return Invoker.RunAndAssert (exe);
 		}
 
 		public static string RunAndAssert (string exe, string args, string stepName, bool shouldFail = false, Func<string> getAdditionalFailInfo = null, string[] environment = null)
 		{
-			StringBuilder output = new StringBuilder ();
-			Environment.SetEnvironmentVariable ("MONO_PATH", null);
-			int compileResult = Invoker.RunCommand (exe, args != null ? args.ToString() : string.Empty, environment, output, suppressPrintOnErrors: shouldFail);
-			if (!shouldFail && compileResult != 0) {
-				// Driver.RunCommand won't print failed output unless verbosity > 0, so let's do it ourselves.
-				Console.WriteLine ($"Execution failed; exit code: {compileResult}");
-				Console.WriteLine (output);
-			}
-			Func<string> getInfo = () => getAdditionalFailInfo != null ? getAdditionalFailInfo() : "";
-			if (!shouldFail)
-				Assert.AreEqual (0, compileResult, stepName + " failed:\n\n'" + output + "' " + exe + " " + args + getInfo ());
-			else
-				Assert.AreNotEqual (0, compileResult, stepName + " did not fail as expected:\n\n'" + output + "' " + exe + " " + args + getInfo ());
-
-			return output.ToString ();
+			return Invoker.RunAndAssert (exe, args, stepName, shouldFail, getAdditionalFailInfo, environment);
 		}
 
 		public static string RunAndAssert (string exe, StringBuilder args, string stepName, bool shouldFail = false, Func<string> getAdditionalFailInfo = null, string[] environment = null)
 		{
-			return RunAndAssert (exe, args.ToString (), stepName, shouldFail, getAdditionalFailInfo, environment);
+			return Invoker.RunAndAssert (exe, args.ToString (), stepName, shouldFail, getAdditionalFailInfo, environment);
 		}
 
 		// In most cases we generate projects in tmp and this is not needed. But nuget and test projects can make that hard
@@ -233,43 +127,7 @@ namespace Xamarin.MMP.Tests
 
 		public static string BuildProject (string csprojTarget, bool isUnified, bool shouldFail = false, bool release = false, string[] environment = null)
 		{
-			string rootDirectory = FindRootDirectory ();
-
-			// TODO - This is not enough for MSBuild to really work. We need stuff to have it not use system targets!
-			// These are required to have xbuild use are local build instead of system install
-			Environment.SetEnvironmentVariable ("TargetFrameworkFallbackSearchPaths", rootDirectory + "/Library/Frameworks/Mono.framework/External/xbuild-frameworks");
-			Environment.SetEnvironmentVariable ("MSBuildExtensionsPathFallbackPathsOverride", rootDirectory + "/Library/Frameworks/Mono.framework/External/xbuild");
-			Environment.SetEnvironmentVariable ("XAMMAC_FRAMEWORK_PATH", rootDirectory + "/Library/Frameworks/Xamarin.Mac.framework/Versions/Current");
-			Environment.SetEnvironmentVariable ("XamarinMacFrameworkRoot", rootDirectory + "/Library/Frameworks/Xamarin.Mac.framework/Versions/Current");
-
-			// This is to force build to use our mmp and not system mmp
-			StringBuilder buildArgs = new StringBuilder ();
-			if (isUnified) {
-				buildArgs.Append (" /verbosity:diagnostic ");
-				buildArgs.Append (" /property:XamarinMacFrameworkRoot=" + rootDirectory + "/Library/Frameworks/Xamarin.Mac.framework/Versions/Current ");
-
-				if (release)
-					buildArgs.Append ("/property:Configuration=Release ");
-				else
-					buildArgs.Append ("/property:Configuration=Debug ");
-
-			} else {
-				buildArgs.Append (" build ");
-			}
-
-			buildArgs.Append (StringUtils.Quote (csprojTarget));
-
-			Func <string> getBuildProjectErrorInfo = () => {
-				string csprojText = "\n\n\n\tCSProj: \n" + File.ReadAllText (csprojTarget);
-				string csprojLocation = Path.GetDirectoryName (csprojTarget);
-				string fileList = "\n\n\tFiles: " + String.Join (" ", Directory.GetFiles (csprojLocation).Select (x => x.Replace (csprojLocation + "/", "")));
-				return csprojText + fileList;
-			};
-
-			if (isUnified)
-				return RunAndAssert ("/Library/Frameworks/Mono.framework/Commands/msbuild", buildArgs, "Compile", shouldFail, getBuildProjectErrorInfo, environment);
-			else
-				return RunAndAssert ("/Applications/Visual Studio.app/Contents/MacOS/vstool", buildArgs, "Compile", shouldFail, getBuildProjectErrorInfo, environment);
+			return TemplateBuilder.BuildProject (csprojTarget, isUnified, shouldFail, release, environment);
 		}
 
 		static ProjectSubstitutions CreateDefaultSubstitutions (UnifiedTestConfig config)

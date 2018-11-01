@@ -2,11 +2,99 @@
 using System.IO;
 using System.Linq;
 using NUnit.Framework;
-
+using Xamarin.Tests.Templating;
 using Xamarin.Utils;
 
 namespace Xamarin.MMP.Tests
 {
+	static class FrameworkBuilder
+	{
+		const string PListText = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+<!DOCTYPE plist PUBLIC ""-//Apple//DTD PLIST 1.0//EN"" ""http://www.apple.com/DTDs/PropertyList-1.0.dtd"">
+<plist version=""1.0"">
+<dict>
+	<key>BuildMachineOSBuild</key>
+	<string>16B2657</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>Foo</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.test.Foo</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Foo</string>
+	<key>CFBundlePackageType</key>
+	<string>FMWK</string>
+	<key>CFBundleShortVersionString</key>
+	<string>6.9</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleSupportedPlatforms</key>
+	<array>
+		<string>MacOSX</string>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>1561.40.100</string>
+	<key>DTCompiler</key>
+	<string>com.apple.compilers.llvm.clang.1_0</string>
+	<key>DTPlatformBuild</key>
+	<string>9Q85j</string>
+	<key>DTPlatformVersion</key>
+	<string>GM</string>
+	<key>DTSDKBuild</key>
+	<string>17E138</string>
+	<key>DTSDKName</key>
+	<string>macosx10.13internal</string>
+	<key>DTXcode</key>
+	<string>0930</string>
+	<key>DTXcodeBuild</key>
+	<string>9Q85j</string>
+</dict>
+</plist>";
+
+		public static string CreateFatFramework (string tmpDir)
+		{
+			Func<string, string> f = x => Path.Combine (tmpDir, x);
+			File.WriteAllText (f ("foo.c"), "int Answer () { return 42; }");
+			File.WriteAllText (f ("Info.plist"), PListText);
+
+			TI.RunAndAssert ($"clang -m32 -c -o {f ("foo_32.o")} {f ("foo.c")}");
+			TI.RunAndAssert ($"clang -m64 -c -o {f ("foo_64.o")} {f ("foo.c")}");
+			TI.RunAndAssert ($"clang -m32 -dynamiclib -o {f ("foo_32.dylib")} {f ("foo_32.o")}");
+			TI.RunAndAssert ($"clang -m64 -dynamiclib -o {f ("foo_64.dylib")} {f ("foo_64.o")}");
+			TI.RunAndAssert ($"lipo -create {f ("foo_32.dylib")} {f ("foo_64.dylib")} -output {f ("Foo")}");
+			TI.RunAndAssert ($"install_name_tool -id @rpath/Foo.framework/Foo {f ("Foo")}");
+			TI.RunAndAssert ($"mkdir -p {f ("Foo.framework/Versions/A/Resources")}");
+			TI.RunAndAssert ($"cp {f ("Foo")} {f ("Foo.framework/Versions/A/Foo")}");
+			TI.RunAndAssert ($"cp {f ("Info.plist")} {f ("Foo.framework/Versions/A/Resources/")}");
+			TI.RunAndAssert ($"ln -s Versions/A/Foo {f ("Foo.framework/Foo")}");
+			TI.RunAndAssert ($"ln -s Versions/A/Resources  {f ("Foo.framework/Resources")}");
+			TI.RunAndAssert ($"ln -s Versions/A  {f ("Foo.framework/Current")}");
+			return f ("Foo.framework");
+		}
+
+		public static string CreateThinFramework (string tmpDir, bool sixtyFourBits = true)
+		{
+			Func<string, string> f = x => Path.Combine (tmpDir, x);
+			File.WriteAllText (f ("foo.c"), "int Answer () { return 42; }");
+			File.WriteAllText (f ("Info.plist"), PListText);
+
+			string bitnessArg = sixtyFourBits ? "-m64" : "-m32";
+			TI.RunAndAssert ($"clang {bitnessArg} -c -o {f ("foo.o")} {f ("foo.c")}");
+			TI.RunAndAssert ($"clang {bitnessArg} -dynamiclib -o {f ("Foo")} {f ("foo.o")}");
+			TI.RunAndAssert ($"install_name_tool -id @rpath/Foo.framework/Foo {f ("Foo")}");
+			TI.RunAndAssert ($"mkdir -p {f ("Foo.framework/Versions/A/Resources")}");
+			TI.RunAndAssert ($"cp {f ("Foo")} {f ("Foo.framework/Versions/A/Foo")}");
+			TI.RunAndAssert ($"cp {f ("Info.plist")} {f ("Foo.framework/Versions/A/Resources/")}");
+			TI.RunAndAssert ($"ln -s Versions/A/Foo {f ("Foo.framework/Foo")}");
+			TI.RunAndAssert ($"ln -s Versions/A/Resources  {f ("Foo.framework/Resources")}");
+			TI.RunAndAssert ($"ln -s Versions/A  {f ("Foo.framework/Current")}");
+			return f ("Foo.framework");
+		}
+	}
+
 	public class CodeStrippingTests
 	{
 		static Func<string, bool> LipoStripConditional = s => s.Contains ("lipo") && s.Contains ("-thin");
