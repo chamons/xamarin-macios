@@ -37,13 +37,7 @@ namespace Xamarin.MMP.Tests
 			MMPTests.RunMMPTest (tmpDir => {
 				TI.CopyDirectory (Path.Combine (TI.FindSourceDirectory (), @"Today"), tmpDir);
 
-				string project = Path.Combine (tmpDir, "Today/TodayExtensionTest.csproj");
-				string main = Path.Combine (tmpDir, "Today/TodayViewController.cs");
-
-				TI.CopyFileWithSubstitutions (project, project, s => s.Replace ("%ITEMGROUP%", PackageReference));
-				TI.CopyFileWithSubstitutions (main, main, s => s.Replace ("%TESTCODE%", TestCode));
-
-				TI.NugetRestore (project);
+				TI.NugetRestore (Path.Combine (tmpDir, "Today/TodayExtensionTest.csproj"));
 				string output = TI.BuildProject (Path.Combine (tmpDir, "Today/TodayExtensionTest.csproj"), isUnified: true);
 				Assert.IsTrue (!output.Contains ("MM2013"));
 			});

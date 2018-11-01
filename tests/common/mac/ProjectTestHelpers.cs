@@ -272,19 +272,6 @@ namespace Xamarin.MMP.Tests
 				return RunAndAssert ("/Applications/Visual Studio.app/Contents/MacOS/vstool", buildArgs, "Compile", shouldFail, getBuildProjectErrorInfo, environment);
 		}
 
-		static string ProjectTextReplacement (UnifiedTestConfig config, string text)
-		{
-			 text = text.Replace ("%CODE%", config.CSProjConfig)
-					   .Replace ("%REFERENCES%", config.References)
-					   .Replace ("%REFERENCES_BEFORE_PLATFORM%", config.ReferencesBeforePlatform)
-					   .Replace ("%NAME%", config.AssemblyName ?? Path.GetFileNameWithoutExtension (config.ProjectName))
-					   .Replace ("%ITEMGROUP%", config.ItemGroup)
-					   .Replace ("%TARGET_FRAMEWORK_VERSION%", config.TargetFrameworkVersion);
-			if (config.CustomProjectReplacement != null)
-				text = text.Replace (config.CustomProjectReplacement.Item1, config.CustomProjectReplacement.Item2);
-			return text;
-		}
-
 		static ProjectSubstitutions CreateDefaultSubstitutions (UnifiedTestConfig config)
 		{
 			return new ProjectSubstitutions {
@@ -341,7 +328,16 @@ namespace Xamarin.MMP.Tests
 
 		public static string GenerateAppProject (UnifiedTestConfig config)
 		{
-			var info = TemplateInfo.FromCustomProject (ProjectType.App, config.FSharp ? ProjectLanguage.FSharp : ProjectLanguage.CSharp, config.ProjectName);
+			ProjectLanguage language = config.FSharp ? ProjectLanguage.FSharp : ProjectLanguage.CSharp;
+			ProjectFlavor flavor = config.XM45 ? ProjectFlavor.FullXM : ProjectFlavor.ModernXM;
+
+			TemplateInfo info;
+			if (!string.IsNullOrEmpty (config.ProjectName)) {
+				info = TemplateInfo.FromCustomProject (ProjectType.App, language, config.ProjectName);
+			} else {
+				info = new TemplateInfo (flavor, ProjectType.App, language);
+				config.ProjectName = info.ProjectName;
+			}
 
 			var engine = new MacAppTemplateEngine (info);
 			var fileSubstitutions = new FileSubstitutions {
@@ -448,54 +444,6 @@ namespace Xamarin.MMP.Tests
 		public static void CopyDirectory (string src, string target)
 		{
 			Invoker.RunCommand ("/bin/cp", $"-r {src} {target}");
-		}
-
-		public static string CopyFileWithSubstitutions (string src, string target, Func<string, string > replacementAction)
-		{
-			string text = replacementAction (System.IO.File.ReadAllText (src));
-			System.IO.File.WriteAllText (target, text);
-			return target;
-		}
-
-		static void WriteMainFile (string decl, string content, bool isUnified, bool fsharp, string location)
-		{
-			const string FSharpMainTemplate = @"
-namespace FSharpUnifiedExample
-open System
-open AppKit
-
-module main =
-    %DECL%
- 
-    [<EntryPoint>]
-    let main args =
-        NSApplication.Init ()
-        %CODE%
-        0";
-
-			const string MainTemplate = @"
-using MonoMac.Foundation;
-using MonoMac.AppKit;
-
-namespace TestCase
-{
-	class MainClass
-	{
-		%DECL%
-
-		static void Main (string[] args)
-		{
-			NSApplication.Init ();
-			%CODE%
-		}
-	}
-}";
-			string currentTemplate = fsharp ? FSharpMainTemplate : MainTemplate;
-			string testCase = currentTemplate.Replace ("%CODE%", content).Replace ("%DECL%", decl);
-			if (isUnified)
-				testCase = testCase.Replace ("MonoMac.", string.Empty);
-			using (StreamWriter s = new StreamWriter (location))
-				s.Write(testCase);
 		}
 
 		public static string FindRootDirectory ()
