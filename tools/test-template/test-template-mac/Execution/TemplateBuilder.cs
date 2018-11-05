@@ -24,9 +24,9 @@ namespace Xamarin.Tests.Templating
 				buildArgs.Append (" /property:XamarinMacFrameworkRoot=" + Configuration.SdkRootXM);
 
 				if (release)
-					buildArgs.Append ("/property:Configuration=Release ");
+					buildArgs.Append (" /property:Configuration=Release ");
 				else
-					buildArgs.Append ("/property:Configuration=Debug ");
+					buildArgs.Append (" /property:Configuration=Debug ");
 
 			} else {
 				buildArgs.Append (" build ");
