@@ -32,6 +32,7 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\packages\NUnit.3.11.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Utilities\" />
@@ -58,6 +59,15 @@
     <Compile Include="Execution\InvokerExtensions.cs" />
     <Compile Include="..\..\common\StringUtils.cs">
       <Link>External\StringUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\tests\common\Configuration.cs">
+      <Link>Execution\Configuration.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\tests\common\Profile.cs">
+      <Link>Execution\Profile.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\tests\common\ExecutionHelper.cs">
+      <Link>Execution\ExecutionHelper.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>

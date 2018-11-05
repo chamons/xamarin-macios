@@ -2,8 +2,8 @@
 using System.IO;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
 using Xamarin.Utils;
+using Xamarin.Tests;
 
 namespace Xamarin.Tests.Templating
 {
@@ -11,19 +11,17 @@ namespace Xamarin.Tests.Templating
 	{
 		public static string BuildProject (string csprojTarget, bool isUnified, bool shouldFail = false, bool release = false, string[] environment = null)
 		{
-			string rootDirectory = DirectoryFinder.FindRootDirectory ();
-
 			// These are required to have {ms,x}build use are local build instead of system install
-			Environment.SetEnvironmentVariable ("TargetFrameworkFallbackSearchPaths", rootDirectory + "/Library/Frameworks/Mono.framework/External/xbuild-frameworks");
-			Environment.SetEnvironmentVariable ("MSBuildExtensionsPathFallbackPathsOverride", rootDirectory + "/Library/Frameworks/Mono.framework/External/xbuild");
-			Environment.SetEnvironmentVariable ("XAMMAC_FRAMEWORK_PATH", rootDirectory + "/Library/Frameworks/Xamarin.Mac.framework/Versions/Current");
-			Environment.SetEnvironmentVariable ("XamarinMacFrameworkRoot", rootDirectory + "/Library/Frameworks/Xamarin.Mac.framework/Versions/Current");
+			Environment.SetEnvironmentVariable ("TargetFrameworkFallbackSearchPaths", Configuration.TargetDirectoryXM + "/Library/Frameworks/Mono.framework/External/xbuild-frameworks");
+			Environment.SetEnvironmentVariable ("MSBuildExtensionsPathFallbackPathsOverride", Configuration.TargetDirectoryXM + "/Library/Frameworks/Mono.framework/External/xbuild");
+			Environment.SetEnvironmentVariable ("XAMMAC_FRAMEWORK_PATH", Configuration.SdkRootXM);
+			Environment.SetEnvironmentVariable ("XamarinMacFrameworkRoot", Configuration.SdkRootXM);
 
 			// This is to force build to use our mmp and not system mmp
 			StringBuilder buildArgs = new StringBuilder ();
 			if (isUnified) {
 				buildArgs.Append (" /verbosity:diagnostic ");
-				buildArgs.Append (" /property:XamarinMacFrameworkRoot=" + rootDirectory + "/Library/Frameworks/Xamarin.Mac.framework/Versions/Current ");
+				buildArgs.Append (" /property:XamarinMacFrameworkRoot=" + Configuration.SdkRootXM);
 
 				if (release)
 					buildArgs.Append ("/property:Configuration=Release ");

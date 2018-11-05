@@ -57,7 +57,7 @@ namespace Xamarin.Tests.Templating
 					}
 					break;
 				}
-				throw new NotImplementedException ();
+				throw new NotImplementedException ($"ProjectType: {ProjectType} Language: {Language} Flavor: {Flavor}");
 			}
 		}
 
@@ -110,7 +110,7 @@ namespace Xamarin.Tests.Templating
 					break;
 				}
 
-				throw new NotImplementedException ();
+				throw new NotImplementedException ($"ProjectType: {ProjectType} Language: {Language} Flavor: {Flavor}");
 			}
 		}
 	}
