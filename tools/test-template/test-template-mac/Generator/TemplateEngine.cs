@@ -69,6 +69,8 @@ namespace Xamarin.Tests.Templating
 			return group;
 		}
 
-		protected virtual FileTemplateEngine CreateEngine (string outputDirectory) => new FileTemplateEngine (DirectoryFinder.FindSourceDirectory (), outputDirectory);
+		public static string MacTemplateLocation => Path.Combine (Configuration.RootPath, "tests/common/mac");
+
+		protected virtual FileTemplateEngine CreateEngine (string outputDirectory) => new FileTemplateEngine (MacTemplateLocation, outputDirectory);
 	}
 }

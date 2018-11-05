@@ -20,6 +20,6 @@ namespace Xamarin.Tests.Templating
 			return templateEngine.CopyFile (TemplateInfo.ProjectName);
 		}
 
-		protected override FileTemplateEngine CreateEngine (string outputDirectory) => FileTemplateEngine.WithSubdirectory (DirectoryFinder.FindSourceDirectory (), outputDirectory, NetStandardSubDir);
+		protected override FileTemplateEngine CreateEngine (string outputDirectory) => FileTemplateEngine.WithSubdirectory (MacTemplateLocation, outputDirectory, NetStandardSubDir);
 	}
 }

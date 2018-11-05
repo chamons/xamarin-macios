@@ -35,14 +35,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Utilities\" />
     <Folder Include="Generator\" />
     <Folder Include="External\" />
     <Folder Include="Execution\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileTemplateEngine.cs" />
-    <Compile Include="Utilities\DirectoryFinder.cs" />
     <Compile Include="Generator\TemplateEngine.cs" />
     <Compile Include="Generator\TemplateInfo.cs" />
     <Compile Include="Replacements.cs" />
