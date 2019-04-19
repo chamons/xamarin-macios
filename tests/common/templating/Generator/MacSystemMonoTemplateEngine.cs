@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Xamarin.Tests.Templating
 {
-	public class MacSystemMonoTemplateEngine : TemplateEngineBase
+	public class MacSystemMonoTemplateEngine : TemplateEngineBase, IApplicationTemplateEngine
 	{
 		public MacSystemMonoTemplateEngine () : base (TemplateInfo.FromFiles ("SystemMonoExample.csproj", "Main.cs"))
 		{

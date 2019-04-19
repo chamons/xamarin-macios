@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Xamarin.Tests.Templating
 {
-	public class MacAppTemplateEngine : TemplateEngineBase
+	public class MacAppTemplateEngine : TemplateEngineBase, IApplicationTemplateEngine
 	{
 		public MacAppTemplateEngine (ProjectFlavor flavor, ProjectLanguage language = ProjectLanguage.CSharp) : base (new TemplateInfo (flavor, ProjectType.App, language))
 		{
