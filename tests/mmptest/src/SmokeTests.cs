@@ -1,6 +1,8 @@
 ﻿using System;
 
 using NUnit.Framework;
+using Xamarin.Tests;
+using Xamarin.Tests.Templating;
 
 namespace Xamarin.MMP.Tests
 {
@@ -11,43 +13,36 @@ namespace Xamarin.MMP.Tests
 		[TestCase (true)]
 		public void Unified_SmokeTest (bool full)
 		{
-			MMPTests.RunMMPTest (tmpDir => {
-				TI.UnifiedTestConfig test = new TI.UnifiedTestConfig (tmpDir) {
-					XM45 = full
-				};
-				TI.TestUnifiedExecutable (test);
-			});
+			var engine = new MacAppTemplateEngine (full ? ProjectFlavor.FullXM : ProjectFlavor.ModernXM, ProjectLanguage.CSharp);
+			string projectPath = engine.Generate (TestDirectory.Path);
+			ProjectBuilder.BuildProject (projectPath);
 		}
 
 		[TestCase (false)]
 		[TestCase (true)]
 		public void FSharp_SmokeTest (bool full)
 		{
-			MMPTests.RunMMPTest (tmpDir => {
-				TI.UnifiedTestConfig test = new TI.UnifiedTestConfig (tmpDir) {
-					FSharp = true,
-					XM45 = full
-				};
-				TI.TestUnifiedExecutable (test);
-			});
+			var engine = new MacAppTemplateEngine (full ? ProjectFlavor.FullXM : ProjectFlavor.ModernXM, ProjectLanguage.FSharp);
+			string projectPath = engine.Generate (TestDirectory.Path);
+			ProjectBuilder.BuildProject (projectPath);
 		}
 
 		[Test]
 		public void Modern_SmokeTest_LinkSDK ()
 		{
-			MMPTests.RunMMPTest (tmpDir => {
-				TI.UnifiedTestConfig test = new TI.UnifiedTestConfig (tmpDir) { CSProjConfig = "<LinkMode>SdkOnly</LinkMode>" };
-				TI.TestUnifiedExecutable (test);
-			});
+			var engine = new MacAppTemplateEngine (ProjectFlavor.ModernXM, ProjectLanguage.CSharp);
+			var projectSubstitutions = new ProjectSubstitutions { CSProjConfig = "<LinkMode>SdkOnly</LinkMode>" };
+			string projectPath = engine.Generate (TestDirectory.Path, projectSubstitutions);
+			ProjectBuilder.BuildProject (projectPath);
 		}
 
 		[Test]
 		public void Modern_SmokeTest_LinkAll ()
 		{
-			MMPTests.RunMMPTest (tmpDir => {
-				TI.UnifiedTestConfig test = new TI.UnifiedTestConfig (tmpDir) { CSProjConfig = "<LinkMode>Full</LinkMode>" };
-				TI.TestUnifiedExecutable (test);
-			});
+			var engine = new MacAppTemplateEngine (ProjectFlavor.ModernXM, ProjectLanguage.CSharp);
+			var projectSubstitutions = new ProjectSubstitutions { CSProjConfig = "<LinkMode>Full</LinkMode>" };
+			string projectPath = engine.Generate (TestDirectory.Path, projectSubstitutions);
+			ProjectBuilder.BuildProject (projectPath);
 		}
 
 		[TestCase ("")]
@@ -61,13 +56,10 @@ namespace Xamarin.MMP.Tests
 			if (TI.FindMonoVersion () < new Version ("4.3"))
 				return;
 
-			MMPTests.RunMMPTest (tmpDir => {
-				TI.UnifiedTestConfig test = new TI.UnifiedTestConfig (tmpDir) {
-					SystemMonoVersion = version
-				};
-				TI.TestSystemMonoExecutable (test);
-			});
+			var engine = new MacSystemMonoTemplateEngine ();
+			var projectSubstitutions = new ProjectSubstitutions { TargetFrameworkVersion = version };
+			string projectPath = engine.Generate (TestDirectory.Path, projectSubstitutions);
+			ProjectBuilder.BuildProject (projectPath);
 		}
-
 	}
 }
