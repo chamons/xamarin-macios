@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit.3.11.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.11.0\build\NUnit.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A19E7BA3-FB49-480B-9C8A-07A1DA5D5EB4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Xamarin.Tests.Templating</RootNamespace>
+    <AssemblyName>Xamarin.Tests.Templating</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TEST_TEMPLATE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.3.11.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utilities\" />
+    <Folder Include="Generator\" />
+    <Folder Include="External\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FileCopier.cs" />
+    <Compile Include="Utilities\DirectoryFinder.cs" />
+    <Compile Include="Generator\TemplateInfo.cs" />
+    <Compile Include="Replacements.cs" />
+    <Compile Include="Generator\NetStandardLibraryTemplateEngine.cs" />
+    <Compile Include="Generator\MacAppTemplateEngine.cs" />
+    <Compile Include="Generator\MacBindingTemplateEngine.cs" />
+    <Compile Include="Generator\MacLibraryTemplateEngine.cs" />
+    <Compile Include="Generator\MacSystemMonoTemplateEngine.cs" />
+    <Compile Include="Generator\MacClassicAppTemplateEngine.cs" />
+    <Compile Include="TemplateEngine.cs" />
+    <Compile Include="ProjectBuilder.cs" />
+    <Compile Include="ProcessInvoker.cs" />
+    <Compile Include="..\..\..\tools\common\Invoker.cs">
+      <Link>External\Invoker.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\tools\common\StringUtils.cs">
+      <Link>External\StringUtils.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
