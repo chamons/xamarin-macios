@@ -6,7 +6,7 @@ namespace Xamarin.Tests.Templating
 {
 	static class DirectoryFinder
 	{
-		static string FindRootDirectory ()
+		public static string FindRootDirectory ()
 		{
 			var current = Assembly.GetExecutingAssembly ().Location;
 			while (!Directory.Exists (Path.Combine (current, "_mac-build")) && current.Length > 1)

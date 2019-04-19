@@ -13,8 +13,11 @@ namespace Xamarin.Tests.Templating
 		{
 		}
 
-		public string Generate (string outputDirectory, ProjectSubstitutions projectSubstitutions, FileSubstitutions fileSubstitutions, PListSubstitutions plistReplacements = null, bool includeAssets = false)
+		public string Generate (string outputDirectory, ProjectSubstitutions projectSubstitutions = null, FileSubstitutions fileSubstitutions = null, PListSubstitutions plistReplacements = null, bool includeAssets = false)
 		{
+			projectSubstitutions = projectSubstitutions ?? new ProjectSubstitutions ();
+			fileSubstitutions = fileSubstitutions ?? new FileSubstitutions ();
+
 			plistReplacements = plistReplacements ?? PListSubstitutions.None;
 			FileCopier templateEngine = CreateEngine (outputDirectory);
 

@@ -11,8 +11,11 @@ namespace Xamarin.Tests.Templating
 		{
 		}
 
-		public string Generate (string outputDirectory, ProjectSubstitutions projectSubstitutions, FileSubstitutions fileSubstitutions)
+		public string Generate (string outputDirectory, ProjectSubstitutions projectSubstitutions = null, FileSubstitutions fileSubstitutions = null)
 		{
+			projectSubstitutions = projectSubstitutions ?? new ProjectSubstitutions ();
+			fileSubstitutions = fileSubstitutions ?? new FileSubstitutions ();
+
 			FileCopier templateEngine = CreateEngine (outputDirectory);
 
 			templateEngine.CopyFileWithSubstitutions (TemplateInfo.SourceName, Replacement.Create ("%CODE%", fileSubstitutions.TestCode));

@@ -26,8 +26,10 @@ namespace Xamarin.Tests.Templating
 			Environment.SetEnvironmentVariable ("XamarinMacFrameworkRoot", rootDirectory + "/Library/Frameworks/Xamarin.Mac.framework/Versions/Current");
 		}
 
-		public static string BuildProject (string csprojTarget, string rootDirectory, bool shouldFail = false, bool release = false, string[] environment = null)
+		public static string BuildProject (string csprojTarget, string rootDirectory = null, bool shouldFail = false, bool release = false, string[] environment = null)
 		{
+			rootDirectory = rootDirectory ?? DirectoryFinder.FindRootDirectory ();
+
 			SetEnvironment (rootDirectory);
 
 			StringBuilder buildArgs = new StringBuilder ();

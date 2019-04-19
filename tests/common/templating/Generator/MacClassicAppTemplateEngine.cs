@@ -11,8 +11,11 @@ namespace Xamarin.Tests.Templating
 		{
 		}
 
-		public string Generate (string outputDirectory, ProjectSubstitutions projectSubstitutions, FileSubstitutions fileSubstitutions, bool includeMonoRuntime = false)
+		public string Generate (string outputDirectory, ProjectSubstitutions projectSubstitutions = null, FileSubstitutions fileSubstitutions = null, bool includeMonoRuntime = false)
 		{
+			projectSubstitutions = projectSubstitutions ?? new ProjectSubstitutions ();
+			fileSubstitutions = fileSubstitutions ?? new FileSubstitutions ();
+
 			const string TestCode = @"using MonoMac.Foundation;
 using MonoMac.AppKit;
 
