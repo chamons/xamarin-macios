@@ -377,13 +377,16 @@
       <Link>external\StringUtils.cs</Link>
     </Compile>
     <Compile Include="..\common\CoreResolver.cs">
-      <Link>common\CoreResolver.cs</Link>
+      <Link>external\CoreResolver.cs</Link>
     </Compile>
     <Compile Include="..\..\external\Xamarin.MacDev\Xamarin.MacDev\PListObject.cs">
       <Link>external\PListObject.cs</Link>
     </Compile>
     <Compile Include="..\linker\CustomSymbolWriter.cs">
       <Link>Xamarin.Linker\CustomSymbolWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\common\Invoker.cs">
+      <Link>external\Invoker.cs</Link>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
