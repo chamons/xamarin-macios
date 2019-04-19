@@ -14,8 +14,11 @@ namespace Xamarin.MMP.Tests
 		public void Unified_SmokeTest (bool full)
 		{
 			var engine = new MacAppTemplateEngine (full ? ProjectFlavor.FullXM : ProjectFlavor.ModernXM, ProjectLanguage.CSharp);
-			string projectPath = engine.Generate (TestDirectory.Path);
+			var appRunner = new TestAppRunner ();
+			string projectPath = engine.Generate (appRunner);
+
 			ProjectBuilder.BuildProject (projectPath);
+			appRunner.Execute (engine.GetAppLocation ());
 		}
 
 		[TestCase (false)]

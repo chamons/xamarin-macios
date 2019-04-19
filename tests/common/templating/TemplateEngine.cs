@@ -49,6 +49,7 @@ namespace Xamarin.Tests
 	public abstract class TemplateEngineBase
 	{
 		protected TemplateInfo TemplateInfo;
+		public string ProjectName;
 
 		protected TemplateEngineBase (TemplateInfo info)
 		{
@@ -57,11 +58,12 @@ namespace Xamarin.Tests
 
 		protected ReplacementGroup GetStandardProjectReplacement (ProjectSubstitutions config)
 		{
+			ProjectName = config.AssemblyNameOverride ?? Path.GetFileNameWithoutExtension (TemplateInfo.ProjectName);
 			ReplacementGroup group = ReplacementGroup.Create (
 				Replacement.Create ("%CODE%", config.CSProjConfig),
 				Replacement.Create ("%REFERENCES%", config.References),
 				Replacement.Create ("%REFERENCES_BEFORE_PLATFORM%", config.ReferencesBeforePlatform),
-				Replacement.Create ("%NAME%", config.AssemblyNameOverride ?? Path.GetFileNameWithoutExtension (TemplateInfo.ProjectName)),
+				Replacement.Create ("%NAME%", ProjectName),
 				Replacement.Create ("%ITEMGROUP%", config.ItemGroup),
 				Replacement.Create ("%TARGET_FRAMEWORK_VERSION%", config.TargetFrameworkVersion));
 

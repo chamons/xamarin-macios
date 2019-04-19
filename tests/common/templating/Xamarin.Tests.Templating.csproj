@@ -63,6 +63,8 @@
     <Compile Include="..\..\mtouch\Cache.cs">
       <Link>External\Cache.cs</Link>
     </Compile>
+    <Compile Include="TestAppRunner.cs" />
+    <Compile Include="Generator\IApplicationTemplateEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
