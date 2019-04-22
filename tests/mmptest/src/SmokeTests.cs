@@ -14,11 +14,11 @@ namespace Xamarin.MMP.Tests
 		public void Unified_SmokeTest (bool full)
 		{
 			var engine = new MacAppTemplateEngine (full ? ProjectFlavor.FullXM : ProjectFlavor.ModernXM, ProjectLanguage.CSharp);
-			var appRunner = new TestAppRunner ();
-			string projectPath = engine.Generate (appRunner);
 
-			ProjectBuilder.BuildProject (projectPath);
-			appRunner.Execute (engine.GetAppLocation ());
+			var appRunner = new TestAppRunner ();
+			string projectPath = engine.Generate (runner: appRunner);
+
+			appRunner.BuildAndExecute (projectPath, engine);
 		}
 
 		[TestCase (false)]
@@ -26,8 +26,11 @@ namespace Xamarin.MMP.Tests
 		public void FSharp_SmokeTest (bool full)
 		{
 			var engine = new MacAppTemplateEngine (full ? ProjectFlavor.FullXM : ProjectFlavor.ModernXM, ProjectLanguage.FSharp);
-			string projectPath = engine.Generate (TestDirectory.Path);
-			ProjectBuilder.BuildProject (projectPath);
+
+			var appRunner = new TestAppRunner ();
+			string projectPath = engine.Generate (runner: appRunner);
+
+			appRunner.BuildAndExecute (projectPath, engine);
 		}
 
 		[Test]
@@ -35,8 +38,11 @@ namespace Xamarin.MMP.Tests
 		{
 			var engine = new MacAppTemplateEngine (ProjectFlavor.ModernXM, ProjectLanguage.CSharp);
 			var projectSubstitutions = new ProjectSubstitutions { CSProjConfig = "<LinkMode>SdkOnly</LinkMode>" };
-			string projectPath = engine.Generate (TestDirectory.Path, projectSubstitutions);
-			ProjectBuilder.BuildProject (projectPath);
+
+			var appRunner = new TestAppRunner ();
+			string projectPath = engine.Generate (projectSubstitutions: projectSubstitutions, runner: appRunner);
+
+			appRunner.BuildAndExecute (projectPath, engine);
 		}
 
 		[Test]
@@ -44,8 +50,11 @@ namespace Xamarin.MMP.Tests
 		{
 			var engine = new MacAppTemplateEngine (ProjectFlavor.ModernXM, ProjectLanguage.CSharp);
 			var projectSubstitutions = new ProjectSubstitutions { CSProjConfig = "<LinkMode>Full</LinkMode>" };
-			string projectPath = engine.Generate (TestDirectory.Path, projectSubstitutions);
-			ProjectBuilder.BuildProject (projectPath);
+
+			var appRunner = new TestAppRunner ();
+			string projectPath = engine.Generate (projectSubstitutions: projectSubstitutions, runner: appRunner);
+
+			appRunner.BuildAndExecute (projectPath, engine);
 		}
 
 		[TestCase ("")]
@@ -61,8 +70,11 @@ namespace Xamarin.MMP.Tests
 
 			var engine = new MacSystemMonoTemplateEngine ();
 			var projectSubstitutions = new ProjectSubstitutions { TargetFrameworkVersion = version };
-			string projectPath = engine.Generate (TestDirectory.Path, projectSubstitutions);
-			ProjectBuilder.BuildProject (projectPath);
+
+			var appRunner = new TestAppRunner ();
+			string projectPath = engine.Generate (projectSubstitutions: projectSubstitutions, runner: appRunner);
+
+			appRunner.BuildAndExecute (projectPath, engine);
 		}
 	}
 }

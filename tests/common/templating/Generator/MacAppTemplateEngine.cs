@@ -13,22 +13,16 @@ namespace Xamarin.Tests.Templating
 		{
 		}
 
-		public string GetAppLocation (bool isRelease = false, string testDirectory = null)
-		{
-			testDirectory = testDirectory ?? TestDirectory.Path;
-			return $"{testDirectory}/bin/{(isRelease ? "Release" : "Debug")}/{ProjectName}.app/Contents/MacOS/{ProjectName}";
-		}
+		public string GetAppLocation (bool isRelease = false, string testDirectory = null) => DefaultMacAppLocation.GetAppLocation (ProjectName, isRelease, testDirectory);
 
-		public string Generate (TestAppRunner appRunner, string outputDirectory = null, ProjectSubstitutions projectSubstitutions = null, PListSubstitutions plistReplacements = null, bool includeAssets = false)
-		{
-			return Generate (outputDirectory, projectSubstitutions, appRunner.FileSubstitutions, plistReplacements, includeAssets);
-		}
-
-		public string Generate (string outputDirectory = null, ProjectSubstitutions projectSubstitutions = null, FileSubstitutions fileSubstitutions = null, PListSubstitutions plistReplacements = null, bool includeAssets = false)
+		public string Generate (string outputDirectory = null, ProjectSubstitutions projectSubstitutions = null, FileSubstitutions fileSubstitutions = null,
+			TestAppRunner runner = null, PListSubstitutions plistReplacements = null, bool includeAssets = false)
 		{
 			outputDirectory = outputDirectory ?? TestDirectory.Path;
 			projectSubstitutions = projectSubstitutions ?? new ProjectSubstitutions ();
 			fileSubstitutions = fileSubstitutions ?? new FileSubstitutions ();
+
+			fileSubstitutions.TestCode += runner?.TestCode;
 
 			plistReplacements = plistReplacements ?? PListSubstitutions.None;
 			FileCopier templateEngine = CreateEngine (outputDirectory);

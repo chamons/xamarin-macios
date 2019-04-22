@@ -11,10 +11,15 @@ namespace Xamarin.Tests.Templating
 		{
 		}
 
-		public string Generate (string outputDirectory, ProjectSubstitutions projectSubstitutions = null, FileSubstitutions fileSubstitutions = null)
+		public string GetAppLocation (bool isRelease = false, string testDirectory = null) => DefaultMacAppLocation.GetAppLocation (ProjectName, isRelease, testDirectory);
+
+		public string Generate (string outputDirectory = null, ProjectSubstitutions projectSubstitutions = null, FileSubstitutions fileSubstitutions = null, TestAppRunner runner = null)
 		{
+			outputDirectory = outputDirectory ?? TestDirectory.Path;
 			projectSubstitutions = projectSubstitutions ?? new ProjectSubstitutions ();
 			fileSubstitutions = fileSubstitutions ?? new FileSubstitutions ();
+
+			fileSubstitutions.TestCode += runner?.TestCode;
 
 			FileCopier templateEngine = CreateEngine (outputDirectory);
 

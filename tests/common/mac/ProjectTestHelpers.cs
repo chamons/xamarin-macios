@@ -512,7 +512,7 @@ namespace Xamarin.MMP.Tests
 
 			return CopyFileWithSubstitutions (Path.Combine (sourceDir, config.ProjectName), Path.Combine (config.TmpDir, config.ProjectName), text =>
 				{
-					return ProjectTextReplacement (config, text.Replace ("%TARGETFRAMEWORKVERSION%", GetTargetFrameworkValue (config)));
+					return ProjectTextReplacement (config, text.Replace ("%TARGET_FRAMEWORK_VERSION%", GetTargetFrameworkValue (config)));
 				});
 		}
 
