@@ -1,8 +1,10 @@
 ﻿using System;
 namespace Xamarin.Tests.Templating
 {
-	public class MacClassicAppTemplateEngine : TemplateEngineBase
+	public class MacClassicAppTemplateEngine : TemplateEngineWithReplacements
 	{
+		public bool IncludeMonoRuntime { get; set; } = false;
+
 		public MacClassicAppTemplateEngine () : base (TemplateInfo.FromFiles ("ClassicExample.csproj", "Main.cs"))
 		{
 		}
@@ -11,11 +13,8 @@ namespace Xamarin.Tests.Templating
 		{
 		}
 
-		public string Generate (string outputDirectory, ProjectSubstitutions projectSubstitutions = null, FileSubstitutions fileSubstitutions = null, bool includeMonoRuntime = false)
+		public string Generate ()
 		{
-			projectSubstitutions = projectSubstitutions ?? new ProjectSubstitutions ();
-			fileSubstitutions = fileSubstitutions ?? new FileSubstitutions ();
-
 			const string TestCode = @"using MonoMac.Foundation;
 using MonoMac.AppKit;
 
@@ -32,14 +31,14 @@ namespace TestCase
 		}
 	}
 }";
-			FileCopier templateEngine = CreateEngine (outputDirectory);
+			FileCopier templateEngine = CreateEngine (OutputDirectory);
 
-			ReplacementGroup replacements = ReplacementGroup.Create (Replacement.Create ("%CODE%", fileSubstitutions.TestCode), Replacement.Create ("%DECL%", fileSubstitutions.TestDecl));
+			ReplacementGroup replacements = ReplacementGroup.Create (Replacement.Create ("%CODE%", FileSubstitutions.TestCode), Replacement.Create ("%DECL%", FileSubstitutions.TestDecl));
 			templateEngine.CopyTextWithSubstitutions (TestCode, TemplateInfo.SourceName, replacements);
 
 			templateEngine.CopyFile ("Info-Classic.plist", "Info.plist");
 
-			ReplacementGroup replacementGroup = ReplacementGroup.Create (Replacement.Create ("%CODE%", projectSubstitutions.CSProjConfig), Replacement.Create ("%INCLUDE_MONO_RUNTIME%", includeMonoRuntime.ToString ()));
+			ReplacementGroup replacementGroup = ReplacementGroup.Create (Replacement.Create ("%CODE%", ProjectSubstitutions.CSProjConfig), Replacement.Create ("%INCLUDE_MONO_RUNTIME%", IncludeMonoRuntime.ToString ()));
 			return templateEngine.CopyFileWithSubstitutions (TemplateInfo.ProjectName, replacementGroup);
 		}
 	}

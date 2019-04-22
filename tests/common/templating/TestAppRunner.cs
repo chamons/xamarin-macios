@@ -6,21 +6,24 @@ namespace Xamarin.Tests.Templating
 {
 	public class TestAppRunner
 	{
+		IApplicationTemplateEngine AppEngine;
 		readonly string ExpectedPath;
 		public string TestCode => string.Format ("System.IO.File.Create(\"{0}\").Dispose();", ExpectedPath);
 
-		public TestAppRunner (string testDirectory = null)
+		public TestAppRunner (IApplicationTemplateEngine appEngine)
 		{
-			testDirectory = testDirectory ?? TestDirectory.Path;
+			AppEngine = appEngine;
 
 			var guid = Guid.NewGuid ();
-			ExpectedPath = Path.Combine (testDirectory, guid.ToString ());
+			ExpectedPath = Path.Combine (AppEngine.OutputDirectory, guid.ToString ());
+			AppEngine.FileSubstitutions.TestCode += TestCode;
 		}
 
-		public void BuildAndExecute (string projectPath, IApplicationTemplateEngine appEngine)
+		public void BuildAndExecute ()
 		{
+			string projectPath = AppEngine.Generate ();
 			ProjectBuilder.BuildProject (projectPath);
-			Execute (appEngine.GetAppLocation ());
+			Execute (AppEngine.AppLocation);
 		}
 
 		void Execute (string path)

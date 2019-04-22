@@ -1,8 +1,10 @@
 ﻿using System;
 namespace Xamarin.Tests.Templating
 {
-	public class MacSystemMonoTemplateEngine : TemplateEngineBase, IApplicationTemplateEngine
+	public class MacSystemMonoTemplateEngine : TemplateEngineWithReplacements, IApplicationTemplateEngine
 	{
+		TestAppRunner Runner { get; set; } = null;
+
 		public MacSystemMonoTemplateEngine () : base (TemplateInfo.FromFiles ("SystemMonoExample.csproj", "Main.cs"))
 		{
 		}
@@ -11,24 +13,20 @@ namespace Xamarin.Tests.Templating
 		{
 		}
 
-		public string GetAppLocation (bool isRelease = false, string testDirectory = null) => DefaultMacAppLocation.GetAppLocation (ProjectName, isRelease, testDirectory);
+		public string AppLocation => DefaultMacAppLocation.GetAppLocation (ProjectName, IsRelease, OutputDirectory);
 
-		public string Generate (string outputDirectory = null, ProjectSubstitutions projectSubstitutions = null, FileSubstitutions fileSubstitutions = null, TestAppRunner runner = null)
+		public string Generate ()
 		{
-			outputDirectory = outputDirectory ?? TestDirectory.Path;
-			projectSubstitutions = projectSubstitutions ?? new ProjectSubstitutions ();
-			fileSubstitutions = fileSubstitutions ?? new FileSubstitutions ();
+			FileSubstitutions.TestCode += Runner?.TestCode;
 
-			fileSubstitutions.TestCode += runner?.TestCode;
+			FileCopier templateEngine = CreateEngine (OutputDirectory);
 
-			FileCopier templateEngine = CreateEngine (outputDirectory);
-
-			ReplacementGroup replacements = ReplacementGroup.Create (Replacement.Create ("%CODE%", fileSubstitutions.TestCode), Replacement.Create ("%DECL%", fileSubstitutions.TestDecl));
+			ReplacementGroup replacements = ReplacementGroup.Create (Replacement.Create ("%CODE%", FileSubstitutions.TestCode), Replacement.Create ("%DECL%", FileSubstitutions.TestDecl));
 			templateEngine.CopyTextWithSubstitutions (MacAppTemplateEngine.GetAppMainSourceText (ProjectLanguage.CSharp), TemplateInfo.SourceName, replacements);
 
 			templateEngine.CopyFile ("Info-Unified.plist", "Info.plist");
 
-			return templateEngine.CopyFileWithSubstitutions (TemplateInfo.ProjectName, GetStandardProjectReplacement (projectSubstitutions));
+			return templateEngine.CopyFileWithSubstitutions (TemplateInfo.ProjectName, GetStandardProjectReplacement (ProjectSubstitutions));
 		}
 	}
 }

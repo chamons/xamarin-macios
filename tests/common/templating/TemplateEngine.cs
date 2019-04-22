@@ -48,8 +48,10 @@ namespace Xamarin.Tests
 
 	public abstract class TemplateEngineBase
 	{
-		protected TemplateInfo TemplateInfo;
-		public string ProjectName;
+		public string OutputDirectory { get; set; } = TestDirectory.Path;
+
+		public string ProjectName { get; private set; }
+		protected TemplateInfo TemplateInfo;		
 
 		protected TemplateEngineBase (TemplateInfo info)
 		{
@@ -73,5 +75,16 @@ namespace Xamarin.Tests
 		}
 
 		protected virtual FileCopier CreateEngine (string outputDirectory) => new FileCopier (DirectoryFinder.FindSourceDirectory (), outputDirectory);
+	}
+
+	public abstract class TemplateEngineWithReplacements : TemplateEngineBase
+	{
+		public ProjectSubstitutions ProjectSubstitutions { get; set; } = new ProjectSubstitutions ();
+		public FileSubstitutions FileSubstitutions { get; set; } = new FileSubstitutions ();
+		public bool IsRelease { get; set; } = false;
+
+		protected TemplateEngineWithReplacements (TemplateInfo info) : base (info)
+		{
+		}
 	}
 }

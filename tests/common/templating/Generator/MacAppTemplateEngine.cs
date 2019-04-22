@@ -3,8 +3,13 @@ using System.IO;
 
 namespace Xamarin.Tests.Templating
 {
-	public class MacAppTemplateEngine : TemplateEngineBase, IApplicationTemplateEngine
+	public class MacAppTemplateEngine : TemplateEngineWithReplacements, IApplicationTemplateEngine
 	{
+		public PListSubstitutions PlistReplacements { get; set; } = null;
+		public bool IncludeAssets { get; set; } = false;
+
+		public TestAppRunner Runner { get; set; } = null;
+
 		public MacAppTemplateEngine (ProjectFlavor flavor, ProjectLanguage language = ProjectLanguage.CSharp) : base (new TemplateInfo (flavor, ProjectType.App, language))
 		{
 		}
@@ -13,24 +18,19 @@ namespace Xamarin.Tests.Templating
 		{
 		}
 
-		public string GetAppLocation (bool isRelease = false, string testDirectory = null) => DefaultMacAppLocation.GetAppLocation (ProjectName, isRelease, testDirectory);
+		public string AppLocation => DefaultMacAppLocation.GetAppLocation (ProjectName, IsRelease, OutputDirectory);
 
-		public string Generate (string outputDirectory = null, ProjectSubstitutions projectSubstitutions = null, FileSubstitutions fileSubstitutions = null,
-			TestAppRunner runner = null, PListSubstitutions plistReplacements = null, bool includeAssets = false)
+		public string Generate ()
 		{
-			outputDirectory = outputDirectory ?? TestDirectory.Path;
-			projectSubstitutions = projectSubstitutions ?? new ProjectSubstitutions ();
-			fileSubstitutions = fileSubstitutions ?? new FileSubstitutions ();
+			FileSubstitutions.TestCode += Runner?.TestCode;
 
-			fileSubstitutions.TestCode += runner?.TestCode;
+			PlistReplacements = PlistReplacements ?? PListSubstitutions.None;
+			FileCopier templateEngine = CreateEngine (OutputDirectory);
 
-			plistReplacements = plistReplacements ?? PListSubstitutions.None;
-			FileCopier templateEngine = CreateEngine (outputDirectory);
-
-			if (includeAssets) {
+			if (IncludeAssets) {
 				templateEngine.CopyDirectory ("Icons/Assets.xcassets");
 
-				projectSubstitutions.ItemGroup += @"<ItemGroup>
+				ProjectSubstitutions.ItemGroup += @"<ItemGroup>
     <ImageAsset Include=""Assets.xcassets\AppIcon.appiconset\Contents.json"" />
     <ImageAsset Include=""Assets.xcassets\AppIcon.appiconset\AppIcon-128.png"" />
     <ImageAsset Include=""Assets.xcassets\AppIcon.appiconset\AppIcon-128%402x.png"" />
@@ -43,15 +43,15 @@ namespace Xamarin.Tests.Templating
   </ItemGroup>";
 
 				// HACK - Should process using CopyFileWithSubstitutions
-				plistReplacements.Replacements.Add ("</dict>", @"<key>XSAppIconAssets</key><string>Assets.xcassets/AppIcon.appiconset</string></dict>");
+				PlistReplacements.Replacements.Add ("</dict>", @"<key>XSAppIconAssets</key><string>Assets.xcassets/AppIcon.appiconset</string></dict>");
 			}
 
-			ReplacementGroup replacements = ReplacementGroup.Create (Replacement.Create ("%CODE%", fileSubstitutions.TestCode), Replacement.Create ("%DECL%", fileSubstitutions.TestDecl));
+			ReplacementGroup replacements = ReplacementGroup.Create (Replacement.Create ("%CODE%", FileSubstitutions.TestCode), Replacement.Create ("%DECL%", FileSubstitutions.TestDecl));
 			templateEngine.CopyTextWithSubstitutions (GetAppMainSourceText (TemplateInfo.Language), TemplateInfo.SourceName, replacements);
 
-			templateEngine.CopyFileWithSubstitutions ("Info-Unified.plist", plistReplacements.CreateReplacementAction (), "Info.plist");
+			templateEngine.CopyFileWithSubstitutions ("Info-Unified.plist", PlistReplacements.CreateReplacementAction (), "Info.plist");
 
-			return templateEngine.CopyFileWithSubstitutions (TemplateInfo.ProjectName, GetStandardProjectReplacement (projectSubstitutions));
+			return templateEngine.CopyFileWithSubstitutions (TemplateInfo.ProjectName, GetStandardProjectReplacement (ProjectSubstitutions));
 		}
 
 		public static string GetAppMainSourceText (ProjectLanguage language)

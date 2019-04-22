@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Xamarin.Tests.Templating
 {
-	public class MacLibraryTemplateEngine : TemplateEngineBase
+	public class MacLibraryTemplateEngine : TemplateEngineWithReplacements
 	{
 		public MacLibraryTemplateEngine (ProjectFlavor flavor, ProjectLanguage language = ProjectLanguage.CSharp) : base (new TemplateInfo (flavor, ProjectType.Library, language))
 		{
@@ -11,16 +11,13 @@ namespace Xamarin.Tests.Templating
 		{
 		}
 
-		public string Generate (string outputDirectory, ProjectSubstitutions projectSubstitutions = null, FileSubstitutions fileSubstitutions = null)
+		public string Generate ()
 		{
-			projectSubstitutions = projectSubstitutions ?? new ProjectSubstitutions ();
-			fileSubstitutions = fileSubstitutions ?? new FileSubstitutions ();
+			FileCopier templateEngine = CreateEngine (OutputDirectory);
 
-			FileCopier templateEngine = CreateEngine (outputDirectory);
+			templateEngine.CopyFileWithSubstitutions (TemplateInfo.SourceName, Replacement.Create ("%CODE%", FileSubstitutions.TestCode));
 
-			templateEngine.CopyFileWithSubstitutions (TemplateInfo.SourceName, Replacement.Create ("%CODE%", fileSubstitutions.TestCode));
-
-			return templateEngine.CopyFileWithSubstitutions (TemplateInfo.ProjectName, GetStandardProjectReplacement (projectSubstitutions));
+			return templateEngine.CopyFileWithSubstitutions (TemplateInfo.ProjectName, GetStandardProjectReplacement (ProjectSubstitutions));
 		}
 	}
 }

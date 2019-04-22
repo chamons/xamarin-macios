@@ -4,7 +4,11 @@ namespace Xamarin.Tests.Templating
 {
 	public interface IApplicationTemplateEngine
 	{
-		string GetAppLocation (bool isRelease = false, string testDirectory = null);
+		string Generate ();
+
+		string AppLocation { get; }
+		string OutputDirectory { get; set; }
+		FileSubstitutions FileSubstitutions { get; set; }
 	}
 
 	static class DefaultMacAppLocation

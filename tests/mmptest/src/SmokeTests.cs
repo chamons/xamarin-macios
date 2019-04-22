@@ -15,10 +15,8 @@ namespace Xamarin.MMP.Tests
 		{
 			var engine = new MacAppTemplateEngine (full ? ProjectFlavor.FullXM : ProjectFlavor.ModernXM, ProjectLanguage.CSharp);
 
-			var appRunner = new TestAppRunner ();
-			string projectPath = engine.Generate (runner: appRunner);
-
-			appRunner.BuildAndExecute (projectPath, engine);
+			var appRunner = new TestAppRunner (engine);
+			appRunner.BuildAndExecute ();
 		}
 
 		[TestCase (false)]
@@ -27,34 +25,20 @@ namespace Xamarin.MMP.Tests
 		{
 			var engine = new MacAppTemplateEngine (full ? ProjectFlavor.FullXM : ProjectFlavor.ModernXM, ProjectLanguage.FSharp);
 
-			var appRunner = new TestAppRunner ();
-			string projectPath = engine.Generate (runner: appRunner);
-
-			appRunner.BuildAndExecute (projectPath, engine);
+			var appRunner = new TestAppRunner (engine);
+			appRunner.BuildAndExecute ();
 		}
 
-		[Test]
-		public void Modern_SmokeTest_LinkSDK ()
+		[TestCase ("SdkOnly")]
+		[TestCase ("Full")]
+		public void Modern_SmokeTest_LinkSDK (string linkMode)
 		{
-			var engine = new MacAppTemplateEngine (ProjectFlavor.ModernXM, ProjectLanguage.CSharp);
-			var projectSubstitutions = new ProjectSubstitutions { CSProjConfig = "<LinkMode>SdkOnly</LinkMode>" };
-
-			var appRunner = new TestAppRunner ();
-			string projectPath = engine.Generate (projectSubstitutions: projectSubstitutions, runner: appRunner);
-
-			appRunner.BuildAndExecute (projectPath, engine);
-		}
-
-		[Test]
-		public void Modern_SmokeTest_LinkAll ()
-		{
-			var engine = new MacAppTemplateEngine (ProjectFlavor.ModernXM, ProjectLanguage.CSharp);
-			var projectSubstitutions = new ProjectSubstitutions { CSProjConfig = "<LinkMode>Full</LinkMode>" };
-
-			var appRunner = new TestAppRunner ();
-			string projectPath = engine.Generate (projectSubstitutions: projectSubstitutions, runner: appRunner);
-
-			appRunner.BuildAndExecute (projectPath, engine);
+			var engine = new MacAppTemplateEngine (ProjectFlavor.ModernXM, ProjectLanguage.CSharp) {
+				ProjectSubstitutions = new ProjectSubstitutions { CSProjConfig = $"<LinkMode>{linkMode}</LinkMode>" }
+			};
+			
+			var appRunner = new TestAppRunner (engine);
+			appRunner.BuildAndExecute ();
 		}
 
 		[TestCase ("")]
@@ -68,13 +52,12 @@ namespace Xamarin.MMP.Tests
 			if (TI.FindMonoVersion () < new Version ("4.3"))
 				return;
 
-			var engine = new MacSystemMonoTemplateEngine ();
-			var projectSubstitutions = new ProjectSubstitutions { TargetFrameworkVersion = version };
+			var engine = new MacSystemMonoTemplateEngine () {
+				ProjectSubstitutions = new ProjectSubstitutions { TargetFrameworkVersion = version }
+			};
 
-			var appRunner = new TestAppRunner ();
-			string projectPath = engine.Generate (projectSubstitutions: projectSubstitutions, runner: appRunner);
-
-			appRunner.BuildAndExecute (projectPath, engine);
+			var appRunner = new TestAppRunner (engine);
+			appRunner.BuildAndExecute ();
 		}
 	}
 }

@@ -11,11 +11,11 @@ namespace Xamarin.Tests.Templating
 
 		const string NetStandardSubDir = "NetStandard";
 
-		public string Generate (string outputDirectory)
+		public string Generate ()
 		{
-			Directory.CreateDirectory (Path.Combine (outputDirectory, NetStandardSubDir));
+			Directory.CreateDirectory (Path.Combine (OutputDirectory, NetStandardSubDir));
 
-			FileCopier templateEngine = CreateEngine (outputDirectory);
+			FileCopier templateEngine = CreateEngine (OutputDirectory);
 			templateEngine.CopyFile (TemplateInfo.SourceName);
 			return templateEngine.CopyFile (TemplateInfo.ProjectName);
 		}

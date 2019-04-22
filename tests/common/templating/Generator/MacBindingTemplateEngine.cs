@@ -2,7 +2,7 @@
 
 namespace Xamarin.Tests.Templating
 {
-	public class MacBindingTemplateEngine : TemplateEngineBase
+	public class MacBindingTemplateEngine : TemplateEngineWithReplacements
 	{
 		public MacBindingTemplateEngine (ProjectFlavor flavor, ProjectLanguage language = ProjectLanguage.CSharp) : base (new TemplateInfo (flavor, ProjectType.Binding, language))
 		{
@@ -12,17 +12,14 @@ namespace Xamarin.Tests.Templating
 		{
 		}
 
-		public string Generate (string outputDirectory, ProjectSubstitutions projectSubstitutions = null, FileSubstitutions fileSubstitutions = null)
+		public string Generate ()
 		{
-			projectSubstitutions = projectSubstitutions ?? new ProjectSubstitutions ();
-			fileSubstitutions = fileSubstitutions ?? new FileSubstitutions ();
+			FileCopier templateEngine = CreateEngine (OutputDirectory);
 
-			FileCopier templateEngine = CreateEngine (outputDirectory);
+			templateEngine.CopyFileWithSubstitutions ("ApiDefinition.cs", Replacement.Create ("%CODE%", FileSubstitutions.ApiDefinition));
+			templateEngine.CopyFileWithSubstitutions ("StructsAndEnums.cs", Replacement.Create ("%CODE%", FileSubstitutions.StructsAndEnums));
 
-			templateEngine.CopyFileWithSubstitutions ("ApiDefinition.cs", Replacement.Create ("%CODE%", fileSubstitutions.ApiDefinition));
-			templateEngine.CopyFileWithSubstitutions ("StructsAndEnums.cs", Replacement.Create ("%CODE%", fileSubstitutions.StructsAndEnums));
-
-			return templateEngine.CopyFileWithSubstitutions (TemplateInfo.ProjectName, GetStandardProjectReplacement (projectSubstitutions));
+			return templateEngine.CopyFileWithSubstitutions (TemplateInfo.ProjectName, GetStandardProjectReplacement (ProjectSubstitutions));
 		}
 	}
 }
