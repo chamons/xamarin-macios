@@ -52,7 +52,7 @@ namespace Xamarin.MMP.Tests
 			if (TI.FindMonoVersion () < new Version ("4.3"))
 				return;
 
-			var engine = new MacSystemMonoTemplateEngine () {
+			var engine = new MacSystemMonoTemplateEngine {
 				ProjectSubstitutions = new ProjectSubstitutions { TargetFrameworkVersion = version }
 			};
 
