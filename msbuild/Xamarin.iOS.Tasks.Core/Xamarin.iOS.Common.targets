@@ -569,6 +569,7 @@ Copyright (C) 2013-2016 Xamarin. All rights reserved.
 			_CompileEntitlements;
 			_CompileAppManifest;
 			_ResolveAppExtensionReferences;
+			_ExtendAppExtensionReferences;
 			_GetNativeExecutableName;
 			_GetCompileToNativeInputs;
 			_ExpandNativeReferences;
@@ -1376,6 +1377,28 @@ Copyright (C) 2013-2016 Xamarin. All rights reserved.
 		</CreateItem>
 
 		<!--<Warning Text="_SplitAppExtensionReferencesByExistent: @(_AppExtensionReferenceWithConfigurationExistent)"/>-->
+	</Target>
+	
+	<Target Name="_ExtendAppExtensionReferences" DependsOnTargets="_ResolveAppExtensionReferences" Condition=" '@(AdditionalAppExtensions)' != ''">
+		<PropertyGroup>
+			<_ExtensionEntitlementPath>%(AdditionalAppExtensions.Identity)/%(AdditionalAppExtensions.Name).entitlements</_ExtensionEntitlementPath>
+		</PropertyGroup>
+		<ItemGroup>
+			<_ResolvedAppExtensionReferences Include="%(AdditionalAppExtensions.Identity)/%(AdditionalAppExtensions.BuildOutput)/%(AdditionalAppExtensions.Name).appex" />
+
+			<_AppExtensionCodesignProperties Include="%(AdditionalAppExtensions.Name).appex">
+				<Entitlements Condition="Exists('$(_ExtensionEntitlementPath)')">
+					$(_ExtensionEntitlementPath)
+				</Entitlements>
+				<SigningKey>$(CodesignKey)</SigningKey>
+				<Keychain>$(CodesignKeychain)</Keychain>
+				<DisableTimestamp>False</DisableTimestamp>
+				<DisableTimestamp Condition="'$(_SdkIsSimulator)' == 'true' Or '$(MtouchDebug)' == 'true'">True</DisableTimestamp>
+				<CodesignAllocate>$(_CodesignAllocate)</CodesignAllocate>
+				<ResourceRules>$(CodesignResourceRules)</ResourceRules>
+				<NativeExecutable>%(AdditionalAppExtensions.Filename)</NativeExecutable>
+			</_AppExtensionCodesignProperties> 
+		</ItemGroup>
 	</Target>
 
 	<Target Name="_ResolveAppExtensionReferences" DependsOnTargets="_SplitAppExtensionReferencesByExistent">
